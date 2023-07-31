@@ -9,15 +9,15 @@ import 'package:serverpod_flutter/serverpod_flutter.dart';
 // The client is set up to connect to a Serverpod running on a local server on
 // the default port. You will need to modify this to connect to staging or
 // production servers.
-var client = Client(
-    'http://localhost:8080/',
-    authenticationKeyManager: FlutterAuthenticationKeyManager(),
-  )..connectivityMonitor = FlutterConnectivityMonitor();
+Client client = Client(
+  'http://localhost:8080/',
+  authenticationKeyManager: FlutterAuthenticationKeyManager(),
+)..connectivityMonitor = FlutterConnectivityMonitor();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final SessionManager sessionManager = SessionManager(
+  final sessionManager = SessionManager(
     caller: client.modules.auth,
   );
   await sessionManager.initialize();
@@ -113,7 +113,6 @@ class MyHomePageState extends State<MyHomePage> {
 // _ResultDisplays shows the result of the call. Either the returned result from
 // the `example.hello` endpoint method or an error message.
 class _ResultDisplay extends StatelessWidget {
-
   const _ResultDisplay({
     this.resultMessage,
     this.errorMessage,
