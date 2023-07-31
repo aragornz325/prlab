@@ -5,6 +5,8 @@ import 'package:prlab_server/src/web/routes/root.dart';
 import 'src/generated/protocol.dart';
 import 'src/generated/endpoints.dart';
 
+import 'package:serverpod_auth_server/module.dart' as auth;
+
 // This is the starting point of your Serverpod server. In most cases, you will
 // only need to make additions to this file if you add future calls,  are
 // configuring Relic (Serverpod's web-server), or need custom setup work.
@@ -28,6 +30,17 @@ void run(List<String> args) async {
     RouteStaticDirectory(serverDirectory: 'static', basePath: '/'),
     '/*',
   );
+
+  auth.AuthConfig.set(auth.AuthConfig(
+  sendValidationEmail: (session, email, validationCode) async {
+    print(validationCode);
+    return true;
+  },
+  sendPasswordResetEmail: (session, userInfo, validationCode) async {
+    print(validationCode);
+    return true;
+  },
+));
 
   // Start the server.
   await pod.start();
