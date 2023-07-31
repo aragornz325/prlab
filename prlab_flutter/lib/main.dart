@@ -1,5 +1,5 @@
-import 'package:prlab_client/prlab_client.dart';
 import 'package:flutter/material.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/login.dart';
 import 'package:serverpod_auth_shared_flutter/serverpod_auth_shared_flutter.dart';
 import 'package:serverpod_flutter/serverpod_flutter.dart';
@@ -17,7 +17,7 @@ var client = Client(
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  SessionManager sessionManager = SessionManager(
+  final SessionManager sessionManager = SessionManager(
     caller: client.modules.auth,
   );
   await sessionManager.initialize();
@@ -26,7 +26,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +35,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({required this.title, super.key});
 
   final String title;
 
@@ -60,7 +60,7 @@ class MyHomePageState extends State<MyHomePage> {
   // Calls the `hello` method of the `example` endpoint. Will set either the
   // `_resultMessage` or `_errorMessage` field, depending on if the call
   // is successful.
-  void _callHello() async {
+  Future<void> _callHello() async {
     try {
       final result = await client.example.hello(_textEditingController.text);
       setState(() {
@@ -84,7 +84,7 @@ class MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
+              padding: const EdgeInsets.only(bottom: 16),
               child: TextField(
                 controller: _textEditingController,
                 decoration: const InputDecoration(
@@ -93,7 +93,7 @@ class MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
+              padding: const EdgeInsets.only(bottom: 16),
               child: ElevatedButton(
                 onPressed: _callHello,
                 child: const Text('Send to Server'),
@@ -113,13 +113,13 @@ class MyHomePageState extends State<MyHomePage> {
 // _ResultDisplays shows the result of the call. Either the returned result from
 // the `example.hello` endpoint method or an error message.
 class _ResultDisplay extends StatelessWidget {
-  final String? resultMessage;
-  final String? errorMessage;
 
   const _ResultDisplay({
     this.resultMessage,
     this.errorMessage,
   });
+  final String? resultMessage;
+  final String? errorMessage;
 
   @override
   Widget build(BuildContext context) {
