@@ -3,7 +3,7 @@ import 'package:prlab_flutter/main.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
 class LoginPage extends StatelessWidget {
-const LoginPage({ Key? key }) : super(key: key);
+const LoginPage({ super.key });
 
   @override
   Widget build(BuildContext context){
