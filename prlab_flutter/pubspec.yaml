@@ -6,6 +6,8 @@ publish_to: none
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
+isar_version: &isar_version 3.1.0
+
 dependencies:
   bloc: ^8.1.2
   flutter:
@@ -15,10 +17,17 @@ dependencies:
     sdk: flutter
   intl: ^0.18.0
   serverpod_flutter: ^1.1.1
-  serverpod_auth_shared_flutter: ^1.1.1
   serverpod_auth_email_flutter: ^1.1.1
+  serverpod_auth_shared_flutter: ^1.1.1
+
+  #data persistence
+  isar: ^3.1.0+1
+  isar_flutter_libs: ^3.1.0+1
+  path_provider: ^2.0.15
+
   prlab_client:
     path: ../prlab_client
+
 
   full_responsive:
     path: ./full_responsive

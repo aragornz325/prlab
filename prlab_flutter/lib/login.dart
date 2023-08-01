@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
           caller: client.modules.auth,
           onSignedIn: () {
             Navigator.of(context).push(
-              MaterialPageRoute(
+              MaterialPageRoute<dynamic>(
                 builder: (context) => const MyHomePage(title: 'Email sign in'),
               ),
             );

@@ -1,11 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.dart';
+import 'package:prlab_flutter/isar/isar_service.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 class App extends StatefulWidget {
-  const App({super.key});
-
+  const App({
+    required this.isarService,
+    super.key,
+  });
+  final IsarService isarService; //TODO(SAM): Agregar al Bloc para probar
   @override
   State<App> createState() => _AppState();
 }
