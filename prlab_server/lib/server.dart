@@ -1,3 +1,4 @@
+import 'package:prlab_server/utils/config/rewrite_yaml.dart';
 import 'package:serverpod/serverpod.dart';
 
 import 'package:prlab_server/src/web/routes/root.dart';
@@ -12,6 +13,7 @@ import 'package:serverpod_auth_server/module.dart' as auth;
 // configuring Relic (Serverpod's web-server), or need custom setup work.
 
 void run(List<String> args) async {
+  rewriteConfigYaml('staging');
   // Initialize Serverpod and connect it with your generated code.
   final pod = Serverpod(
     args,
