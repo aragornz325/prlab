@@ -17,7 +17,7 @@ extension GetUserIsarCollection on Isar {
 
 const UserIsarSchema = CollectionSchema(
   name: r'UserIsar',
-  id: 0,
+  id: 1,
   properties: {
     r'blocked': PropertySchema(
       id: 0,
