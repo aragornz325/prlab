@@ -6,9 +6,14 @@ import 'package:prlab_flutter/isar/isar_service.dart';
 
 void main() async {
   await dotenv.load(fileName: 'prod.env');
+
   WidgetsFlutterBinding.ensureInitialized();
+
+  ///Se instancia el objeto de la base de datos local Isar
   final isarService = IsarService();
+
   await isarService.openDB();
+
   await bootstrap(
     () => App(
       isarService: isarService,
