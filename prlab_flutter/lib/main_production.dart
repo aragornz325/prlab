@@ -9,7 +9,7 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  ///Se instancia el objeto de la base de datos local Isar
+  /// Se instancia el objeto de la base de datos local Isar
   final isarService = IsarService();
 
   await isarService.openDB();

@@ -2,7 +2,7 @@ import 'package:isar/isar.dart';
 
 part 'user.g.dart';
 
-///Clase del usuario de la DB local basada en UserInfo de Serverpod.
+/// Clase del usuario de la DB local basada en UserInfo de Serverpod.
 @Collection()
 class UserIsar {
   Id id = Isar.autoIncrement;
