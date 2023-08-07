@@ -1,14 +1,13 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:full_responsive/full_responsive.dart';
 
-@RoutePage()
-class RegistroVistaMobile extends StatelessWidget {
-  const RegistroVistaMobile({super.key});
+class ViewLoginDesktop extends StatelessWidget {
+  const ViewLoginDesktop({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final bool value = true;
     return Scaffold(
       body: Row(
         children: [
@@ -23,27 +22,26 @@ class RegistroVistaMobile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 30.ph),
+                      child: Image.asset(
+                        'images/hi.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                     Column(
                       children: [
-                        Image.asset(
-                          'images/avion_de_papel.png',
-                          fit: BoxFit.cover,
-                        ),
-                        Center(
-                          child: Text(
-                            'Welcome!',
-                            style: TextStyle(
-                              color: const Color(0xff363636),
-                              fontSize: 40.pf,
-                              fontWeight: FontWeight.w600,
-                            ),
+                        Text(
+                          'Hi Again!',
+                          style: TextStyle(
+                            color: const Color(0xff363636),
+                            fontSize: 40.pf,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                        SizedBox(
-                          height: 20.ph,
-                        ),
+                        SizedBox(height: 10.ph),
                         Text(
-                          'Create an account',
+                          'Log in to',
                           style: TextStyle(
                             color: const Color(0xff707070),
                             fontSize: 15.pf,
@@ -54,85 +52,35 @@ class RegistroVistaMobile extends StatelessWidget {
                     ),
                     SizedBox(
                       width: 90.pw,
-                      height: 20.ph,
-                    ),
+                    )
                   ],
                 ),
                 SizedBox(
-                  height: 40.ph,
+                  width: 259.pw,
+                  child: const TextField(),
                 ),
                 SizedBox(
                   width: 259.pw,
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.email),
-                      labelText: 'examplebrand@prlab.co',
-                      labelStyle: TextStyle(
-                        color: Color.fromARGB(
-                          255,
-                          184,
-                          87,
-                          106,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20.ph,
+                  child: const TextField(),
                 ),
                 SizedBox(
                   width: 259.pw,
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
-                      labelText: 'Password',
+                  child: const TextField(),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 12.ph),
+                  child: Text(
+                    'Did you forget your password? ',
+                    style: TextStyle(
+                      color: const Color(0xffA12B46),
+                      fontSize: 12.pf,
+                      fontWeight: FontWeight.w500,
+                      decoration: TextDecoration.underline,
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 20.ph,
-                ),
-                SizedBox(
-                  width: 259.pw,
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
-                      labelText: 'Confirm Password',
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20.ph,
-                ),
-                Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Checkbox(
-                        value: false,
-                        onChanged: (bool? value) {},
-                      ),
-                      const Text('I agree to the'),
-                      GestureDetector(
-                        child: const Text(
-                          'Terms and Conditions',
-                          style: TextStyle(
-                            color: Colors.blue,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 20.ph,
                 ),
                 ClipRRect(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(100),
-                  ),
+                  borderRadius: const BorderRadius.all(Radius.circular(100)),
                   child: SizedBox(
                     width: 359.pw,
                     height: 50.ph,
@@ -143,11 +91,33 @@ class RegistroVistaMobile extends StatelessWidget {
                           .3,
                         ),
                       ),
-                      child: Text(
-                        'Sign up',
-                        style: TextStyle(fontSize: 16.pf),
-                      ),
+                      child: const Text('Log in'),
                     ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 12.ph),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Don´t you have an account? ',
+                        style: TextStyle(
+                          color: const Color(0xff363636),
+                          fontSize: 12.pf,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        'Sign Up',
+                        style: TextStyle(
+                          color: const Color(0xffA12B46),
+                          fontSize: 12.pf,
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

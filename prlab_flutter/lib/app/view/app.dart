@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro.dart';
-
 import 'package:prlab_flutter/src/full_responsive/full_responsive_app.g.dart';
 
 class App extends StatelessWidget {
