@@ -55,17 +55,6 @@ class VistaRegistroEscritorio extends StatelessWidget {
               child: const Text('Sign Up'),
             ),
             const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.login),
-                  SizedBox(width: 5),
-                  Text('Login with Google'),
-                ],
-              ),
-            ),
           ],
         ),
       ),
