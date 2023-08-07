@@ -6,7 +6,7 @@ import 'package:prlab_flutter/isar/isar_service.dart';
 void main() {
   group('App', () {
     testWidgets('renders CounterPage', (tester) async {
-      await IsarService.openDB();
+      await IsarService.abrirDB();
 
       await tester.pumpWidget(
         const App(),
