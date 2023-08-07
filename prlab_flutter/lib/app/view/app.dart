@@ -1,16 +1,38 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/pages/login/bloc/bloc_login.dart';
+import 'package:prlab_flutter/src/full_responsive/full_responsive_app.g.dart';
 
-class App extends StatefulWidget {
+class App extends StatelessWidget {
   const App({super.key});
 
   @override
-  State<App> createState() => _AppState();
+  Widget build(BuildContext context) {
+    return FullResponsiveApp(
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => BlocLogin(),
+          )
+        ],
+        child: const AppView(),
+      ),
+    );
+  }
 }
 
-class _AppState extends State<App> {
+class AppView extends StatefulWidget {
+  const AppView({super.key});
+
+  @override
+  State<AppView> createState() => _AppViewState();
+}
+
+class _AppViewState extends State<AppView> {
   late AppRouter appRouter;
 
   @override
@@ -22,6 +44,7 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+    final fuenteGeneral = GoogleFonts.inter();
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -29,6 +52,7 @@ class _AppState extends State<App> {
         colorScheme: ColorScheme.fromSwatch(
           accentColor: const Color(0xFF13B9FF),
         ),
+        fontFamily: fuenteGeneral.fontFamily,
       ),
       builder: (context, child) => ScrollConfiguration(
         behavior: NoGlowBehavior(),

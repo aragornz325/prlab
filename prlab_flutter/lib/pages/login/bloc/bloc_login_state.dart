@@ -1,0 +1,31 @@
+part of 'bloc_login.dart';
+
+class BlocLoginState extends Equatable {
+  const BlocLoginState();
+
+  @override
+  List<Object> get props => [];
+}
+
+///estado donde cambiamos el color del boton de iniciar sesion
+class BlocLoginStateInitial extends BlocLoginState {
+  const BlocLoginStateInitial();
+}
+
+///estado success del login
+class BlocLoginStateSuccess extends BlocLoginState {
+  const BlocLoginStateSuccess();
+}
+
+///estado de error en caso de que no se pueda iniciar sesion
+class BlocLoginStateError extends BlocLoginState {
+  const BlocLoginStateError({
+    required this.errorMessage,
+  });
+  final String errorMessage;
+}
+
+///estado de cargando
+class BlocLoginStateLoading extends BlocLoginState {
+  const BlocLoginStateLoading();
+}

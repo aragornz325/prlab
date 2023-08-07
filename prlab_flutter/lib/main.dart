@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/login.dart';
+import 'package:prlab_flutter/pages/login/page_login.dart';
 import 'package:serverpod_auth_shared_flutter/serverpod_auth_shared_flutter.dart';
 import 'package:serverpod_flutter/serverpod_flutter.dart';
 
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginPage(),
+      home: const PageLogin(),
     );
   }
 }

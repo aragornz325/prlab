@@ -20,7 +20,7 @@ class FullResponsiveScreen extends FullResponsiveScreenBase<FullResponsiveApp> {
   /// The widget to render when the screen size is suitable for 390x844
   final Widget mobile;
 
-  /// The widget to render when the screen size is suitable for 1280x720
+  /// The widget to render when the screen size is suitable for 1280x832
   final Widget desktop;
 
   @override

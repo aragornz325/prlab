@@ -25,6 +25,9 @@ dependencies:
   cupertino_icons: ^1.0.5
   flutter_dotenv: ^5.1.0
   auto_route: ^7.7.1
+  equatable: ^2.0.5
+  flutter_svg: ^2.0.7
+  google_fonts: ^4.0.4
 
 
 dev_dependencies:
@@ -41,6 +44,8 @@ flutter:
   uses-material-design: true
   generate: true
   assets:
+    - assets/images/
+    - assets/icons/
     - stg.env
     - dev.env
     - prod.env
@@ -52,4 +57,4 @@ full_responsive:
       height: 844
     - name: "desktop"
       width: 1280
-      height: 720
+      height: 832
