@@ -4,16 +4,14 @@ import 'package:prlab_flutter/counter/counter.dart';
 import 'package:prlab_flutter/isar/isar_service.dart';
 
 void main() {
-  final isarService = IsarService();
-
   group('App', () {
     testWidgets('renders CounterPage', (tester) async {
-      await isarService.openDB();
+      await IsarService.openDB();
+
       await tester.pumpWidget(
-        App(
-          isarService: isarService,
-        ),
+        const App(),
       );
+
       expect(find.byType(CounterPage), findsOneWidget);
     });
   });

@@ -21,14 +21,13 @@ dependencies:
   serverpod_auth_shared_flutter: ^1.1.1
 
   #data persistence
-  isar: ^3.1.0+1
-  isar_flutter_libs: ^3.1.0+1
+  isar: ^4.0.0-dev.9
+  isar_flutter_libs: ^4.0.0-dev.9
   path_provider: ^2.0.15
   localstorage: ^4.0.0+1
 
   prlab_client:
     path: ../prlab_client
-
 
   full_responsive:
     path: ./full_responsive
@@ -36,10 +35,9 @@ dependencies:
   flutter_dotenv: ^5.1.0
   auto_route: ^7.7.1
 
-
 dev_dependencies:
-  bloc_test: ^9.1.2
   auto_route_generator: ^7.2.0
+  bloc_test: ^9.1.2
   build_runner: ^2.4.6
   flutter_lints: ^2.0.1
   flutter_test:

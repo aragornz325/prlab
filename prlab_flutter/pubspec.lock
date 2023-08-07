@@ -632,18 +632,18 @@ packages:
     dependency: "direct main"
     description:
       name: isar
-      sha256: "99165dadb2cf2329d3140198363a7e7bff9bbd441871898a87e26914d25cf1ea"
+      sha256: "3d0b8ee997e9784b2508c1119ef54cfcd5aad369848b90031889159e53cbae69"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.0+1"
+    version: "4.0.0-dev.9"
   isar_flutter_libs:
     dependency: "direct main"
     description:
       name: isar_flutter_libs
-      sha256: bc6768cc4b9c61aabff77152e7f33b4b17d2fc93134f7af1c3dd51500fe8d5e8
+      sha256: "3958acbfd1bcaad83efa2b0d90e79d665d380cd9383b41ff63abbc54b3d22434"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.0+1"
+    version: "4.0.0-dev.9"
   js:
     dependency: transitive
     description:
@@ -1306,4 +1306,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.0.0 <4.0.0"
-  flutter: ">=3.7.0"
+  flutter: ">=3.10.0"
