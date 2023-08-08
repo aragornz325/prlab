@@ -1,38 +1,38 @@
 {
     "@@locale": "es",
 
-    "noTenesUnaCuenta": "¿No tienes una cuenta?",
-    "@noTenesUnaCuenta": {
-        "description": "Text that ask the user if he have an account already"
-    },
-
-    "registrarse": "Registrarse",
-    "@registrarse": {
-        "description": "Text shown on a button that leads to register page"
-    },
-
-    "olvidasteTuContrasenia": "¿Olvidaste tu contraseña?",
-    "@olvidasteTuContrasenia": {
-        "description": "Ask the user if he forget your password"
-    },
-
-    "agenciaLider": "La agencia de relaciones públicas líder a nivel mundial",
-    "@agenciaLider": {
-        "description": "Text on the register/login page that"
-    },
-
-    "holaDenuevo": "¡Hola de nuevo!",
-    "@holaDenuevo": {
+    "screen_login_greetings": "¡Hola de nuevo!",
+    "@screen_login_greetings": {
         "description": "Welcomes the user back"
     },
 
-    "logearseA": "Iniciar sesión en",
-    "@logearseA": {
+    "screen_login_log_in_to": "Iniciar sesión en",
+    "@screen_login_log_in_to": {
         "description": "Log in to the web/app"
     },
 
-    "recargar": "Recargar",
-    "@recargar": {
+    "screen_login_placeholder_email": "marcaejemplo@prlab.co",
+    "@screen_login_placeholder_email": {
+        "description": "Text shown on a button that leads to register page"
+    },
+
+    "screen_login_placeholder_password": "Contraseña",
+    "@screen_login_placeholder_password": {
+        "description": "Text shown on a button that leads to register page"
+    },
+
+    "screen_login_tappable_text": "¿Olvidaste tu contraseña?",
+    "@screen_login_tappable_text": {
+        "description": "Ask you if you forget your password"
+    },
+
+    "screen_login_leading_agency": "La agencia de relaciones públicas líder a nivel mundial",
+    "@screen_login_leading_agency": {
+        "description": "Text on the register/login page that"
+    },
+
+    "screen_login_button_reload": "Recargar",
+    "@screen_login_button_reload": {
         "description": "Text shown when the user has to reload the page"
     }
 }

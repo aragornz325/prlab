@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/constants/constantes_de_imagenes.dart';
 
 class TextoBienvenida extends StatelessWidget {
   const TextoBienvenida({
@@ -17,7 +18,7 @@ class TextoBienvenida extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(bottom: 30.ph),
           child: Image.asset(
-            'images/hi.png',
+            ImagenesPath.hola,
             fit: BoxFit.cover,
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/constants/constantes_de_imagenes.dart';
 
 class SeccionLogoBienvenida extends StatelessWidget {
   const SeccionLogoBienvenida({
@@ -18,7 +19,7 @@ class SeccionLogoBienvenida extends StatelessWidget {
           SizedBox(
             height: 832.ph,
             child: Image.asset(
-              'images/diario.png',
+              ImagenesPath.diario,
               fit: BoxFit.cover,
               width: 55.5.wp,
             ),
@@ -26,7 +27,7 @@ class SeccionLogoBienvenida extends StatelessWidget {
           SizedBox(
             height: 832.ph,
             child: Image.asset(
-              'images/opacity.png',
+              ImagenesPath.opacidad,
               fit: BoxFit.cover,
               width: 55.5.wp,
             ),
@@ -36,7 +37,7 @@ class SeccionLogoBienvenida extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'icons/logo.png',
+                  ImagenesPath.logo,
                   fit: BoxFit.cover,
                   height: 170.ph,
                 ),
@@ -56,7 +57,7 @@ class SeccionLogoBienvenida extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Image.asset(
-                      'images/subrayado.png',
+                      ImagenesPath.subrayado,
                       width: 300.pw,
                       height: 30.ph,
                     ),

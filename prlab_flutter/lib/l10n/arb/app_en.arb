@@ -1,38 +1,38 @@
 {
     "@@locale": "en",
 
-    "noTenesUnaCuenta": "Don´t you have an account?",
-    "@noTenesUnaCuenta": {
-        "description": "Text that ask you if you have an account already"
-    },
-
-    "registrarse": "Sign Up",
-    "@registrarse": {
-        "description": "Text shown on a button that leads to register page"
-    },
-
-    "olvidasteTuContrasenia": "Did you forget your password?",
-    "@olvidasteTuContrasenia": {
-        "description": "Ask you if you forget your password"
-    },
-
-    "agenciaLider": "The leading global PR agency",
-    "@agenciaLider": {
-        "description": "Text on the register/login page that"
-    },
-
-    "holaDenuevo": "Hi Again!",
-    "@holaDenuevo": {
+    "screen_login_greetings": "Hi Again!",
+    "@screen_login_greetings": {
         "description": "Welcomes the user back"
     },
 
-    "logearseA": "Log in to",
-    "@logearseA": {
+    "screen_login_log_in_to": "Log in to",
+    "@screen_login_log_in_to": {
         "description": "Log in to the web/app"
     },
 
-    "recargar": "Reload",
-    "@recargar": {
+    "screen_login_placeholder_email": "examplebrand@prlab.co",
+    "@screen_login_placeholder_email": {
+        "description": "Text shown on a button that leads to register page"
+    },
+
+    "screen_login_placeholder_password": "Password",
+    "@screen_login_placeholder_password": {
+        "description": "Text shown on a button that leads to register page"
+    },
+
+    "screen_login_tappable_text": "Did you forget your password?",
+    "@screen_login_tappable_text": {
+        "description": "Ask you if you forget your password"
+    },
+
+    "screen_login_leading_agency": "The leading global PR agency",
+    "@screen_login_leading_agency": {
+        "description": "Text on the register/login page that"
+    },
+
+    "screen_login_button_reload": "Reload",
+    "@screen_login_button_reload": {
         "description": "Text shown when the user has to reload the page"
     }
 }
