@@ -1,7 +1,38 @@
 {
     "@@locale": "es",
-    "counterAppBarTitle": "Contador",
-    "@counterAppBarTitle": {
-        "description": "Texto mostrado en la AppBar de la página del contador"
+
+    "noTenesUnaCuenta": "¿No tienes una cuenta?",
+    "@noTenesUnaCuenta": {
+        "description": "Text that ask the user if he have an account already"
+    },
+
+    "registrarse": "Registrarse",
+    "@registrarse": {
+        "description": "Text shown on a button that leads to register page"
+    },
+
+    "olvidasteTuContrasenia": "¿Olvidaste tu contraseña?",
+    "@olvidasteTuContrasenia": {
+        "description": "Ask the user if he forget your password"
+    },
+
+    "agenciaLider": "La agencia de relaciones públicas líder a nivel mundial",
+    "@agenciaLider": {
+        "description": "Text on the register/login page that"
+    },
+
+    "holaDenuevo": "¡Hola de nuevo!",
+    "@holaDenuevo": {
+        "description": "Welcomes the user back"
+    },
+
+    "logearseA": "Iniciar sesión en",
+    "@logearseA": {
+        "description": "Log in to the web/app"
+    },
+
+    "recargar": "Recargar",
+    "@recargar": {
+        "description": "Text shown when the user has to reload the page"
     }
 }

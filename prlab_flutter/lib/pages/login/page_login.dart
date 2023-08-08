@@ -34,7 +34,9 @@ class PageLogin extends StatelessWidget {
                     Text(state.errorMessage),
                     ElevatedButton(
                       onPressed: () {},
-                      child: const Text('Recargar'),
+                      child: Text(
+                        l10n.recargar,
+                      ),
                     )
                   ],
                 ),
