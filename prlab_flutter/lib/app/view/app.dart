@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/paginas/crear_cuenta_admin/bloc/bloc_crear_cuenta_admin.dart';
 import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_app.g.dart';
 
@@ -17,7 +18,10 @@ class App extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (context) => BlocLogin(),
-          )
+          ),
+          BlocProvider<BlocCrearCuentaAdmin>(
+            create: (context) => BlocCrearCuentaAdmin(),
+          ),
         ],
         child: const AppView(),
       ),

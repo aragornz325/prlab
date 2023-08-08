@@ -29,5 +29,29 @@
     "screen_login_button_reload": "Recargar",
     "@screen_login_button_reload": {
         "description": "Text shown when the user has to reload the page"
+    },
+    "screen_create_admin_acount_title_prlab": "PR lab",
+    "@screen_create_admin_acount_title_prlab": {
+        "description": "Text PR lab in title of screen"
+    },
+    "screen_create_admin_acount_subtitle_international_prlab_agency": "International PR Agency",
+    "@screen_create_admin_acount_subtitle_international_prlab_agency": {
+        "description": "Text International PR Agency in subtitle of screen"
+    },
+    "screen_create_admin_acount_button_back": "Volver",
+    "@screen_create_admin_acount_button_back": {
+        "description": "Text back in button of screen create admin acount"
+    },
+    "screen_create_admin_client_email": "Ingrese el correo electronico del cliente",
+    "@screen_create_admin_client_email": {
+        "description": "Text Enter the client email in screen create admin acount above of textfield email"
+    },
+    "screen_create_admin_leading_pr_agency": "The leading global PR agency",
+    "@screen_create_admin_leading_pr_agency": {
+        "description": "Text The leading global PR agency in screen create admin acount above of textfield email"
+    },
+    "screen_create_admin_button_send": "Enviar",
+    "@screen_create_admin_button_send": {
+        "description": "Text Send in screen create admin acount in button of send email"
     }
 }

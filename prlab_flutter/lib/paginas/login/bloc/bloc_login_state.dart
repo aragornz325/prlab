@@ -1,6 +1,6 @@
 part of 'bloc_login.dart';
 
-class BlocLoginState extends Equatable {
+abstract class BlocLoginState extends Equatable {
   const BlocLoginState();
 
   @override
