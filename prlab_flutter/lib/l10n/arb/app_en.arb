@@ -3,5 +3,41 @@
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
+    },    
+    "pageSignUpTitle": "Welcome!",
+    "@pageSignUpTitle": {
+        "description": "Title shown in the page SignUp"
+    },    
+    "pageSignUpSubTitle": "Create an account",
+    "@pageSignUpSubTitle": {
+        "description": "Subtitle shown in the page SignUp"
+    },     
+    "pageSignUpTextFieldHintExampleMail": "examplebrand@prlab.co",
+    "@pageSignUpTextFieldHintExampleMail": {
+        "description": "HintText shown in the mail textfield in the page Signup"
+    },    
+      "pageSignUpTextFieldHintPassword": "Password",
+    "@pageSignUpTextFieldHintPassword": {
+        "description": "HintText  shown in the password textfield page SignUp"
+    },     
+      "pageSignUpTextFieldHintConfirmPassword": "Confirm Password",
+    "@pageSignUpTextFieldHintConfirmPassword": {
+        "description": "HintText shown in the confirm password textfield page SignUp"
+    }, 
+       "pageSignUpTermsAndConditionsText": "I agree to the ",
+    "@pageSignUpTermsAndConditionsText": {
+        "description": "Text of the first part of terms and conditions shown in the page SignUp"
+    },   
+           "pageSignUpTermsAndConditionsTextLink": "Terms and Conditions",
+    "@pageSignUpTermsAndConditionsTextLink": {
+        "description": "Hyperlink Text of the second part of terms and conditions shown in the page SignUp"
+    },  
+       "pageSignUpButtonSignUp": "Sign Up",
+    "@pageSignUpButtonSignUp": {
+        "description": "Text of the button sign up shown in the page SignUp"
+    },
+       "pageSignUpPRLeadingAgency": "The leading\nglobal PR agency",
+    "@pageSignUpPRLeadingAgency": {
+        "description": "Header of the image shown in the page SignUp"
     }
 }

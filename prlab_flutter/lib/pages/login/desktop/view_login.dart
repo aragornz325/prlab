@@ -7,7 +7,7 @@ class ViewLoginDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool value = true;
+    const value = true;
     return Scaffold(
       body: Row(
         children: [

@@ -7,3 +7,14 @@ abstract class BlocRegistroEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+//Evento que inicializa la variable terminosAceptados en false
+class BlocRegistroInicializarEvent extends BlocRegistroEvent {}
+
+//Evento que invierte el valor de terminosAceptados
+class BlocRegistroActivarDesactivarBotonEvent extends BlocRegistroEvent {
+  const BlocRegistroActivarDesactivarBotonEvent({
+    required this.terminosAceptados,
+  });
+  final bool? terminosAceptados;
+}

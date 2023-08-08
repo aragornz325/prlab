@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/constantes/constantes_de_imagenes.dart';
 
 @RoutePage()
 class RegistroVistaMobile extends StatelessWidget {
@@ -9,6 +11,7 @@ class RegistroVistaMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
       body: Row(
         children: [
@@ -25,29 +28,41 @@ class RegistroVistaMobile extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        Image.asset(
-                          'images/avion_de_papel.png',
-                          fit: BoxFit.cover,
-                        ),
-                        Center(
-                          child: Text(
-                            'Welcome!',
-                            style: TextStyle(
-                              color: const Color(0xff363636),
-                              fontSize: 40.pf,
-                              fontWeight: FontWeight.w600,
-                            ),
+                        SizedBox(
+                          height: 200.ph,
+                          width: 300.pw,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                left: 55.pw,
+                                top: 3.ph,
+                                child: Image.asset(
+                                  ImagenesPath.avionDePapel,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Center(
+                                child: Text(
+                                  l10n.pageSignUpTitle,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    color: Color(0xff363636),
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(
-                          height: 20.ph,
-                        ),
-                        Text(
-                          'Create an account',
-                          style: TextStyle(
-                            color: const Color(0xff707070),
-                            fontSize: 15.pf,
-                            fontWeight: FontWeight.w400,
+                          child: Text(
+                            l10n.pageSignUpSubTitle,
+                            style: TextStyle(
+                              color: const Color(0xff707070),
+                              fontSize: 15.pf,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
                         ),
                       ],
@@ -63,11 +78,11 @@ class RegistroVistaMobile extends StatelessWidget {
                 ),
                 SizedBox(
                   width: 259.pw,
-                  child: const TextField(
+                  child: TextField(
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.email),
-                      labelText: 'examplebrand@prlab.co',
-                      labelStyle: TextStyle(
+                      prefixIcon: const Icon(Icons.email),
+                      labelText: l10n.pageSignUpTextFieldHintExampleMail,
+                      labelStyle: const TextStyle(
                         color: Color.fromARGB(
                           255,
                           184,
@@ -83,10 +98,10 @@ class RegistroVistaMobile extends StatelessWidget {
                 ),
                 SizedBox(
                   width: 259.pw,
-                  child: const TextField(
+                  child: TextField(
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
-                      labelText: 'Password',
+                      prefixIcon: const Icon(Icons.lock),
+                      labelText: l10n.pageSignUpTextFieldHintPassword,
                     ),
                   ),
                 ),
@@ -95,10 +110,10 @@ class RegistroVistaMobile extends StatelessWidget {
                 ),
                 SizedBox(
                   width: 259.pw,
-                  child: const TextField(
+                  child: TextField(
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
-                      labelText: 'Confirm Password',
+                      prefixIcon: const Icon(Icons.lock),
+                      labelText: l10n.pageSignUpTextFieldHintConfirmPassword,
                     ),
                   ),
                 ),
@@ -113,11 +128,11 @@ class RegistroVistaMobile extends StatelessWidget {
                         value: false,
                         onChanged: (bool? value) {},
                       ),
-                      const Text('I agree to the'),
+                      Text(l10n.pageSignUpTermsAndConditionsText),
                       GestureDetector(
-                        child: const Text(
-                          'Terms and Conditions',
-                          style: TextStyle(
+                        child: Text(
+                          l10n.pageSignUpTermsAndConditionsTextLink,
+                          style: const TextStyle(
                             color: Colors.blue,
                             decoration: TextDecoration.underline,
                           ),
@@ -144,7 +159,7 @@ class RegistroVistaMobile extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'Sign up',
+                        l10n.pageSignUpButtonSignUp,
                         style: TextStyle(fontSize: 16.pf),
                       ),
                     ),
@@ -161,7 +176,7 @@ class RegistroVistaMobile extends StatelessWidget {
                 SizedBox(
                   height: 832.ph,
                   child: Image.asset(
-                    'images/diario.png',
+                    ImagenesPath.diario,
                     fit: BoxFit.cover,
                     width: 55.5.wp,
                   ),
@@ -169,7 +184,7 @@ class RegistroVistaMobile extends StatelessWidget {
                 SizedBox(
                   height: 832.ph,
                   child: Image.asset(
-                    'images/opacity.png',
+                    ImagenesPath.opacidad,
                     fit: BoxFit.cover,
                     width: 55.5.wp,
                   ),
@@ -179,12 +194,12 @@ class RegistroVistaMobile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SvgPicture.asset(
-                        'icons/Logo.svg',
+                        ImagenesPath.logo,
                         fit: BoxFit.cover,
                         height: 170.ph,
                       ),
                       Text(
-                        'The leading\nglobal PR agency',
+                        l10n.pageSignUpPRLeadingAgency,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
@@ -196,18 +211,18 @@ class RegistroVistaMobile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Image.asset(
-                            'images/subrayado.png',
+                            ImagenesPath.subrayado,
                             width: 300.pw,
                             height: 30.ph,
                           ),
                           SizedBox(
                             width: 10.pw,
-                          )
+                          ),
                         ],
                       ),
                       SizedBox(
                         height: 180.ph,
-                      )
+                      ),
                     ],
                   ),
                 ),

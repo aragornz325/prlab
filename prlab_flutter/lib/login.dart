@@ -15,7 +15,8 @@
 //           onSignedIn: () {
 //             Navigator.of(context).push(
 //               MaterialPageRoute(
-//                 builder: (context) => const MyHomePage(title: 'Email sign in'),
+//                 builder: (context) => const MyHomePage(title: 'Email sign in'
+// ),
 //               ),
 //             );
 //           },
