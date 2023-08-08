@@ -7,25 +7,27 @@ class BlocLoginState extends Equatable {
   List<Object> get props => [];
 }
 
-///estado donde cambiamos el color del boton de iniciar sesion
+/// Estado donde cambiamos el color del boton de iniciar sesion
 class BlocLoginStateInitial extends BlocLoginState {
   const BlocLoginStateInitial();
 }
 
-///estado success del login
+/// Estado success del login
 class BlocLoginStateSuccess extends BlocLoginState {
   const BlocLoginStateSuccess();
 }
 
-///estado de error en caso de que no se pueda iniciar sesion
+/// Estado de error en caso de que no se pueda iniciar sesion
 class BlocLoginStateError extends BlocLoginState {
   const BlocLoginStateError({
     required this.errorMessage,
   });
+
+  /// Mensaje de error
   final String errorMessage;
 }
 
-///estado de cargando
+/// Estado de cargando
 class BlocLoginStateLoading extends BlocLoginState {
   const BlocLoginStateLoading();
 }

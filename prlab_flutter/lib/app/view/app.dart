@@ -44,7 +44,6 @@ class _AppViewState extends State<AppView> {
 
   @override
   Widget build(BuildContext context) {
-    final fuenteGeneral = GoogleFonts.inter();
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -52,7 +51,6 @@ class _AppViewState extends State<AppView> {
         colorScheme: ColorScheme.fromSwatch(
           accentColor: const Color(0xFF13B9FF),
         ),
-        fontFamily: fuenteGeneral.fontFamily,
       ),
       builder: (context, child) => ScrollConfiguration(
         behavior: NoGlowBehavior(),

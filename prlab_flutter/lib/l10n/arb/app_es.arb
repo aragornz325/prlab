@@ -26,11 +26,6 @@
         "description": "Ask you if you forget your password"
     },
 
-    "screen_login_leading_agency": "La agencia de relaciones públicas líder a nivel mundial",
-    "@screen_login_leading_agency": {
-        "description": "Text on the register/login page that"
-    },
-
     "screen_login_button_reload": "Recargar",
     "@screen_login_button_reload": {
         "description": "Text shown when the user has to reload the page"

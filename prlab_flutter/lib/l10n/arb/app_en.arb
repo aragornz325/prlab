@@ -28,7 +28,7 @@
 
     "screen_login_leading_agency": "The leading global PR agency",
     "@screen_login_leading_agency": {
-        "description": "Text on the register/login page that"
+        "description": "Eslogan on the register/login page "
     },
 
     "screen_login_button_reload": "Reload",

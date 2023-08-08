@@ -14,10 +14,13 @@ class PageLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return BlocProvider(
       create: (context) => BlocLogin(),
       child: BlocConsumer<BlocLogin, BlocLoginState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          ///TODO: Agregar funcionalidad
+        },
         builder: (context, state) {
           if (state is BlocLoginStateLoading) {
             return const Scaffold(
@@ -26,6 +29,7 @@ class PageLogin extends StatelessWidget {
               ),
             );
           }
+
           if (state is BlocLoginStateError) {
             return Scaffold(
               body: Center(
@@ -33,6 +37,7 @@ class PageLogin extends StatelessWidget {
                   children: [
                     Text(state.errorMessage),
                     ElevatedButton(
+                      ///TODO: Agregar funcionalidad
                       onPressed: () {},
                       child: Text(
                         l10n.screen_login_button_reload,
@@ -43,12 +48,15 @@ class PageLogin extends StatelessWidget {
               ),
             );
           }
+
           if (state is BlocLoginStateSuccess) {
             return const FullResponsiveScreen(
               mobile: ViewLoginMobile(),
               desktop: ViewLoginDesktop(),
             );
           }
+
+          ///TODO: Esto despues se tiene que cambiar para que retorne algo por default(ahora esta asi xq en ningun momento emite success)
           return const FullResponsiveScreen(
             mobile: ViewLoginMobile(),
             desktop: ViewLoginDesktop(),

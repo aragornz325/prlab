@@ -10,6 +10,7 @@ class OlvidasteTuContrasenia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 12.ph),
       child: Text(

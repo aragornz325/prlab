@@ -20,18 +20,24 @@ class ViewLoginDesktop extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const TextoBienvenida(),
+
                 //Ejemplo textfield
+                //TODO(Gon): Cambiar por los textfields factory
                 SizedBox(
                   width: 259.pw,
                   child: const TextField(),
                 ),
+
                 //Ejemplo textfield
+                //TODO(Gon): Cambiar por los textfields factory
                 SizedBox(
                   width: 259.pw,
                   child: const TextField(),
                 ),
                 const OlvidasteTuContrasenia(),
+
                 //Ejemplo Boton Login
+                //TODO(Gon): Cambiar por los botones factory
                 ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(100)),
                   child: SizedBox(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/utilidades/constantes/constantes_de_imagenes.dart';
 
 class TextoBienvenida extends StatelessWidget {
   const TextoBienvenida({
@@ -11,6 +11,7 @@ class TextoBienvenida extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -18,7 +19,7 @@ class TextoBienvenida extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(bottom: 30.ph),
           child: Image.asset(
-            ImagenesPath.hola,
+            Assets.assets_images_mano_saludando_png,
             fit: BoxFit.cover,
           ),
         ),

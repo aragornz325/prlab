@@ -12,6 +12,7 @@ class BlocLogin extends Bloc<BlocLoginEvent, BlocLoginState> {
         ) {
     on<BlocLoginIniciarSessionEvent>(_iniciarSesion);
   }
+
   Future<void> _iniciarSesion(
     BlocLoginIniciarSessionEvent event,
     Emitter<BlocLoginState> emit,
@@ -20,6 +21,7 @@ class BlocLogin extends Bloc<BlocLoginEvent, BlocLoginState> {
     try {
       emit(const BlocLoginStateSuccess());
     } catch (e) {
+      //TODO: Agregar mensaje de error cuando se agregue la funcionalidad
       emit(const BlocLoginStateError(errorMessage: ''));
     }
   }
