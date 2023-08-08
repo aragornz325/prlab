@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/pages/login/bloc/bloc_login.dart';
-import 'package:prlab_flutter/pages/login/desktop/view_login.dart';
-import 'package:prlab_flutter/pages/login/mobile/view_login.dart';
+import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
+import 'package:prlab_flutter/paginas/login/celular/vista_login.dart';
+import 'package:prlab_flutter/paginas/login/escritorio/vista_login.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
 
 @RoutePage()

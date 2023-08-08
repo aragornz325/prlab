@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prlab_client/prlab_client.dart';
-import 'package:prlab_flutter/pages/login/page_login.dart';
+import 'package:prlab_flutter/paginas/login/pagina_login.dart';
 import 'package:serverpod_auth_shared_flutter/serverpod_auth_shared_flutter.dart';
 import 'package:serverpod_flutter/serverpod_flutter.dart';
 
