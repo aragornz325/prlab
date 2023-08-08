@@ -27,7 +27,7 @@ class TextoBienvenida extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 4.pw),
               child: Text(
-                l10n.holaDenuevo,
+                l10n.screen_login_greetings,
                 style: TextStyle(
                   color: const Color(0xff363636),
                   fontSize: 40.pf,
@@ -37,7 +37,7 @@ class TextoBienvenida extends StatelessWidget {
             ),
             SizedBox(height: 10.ph),
             Text(
-              l10n.logearseA,
+              l10n.screen_login_log_in_to,
               style: TextStyle(
                 color: const Color(0xff707070),
                 fontSize: 15.pf,

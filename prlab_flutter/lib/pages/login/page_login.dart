@@ -35,7 +35,7 @@ class PageLogin extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {},
                       child: Text(
-                        l10n.recargar,
+                        l10n.screen_login_button_reload,
                       ),
                     )
                   ],

@@ -42,9 +42,10 @@ class SeccionLogoBienvenida extends StatelessWidget {
                   height: 170.ph,
                 ),
                 SizedBox(
-                  width: 400.pw,
+                  width: 550.pw,
                   child: Text(
-                    l10n.agenciaLider,
+                    l10n.screen_login_leading_agency,
+                    // 'The leading global PR agency',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,

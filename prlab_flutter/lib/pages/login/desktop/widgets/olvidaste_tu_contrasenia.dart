@@ -13,7 +13,7 @@ class OlvidasteTuContrasenia extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 12.ph),
       child: Text(
-        l10n.olvidasteTuContrasenia,
+        l10n.screen_login_tappable_text,
         style: TextStyle(
           color: const Color(0xffA12B46),
           fontSize: 12.pf,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/pages/login/desktop/widgets/ir_a_registro.dart';
 import 'package:prlab_flutter/pages/login/desktop/widgets/olvidaste_tu_contrasenia.dart';
 import 'package:prlab_flutter/pages/login/desktop/widgets/seccion_logo_bienvenida.dart';
 import 'package:prlab_flutter/pages/login/desktop/widgets/texto_bienvenida.dart';
@@ -31,11 +30,6 @@ class ViewLoginDesktop extends StatelessWidget {
                   width: 259.pw,
                   child: const TextField(),
                 ),
-                //Ejemplo textfield
-                SizedBox(
-                  width: 259.pw,
-                  child: const TextField(),
-                ),
                 const OlvidasteTuContrasenia(),
                 //Ejemplo Boton Login
                 ClipRRect(
@@ -54,7 +48,6 @@ class ViewLoginDesktop extends StatelessWidget {
                     ),
                   ),
                 ),
-                const IrARegistro(),
               ],
             ),
           ),
