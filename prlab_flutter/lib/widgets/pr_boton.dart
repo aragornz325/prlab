@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 
+/// Botones a utilizarse en el proyecto, variantes fill y .outlined
+
 class PRBoton extends StatelessWidget {
   const PRBoton({
     required this.onTap,
@@ -12,7 +14,7 @@ class PRBoton extends StatelessWidget {
     super.key,
   });
 
-  ///Variante outlined de PRBoton
+  /// Variante outlined de PRBoton
   factory PRBoton.outlined({
     required VoidCallback onTap,
     required String texto,
@@ -38,7 +40,7 @@ class PRBoton extends StatelessWidget {
     final theme = context.theme;
 
     return GestureDetector(
-      onTap: habilitado ? onTap : () {},
+      onTap: habilitado ? onTap : null,
       child: Container(
         width: width.pw,
         height: 50.ph,
