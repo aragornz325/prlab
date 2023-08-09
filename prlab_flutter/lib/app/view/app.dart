@@ -5,8 +5,9 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
 
 class App extends StatefulWidget {
-  const App({super.key});
-
+  const App({
+    super.key,
+  });
   @override
   State<App> createState() => _AppState();
 }

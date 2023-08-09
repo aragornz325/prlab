@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/main.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
@@ -12,23 +11,15 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          children: [
-            SignInWithEmailButton(
-              caller: client.modules.auth,
-              onSignedIn: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        const MyHomePage(title: 'Email sign in'),
-                  ),
-                );
-              },
-            ),
-            SizedBox(
-              height: 50.ph,
-            ),
-          ],
+        child: SignInWithEmailButton(
+          caller: client.modules.auth,
+          onSignedIn: () {
+            Navigator.of(context).push(
+              MaterialPageRoute<dynamic>(
+                builder: (context) => const MyHomePage(title: 'Email sign in'),
+              ),
+            );
+          },
         ),
       ),
     );
