@@ -32,7 +32,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
         const BlocLoginEstadoCargando(),
       );
 
-      final respuesta = await emailAuthControllerCustomPRLab.signInn(
+      final respuesta = await emailAuthControllerCustomPRLab.iniciarSesion(
         event.email,
         event.password,
       );
@@ -66,9 +66,9 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     }
   }
 
-  ///repo de Serverpod
+  /// Repo de Serverpod
   final EmailAuthController emailAuth;
 
-  ///repo editado para Serverpod
+  /// Repo editado para Serverpod
   final EmailAuthControllerCustomPRLab emailAuthControllerCustomPRLab;
 }

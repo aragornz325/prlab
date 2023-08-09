@@ -9,6 +9,8 @@ import 'package:prlab_flutter/utilidades/emailauthcontroller_editado.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
 @RoutePage()
+
+/// Pagina de la pantalla login donde el usuario puede iniciar sesion
 class PaginaLogin extends StatelessWidget {
   const PaginaLogin({super.key});
 

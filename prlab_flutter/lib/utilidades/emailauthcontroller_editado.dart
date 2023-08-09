@@ -6,7 +6,19 @@ import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 class EmailAuthControllerCustomPRLab extends EmailAuthController {
   EmailAuthControllerCustomPRLab(super.caller);
 
-  Future<AuthenticationResponse?> signInn(String email, String password) async {
+  /// La función `iniciarSesion` es una función asíncrona de Dart que toma
+  /// un correo electrónico y una
+  /// contraseña como parámetros y devuelve un `Future` de tipo
+  /// `AuthenticationResponse` o `null`.
+  ///
+  /// Args:
+  ///   email (String): Un string que representa la dirección de correo
+  ///   electrónico del usuario.
+  ///   password (String): Un string que representa la contraseña del usuario.
+  Future<AuthenticationResponse?> iniciarSesion(
+    String email,
+    String password,
+  ) async {
     try {
       final serverResponse = await caller.email.authenticate(email, password);
 

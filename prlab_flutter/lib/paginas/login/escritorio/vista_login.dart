@@ -4,6 +4,8 @@ import 'package:prlab_flutter/paginas/login/escritorio/widgets/olvidaste_tu_cont
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/texto_bienvenida.dart';
 
+/// Vista de escritorio de la pantalla login donde el usuario
+/// puede iniciar sesion
 class VistaLoginEscritorio extends StatelessWidget {
   const VistaLoginEscritorio({super.key});
 
