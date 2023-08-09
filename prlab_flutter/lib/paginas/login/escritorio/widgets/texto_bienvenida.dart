@@ -31,6 +31,7 @@ class TextoBienvenida extends StatelessWidget {
               child: Text(
                 l10n.screen_login_greetings,
                 style: TextStyle(
+                  //TODO(Gon): Cambiar cuando esten los colores del theme
                   color: const Color(0xff363636),
                   fontSize: 40.pf,
                   fontWeight: FontWeight.w600,
@@ -41,6 +42,7 @@ class TextoBienvenida extends StatelessWidget {
             Text(
               l10n.screen_login_log_in_to,
               style: TextStyle(
+                //TODO(Gon): Cambiar cuando esten los colores del theme
                 color: const Color(0xff707070),
                 fontSize: 15.pf,
                 fontWeight: FontWeight.w400,

@@ -15,6 +15,7 @@ class VistaLoginEscritorio extends StatelessWidget {
       body: Row(
         children: [
           Container(
+            //TODO(Gon): Cambiar cuando esten los colores del theme
             color: const Color(0xfff7f7f7),
             width: 44.5.wp,
             height: 100.hp,
