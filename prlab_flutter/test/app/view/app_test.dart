@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:prlab_flutter/app/app.dart';
-import 'package:prlab_flutter/counter/counter.dart';
 import 'package:prlab_flutter/isar/isar_service.dart';
 
 void main() {
@@ -9,10 +8,10 @@ void main() {
       await IsarService.abrirDB();
 
       await tester.pumpWidget(
-        const App(),
+        App(),
       );
-
-      expect(find.byType(CounterPage), findsOneWidget);
+      //Saltaba error por eliminar la carpeta del counter
+      // expect(find.byType(CounterPage), findsOneWidget);
     });
   });
 }
