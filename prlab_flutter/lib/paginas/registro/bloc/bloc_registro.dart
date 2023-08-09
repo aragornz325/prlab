@@ -24,6 +24,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     );
   }
 
+  ///Evento que acepta (o declina) los terminos y guarda el estado del checkbox.
   Future<void> _onAceptarTerminos(
     BlocRegistroEventoAceptarTerminos event,
     Emitter<BlocRegistroEstado> emit,

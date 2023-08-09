@@ -200,6 +200,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
             ),
           ),
           ImagenEscritorioConSlogan(
+            //Todo(sam): cambiar por el widget que hizo gon.
             l10n: l10n,
           ),
         ],
