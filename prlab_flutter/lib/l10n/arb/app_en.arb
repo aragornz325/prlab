@@ -3,5 +3,49 @@
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
+    },
+    "alert_dialog_title_recover_password" : "Recover password",
+    "@alert_dialog_title_recover_password": {
+        "description":"text in title alertdialog of recover password"
+    },
+    "alert_dialog_sub_title_verification_code_send" : "Enter the 8 digit verification code sent to",
+    "@alert_dialog_sub_title_verification_code_send": {
+        "description":"text in subtitle textfield(who was the code sent to),Enter the 8 digit verification code sent to"
+    },
+    "alert_dialog_button_title_send" : "Send",
+    "@alert_dialog_button_title_send": {
+        "description":"text in alertdialog on button, Send"
+    },
+    "alert_dialog_textfield_hitText_text_email_verification_code": "Email verification code",
+    "@alert_dialog_textfield_hitText_text_email_verification_code": {
+        "description":"text in alertdialog in title textfield,Email verification code"
+    },
+    "alert_dialog_textfield_suffix_get_code": "Obtener código",
+    "@alert_dialog_textfield_suffix_get_code": {
+        "description":"text in alertdialog in suffix textfield on button if the verification code was not sent, Get code"
+    },
+    "alert_dialog_textfield_suffix_code_send": "Code sent",
+    "@alert_dialog_textfield_suffix_code_send": {
+        "description":"text in alertdialog suffix textfield on button if the verificaction code was sent, Code sent"
+    },
+    "alert_dialog_can_you_request":"You can request a new",
+    "@alert_dialog_can_you_request": {
+        "description":"part text in alertdialog of textfield on tooltip, You can request a new"
+    },
+    "alert_dialgo_code_in": "code in",
+    "@alert_dialgo_code_in": {
+        "description":"part text in alertdialog of textfield on tooltip, code in"
+    },
+    "alert_dialog_seconds": "seconds",
+    "@alert_dialog_seconds": {
+        "description":"part text in alertdialog of textfield on tooltip, seconds"
+    },
+    "alert_dialog_this_will_expire": "This will expire in",
+    "@alert_dialog_this_will_expire": {
+        "description":"part text in alertdialog of textfield on tooltip,text This will expire in"
+    },
+    "alert_dialog_minutes": "minutes",
+    "@alert_dialog_minutes": {
+        "description":"part text in alertdialog of textfield on tooltip, minutes"
     }
 }
