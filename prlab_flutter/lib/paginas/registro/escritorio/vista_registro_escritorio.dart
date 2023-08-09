@@ -88,6 +88,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                         final terminosAceptados = state.terminosAceptados;
 
                         return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
                               width: 259.pw,
@@ -139,30 +140,33 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             SizedBox(
                               height: 20.ph,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Checkbox(
-                                  value: terminosAceptados,
-                                  onChanged: (bool? value) {
-                                    context.read<BlocRegistro>().add(
-                                          BlocRegistroEventoAceptarTerminos(
-                                            terminosAceptados: value,
-                                          ),
-                                        );
-                                  },
-                                ),
-                                Text(l10n.pageSignUpTermsAndConditionsText),
-                                GestureDetector(
-                                  child: Text(
-                                    l10n.pageSignUpTermsAndConditionsTextLink,
-                                    style: const TextStyle(
-                                      color: Colors.blue,
-                                      decoration: TextDecoration.underline,
+                            SizedBox(
+                              width: 259.pw,
+                              child: Row(
+                                children: [
+                                  Checkbox(
+                                    value: terminosAceptados,
+                                    onChanged: (bool? value) {
+                                      context.read<BlocRegistro>().add(
+                                            BlocRegistroEventoAceptarTerminos(
+                                              terminosAceptados: value,
+                                            ),
+                                          );
+                                    },
+                                  ),
+                                  Text(l10n.pageSignUpTermsAndConditionsText),
+                                  GestureDetector(
+                                    child: Text(
+                                      l10n.pageSignUpTermsAndConditionsTextLink,
+                                      style: const TextStyle(
+                                        color: Colors.blue,
+                                        decoration: TextDecoration.underline,
+                                        decorationColor: Colors.blue,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                             SizedBox(
                               height: 40.ph,
