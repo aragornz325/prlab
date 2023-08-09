@@ -124,3 +124,10 @@ app.*.map.json
 !.idea/codeStyles/
 !.idea/dictionaries/
 !.idea/runConfigurations/
+
+# Generated plugins for OS. 
+./linux/flutter/generated_plugin_registrant.cc
+./linux/flutter/generated_plugins.cmake
+./macos/Flutter/GeneratedPluginRegistrant.swift
+./windows/flutter/generated_plugin_registrant.cc
+./windows/flutter/generated_plugins.cmake
