@@ -40,7 +40,7 @@ Future<Map<String, String>> enviarEmail(
   //     ..location = Location.inline
   //     ..cid = '<myimg@3.141>'
   // ];
-  const duration = Duration(minutes: 3, seconds: 12);
+  const duration = Duration(seconds: 30);
 
   bool errorFlag = false;
 
