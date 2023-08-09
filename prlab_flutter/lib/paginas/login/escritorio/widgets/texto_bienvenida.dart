@@ -3,6 +3,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
+/// Header de la pagina de login
 class TextoBienvenida extends StatelessWidget {
   const TextoBienvenida({
     super.key,

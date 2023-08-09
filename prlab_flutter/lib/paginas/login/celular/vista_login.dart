@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ViewLoginMobile extends StatelessWidget {
-  const ViewLoginMobile({super.key});
+class VistaLoginCelular extends StatelessWidget {
+  const VistaLoginCelular({super.key});
 
   @override
   Widget build(BuildContext context) {

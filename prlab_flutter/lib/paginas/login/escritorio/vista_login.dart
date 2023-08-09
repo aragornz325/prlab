@@ -4,8 +4,8 @@ import 'package:prlab_flutter/paginas/login/escritorio/widgets/olvidaste_tu_cont
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/texto_bienvenida.dart';
 
-class ViewLoginDesktop extends StatelessWidget {
-  const ViewLoginDesktop({super.key});
+class VistaLoginEscritorio extends StatelessWidget {
+  const VistaLoginEscritorio({super.key});
 
   @override
   Widget build(BuildContext context) {

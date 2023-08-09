@@ -19,14 +19,14 @@ abstract class $AppRouter extends _i2.RootStackRouter {
     RouteLogin.name: (routeData) {
       return _i2.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.PageLogin(),
+        child: const _i1.PaginaLogin(),
       );
     }
   };
 }
 
 /// generated route for
-/// [_i1.PageLogin]
+/// [_i1.PaginaLogin]
 class RouteLogin extends _i2.PageRouteInfo<void> {
   const RouteLogin({List<_i2.PageRouteInfo>? children})
       : super(
