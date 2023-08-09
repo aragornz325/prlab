@@ -4,8 +4,9 @@ import 'package:prlab_flutter/app/auto_route/auto_route.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 class App extends StatefulWidget {
-  const App({super.key});
-
+  const App({
+    super.key,
+  });
   @override
   State<App> createState() => _AppState();
 }
@@ -25,7 +26,9 @@ class _AppState extends State<App> {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
+        appBarTheme: const AppBarTheme(
+          color: Color(0xFF13B9FF),
+        ),
         colorScheme: ColorScheme.fromSwatch(
           accentColor: const Color(0xFF13B9FF),
         ),

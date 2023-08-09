@@ -5,6 +5,10 @@ import 'package:prlab_flutter/bootstrap.dart';
 
 void main() async {
   await dotenv.load(fileName: 'stg.env');
+
   WidgetsFlutterBinding.ensureInitialized();
-  await bootstrap(() => const App());
+
+  await bootstrap(
+    App.new,
+  );
 }

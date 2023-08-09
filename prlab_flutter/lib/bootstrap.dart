@@ -27,6 +27,14 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   Bloc.observer = const AppBlocObserver();
 
+  // TODO(anyone):
+  // Esto queda como carryover, una vez que Isar actualice la
+  // version a la 4.0.0 la cual soporta web local storage,
+  // cambia Hive x Isar.
+
+  /// Se instancia el objeto de la base de datos local Isar
+  // await IsarService.openDB();
+
   // Add cross-flavor configuration here
 
   runApp(await builder());
