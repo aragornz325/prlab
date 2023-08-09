@@ -8,6 +8,7 @@ class PRBoton extends StatelessWidget {
     required this.texto,
     required this.habilitado,
     this.width = 359,
+    this.outlined = false,
     super.key,
   });
 
@@ -15,6 +16,7 @@ class PRBoton extends StatelessWidget {
   final VoidCallback onTap;
   final String texto;
   final bool habilitado;
+  final bool outlined;
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
@@ -25,13 +27,32 @@ class PRBoton extends StatelessWidget {
         width: width.pw,
         height: 50.ph,
         decoration: BoxDecoration(
-          color: habilitado
-              ? theme.colorScheme.primary
-              : theme.colorScheme.primary.withOpacity(.2),
+          color: outlined
+              ? theme.colorScheme.background
+              : habilitado
+                  ? theme.colorScheme.primary
+                  : theme.colorScheme.primary.withOpacity(.2),
           borderRadius: BorderRadius.circular(25),
+          border: outlined
+              ? Border.all(
+                  color: habilitado
+                      ? theme.colorScheme.primary
+                      : theme.colorScheme.primary.withOpacity(.2),
+                )
+              : null,
         ),
         child: Center(
-          child: Text(texto),
+          child: Text(
+            texto,
+            style: TextStyle(
+              fontSize: 16.pf,
+              color: outlined
+                  ? habilitado
+                      ? theme.colorScheme.primary
+                      : theme.colorScheme.primary.withOpacity(.2)
+                  : theme.colorScheme.background,
+            ),
+          ),
         ),
       ),
     );

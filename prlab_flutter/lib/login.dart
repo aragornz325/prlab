@@ -34,6 +34,7 @@ class LoginPage extends StatelessWidget {
               onTap: () {},
               texto: 'Boton',
               habilitado: false,
+              outlined: true,
             )
           ],
         ),
