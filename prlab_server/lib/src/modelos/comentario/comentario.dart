@@ -20,7 +20,7 @@ int id;
 @MappableField(key: 'idPublicacion')
 int idPublicacion;
 @MappableField(key: 'offset')
-int offset;
+Set<double> offset;
 @MappableField(key: 'comentario')
 String comentario;
 @MappableField(key: 'fechaCreacion')

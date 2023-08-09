@@ -29,8 +29,9 @@ class ComentarioMapper extends ClassMapperBase<Comentario> {
   static int _$idPublicacion(Comentario v) => v.idPublicacion;
   static const Field<Comentario, int> _f$idPublicacion =
       Field('idPublicacion', _$idPublicacion);
-  static int _$offset(Comentario v) => v.offset;
-  static const Field<Comentario, int> _f$offset = Field('offset', _$offset);
+  static Set<double> _$offset(Comentario v) => v.offset;
+  static const Field<Comentario, Set<double>> _f$offset =
+      Field('offset', _$offset);
   static String _$comentario(Comentario v) => v.comentario;
   static const Field<Comentario, String> _f$comentario =
       Field('comentario', _$comentario);
@@ -108,7 +109,7 @@ abstract class ComentarioCopyWith<$R, $In extends Comentario, $Out>
   $R call(
       {int? id,
       int? idPublicacion,
-      int? offset,
+      Set<double>? offset,
       String? comentario,
       DateTime? fechaCreacion});
   ComentarioCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
@@ -126,7 +127,7 @@ class _ComentarioCopyWithImpl<$R, $Out>
   $R call(
           {int? id,
           int? idPublicacion,
-          int? offset,
+          Set<double>? offset,
           String? comentario,
           DateTime? fechaCreacion}) =>
       $apply(FieldCopyWithData({

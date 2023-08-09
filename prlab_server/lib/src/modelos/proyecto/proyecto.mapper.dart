@@ -31,9 +31,9 @@ class ProyectoMapper extends ClassMapperBase<Proyecto> {
       Field('idOrganizacion', _$idOrganizacion);
   static String _$nombre(Proyecto v) => v.nombre;
   static const Field<Proyecto, String> _f$nombre = Field('nombre', _$nombre);
-  static List<int> _$entregables(Proyecto v) => v.entregables;
-  static const Field<Proyecto, List<int>> _f$entregables =
-      Field('entregables', _$entregables);
+  static List<int> _$idEntregables(Proyecto v) => v.idEntregables;
+  static const Field<Proyecto, List<int>> _f$idEntregables =
+      Field('idEntregables', _$idEntregables);
   static DateTime _$fechaCreacion(Proyecto v) => v.fechaCreacion;
   static const Field<Proyecto, DateTime> _f$fechaCreacion =
       Field('fechaCreacion', _$fechaCreacion);
@@ -43,7 +43,7 @@ class ProyectoMapper extends ClassMapperBase<Proyecto> {
     #id: _f$id,
     #idOrganizacion: _f$idOrganizacion,
     #nombre: _f$nombre,
-    #entregables: _f$entregables,
+    #idEntregables: _f$idEntregables,
     #fechaCreacion: _f$fechaCreacion,
   };
 
@@ -52,7 +52,7 @@ class ProyectoMapper extends ClassMapperBase<Proyecto> {
         id: data.dec(_f$id),
         idOrganizacion: data.dec(_f$idOrganizacion),
         nombre: data.dec(_f$nombre),
-        entregables: data.dec(_f$entregables),
+        idEntregables: data.dec(_f$idEntregables),
         fechaCreacion: data.dec(_f$fechaCreacion));
   }
 
@@ -104,12 +104,12 @@ extension ProyectoValueCopy<$R, $Out> on ObjectCopyWith<$R, Proyecto, $Out> {
 
 abstract class ProyectoCopyWith<$R, $In extends Proyecto, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get entregables;
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idEntregables;
   $R call(
       {int? id,
       int? idOrganizacion,
       String? nombre,
-      List<int>? entregables,
+      List<int>? idEntregables,
       DateTime? fechaCreacion});
   ProyectoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -123,23 +123,23 @@ class _ProyectoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<Proyecto> $mapper =
       ProyectoMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get entregables =>
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idEntregables =>
       ListCopyWith(
-          $value.entregables,
+          $value.idEntregables,
           (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(entregables: v));
+          (v) => call(idEntregables: v));
   @override
   $R call(
           {int? id,
           int? idOrganizacion,
           String? nombre,
-          List<int>? entregables,
+          List<int>? idEntregables,
           DateTime? fechaCreacion}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (idOrganizacion != null) #idOrganizacion: idOrganizacion,
         if (nombre != null) #nombre: nombre,
-        if (entregables != null) #entregables: entregables,
+        if (idEntregables != null) #idEntregables: idEntregables,
         if (fechaCreacion != null) #fechaCreacion: fechaCreacion
       }));
   @override
@@ -147,7 +147,7 @@ class _ProyectoCopyWithImpl<$R, $Out>
       id: data.get(#id, or: $value.id),
       idOrganizacion: data.get(#idOrganizacion, or: $value.idOrganizacion),
       nombre: data.get(#nombre, or: $value.nombre),
-      entregables: data.get(#entregables, or: $value.entregables),
+      idEntregables: data.get(#idEntregables, or: $value.idEntregables),
       fechaCreacion: data.get(#fechaCreacion, or: $value.fechaCreacion));
 
   @override

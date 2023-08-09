@@ -41,12 +41,11 @@ class PublicacionMapper extends ClassMapperBase<Publicacion> {
       Field('resumen', _$resumen);
   static List<String> _$tags(Publicacion v) => v.tags;
   static const Field<Publicacion, List<String>> _f$tags = Field('tags', _$tags);
-  static List<int> _$status(Publicacion v) => v.status;
-  static const Field<Publicacion, List<int>> _f$status =
-      Field('status', _$status);
-  static List<int> _$categoria(Publicacion v) => v.categoria;
-  static const Field<Publicacion, List<int>> _f$categoria =
-      Field('categoria', _$categoria);
+  static int _$status(Publicacion v) => v.status;
+  static const Field<Publicacion, int> _f$status = Field('status', _$status);
+  static List<int> _$idCategorias(Publicacion v) => v.idCategorias;
+  static const Field<Publicacion, List<int>> _f$idCategorias =
+      Field('idCategorias', _$idCategorias, key: 'categoria');
   static int _$parents(Publicacion v) => v.parents;
   static const Field<Publicacion, int> _f$parents =
       Field('parents', _$parents, key: 'padres');
@@ -60,9 +59,9 @@ class PublicacionMapper extends ClassMapperBase<Publicacion> {
       Field('idProyecto', _$idProyecto);
   static String _$titulo(Publicacion v) => v.titulo;
   static const Field<Publicacion, String> _f$titulo = Field('titulo', _$titulo);
-  static List<int> _$subEntregables(Publicacion v) => v.subEntregables;
-  static const Field<Publicacion, List<int>> _f$subEntregables =
-      Field('subEntregables', _$subEntregables);
+  static List<int> _$idSubEntregables(Publicacion v) => v.idSubEntregables;
+  static const Field<Publicacion, List<int>> _f$idSubEntregables =
+      Field('idSubEntregables', _$idSubEntregables);
   static DateTime _$fechaCreacion(Publicacion v) => v.fechaCreacion;
   static const Field<Publicacion, DateTime> _f$fechaCreacion =
       Field('fechaCreacion', _$fechaCreacion);
@@ -76,13 +75,13 @@ class PublicacionMapper extends ClassMapperBase<Publicacion> {
     #resumen: _f$resumen,
     #tags: _f$tags,
     #status: _f$status,
-    #categoria: _f$categoria,
+    #idCategorias: _f$idCategorias,
     #parents: _f$parents,
     #comentarios: _f$comentarios,
     #id: _f$id,
     #idProyecto: _f$idProyecto,
     #titulo: _f$titulo,
-    #subEntregables: _f$subEntregables,
+    #idSubEntregables: _f$idSubEntregables,
     #fechaCreacion: _f$fechaCreacion,
   };
 
@@ -95,13 +94,13 @@ class PublicacionMapper extends ClassMapperBase<Publicacion> {
         resumen: data.dec(_f$resumen),
         tags: data.dec(_f$tags),
         status: data.dec(_f$status),
-        categoria: data.dec(_f$categoria),
+        idCategorias: data.dec(_f$idCategorias),
         parents: data.dec(_f$parents),
         comentarios: data.dec(_f$comentarios),
         id: data.dec(_f$id),
         idProyecto: data.dec(_f$idProyecto),
         titulo: data.dec(_f$titulo),
-        subEntregables: data.dec(_f$subEntregables),
+        idSubEntregables: data.dec(_f$idSubEntregables),
         fechaCreacion: data.dec(_f$fechaCreacion));
   }
 
@@ -156,10 +155,9 @@ abstract class PublicacionCopyWith<$R, $In extends Publicacion, $Out>
     implements EntregableCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>> get imagenes;
   ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>> get tags;
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get status;
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get categoria;
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idCategorias;
   @override
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get subEntregables;
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idSubEntregables;
   @override
   $R call(
       {String? contenido,
@@ -168,14 +166,14 @@ abstract class PublicacionCopyWith<$R, $In extends Publicacion, $Out>
       String? imagenDestacada,
       String? resumen,
       List<String>? tags,
-      List<int>? status,
-      List<int>? categoria,
+      int? status,
+      List<int>? idCategorias,
       int? parents,
       int? comentarios,
       int? id,
       int? idProyecto,
       String? titulo,
-      List<int>? subEntregables,
+      List<int>? idSubEntregables,
       DateTime? fechaCreacion});
   PublicacionCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -197,19 +195,17 @@ class _PublicacionCopyWithImpl<$R, $Out>
       ListCopyWith($value.tags, (v, t) => ObjectCopyWith(v, $identity, t),
           (v) => call(tags: v));
   @override
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get status =>
-      ListCopyWith($value.status, (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(status: v));
-  @override
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get categoria =>
-      ListCopyWith($value.categoria, (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(categoria: v));
-  @override
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get subEntregables =>
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idCategorias =>
       ListCopyWith(
-          $value.subEntregables,
+          $value.idCategorias,
           (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(subEntregables: v));
+          (v) => call(idCategorias: v));
+  @override
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idSubEntregables =>
+      ListCopyWith(
+          $value.idSubEntregables,
+          (v, t) => ObjectCopyWith(v, $identity, t),
+          (v) => call(idSubEntregables: v));
   @override
   $R call(
           {String? contenido,
@@ -218,14 +214,14 @@ class _PublicacionCopyWithImpl<$R, $Out>
           String? imagenDestacada,
           String? resumen,
           List<String>? tags,
-          List<int>? status,
-          List<int>? categoria,
+          int? status,
+          List<int>? idCategorias,
           int? parents,
           int? comentarios,
           int? id,
           int? idProyecto,
           String? titulo,
-          List<int>? subEntregables,
+          List<int>? idSubEntregables,
           DateTime? fechaCreacion}) =>
       $apply(FieldCopyWithData({
         if (contenido != null) #contenido: contenido,
@@ -235,13 +231,13 @@ class _PublicacionCopyWithImpl<$R, $Out>
         if (resumen != null) #resumen: resumen,
         if (tags != null) #tags: tags,
         if (status != null) #status: status,
-        if (categoria != null) #categoria: categoria,
+        if (idCategorias != null) #idCategorias: idCategorias,
         if (parents != null) #parents: parents,
         if (comentarios != null) #comentarios: comentarios,
         if (id != null) #id: id,
         if (idProyecto != null) #idProyecto: idProyecto,
         if (titulo != null) #titulo: titulo,
-        if (subEntregables != null) #subEntregables: subEntregables,
+        if (idSubEntregables != null) #idSubEntregables: idSubEntregables,
         if (fechaCreacion != null) #fechaCreacion: fechaCreacion
       }));
   @override
@@ -253,13 +249,14 @@ class _PublicacionCopyWithImpl<$R, $Out>
       resumen: data.get(#resumen, or: $value.resumen),
       tags: data.get(#tags, or: $value.tags),
       status: data.get(#status, or: $value.status),
-      categoria: data.get(#categoria, or: $value.categoria),
+      idCategorias: data.get(#idCategorias, or: $value.idCategorias),
       parents: data.get(#parents, or: $value.parents),
       comentarios: data.get(#comentarios, or: $value.comentarios),
       id: data.get(#id, or: $value.id),
       idProyecto: data.get(#idProyecto, or: $value.idProyecto),
       titulo: data.get(#titulo, or: $value.titulo),
-      subEntregables: data.get(#subEntregables, or: $value.subEntregables),
+      idSubEntregables:
+          data.get(#idSubEntregables, or: $value.idSubEntregables),
       fechaCreacion: data.get(#fechaCreacion, or: $value.fechaCreacion));
 
   @override

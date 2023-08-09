@@ -31,9 +31,9 @@ class EntregableMapper extends ClassMapperBase<Entregable> {
       Field('idProyecto', _$idProyecto);
   static String _$titulo(Entregable v) => v.titulo;
   static const Field<Entregable, String> _f$titulo = Field('titulo', _$titulo);
-  static List<int> _$subEntregables(Entregable v) => v.subEntregables;
-  static const Field<Entregable, List<int>> _f$subEntregables =
-      Field('subEntregables', _$subEntregables);
+  static List<int> _$idSubEntregables(Entregable v) => v.idSubEntregables;
+  static const Field<Entregable, List<int>> _f$idSubEntregables =
+      Field('idSubEntregables', _$idSubEntregables);
   static DateTime _$fechaCreacion(Entregable v) => v.fechaCreacion;
   static const Field<Entregable, DateTime> _f$fechaCreacion =
       Field('fechaCreacion', _$fechaCreacion);
@@ -43,7 +43,7 @@ class EntregableMapper extends ClassMapperBase<Entregable> {
     #id: _f$id,
     #idProyecto: _f$idProyecto,
     #titulo: _f$titulo,
-    #subEntregables: _f$subEntregables,
+    #idSubEntregables: _f$idSubEntregables,
     #fechaCreacion: _f$fechaCreacion,
   };
 
@@ -71,12 +71,12 @@ mixin EntregableMappable {
 
 abstract class EntregableCopyWith<$R, $In extends Entregable, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get subEntregables;
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idSubEntregables;
   $R call(
       {int? id,
       int? idProyecto,
       String? titulo,
-      List<int>? subEntregables,
+      List<int>? idSubEntregables,
       DateTime? fechaCreacion});
   EntregableCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }

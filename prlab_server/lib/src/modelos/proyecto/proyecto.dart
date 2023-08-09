@@ -9,7 +9,7 @@ class Proyecto with ProyectoMappable {
     required this.id,
     required this.idOrganizacion,
     required this.nombre,
-    required this.entregables,
+    required this.idEntregables,
     required this.fechaCreacion,
   });
 
@@ -19,8 +19,8 @@ class Proyecto with ProyectoMappable {
   int idOrganizacion;
   @MappableField(key: 'nombre')
   String nombre;
-  @MappableField(key: 'entregables')
-  List<int> entregables;
+  @MappableField(key: 'idEntregables')
+  List<int> idEntregables;
   @MappableField(key: 'fechaCreacion')
   final DateTime fechaCreacion;
 }

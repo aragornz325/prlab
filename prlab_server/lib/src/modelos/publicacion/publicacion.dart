@@ -6,7 +6,7 @@ part 'publicacion.mapper.dart';
 @MappableClass()
 class Publicacion extends Entregable with PublicacionMappable {
   
-    @MappableConstructor()
+  @MappableConstructor()
   Publicacion({
     required this.contenido,
     required this.autor,
@@ -15,19 +15,19 @@ class Publicacion extends Entregable with PublicacionMappable {
     required this.resumen,
     required this.tags,
     required this.status,
-    required this.categoria,
+    required this.idCategorias,
     required this.parents,
     required this.comentarios,
     required int id,
     required int idProyecto,
     required String titulo,
-    required List<int> subEntregables,
+    required List<int> idSubEntregables,
     required DateTime fechaCreacion,
   }) : super(
           id: id,
           idProyecto: idProyecto,
           titulo: titulo,
-          subEntregables: subEntregables,
+          idSubEntregables: idSubEntregables,
           fechaCreacion: fechaCreacion,
         );
   
@@ -44,9 +44,9 @@ class Publicacion extends Entregable with PublicacionMappable {
   @MappableField(key: 'tags')
   List<String> tags;
   @MappableField(key: 'status')
-  List<int> status;
+  int status;
   @MappableField(key: 'categoria')
-  List<int> categoria;
+  List<int> idCategorias;
   @MappableField(key: 'padres')
   int parents;
   @MappableField(key: 'comentarios')

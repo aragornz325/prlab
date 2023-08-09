@@ -34,12 +34,12 @@ class OrganizacionMapper extends ClassMapperBase<Organizacion> {
   static int _$contacto(Organizacion v) => v.contacto;
   static const Field<Organizacion, int> _f$contacto =
       Field('contacto', _$contacto);
-  static List<int> _$miembros(Organizacion v) => v.miembros;
-  static const Field<Organizacion, List<int>> _f$miembros =
-      Field('miembros', _$miembros);
-  static List<int> _$proyectos(Organizacion v) => v.proyectos;
-  static const Field<Organizacion, List<int>> _f$proyectos =
-      Field('proyectos', _$proyectos);
+  static List<int> _$idMiembros(Organizacion v) => v.idMiembros;
+  static const Field<Organizacion, List<int>> _f$idMiembros =
+      Field('idMiembros', _$idMiembros);
+  static List<int> _$idProyectos(Organizacion v) => v.idProyectos;
+  static const Field<Organizacion, List<int>> _f$idProyectos =
+      Field('idProyectos', _$idProyectos);
   static DateTime _$fechaCreacion(Organizacion v) => v.fechaCreacion;
   static const Field<Organizacion, DateTime> _f$fechaCreacion =
       Field('fechaCreacion', _$fechaCreacion);
@@ -50,8 +50,8 @@ class OrganizacionMapper extends ClassMapperBase<Organizacion> {
     #nombre: _f$nombre,
     #tipo: _f$tipo,
     #contacto: _f$contacto,
-    #miembros: _f$miembros,
-    #proyectos: _f$proyectos,
+    #idMiembros: _f$idMiembros,
+    #idProyectos: _f$idProyectos,
     #fechaCreacion: _f$fechaCreacion,
   };
 
@@ -61,8 +61,8 @@ class OrganizacionMapper extends ClassMapperBase<Organizacion> {
         nombre: data.dec(_f$nombre),
         tipo: data.dec(_f$tipo),
         contacto: data.dec(_f$contacto),
-        miembros: data.dec(_f$miembros),
-        proyectos: data.dec(_f$proyectos),
+        idMiembros: data.dec(_f$idMiembros),
+        idProyectos: data.dec(_f$idProyectos),
         fechaCreacion: data.dec(_f$fechaCreacion));
   }
 
@@ -115,15 +115,15 @@ extension OrganizacionValueCopy<$R, $Out>
 
 abstract class OrganizacionCopyWith<$R, $In extends Organizacion, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get miembros;
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get proyectos;
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idMiembros;
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idProyectos;
   $R call(
       {int? id,
       String? nombre,
       int? tipo,
       int? contacto,
-      List<int>? miembros,
-      List<int>? proyectos,
+      List<int>? idMiembros,
+      List<int>? idProyectos,
       DateTime? fechaCreacion});
   OrganizacionCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -137,29 +137,31 @@ class _OrganizacionCopyWithImpl<$R, $Out>
   late final ClassMapperBase<Organizacion> $mapper =
       OrganizacionMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get miembros =>
-      ListCopyWith($value.miembros, (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(miembros: v));
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idMiembros =>
+      ListCopyWith($value.idMiembros, (v, t) => ObjectCopyWith(v, $identity, t),
+          (v) => call(idMiembros: v));
   @override
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get proyectos =>
-      ListCopyWith($value.proyectos, (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(proyectos: v));
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idProyectos =>
+      ListCopyWith(
+          $value.idProyectos,
+          (v, t) => ObjectCopyWith(v, $identity, t),
+          (v) => call(idProyectos: v));
   @override
   $R call(
           {int? id,
           String? nombre,
           int? tipo,
           int? contacto,
-          List<int>? miembros,
-          List<int>? proyectos,
+          List<int>? idMiembros,
+          List<int>? idProyectos,
           DateTime? fechaCreacion}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (nombre != null) #nombre: nombre,
         if (tipo != null) #tipo: tipo,
         if (contacto != null) #contacto: contacto,
-        if (miembros != null) #miembros: miembros,
-        if (proyectos != null) #proyectos: proyectos,
+        if (idMiembros != null) #idMiembros: idMiembros,
+        if (idProyectos != null) #idProyectos: idProyectos,
         if (fechaCreacion != null) #fechaCreacion: fechaCreacion
       }));
   @override
@@ -168,8 +170,8 @@ class _OrganizacionCopyWithImpl<$R, $Out>
       nombre: data.get(#nombre, or: $value.nombre),
       tipo: data.get(#tipo, or: $value.tipo),
       contacto: data.get(#contacto, or: $value.contacto),
-      miembros: data.get(#miembros, or: $value.miembros),
-      proyectos: data.get(#proyectos, or: $value.proyectos),
+      idMiembros: data.get(#idMiembros, or: $value.idMiembros),
+      idProyectos: data.get(#idProyectos, or: $value.idProyectos),
       fechaCreacion: data.get(#fechaCreacion, or: $value.fechaCreacion));
 
   @override

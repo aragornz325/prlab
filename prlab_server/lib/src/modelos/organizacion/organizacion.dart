@@ -10,8 +10,8 @@ class Organizacion with OrganizacionMappable {
     required this.nombre,
     required this.tipo,
     required this.contacto,
-    required this.miembros,
-    required this.proyectos,
+    required this.idMiembros,
+    required this.idProyectos,
     required this.fechaCreacion,
   });
 
@@ -23,10 +23,10 @@ class Organizacion with OrganizacionMappable {
   int tipo;
   @MappableField(key: 'contacto')
   int contacto;
-  @MappableField(key: 'miembros')
-  List<int> miembros;
-  @MappableField(key: 'proyectos')
-  List<int> proyectos;
+  @MappableField(key: 'idMiembros')
+  List<int> idMiembros;
+  @MappableField(key: 'idProyectos')
+  List<int> idProyectos;
   @MappableField(key: 'fechaCreacion')
   DateTime fechaCreacion;
 }

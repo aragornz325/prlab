@@ -9,7 +9,7 @@ abstract class Entregable with EntregableMappable {
     required this.id,
     required this.idProyecto,
     required this.titulo,
-    required this.subEntregables,
+    required this.idSubEntregables,
     required this.fechaCreacion,
   });
   
@@ -19,8 +19,8 @@ abstract class Entregable with EntregableMappable {
   int idProyecto;
   @MappableField(key: 'titulo')
   String titulo;
-  @MappableField(key: 'subEntregables')
-  List<int> subEntregables;
+  @MappableField(key: 'idSubEntregables')
+  List<int> idSubEntregables;
   @MappableField(key: 'fechaCreacion')
   DateTime fechaCreacion;
 }
