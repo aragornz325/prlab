@@ -1,45 +1,43 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
-class BlocRegistroState extends Equatable {
-  const BlocRegistroState({
+class BlocRegistroEstado extends Equatable {
+  const BlocRegistroEstado({
     this.terminosAceptados = false,
     this.email = '',
-    this.contrasenia = '',
-    this.contraseniaConfirmada = false,
+    this.password = '',
+    this.passwordConfirmada = false,
   });
   final bool? terminosAceptados;
   final String email;
-  final String contrasenia;
-  final bool contraseniaConfirmada;
+  final String password;
+  final bool passwordConfirmada;
   bool? get getTerminosAceptados => terminosAceptados;
 
   @override
   List<Object?> get props =>
-      [terminosAceptados, email, contrasenia, contraseniaConfirmada];
+      [terminosAceptados, email, password, passwordConfirmada];
 }
 
-class BlocRegistroInicialState extends BlocRegistroState {
-  const BlocRegistroInicialState({
-    this.terminosAceptados = false,
-  }) : super(terminosAceptados: terminosAceptados);
-
-  @override
-  final bool? terminosAceptados;
+class BlocRegistroEstadoInicial extends BlocRegistroEstado {
+  const BlocRegistroEstadoInicial({
+    super.terminosAceptados,
+    super.email,
+    super.password,
+  });
 }
 
-class BlocRegistroSuccessState extends BlocRegistroState {
-  const BlocRegistroSuccessState({
-    required this.terminosAceptados,
-  }) : super(terminosAceptados: terminosAceptados);
-
-  @override
-  final bool? terminosAceptados;
+class BlocRegistroEstadoExitoso extends BlocRegistroEstado {
+  const BlocRegistroEstadoExitoso({
+    super.terminosAceptados,
+    super.email,
+    super.password,
+  });
 }
 
-class BlocRegistroLoadingState extends BlocRegistroState {}
+class BlocRegistroEstadoCargando extends BlocRegistroEstado {}
 
-class BlocRegistroErrorState extends BlocRegistroState {
+class BlocRegistroErrorState extends BlocRegistroEstado {
   const BlocRegistroErrorState({
     required this.errorMessage,
   });

@@ -21,9 +21,8 @@ class VistaRegistroEscritorio extends StatefulWidget {
 
 class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
   TextEditingController controladorEmail = TextEditingController();
-  TextEditingController controladorContrasenia = TextEditingController();
-  TextEditingController controladorConfirmarContrasenia =
-      TextEditingController();
+  TextEditingController controladorPassword = TextEditingController();
+  TextEditingController controladorConfirmarPassword = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +65,9 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                     width: 90.pw,
                     height: 60.ph,
                   ),
-                  BlocBuilder<BlocRegistro, BlocRegistroState>(
+                  BlocBuilder<BlocRegistro, BlocRegistroEstado>(
                     builder: (context, state) {
-                      if (state is BlocRegistroLoadingState) {
+                      if (state is BlocRegistroEstadoCargando) {
                         return SizedBox(
                           width: 50.pw,
                           height: 50.ph,
@@ -84,8 +83,8 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             child: Text(state.errorMessage),
                           ),
                         );
-                      } else if ((state is BlocRegistroInicialState) ||
-                          (state is BlocRegistroSuccessState)) {
+                      } else if ((state is BlocRegistroEstadoInicial) ||
+                          (state is BlocRegistroEstadoExitoso)) {
                         final terminosAceptados = state.terminosAceptados;
 
                         return Column(
@@ -115,7 +114,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             SizedBox(
                               width: 259.pw,
                               child: TextField(
-                                controller: controladorContrasenia,
+                                controller: controladorPassword,
                                 decoration: InputDecoration(
                                   prefixIcon: const Icon(Icons.lock),
                                   labelText:
@@ -129,7 +128,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             SizedBox(
                               width: 259.pw,
                               child: TextField(
-                                controller: controladorConfirmarContrasenia,
+                                controller: controladorConfirmarPassword,
                                 decoration: InputDecoration(
                                   prefixIcon: const Icon(Icons.lock),
                                   labelText: l10n
@@ -147,7 +146,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                   value: terminosAceptados,
                                   onChanged: (bool? value) {
                                     context.read<BlocRegistro>().add(
-                                          BlocRegistroAceptarTerminosEvent(
+                                          BlocRegistroEventoAceptarTerminos(
                                             terminosAceptados: value,
                                           ),
                                         );
@@ -176,7 +175,8 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                 width: 359.pw,
                                 height: 50.ph,
                                 child: ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed:
+                                      () {}, //todo agregar evento del bloc
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:
                                         const Color(0xffA12B46).withOpacity(.3),

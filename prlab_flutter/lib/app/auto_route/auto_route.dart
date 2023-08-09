@@ -14,6 +14,11 @@ class AppRouter extends $AppRouter {
       // initial: true,
       path: '/login',
     ),
-    AutoRoute(page: RegistroRoute.page, initial: true, path: '/'),
+    AutoRoute(
+      page: RegistroRoute
+          .page, //todo(sam): agregar pathparams @annotation un valor
+      initial: true,
+      path: '/',
+    ),
   ];
 }
