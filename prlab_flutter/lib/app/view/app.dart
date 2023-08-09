@@ -8,11 +8,10 @@ import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_app.g.dart';
 import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/emailauthcontroller_editado.dart';
-import 'package:prlab_flutter/utilidades/logOutController.dart.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
 class App extends StatelessWidget {
-  App({
+  const App({
     super.key,
   });
   @override
@@ -44,8 +43,6 @@ class App extends StatelessWidget {
       ),
     );
   }
-
-  final logOutController = LogOutController(client.modules.auth);
 }
 
 class AppView extends StatefulWidget {

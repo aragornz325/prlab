@@ -49,14 +49,14 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       } else {
         emit(
           const BlocLoginEstadoError(
-            errorMessage: 'Error al iniciar sesion',
+            errorMessage: LoginErrorMessages.userNotFoud,
           ),
         );
       }
     } catch (e, st) {
       emit(
-        BlocLoginEstadoError(
-          errorMessage: e.toString(),
+        const BlocLoginEstadoError(
+          errorMessage: LoginErrorMessages.invalidCredentials,
         ),
       );
       if (kDebugMode) {

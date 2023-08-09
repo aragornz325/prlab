@@ -25,10 +25,15 @@ class BlocLoginEstadoError extends BlocLoginEstado {
   });
 
   /// Mensaje de error
-  final String errorMessage;
+  final LoginErrorMessages errorMessage;
 }
 
 /// Estado de cargando de los componentes de la pantalla login
 class BlocLoginEstadoCargando extends BlocLoginEstado {
   const BlocLoginEstadoCargando();
+}
+
+enum LoginErrorMessages {
+  userNotFoud,
+  invalidCredentials;
 }
