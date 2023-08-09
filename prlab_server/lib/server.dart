@@ -42,7 +42,7 @@ void run(List<String> args) async {
             PlantillasCorreo().cuerpoVerificacion(codigo: validationCode);
         final correo = PlantillasCorreo()
             .mailingGeneral(contenido: cuerpoCorreo, nombre: 'nombre');
-        await sendMailerFunction(
+        await enviarEmail(
             mailDestinatario: email.toString().trim(),
             subject: 'Email validation.',
             mailHtml: correo);
@@ -60,7 +60,7 @@ void run(List<String> args) async {
             PlantillasCorreo().cuerpoVerificacion(codigo: validationCode);
         final correo = PlantillasCorreo()
             .mailingGeneral(contenido: cuerpoCorreo, nombre: 'nombre');
-        await sendMailerFunction(
+        await enviarEmail(
             mailDestinatario: userInfo.email.toString().trim(),
             subject: 'Password reset validation.',
             mailHtml: correo);

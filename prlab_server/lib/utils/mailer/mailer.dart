@@ -3,7 +3,7 @@ import 'package:mailer/smtp_server.dart';
 
 /// Esta funcion envia el mail. Crea la conexion con el servidor de correo electrónico.
 /// Requiere el [mailDestinatario], el asunto [subject] y el cuerpo del mail [mailHtml].
-Future<Map<String, String>> sendMailerFunction(
+Future<Map<String, String>> enviarEmail(
     {required String mailDestinatario,
     required String subject,
     required String mailHtml}) async {
