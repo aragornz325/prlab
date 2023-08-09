@@ -30,6 +30,7 @@ class App extends StatelessWidget {
 
 class AppView extends StatefulWidget {
   const AppView({super.key});
+import 'package:prlab_flutter/theming/base.dart';
 
   @override
   State<AppView> createState() => _AppViewState();
@@ -50,13 +51,7 @@ class _AppViewState extends State<AppView> {
     final fuenteGeneral = GoogleFonts.inter();
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-        colorScheme: ColorScheme.fromSwatch(
-          accentColor: const Color(0xFF13B9FF),
-        ),
-        fontFamily: fuenteGeneral.fontFamily,
-      ),
+      theme: ThemeData().prLab,
       builder: (context, child) => ScrollConfiguration(
         behavior: NoGlowBehavior(),
         child: child!,

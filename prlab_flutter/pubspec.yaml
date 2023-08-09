@@ -19,6 +19,7 @@ dependencies:
   intl: ^0.18.0
   serverpod_flutter: ^1.1.1
   serverpod_auth_email_flutter: ^1.1.1
+  
   serverpod_auth_shared_flutter: ^1.1.1
   
 
@@ -60,6 +61,10 @@ flutter:
     - stg.env
     - dev.env
     - prod.env
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: asset/fonts/Montserrat-Regular.ttf
 
 full_responsive:
   resolutions:
