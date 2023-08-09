@@ -20,6 +20,7 @@ dependencies:
   intl: ^0.18.0
   serverpod_flutter: ^1.1.1
   serverpod_auth_email_flutter: ^1.1.1
+  
   serverpod_auth_shared_flutter: ^1.1.1
 
   #data persistence
