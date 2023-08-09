@@ -37,7 +37,6 @@ dependencies:
   flutter_dotenv: ^5.1.0
   auto_route: ^7.7.1
   equatable: ^2.0.5
-  google_fonts: ^4.0.4
   assets_gen: ^1.5.0
 
 dev_dependencies:
@@ -64,10 +63,6 @@ flutter:
       fonts:
         - asset: assets/fonts/Montserrat-Regular.ttf
         - asset: assets/fonts/Montserrat-Bold.ttf
-
-
-
-
 
 full_responsive:
   resolutions:
