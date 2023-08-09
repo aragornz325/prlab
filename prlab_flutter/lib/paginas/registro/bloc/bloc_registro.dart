@@ -10,7 +10,8 @@ class BlocRegistro extends Bloc<BlocRegistroEvent, BlocRegistroState> {
           const BlocRegistroInicialState(),
         ) {
     on<BlocRegistroInicializarEvent>(_onInicializar);
-    on<BlocRegistroActivarDesactivarBotonEvent>(_onActivarDesactivar);
+
+    on<BlocRegistroAceptarTerminosEvent>(_onAceptarTerminos);
   }
 }
 
@@ -24,8 +25,8 @@ Future<void> _onInicializar(
   );
 }
 
-FutureOr<void> _onActivarDesactivar(
-  BlocRegistroActivarDesactivarBotonEvent event,
+FutureOr<void> _onAceptarTerminos(
+  BlocRegistroAceptarTerminosEvent event,
   Emitter<BlocRegistroState> emit,
 ) async {
   emit(

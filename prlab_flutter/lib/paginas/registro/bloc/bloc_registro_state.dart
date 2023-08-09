@@ -4,12 +4,19 @@ import 'package:equatable/equatable.dart';
 class BlocRegistroState extends Equatable {
   const BlocRegistroState({
     this.terminosAceptados = false,
+    this.email = '',
+    this.contrasenia = '',
+    this.contraseniaConfirmada = false,
   });
   final bool? terminosAceptados;
+  final String email;
+  final String contrasenia;
+  final bool contraseniaConfirmada;
   bool? get getTerminosAceptados => terminosAceptados;
 
   @override
-  List<Object?> get props => [terminosAceptados];
+  List<Object?> get props =>
+      [terminosAceptados, email, contrasenia, contraseniaConfirmada];
 }
 
 class BlocRegistroInicialState extends BlocRegistroState {

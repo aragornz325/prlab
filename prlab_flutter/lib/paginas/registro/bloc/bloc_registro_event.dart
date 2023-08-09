@@ -11,10 +11,13 @@ abstract class BlocRegistroEvent extends Equatable {
 //Evento que inicializa la variable terminosAceptados en false
 class BlocRegistroInicializarEvent extends BlocRegistroEvent {}
 
-//Evento que invierte el valor de terminosAceptados
-class BlocRegistroActivarDesactivarBotonEvent extends BlocRegistroEvent {
-  const BlocRegistroActivarDesactivarBotonEvent({
+//Evento que invierte el valor de terminosAceptados que se inicia el false
+class BlocRegistroAceptarTerminosEvent extends BlocRegistroEvent {
+  const BlocRegistroAceptarTerminosEvent({
     required this.terminosAceptados,
   });
   final bool? terminosAceptados;
 }
+
+//Evento que envia los datos y hace el registro.
+class BlocRegistroEnviarDatosRegistrarseEvent extends BlocRegistroEvent {}

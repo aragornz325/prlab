@@ -147,8 +147,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                   value: terminosAceptados,
                                   onChanged: (bool? value) {
                                     context.read<BlocRegistro>().add(
-                                          //Agregar como var
-                                          BlocRegistroActivarDesactivarBotonEvent(
+                                          BlocRegistroAceptarTerminosEvent(
                                             terminosAceptados: value,
                                           ),
                                         );
