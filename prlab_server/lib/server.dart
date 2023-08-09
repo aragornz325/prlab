@@ -1,4 +1,6 @@
 import 'package:prlab_server/utils/config/rewrite_yaml.dart';
+import 'package:prlab_server/utils/mailer/mailer.dart';
+import 'package:prlab_server/utils/mailer/templates.dart';
 import 'package:serverpod/serverpod.dart';
 
 import 'package:prlab_server/src/web/routes/root.dart';
@@ -34,15 +36,43 @@ void run(List<String> args) async {
   );
 
   auth.AuthConfig.set(auth.AuthConfig(
-  sendValidationEmail: (session, email, validationCode) async {
-    print(validationCode);
-    return true;
-  },
-  sendPasswordResetEmail: (session, userInfo, validationCode) async {
-    print(validationCode);
-    return true;
-  },
-));
+    sendValidationEmail: (session, email, validationCode) async {
+      try {
+        final cuerpoCorreo =
+            PlantillasCorreo().cuerpoVerificacion(codigo: validationCode);
+        final correo = PlantillasCorreo()
+            .mailingGeneral(contenido: cuerpoCorreo, nombre: 'nombre');
+        await enviarEmail(
+            mailDestinatario: email.toString().trim(),
+            subject: 'Email validation.',
+            mailHtml: correo);
+        print('Sending validation email to $email with code $validationCode');
+        print(validationCode);
+        return true;
+      } on Exception catch (e, st) {
+        print('$e $st');
+        rethrow;
+      }
+    },
+    sendPasswordResetEmail: (session, userInfo, validationCode) async {
+      try {
+        final cuerpoCorreo =
+            PlantillasCorreo().cuerpoVerificacion(codigo: validationCode);
+        final correo = PlantillasCorreo()
+            .mailingGeneral(contenido: cuerpoCorreo, nombre: 'nombre');
+        await enviarEmail(
+            mailDestinatario: userInfo.email.toString().trim(),
+            subject: 'Password reset validation.',
+            mailHtml: correo);
+        print('Sending password reset validation email to ${userInfo.email.toString()} with code $validationCode');
+        print(validationCode);
+        return true;
+      } on Exception catch (e, st) {
+        print('$e $st');
+        rethrow;
+      }
+    },
+  ));
 
   // Start the server.
   await pod.start();
