@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template PrBotonBack}
@@ -20,6 +21,8 @@ class PrBotonBack extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
+    final theme = context.theme;
+
     return Center(
       child: SizedBox(
         width: 200.pw,
@@ -27,16 +30,16 @@ class PrBotonBack extends StatelessWidget {
         child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xffffffff),
+            backgroundColor: theme.colorScheme.background,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100),
-              side: const BorderSide(color: Color(0xffA12B46)),
+              side: BorderSide(color: theme.colorScheme.primary),
             ),
           ),
           child: Text(
             l10n.screen_create_admin_account_button_back,
             style: TextStyle(
-              color: const Color(0xffA12B46),
+              color: theme.colorScheme.primary,
               fontSize: 15.pf,
               fontWeight: FontWeight.w400,
             ),

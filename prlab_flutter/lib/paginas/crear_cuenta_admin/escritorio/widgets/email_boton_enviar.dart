@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template PrLabEmailYBotonEnviar}
@@ -21,6 +22,8 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
+    final theme = context.theme;
+
     return Center(
       child: Container(
         padding: EdgeInsets.symmetric(
@@ -28,7 +31,8 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
           vertical: 40.ph,
         ),
         decoration: BoxDecoration(
-          color: Colors.white,
+          //TODO: cambiar cuando este seteado los themas
+          color: theme.colorScheme.background,
           borderRadius: const BorderRadius.all(
             Radius.circular(15),
           ),
@@ -36,6 +40,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             BoxShadow(
               offset: const Offset(0, 10),
               blurRadius: 30,
+              //TODO: cambiar cuando este seteado los themas
               color: const Color(0xff000000).withOpacity(.25),
             ),
           ],
@@ -49,6 +54,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             Text(
               l10n.screen_create_admin_client_email,
               style: TextStyle(
+                //TODO: cambiar cuando este seteado los themas
                 color: const Color(0xff363636),
                 fontSize: 30.pf,
                 fontWeight: FontWeight.w600,
@@ -58,6 +64,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             Text(
               l10n.screen_create_admin_leading_pr_agency,
               style: TextStyle(
+                //TODO: cambiar cuando este seteado los themas
                 color: const Color(0xff707070),
                 fontSize: 15.pf,
                 fontWeight: FontWeight.w400,
@@ -86,16 +93,16 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                     //TODO: agregarle funcionalidad del bloc
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xffA12B46),
+                    backgroundColor: theme.colorScheme.primary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100),
-                      side: const BorderSide(color: Color(0xffA12B46)),
+                      side: BorderSide(color: theme.colorScheme.primary),
                     ),
                   ),
                   child: Text(
                     l10n.screen_create_admin_button_send,
                     style: TextStyle(
-                      color: const Color(0xffffffff),
+                      color: theme.colorScheme.background,
                       fontSize: 15.pf,
                       fontWeight: FontWeight.w400,
                     ),

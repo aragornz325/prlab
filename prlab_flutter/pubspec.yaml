@@ -57,6 +57,10 @@ flutter:
     - stg.env
     - dev.env
     - prod.env
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: asset/fonts/Montserrat-Regular.ttf
 
 full_responsive:
   resolutions:
