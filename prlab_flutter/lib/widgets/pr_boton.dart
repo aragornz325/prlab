@@ -12,6 +12,22 @@ class PRBoton extends StatelessWidget {
     super.key,
   });
 
+  ///Variante outlined de PRBoton
+  factory PRBoton.outlined({
+    required VoidCallback onTap,
+    required String texto,
+    required bool habilitado,
+    required double width,
+  }) {
+    return PRBoton(
+      onTap: onTap,
+      texto: texto,
+      habilitado: habilitado,
+      outlined: true,
+      width: width.pw,
+    );
+  }
+
   final double width;
   final VoidCallback onTap;
   final String texto;
@@ -46,6 +62,7 @@ class PRBoton extends StatelessWidget {
             texto,
             style: TextStyle(
               fontSize: 16.pf,
+              fontWeight: FontWeight.w600,
               color: outlined
                   ? habilitado
                       ? theme.colorScheme.primary

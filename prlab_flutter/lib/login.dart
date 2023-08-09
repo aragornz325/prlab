@@ -30,11 +30,11 @@ class LoginPage extends StatelessWidget {
             SizedBox(
               height: 50.ph,
             ),
-            PRBoton(
+            PRBoton.outlined(
               onTap: () {},
-              texto: 'Boton',
-              habilitado: false,
-              outlined: true,
+              texto: 'texto',
+              habilitado: true,
+              width: 359,
             )
           ],
         ),
