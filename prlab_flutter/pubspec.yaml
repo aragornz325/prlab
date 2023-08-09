@@ -46,6 +46,20 @@ flutter:
     - stg.env
     - dev.env
     - prod.env
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Montserrat-Bold.ttf
+          weigth: 500
+        - asset: assets/fonts/Montserrat-Bold.ttf
+          weigth: 600
+        - asset: assets/fonts/Montserrat-Bold.ttf
+          weigth: 700
+
+
+
 
 full_responsive:
   resolutions:
