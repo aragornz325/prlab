@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/theming/base.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -24,13 +25,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      darkTheme: ThemeData.from(colorScheme: ColorScheme.dark()),
-      theme: ThemeData.from( 
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFA12B46),
-        ),
-        useMaterial3: true,
-      ),
+      theme: ThemeData().prLab,
       builder: (context, child) => ScrollConfiguration(
         behavior: NoGlowBehavior(),
         child: child!,
