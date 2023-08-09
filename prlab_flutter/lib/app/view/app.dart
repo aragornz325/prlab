@@ -7,7 +7,7 @@ import 'package:prlab_flutter/main.dart';
 import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_app.g.dart';
 import 'package:prlab_flutter/theming/base.dart';
-import 'package:prlab_flutter/utilidades/email_auth_controller_editado.dart';
+import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 
 class App extends StatelessWidget {
   const App({

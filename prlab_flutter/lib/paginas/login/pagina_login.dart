@@ -5,7 +5,7 @@ import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/paginas/login/celular/vista_login.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/vista_login.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
-import 'package:prlab_flutter/utilidades/email_auth_controller_editado.dart';
+import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 
 /// Pagina de la pantalla login donde el usuario puede iniciar sesion
 @RoutePage()
