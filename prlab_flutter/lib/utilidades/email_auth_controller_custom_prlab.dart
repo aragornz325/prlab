@@ -15,18 +15,25 @@ class EmailAuthControllerCustomPRLab extends EmailAuthController {
   ///   email (String): Un string que representa la dirección de correo
   ///   electrónico del usuario.
   ///   password (String): Un string que representa la contraseña del usuario.
-  Future<AuthenticationResponse?> iniciarSesion(
+  Future<AuthenticationResponse> iniciarSesion(
     String email,
     String password,
   ) async {
     try {
       final serverResponse = await caller.email.authenticate(email, password);
 
-      if (!serverResponse.success ||
-          serverResponse.userInfo == null ||
+      if (!serverResponse.success) {
+        throw Exception(
+          'ERROR: Algo salió mal, ${serverResponse.failReason}',
+        );
+      }
+
+      if (serverResponse.userInfo == null ||
           serverResponse.keyId == null ||
           serverResponse.key == null) {
-        return null;
+        throw Exception(
+          'ERROR: Algo salió mal, valores requeridos faltantes',
+        );
       }
 
       return serverResponse;
@@ -35,13 +42,19 @@ class EmailAuthControllerCustomPRLab extends EmailAuthController {
         print('$e');
         print('$stackTrace');
       }
-      return null;
+
+      throw Exception(
+        'ERROR: Algo salió mal, error: $e, stackTrace: $stackTrace',
+      );
     }
   }
 
+  /// La función signOut es un future que devuelve un valor booleano que indica
+  /// si el proceso de cierre de sesión fue exitoso o no.
   Future<bool> signOut() async {
     try {
       await sessionManager.signOut();
+
       return true;
     } catch (e) {
       rethrow;

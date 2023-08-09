@@ -1,25 +1,25 @@
 import 'dart:async';
 import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:prlab_flutter/utilidades/emailauthcontroller_editado.dart';
+import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';
-import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
 part 'bloc_login_event.dart';
 part 'bloc_login_state.dart';
 
-///Bloc que maneja los estados o logica de la pagina de login
+/// Bloc que maneja los estados o logica de la pagina de login
 class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
   BlocLogin({
-    required this.emailAuth,
     required this.emailAuthControllerCustomPRLab,
-  }) : super(
-          const BlocLoginEstadoInicial(),
-        ) {
+  }) : super(const BlocLoginEstadoInicial()) {
     on<BlocLoginEventoIniciarSesion>(_iniciarSesion);
   }
+
+  /// Repositorio editado para Serverpod
+  final EmailAuthControllerCustomPRLab emailAuthControllerCustomPRLab;
 
   /// Funcion que inicia sesion donde llamamos al repo `emailAuth` que es de
   /// server pod y la funcion signIn y pasamos nuestros events
@@ -37,7 +37,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
         event.password,
       );
       await sessionManager.registerSignedInUser(
-        respuesta!.userInfo!,
+        respuesta.userInfo!,
         respuesta.keyId!,
         respuesta.key!,
       );
@@ -65,10 +65,4 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       }
     }
   }
-
-  /// Repo de Serverpod
-  final EmailAuthController emailAuth;
-
-  /// Repo editado para Serverpod
-  final EmailAuthControllerCustomPRLab emailAuthControllerCustomPRLab;
 }

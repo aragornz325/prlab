@@ -988,7 +988,7 @@ packages:
     source: hosted
     version: "1.1.1"
   serverpod_auth_shared_flutter:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: serverpod_auth_shared_flutter
       sha256: dbd357136e5baadb6a9a90e3368b0acc48c10f8af09e369fd0549951ea5c8118
