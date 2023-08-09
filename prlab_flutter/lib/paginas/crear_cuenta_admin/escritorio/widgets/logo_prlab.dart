@@ -27,7 +27,7 @@ class LogoPrLabAgencia extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              l10n.screen_create_admin_acount_title_prlab,
+              l10n.screen_create_admin_account_title_prlab,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: const Color(0xff363636),
@@ -36,7 +36,7 @@ class LogoPrLabAgencia extends StatelessWidget {
               ),
             ),
             Text(
-              l10n.screen_create_admin_acount_subtitle_international_prlab_agency,
+              l10n.screen_create_admin_account_subtitle_international_prlab_agency,
               style: TextStyle(
                 color: const Color(0xff363636),
                 fontSize: 14.pf,

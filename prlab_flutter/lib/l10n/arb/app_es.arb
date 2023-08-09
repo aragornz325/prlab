@@ -53,5 +53,13 @@
     "screen_create_admin_button_send": "Enviar",
     "@screen_create_admin_button_send": {
         "description": "Text Send in screen create admin acount in button of send email"
+    },
+    "screen_create_admin_alertdialog_title_email_send": "Enviar email",
+    "@screen_create_admin_alertdialog_title_email_send": {
+        "description": "Text in screen create admin account in alertdialog in title, email send"
+    },
+    "screen_create_admin_alertdialog_button_ok": "Ok",
+    "@screen_create_admin_alertdialog_button_ok": {
+        "description": "Text in screen create admin account in alertdialog in button, Ok"
     }
 }

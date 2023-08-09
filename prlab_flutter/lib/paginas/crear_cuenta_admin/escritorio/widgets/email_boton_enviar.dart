@@ -75,6 +75,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
               ),
             ),
             SizedBox(height: 50.ph),
+            //TODO: cambiarlo por el que esta en development
             Center(
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 15.pw),

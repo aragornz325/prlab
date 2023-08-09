@@ -34,7 +34,7 @@ class PrBotonBack extends StatelessWidget {
             ),
           ),
           child: Text(
-            l10n.screen_create_admin_acount_button_back,
+            l10n.screen_create_admin_account_button_back,
             style: TextStyle(
               color: const Color(0xffA12B46),
               fontSize: 15.pf,
