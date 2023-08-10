@@ -1,65 +1,41 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/paginas/login/celular/vista_login.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/vista_login.dart';
+import 'package:prlab_flutter/paginas/login/utilidades/get_error_message.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
+import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 
+/// Pagina de la pantalla login donde el usuario puede iniciar sesion
 @RoutePage()
-class PageLogin extends StatelessWidget {
-  const PageLogin({super.key});
+class PaginaLogin extends StatelessWidget {
+  const PaginaLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
     return BlocProvider(
-      create: (context) => BlocLogin(),
-      child: BlocConsumer<BlocLogin, BlocLoginState>(
-        listener: (context, state) {
-          ///TODO: Agregar funcionalidad
-        },
+      create: (context) => BlocLogin(
+        emailAuthControllerCustomPRLab:
+            context.read<EmailAuthControllerCustomPRLab>(),
+      ),
+      child: BlocBuilder<BlocLogin, BlocLoginEstado>(
         builder: (context, state) {
-          if (state is BlocLoginStateLoading) {
+          if (state is BlocLoginEstadoCargando) {
             return const Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
               ),
             );
           }
-
-          if (state is BlocLoginStateError) {
-            return Scaffold(
-              body: Center(
-                child: Column(
-                  children: [
-                    Text(state.errorMessage),
-                    ElevatedButton(
-                      ///TODO: Agregar funcionalidad
-                      onPressed: () {},
-                      child: Text(
-                        l10n.screen_login_button_reload,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            );
+          if (state is BlocLoginEstadoError) {
+            //TODO(Gon): Todavia no hay diseño para el error handling
+            print(getErrorMessage(context, state.errorMessage));
           }
-
-          if (state is BlocLoginStateSuccess) {
-            return const FullResponsiveScreen(
-              mobile: ViewLoginMobile(),
-              desktop: ViewLoginDesktop(),
-            );
-          }
-
-          ///TODO: Esto despues se tiene que cambiar para que retorne algo por default(ahora esta asi xq en ningun momento emite success)
           return const FullResponsiveScreen(
-            mobile: ViewLoginMobile(),
-            desktop: ViewLoginDesktop(),
+            mobile: VistaLoginCelular(),
+            desktop: VistaLoginEscritorio(),
           );
         },
       ),

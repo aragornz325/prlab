@@ -4,8 +4,10 @@ import 'package:prlab_flutter/paginas/login/escritorio/widgets/olvidaste_tu_cont
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/texto_bienvenida.dart';
 
-class ViewLoginDesktop extends StatelessWidget {
-  const ViewLoginDesktop({super.key});
+/// Vista de escritorio de la pantalla login donde el usuario
+/// puede iniciar sesion
+class VistaLoginEscritorio extends StatelessWidget {
+  const VistaLoginEscritorio({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +15,7 @@ class ViewLoginDesktop extends StatelessWidget {
       body: Row(
         children: [
           Container(
+            //TODO(Gon): Cambiar cuando esten los colores del theme
             color: const Color(0xfff7f7f7),
             width: 44.5.wp,
             height: 100.hp,

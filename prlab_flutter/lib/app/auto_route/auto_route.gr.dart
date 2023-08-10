@@ -31,10 +31,10 @@ abstract class $AppRouter extends _i4.RootStackRouter {
         child: const _i2.PaginaCrearCuenta(),
       );
     },
-    RouteLogin.name: (routeData) {
+    PaginaLogin.name: (routeData) {
       return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.PageLogin(),
+        child: const _i3.PaginaLogin(),
       );
     },
   };
@@ -69,15 +69,15 @@ class PaginaCrearCuenta extends _i4.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.PageLogin]
-class RouteLogin extends _i4.PageRouteInfo<void> {
-  const RouteLogin({List<_i4.PageRouteInfo>? children})
+/// [_i3.PaginaLogin]
+class PaginaLogin extends _i4.PageRouteInfo<void> {
+  const PaginaLogin({List<_i4.PageRouteInfo>? children})
       : super(
-          RouteLogin.name,
+          PaginaLogin.name,
           initialChildren: children,
         );
 
-  static const String name = 'RouteLogin';
+  static const String name = 'PaginaLogin';
 
   static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
 }

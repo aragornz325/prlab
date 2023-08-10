@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/crear_cuenta_admin/escritorio/widgets/widgets.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template VistaEscritorioCrearCuentaAdmin}
 /// Vista de escritorio para crear una cuenta a un admin
@@ -28,6 +30,8 @@ class _VistaEscritorioCrearCuentaAdminState
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +42,17 @@ class _VistaEscritorioCrearCuentaAdminState
             controller: controllerEmail,
           ),
           SizedBox(height: 80.ph),
-          PrBotonBack(onPressed: () {}),
+          Center(
+            child: PRBoton.outlined(
+              width: 200.pw,
+              onTap: () {
+                //TODO: agregarle funcionalidad
+              },
+              texto: l10n.screen_create_admin_account_button_back,
+              //TODO: cambiar por la variable del bloc
+              habilitado: true,
+            ),
+          ),
         ],
       ),
     );

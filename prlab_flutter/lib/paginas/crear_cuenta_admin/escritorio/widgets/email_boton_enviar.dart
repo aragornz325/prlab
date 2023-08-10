@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template PrLabEmailYBotonEnviar}
 /// Muestra el textfield a completar con el email y un boton con el cual enviar
@@ -84,30 +85,14 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             SizedBox(height: 50.ph),
             //TODO: cambiarlo por el que esta en development
             Center(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 15.pw),
-                width: 785.pw,
-                height: 50.pw,
-                child: ElevatedButton(
-                  onPressed: () {
-                    //TODO: agregarle funcionalidad del bloc
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: theme.colorScheme.primary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
-                      side: BorderSide(color: theme.colorScheme.primary),
-                    ),
-                  ),
-                  child: Text(
-                    l10n.screen_create_admin_button_send,
-                    style: TextStyle(
-                      color: theme.colorScheme.background,
-                      fontSize: 15.pf,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
+              child: PRBoton(
+                width: 782.pw,
+                onTap: () {
+                  //TODO: agregarle funcionalidad
+                },
+                texto: l10n.screen_create_admin_button_send,
+                //TODO: cambiar por la variable del bloc
+                habilitado: true,
               ),
             ),
           ],

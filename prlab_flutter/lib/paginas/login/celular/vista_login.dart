@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ViewLoginMobile extends StatelessWidget {
-  const ViewLoginMobile({super.key});
+/// Vista de celular de la pantalla login donde el usuario
+/// puede iniciar sesion
+class VistaLoginCelular extends StatelessWidget {
+  const VistaLoginCelular({super.key});
 
   @override
   Widget build(BuildContext context) {

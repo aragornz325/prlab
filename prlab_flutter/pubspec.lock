@@ -508,14 +508,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
-  google_fonts:
-    dependency: "direct main"
-    description:
-      name: google_fonts
-      sha256: "6b6f10f0ce3c42f6552d1c70d2c28d764cf22bb487f50f66cca31dcd5194f4d6"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.4"
   graphs:
     dependency: transitive
     description:
@@ -972,7 +964,7 @@ packages:
     source: hosted
     version: "0.27.7"
   serverpod_auth_client:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: serverpod_auth_client
       sha256: "443f32578b1d338e20b1c0afbea39ed24227f94bb86a81bffe9b7c54bfd6ed95"
@@ -988,7 +980,7 @@ packages:
     source: hosted
     version: "1.1.1"
   serverpod_auth_shared_flutter:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: serverpod_auth_shared_flutter
       sha256: dbd357136e5baadb6a9a90e3368b0acc48c10f8af09e369fd0549951ea5c8118

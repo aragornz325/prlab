@@ -1,33 +1,39 @@
 part of 'bloc_login.dart';
 
-abstract class BlocLoginState extends Equatable {
-  const BlocLoginState();
+class BlocLoginEstado extends Equatable {
+  const BlocLoginEstado();
 
   @override
   List<Object> get props => [];
 }
 
-/// Estado donde cambiamos el color del boton de iniciar sesion
-class BlocLoginStateInitial extends BlocLoginState {
-  const BlocLoginStateInitial();
+/// Estado inicial de los componentes de la pantalla login
+class BlocLoginEstadoInicial extends BlocLoginEstado {
+  const BlocLoginEstadoInicial();
 }
 
-/// Estado success del login
-class BlocLoginStateSuccess extends BlocLoginState {
-  const BlocLoginStateSuccess();
+/// Estado exitoso de los componentes de la pantalla login
+class BlocLoginEstadoExitoso extends BlocLoginEstado {
+  const BlocLoginEstadoExitoso();
 }
 
-/// Estado de error en caso de que no se pueda iniciar sesion
-class BlocLoginStateError extends BlocLoginState {
-  const BlocLoginStateError({
+/// Estado de error de los componentes de la pantalla login (se puede emitir
+/// cuando hay un error la iniciar sesion)
+class BlocLoginEstadoError extends BlocLoginEstado {
+  const BlocLoginEstadoError({
     required this.errorMessage,
   });
 
   /// Mensaje de error
-  final String errorMessage;
+  final LoginErrorMessages errorMessage;
 }
 
-/// Estado de cargando
-class BlocLoginStateLoading extends BlocLoginState {
-  const BlocLoginStateLoading();
+/// Estado de cargando de los componentes de la pantalla login
+class BlocLoginEstadoCargando extends BlocLoginEstado {
+  const BlocLoginEstadoCargando();
+}
+
+enum LoginErrorMessages {
+  userNotFoud,
+  invalidCredentials;
 }

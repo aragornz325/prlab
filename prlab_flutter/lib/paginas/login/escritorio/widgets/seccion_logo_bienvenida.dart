@@ -3,6 +3,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
+/// Seccion a la derecha de login/registro que muestra el logo y eslogan de la empresa
 class SeccionLogoBienvenida extends StatelessWidget {
   const SeccionLogoBienvenida({
     super.key,
