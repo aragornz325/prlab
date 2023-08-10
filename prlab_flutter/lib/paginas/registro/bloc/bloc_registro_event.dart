@@ -9,10 +9,10 @@ abstract class BlocRegistroEvento extends Equatable {
   List<Object> get props => [];
 }
 
-//Evento que inicializa la variable terminosAceptados en false
+/// Evento que inicializa la variable terminosAceptados en false
 class BlocRegistroEventoInicializar extends BlocRegistroEvento {}
 
-//Evento que invierte el valor de terminosAceptados que se inicia el false
+/// Evento que invierte el valor de terminosAceptados que se inicia el false
 class BlocRegistroEventoAceptarTerminos extends BlocRegistroEvento {
   const BlocRegistroEventoAceptarTerminos({
     required this.terminosAceptados,
@@ -20,7 +20,7 @@ class BlocRegistroEventoAceptarTerminos extends BlocRegistroEvento {
   final bool? terminosAceptados;
 }
 
-//Evento que envia los datos y hace el registro.
+/// Evento que envia los datos y hace el registro.
 class BlocRegistroEventoEnviarDatosRegistro extends BlocRegistroEvento {
   const BlocRegistroEventoEnviarDatosRegistro({
     required this.email,
@@ -29,5 +29,8 @@ class BlocRegistroEventoEnviarDatosRegistro extends BlocRegistroEvento {
   final String email;
   final String password;
   @override
-  List<Object> get props => [email, password];
+  List<Object> get props => [
+        email,
+        password,
+      ];
 }

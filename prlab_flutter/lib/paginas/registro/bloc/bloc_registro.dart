@@ -1,6 +1,10 @@
 import 'dart:async';
+import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 
@@ -10,19 +14,8 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
       : super(
           const BlocRegistroEstadoInicial(),
         ) {
-    on<BlocRegistroEventoInicializar>(_onInicializar);
     on<BlocRegistroEventoAceptarTerminos>(_onAceptarTerminos);
     on<BlocRegistroEventoEnviarDatosRegistro>(_onEnviarDatosRegistro);
-  }
-
-  /// Evento que inicializa el bloc con el estado inicial y la variable en false.
-  Future<void> _onInicializar(
-    BlocRegistroEventoInicializar event,
-    Emitter<BlocRegistroEstado> emit,
-  ) async {
-    emit(
-      const BlocRegistroEstadoInicial(),
-    );
   }
 
   /// Evento que acepta (o declina) los terminos y guarda el estado del checkbox.
@@ -31,44 +24,76 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     Emitter<BlocRegistroEstado> emit,
   ) async {
     emit(
-      BlocRegistroEstadoCargando(),
+      const BlocRegistroEstadoCargando(),
     );
-    final terminos = event.terminosAceptados;
-    final email = state.email;
-    final password = state.password;
+
     emit(
       BlocRegistroEstadoExitoso(
-        terminosAceptados: terminos,
-        email: email,
-        password: password,
+        terminosAceptados: event.terminosAceptados,
+        email: state.email,
+        password: state.password,
       ),
     );
   }
 
-  /// Evento que inicializa el bloc con el estado inicial y la variable en false.
+  /// Evento que envia los datos de registro y registra al usuario.
+
   Future<void> _onEnviarDatosRegistro(
     BlocRegistroEventoEnviarDatosRegistro event,
     Emitter<BlocRegistroEstado> emit,
   ) async {
-    emit(
-      BlocRegistroEstadoCargando(),
-    );
-    // codigo = getCodigoDelBack()
-    // verificar(mail, codigo);
-    // signIn
-    //emailAuth.signIn();
-    //TODO(sam): poner funcion de registro/ cambiar password
-    // await client.modules.auth.user.client.registrarUsuario(
-    //       terminosAceptados: state.terminosAceptados,
-    // email: event.email,
-    // password: event.password,)
+    try {
+      emit(
+        const BlocRegistroEstadoCargando(),
+      );
 
-    emit(
-      BlocRegistroEstadoExitoso(
-        terminosAceptados: state.terminosAceptados,
-        email: event.email,
-        password: event.password,
-      ),
-    );
+      // codigo = getCodigoDelBack()
+      // verificar(mail, codigo);
+      // signIn
+      //emailAuth.signIn();
+
+      const registroSucess =
+          true; //await registrarse(event.email, event.password);
+
+      if (registroSucess == true) {
+        emit(
+          BlocRegistroEstadoExitoso(
+            terminosAceptados: state.terminosAceptados,
+            email: event.email,
+            password: event.password,
+          ),
+        );
+      } else {
+        emit(
+          const BlocRegistroErrorState(
+            errorMessage: MensajesDeErrorRegistro.credencialesInvalidas,
+          ),
+        );
+      }
+    } catch (e, st) {
+      emit(
+        const BlocRegistroErrorState(
+          errorMessage: MensajesDeErrorRegistro.usuarioNoEncontrado,
+        ),
+      );
+
+      if (kDebugMode) {
+        debugger();
+        throw UnimplementedError('Implementa un error para esto: $e $st');
+      }
+    }
+  }
+
+  /// Funcion que devuelve el mensaje de error traducido al idioma adecuado.
+  String traerMensajeDeError(
+    BuildContext context,
+    MensajesDeErrorRegistro loginErrorMessages,
+  ) {
+    final l10n = context.l10n;
+    return switch (loginErrorMessages) {
+      MensajesDeErrorRegistro.credencialesInvalidas =>
+        l10n.alert_dialgo_code_in, //Todo(sam): revisar mensajes de error
+      MensajesDeErrorRegistro.usuarioNoEncontrado => l10n.alert_dialgo_code_in,
+    };
   }
 }

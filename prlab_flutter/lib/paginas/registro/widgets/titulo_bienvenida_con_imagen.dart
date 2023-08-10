@@ -5,14 +5,12 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 
 class TituloBienvenidaConImagen extends StatelessWidget {
   const TituloBienvenidaConImagen({
-    required this.l10n,
     super.key,
   });
 
-  final AppLocalizations l10n;
-
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return SizedBox(
       height: 150.ph,
       width: 300.pw,

@@ -12,11 +12,14 @@ class BlocRegistroEstado extends Equatable {
   final String email;
   final String password;
   final bool passwordConfirmada;
-  bool? get getTerminosAceptados => terminosAceptados;
 
   @override
-  List<Object?> get props =>
-      [terminosAceptados, email, password, passwordConfirmada];
+  List<Object?> get props => [
+        terminosAceptados,
+        email,
+        password,
+        passwordConfirmada,
+      ];
 }
 
 /// Estado inicial de los componentes de la pantalla registro
@@ -39,7 +42,9 @@ class BlocRegistroEstadoExitoso extends BlocRegistroEstado {
 
 /// Estado de carga de los componentes de la pantalla registro, para mostrar un
 /// CircularProgressIndicator()
-class BlocRegistroEstadoCargando extends BlocRegistroEstado {}
+class BlocRegistroEstadoCargando extends BlocRegistroEstado {
+  const BlocRegistroEstadoCargando();
+}
 
 /// Estado de error de los componentes de la pantalla registro, acompañado
 /// por un mensaje de error
@@ -49,5 +54,11 @@ class BlocRegistroErrorState extends BlocRegistroEstado {
   });
 
   /// Mensaje de error
-  final String errorMessage;
+  final MensajesDeErrorRegistro errorMessage;
+}
+
+/// Enum de mensajes de error
+enum MensajesDeErrorRegistro {
+  usuarioNoEncontrado,
+  credencialesInvalidas;
 }

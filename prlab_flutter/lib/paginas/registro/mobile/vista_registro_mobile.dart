@@ -12,6 +12,9 @@ import 'package:prlab_flutter/paginas/registro/widgets/titulo_bienvenida_con_ima
 
 //Todo(sam): hacer exports
 @RoutePage()
+
+/// Vista de mobile de la pantalla registro, la cual llega a traves del mail
+///  donde el usuario puede registrarse y aceptar los terminos y condiciones.
 class RegistroVistaMobile extends StatefulWidget {
   const RegistroVistaMobile({super.key});
 
@@ -25,8 +28,18 @@ class _RegistroVistaMobileState extends State<RegistroVistaMobile> {
   TextEditingController controladorConfirmarPassword = TextEditingController();
 
   @override
+  void dispose() {
+    controladorEmail.dispose();
+    controladorPassword.dispose();
+    controladorConfirmarPassword.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final bloc = context.watch<BlocRegistro>();
     final l10n = context.l10n;
+
     return Scaffold(
       body: Row(
         children: [
@@ -43,8 +56,8 @@ class _RegistroVistaMobileState extends State<RegistroVistaMobile> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Center(
-                          child: TituloBienvenidaConImagen(l10n: l10n),
+                        const Center(
+                          child: TituloBienvenidaConImagen(),
                         ),
                         SizedBox(
                           child: Center(
@@ -75,19 +88,25 @@ class _RegistroVistaMobileState extends State<RegistroVistaMobile> {
                             child: CircularProgressIndicator(),
                           ),
                         );
-                      } else if (state is BlocRegistroErrorState) {
+                      }
+                      if (state is BlocRegistroErrorState) {
                         return Center(
                           child: SizedBox(
                             width: 150.pw,
                             height: 150.ph,
-                            child: Text(state.errorMessage),
+                            child: Text(
+                              bloc.traerMensajeDeError(
+                                context,
+                                state.errorMessage,
+                              ),
+                            ),
                           ),
                         );
-                      } else if ((state is BlocRegistroEstadoInicial) ||
+                      }
+                      if ((state is BlocRegistroEstadoInicial) ||
                           (state is BlocRegistroEstadoExitoso)) {
-                        final terminosAceptados = state.terminosAceptados;
-
                         return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
                               width: 259.pw,
@@ -139,30 +158,34 @@ class _RegistroVistaMobileState extends State<RegistroVistaMobile> {
                             SizedBox(
                               height: 20.ph,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Checkbox(
-                                  value: terminosAceptados,
-                                  onChanged: (bool? value) {
-                                    context.read<BlocRegistro>().add(
-                                          BlocRegistroEventoAceptarTerminos(
-                                            terminosAceptados: value,
-                                          ),
-                                        );
-                                  },
-                                ),
-                                Text(l10n.pageSignUpTermsAndConditionsText),
-                                GestureDetector(
-                                  child: Text(
-                                    l10n.pageSignUpTermsAndConditionsTextLink,
-                                    style: const TextStyle(
-                                      color: Colors.blue,
-                                      decoration: TextDecoration.underline,
+                            SizedBox(
+                              width: 259.pw,
+                              child: Row(
+                                children: [
+                                  Checkbox(
+                                    value: state.terminosAceptados,
+                                    onChanged: (value) {
+                                      _agregarEventoAceptarTerminos(
+                                        context,
+                                        value,
+                                      );
+                                    },
+                                  ),
+                                  Text(
+                                    l10n.pageSignUpTermsAndConditionsText,
+                                  ),
+                                  GestureDetector(
+                                    child: Text(
+                                      l10n.pageSignUpTermsAndConditionsTextLink,
+                                      style: const TextStyle(
+                                        color: Colors.blue,
+                                        decoration: TextDecoration.underline,
+                                        decorationColor: Colors.blue,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                             SizedBox(
                               height: 40.ph,
@@ -176,7 +199,7 @@ class _RegistroVistaMobileState extends State<RegistroVistaMobile> {
                                 height: 50.ph,
                                 child: ElevatedButton(
                                   onPressed:
-                                      () {}, //todo agregar evento del bloc
+                                      () {}, //todo(sam): agregar evento del bloc
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:
                                         const Color(0xffA12B46).withOpacity(.3),
@@ -203,5 +226,13 @@ class _RegistroVistaMobileState extends State<RegistroVistaMobile> {
         ],
       ),
     );
+  }
+
+  void _agregarEventoAceptarTerminos(BuildContext context, bool? value) {
+    context.read<BlocRegistro>().add(
+          BlocRegistroEventoAceptarTerminos(
+            terminosAceptados: value,
+          ),
+        );
   }
 }

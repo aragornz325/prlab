@@ -33,7 +33,8 @@ class BlocLoginEstadoCargando extends BlocLoginEstado {
   const BlocLoginEstadoCargando();
 }
 
+/// Enum de mensajes de error
 enum LoginErrorMessages {
-  userNotFoud,
+  userNotFound,
   invalidCredentials;
 }
