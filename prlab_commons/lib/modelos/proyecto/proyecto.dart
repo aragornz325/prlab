@@ -5,6 +5,7 @@ part 'proyecto.freezed.dart';
 
 part 'proyecto.g.dart';
 
+/// Modelo de entidad Proyecto (que depende de la Organizacion y que contiene entregables).
 @freezed
 class Proyecto with _$Proyecto {
   const factory Proyecto({
@@ -15,6 +16,7 @@ class Proyecto with _$Proyecto {
     required DateTime fechaCreacion,
   }) = _Proyecto;
 
+  /// Constructor propio de Freezed y requerido por Serverpod para la serialización de la clase.
   factory Proyecto.fromJson(
     Map<String, Object?> json,
     SerializationManager serializationManager,

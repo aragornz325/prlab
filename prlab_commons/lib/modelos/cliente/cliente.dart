@@ -5,9 +5,9 @@ part 'cliente.freezed.dart';
 
 part 'cliente.g.dart';
 
+/// Modelo de entidad Cliente (quien posee la Organización).
 @freezed
 class Cliente with _$Cliente {
-  
   const factory Cliente({
     required int id,
     required String nombre,
@@ -16,6 +16,7 @@ class Cliente with _$Cliente {
     required DateTime fechaCreacion,
   }) = _Cliente;
 
+  /// Constructor propio de Freezed y requerido por Serverpod para la serialización de la clase.
   factory Cliente.fromJson(
     Map<String, Object?> json,
     SerializationManager serializationManager,

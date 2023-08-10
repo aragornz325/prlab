@@ -5,9 +5,9 @@ part 'publicacion.freezed.dart';
 
 part 'publicacion.g.dart';
 
+/// Modelo de entidad Publicacion (un tipo de Entregable).
 @freezed
 class Publicacion with _$Publicacion {
-  
   const factory Publicacion({
     required String contenido,
     required int autor,
@@ -26,6 +26,7 @@ class Publicacion with _$Publicacion {
     required DateTime fechaCreacion,
   }) = _Publicacion;
 
+  /// Constructor propio de Freezed y requerido por Serverpod para la serialización de la clase.
   factory Publicacion.fromJson(
     Map<String, Object?> json,
     SerializationManager serializationManager,

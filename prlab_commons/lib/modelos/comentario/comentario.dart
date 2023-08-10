@@ -5,9 +5,9 @@ part 'comentario.freezed.dart';
 
 part 'comentario.g.dart';
 
+/// Modelo de entidad Comentario (dentro de publicaciones u otros entregables).
 @freezed
 class Comentario with _$Comentario {
-
   const factory Comentario({
     required int id,
     required int idPublicacion,
@@ -16,10 +16,10 @@ class Comentario with _$Comentario {
     required DateTime fechaCreacion,
   }) = _Comentario;
 
-factory Comentario.fromJson(
+  /// Constructor propio de Freezed y requerido por Serverpod para la serialización de la clase.
+  factory Comentario.fromJson(
     Map<String, Object?> json,
     SerializationManager serializationManager,
   ) =>
       _$ComentarioFromJson(json);
 }
-
