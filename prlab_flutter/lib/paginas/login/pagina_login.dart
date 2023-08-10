@@ -22,7 +22,8 @@ class PaginaLogin extends StatelessWidget {
       ),
       child: BlocBuilder<BlocLogin, BlocLoginEstado>(
         builder: (context, state) {
-          if (state is BlocLoginEstadoCargando) {
+          if (state is BlocLoginEstadoCargando &&
+              state.estaIniciandoSesion == false) {
             return const Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),

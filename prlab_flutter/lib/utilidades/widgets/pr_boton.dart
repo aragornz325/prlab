@@ -11,6 +11,7 @@ class PRBoton extends StatelessWidget {
     required this.habilitado,
     this.width = 359,
     this.outlined = false,
+    this.mostrarCircular = false,
     super.key,
   });
 
@@ -35,6 +36,7 @@ class PRBoton extends StatelessWidget {
   final String texto;
   final bool habilitado;
   final bool outlined;
+  final bool mostrarCircular;
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
@@ -60,18 +62,20 @@ class PRBoton extends StatelessWidget {
               : null,
         ),
         child: Center(
-          child: Text(
-            texto,
-            style: TextStyle(
-              fontSize: 16.pf,
-              fontWeight: FontWeight.w600,
-              color: outlined
-                  ? habilitado
-                      ? theme.colorScheme.primary
-                      : theme.colorScheme.primary.withOpacity(.2)
-                  : theme.colorScheme.background,
-            ),
-          ),
+          child: mostrarCircular
+              ? const CircularProgressIndicator()
+              : Text(
+                  texto,
+                  style: TextStyle(
+                    fontSize: 16.pf,
+                    fontWeight: FontWeight.w600,
+                    color: outlined
+                        ? habilitado
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.primary.withOpacity(.2)
+                        : theme.colorScheme.background,
+                  ),
+                ),
         ),
       ),
     );

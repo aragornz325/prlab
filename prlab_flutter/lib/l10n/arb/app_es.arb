@@ -1,38 +1,43 @@
 {
     "@@locale": "es",
 
-    "screen_login_greetings": "¡Hola de nuevo!",
-    "@screen_login_greetings": {
+    "page_login_greetings": "Bienvenido de nuevo!",
+    "@page_login_greetings": {
         "description": "Welcomes the user back"
     },
 
-    "screen_login_log_in_to": "Iniciar sesión en",
-    "@screen_login_log_in_to": {
+    "page_login_button_text": "Iniciar sesión",
+    "@page_login_button_text": {
+        "description": "Text shown on the button that logs the user"
+    },
+
+    "page_login_log_in_to": "Iniciar sesión en",
+    "@page_login_log_in_to": {
         "description": "Log in to the web/app"
     },
 
-    "screen_login_placeholder_email": "marcaejemplo@prlab.co",
-    "@screen_login_placeholder_email": {
+    "page_login_placeholder_email": "marcaejemplo@prlab.co",
+    "@page_login_placeholder_email": {
         "description": "Text shown on a button that leads to register page"
     },
 
-    "screen_login_placeholder_password": "Contraseña",
-    "@screen_login_placeholder_password": {
+    "page_login_placeholder_password": "Contraseña",
+    "@page_login_placeholder_password": {
         "description": "Text shown on a button that leads to register page"
     },
 
-    "screen_login_tappable_text": "¿Olvidaste tu contraseña?",
-    "@screen_login_tappable_text": {
+    "page_login_tappable_text": "¿Olvidaste tu contraseña?",
+    "@page_login_tappable_text": {
         "description": "Ask you if you forget your password"
     },
 
-    "screen_login_leading_agency": "La agencia de relaciones públicas líder a nivel mundial",
-    "@screen_login_leading_agency": {
+    "page_login_leading_agency": "La agencia de relaciones públicas líder a nivel mundial",
+    "@page_login_leading_agency": {
         "description": "Eslogan on the register/login page "
     },
 
-    "screen_login_button_reload": "Recargar",
-    "@screen_login_button_reload": {
+    "page_login_button_reload": "Recargar",
+    "@page_login_button_reload": {
         "description": "Text shown when the user has to reload the page"
     },
 

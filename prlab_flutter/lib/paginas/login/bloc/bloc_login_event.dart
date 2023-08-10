@@ -16,9 +16,23 @@ class BlocLoginEventoIniciarSesion extends BlocLoginEvento {
     required this.email,
   });
 
+  /// Email del usuario
+  final String email;
+
   /// Contraseña del usuario
   final String password;
+}
+
+/// Evento donde se hablita el boton de iniciar sesión
+class BlocLoginEventoHabilitarBoton extends BlocLoginEvento {
+  const BlocLoginEventoHabilitarBoton({
+    required this.password,
+    required this.email,
+  });
 
   /// Email del usuario
   final String email;
+
+  /// Contraseña del usuario
+  final String password;
 }

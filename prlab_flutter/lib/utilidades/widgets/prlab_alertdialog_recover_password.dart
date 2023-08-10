@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/utilities/functions/functions.dart';
-import 'package:prlab_flutter/utilities/widgets/widgets.dart';
+import 'package:prlab_flutter/utilidades/funciones/functions.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template PrLabAlertDialogVerificacionCodigo}
 /// Alertdialog que muestra un textfield de 8 digitos
