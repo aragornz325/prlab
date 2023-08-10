@@ -1,5 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:prlab_server/src/modelos/entregable/entregable.dart';
+import 'package:prlab_commons/modelos/entregable/entregable.dart';
 
 part 'publicacion.mapper.dart';
 
@@ -18,18 +18,12 @@ class Publicacion extends Entregable with PublicacionMappable {
     required this.idCategorias,
     required this.parents,
     required this.comentarios,
-    required int id,
-    required int idProyecto,
-    required String titulo,
-    required List<int> idSubEntregables,
-    required DateTime fechaCreacion,
-  }) : super(
-          id: id,
-          idProyecto: idProyecto,
-          titulo: titulo,
-          idSubEntregables: idSubEntregables,
-          fechaCreacion: fechaCreacion,
-        );
+    required super.id,
+    required super.idProyecto,
+    required super.titulo,
+    required super.idSubEntregables,
+    required super.fechaCreacion,
+  });
   
   @MappableField(key: 'contenido')
   String contenido;
