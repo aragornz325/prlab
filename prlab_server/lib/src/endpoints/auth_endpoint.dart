@@ -3,6 +3,7 @@ import 'package:serverpod/server.dart';
 
 class AuthEndpoint extends Endpoint {
   Future<String> getValidationCode(Session session, String email) async {
-    return await AuthService().getValidationCode(session, email);
+    return await AuthService()
+        .getValidationCode(session: session, email: email);
   }
 }
