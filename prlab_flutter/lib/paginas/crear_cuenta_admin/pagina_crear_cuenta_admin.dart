@@ -1,3 +1,5 @@
+// ignore_for_file: inference_failure_on_function_invocation
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,11 +30,11 @@ class PaginaCrearCuenta extends StatelessWidget {
         listener: (context, state) {
           /// estado si el email fue enviado correctamente sale este alertdialog
           if (state is BlocCrearCuentaAdminEstadoExitosoEmailEnviado) {
-            PrLabDialog.emailEnviado(
+            PRDialog.emailEnviado(
               l10n: l10n,
               context: context,
               email: state.email,
-            ).show<void>(context);
+            ).show(context);
           }
         },
         builder: (context, state) {
@@ -41,12 +43,6 @@ class PaginaCrearCuenta extends StatelessWidget {
               body: Center(
                 child: CircularProgressIndicator(),
               ),
-            );
-          }
-          if (state is BlocCrearCuentaAdminEstadoExitoso) {
-            return const FullResponsiveScreen(
-              mobile: VistaEscritorioCrearCuentaAdmin(),
-              desktop: VistaEscritorioCrearCuentaAdmin(),
             );
           }
           if (state is BlocCrearCuentaAdminEstadoFallido) {

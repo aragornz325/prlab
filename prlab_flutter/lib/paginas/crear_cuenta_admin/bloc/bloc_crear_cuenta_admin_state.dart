@@ -6,19 +6,19 @@ part of 'bloc_crear_cuenta_admin.dart';
 abstract class BlocCrearCuentaAdminEstado extends Equatable {
   @override
   const BlocCrearCuentaAdminEstado({
-    this.emailValido = false,
+    this.esEmailValido = false,
     this.email = '',
   });
 
-  ///email del Usuario al crear una cuenta Admin
+  /// email del Usuario al crear una cuenta Admin
   final String email;
 
   /// booleano que indica si el correo/email esta bien
-  final bool emailValido;
+  final bool esEmailValido;
 
   @override
   List<Object> get props => [
-        emailValido,
+        esEmailValido,
         email,
       ];
 }
@@ -30,7 +30,7 @@ class BlocCrearCuentaAdminEstadoInicial extends BlocCrearCuentaAdminEstado {}
 class BlocCrearCuentaAdminEstadoExitoso extends BlocCrearCuentaAdminEstado {
   @override
   const BlocCrearCuentaAdminEstadoExitoso({
-    super.emailValido,
+    super.esEmailValido,
     super.email,
   });
 }
@@ -40,7 +40,7 @@ class BlocCrearCuentaAdminEstadoExitosoEmailEnviado
     extends BlocCrearCuentaAdminEstado {
   @override
   const BlocCrearCuentaAdminEstadoExitosoEmailEnviado({
-    super.emailValido,
+    super.esEmailValido,
     super.email,
   });
 }

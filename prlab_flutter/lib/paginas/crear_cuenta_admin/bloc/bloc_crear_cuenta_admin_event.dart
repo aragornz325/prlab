@@ -22,8 +22,8 @@ class BlocCrearCuentaAdminEventEnviarEmail extends BlocCrearCuentaAdminEvent {
 class BlocCrearCuentaAdminEventVerificarEmail
     extends BlocCrearCuentaAdminEvent {
   @override
-  const BlocCrearCuentaAdminEventVerificarEmail({required this.emailValido});
+  const BlocCrearCuentaAdminEventVerificarEmail({required this.esEmailValido});
 
   /// booleano que indica si el email es valido
-  final bool emailValido;
+  final bool esEmailValido;
 }

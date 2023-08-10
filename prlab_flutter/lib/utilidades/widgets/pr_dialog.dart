@@ -15,10 +15,10 @@ import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 /// donde muestra un texto con el email al usuario enviado para crear una
 /// cuenta admin.
 /// {@endtemplate}
-class PrLabDialog extends StatefulWidget {
+class PRDialog extends StatefulWidget {
   /// {@macro PrLabDialog}
   @override
-  const PrLabDialog({
+  const PRDialog({
     required this.content,
     super.key,
     this.height = 285,
@@ -27,7 +27,7 @@ class PrLabDialog extends StatefulWidget {
 
   /// Alertdialog que muestra un textfield de 8 digitos
   /// y un boton para enviar el codigo.
-  factory PrLabDialog.recuperarContrasenia({
+  factory PRDialog.recuperarContrasenia({
     required AppLocalizations l10n,
     required String email,
     required TextEditingController controller,
@@ -36,7 +36,7 @@ class PrLabDialog extends StatefulWidget {
         ' ${obtenerPrimerasLetrasAntesSimbolo(email)}***@'
         '${obtenerTextoDespuesSimbolo(email)}';
 
-    return PrLabDialog(
+    return PRDialog(
       content: Column(
         children: [
           SizedBox(
@@ -90,14 +90,14 @@ class PrLabDialog extends StatefulWidget {
   /// Alert dialog de Pr Lab del email enviado si el state/estado es exitoso
   /// donde muestra un texto con el email al usuario enviado para crear una
   /// cuenta admin.
-  factory PrLabDialog.emailEnviado({
+  factory PRDialog.emailEnviado({
     required AppLocalizations l10n,
     required BuildContext context,
     required String email,
   }) {
     final theme = context.theme.colorScheme;
 
-    return PrLabDialog(
+    return PRDialog(
       content: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -182,21 +182,21 @@ class PrLabDialog extends StatefulWidget {
     );
   }
 
-  /// contenido del alertdialog normal de [PrLabDialog].
+  /// contenido del alertdialog normal de [PRDialog].
   final Widget content;
 
-  /// height del alertdialog [PrLabDialog].(default: 285)
+  /// height del alertdialog [PRDialog].(default: 285)
   final int height;
 
-  /// width del alertdialog [PrLabDialog].(default: 455)
+  /// width del alertdialog [PRDialog].(default: 455)
   final int width;
 
   @override
-  State<PrLabDialog> createState() => _PrLabDialogState();
+  State<PRDialog> createState() => _PRDialogState();
 
-  Future<void> show<T>(
+  Future<void> show<T, R>(
     BuildContext context, {
-    Bloc<T, dynamic>? bloc,
+    Bloc<T, R>? bloc,
   }) async =>
       showDialog(
         context: context,
@@ -210,7 +210,7 @@ class PrLabDialog extends StatefulWidget {
       );
 }
 
-class _PrLabDialogState extends State<PrLabDialog> {
+class _PRDialogState extends State<PRDialog> {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme.colorScheme;

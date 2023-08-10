@@ -46,7 +46,11 @@ class BlocCrearCuentaAdmin
     Emitter<BlocCrearCuentaAdminEstado> emit,
   ) async {
     try {
-      emit(BlocCrearCuentaAdminEstadoExitoso(emailValido: event.emailValido));
+      emit(
+        BlocCrearCuentaAdminEstadoExitoso(
+          esEmailValido: event.esEmailValido,
+        ),
+      );
     } catch (e, st) {
       emit(
         const BlocCrearCuentaAdminEstadoFallido(

@@ -88,7 +88,7 @@
         "description":"text in alertdialog in title textfield,Email verification code"
     },
 
-    "alert_dialog_textfield_suffix_get_code": "get code",
+    "alert_dialog_textfield_suffix_get_code": "Get code",
     "@alert_dialog_textfield_suffix_get_code": {
         "description":"text in alertdialog in suffix textfield on button if the verification code was not sent, Get code"
     },
