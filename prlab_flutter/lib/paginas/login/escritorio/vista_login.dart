@@ -19,9 +19,12 @@ class VistaLoginEscritorio extends StatefulWidget {
 }
 
 class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
-  final controllerEmail = TextEditingController(text: 'gonza@gmail.com');
+  /// Controller para el textfield de email
+  final controllerEmail = TextEditingController();
 
-  final controllerPassword = TextEditingController(text: 'Gonza123.');
+  /// Controller para el textfield de password
+  final controllerPassword = TextEditingController();
+
   @override
   void dispose() {
     controllerEmail.dispose();
