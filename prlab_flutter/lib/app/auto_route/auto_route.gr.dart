@@ -9,7 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i5;
-import 'package:prlab_flutter/pages/login/page_login.dart' as _i1;
+import 'package:prlab_flutter/paginas/login/pagina_login.dart' as _i1;
 import 'package:prlab_flutter/paginas/registro/escritorio/vista_registro_escritorio.dart'
     as _i2;
 import 'package:prlab_flutter/paginas/registro/mobile/vista_registro_mobile.dart'
@@ -24,7 +24,7 @@ abstract class $AppRouter extends _i5.RootStackRouter {
     RouteLogin.name: (routeData) {
       return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.PageLogin(),
+        child: const _i1.PaginaLogin(),
       );
     },
     VistaRegistroEscritorio.name: (routeData) {
@@ -49,7 +49,7 @@ abstract class $AppRouter extends _i5.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.PageLogin]
+/// [_i1.PaginaLogin]
 class RouteLogin extends _i5.PageRouteInfo<void> {
   const RouteLogin({List<_i5.PageRouteInfo>? children})
       : super(

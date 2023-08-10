@@ -52,7 +52,16 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     emit(
       BlocRegistroEstadoCargando(),
     );
-    // await client.modules.auth.email.changePassword();
+    // client.modules.auth.email.createAccountRequest(userName, email, password); //admin
+
+    //    sebas@gmail.com
+    //    sebas  /split
+    //    moc.liamg@sabes /reverse
+
+    // desloguear admin
+    //   await   loguear cliente
+    // await client.modules.auth.email.changePassword(); //cliente
+
     //TODO(sam): poner funcion de registro/ cambiar password
     // await client.modules.auth.user.client.registrarUsuario(
     //       terminosAceptados: state.terminosAceptados,
