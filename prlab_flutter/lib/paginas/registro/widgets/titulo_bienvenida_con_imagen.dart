@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/utilidades/constantes/constantes_de_imagenes.dart';
 
 class TituloBienvenidaConImagen extends StatelessWidget {
   const TituloBienvenidaConImagen({
@@ -19,10 +19,10 @@ class TituloBienvenidaConImagen extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            left: 20.pw,
-            top: 10.ph,
+            left: 15.pw,
+            top: 15.ph,
             child: Image.asset(
-              ImagenesPath.avionDePapel,
+              Assets.assets_images_avion_de_papel_png,
               fit: BoxFit.cover,
             ),
           ),

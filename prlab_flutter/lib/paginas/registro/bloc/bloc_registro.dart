@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 
+/// Bloc que maneja los estados o logica de la pagina de registro
 class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
   BlocRegistro()
       : super(
@@ -52,16 +53,10 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     emit(
       BlocRegistroEstadoCargando(),
     );
-    // client.modules.auth.email.createAccountRequest(userName, email, password); //admin
-
-    //    sebas@gmail.com
-    //    sebas  /split
-    //    moc.liamg@sabes /reverse
-
-    // desloguear admin
-    //   await   loguear cliente
-    // await client.modules.auth.email.changePassword(); //cliente
-
+    // codigo = getCodigoDelBack()
+    // verificar(mail, codigo);
+    // signIn
+    //emailAuth.signIn();
     //TODO(sam): poner funcion de registro/ cambiar password
     // await client.modules.auth.user.client.registrarUsuario(
     //       terminosAceptados: state.terminosAceptados,

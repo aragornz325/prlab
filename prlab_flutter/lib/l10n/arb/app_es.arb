@@ -35,11 +35,7 @@
     "@screen_login_button_reload": {
         "description": "Text shown when the user has to reload the page"
     },
-
-    "counterAppBarTitle": "Contador",
-    "@counterAppBarTitle": {
-        "description": "Texto mostrado en la AppBar de la página del contador"
-    },    
+  
     "pageSignUpTitle": "Bienvenida!",
     "@pageSignUpTitle": {
         "description": "Title shown in the page SignUp"

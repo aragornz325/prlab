@@ -19,6 +19,7 @@ class BlocRegistroEstado extends Equatable {
       [terminosAceptados, email, password, passwordConfirmada];
 }
 
+/// Estado inicial de los componentes de la pantalla registro
 class BlocRegistroEstadoInicial extends BlocRegistroEstado {
   const BlocRegistroEstadoInicial({
     super.terminosAceptados,
@@ -27,6 +28,7 @@ class BlocRegistroEstadoInicial extends BlocRegistroEstado {
   });
 }
 
+/// Estado exitoso de los componentes de la pantalla login
 class BlocRegistroEstadoExitoso extends BlocRegistroEstado {
   const BlocRegistroEstadoExitoso({
     super.terminosAceptados,
@@ -35,8 +37,12 @@ class BlocRegistroEstadoExitoso extends BlocRegistroEstado {
   });
 }
 
+/// Estado de carga de los componentes de la pantalla registro, para mostrar un
+/// CircularProgressIndicator()
 class BlocRegistroEstadoCargando extends BlocRegistroEstado {}
 
+/// Estado de error de los componentes de la pantalla registro, acompañado
+/// por un mensaje de error
 class BlocRegistroErrorState extends BlocRegistroEstado {
   const BlocRegistroErrorState({
     required this.errorMessage,
