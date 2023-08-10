@@ -3,9 +3,9 @@ part of 'bloc_crear_cuenta_admin.dart';
 /// clase abstracta de los tipos de state/estados manejados por el bloc
 /// BlocCrearCuentaAdmin
 @immutable
-abstract class BlocCrearCuentaAdminState extends Equatable {
+abstract class BlocCrearCuentaAdminEstado extends Equatable {
   @override
-  const BlocCrearCuentaAdminState({
+  const BlocCrearCuentaAdminEstado({
     this.emailValido = false,
     this.email = '',
   });
@@ -24,42 +24,42 @@ abstract class BlocCrearCuentaAdminState extends Equatable {
 }
 
 /// state/estado `inicial` de BlocCrearCuentaAdmin
-class BlocCrearCuentaAdminInitial extends BlocCrearCuentaAdminState {}
+class BlocCrearCuentaAdminEstadoInicial extends BlocCrearCuentaAdminEstado {}
 
 /// state/estado `exitoso` de BlocCrearCuentaAdmin
-class BlocCrearCuentaAdminStateSuccess extends BlocCrearCuentaAdminState {
+class BlocCrearCuentaAdminEstadoExitoso extends BlocCrearCuentaAdminEstado {
   @override
-  const BlocCrearCuentaAdminStateSuccess({
+  const BlocCrearCuentaAdminEstadoExitoso({
     super.emailValido,
     super.email,
   });
 }
 
 /// state/estado `exitoso` al enviar el email de BlocCrearCuentaAdmin
-class BlocCrearCuentaAdminStateSuccessEmailEnviado
-    extends BlocCrearCuentaAdminState {
+class BlocCrearCuentaAdminEstadoExitosoEmailEnviado
+    extends BlocCrearCuentaAdminEstado {
   @override
-  const BlocCrearCuentaAdminStateSuccessEmailEnviado({
+  const BlocCrearCuentaAdminEstadoExitosoEmailEnviado({
     super.emailValido,
     super.email,
   });
 }
 
 /// state/estado de `error` de BlocCrearCuentaAdmin
-class BlocCrearCuentaAdminStateError extends BlocCrearCuentaAdminState {
+class BlocCrearCuentaAdminEstadoFallido extends BlocCrearCuentaAdminEstado {
   @override
-  const BlocCrearCuentaAdminStateError({required this.errorMessage});
+  const BlocCrearCuentaAdminEstadoFallido({required this.errorMessage});
 
   /// mensaje que se va a mostrar en caso de que sea error o de que algo haya
   /// salido mal
-  final BlocCrearCuentaAdminStateErrorMessage errorMessage;
+  final BlocCrearCuentaAdminEstadoFallidoMensaje errorMessage;
 }
 
 /// state/estado `cargando` de BlocCrearCuentaAdmin
-class BlocCrearCuentaAdminStateLoading extends BlocCrearCuentaAdminState {}
+class BlocCrearCuentaAdminEstadoCargando extends BlocCrearCuentaAdminEstado {}
 
 /// emum de los tipos de errores a mostrar
-enum BlocCrearCuentaAdminStateErrorMessage {
+enum BlocCrearCuentaAdminEstadoFallidoMensaje {
   errorToSendEmail,
   errorToChangeEmail,
 }

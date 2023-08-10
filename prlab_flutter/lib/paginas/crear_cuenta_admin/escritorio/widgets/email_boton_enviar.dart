@@ -85,7 +85,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             ),
             SizedBox(height: 50.ph),
             //TODO: cambiarlo por el que esta en development
-            BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminState>(
+            BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
               builder: (context, state) {
                 return Center(
                   child: PRBoton(

@@ -7,10 +7,10 @@ import 'package:flutter/foundation.dart';
 part 'bloc_crear_cuenta_admin_event.dart';
 part 'bloc_crear_cuenta_admin_state.dart';
 
-/// bloc principal de crear cuenta admin
+/// bloc maneja los estados y logica de crear cuenta admin
 class BlocCrearCuentaAdmin
-    extends Bloc<BlocCrearCuentaAdminEvent, BlocCrearCuentaAdminState> {
-  BlocCrearCuentaAdmin() : super(BlocCrearCuentaAdminInitial()) {
+    extends Bloc<BlocCrearCuentaAdminEvent, BlocCrearCuentaAdminEstado> {
+  BlocCrearCuentaAdmin() : super(BlocCrearCuentaAdminEstadoInicial()) {
     on<BlocCrearCuentaAdminEventEnviarEmail>(_onEnviarEmail);
     on<BlocCrearCuentaAdminEventVerificarEmail>(_onVerificarEmail);
   }
@@ -19,17 +19,17 @@ class BlocCrearCuentaAdmin
   /// nueva `Admin`
   Future<void> _onEnviarEmail(
     BlocCrearCuentaAdminEventEnviarEmail event,
-    Emitter<BlocCrearCuentaAdminState> emit,
+    Emitter<BlocCrearCuentaAdminEstado> emit,
   ) async {
-    emit(BlocCrearCuentaAdminStateLoading());
+    emit(BlocCrearCuentaAdminEstadoCargando());
     try {
       //TODO: implementar la funcion de enviar el email
-      emit(const BlocCrearCuentaAdminStateSuccessEmailEnviado());
+      emit(const BlocCrearCuentaAdminEstadoExitosoEmailEnviado());
     } catch (e, st) {
-      //TODO: Agregar mensaje de error cuando se agregue la funcionalidad
       emit(
-        const BlocCrearCuentaAdminStateError(
-          errorMessage: BlocCrearCuentaAdminStateErrorMessage.errorToSendEmail,
+        const BlocCrearCuentaAdminEstadoFallido(
+          errorMessage:
+              BlocCrearCuentaAdminEstadoFallidoMensaje.errorToSendEmail,
         ),
       );
       if (kDebugMode) {
@@ -43,15 +43,15 @@ class BlocCrearCuentaAdmin
   /// color del boton y podemos enviar el email
   Future<void> _onVerificarEmail(
     BlocCrearCuentaAdminEventVerificarEmail event,
-    Emitter<BlocCrearCuentaAdminState> emit,
+    Emitter<BlocCrearCuentaAdminEstado> emit,
   ) async {
     try {
-      emit(BlocCrearCuentaAdminStateSuccess(emailValido: event.emailValido));
+      emit(BlocCrearCuentaAdminEstadoExitoso(emailValido: event.emailValido));
     } catch (e, st) {
       emit(
-        const BlocCrearCuentaAdminStateError(
+        const BlocCrearCuentaAdminEstadoFallido(
           errorMessage:
-              BlocCrearCuentaAdminStateErrorMessage.errorToChangeEmail,
+              BlocCrearCuentaAdminEstadoFallidoMensaje.errorToChangeEmail,
         ),
       );
       if (kDebugMode) {

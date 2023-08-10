@@ -24,10 +24,10 @@ class PaginaCrearCuenta extends StatelessWidget {
 
     return BlocProvider<BlocCrearCuentaAdmin>(
       create: (_) => BlocCrearCuentaAdmin(),
-      child: BlocConsumer<BlocCrearCuentaAdmin, BlocCrearCuentaAdminState>(
+      child: BlocConsumer<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
         listener: (context, state) {
           /// estado si el email fue enviado correctamente sale este alertdialog
-          if (state is BlocCrearCuentaAdminStateSuccessEmailEnviado) {
+          if (state is BlocCrearCuentaAdminEstadoExitosoEmailEnviado) {
             PrLabDialog.emailEnviado(
               l10n: l10n,
               context: context,
@@ -36,20 +36,20 @@ class PaginaCrearCuenta extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          if (state is BlocCrearCuentaAdminStateLoading) {
+          if (state is BlocCrearCuentaAdminEstadoCargando) {
             return const Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
               ),
             );
           }
-          if (state is BlocCrearCuentaAdminStateSuccess) {
+          if (state is BlocCrearCuentaAdminEstadoExitoso) {
             return const FullResponsiveScreen(
               mobile: VistaEscritorioCrearCuentaAdmin(),
               desktop: VistaEscritorioCrearCuentaAdmin(),
             );
           }
-          if (state is BlocCrearCuentaAdminStateError) {
+          if (state is BlocCrearCuentaAdminEstadoFallido) {
             //TODO: Todavia no hay diseño para el error handling
             print(
               getErrorMessageCreateAccountAdmin(context, state.errorMessage),
