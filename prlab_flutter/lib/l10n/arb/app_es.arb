@@ -1,7 +1,99 @@
 {
     "@@locale": "es",
+
+    "screen_login_greetings": "¡Hola de nuevo!",
+    "@screen_login_greetings": {
+        "description": "Welcomes the user back"
+    },
+
+    "screen_login_log_in_to": "Iniciar sesión en",
+    "@screen_login_log_in_to": {
+        "description": "Log in to the web/app"
+    },
+
+    "screen_login_placeholder_email": "marcaejemplo@prlab.co",
+    "@screen_login_placeholder_email": {
+        "description": "Text shown on a button that leads to register page"
+    },
+
+    "screen_login_placeholder_password": "Contraseña",
+    "@screen_login_placeholder_password": {
+        "description": "Text shown on a button that leads to register page"
+    },
+
+    "screen_login_tappable_text": "¿Olvidaste tu contraseña?",
+    "@screen_login_tappable_text": {
+        "description": "Ask you if you forget your password"
+    },
+
+    "screen_login_leading_agency": "La agencia de relaciones públicas líder a nivel mundial",
+    "@screen_login_leading_agency": {
+        "description": "Eslogan on the register/login page "
+    },
+
+    "screen_login_button_reload": "Recargar",
+    "@screen_login_button_reload": {
+        "description": "Text shown when the user has to reload the page"
+    },
+
     "counterAppBarTitle": "Contador",
     "@counterAppBarTitle": {
         "description": "Texto mostrado en la AppBar de la página del contador"
+    },
+
+    "alert_dialog_title_recover_password" : "Recuperar contraseña",
+    "@alert_dialog_title_recover_password": {
+        "description":"text in title alertdialog of recover password"
+    },
+
+    "alert_dialog_sub_title_verification_code_send" : "Ingrese el código de verificación de 8 dígitos enviado a",
+    "@alert_dialog_sub_title_verification_code_send": {
+        "description":"text in subtitle textfield(who was the code sent to),Enter the 8 digit verification code sent to"
+    },
+
+    "alert_dialog_button_title_send" : "Enviar",
+    "@alert_dialog_button_title_send": {
+        "description":"text in alertdialog on button, Send"
+    },
+
+    "alert_dialog_textfield_hitText_text_email_verification_code": "Código de verificación de correo electrónico",
+    "@alert_dialog_textfield_hitText_text_email_verification_code": {
+        "description":"text in alertdialog in title textfield,Email verification code"
+    },
+
+    "alert_dialog_textfield_suffix_get_code": "Obtener código",
+    "@alert_dialog_textfield_suffix_get_code": {
+        "description":"text in alertdialog in suffix textfield on button if the verification code was not sent, Get code"
+    },
+
+    "alert_dialog_textfield_suffix_code_send": "Código enviado",
+    "@alert_dialog_textfield_suffix_code_send": {
+        "description":"text in alertdialog suffix textfield on button if the verificaction code was sent, Code sent"
+    },
+
+    "alert_dialog_can_you_request":"Puedes solicitar un nuevo",
+    "@alert_dialog_can_you_request": {
+        "description":"part text in alertdialog of textfield on tooltip, You can request a new"
+    },
+
+    "alert_dialgo_code_in": "codigo en",
+    "@alert_dialgo_code_in": {
+        "description":"part text in alertdialog of textfield on tooltip, code in"
+    },
+
+    "alert_dialog_seconds": "segundos",
+    "@alert_dialog_seconds": {
+        "description":"part text in alertdialog of textfield on tooltip, seconds"
+    },
+
+    "alert_dialog_this_will_expire": "Esto expirara en",
+    "@alert_dialog_this_will_expire": {
+        "description":"part text in alertdialog of textfield on tooltip,text This will expire in"
+    },
+    
+    "alert_dialog_minutes": "minutos",
+    "@alert_dialog_minutes": {
+        "description":"part text in alertdialog of textfield on tooltip, minutes"
     }
+
 }

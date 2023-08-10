@@ -1,17 +1,54 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/main.dart';
+import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
+import 'package:prlab_flutter/src/full_responsive/full_responsive_app.g.dart';
+import 'package:prlab_flutter/theming/base.dart';
+import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 
-class App extends StatefulWidget {
+class App extends StatelessWidget {
   const App({
     super.key,
   });
   @override
-  State<App> createState() => _AppState();
+  Widget build(BuildContext context) {
+    return FullResponsiveApp(
+      child: MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider<EmailAuthControllerCustomPRLab>(
+            create: (BuildContext context) => EmailAuthControllerCustomPRLab(
+              client.modules.auth,
+            ),
+          ),
+        ],
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => BlocLogin(
+                emailAuthControllerCustomPRLab: EmailAuthControllerCustomPRLab(
+                  client.modules.auth,
+                ),
+              ),
+            )
+          ],
+          child: const AppView(),
+        ),
+      ),
+    );
+  }
 }
 
-class _AppState extends State<App> {
+class AppView extends StatefulWidget {
+  const AppView({super.key});
+
+  @override
+  State<AppView> createState() => _AppViewState();
+}
+
+class _AppViewState extends State<AppView> {
   late AppRouter appRouter;
 
   @override
@@ -25,14 +62,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          color: Color(0xFF13B9FF),
-        ),
-        colorScheme: ColorScheme.fromSwatch(
-          accentColor: const Color(0xFF13B9FF),
-        ),
-      ),
+      theme: ThemeData().prLab,
       builder: (context, child) => ScrollConfiguration(
         behavior: NoGlowBehavior(),
         child: child!,
