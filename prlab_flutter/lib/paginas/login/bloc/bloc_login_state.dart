@@ -50,6 +50,7 @@ class BlocLoginEstadoCargando extends BlocLoginEstado {
   });
 }
 
+/// emum de los tipos de errores a mostrar
 enum LoginErrorMessages {
   userNotFoud,
   invalidCredentials;
