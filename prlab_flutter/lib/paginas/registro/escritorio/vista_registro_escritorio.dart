@@ -205,9 +205,11 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                 width: 359.pw,
                                 height: 50.ph,
                                 child: PRBoton(
-                                  onTap:
-                                      () {}, //todo(sam): agregar evento del bloc
-
+                                  onTap: () {
+                                    _agregarEventoDeEnviarDatosRegistro(
+                                      context,
+                                    );
+                                  },
                                   texto: l10n.pageSignUpButtonSignUp,
                                   habilitado: state.terminosAceptados!,
                                 ),
@@ -228,6 +230,15 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
         ],
       ),
     );
+  }
+
+  void _agregarEventoDeEnviarDatosRegistro(BuildContext context) {
+    context.read<BlocRegistro>().add(
+          BlocRegistroEventoEnviarDatosRegistro(
+            email: controladorEmail.text,
+            password: controladorPassword.text,
+          ),
+        );
   }
 
   void _agregarEventoAceptarTerminos(BuildContext context, bool? value) {
