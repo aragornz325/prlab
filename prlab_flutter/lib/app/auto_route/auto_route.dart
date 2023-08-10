@@ -12,7 +12,11 @@ class AppRouter extends $AppRouter {
     AutoRoute(
       path: '/',
       initial: true,
-      page: RouteLogin.page,
+      page: PaginaLogin.page,
+    ),
+    AutoRoute(
+      path: '/crear-cuenta',
+      page: PaginaCrearCuenta.page,
     ),
   ];
 }
