@@ -42,6 +42,6 @@ class BlocRegistroErrorState extends BlocRegistroEstado {
     required this.errorMessage,
   });
 
-  ///mensaje de error
+  /// Mensaje de error
   final String errorMessage;
 }

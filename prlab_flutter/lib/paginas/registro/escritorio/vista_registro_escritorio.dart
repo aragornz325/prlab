@@ -1,14 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/paginas/registro/widgets/titulo_bienvenida_con_imagen.dart';
-import 'package:prlab_flutter/utilidades/constantes/constantes_de_imagenes.dart';
 
 @RoutePage()
 class VistaRegistroEscritorio extends StatefulWidget {
@@ -203,84 +202,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
               ),
             ),
           ),
-          ImagenEscritorioConSlogan(
-            //Todo(sam): cambiar por el widget que hizo gon.
-            l10n: l10n,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ImagenEscritorioConSlogan extends StatelessWidget {
-  const ImagenEscritorioConSlogan({
-    required this.l10n,
-    super.key,
-  });
-
-  final AppLocalizations l10n;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100.hp,
-      width: 55.5.wp,
-      child: Stack(
-        children: [
-          SizedBox(
-            height: 832.ph,
-            child: Image.asset(
-              ImagenesPath.diario,
-              fit: BoxFit.cover,
-              width: 55.5.wp,
-            ),
-          ),
-          SizedBox(
-            height: 832.ph,
-            child: Image.asset(
-              ImagenesPath.opacidad,
-              fit: BoxFit.cover,
-              width: 55.5.wp,
-            ),
-          ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(
-                  ImagenesPath.logo,
-                  fit: BoxFit.cover,
-                  height: 170.ph,
-                ),
-                Text(
-                  l10n.pageSignUpPRLeadingAgency,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 64.pf,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Image.asset(
-                      ImagenesPath.subrayado,
-                      width: 300.pw,
-                      height: 30.ph,
-                    ),
-                    SizedBox(
-                      width: 10.pw,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 180.ph,
-                ),
-              ],
-            ),
-          ),
+          const SeccionLogoBienvenida(),
         ],
       ),
     );

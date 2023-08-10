@@ -14,7 +14,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     on<BlocRegistroEventoEnviarDatosRegistro>(_onEnviarDatosRegistro);
   }
 
-  ///Evento que inicializa el bloc con el estado inicial y la variable en false.
+  /// Evento que inicializa el bloc con el estado inicial y la variable en false.
   Future<void> _onInicializar(
     BlocRegistroEventoInicializar event,
     Emitter<BlocRegistroEstado> emit,
@@ -24,7 +24,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     );
   }
 
-  ///Evento que acepta (o declina) los terminos y guarda el estado del checkbox.
+  /// Evento que acepta (o declina) los terminos y guarda el estado del checkbox.
   Future<void> _onAceptarTerminos(
     BlocRegistroEventoAceptarTerminos event,
     Emitter<BlocRegistroEstado> emit,
@@ -44,7 +44,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     );
   }
 
-  ///Evento que inicializa el bloc con el estado inicial y la variable en false.
+  /// Evento que inicializa el bloc con el estado inicial y la variable en false.
   Future<void> _onEnviarDatosRegistro(
     BlocRegistroEventoEnviarDatosRegistro event,
     Emitter<BlocRegistroEstado> emit,

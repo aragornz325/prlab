@@ -16,7 +16,8 @@ class AppRouter extends $AppRouter {
     ),
     AutoRoute(
       page: RegistroRoute
-          .page, //todo(sam): agregar pathparams @annotation un valor
+          .page, //todo(sam):descomentar antes de merge a development
+      // agregar pathparams @annotation un valor
       initial: true,
       path: '/',
     ),
