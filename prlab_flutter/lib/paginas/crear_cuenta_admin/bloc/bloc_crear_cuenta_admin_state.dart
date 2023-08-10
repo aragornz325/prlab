@@ -52,8 +52,14 @@ class BlocCrearCuentaAdminStateError extends BlocCrearCuentaAdminState {
 
   /// mensaje que se va a mostrar en caso de que sea error o de que algo haya
   /// salido mal
-  final String errorMessage;
+  final BlocCrearCuentaAdminStateErrorMessage errorMessage;
 }
 
 /// state/estado `cargando` de BlocCrearCuentaAdmin
 class BlocCrearCuentaAdminStateLoading extends BlocCrearCuentaAdminState {}
+
+/// emum de los tipos de errores a mostrar
+enum BlocCrearCuentaAdminStateErrorMessage {
+  errorToSendEmail,
+  errorToChangeEmail,
+}

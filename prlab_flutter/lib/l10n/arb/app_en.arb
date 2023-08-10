@@ -1,70 +1,70 @@
 {
     "@@locale": "en",
 
-    "screen_login_greetings": "Hi Again!",
-    "@screen_login_greetings": {
+    "page_login_greetings": "Hi Again!",
+    "@page_login_greetings": {
         "description": "Welcomes the user back"
     },
 
-    "screen_login_log_in_to": "Log in to",
-    "@screen_login_log_in_to": {
+    "page_login_log_in_to": "Log in to",
+    "@page_login_log_in_to": {
         "description": "Log in to the web/app"
     },
 
-    "screen_login_placeholder_email": "examplebrand@prlab.co",
-    "@screen_login_placeholder_email": {
+    "page_login_placeholder_email": "examplebrand@prlab.co",
+    "@page_login_placeholder_email": {
         "description": "Text shown on a button that leads to register page"
     },
 
-    "screen_login_placeholder_password": "Password",
-    "@screen_login_placeholder_password": {
+    "page_login_placeholder_password": "Password",
+    "@page_login_placeholder_password": {
         "description": "Text shown on a button that leads to register page"
     },
 
-    "screen_login_tappable_text": "Did you forget your password?",
-    "@screen_login_tappable_text": {
+    "page_login_tappable_text": "Did you forget your password?",
+    "@page_login_tappable_text": {
         "description": "Ask you if you forget your password"
     },
 
-    "screen_login_leading_agency": "The leading global PR agency",
-    "@screen_login_leading_agency": {
+    "page_login_leading_agency": "The leading global PR agency",
+    "@page_login_leading_agency": {
         "description": "Eslogan on the register/login page "
     },
 
-    "screen_login_button_reload": "Reload",
-    "@screen_login_button_reload": {
+    "page_login_button_reload": "Reload",
+    "@page_login_button_reload": {
         "description": "Text shown when the user has to reload the page"
     },
-    "screen_create_admin_account_title_prlab": "PR lab",
-    "@screen_create_admin_account_title_prlab": {
+    "page_create_admin_account_title_prlab": "PR lab",
+    "@page_create_admin_account_title_prlab": {
         "description": "Text PR lab in title of screen"
     },
-    "screen_create_admin_account_subtitle_international_prlab_agency": "International PR Agency",
-    "@screen_create_admin_account_subtitle_international_prlab_agency": {
+    "page_create_admin_account_subtitle_international_prlab_agency": "International PR Agency",
+    "@page_create_admin_account_subtitle_international_prlab_agency": {
         "description": "Text International PR Agency in subtitle of screen"
     },
-    "screen_create_admin_account_button_back": "back",
-    "@screen_create_admin_account_button_back": {
+    "page_create_admin_account_button_back": "back",
+    "@page_create_admin_account_button_back": {
         "description": "Text back in button of screen create admin account"
     },
-    "screen_create_admin_client_email": "Enter the client email",
-    "@screen_create_admin_client_email": {
+    "page_create_admin_client_email": "Enter the client email",
+    "@page_create_admin_client_email": {
         "description": "Text Enter the client email in screen create admin account above of textfield email"
     },
-    "screen_create_admin_leading_pr_agency": "The leading global PR agency",
-    "@screen_create_admin_leading_pr_agency": {
+    "page_create_admin_leading_pr_agency": "The leading global PR agency",
+    "@page_create_admin_leading_pr_agency": {
         "description": "Text The leading global PR agency in screen create admin account above of textfield email"
     },
-    "screen_create_admin_button_send": "Send",
-    "@screen_create_admin_button_send": {
+    "page_create_admin_button_send": "Send",
+    "@page_create_admin_button_send": {
         "description": "Text Send in screen create admin account in button of send email"
     },
-    "screen_create_admin_alertdialog_title_email_send": "Email send",
-    "@screen_create_admin_alertdialog_title_email_send": {
+    "page_create_admin_alertdialog_title_email_send": "Email send",
+    "@page_create_admin_alertdialog_title_email_send": {
         "description": "Text in screen create admin account in alertdialog in title, email send"
     },
-    "screen_create_admin_alertdialog_button_ok": "Ok",
-    "@screen_create_admin_alertdialog_button_ok": {
+    "page_create_admin_alertdialog_button_ok": "Ok",
+    "@page_create_admin_alertdialog_button_ok": {
         "description": "Text in screen create admin account in alertdialog in button, Ok"
     },
 
@@ -88,7 +88,7 @@
         "description":"text in alertdialog in title textfield,Email verification code"
     },
 
-    "alert_dialog_textfield_suffix_get_code": "Obtener código",
+    "alert_dialog_textfield_suffix_get_code": "get code",
     "@alert_dialog_textfield_suffix_get_code": {
         "description":"text in alertdialog in suffix textfield on button if the verification code was not sent, Get code"
     },
@@ -98,29 +98,30 @@
         "description":"text in alertdialog suffix textfield on button if the verificaction code was sent, Code sent"
     },
 
-    "alert_dialog_can_you_request":"You can request a new",
-    "@alert_dialog_can_you_request": {
-        "description":"part text in alertdialog of textfield on tooltip, You can request a new"
+    "alert_dialog_tooltip_request_new_code":"You can request a new code in {seconds} seconds.This will expire in {minutes} minutes.",
+    "@alert_dialog_tooltip_request_new_code": {
+        "description":"part text in alertdialog of textfield on tooltip, You can request a new code in 56 seconds.This will expire in 30 minutes.",
+        "placeholders" : {
+            "seconds" : {
+                "type": "int"
+            },
+            "minutes" : {
+                "type": "int"
+            }
+        }
     },
-
     "alert_dialgo_code_in": "code in",
     "@alert_dialgo_code_in": {
         "description":"part text in alertdialog of textfield on tooltip, code in"
     },
-
-    "alert_dialog_seconds": "seconds",
-    "@alert_dialog_seconds": {
-        "description":"part text in alertdialog of textfield on tooltip, seconds"
-    },
-
-    "alert_dialog_this_will_expire": "This will expire in",
-    "@alert_dialog_this_will_expire": {
-        "description":"part text in alertdialog of textfield on tooltip,text This will expire in"
+    "page_create_account_admin_error_message_change_email": "Error to changed email",
+    "@page_create_account_admin_error_message_change_email": {
+        "description":"part text in error alertdialog in page create account admin, Error al cambiar el email valido"
     },
     
-    "alert_dialog_minutes": "minutes",
-    "@alert_dialog_minutes": {
-        "description":"part text in alertdialog of textfield on tooltip, minutes"
+    "page_create_account_admin_error_message_send_email": "Error to send email",
+    "@page_create_account_admin_error_message_send_email": {
+        "description":"part text in error alertdialog in page create account admin, Error al enviar el email"
     }
 
 }

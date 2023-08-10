@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/paginas/crear_cuenta_admin/bloc/bloc_crear_cuenta_admin.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template PrLabEmailYBotonEnviar}
@@ -32,7 +34,6 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
           vertical: 40.ph,
         ),
         decoration: BoxDecoration(
-          //TODO: cambiar cuando este seteado los themas
           color: theme.colorScheme.background,
           borderRadius: const BorderRadius.all(
             Radius.circular(15),
@@ -53,7 +54,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              l10n.screen_create_admin_client_email,
+              l10n.page_create_admin_client_email,
               style: TextStyle(
                 //TODO: cambiar cuando este seteado los themas
                 color: const Color(0xff363636),
@@ -63,7 +64,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             ),
             SizedBox(height: 10.ph),
             Text(
-              l10n.screen_create_admin_leading_pr_agency,
+              l10n.page_create_admin_leading_pr_agency,
               style: TextStyle(
                 //TODO: cambiar cuando este seteado los themas
                 color: const Color(0xff707070),
@@ -84,16 +85,22 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             ),
             SizedBox(height: 50.ph),
             //TODO: cambiarlo por el que esta en development
-            Center(
-              child: PRBoton(
-                width: 782.pw,
-                onTap: () {
-                  //TODO: agregarle funcionalidad
-                },
-                texto: l10n.screen_create_admin_button_send,
-                //TODO: cambiar por la variable del bloc
-                habilitado: true,
-              ),
+            BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminState>(
+              builder: (context, state) {
+                return Center(
+                  child: PRBoton(
+                    width: 782.pw,
+                    onTap: state.emailValido
+                        ? () {
+                            //TODO: agregarle funcionalidad
+                          }
+                        : () {},
+                    texto: l10n.page_create_admin_button_send,
+                    //TODO: cambiar por la variable del bloc
+                    habilitado: state.emailValido,
+                  ),
+                );
+              },
             ),
           ],
         ),

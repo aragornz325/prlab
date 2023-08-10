@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/crear_cuenta_admin/bloc/bloc_crear_cuenta_admin.dart';
 import 'package:prlab_flutter/paginas/crear_cuenta_admin/escritorio/vista_escritorio_crear_cuenta_admin.dart';
-import 'package:prlab_flutter/paginas/crear_cuenta_admin/escritorio/widgets/widgets.dart';
+import 'package:prlab_flutter/paginas/crear_cuenta_admin/utilidades/get_error_message_crear_cuenta_admin.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template PaginaCrearCuenta}
 /// Pagina para crear una cuenta donde hay dos vista tanto escritorio como
@@ -18,17 +20,19 @@ class PaginaCrearCuenta extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return BlocProvider<BlocCrearCuentaAdmin>(
       create: (_) => BlocCrearCuentaAdmin(),
       child: BlocConsumer<BlocCrearCuentaAdmin, BlocCrearCuentaAdminState>(
         listener: (context, state) {
+          /// estado si el email fue enviado correctamente sale este alertdialog
           if (state is BlocCrearCuentaAdminStateSuccessEmailEnviado) {
-            showDialog<void>(
+            PrLabDialog.emailEnviado(
+              l10n: l10n,
               context: context,
-              builder: (context) => PrLabAlertDialogEmailEnviado(
-                email: state.email,
-              ),
-            );
+              email: state.email,
+            ).show<void>(context);
           }
         },
         builder: (context, state) {
@@ -43,6 +47,12 @@ class PaginaCrearCuenta extends StatelessWidget {
             return const FullResponsiveScreen(
               mobile: VistaEscritorioCrearCuentaAdmin(),
               desktop: VistaEscritorioCrearCuentaAdmin(),
+            );
+          }
+          if (state is BlocCrearCuentaAdminStateError) {
+            //TODO: Todavia no hay diseño para el error handling
+            print(
+              getErrorMessageCreateAccountAdmin(context, state.errorMessage),
             );
           }
           return const FullResponsiveScreen(

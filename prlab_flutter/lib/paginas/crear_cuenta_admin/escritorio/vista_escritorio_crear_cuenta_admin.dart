@@ -48,7 +48,7 @@ class _VistaEscritorioCrearCuentaAdminState
               onTap: () {
                 //TODO: agregarle funcionalidad
               },
-              texto: l10n.screen_create_admin_account_button_back,
+              texto: l10n.page_create_admin_account_button_back,
               //TODO: cambiar por la variable del bloc
               habilitado: true,
             ),

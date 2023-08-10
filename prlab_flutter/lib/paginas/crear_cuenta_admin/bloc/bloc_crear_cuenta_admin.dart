@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
@@ -27,15 +29,12 @@ class BlocCrearCuentaAdmin
       //TODO: Agregar mensaje de error cuando se agregue la funcionalidad
       emit(
         const BlocCrearCuentaAdminStateError(
-          errorMessage: 'Error al enviar el email',
+          errorMessage: BlocCrearCuentaAdminStateErrorMessage.errorToSendEmail,
         ),
       );
       if (kDebugMode) {
-        emit(
-          BlocCrearCuentaAdminStateError(
-            errorMessage: 'Error: $e St: $st',
-          ),
-        );
+        debugger();
+        throw UnimplementedError('Implementa un error para esto: $e $st');
       }
     }
   }
@@ -51,15 +50,13 @@ class BlocCrearCuentaAdmin
     } catch (e, st) {
       emit(
         const BlocCrearCuentaAdminStateError(
-          errorMessage: 'Error al cambiar el email valido',
+          errorMessage:
+              BlocCrearCuentaAdminStateErrorMessage.errorToChangeEmail,
         ),
       );
       if (kDebugMode) {
-        emit(
-          BlocCrearCuentaAdminStateError(
-            errorMessage: 'Error: $e St: $st',
-          ),
-        );
+        debugger();
+        throw UnimplementedError('Implementa un error para esto: $e $st');
       }
     }
   }

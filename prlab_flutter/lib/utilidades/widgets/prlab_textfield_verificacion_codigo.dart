@@ -47,11 +47,10 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
 
     final theme = context.theme;
 
-    final tooltipMessage =
-        '${l10n.alert_dialog_can_you_request}\n${l10n.alert_dialgo_code_in} '
-        '${widget.segundosFaltantes} ${l10n.alert_dialog_seconds}.\n'
-        '${l10n.alert_dialog_this_will_expire} '
-        '${widget.minutosFaltantes}\n ${l10n.alert_dialog_minutes}.';
+    final tooltipMessage = l10n.alert_dialog_tooltip_request_new_code(
+      widget.segundosFaltantes,
+      widget.minutosFaltantes,
+    );
 
     return TextFormField(
       inputFormatters: [
