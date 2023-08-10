@@ -1,26 +1,24 @@
-import 'package:dart_mappable/dart_mappable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:serverpod/serverpod.dart';
 
-part 'cliente.mapper.dart';
+part 'cliente.freezed.dart';
 
-@MappableClass()
-class Cliente with ClienteMappable {
-  @MappableConstructor()
-  Cliente({
-    required this.id,
-    required this.nombre,
-    required this.idOrganizacion,
-    required this.contacto,
-    required this.fechaCreacion,
-  });
+part 'cliente.g.dart';
 
-  @MappableField(key: 'id')
-  int id;
-  @MappableField(key: 'nombre')
-  String nombre;
-  @MappableField(key: 'idOrganizacion')
-  int idOrganizacion;
-  @MappableField(key: 'contacto')
-  int contacto;
-  @MappableField(key: 'fechaCreacion')
-  DateTime fechaCreacion;
+@freezed
+class Cliente with _$Cliente {
+  
+  const factory Cliente({
+    required int id,
+    required String nombre,
+    required int idOrganizacion,
+    required int contacto,
+    required DateTime fechaCreacion,
+  }) = _Cliente;
+
+  factory Cliente.fromJson(
+    Map<String, Object?> json,
+    SerializationManager serializationManager,
+  ) =>
+      _$ClienteFromJson(json);
 }

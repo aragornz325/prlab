@@ -1,26 +1,23 @@
-import 'package:dart_mappable/dart_mappable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:serverpod/serverpod.dart';
 
-part 'entregable.mapper.dart';
+part 'entregable.freezed.dart';
 
-@MappableClass()
-abstract class Entregable with EntregableMappable {
-  @MappableConstructor()
-  Entregable({
-    required this.id,
-    required this.idProyecto,
-    required this.titulo,
-    required this.idSubEntregables,
-    required this.fechaCreacion,
-  });
+part 'entregable.g.dart';
+
+@freezed
+abstract class Entregable with _$Entregable {
+  const factory Entregable({
+    required int id,
+    required int idProyecto,
+    required String titulo,
+    required List<int> idSubEntregables,
+    required DateTime fechaCreacion,
+  }) = _Entregable;
   
-  @MappableField(key: 'id')
-  int id;
-  @MappableField(key: 'idProyecto')
-  int idProyecto;
-  @MappableField(key: 'titulo')
-  String titulo;
-  @MappableField(key: 'idSubEntregables')
-  List<int> idSubEntregables;
-  @MappableField(key: 'fechaCreacion')
-  DateTime fechaCreacion;
+  factory Entregable.fromJson(
+    Map<String, Object?> json,
+    SerializationManager serializationManager,
+  ) =>
+      _$EntregableFromJson(json);
 }

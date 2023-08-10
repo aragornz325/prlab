@@ -1,26 +1,23 @@
-import 'package:dart_mappable/dart_mappable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:serverpod/serverpod.dart';
 
-part 'proyecto.mapper.dart';
+part 'proyecto.freezed.dart';
 
-@MappableClass()
-class Proyecto with ProyectoMappable {
-  @MappableConstructor()
-  Proyecto({
-    required this.id,
-    required this.idOrganizacion,
-    required this.nombre,
-    required this.idEntregables,
-    required this.fechaCreacion,
-  });
+part 'proyecto.g.dart';
 
-  @MappableField(key: 'id')
-  int id;
-  @MappableField(key: 'idOrganizacion')
-  int idOrganizacion;
-  @MappableField(key: 'nombre')
-  String nombre;
-  @MappableField(key: 'idEntregables')
-  List<int> idEntregables;
-  @MappableField(key: 'fechaCreacion')
-  final DateTime fechaCreacion;
+@freezed
+class Proyecto with _$Proyecto {
+  const factory Proyecto({
+    required int id,
+    required int idOrganizacion,
+    required String nombre,
+    required List<int> idEntregables,
+    required DateTime fechaCreacion,
+  }) = _Proyecto;
+
+  factory Proyecto.fromJson(
+    Map<String, Object?> json,
+    SerializationManager serializationManager,
+  ) =>
+      _$ProyectoFromJson(json);
 }
