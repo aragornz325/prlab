@@ -2,12 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/paginas/registro/widgets/titulo_bienvenida_con_imagen.dart';
+import 'package:prlab_flutter/utilities/widgets/pr_boton.dart';
 
 @RoutePage()
 
@@ -22,10 +24,13 @@ class VistaRegistroEscritorio extends StatefulWidget {
 }
 
 class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
+  /// Controlador del textfield que tiene el email del usuario
   TextEditingController controladorEmail = TextEditingController();
 
+  /// Controlador del textfield que permite al usuario ingresar la password
   TextEditingController controladorPassword = TextEditingController();
 
+  /// Controlador del textfield que permite al usuario confirmar la password
   TextEditingController controladorConfirmarPassword = TextEditingController();
 
   @override
@@ -40,13 +45,14 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
   Widget build(BuildContext context) {
     final bloc = context.watch<BlocRegistro>();
     final l10n = context.l10n;
+    final tema = context.theme.colorScheme;
 
     return Scaffold(
       body: Row(
         children: [
           Center(
             child: Container(
-              color: const Color(0xfff7f7f7),
+              color: tema.background,
               width: 44.5.wp,
               height: 100.hp,
               padding: const EdgeInsets.all(20),
@@ -65,7 +71,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             child: Text(
                               l10n.pageSignUpSubTitle,
                               style: TextStyle(
-                                color: const Color(0xff707070),
+                                color: tema.shadow,
                                 fontSize: 15.pf,
                                 fontWeight: FontWeight.w400,
                               ),
@@ -106,8 +112,6 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                       }
                       if ((state is BlocRegistroEstadoInicial) ||
                           (state is BlocRegistroEstadoExitoso)) {
-                        final terminosAceptados = state.terminosAceptados;
-
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -119,13 +123,8 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                   prefixIcon: const Icon(Icons.email),
                                   labelText:
                                       l10n.pageSignUpTextFieldHintExampleMail,
-                                  labelStyle: const TextStyle(
-                                    color: Color.fromARGB(
-                                      255,
-                                      184,
-                                      87,
-                                      106,
-                                    ),
+                                  labelStyle: TextStyle(
+                                    color: tema.primary,
                                   ),
                                 ),
                               ),
@@ -166,7 +165,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                               child: Row(
                                 children: [
                                   Checkbox(
-                                    value: terminosAceptados,
+                                    value: state.terminosAceptados,
                                     onChanged: (value) {
                                       _agregarEventoAceptarTerminos(
                                         context,
@@ -176,14 +175,19 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                   ),
                                   Text(
                                     l10n.pageSignUpTermsAndConditionsText,
+                                    style: state.terminosAceptados!
+                                        ? TextStyle(
+                                            color: tema.primary,
+                                          )
+                                        : null,
                                   ),
                                   GestureDetector(
                                     child: Text(
                                       l10n.pageSignUpTermsAndConditionsTextLink,
-                                      style: const TextStyle(
-                                        color: Colors.blue,
+                                      style: TextStyle(
+                                        color: tema.secondary,
                                         decoration: TextDecoration.underline,
-                                        decorationColor: Colors.blue,
+                                        decorationColor: tema.secondary,
                                       ),
                                     ),
                                   ),
@@ -200,17 +204,12 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                               child: SizedBox(
                                 width: 359.pw,
                                 height: 50.ph,
-                                child: ElevatedButton(
-                                  onPressed:
+                                child: PRBoton(
+                                  onTap:
                                       () {}, //todo(sam): agregar evento del bloc
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        const Color(0xffA12B46).withOpacity(.3),
-                                  ),
-                                  child: Text(
-                                    l10n.pageSignUpButtonSignUp,
-                                    style: TextStyle(fontSize: 16.pf),
-                                  ),
+
+                                  texto: l10n.pageSignUpButtonSignUp,
+                                  habilitado: state.terminosAceptados!,
                                 ),
                               ),
                             ),
