@@ -1,25 +1,31 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:serverpod/serverpod.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 
-part 'comentario.freezed.dart';
+part 'comentario.mapper.dart';
 
-part 'comentario.g.dart';
+@MappableClass()
+class Comentario with ComentarioMappable {
 
-/// Modelo de entidad Comentario (dentro de publicaciones u otros entregables).
-@freezed
-class Comentario with _$Comentario {
-  const factory Comentario({
-    required int id,
-    required int idPublicacion,
-    required List<double> offset,
-    required String comentario,
-    required DateTime fechaCreacion,
-  }) = _Comentario;
+@MappableConstructor()
+  Comentario({
+    required this.id,
+    required this.idPublicacion,
+    required this.offset,
+    required this.comentario,
+    required this.fechaCreacion,
+  });
 
-  /// Constructor propio de Freezed y requerido por Serverpod para la serialización de la clase.
-  factory Comentario.fromJson(
-    Map<String, Object?> json,
-    SerializationManager serializationManager,
-  ) =>
-      _$ComentarioFromJson(json);
+
+@MappableField(key: 'id')
+int id;
+@MappableField(key: 'idPublicacion')
+int idPublicacion;
+@MappableField(key: 'offset')
+Set<double> offset;
+@MappableField(key: 'comentario')
+String comentario;
+@MappableField(key: 'fechaCreacion')
+DateTime fechaCreacion;
+
+
 }
+

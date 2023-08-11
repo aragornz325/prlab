@@ -1,24 +1,26 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:serverpod/serverpod.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 
-part 'mensaje_registro.freezed.dart';
+part 'mensaje_registro.mapper.dart';
 
-part 'mensaje_registro.g.dart';
+@MappableClass()
+class MensajeRegistro with MensajeRegistroMappable {
+  
+  @MappableConstructor()
+  MensajeRegistro({
+    required this.id,
+    required this.mensaje,
+    required this.autor,
+    required this.fechaCreacion,
+  });
+  
+  @MappableField(key: 'id')
+  int id;
+  @MappableField(key: 'mensaje')
+  String mensaje;
+  @MappableField(key: 'autor')
+  int autor;
+  @MappableField(key: 'fechaCreacion')
+  DateTime fechaCreacion;
 
-/// Modelo de entidad MensajeRegistro (logs de actividad).
-@freezed
-class MensajeRegistro with _$MensajeRegistro {
-  const factory MensajeRegistro({
-    required int id,
-    required String mensaje,
-    required int autor,
-    required DateTime fechaCreacion,
-  }) = _MensajeRegistro;
-
-  /// Constructor propio de Freezed y requerido por Serverpod para la serialización de la clase.
-  factory MensajeRegistro.fromJson(
-    Map<String, Object?> json,
-    SerializationManager serializationManager,
-  ) =>
-      _$MensajeRegistroFromJson(json);
+  
 }

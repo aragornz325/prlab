@@ -1,25 +1,26 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:serverpod/serverpod.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 
-part 'cliente.freezed.dart';
+part 'cliente.mapper.dart';
 
-part 'cliente.g.dart';
+@MappableClass()
+class Cliente with ClienteMappable {
+  @MappableConstructor()
+  Cliente({
+    required this.id,
+    required this.nombre,
+    required this.idOrganizacion,
+    required this.contacto,
+    required this.fechaCreacion,
+  });
 
-/// Modelo de entidad Cliente (quien posee la Organización).
-@freezed
-class Cliente with _$Cliente {
-  const factory Cliente({
-    required int id,
-    required String nombre,
-    required int idOrganizacion,
-    required int contacto,
-    required DateTime fechaCreacion,
-  }) = _Cliente;
-
-  /// Constructor propio de Freezed y requerido por Serverpod para la serialización de la clase.
-  factory Cliente.fromJson(
-    Map<String, Object?> json,
-    SerializationManager serializationManager,
-  ) =>
-      _$ClienteFromJson(json);
+  @MappableField(key: 'id')
+  int id;
+  @MappableField(key: 'nombre')
+  String nombre;
+  @MappableField(key: 'idOrganizacion')
+  int idOrganizacion;
+  @MappableField(key: 'contacto')
+  int contacto;
+  @MappableField(key: 'fechaCreacion')
+  DateTime fechaCreacion;
 }
