@@ -82,7 +82,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                 // cambiar la funcion
                 child: TextFormField(
                   controller: controller,
-                  onChanged: (value) => _funcionPasarleEmail(context),
+                  onChanged: (value) => _funcionPasarleEmailAlBloc(context),
                 ),
               ),
             ),
@@ -115,9 +115,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                     width: 782.pw,
                     onTap: state.esEmailValido
                         ? () {
-                            context.read<BlocCrearCuentaAdmin>().add(
-                                  const BlocCrearCuentaAdminEventEnviarEmail(),
-                                );
+                            _funcionEnviarEmail(context);
                           }
                         : () {},
                     texto: l10n.page_create_admin_button_send,
@@ -133,8 +131,15 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
     );
   }
 
+  /// Funcion para enviar el email/la invitación a crear una cuenta
+  void _funcionEnviarEmail(BuildContext context) {
+    context.read<BlocCrearCuentaAdmin>().add(
+          const BlocCrearCuentaAdminEventEnviarEmail(),
+        );
+  }
+
   /// Funcion para enviar el email al bloc [BlocCrearCuentaAdmin]
-  void _funcionPasarleEmail(BuildContext context) {
+  void _funcionPasarleEmailAlBloc(BuildContext context) {
     context.read<BlocCrearCuentaAdmin>().add(
           BlocCrearCuentaAdminEventVerificarEmail(
             email: controller.text,
