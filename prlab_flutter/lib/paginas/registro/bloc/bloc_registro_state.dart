@@ -7,11 +7,13 @@ class BlocRegistroEstado extends Equatable {
     this.email = '',
     this.password = '',
     this.passwordConfirmada = false,
+    this.tokenValidado = false,
   });
   final bool? terminosAceptados;
   final String email;
   final String password;
   final bool passwordConfirmada;
+  final bool tokenValidado;
 
   @override
   List<Object?> get props => [
@@ -19,6 +21,7 @@ class BlocRegistroEstado extends Equatable {
         email,
         password,
         passwordConfirmada,
+        tokenValidado,
       ];
 }
 
@@ -37,6 +40,7 @@ class BlocRegistroEstadoExitoso extends BlocRegistroEstado {
     super.terminosAceptados,
     super.email,
     super.password,
+    super.tokenValidado,
   });
 }
 

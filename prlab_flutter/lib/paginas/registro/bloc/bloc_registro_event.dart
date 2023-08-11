@@ -20,6 +20,14 @@ class BlocRegistroEventoAceptarTerminos extends BlocRegistroEvento {
   final bool? terminosAceptados;
 }
 
+/// Evento que  verifica si el token es el correcto
+class BlocRegistroEventoVerificarToken extends BlocRegistroEvento {
+  const BlocRegistroEventoVerificarToken({
+    required this.token,
+  });
+  final String token;
+}
+
 /// Evento que envia los datos y hace el registro.
 class BlocRegistroEventoEnviarDatosRegistro extends BlocRegistroEvento {
   const BlocRegistroEventoEnviarDatosRegistro({

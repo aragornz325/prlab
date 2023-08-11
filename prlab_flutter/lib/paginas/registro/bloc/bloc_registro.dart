@@ -16,7 +16,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
   }) : super(
           const BlocRegistroEstadoInicial(),
         ) {
-    //on inicializar checkear token (_onInicializar);
+    on<BlocRegistroEventoVerificarToken>(_onVerificarToken);
     on<BlocRegistroEventoAceptarTerminos>(_onAceptarTerminos);
     on<BlocRegistroEventoEnviarDatosRegistro>(_onEnviarDatosRegistro);
   }
@@ -65,10 +65,6 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
         );
         //   jwt.validate = token es valido o esta caducado (true or false)
 
-        //pedir diseño de popup cuando el usuario entro y el token vencido
-        // ya no es
-        //  valido, paso un mes desde que se le mando el link
-
         final usuario = await emailAuthControllerCustomPRLab.signIn(
           event.email,
           event.password,
@@ -89,6 +85,46 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
             ),
           );
         }
+      } else {
+        emit(
+          const BlocRegistroErrorState(
+            errorMessage: MensajesDeErrorRegistro.credencialesInvalidas,
+          ),
+        );
+      }
+    } catch (e, st) {
+      emit(
+        const BlocRegistroErrorState(
+          errorMessage: MensajesDeErrorRegistro.usuarioNoEncontrado,
+        ),
+      );
+
+      if (kDebugMode) {
+        debugger();
+        throw UnimplementedError('Implementa un error para esto: $e $st');
+      }
+    }
+  }
+
+  /// Evento que envia los datos de registro y registra al usuario.
+
+  Future<void> _onVerificarToken(
+    BlocRegistroEventoVerificarToken event,
+    Emitter<BlocRegistroEstado> emit,
+  ) async {
+    try {
+      emit(
+        const BlocRegistroEstadoCargando(),
+      );
+// TODO(SAM): agregar funcion que checkea el token.
+      const tokenValidado = true;
+
+      if (tokenValidado != false) {
+        emit(
+          const BlocRegistroEstadoExitoso(
+            tokenValidado: tokenValidado,
+          ),
+        );
       } else {
         emit(
           const BlocRegistroErrorState(

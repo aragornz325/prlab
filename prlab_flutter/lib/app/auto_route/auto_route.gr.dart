@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i7;
+import 'package:flutter/material.dart' as _i8;
 import 'package:prlab_flutter/login.dart' as _i1;
 import 'package:prlab_flutter/paginas/crear_cuenta_admin/pagina_crear_cuenta_admin.dart'
     as _i2;
@@ -55,9 +56,16 @@ abstract class $AppRouter extends _i7.RootStackRouter {
       );
     },
     RegistroRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<RegistroRouteArgs>(
+          orElse: () =>
+              RegistroRouteArgs(tokenAuth: pathParams.getString('tokenAuth')));
       return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.RegistroPage(),
+        child: _i6.RegistroPage(
+          tokenAuth: args.tokenAuth,
+          key: args.key,
+        ),
       );
     },
   };
@@ -135,14 +143,39 @@ class RegistroVistaMobile extends _i7.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.RegistroPage]
-class RegistroRoute extends _i7.PageRouteInfo<void> {
-  const RegistroRoute({List<_i7.PageRouteInfo>? children})
-      : super(
+class RegistroRoute extends _i7.PageRouteInfo<RegistroRouteArgs> {
+  RegistroRoute({
+    required String tokenAuth,
+    _i8.Key? key,
+    List<_i7.PageRouteInfo>? children,
+  }) : super(
           RegistroRoute.name,
+          args: RegistroRouteArgs(
+            tokenAuth: tokenAuth,
+            key: key,
+          ),
+          rawPathParams: {'tokenAuth': tokenAuth},
           initialChildren: children,
         );
 
   static const String name = 'RegistroRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i7.PageInfo<RegistroRouteArgs> page =
+      _i7.PageInfo<RegistroRouteArgs>(name);
+}
+
+class RegistroRouteArgs {
+  const RegistroRouteArgs({
+    required this.tokenAuth,
+    this.key,
+  });
+
+  final String tokenAuth;
+
+  final _i8.Key? key;
+
+  @override
+  String toString() {
+    return 'RegistroRouteArgs{tokenAuth: $tokenAuth, key: $key}';
+  }
 }
