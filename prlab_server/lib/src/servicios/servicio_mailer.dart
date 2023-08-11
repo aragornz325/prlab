@@ -1,5 +1,4 @@
 import 'package:prlab_server/src/repositories/auth_repository.dart';
-import 'package:prlab_server/src/services/auth_service.dart';
 import 'package:prlab_server/utils/mailer/mailer.dart';
 import 'package:prlab_server/utils/mailer/templates.dart';
 import 'package:serverpod/server.dart';
