@@ -87,7 +87,8 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                 InkWell(
                   onTap: !widget.solicitoNuevoCodigo
                       ? () {
-                          //TODO: funcion para cuando aprete el boton de Get code
+                          // TODO(anyone): funcion para cuando aprete el boton
+                          // de Get code
                           Navigator.pop(context);
                         }
                       : null,

@@ -23,7 +23,7 @@ class BlocCrearCuentaAdmin
   ) async {
     emit(BlocCrearCuentaAdminEstadoCargando());
     try {
-      //TODO: implementar la funcion de enviar el email
+      // TODO(anyone): implementar la funcion de enviar el email
       emit(const BlocCrearCuentaAdminEstadoExitosoEmailEnviado());
     } catch (e, st) {
       emit(

@@ -52,8 +52,8 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                   children: [
                     const TextoBienvenida(),
 
-                    //Ejemplo textfield
-                    //TODO(Gon): Cambiar por los textfields factory
+                    // Ejemplo textfield
+                    // TODO(Gon): Cambiar por los textfields factory
                     SizedBox(
                       width: 259.pw,
                       height: 20.ph,
@@ -66,7 +66,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     ),
 
                     //Ejemplo textfield
-                    //TODO(Gon): Cambiar por los textfields factory
+                    // TODO(Gon): Cambiar por los textfields factory
                     SizedBox(
                       width: 259.pw,
                       height: 20.ph,
@@ -92,22 +92,18 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     SizedBox(
                       height: 50.ph,
                     ),
-                    BlocBuilder<BlocLogin, BlocLoginEstado>(
-                      builder: (context, state) {
-                        return PRBoton(
-                          habilitado: state.botonHabilitado,
-                          mostrarCircular: state.estaIniciandoSesion,
-                          onTap: () {
-                            context.read<BlocLogin>().add(
-                                  BlocLoginEventoIniciarSesion(
-                                    password: controllerPassword.text,
-                                    email: controllerEmail.text,
-                                  ),
-                                );
-                          },
-                          texto: l10n.page_login_button_text,
-                        );
+                    PRBoton(
+                      habilitado: state.botonHabilitado,
+                      mostrarEstadoDeCarga: state.estaIniciandoSesion,
+                      onTap: () {
+                        context.read<BlocLogin>().add(
+                              BlocLoginEventoIniciarSesion(
+                                password: controllerPassword.text,
+                                email: controllerEmail.text,
+                              ),
+                            );
                       },
+                      texto: l10n.page_login_button_text,
                     )
                   ],
                 ),

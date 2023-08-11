@@ -46,7 +46,7 @@ class PaginaCrearCuenta extends StatelessWidget {
             );
           }
           if (state is BlocCrearCuentaAdminEstadoFallido) {
-            //TODO: Todavia no hay diseño para el error handling
+            // TODO(anyone): Todavia no hay diseño para el error handling
             print(
               getErrorMessageCreateAccountAdmin(context, state.errorMessage),
             );

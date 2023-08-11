@@ -42,7 +42,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             BoxShadow(
               offset: const Offset(0, 10),
               blurRadius: 30,
-              //TODO: cambiar cuando este seteado los themas
+              // TODO(anyone): cambiar cuando este seteado los themas
               color: const Color(0xff000000).withOpacity(.25),
             ),
           ],
@@ -76,7 +76,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 15.pw),
                 height: 40.ph,
                 width: 785.pw,
-                //TODO: cambiarlo por el que esta en development
+                // TODO(anyone): cambiarlo por el que esta en development
                 child: TextFormField(
                   controller: controller,
                 ),
@@ -90,11 +90,11 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                     width: 782.pw,
                     onTap: state.esEmailValido
                         ? () {
-                            //TODO: agregarle funcionalidad
+                            // TODO(anyone): agregarle funcionalidad
                           }
                         : () {},
                     texto: l10n.page_create_admin_button_send,
-                    //TODO: cambiar por la variable del bloc
+                    // TODO(anyone): cambiar por la variable del bloc
                     habilitado: state.esEmailValido,
                   ),
                 );

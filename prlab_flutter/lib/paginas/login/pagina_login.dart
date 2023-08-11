@@ -31,7 +31,7 @@ class PaginaLogin extends StatelessWidget {
             );
           }
           if (state is BlocLoginEstadoError) {
-            //TODO(Gon): Todavia no hay diseño para el error handling
+            // TODO(Gon): Todavia no hay diseño para el error handling
             print(getErrorMessage(context, state.errorMessage));
           }
           return const FullResponsiveScreen(

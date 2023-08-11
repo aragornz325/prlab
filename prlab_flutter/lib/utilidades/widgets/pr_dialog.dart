@@ -53,7 +53,7 @@ class PRDialog extends StatefulWidget {
                   ),
                 ),
                 SizedBox(height: 40.ph),
-                //TODO: cambiar por los textfield de manu
+                // TODO(anyone): Cambiar por los textfield de manu
                 PrLabTextfield(
                   controller: controller,
                   solicitoNuevoCodigo: true,
@@ -72,10 +72,10 @@ class PRDialog extends StatefulWidget {
                 PRBoton.outlined(
                   width: 360.pw,
 
-                  ///TODO:agregarle funcionalidad del bloc
+                  // TODO(anyone): Agregarle funcionalidad del bloc
                   habilitado: true,
                   onTap: () {
-                    ///TODO:agregarle funcionalidad del bloc
+                    // TODO(anyone): Agregarle funcionalidad del bloc
                   },
                   texto: l10n.alert_dialog_button_title_send,
                 ),
@@ -116,7 +116,7 @@ class PRDialog extends StatefulWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  //TODO: esto va a definirse por el cliente
+                  // TODO(anyone): esto va a definirse por el cliente
                   text: 'An email has been sent to\n',
                   style: TextStyle(
                     color: const Color(0xff707070),
@@ -125,7 +125,7 @@ class PRDialog extends StatefulWidget {
                   ),
                 ),
                 TextSpan(
-                  //TODO: esto va a definirse por el cliente
+                  // TODO(anyone): esto va a definirse por el cliente
                   text: '$email \n',
                   style: TextStyle(
                     color: theme.primary,
@@ -134,7 +134,7 @@ class PRDialog extends StatefulWidget {
                   ),
                 ),
                 TextSpan(
-                  //TODO: esto va a definirse por el cliente
+                  // TODO(anyone): esto va a definirse por el cliente
                   text: 'Lorem ipsum dolor sit amet consectetur.Tortor\nut '
                       'quis faucibus etiam.Euismod condimentum.',
                   style: TextStyle(
@@ -153,7 +153,7 @@ class PRDialog extends StatefulWidget {
               height: 50.pw,
               child: ElevatedButton(
                 onPressed: () {
-                  //TODO: agregarle funcionalidad
+                  // TODO(anyone): agregarle funcionalidad
                   Navigator.of(context).pop();
                 },
                 style: ElevatedButton.styleFrom(

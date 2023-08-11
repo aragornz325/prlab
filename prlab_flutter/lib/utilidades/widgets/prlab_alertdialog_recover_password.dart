@@ -59,7 +59,7 @@ class _PrLabDialogVerificacionCodigoState
                     ),
                   ),
                   SizedBox(height: 40.ph),
-                  //TODO: cambiar por los textfield de manu
+                  // TODO(anyone): cambiar por los textfield de manu
                   PrLabTextfield(
                     controller: controllerCodigo,
                     solicitoNuevoCodigo: true,
@@ -77,7 +77,7 @@ class _PrLabDialogVerificacionCodigoState
                   SizedBox(height: 40.ph),
                   PrLabButtonSend(
                     onPressed: () {
-                      //TODO: agregar funcionalidad al boton de enviar
+                      // TODO(anyone): agregar funcionalidad al boton de enviar
                     },
                     habilitarColorBoton: true,
                   )
