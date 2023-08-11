@@ -10,6 +10,7 @@ dependencies:
   prlab_commons:
     path: ../prlab_commons
 
+  dart_jsonwebtoken: ^2.8.2
   mailer: ^6.0.1
   serverpod: ^1.1.1
   serverpod_auth_server: ^1.1.1
