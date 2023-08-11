@@ -49,9 +49,6 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i5.Comentario) {
       return _i5.Comentario.fromJson(data, this) as T;
     }
-    if (t == _i5.Entregable) {
-      return _i5.Entregable.fromJson(data, this) as T;
-    }
     if (t == _i5.MensajeRegistro) {
       return _i5.MensajeRegistro.fromJson(data, this) as T;
     }
@@ -69,9 +66,6 @@ class Protocol extends _i1.SerializationManagerServer {
     }
     if (t == _i1.getType<_i5.Comentario?>()) {
       return (data != null ? _i5.Comentario.fromJson(data, this) : null) as T;
-    }
-    if (t == _i1.getType<_i5.Entregable?>()) {
-      return (data != null ? _i5.Entregable.fromJson(data, this) : null) as T;
     }
     if (t == _i1.getType<_i5.MensajeRegistro?>()) {
       return (data != null ? _i5.MensajeRegistro.fromJson(data, this) : null)
@@ -108,9 +102,6 @@ class Protocol extends _i1.SerializationManagerServer {
     if (data is _i5.Comentario) {
       return 'Comentario';
     }
-    if (data is _i5.Entregable) {
-      return 'Entregable';
-    }
     if (data is _i5.MensajeRegistro) {
       return 'MensajeRegistro';
     }
@@ -140,9 +131,6 @@ class Protocol extends _i1.SerializationManagerServer {
     }
     if (data['className'] == 'Comentario') {
       return deserialize<_i5.Comentario>(data['data']);
-    }
-    if (data['className'] == 'Entregable') {
-      return deserialize<_i5.Entregable>(data['data']);
     }
     if (data['className'] == 'MensajeRegistro') {
       return deserialize<_i5.MensajeRegistro>(data['data']);

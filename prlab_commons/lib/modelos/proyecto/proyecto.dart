@@ -1,4 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:serverpod/serverpod.dart';
 
 part 'proyecto.mapper.dart';
 
@@ -13,6 +14,17 @@ class Proyecto with ProyectoMappable {
     required this.fechaCreacion,
   });
 
+  @MappableConstructor()
+  Proyecto.fromJson(
+    Map<String, dynamic> json,
+    SerializationManager serializationManager,
+  ) : this(
+            id: json['id'],
+            idOrganizacion: json['idOrganizacion'],
+            nombre: json['nombre'],
+            idEntregables: json['idEntregables'],
+            fechaCreacion: json['fechaCreacion']);
+
   @MappableField(key: 'id')
   int id;
   @MappableField(key: 'idOrganizacion')
@@ -22,5 +34,5 @@ class Proyecto with ProyectoMappable {
   @MappableField(key: 'idEntregables')
   List<int> idEntregables;
   @MappableField(key: 'fechaCreacion')
-  final DateTime fechaCreacion;
+  DateTime fechaCreacion;
 }

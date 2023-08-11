@@ -1,4 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:serverpod/serverpod.dart';
 
 part 'entregable.mapper.dart';
 
@@ -12,7 +13,18 @@ abstract class Entregable with EntregableMappable {
     required this.idSubEntregables,
     required this.fechaCreacion,
   });
-  
+
+  @MappableConstructor()
+  Entregable.fromJson(
+    Map<String, dynamic> json,
+    SerializationManager serializationManager,
+  ) : this(
+            id: json['id'],
+            idProyecto: json['idProyecto'],
+            titulo: json['titulo'],
+            idSubEntregables: json['idSubEntregables'],
+            fechaCreacion: json['fechaCreacion']);
+
   @MappableField(key: 'id')
   int id;
   @MappableField(key: 'idProyecto')
@@ -24,4 +36,3 @@ abstract class Entregable with EntregableMappable {
   @MappableField(key: 'fechaCreacion')
   DateTime fechaCreacion;
 }
-

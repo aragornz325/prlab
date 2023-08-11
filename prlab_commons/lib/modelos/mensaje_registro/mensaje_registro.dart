@@ -1,10 +1,10 @@
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:serverpod/serverpod.dart';
 
 part 'mensaje_registro.mapper.dart';
 
 @MappableClass()
 class MensajeRegistro with MensajeRegistroMappable {
-  
   @MappableConstructor()
   MensajeRegistro({
     required this.id,
@@ -12,7 +12,17 @@ class MensajeRegistro with MensajeRegistroMappable {
     required this.autor,
     required this.fechaCreacion,
   });
-  
+
+  @MappableConstructor()
+  MensajeRegistro.fromJson(
+    Map<String, dynamic> json,
+    SerializationManager serializationManager,
+  ) : this(
+            id: json['id'],
+            mensaje: json['mensaje'],
+            autor: json['autor'],
+            fechaCreacion: json['fechaCreacion']);
+
   @MappableField(key: 'id')
   int id;
   @MappableField(key: 'mensaje')
@@ -21,6 +31,4 @@ class MensajeRegistro with MensajeRegistroMappable {
   int autor;
   @MappableField(key: 'fechaCreacion')
   DateTime fechaCreacion;
-
-  
 }

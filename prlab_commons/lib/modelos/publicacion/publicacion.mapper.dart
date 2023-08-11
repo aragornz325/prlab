@@ -25,33 +25,6 @@ class PublicacionMapper extends ClassMapperBase<Publicacion> {
   @override
   final String id = 'Publicacion';
 
-  static String _$contenido(Publicacion v) => v.contenido;
-  static const Field<Publicacion, String> _f$contenido =
-      Field('contenido', _$contenido);
-  static int _$autor(Publicacion v) => v.autor;
-  static const Field<Publicacion, int> _f$autor = Field('autor', _$autor);
-  static List<String> _$imagenes(Publicacion v) => v.imagenes;
-  static const Field<Publicacion, List<String>> _f$imagenes =
-      Field('imagenes', _$imagenes);
-  static String _$imagenDestacada(Publicacion v) => v.imagenDestacada;
-  static const Field<Publicacion, String> _f$imagenDestacada =
-      Field('imagenDestacada', _$imagenDestacada);
-  static String _$resumen(Publicacion v) => v.resumen;
-  static const Field<Publicacion, String> _f$resumen =
-      Field('resumen', _$resumen);
-  static List<String> _$tags(Publicacion v) => v.tags;
-  static const Field<Publicacion, List<String>> _f$tags = Field('tags', _$tags);
-  static int _$status(Publicacion v) => v.status;
-  static const Field<Publicacion, int> _f$status = Field('status', _$status);
-  static List<int> _$idCategorias(Publicacion v) => v.idCategorias;
-  static const Field<Publicacion, List<int>> _f$idCategorias =
-      Field('idCategorias', _$idCategorias, key: 'categoria');
-  static int _$parents(Publicacion v) => v.parents;
-  static const Field<Publicacion, int> _f$parents =
-      Field('parents', _$parents, key: 'padres');
-  static int _$comentarios(Publicacion v) => v.comentarios;
-  static const Field<Publicacion, int> _f$comentarios =
-      Field('comentarios', _$comentarios);
   static int _$id(Publicacion v) => v.id;
   static const Field<Publicacion, int> _f$id = Field('id', _$id);
   static int _$idProyecto(Publicacion v) => v.idProyecto;
@@ -59,6 +32,35 @@ class PublicacionMapper extends ClassMapperBase<Publicacion> {
       Field('idProyecto', _$idProyecto);
   static String _$titulo(Publicacion v) => v.titulo;
   static const Field<Publicacion, String> _f$titulo = Field('titulo', _$titulo);
+  static String _$contenido(Publicacion v) => v.contenido;
+  static const Field<Publicacion, String> _f$contenido =
+      Field('contenido', _$contenido);
+  static int _$idAutor(Publicacion v) => v.idAutor;
+  static const Field<Publicacion, int> _f$idAutor = Field('idAutor', _$idAutor);
+  static List<int> _$idImagenes(Publicacion v) => v.idImagenes;
+  static const Field<Publicacion, List<int>> _f$idImagenes =
+      Field('idImagenes', _$idImagenes);
+  static int _$idImagenDestacada(Publicacion v) => v.idImagenDestacada;
+  static const Field<Publicacion, int> _f$idImagenDestacada =
+      Field('idImagenDestacada', _$idImagenDestacada, key: 'imagenDestacada');
+  static String _$resumen(Publicacion v) => v.resumen;
+  static const Field<Publicacion, String> _f$resumen =
+      Field('resumen', _$resumen);
+  static List<int> _$idTags(Publicacion v) => v.idTags;
+  static const Field<Publicacion, List<int>> _f$idTags =
+      Field('idTags', _$idTags);
+  static int _$idStatus(Publicacion v) => v.idStatus;
+  static const Field<Publicacion, int> _f$idStatus =
+      Field('idStatus', _$idStatus);
+  static List<int> _$idCategorias(Publicacion v) => v.idCategorias;
+  static const Field<Publicacion, List<int>> _f$idCategorias =
+      Field('idCategorias', _$idCategorias);
+  static int _$idPadres(Publicacion v) => v.idPadres;
+  static const Field<Publicacion, int> _f$idPadres =
+      Field('idPadres', _$idPadres);
+  static int _$idComentarios(Publicacion v) => v.idComentarios;
+  static const Field<Publicacion, int> _f$idComentarios =
+      Field('idComentarios', _$idComentarios);
   static List<int> _$idSubEntregables(Publicacion v) => v.idSubEntregables;
   static const Field<Publicacion, List<int>> _f$idSubEntregables =
       Field('idSubEntregables', _$idSubEntregables);
@@ -68,38 +70,38 @@ class PublicacionMapper extends ClassMapperBase<Publicacion> {
 
   @override
   final Map<Symbol, Field<Publicacion, dynamic>> fields = const {
-    #contenido: _f$contenido,
-    #autor: _f$autor,
-    #imagenes: _f$imagenes,
-    #imagenDestacada: _f$imagenDestacada,
-    #resumen: _f$resumen,
-    #tags: _f$tags,
-    #status: _f$status,
-    #idCategorias: _f$idCategorias,
-    #parents: _f$parents,
-    #comentarios: _f$comentarios,
     #id: _f$id,
     #idProyecto: _f$idProyecto,
     #titulo: _f$titulo,
+    #contenido: _f$contenido,
+    #idAutor: _f$idAutor,
+    #idImagenes: _f$idImagenes,
+    #idImagenDestacada: _f$idImagenDestacada,
+    #resumen: _f$resumen,
+    #idTags: _f$idTags,
+    #idStatus: _f$idStatus,
+    #idCategorias: _f$idCategorias,
+    #idPadres: _f$idPadres,
+    #idComentarios: _f$idComentarios,
     #idSubEntregables: _f$idSubEntregables,
     #fechaCreacion: _f$fechaCreacion,
   };
 
   static Publicacion _instantiate(DecodingData data) {
     return Publicacion(
-        contenido: data.dec(_f$contenido),
-        autor: data.dec(_f$autor),
-        imagenes: data.dec(_f$imagenes),
-        imagenDestacada: data.dec(_f$imagenDestacada),
-        resumen: data.dec(_f$resumen),
-        tags: data.dec(_f$tags),
-        status: data.dec(_f$status),
-        idCategorias: data.dec(_f$idCategorias),
-        parents: data.dec(_f$parents),
-        comentarios: data.dec(_f$comentarios),
         id: data.dec(_f$id),
         idProyecto: data.dec(_f$idProyecto),
         titulo: data.dec(_f$titulo),
+        contenido: data.dec(_f$contenido),
+        idAutor: data.dec(_f$idAutor),
+        idImagenes: data.dec(_f$idImagenes),
+        idImagenDestacada: data.dec(_f$idImagenDestacada),
+        resumen: data.dec(_f$resumen),
+        idTags: data.dec(_f$idTags),
+        idStatus: data.dec(_f$idStatus),
+        idCategorias: data.dec(_f$idCategorias),
+        idPadres: data.dec(_f$idPadres),
+        idComentarios: data.dec(_f$idComentarios),
         idSubEntregables: data.dec(_f$idSubEntregables),
         fechaCreacion: data.dec(_f$fechaCreacion));
   }
@@ -153,26 +155,26 @@ extension PublicacionValueCopy<$R, $Out>
 
 abstract class PublicacionCopyWith<$R, $In extends Publicacion, $Out>
     implements EntregableCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>> get imagenes;
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>> get tags;
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idImagenes;
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idTags;
   ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idCategorias;
   @override
   ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idSubEntregables;
   @override
   $R call(
-      {String? contenido,
-      int? autor,
-      List<String>? imagenes,
-      String? imagenDestacada,
-      String? resumen,
-      List<String>? tags,
-      int? status,
-      List<int>? idCategorias,
-      int? parents,
-      int? comentarios,
-      int? id,
+      {int? id,
       int? idProyecto,
       String? titulo,
+      String? contenido,
+      int? idAutor,
+      List<int>? idImagenes,
+      int? idImagenDestacada,
+      String? resumen,
+      List<int>? idTags,
+      int? idStatus,
+      List<int>? idCategorias,
+      int? idPadres,
+      int? idComentarios,
       List<int>? idSubEntregables,
       DateTime? fechaCreacion});
   PublicacionCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
@@ -187,13 +189,13 @@ class _PublicacionCopyWithImpl<$R, $Out>
   late final ClassMapperBase<Publicacion> $mapper =
       PublicacionMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>> get imagenes =>
-      ListCopyWith($value.imagenes, (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(imagenes: v));
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idImagenes =>
+      ListCopyWith($value.idImagenes, (v, t) => ObjectCopyWith(v, $identity, t),
+          (v) => call(idImagenes: v));
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>> get tags =>
-      ListCopyWith($value.tags, (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(tags: v));
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idTags =>
+      ListCopyWith($value.idTags, (v, t) => ObjectCopyWith(v, $identity, t),
+          (v) => call(idTags: v));
   @override
   ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idCategorias =>
       ListCopyWith(
@@ -208,53 +210,54 @@ class _PublicacionCopyWithImpl<$R, $Out>
           (v) => call(idSubEntregables: v));
   @override
   $R call(
-          {String? contenido,
-          int? autor,
-          List<String>? imagenes,
-          String? imagenDestacada,
-          String? resumen,
-          List<String>? tags,
-          int? status,
-          List<int>? idCategorias,
-          int? parents,
-          int? comentarios,
-          int? id,
+          {int? id,
           int? idProyecto,
           String? titulo,
+          String? contenido,
+          int? idAutor,
+          List<int>? idImagenes,
+          int? idImagenDestacada,
+          String? resumen,
+          List<int>? idTags,
+          int? idStatus,
+          List<int>? idCategorias,
+          int? idPadres,
+          int? idComentarios,
           List<int>? idSubEntregables,
           DateTime? fechaCreacion}) =>
       $apply(FieldCopyWithData({
-        if (contenido != null) #contenido: contenido,
-        if (autor != null) #autor: autor,
-        if (imagenes != null) #imagenes: imagenes,
-        if (imagenDestacada != null) #imagenDestacada: imagenDestacada,
-        if (resumen != null) #resumen: resumen,
-        if (tags != null) #tags: tags,
-        if (status != null) #status: status,
-        if (idCategorias != null) #idCategorias: idCategorias,
-        if (parents != null) #parents: parents,
-        if (comentarios != null) #comentarios: comentarios,
         if (id != null) #id: id,
         if (idProyecto != null) #idProyecto: idProyecto,
         if (titulo != null) #titulo: titulo,
+        if (contenido != null) #contenido: contenido,
+        if (idAutor != null) #idAutor: idAutor,
+        if (idImagenes != null) #idImagenes: idImagenes,
+        if (idImagenDestacada != null) #idImagenDestacada: idImagenDestacada,
+        if (resumen != null) #resumen: resumen,
+        if (idTags != null) #idTags: idTags,
+        if (idStatus != null) #idStatus: idStatus,
+        if (idCategorias != null) #idCategorias: idCategorias,
+        if (idPadres != null) #idPadres: idPadres,
+        if (idComentarios != null) #idComentarios: idComentarios,
         if (idSubEntregables != null) #idSubEntregables: idSubEntregables,
         if (fechaCreacion != null) #fechaCreacion: fechaCreacion
       }));
   @override
   Publicacion $make(CopyWithData data) => Publicacion(
-      contenido: data.get(#contenido, or: $value.contenido),
-      autor: data.get(#autor, or: $value.autor),
-      imagenes: data.get(#imagenes, or: $value.imagenes),
-      imagenDestacada: data.get(#imagenDestacada, or: $value.imagenDestacada),
-      resumen: data.get(#resumen, or: $value.resumen),
-      tags: data.get(#tags, or: $value.tags),
-      status: data.get(#status, or: $value.status),
-      idCategorias: data.get(#idCategorias, or: $value.idCategorias),
-      parents: data.get(#parents, or: $value.parents),
-      comentarios: data.get(#comentarios, or: $value.comentarios),
       id: data.get(#id, or: $value.id),
       idProyecto: data.get(#idProyecto, or: $value.idProyecto),
       titulo: data.get(#titulo, or: $value.titulo),
+      contenido: data.get(#contenido, or: $value.contenido),
+      idAutor: data.get(#idAutor, or: $value.idAutor),
+      idImagenes: data.get(#idImagenes, or: $value.idImagenes),
+      idImagenDestacada:
+          data.get(#idImagenDestacada, or: $value.idImagenDestacada),
+      resumen: data.get(#resumen, or: $value.resumen),
+      idTags: data.get(#idTags, or: $value.idTags),
+      idStatus: data.get(#idStatus, or: $value.idStatus),
+      idCategorias: data.get(#idCategorias, or: $value.idCategorias),
+      idPadres: data.get(#idPadres, or: $value.idPadres),
+      idComentarios: data.get(#idComentarios, or: $value.idComentarios),
       idSubEntregables:
           data.get(#idSubEntregables, or: $value.idSubEntregables),
       fechaCreacion: data.get(#fechaCreacion, or: $value.fechaCreacion));

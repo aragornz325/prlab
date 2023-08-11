@@ -1,4 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:serverpod/serverpod.dart';
 
 part 'cliente.mapper.dart';
 
@@ -12,6 +13,17 @@ class Cliente with ClienteMappable {
     required this.contacto,
     required this.fechaCreacion,
   });
+
+  @MappableConstructor()
+  Cliente.fromJson(
+    Map<String, dynamic> json,
+    SerializationManager serializationManager,
+  ) : this(
+            id: json['id'],
+            nombre: json['nombre'],
+            idOrganizacion: json['idOrganizacion'],
+            contacto: json['contacto'],
+            fechaCreacion: json['fechaCreacion']);
 
   @MappableField(key: 'id')
   int id;
