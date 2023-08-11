@@ -29,7 +29,7 @@ class TextoBienvenida extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 4.pw),
               child: Text(
-                l10n.screen_login_greetings,
+                l10n.page_login_greetings,
                 style: TextStyle(
                   //TODO(Gon): Cambiar cuando esten los colores del theme
                   color: const Color(0xff363636),
@@ -40,7 +40,7 @@ class TextoBienvenida extends StatelessWidget {
             ),
             SizedBox(height: 10.ph),
             Text(
-              l10n.screen_login_log_in_to,
+              l10n.page_login_log_in_to,
               style: TextStyle(
                 //TODO(Gon): Cambiar cuando esten los colores del theme
                 color: const Color(0xff707070),

@@ -9,7 +9,8 @@
 import 'package:serverpod/serverpod.dart' as _i1;
 import '../endpoints/auth_endpoint.dart' as _i2;
 import '../endpoints/example_endpoint.dart' as _i3;
-import 'package:serverpod_auth_server/module.dart' as _i4;
+import '../endpoints/mailer_endpoint.dart' as _i4;
+import 'package:serverpod_auth_server/module.dart' as _i5;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -25,6 +26,12 @@ class Endpoints extends _i1.EndpointDispatch {
         ..initialize(
           server,
           'example',
+          null,
+        ),
+      'mailer': _i4.MailerEndpoint()
+        ..initialize(
+          server,
+          'mailer',
           null,
         ),
     };
@@ -76,6 +83,30 @@ class Endpoints extends _i1.EndpointDispatch {
         )
       },
     );
-    modules['serverpod_auth'] = _i4.Endpoints()..initializeEndpoints(server);
+    connectors['mailer'] = _i1.EndpointConnector(
+      name: 'mailer',
+      endpoint: endpoints['mailer']!,
+      methodConnectors: {
+        'envioMailRegistro': _i1.MethodConnector(
+          name: 'envioMailRegistro',
+          params: {
+            'email': _i1.ParameterDescription(
+              name: 'email',
+              type: _i1.getType<String>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['mailer'] as _i4.MailerEndpoint).envioMailRegistro(
+            session,
+            params['email'],
+          ),
+        )
+      },
+    );
+    modules['serverpod_auth'] = _i5.Endpoints()..initializeEndpoints(server);
   }
 }

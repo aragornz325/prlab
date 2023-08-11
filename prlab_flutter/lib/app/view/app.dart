@@ -32,7 +32,7 @@ class App extends StatelessWidget {
                   client.modules.auth,
                 ),
               ),
-            )
+            ),
           ],
           child: const AppView(),
         ),

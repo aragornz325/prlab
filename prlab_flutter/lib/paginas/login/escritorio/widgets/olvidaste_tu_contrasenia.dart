@@ -19,7 +19,7 @@ class OlvidasteTuContrasenia extends StatelessWidget {
           // TODO(Gon): Agregar el push cuando este hecha la view
         },
         child: Text(
-          l10n.screen_login_tappable_text,
+          l10n.page_login_tappable_text,
           style: TextStyle(
             //TODO(Gon): Cambiar cuando esten los colores del theme
             color: const Color(0xffA12B46),
