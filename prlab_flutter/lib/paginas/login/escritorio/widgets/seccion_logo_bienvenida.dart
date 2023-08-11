@@ -46,7 +46,7 @@ class SeccionLogoBienvenida extends StatelessWidget {
                 SizedBox(
                   width: 550.pw,
                   child: Text(
-                    l10n.screen_login_leading_agency,
+                    l10n.page_login_leading_agency,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
