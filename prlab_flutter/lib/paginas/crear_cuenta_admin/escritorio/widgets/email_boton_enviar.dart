@@ -73,6 +73,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
               ),
             ),
             SizedBox(height: 50.ph),
+
             Center(
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 15.pw),
@@ -81,6 +82,15 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                 //TODO: cambiarlo por el que esta en development
                 child: TextFormField(
                   controller: controller,
+                  onChanged: (value) {
+                    if (value.isEmpty) {
+                      context.read<BlocCrearCuentaAdmin>().add(
+                            const BlocCrearCuentaAdminEventVerificarEmail(
+                              esEmailValido: true,
+                            ),
+                          );
+                    }
+                  },
                 ),
               ),
             ),
@@ -92,7 +102,11 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                     width: 782.pw,
                     onTap: state.esEmailValido
                         ? () {
-                            //TODO: agregarle funcionalidad
+                            context.read<BlocCrearCuentaAdmin>().add(
+                                  BlocCrearCuentaAdminEventEnviarEmail(
+                                    email: controller.text,
+                                  ),
+                                );
                           }
                         : () {},
                     texto: l10n.page_create_admin_button_send,

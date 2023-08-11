@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 
 part 'bloc_crear_cuenta_admin_event.dart';
 part 'bloc_crear_cuenta_admin_state.dart';
@@ -23,7 +24,7 @@ class BlocCrearCuentaAdmin
   ) async {
     emit(BlocCrearCuentaAdminEstadoCargando());
     try {
-      //TODO: implementar la funcion de enviar el email
+      await client.mailer.envioMailRegistro(event.email);
       emit(const BlocCrearCuentaAdminEstadoExitosoEmailEnviado());
     } catch (e, st) {
       emit(
