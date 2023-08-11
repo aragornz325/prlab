@@ -38,15 +38,8 @@ class PaginaCrearCuenta extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          if (state is BlocCrearCuentaAdminEstadoCargando) {
-            return const Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          }
           if (state is BlocCrearCuentaAdminEstadoFallido) {
-            //TODO: Todavia no hay diseño para el error handling
+            // TODO: Todavia no hay diseño para el error handling
             print(
               getErrorMessageCreateAccountAdmin(context, state.errorMessage),
             );

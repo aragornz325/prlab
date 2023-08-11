@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';
@@ -22,10 +23,29 @@ class BlocCrearCuentaAdmin
     BlocCrearCuentaAdminEventEnviarEmail event,
     Emitter<BlocCrearCuentaAdminEstado> emit,
   ) async {
-    emit(BlocCrearCuentaAdminEstadoCargando());
+    emit(
+      BlocCrearCuentaAdminEstadoCargando(
+        email: state.email,
+        esEmailValido: state.esEmailValido,
+      ),
+    );
     try {
-      await client.mailer.envioMailRegistro(event.email);
-      emit(const BlocCrearCuentaAdminEstadoExitosoEmailEnviado());
+      final respuesta = await client.mailer.envioMailRegistro(state.email);
+      if (respuesta) {
+        emit(
+          BlocCrearCuentaAdminEstadoExitosoEmailEnviado(
+            email: state.email,
+            esEmailValido: state.esEmailValido,
+          ),
+        );
+      } else {
+        emit(
+          const BlocCrearCuentaAdminEstadoFallido(
+            errorMessage:
+                BlocCrearCuentaAdminEstadoFallidoMensaje.errorToSendEmail,
+          ),
+        );
+      }
     } catch (e, st) {
       emit(
         const BlocCrearCuentaAdminEstadoFallido(
@@ -47,11 +67,21 @@ class BlocCrearCuentaAdmin
     Emitter<BlocCrearCuentaAdminEstado> emit,
   ) async {
     try {
-      emit(
-        BlocCrearCuentaAdminEstadoExitoso(
-          esEmailValido: event.esEmailValido,
-        ),
-      );
+      if (EmailValidator.validate(event.email) && event.email.isNotEmpty) {
+        emit(
+          BlocCrearCuentaAdminEstadoExitoso(
+            esEmailValido: true,
+            email: event.email,
+          ),
+        );
+      } else {
+        emit(
+          const BlocCrearCuentaAdminEstadoFallido(
+            errorMessage:
+                BlocCrearCuentaAdminEstadoFallidoMensaje.errorToChangeEmail,
+          ),
+        );
+      }
     } catch (e, st) {
       emit(
         const BlocCrearCuentaAdminEstadoFallido(

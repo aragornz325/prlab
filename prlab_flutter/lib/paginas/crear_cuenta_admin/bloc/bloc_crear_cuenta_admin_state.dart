@@ -48,7 +48,11 @@ class BlocCrearCuentaAdminEstadoExitosoEmailEnviado
 /// state/estado de `error` de BlocCrearCuentaAdmin
 class BlocCrearCuentaAdminEstadoFallido extends BlocCrearCuentaAdminEstado {
   @override
-  const BlocCrearCuentaAdminEstadoFallido({required this.errorMessage});
+  const BlocCrearCuentaAdminEstadoFallido({
+    required this.errorMessage,
+    super.esEmailValido,
+    super.email,
+  });
 
   /// mensaje que se va a mostrar en caso de que sea error o de que algo haya
   /// salido mal
@@ -56,7 +60,10 @@ class BlocCrearCuentaAdminEstadoFallido extends BlocCrearCuentaAdminEstado {
 }
 
 /// state/estado `cargando` de BlocCrearCuentaAdmin
-class BlocCrearCuentaAdminEstadoCargando extends BlocCrearCuentaAdminEstado {}
+class BlocCrearCuentaAdminEstadoCargando extends BlocCrearCuentaAdminEstado {
+  @override
+  const BlocCrearCuentaAdminEstadoCargando({super.esEmailValido, super.email});
+}
 
 /// emum de los tipos de errores a mostrar
 enum BlocCrearCuentaAdminEstadoFallidoMensaje {
