@@ -3,6 +3,7 @@ import 'package:serverpod/serverpod.dart';
 
 part 'cliente.mapper.dart';
 
+/// Modelo de entidad Cliente (quien posee la Organización).
 @MappableClass()
 class Cliente with ClienteMappable {
   @MappableConstructor()
@@ -14,6 +15,7 @@ class Cliente with ClienteMappable {
     required this.fechaCreacion,
   });
 
+  /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
   Cliente.fromJson(
     Map<String, dynamic> json,

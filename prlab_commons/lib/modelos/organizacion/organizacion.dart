@@ -3,6 +3,7 @@ import 'package:serverpod/serverpod.dart';
 
 part 'organizacion.mapper.dart';
 
+/// Modelo de entidad Organizacion (que posee los proyectos).
 @MappableClass()
 class Organizacion with OrganizacionMappable {
   @MappableConstructor()
@@ -16,6 +17,7 @@ class Organizacion with OrganizacionMappable {
     required this.fechaCreacion,
   });
 
+  /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
   Organizacion.fromJson(
     Map<String, dynamic> json,

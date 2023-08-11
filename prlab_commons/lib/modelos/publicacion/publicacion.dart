@@ -4,6 +4,7 @@ import 'package:serverpod/serverpod.dart';
 
 part 'publicacion.mapper.dart';
 
+/// Modelo de entidad Publicacion (un tipo de Entregable).
 @MappableClass()
 class Publicacion extends Entregable with PublicacionMappable {
   
@@ -26,6 +27,7 @@ class Publicacion extends Entregable with PublicacionMappable {
     required super.fechaCreacion,
   });
 
+  /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
   Publicacion.fromJson(
     Map<String, dynamic> json,

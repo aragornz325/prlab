@@ -3,6 +3,7 @@ import 'package:serverpod/serverpod.dart';
 
 part 'proyecto.mapper.dart';
 
+/// Modelo de entidad Proyecto (que depende de la Organizacion y que contiene entregables).
 @MappableClass()
 class Proyecto with ProyectoMappable {
   @MappableConstructor()
@@ -14,6 +15,7 @@ class Proyecto with ProyectoMappable {
     required this.fechaCreacion,
   });
 
+  /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
   Proyecto.fromJson(
     Map<String, dynamic> json,

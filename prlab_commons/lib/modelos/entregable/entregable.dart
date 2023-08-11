@@ -3,6 +3,7 @@ import 'package:serverpod/serverpod.dart';
 
 part 'entregable.mapper.dart';
 
+/// Modelo de entidad Entregable (Abstracción para heredar a otras clases como Publicacion, curso, etc).
 @MappableClass()
 abstract class Entregable with EntregableMappable {
   @MappableConstructor()
@@ -14,6 +15,7 @@ abstract class Entregable with EntregableMappable {
     required this.fechaCreacion,
   });
 
+  /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
   Entregable.fromJson(
     Map<String, dynamic> json,

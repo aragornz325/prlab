@@ -3,6 +3,7 @@ import 'package:serverpod/serverpod.dart';
 
 part 'mensaje_registro.mapper.dart';
 
+/// Modelo de entidad MensajeRegistro (logs de actividad).
 @MappableClass()
 class MensajeRegistro with MensajeRegistroMappable {
   @MappableConstructor()
@@ -13,6 +14,7 @@ class MensajeRegistro with MensajeRegistroMappable {
     required this.fechaCreacion,
   });
 
+  /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
   MensajeRegistro.fromJson(
     Map<String, dynamic> json,

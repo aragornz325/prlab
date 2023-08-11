@@ -3,6 +3,7 @@ import 'package:serverpod/serverpod.dart';
 
 part 'comentario.mapper.dart';
 
+/// Modelo de entidad Comentario (dentro de publicaciones u otros entregables).
 @MappableClass()
 class Comentario with ComentarioMappable {
   @MappableConstructor()
@@ -14,6 +15,7 @@ class Comentario with ComentarioMappable {
     required this.fechaCreacion,
   });
 
+  /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
   Comentario.fromJson(
     Map<String, dynamic> json,
