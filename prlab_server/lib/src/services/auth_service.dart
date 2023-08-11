@@ -1,9 +1,10 @@
 import 'package:prlab_server/src/repositories/auth_repository.dart';
 import 'package:serverpod/serverpod.dart';
 
-final authRepository = AuthRepository();
-
+/// La clase AuthService es responsable de manejar la funcionalidad relacionada con la autenticación.
 class AuthService {
+  final authRepository = AuthRepository();
+
   /// La función `getValidationCode` devuelve un Future que recupera un código de validación del
   /// `AuthRepository` mediante una sesión y un correo electrónico.
   ///
