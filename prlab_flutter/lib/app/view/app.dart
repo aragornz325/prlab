@@ -5,6 +5,7 @@ import 'package:prlab_flutter/app/auto_route/auto_route.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/main.dart';
 import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
+import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_app.g.dart';
 import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
@@ -28,6 +29,13 @@ class App extends StatelessWidget {
           providers: [
             BlocProvider(
               create: (context) => BlocLogin(
+                emailAuthControllerCustomPRLab: EmailAuthControllerCustomPRLab(
+                  client.modules.auth,
+                ),
+              ),
+            ),
+            BlocProvider(
+              create: (context) => BlocRegistro(
                 emailAuthControllerCustomPRLab: EmailAuthControllerCustomPRLab(
                   client.modules.auth,
                 ),

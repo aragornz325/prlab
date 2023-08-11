@@ -12,7 +12,8 @@ Future<void> initializeServerpodClient({required String host}) async {
   // On a real device replace the ipAddress with the IP address of your
   // computer.
 
-  //TODO(Gon): Comente esta variable xq me salia unused creeria que no sirve para nada
+  //TODO(Gon): Comente esta variable xq me salia unused creeria que no sirve
+  //para nada
 
   // const ipAddress = '10.0.2.2';
 

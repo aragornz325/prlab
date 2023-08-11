@@ -16,12 +16,14 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
   }) : super(
           const BlocRegistroEstadoInicial(),
         ) {
+    //on inicializar checkear token (_onInicializar);
     on<BlocRegistroEventoAceptarTerminos>(_onAceptarTerminos);
     on<BlocRegistroEventoEnviarDatosRegistro>(_onEnviarDatosRegistro);
   }
   final EmailAuthControllerCustomPRLab emailAuthControllerCustomPRLab;
 
-  /// Evento que acepta (o declina) los terminos y guarda el estado del checkbox.
+  /// Evento que acepta (o declina) los terminos y guarda el estado del checkbox
+
   Future<void> _onAceptarTerminos(
     BlocRegistroEventoAceptarTerminos event,
     Emitter<BlocRegistroEstado> emit,
@@ -61,6 +63,12 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
         await emailAuthControllerCustomPRLab.validateAccount(
           event.email, 'asd', // codigoOculto,
         );
+        //   jwt.validate = token es valido o esta caducado (true or false)
+
+        //pedir diseño de popup cuando el usuario entro y el token vencido
+        // ya no es
+        //  valido, paso un mes desde que se le mando el link
+
         final usuario = await emailAuthControllerCustomPRLab.signIn(
           event.email,
           event.password,
