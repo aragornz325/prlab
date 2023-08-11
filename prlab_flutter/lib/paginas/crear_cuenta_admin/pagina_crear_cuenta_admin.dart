@@ -36,14 +36,19 @@ class PaginaCrearCuenta extends StatelessWidget {
               email: state.email,
             ).show(context);
           }
+          if (state is BlocCrearCuentaAdminEstadoFallido) {
+            PRDialog.error(
+              context: context,
+              l10n: l10n,
+              esError: true,
+              mensajeError: getErrorMessageCreateAccountAdmin(
+                context,
+                state.errorMessage,
+              ),
+            ).show(context);
+          }
         },
         builder: (context, state) {
-          if (state is BlocCrearCuentaAdminEstadoFallido) {
-            // TODO: Todavia no hay diseño para el error handling
-            print(
-              getErrorMessageCreateAccountAdmin(context, state.errorMessage),
-            );
-          }
           return const FullResponsiveScreen(
             mobile: VistaEscritorioCrearCuentaAdmin(),
             desktop: VistaEscritorioCrearCuentaAdmin(),

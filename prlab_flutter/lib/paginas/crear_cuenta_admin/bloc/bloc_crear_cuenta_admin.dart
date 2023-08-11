@@ -76,9 +76,8 @@ class BlocCrearCuentaAdmin
         );
       } else {
         emit(
-          const BlocCrearCuentaAdminEstadoFallido(
-            errorMessage:
-                BlocCrearCuentaAdminEstadoFallidoMensaje.errorToChangeEmail,
+          BlocCrearCuentaAdminEstadoExitoso(
+            email: state.email,
           ),
         );
       }

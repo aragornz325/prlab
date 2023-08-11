@@ -164,6 +164,71 @@ class PRDialog extends StatefulWidget {
     );
   }
 
+  /// Alert dialog que muestra un error en caso de que esError devuelva true
+  /// muestra error donde le podes pasar por parámetros el mensajeError
+  factory PRDialog.error({
+    required BuildContext context,
+    required AppLocalizations l10n,
+    required bool esError,
+    String? mensajeError,
+  }) {
+    return PRDialog(
+      content: SizedBox(
+        width: 360.pw,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(height: 20.ph),
+            Text(
+              esError
+                  ? l10n.alert_dialog_button_title_error
+                  : l10n.alert_dialog_button_subtitle_something_went_wrong,
+              style: TextStyle(
+                fontSize: 20.pf,
+                // TODO: cambiar cuando este el theme
+                color: esError ? Color(0xffE00707) : Colors.black,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(height: 30.ph),
+            SizedBox(
+              width: 360.pw,
+              child: Text(
+                esError
+                    ? '$mensajeError'
+                    : l10n.alert_dialog_button_subtitle_link_expired,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15.pf,
+                  // TODO: cambiar cuando este el theme
+                  color: Color(0xff707070),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+            SizedBox(height: 30.ph),
+            Center(
+              child: SizedBox(
+                width: 360.pw,
+                child: PRBoton.outlined(
+                  onTap: () {
+                    // TODO: agregarle funcionalidad
+                    Navigator.of(context).pop();
+                  },
+                  texto: esError
+                      ? l10n.page_create_admin_account_button_back
+                      : l10n.alert_dialog_button_title_button_resend,
+                  habilitado: true,
+                  width: 360.pw,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   /// contenido del alertdialog normal de [PRDialog].
   final Widget content;
 
