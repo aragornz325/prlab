@@ -39,7 +39,7 @@ class PRBoton extends StatelessWidget {
   final bool mostrarCircular;
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme;
+    final theme = context.esquemaDeColores;
 
     return GestureDetector(
       onTap: habilitado ? onTap : null,
@@ -48,16 +48,16 @@ class PRBoton extends StatelessWidget {
         height: 50.ph,
         decoration: BoxDecoration(
           color: outlined
-              ? theme.colorScheme.background
+              ? theme.background
               : habilitado
-                  ? theme.colorScheme.primary
-                  : theme.colorScheme.primary.withOpacity(.2),
+                  ? theme.primary
+                  : theme.primary.withOpacity(.2),
           borderRadius: BorderRadius.circular(25),
           border: outlined
               ? Border.all(
                   color: habilitado
-                      ? theme.colorScheme.primary
-                      : theme.colorScheme.primary.withOpacity(.2),
+                      ? theme.primary
+                      : theme.primary.withOpacity(.2),
                 )
               : null,
         ),
@@ -71,9 +71,9 @@ class PRBoton extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     color: outlined
                         ? habilitado
-                            ? theme.colorScheme.primary
-                            : theme.colorScheme.primary.withOpacity(.2)
-                        : theme.colorScheme.background,
+                            ? theme.primary
+                            : theme.primary.withOpacity(.2)
+                        : theme.background,
                   ),
                 ),
         ),

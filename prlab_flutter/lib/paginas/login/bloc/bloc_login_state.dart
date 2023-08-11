@@ -6,7 +6,7 @@ class BlocLoginEstado extends Equatable {
     this.estaIniciandoSesion = false,
   });
 
-  /// Bool para habilitar el boton o no dependiendo del contendio
+  /// Bool para habilitar el boton o no dependiendo del contenido
   /// de los textfields
   final bool botonHabilitado;
 
@@ -52,6 +52,6 @@ class BlocLoginEstadoCargando extends BlocLoginEstado {
 
 /// emum de los tipos de errores a mostrar
 enum LoginErrorMessages {
-  userNotFoud,
+  userNotFound,
   invalidCredentials;
 }

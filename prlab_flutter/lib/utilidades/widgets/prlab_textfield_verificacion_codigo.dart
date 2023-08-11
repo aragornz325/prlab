@@ -45,7 +45,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final theme = context.theme;
+    final theme = context.esquemaDeColores;
 
     final tooltipMessage = l10n.alert_dialog_tooltip_request_new_code(
       widget.segundosFaltantes,
@@ -58,7 +58,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
       ],
       maxLength: 8,
       keyboardType: TextInputType.number,
-      cursorColor: theme.colorScheme.primary,
+      cursorColor: theme.primary,
       decoration: InputDecoration(
         counterText: '',
         labelText:
@@ -66,19 +66,16 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
         labelStyle: TextStyle(
           fontSize: 15.pf,
           fontWeight: FontWeight.w400,
-          //TODO: cambiar para cuando esten los colores en el theme
-          color: const Color(0xff707070),
+          color: theme.secondary,
         ),
-        border: const UnderlineInputBorder(
+        border: UnderlineInputBorder(
           borderSide: BorderSide(
-            //TODO: cambiar para cuando esten los colores en el theme
-            color: Color(0xff707070),
+            color: theme.secondary,
           ),
         ),
-        focusedBorder: const UnderlineInputBorder(
+        focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            //TODO: cambiar para cuando esten los colores en el theme
-            color: Color(0xff707070),
+            color: theme.secondary,
           ),
         ),
         suffixIcon: Padding(
@@ -106,9 +103,8 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                           TextDecoration.none,
                       ]),
                       color: !widget.solicitoNuevoCodigo
-                          ? theme.colorScheme.primary
-                          //TODO: cambiar para cuando esten los colores en el theme
-                          : const Color(0xff707070),
+                          ? theme.primary
+                          : theme.secondary,
                       fontSize: 12.pf,
                       fontWeight: FontWeight.w500,
                     ),
@@ -122,24 +118,21 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                         horizontal: 10.pw,
                         vertical: 10.ph,
                       ),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
                           Radius.circular(10),
                         ),
-                        //TODO: cambiar para cuando esten los colores en el theme
-                        color: Color(0xff363636),
+                        color: theme.tertiary,
                       ),
                       textStyle: TextStyle(
                         fontSize: 12.pf,
                         fontWeight: FontWeight.w400,
-                        //TODO: cambiar para cuando esten los colores en el theme
-                        color: theme.colorScheme.background,
+                        color: theme.background,
                       ),
                       message: tooltipMessage,
-                      child: const Icon(
+                      child: Icon(
                         Icons.info,
-                        //TODO: cambiar para cuando esten los colores en el theme
-                        color: Color(0xff363636),
+                        color: theme.tertiary,
                         size: 12.5,
                       ),
                     ),

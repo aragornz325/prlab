@@ -8,7 +8,7 @@ void main() {
       await IsarService.abrirDB();
 
       await tester.pumpWidget(
-        App(),
+        const App(),
       );
       //Saltaba error por eliminar la carpeta del counter
       // expect(find.byType(CounterPage), findsOneWidget);

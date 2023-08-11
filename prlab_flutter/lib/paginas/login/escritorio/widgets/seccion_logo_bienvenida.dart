@@ -49,6 +49,7 @@ class SeccionLogoBienvenida extends StatelessWidget {
                     l10n.page_login_leading_agency,
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                      //TODO(Gon): Cambiar cuando esten los colores del theme
                       color: Colors.white,
                       fontSize: 64.pf,
                       fontWeight: FontWeight.w700,

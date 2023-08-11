@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
+import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// Header de la pagina de login
@@ -12,6 +13,8 @@ class TextoBienvenida extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
+    final theme = context.esquemaDeColores;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -33,8 +36,7 @@ class TextoBienvenida extends StatelessWidget {
               child: Text(
                 l10n.page_login_greetings,
                 style: TextStyle(
-                  //TODO(Gon): Cambiar cuando esten los colores del theme
-                  color: const Color(0xff363636),
+                  color: theme.tertiary,
                   fontSize: 40.pf,
                   fontWeight: FontWeight.w600,
                 ),
@@ -44,8 +46,7 @@ class TextoBienvenida extends StatelessWidget {
             Text(
               l10n.page_login_log_in_to,
               style: TextStyle(
-                //TODO(Gon): Cambiar cuando esten los colores del theme
-                color: const Color(0xff707070),
+                color: theme.secondary,
                 fontSize: 15.pf,
                 fontWeight: FontWeight.w400,
               ),

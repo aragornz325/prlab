@@ -11,6 +11,6 @@ String getErrorMessage(
   final l10n = context.l10n;
   return switch (loginErrorMessage) {
     LoginErrorMessages.invalidCredentials => 'INVALID CREDENTIALS',
-    LoginErrorMessages.userNotFoud => l10n.alert_dialgo_code_in,
+    LoginErrorMessages.userNotFound => l10n.alert_dialgo_code_in,
   };
 }

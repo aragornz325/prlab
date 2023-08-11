@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/olvidaste_tu_contrasenia.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/texto_bienvenida.dart';
-import 'package:prlab_flutter/paginas/login/utilidades/get_error_message.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// Vista de escritorio de la pantalla login donde el usuario
@@ -36,14 +36,15 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
+    final theme = context.esquemaDeColores;
+
     return Scaffold(
       body: Row(
         children: [
           BlocBuilder<BlocLogin, BlocLoginEstado>(
             builder: (context, state) {
               return Container(
-                //TODO(Gon): Cambiar cuando esten los colores del theme
-                color: const Color(0xfff7f7f7),
+                color: theme.background,
                 width: 44.5.wp,
                 height: 100.hp,
                 child: Column(
@@ -59,12 +60,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       child: TextFormField(
                         controller: controllerEmail,
                         onChanged: (value) {
-                          context.read<BlocLogin>().add(
-                                BlocLoginEventoHabilitarBoton(
-                                  email: value,
-                                  password: controllerPassword.text,
-                                ),
-                              );
+                          _revisarSiElBotonSePuedeHabilitar(context);
                         },
                       ),
                     ),
@@ -77,18 +73,13 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       child: TextFormField(
                         controller: controllerPassword,
                         onChanged: (value) {
-                          context.read<BlocLogin>().add(
-                                BlocLoginEventoHabilitarBoton(
-                                  email: controllerEmail.text,
-                                  password: value,
-                                ),
-                              );
+                          _revisarSiElBotonSePuedeHabilitar(context);
                         },
                       ),
                     ),
                     if (state is BlocLoginEstadoError &&
-                        getErrorMessage(context, state.errorMessage) ==
-                            'INVALID CREDENTIALS')
+                        state.errorMessage ==
+                            LoginErrorMessages.invalidCredentials)
                       Container(
                         width: 20,
                         height: 20,
@@ -127,5 +118,14 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
         ],
       ),
     );
+  }
+
+  void _revisarSiElBotonSePuedeHabilitar(BuildContext context) {
+    context.read<BlocLogin>().add(
+          BlocLoginEventoHabilitarBoton(
+            email: controllerEmail.text,
+            password: controllerPassword.text,
+          ),
+        );
   }
 }

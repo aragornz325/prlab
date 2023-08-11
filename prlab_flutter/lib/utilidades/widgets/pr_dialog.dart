@@ -95,7 +95,7 @@ class PRDialog extends StatefulWidget {
     required BuildContext context,
     required String email,
   }) {
-    final theme = context.theme.colorScheme;
+    final theme = context.esquemaDeColores;
 
     return PRDialog(
       content: Column(
@@ -213,7 +213,7 @@ class PRDialog extends StatefulWidget {
 class _PRDialogState extends State<PRDialog> {
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme.colorScheme;
+    final theme = context.esquemaDeColores;
 
     return AlertDialog(
       backgroundColor: theme.background,

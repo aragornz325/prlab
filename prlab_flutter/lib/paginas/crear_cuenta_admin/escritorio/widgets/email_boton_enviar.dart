@@ -25,7 +25,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final theme = context.theme;
+    final theme = context.esquemaDeColores;
 
     return Center(
       child: Container(
@@ -34,7 +34,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
           vertical: 40.ph,
         ),
         decoration: BoxDecoration(
-          color: theme.colorScheme.background,
+          color: theme.background,
           borderRadius: const BorderRadius.all(
             Radius.circular(15),
           ),
@@ -56,8 +56,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             Text(
               l10n.page_create_admin_client_email,
               style: TextStyle(
-                //TODO: cambiar cuando este seteado los themas
-                color: const Color(0xff363636),
+                color: theme.tertiary,
                 fontSize: 30.pf,
                 fontWeight: FontWeight.w600,
               ),
@@ -66,8 +65,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             Text(
               l10n.page_create_admin_leading_pr_agency,
               style: TextStyle(
-                //TODO: cambiar cuando este seteado los themas
-                color: const Color(0xff707070),
+                color: theme.secondary,
                 fontSize: 15.pf,
                 fontWeight: FontWeight.w400,
               ),

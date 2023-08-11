@@ -37,13 +37,11 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
         event.email,
         event.password,
       );
-      await sessionManager
-          .registerSignedInUser(
-            respuesta.userInfo!,
-            respuesta.keyId!,
-            respuesta.key!,
-          )
-          .then((value) => print('entreee'));
+      await sessionManager.registerSignedInUser(
+        respuesta.userInfo!,
+        respuesta.keyId!,
+        respuesta.key!,
+      );
 
       if (respuesta.userInfo?.id != null) {
         emit(
@@ -52,7 +50,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       } else {
         emit(
           const BlocLoginEstadoError(
-            errorMessage: LoginErrorMessages.userNotFoud,
+            errorMessage: LoginErrorMessages.userNotFound,
           ),
         );
       }
@@ -69,9 +67,9 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     }
   }
 
-  /// La función `_habilitarBoton` verifica si el correo electrónico es válido y la longitud de la
-  /// contraseña es mayor a 7, y emite un estado exitoso con el botón habilitado si se cumplen las
-  /// condiciones.
+  /// La función `_habilitarBoton` verifica si el correo electrónico es válido
+  ///  y la longitud de la contraseña es mayor a 7, y emite un estado exitoso
+  ///  con el botón habilitado si se cumplen lascondiciones.
   Future<void> _habilitarBoton(
     BlocLoginEventoHabilitarBoton event,
     Emitter<BlocLoginEstado> emit,
