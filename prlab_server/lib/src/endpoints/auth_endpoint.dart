@@ -16,9 +16,10 @@ class AuthEndpoint extends Endpoint {
   /// correo electrónico del usuario para el que se solicita el código de validación.
   ///
   /// retorna un `Future<String>` (el codigo en si).
-  Future<String> getValidationCode(Session session, String email) async {
+  Future<String> getValidationCode(
+    Session session,
+    String email,
+  ) async {
     return await authService.getValidationCode(session: session, email: email);
   }
-
-
 }

@@ -9,8 +9,10 @@ final plantillasCorreo = PlantillasCorreo();
 
 class ServicioMailer {
   final AuthRepository authRepository = AuthRepository();
-  Future<bool> envioMailRegistro(
-      {required Session session, required String email}) async {
+  Future<bool> envioMailRegistro({
+    required Session session,
+    required String email,
+  }) async {
     try {
       final jwt = JWT(
         {
