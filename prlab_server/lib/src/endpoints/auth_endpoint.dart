@@ -19,4 +19,6 @@ class AuthEndpoint extends Endpoint {
   Future<String> getValidationCode(Session session, String email) async {
     return await authService.getValidationCode(session: session, email: email);
   }
+
+
 }

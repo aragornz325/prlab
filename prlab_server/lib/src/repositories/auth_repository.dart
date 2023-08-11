@@ -33,3 +33,15 @@ class AuthRepository {
     }
   }
 }
+
+Future<bool> guardarTokenEnDb({required Session session, required String token, required String email}) async {
+  try {
+    final result = await session.db.query(
+        'INSERT INTO registro_token_email (email, token) VALUES (\'$email\', \'$token\')');
+    return true;
+  } catch (e) {
+    rethrow;
+  }
+
+
+}

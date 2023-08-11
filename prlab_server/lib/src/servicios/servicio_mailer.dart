@@ -1,3 +1,5 @@
+import 'package:prlab_server/src/repositories/auth_repository.dart';
+import 'package:prlab_server/src/services/auth_service.dart';
 import 'package:prlab_server/utils/mailer/mailer.dart';
 import 'package:prlab_server/utils/mailer/templates.dart';
 import 'package:serverpod/server.dart';
@@ -6,6 +8,7 @@ import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 final plantillasCorreo = PlantillasCorreo();
 
 class ServicioMailer {
+  final AuthRepository authRepository = AuthRepository();
   Future<bool> envioMailRegistro(
       {required Session session, required String email}) async {
     try {
@@ -19,7 +22,6 @@ class ServicioMailer {
         },
         issuer: "prlab",
       );
-
       final token = jwt.sign(
           SecretKey('sweetHomeAlabama')); //TODO cambiar por variable de entorno
 
@@ -27,6 +29,8 @@ class ServicioMailer {
           enlace: "http://google.com/token=$token");
       enviarEmail(
           mailDestinatario: email, subject: "registro", mailHtml: mailHtml);
+
+      await guardarTokenEnDb(session: session, token: token, email: email);
 
       return true;
     } catch (e) {
