@@ -1,78 +1,74 @@
 {
     "@@locale": "es",
 
-    "screen_login_greetings": "¡Hola de nuevo!",
-    "@screen_login_greetings": {
+    "page_login_greetings": "¡Hola de nuevo!",
+    "@page_login_greetings": {
         "description": "Welcomes the user back"
     },
 
-    "screen_login_log_in_to": "Iniciar sesión en",
-    "@screen_login_log_in_to": {
+    "page_login_log_in_to": "Iniciar sesión en",
+    "@page_login_log_in_to": {
         "description": "Log in to the web/app"
     },
 
-    "screen_login_placeholder_email": "marcaejemplo@prlab.co",
-    "@screen_login_placeholder_email": {
+    "page_login_placeholder_email": "marcaejemplo@prlab.co",
+    "@page_login_placeholder_email": {
         "description": "Text shown on a button that leads to register page"
     },
 
-    "screen_login_placeholder_password": "Contraseña",
-    "@screen_login_placeholder_password": {
+    "page_login_placeholder_password": "Contraseña",
+    "@page_login_placeholder_password": {
         "description": "Text shown on a button that leads to register page"
     },
 
-    "screen_login_tappable_text": "¿Olvidaste tu contraseña?",
-    "@screen_login_tappable_text": {
+    "page_login_tappable_text": "¿Olvidaste tu contraseña?",
+    "@page_login_tappable_text": {
         "description": "Ask you if you forget your password"
     },
 
-    "screen_login_leading_agency": "La agencia de relaciones públicas líder a nivel mundial",
-    "@screen_login_leading_agency": {
+    "page_login_leading_agency": "La agencia de relaciones públicas líder a nivel mundial",
+    "@page_login_leading_agency": {
         "description": "Eslogan on the register/login page "
     },
 
-    "screen_login_button_reload": "Recargar",
-    "@screen_login_button_reload": {
+    "page_login_button_reload": "Recargar",
+    "@page_login_button_reload": {
         "description": "Text shown when the user has to reload the page"
     },
   
-    "pageSignUpTitle": "Bienvenida!",
-    "@pageSignUpTitle": {
+    "page_sign_up_title": "Bienvenida!",
+    "@page_sign_up_title": {
         "description": "Title shown in the page SignUp"
     },    
-    "pageSignUpSubTitle": "Crea una cuenta",
-    "@pageSignUpSubTitle": {
+    "page_sign_up_subtitle": "Crea una cuenta",
+    "@page_sign_up_subtitle": {
         "description": "Subtitle shown in the page SignUp"
     },     
-    "pageSignUpTextFieldHintExampleMail": "marcaejemplo@prlab.co",
-    "@pageSignUpTextFieldHintExampleMail": {
+    "page_sign_up_text_field_hint_example_mail": "marcaejemplo@prlab.co",
+    "@page_sign_up_text_field_hint_example_mail": {
         "description": "HintText shown in the mail textfield in the page Signup"
     },    
-      "pageSignUpTextFieldHintPassword": "Contraseña",
-    "@pageSignUpTextFieldHintPassword": {
+      "page_sign_up_text_field_hint_password": "Contraseña",
+    "@page_sign_up_text_field_hint_password": {
         "description": "HintText  shown in the password textfield page SignUp"
     },     
-      "pageSignUpTextFieldHintConfirmPassword": "Confirma contraseña",
-    "@pageSignUpTextFieldHintConfirmPassword": {
+      "page_sign_up_text_field_hint_confirm_password": "Confirma contraseña",
+    "@page_sign_up_text_field_hint_confirm_password": {
         "description": "HintText shown in the confirm password textfield page SignUp"
     }, 
-       "pageSignUpTermsAndConditionsText": "Acepto los ",
-    "@pageSignUpTermsAndConditionsText": {
+       "page_sign_up_terms_and_conditions_text": "Acepto los ",
+    "@page_sign_up_terms_and_conditions_text": {
         "description": "Text of the first part of terms and conditions shown in the page SignUp"
     },   
-           "pageSignUpTermsAndConditionsTextLink": "Términos y Condiciones",
-    "@pageSignUpTermsAndConditionsTextLink": {
+           "page_sign_up_terms_and_conditions_text_link": "Términos y Condiciones",
+    "@page_sign_up_terms_and_conditions_text_link": {
         "description": "Hyperlink Text of the second part of terms and conditions shown in the page SignUp"
     },  
-       "pageSignUpButtonSignUp": "Registrarse",
-    "@pageSignUpButtonSignUp": {
+       "page_sign_up_button_sign_up": "Registrarse",
+    "@page_sign_up_button_sign_up": {
         "description": "Text of the button sign up shown in the page SignUp"
     },
-       "pageSignUpPRLeadingAgency": "The leading\nglobal PR agency",
-    "@pageSignUpPRLeadingAgency": {
-        "description": "Header of the image shown in the page SignUp"
-    },
-
+ 
     "alert_dialog_title_recover_password" : "Recuperar contraseña",
     "@alert_dialog_title_recover_password": {
         "description":"text in title alertdialog of recover password"
@@ -103,29 +99,31 @@
         "description":"text in alertdialog suffix textfield on button if the verificaction code was sent, Code sent"
     },
 
-    "alert_dialog_can_you_request":"Puedes solicitar un nuevo",
-    "@alert_dialog_can_you_request": {
-        "description":"part text in alertdialog of textfield on tooltip, You can request a new"
+    "alert_dialog_tooltip_request_new_code":"Puedes solicitar un nuevo código en {seconds} segundos.Este expirara en {minutes} minutos.",
+    "@alert_dialog_tooltip_request_new_code": {
+        "description":"part text in alertdialog of textfield on tooltip, You can request a new code in 56 seconds.This will expire in 30 minutes.",
+        "placeholders" : {
+            "seconds" : {
+                "type": "int"
+            },
+            "minutes" : {
+                "type": "int"
+            }
+        }
     },
 
     "alert_dialgo_code_in": "codigo en",
     "@alert_dialgo_code_in": {
         "description":"part text in alertdialog of textfield on tooltip, code in"
     },
-
-    "alert_dialog_seconds": "segundos",
-    "@alert_dialog_seconds": {
-        "description":"part text in alertdialog of textfield on tooltip, seconds"
-    },
-
-    "alert_dialog_this_will_expire": "Esto expirara en",
-    "@alert_dialog_this_will_expire": {
-        "description":"part text in alertdialog of textfield on tooltip,text This will expire in"
+    "page_create_account_admin_error_message_change_email": "Error al cambiar el email valido",
+    "@page_create_account_admin_error_message_change_email": {
+        "description":"part text in error alertdialog in page create account admin, Error al cambiar el email valido"
     },
     
-    "alert_dialog_minutes": "minutos",
-    "@alert_dialog_minutes": {
-        "description":"part text in alertdialog of textfield on tooltip, minutes"
+    "page_create_account_admin_error_message_send_email": "Error al enviar el email",
+    "@page_create_account_admin_error_message_send_email": {
+        "description":"part text in error alertdialog in page create account admin, Error al enviar el email"
     }
 
 }

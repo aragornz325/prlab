@@ -29,7 +29,7 @@ class TituloBienvenidaConImagen extends StatelessWidget {
             left: 40.pw,
             child: Center(
               child: Text(
-                l10n.pageSignUpTitle,
+                l10n.page_sign_up_title,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: const Color(0xff363636),

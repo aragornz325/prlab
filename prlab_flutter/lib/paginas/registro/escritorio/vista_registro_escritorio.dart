@@ -9,7 +9,7 @@ import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/paginas/registro/widgets/titulo_bienvenida_con_imagen.dart';
-import 'package:prlab_flutter/utilities/widgets/pr_boton.dart';
+import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
 
 @RoutePage()
 
@@ -25,19 +25,19 @@ class VistaRegistroEscritorio extends StatefulWidget {
 
 class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
   /// Controlador del textfield que tiene el email del usuario
-  TextEditingController controladorEmail = TextEditingController();
+  TextEditingController controllerEmail = TextEditingController();
 
   /// Controlador del textfield que permite al usuario ingresar la password
-  TextEditingController controladorPassword = TextEditingController();
+  TextEditingController controllerPassword = TextEditingController();
 
   /// Controlador del textfield que permite al usuario confirmar la password
-  TextEditingController controladorConfirmarPassword = TextEditingController();
+  TextEditingController controllerConfirmarPassword = TextEditingController();
 
   @override
   void dispose() {
-    controladorEmail.dispose();
-    controladorPassword.dispose();
-    controladorConfirmarPassword.dispose();
+    controllerEmail.dispose();
+    controllerPassword.dispose();
+    controllerConfirmarPassword.dispose();
     super.dispose();
   }
 
@@ -69,7 +69,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                         SizedBox(
                           child: Center(
                             child: Text(
-                              l10n.pageSignUpSubTitle,
+                              l10n.page_sign_up_subtitle,
                               style: TextStyle(
                                 color: tema.shadow,
                                 fontSize: 15.pf,
@@ -118,11 +118,11 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             SizedBox(
                               width: 259.pw,
                               child: TextField(
-                                controller: controladorEmail,
+                                controller: controllerEmail,
                                 decoration: InputDecoration(
                                   prefixIcon: const Icon(Icons.email),
-                                  labelText:
-                                      l10n.pageSignUpTextFieldHintExampleMail,
+                                  labelText: l10n
+                                      .page_sign_up_text_field_hint_example_mail,
                                   labelStyle: TextStyle(
                                     color: tema.primary,
                                   ),
@@ -135,11 +135,11 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             SizedBox(
                               width: 259.pw,
                               child: TextField(
-                                controller: controladorPassword,
+                                controller: controllerPassword,
                                 decoration: InputDecoration(
                                   prefixIcon: const Icon(Icons.lock),
-                                  labelText:
-                                      l10n.pageSignUpTextFieldHintPassword,
+                                  labelText: l10n
+                                      .page_sign_up_text_field_hint_password,
                                 ),
                               ),
                             ),
@@ -149,11 +149,11 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             SizedBox(
                               width: 259.pw,
                               child: TextField(
-                                controller: controladorConfirmarPassword,
+                                controller: controllerConfirmarPassword,
                                 decoration: InputDecoration(
                                   prefixIcon: const Icon(Icons.lock),
                                   labelText: l10n
-                                      .pageSignUpTextFieldHintConfirmPassword,
+                                      .page_sign_up_text_field_hint_confirm_password,
                                 ),
                               ),
                             ),
@@ -174,7 +174,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                     },
                                   ),
                                   Text(
-                                    l10n.pageSignUpTermsAndConditionsText,
+                                    l10n.page_sign_up_terms_and_conditions_text,
                                     style: state.terminosAceptados!
                                         ? TextStyle(
                                             color: tema.primary,
@@ -183,7 +183,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                   ),
                                   GestureDetector(
                                     child: Text(
-                                      l10n.pageSignUpTermsAndConditionsTextLink,
+                                      l10n.page_sign_up_terms_and_conditions_text_link,
                                       style: TextStyle(
                                         color: tema.secondary,
                                         decoration: TextDecoration.underline,
@@ -210,7 +210,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                       context,
                                     );
                                   },
-                                  texto: l10n.pageSignUpButtonSignUp,
+                                  texto: l10n.page_sign_up_button_sign_up,
                                   habilitado: state.terminosAceptados!,
                                 ),
                               ),
@@ -235,8 +235,8 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
   void _agregarEventoDeEnviarDatosRegistro(BuildContext context) {
     context.read<BlocRegistro>().add(
           BlocRegistroEventoEnviarDatosRegistro(
-            email: controladorEmail.text,
-            password: controladorPassword.text,
+            email: controllerEmail.text,
+            password: controllerPassword.text,
           ),
         );
   }

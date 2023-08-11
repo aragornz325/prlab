@@ -25,6 +25,20 @@ class _EndpointExample extends _i1.EndpointRef {
       );
 }
 
+class _EndpointMailer extends _i1.EndpointRef {
+  _EndpointMailer(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'mailer';
+
+  _i2.Future<bool> envioMailRegistro(String email) =>
+      caller.callServerEndpoint<bool>(
+        'mailer',
+        'envioMailRegistro',
+        {'email': email},
+      );
+}
+
 class _Modules {
   _Modules(Client client) {
     auth = _i3.Caller(client);
@@ -45,15 +59,21 @@ class Client extends _i1.ServerpodClient {
           authenticationKeyManager: authenticationKeyManager,
         ) {
     example = _EndpointExample(this);
+    mailer = _EndpointMailer(this);
     modules = _Modules(this);
   }
 
   late final _EndpointExample example;
 
+  late final _EndpointMailer mailer;
+
   late final _Modules modules;
 
   @override
-  Map<String, _i1.EndpointRef> get endpointRefLookup => {'example': example};
+  Map<String, _i1.EndpointRef> get endpointRefLookup => {
+        'example': example,
+        'mailer': mailer,
+      };
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup =>
       {'auth': modules.auth};

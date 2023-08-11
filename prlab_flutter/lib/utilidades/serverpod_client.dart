@@ -15,7 +15,7 @@ Future<void> initializeServerpodClient({required String host}) async {
   //TODO(Gon): Comente esta variable xq me salia unused creeria que no sirve
   //para nada
 
-  // const ipAddress = '10.0.2.2';
+  const ipAddress = 'https://prlab-production.up.railway.app/';
 
   // Sets up a singleton client object that can be used to talk to the server
   // from
@@ -24,7 +24,7 @@ Future<void> initializeServerpodClient({required String host}) async {
   // the default port. You will need to modify this to connect to staging or
   // production servers.
   client = Client(
-    '$host/',
+    ipAddress,
     authenticationKeyManager: FlutterAuthenticationKeyManager(
       runMode: 'staging',
       storage: SharedPreferenceStorage(),

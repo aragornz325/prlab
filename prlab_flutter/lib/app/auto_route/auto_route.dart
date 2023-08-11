@@ -10,7 +10,7 @@ class AppRouter extends $AppRouter {
   @override
   final List<AutoRoute> routes = [
     AutoRoute(
-      page: RouteLogin.page,
+      page: PaginaLogin.page,
       // initial: true,
       path: '/login',
     ),
@@ -20,6 +20,10 @@ class AppRouter extends $AppRouter {
       // agregar pathparams @annotation un valor
       initial: true,
       path: '/',
+    ),
+    AutoRoute(
+      path: '/crear-cuenta',
+      page: PaginaCrearCuenta.page,
     ),
   ];
 }

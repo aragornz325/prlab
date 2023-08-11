@@ -68,10 +68,6 @@ flutter:
         - asset: assets/fonts/Montserrat-Regular.ttf
         - asset: assets/fonts/Montserrat-Bold.ttf
 
-
-
-
-
 full_responsive:
   resolutions:
     - name: "mobile"
