@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:prlab_flutter/prlab_configuracion/base.dart';
 import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 
@@ -75,7 +76,9 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     Emitter<BlocLoginEstado> emit,
   ) async {
     try {
-      if (EmailValidator.validate(event.email) && event.password.length > 7) {
+      if (EmailValidator.validate(event.email) &&
+          event.password.length >
+              PRLabConfiguracion.minimoDeCaracteresContrasenia) {
         emit(
           const BlocLoginEstadoExitoso(botonHabilitado: true),
         );
