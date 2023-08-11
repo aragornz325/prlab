@@ -105,7 +105,7 @@ class PRDialog extends StatefulWidget {
           Text(
             l10n.page_create_admin_alertdialog_title_email_send,
             style: TextStyle(
-              color: const Color(0xff363636),
+              color: theme.tertiary,
               fontSize: 20.pf,
               fontWeight: FontWeight.w600,
             ),
@@ -119,7 +119,7 @@ class PRDialog extends StatefulWidget {
                   // TODO(anyone): esto va a definirse por el cliente
                   text: 'An email has been sent to\n',
                   style: TextStyle(
-                    color: const Color(0xff707070),
+                    color: theme.secondary,
                     fontSize: 15.pf,
                     fontWeight: FontWeight.w400,
                   ),
@@ -138,7 +138,7 @@ class PRDialog extends StatefulWidget {
                   text: 'Lorem ipsum dolor sit amet consectetur.Tortor\nut '
                       'quis faucibus etiam.Euismod condimentum.',
                   style: TextStyle(
-                    color: const Color(0xff707070),
+                    color: theme.secondary,
                     fontSize: 15.pf,
                     fontWeight: FontWeight.w400,
                   ),
