@@ -29,10 +29,12 @@ class PRDialog extends StatefulWidget {
   /// Alertdialog que muestra un textfield de 8 dígitos
   /// y un boton para enviar el código.
   factory PRDialog.recuperarContrasenia({
-    required AppLocalizations l10n,
     required String email,
     required TextEditingController controller,
+    required BuildContext context,
   }) {
+    final l10n = context.l10n;
+
     final codigoEmail = '${l10n.alert_dialog_sub_title_verification_code_send}'
         ' ${obtenerPrimerasLetrasAntesSimbolo(email)}***@'
         '${obtenerTextoDespuesSimbolo(email)}';
@@ -92,10 +94,11 @@ class PRDialog extends StatefulWidget {
   /// donde muestra un texto con el email al usuario enviado para crear una
   /// cuenta admin.
   factory PRDialog.emailEnviado({
-    required AppLocalizations l10n,
     required BuildContext context,
     required String email,
   }) {
+    final l10n = context.l10n;
+
     final theme = context.theme.colorScheme;
 
     return PRDialog(
@@ -168,10 +171,11 @@ class PRDialog extends StatefulWidget {
   /// muestra error donde le podes pasar por parámetros el mensajeError
   factory PRDialog.error({
     required BuildContext context,
-    required AppLocalizations l10n,
     required bool esError,
     String? mensajeError,
   }) {
+    final l10n = context.l10n;
+
     return PRDialog(
       content: SizedBox(
         width: 360.pw,
@@ -195,7 +199,7 @@ class PRDialog extends StatefulWidget {
               width: 360.pw,
               child: Text(
                 esError
-                    ? '$mensajeError'
+                    ? mensajeError ?? l10n.alert_dialog_button_title_error
                     : l10n.alert_dialog_button_subtitle_link_expired,
                 textAlign: TextAlign.center,
                 style: TextStyle(

@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:prlab_flutter/utilidades/funciones/functions.dart';
+import 'package:prlab_flutter/commons/commons.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 
 part 'bloc_crear_cuenta_admin_event.dart';
@@ -46,10 +46,10 @@ class BlocCrearCuentaAdmin
 
   /// Funcion que cambia el booleano del emailValido con la cual cambiamos el
   /// color del boton y podemos enviar el email
-  Future<void> _onVerificarEmail(
+  void _onVerificarEmail(
     BlocCrearCuentaAdminEventVerificarEmail event,
     Emitter<BlocCrearCuentaAdminEstado> emit,
-  ) async {
+  ) {
     try {
       emit(BlocCrearCuentaAdminEstadoExitoso(email: event.email));
     } catch (e, st) {
@@ -66,8 +66,4 @@ class BlocCrearCuentaAdmin
       }
     }
   }
-}
-
-bool validarEmail(String email) {
-  return Validators.emailRegExp.hasMatch(email) && email.isNotEmpty;
 }

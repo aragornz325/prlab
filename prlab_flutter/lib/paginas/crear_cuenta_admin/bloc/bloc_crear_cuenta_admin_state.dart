@@ -19,7 +19,7 @@ class BlocCrearCuentaAdminEstado extends Equatable {
   final String email;
 
   /// Booleano que indica si el correo/email esta bien
-  bool get esEmailValido => validarEmail(email);
+  bool get esEmailValido => ValidatorsEmail().validarEmail(email);
 
   @override
   List<Object> get props => [
