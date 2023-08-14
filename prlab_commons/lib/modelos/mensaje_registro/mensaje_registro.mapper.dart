@@ -24,8 +24,8 @@ class MensajeRegistroMapper extends ClassMapperBase<MensajeRegistro> {
   @override
   final String id = 'MensajeRegistro';
 
-  static int _$id(MensajeRegistro v) => v.id;
-  static const Field<MensajeRegistro, int> _f$id = Field('id', _$id);
+  static int? _$id(MensajeRegistro v) => v.id;
+  static const Field<MensajeRegistro, int> _f$id = Field('id', _$id, opt: true);
   static String _$mensaje(MensajeRegistro v) => v.mensaje;
   static const Field<MensajeRegistro, String> _f$mensaje =
       Field('mensaje', _$mensaje);
@@ -117,9 +117,13 @@ class _MensajeRegistroCopyWithImpl<$R, $Out>
   late final ClassMapperBase<MensajeRegistro> $mapper =
       MensajeRegistroMapper.ensureInitialized();
   @override
-  $R call({int? id, String? mensaje, int? autor, DateTime? fechaCreacion}) =>
+  $R call(
+          {Object? id = $none,
+          String? mensaje,
+          int? autor,
+          DateTime? fechaCreacion}) =>
       $apply(FieldCopyWithData({
-        if (id != null) #id: id,
+        if (id != $none) #id: id,
         if (mensaje != null) #mensaje: mensaje,
         if (autor != null) #autor: autor,
         if (fechaCreacion != null) #fechaCreacion: fechaCreacion

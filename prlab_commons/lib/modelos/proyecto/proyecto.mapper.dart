@@ -24,8 +24,8 @@ class ProyectoMapper extends ClassMapperBase<Proyecto> {
   @override
   final String id = 'Proyecto';
 
-  static int _$id(Proyecto v) => v.id;
-  static const Field<Proyecto, int> _f$id = Field('id', _$id);
+  static int? _$id(Proyecto v) => v.id;
+  static const Field<Proyecto, int> _f$id = Field('id', _$id, opt: true);
   static int _$idOrganizacion(Proyecto v) => v.idOrganizacion;
   static const Field<Proyecto, int> _f$idOrganizacion =
       Field('idOrganizacion', _$idOrganizacion);
@@ -36,7 +36,7 @@ class ProyectoMapper extends ClassMapperBase<Proyecto> {
       Field('idEntregables', _$idEntregables);
   static DateTime _$fechaCreacion(Proyecto v) => v.fechaCreacion;
   static const Field<Proyecto, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion);
+      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion');
 
   @override
   final Map<Symbol, Field<Proyecto, dynamic>> fields = const {
@@ -130,13 +130,13 @@ class _ProyectoCopyWithImpl<$R, $Out>
           (v) => call(idEntregables: v));
   @override
   $R call(
-          {int? id,
+          {Object? id = $none,
           int? idOrganizacion,
           String? nombre,
           List<int>? idEntregables,
           DateTime? fechaCreacion}) =>
       $apply(FieldCopyWithData({
-        if (id != null) #id: id,
+        if (id != $none) #id: id,
         if (idOrganizacion != null) #idOrganizacion: idOrganizacion,
         if (nombre != null) #nombre: nombre,
         if (idEntregables != null) #idEntregables: idEntregables,

@@ -5,15 +5,15 @@ part 'cliente.mapper.dart';
 
 /// Modelo de entidad Cliente (quien posee la Organización).
 @MappableClass()
-class Cliente with ClienteMappable {
+class Cliente extends TableRow with ClienteMappable {
   @MappableConstructor()
   Cliente({
-    required this.id,
+    int? id,
     required this.nombre,
     required this.idOrganizacion,
     required this.contacto,
     required this.fechaCreacion,
-  });
+  }) : super(id);
 
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
@@ -27,14 +27,49 @@ class Cliente with ClienteMappable {
             contacto: json['contacto'],
             fechaCreacion: json['fechaCreacion']);
 
-  @MappableField(key: 'id')
-  int id;
   @MappableField(key: 'nombre')
-  String nombre;
+  String? nombre;
   @MappableField(key: 'idOrganizacion')
-  int idOrganizacion;
+  int? idOrganizacion;
   @MappableField(key: 'contacto')
-  int contacto;
-  @MappableField(key: 'fechaCreacion')
-  DateTime fechaCreacion;
+  int? contacto;
+  @MappableField(key: 'fecha_creacion')
+  DateTime? fechaCreacion;
+
+  @override
+  String get tableName => 'cliente';
+
+  @override
+  void setColumn(String columnName, value) {
+    switch (columnName) {
+      case 'id':
+        id = value;
+        return;
+      case 'nombre':
+        nombre = value;
+        return;
+      case 'idOrganizacion':
+        idOrganizacion = value;
+        return;
+      case 'contacto':
+        contacto = value;
+        return;
+      case 'fechaCreacion':
+        fechaCreacion = value;
+        return;
+      default:
+        throw UnimplementedError();
+    }
+  }
+
+  @override
+  Map<String, dynamic> toJsonForDatabase() {
+    return {
+      'id': id,
+      'nombre': nombre,
+      'idOrganizacion': idOrganizacion,
+      'contacto': contacto,
+      'fechaCreacion': fechaCreacion,
+    };
+  }
 }

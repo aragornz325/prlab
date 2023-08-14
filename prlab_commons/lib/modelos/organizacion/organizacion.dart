@@ -1,48 +1,80 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:serverpod/protocol.dart';
 import 'package:serverpod/serverpod.dart';
 
 part 'organizacion.mapper.dart';
 
 /// Modelo de entidad Organizacion (que posee los proyectos).
-@MappableClass()
-class Organizacion with OrganizacionMappable {
+@MappableClass(ignoreNull: true)
+class Organizacion extends TableRow with OrganizacionMappable {
   @MappableConstructor()
   Organizacion({
-    required this.id,
+    int? id,
     required this.nombre,
     required this.tipo,
     required this.contacto,
-    required this.idMiembros,
-    required this.idProyectos,
-    required this.fechaCreacion,
-  });
+    DateTime? this.fechaCreacion,
+  }) : super(id);
 
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
   Organizacion.fromJson(
-    Map<String, dynamic> json,
+    Map<String, dynamic> jsonSerialization,
     SerializationManager serializationManager,
   ) : this(
-            id: json['id'],
-            nombre: json['nombre'],
-            tipo: json['tipo'],
-            contacto: json['contacto'],
-            idMiembros: json['idMiembros'],
-            idProyectos: json['idProyectos'],
-            fechaCreacion: json['fechaCreacion']);
+            id: serializationManager.deserialize<int?>(jsonSerialization['id']),
+            nombre: serializationManager.deserialize<String?>(jsonSerialization['nombre']),
+            tipo: serializationManager.deserialize<int?>(jsonSerialization['tipo']),
+            contacto: serializationManager.deserialize<int?>(jsonSerialization['contacto']),
+            fechaCreacion: serializationManager.deserialize<DateTime?>(jsonSerialization['fechaCreacion']),);
 
-  @MappableField(key: 'id')
-  int id;
   @MappableField(key: 'nombre')
-  String nombre;
+  String? nombre;
   @MappableField(key: 'tipo')
-  int tipo;
+  int? tipo;
   @MappableField(key: 'contacto')
-  int contacto;
-  @MappableField(key: 'idMiembros')
-  List<int> idMiembros;
-  @MappableField(key: 'idProyectos')
-  List<int> idProyectos;
-  @MappableField(key: 'fechaCreacion')
-  DateTime fechaCreacion;
+  int? contacto;
+  @MappableField(key: 'fecha_creacion')
+  DateTime? fechaCreacion;
+
+  @override
+  String get tableName => 'organizacion';
+
+  @override
+  void setColumn(String columnName, value) {
+    switch (columnName) {
+      case 'id':
+        id = value;
+        return;
+      case 'nombre':
+        nombre = value;
+        return;
+      case 'tipo':
+        tipo = value;
+        return;
+      case 'contacto':
+        contacto = value;
+        return;
+      case 'fechaCreacion':
+        fechaCreacion = value;
+        return;
+      default:
+        throw UnimplementedError();
+    }
+  }
+
+  @override
+  Map<String, dynamic> toJsonForDatabase() {
+    return {
+      'id': id,
+      'nombre': nombre,
+      'tipo': tipo,
+      'contacto': contacto,
+      'fechaCreacion': fechaCreacion,
+    };
+  }
 }

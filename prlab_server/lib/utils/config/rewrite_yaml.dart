@@ -23,11 +23,11 @@ void rewriteConfigYaml(String mode) {
       'publicScheme': 'http',
     },
     'database': {
-      'host': 'db.fytajeinqwkiuvyozibk.supabase.co',
+      'host': 'db.vtbtqqvsbekddeaeqbdt.supabase.co',
       'port': 5432,
       'name': 'postgres',
       'user': 'postgres',
-      'password': 'nWYCK59DiprYNNWc'
+      'password': 'VdeopjSVRoiGKrKp'
     },
     'redis': {
       'enabled': false,

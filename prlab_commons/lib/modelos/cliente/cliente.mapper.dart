@@ -24,18 +24,18 @@ class ClienteMapper extends ClassMapperBase<Cliente> {
   @override
   final String id = 'Cliente';
 
-  static int _$id(Cliente v) => v.id;
-  static const Field<Cliente, int> _f$id = Field('id', _$id);
-  static String _$nombre(Cliente v) => v.nombre;
+  static int? _$id(Cliente v) => v.id;
+  static const Field<Cliente, int> _f$id = Field('id', _$id, opt: true);
+  static String? _$nombre(Cliente v) => v.nombre;
   static const Field<Cliente, String> _f$nombre = Field('nombre', _$nombre);
-  static int _$idOrganizacion(Cliente v) => v.idOrganizacion;
+  static int? _$idOrganizacion(Cliente v) => v.idOrganizacion;
   static const Field<Cliente, int> _f$idOrganizacion =
       Field('idOrganizacion', _$idOrganizacion);
-  static int _$contacto(Cliente v) => v.contacto;
+  static int? _$contacto(Cliente v) => v.contacto;
   static const Field<Cliente, int> _f$contacto = Field('contacto', _$contacto);
-  static DateTime _$fechaCreacion(Cliente v) => v.fechaCreacion;
+  static DateTime? _$fechaCreacion(Cliente v) => v.fechaCreacion;
   static const Field<Cliente, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion);
+      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion');
 
   @override
   final Map<Symbol, Field<Cliente, dynamic>> fields = const {
@@ -122,17 +122,17 @@ class _ClienteCopyWithImpl<$R, $Out>
       ClienteMapper.ensureInitialized();
   @override
   $R call(
-          {int? id,
-          String? nombre,
-          int? idOrganizacion,
-          int? contacto,
-          DateTime? fechaCreacion}) =>
+          {Object? id = $none,
+          Object? nombre = $none,
+          Object? idOrganizacion = $none,
+          Object? contacto = $none,
+          Object? fechaCreacion = $none}) =>
       $apply(FieldCopyWithData({
-        if (id != null) #id: id,
-        if (nombre != null) #nombre: nombre,
-        if (idOrganizacion != null) #idOrganizacion: idOrganizacion,
-        if (contacto != null) #contacto: contacto,
-        if (fechaCreacion != null) #fechaCreacion: fechaCreacion
+        if (id != $none) #id: id,
+        if (nombre != $none) #nombre: nombre,
+        if (idOrganizacion != $none) #idOrganizacion: idOrganizacion,
+        if (contacto != $none) #contacto: contacto,
+        if (fechaCreacion != $none) #fechaCreacion: fechaCreacion
       }));
   @override
   Cliente $make(CopyWithData data) => Cliente(

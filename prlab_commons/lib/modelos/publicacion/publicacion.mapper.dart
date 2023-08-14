@@ -25,7 +25,7 @@ class PublicacionMapper extends ClassMapperBase<Publicacion> {
   @override
   final String id = 'Publicacion';
 
-  static int _$id(Publicacion v) => v.id;
+  static int? _$id(Publicacion v) => v.id;
   static const Field<Publicacion, int> _f$id = Field('id', _$id);
   static int _$idProyecto(Publicacion v) => v.idProyecto;
   static const Field<Publicacion, int> _f$idProyecto =
@@ -42,7 +42,7 @@ class PublicacionMapper extends ClassMapperBase<Publicacion> {
       Field('idImagenes', _$idImagenes);
   static int _$idImagenDestacada(Publicacion v) => v.idImagenDestacada;
   static const Field<Publicacion, int> _f$idImagenDestacada =
-      Field('idImagenDestacada', _$idImagenDestacada, key: 'imagenDestacada');
+      Field('idImagenDestacada', _$idImagenDestacada);
   static String _$resumen(Publicacion v) => v.resumen;
   static const Field<Publicacion, String> _f$resumen =
       Field('resumen', _$resumen);
@@ -66,7 +66,7 @@ class PublicacionMapper extends ClassMapperBase<Publicacion> {
       Field('idSubEntregables', _$idSubEntregables);
   static DateTime _$fechaCreacion(Publicacion v) => v.fechaCreacion;
   static const Field<Publicacion, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion);
+      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion');
 
   @override
   final Map<Symbol, Field<Publicacion, dynamic>> fields = const {
@@ -210,7 +210,7 @@ class _PublicacionCopyWithImpl<$R, $Out>
           (v) => call(idSubEntregables: v));
   @override
   $R call(
-          {int? id,
+          {Object? id = $none,
           int? idProyecto,
           String? titulo,
           String? contenido,
@@ -226,7 +226,7 @@ class _PublicacionCopyWithImpl<$R, $Out>
           List<int>? idSubEntregables,
           DateTime? fechaCreacion}) =>
       $apply(FieldCopyWithData({
-        if (id != null) #id: id,
+        if (id != $none) #id: id,
         if (idProyecto != null) #idProyecto: idProyecto,
         if (titulo != null) #titulo: titulo,
         if (contenido != null) #contenido: contenido,

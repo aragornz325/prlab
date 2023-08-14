@@ -24,8 +24,8 @@ class EntregableMapper extends ClassMapperBase<Entregable> {
   @override
   final String id = 'Entregable';
 
-  static int _$id(Entregable v) => v.id;
-  static const Field<Entregable, int> _f$id = Field('id', _$id);
+  static int? _$id(Entregable v) => v.id;
+  static const Field<Entregable, int> _f$id = Field('id', _$id, opt: true);
   static int _$idProyecto(Entregable v) => v.idProyecto;
   static const Field<Entregable, int> _f$idProyecto =
       Field('idProyecto', _$idProyecto);
@@ -36,7 +36,7 @@ class EntregableMapper extends ClassMapperBase<Entregable> {
       Field('idSubEntregables', _$idSubEntregables);
   static DateTime _$fechaCreacion(Entregable v) => v.fechaCreacion;
   static const Field<Entregable, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion);
+      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion');
 
   @override
   final Map<Symbol, Field<Entregable, dynamic>> fields = const {

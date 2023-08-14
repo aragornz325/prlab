@@ -5,15 +5,15 @@ part 'entregable.mapper.dart';
 
 /// Modelo de entidad Entregable (Abstracción para heredar a otras clases como Publicacion, curso, etc).
 @MappableClass()
-abstract class Entregable with EntregableMappable {
+abstract class Entregable extends TableRow with EntregableMappable {
   @MappableConstructor()
   Entregable({
-    required this.id,
+    int? id,
     required this.idProyecto,
     required this.titulo,
     required this.idSubEntregables,
     required this.fechaCreacion,
-  });
+  }) : super(id);
 
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
@@ -27,14 +27,49 @@ abstract class Entregable with EntregableMappable {
             idSubEntregables: json['idSubEntregables'],
             fechaCreacion: json['fechaCreacion']);
 
-  @MappableField(key: 'id')
-  int id;
   @MappableField(key: 'idProyecto')
   int idProyecto;
   @MappableField(key: 'titulo')
   String titulo;
   @MappableField(key: 'idSubEntregables')
   List<int> idSubEntregables;
-  @MappableField(key: 'fechaCreacion')
+  @MappableField(key: 'fecha_creacion')
   DateTime fechaCreacion;
+
+  @override
+  String get tableName => 'entregable';
+
+  @override
+  void setColumn(String columnName, value) {
+    switch (columnName) {
+      case 'id':
+        id = value;
+        return;
+      case 'idProyecto':
+        idProyecto = value;
+        return;
+      case 'titulo':
+        titulo = value;
+        return;
+      case 'idSubEntregables':
+        idSubEntregables = value;
+        return;
+      case 'fechaCreacion':
+        fechaCreacion = value;
+        return;
+      default:
+        throw UnimplementedError();
+    }
+  }
+
+  @override
+  Map<String, dynamic> toJsonForDatabase() {
+    return {
+      'id': id,
+      'idProyecto': idProyecto,
+      'titulo': titulo,
+      'idSubEntregables': idSubEntregables,
+      'fechaCreacion': fechaCreacion,
+    };
+  }
 }

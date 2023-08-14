@@ -5,15 +5,15 @@ part 'comentario.mapper.dart';
 
 /// Modelo de entidad Comentario (dentro de publicaciones u otros entregables).
 @MappableClass()
-class Comentario with ComentarioMappable {
+class Comentario extends TableRow with ComentarioMappable {
   @MappableConstructor()
   Comentario({
-    required this.id,
+    int? id,
     required this.idPublicacion,
     required this.offset,
     required this.comentario,
     required this.fechaCreacion,
-  });
+  }) : super(id);
 
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
@@ -27,14 +27,49 @@ class Comentario with ComentarioMappable {
             comentario: json['comentario'],
             fechaCreacion: json['fechaCreacion']);
 
-  @MappableField(key: 'id')
-  int id;
   @MappableField(key: 'idPublicacion')
   int idPublicacion;
   @MappableField(key: 'offset')
   Set<double> offset;
   @MappableField(key: 'comentario')
   String comentario;
-  @MappableField(key: 'fechaCreacion')
+  @MappableField(key: 'fecha_creacion')
   DateTime fechaCreacion;
+
+  @override
+  String get tableName => 'comentario';
+
+  @override
+  void setColumn(String columnName, value) {
+    switch (columnName) {
+      case 'id':
+        id = value;
+        return;
+      case 'idPublicacion':
+        idPublicacion = value;
+        return;
+      case 'offset':
+        offset = value;
+        return;
+      case 'comentario':
+        comentario = value;
+        return;
+      case 'fechaCreacion':
+        fechaCreacion = value;
+        return;
+      default:
+        throw UnimplementedError();
+    }
+  }
+
+  @override
+  Map<String, dynamic> toJsonForDatabase() {
+    return {
+      'id': id,
+      'idPublicacion': idPublicacion,
+      'offset': offset,
+      'comentario': comentario,
+      'fechaCreacion': fechaCreacion,
+    };
+  }
 }

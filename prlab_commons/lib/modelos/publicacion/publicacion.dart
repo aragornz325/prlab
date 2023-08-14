@@ -55,7 +55,7 @@ class Publicacion extends Entregable with PublicacionMappable {
   int idAutor;
   @MappableField(key: 'idImagenes')
   List<int> idImagenes;
-  @MappableField(key: 'imagenDestacada')
+  @MappableField(key: 'idImagenDestacada')
   int idImagenDestacada;
   @MappableField(key: 'resumen')
   String resumen;
@@ -70,5 +70,80 @@ class Publicacion extends Entregable with PublicacionMappable {
   @MappableField(key: 'idComentarios')
   int idComentarios;
 
+  @override
+  String get tableName => 'publicacion';
 
+  @override
+  void setColumn(String columnName, value) {
+    switch (columnName) {
+      case 'id':
+        id = value;
+        return;
+      case 'idProyecto':
+        idProyecto = value;
+        return;
+      case 'titulo':
+        titulo = value;
+        return;
+      case 'idSubEntregables':
+        idSubEntregables = value;
+        return;
+      case 'fechaCreacion':
+        fechaCreacion = value;
+        return;
+      case 'contenido':
+        contenido = value;
+        return;
+      case 'idAutor':
+        idAutor = value;
+        return;
+      case 'idImagenes':
+        idImagenes = value;
+        return;
+      case 'idImagenDestacada':
+        idImagenDestacada = value;
+        return;
+      case 'resumen':
+        resumen = value;
+        return;
+      case 'idTags':
+        idTags = value;
+        return;
+      case 'idStatus':
+        idStatus = value;
+        return;
+      case 'idCategorias':
+        idCategorias = value;
+        return;
+      case 'idPadres':
+        idPadres = value;
+        return;
+      case 'idComentarios':
+        idComentarios = value;
+        return;
+      default:
+        throw UnimplementedError();
+    }
+  }
+
+  @override
+  Map<String, dynamic> toJsonForDatabase() {
+    return {
+      'id': id,
+      'idProyecto': idProyecto,
+      'titulo': titulo,
+      'idSubEntregables': idSubEntregables,
+      'fechaCreacion': fechaCreacion,
+      'contenido': contenido,
+      'idAutor': idAutor,
+      'idImagenes': idImagenes,
+      'idImagenDestacada': idImagenDestacada,
+      'resumen': resumen,
+      'idTags': idTags,
+      'idStatus': idStatus,
+      'idCategorias': idCategorias,
+      'idPadres': idPadres,
+      'idComentarios': idComentarios,
+    };
+  }
 }

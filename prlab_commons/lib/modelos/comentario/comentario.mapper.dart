@@ -24,8 +24,8 @@ class ComentarioMapper extends ClassMapperBase<Comentario> {
   @override
   final String id = 'Comentario';
 
-  static int _$id(Comentario v) => v.id;
-  static const Field<Comentario, int> _f$id = Field('id', _$id);
+  static int? _$id(Comentario v) => v.id;
+  static const Field<Comentario, int> _f$id = Field('id', _$id, opt: true);
   static int _$idPublicacion(Comentario v) => v.idPublicacion;
   static const Field<Comentario, int> _f$idPublicacion =
       Field('idPublicacion', _$idPublicacion);
@@ -37,7 +37,7 @@ class ComentarioMapper extends ClassMapperBase<Comentario> {
       Field('comentario', _$comentario);
   static DateTime _$fechaCreacion(Comentario v) => v.fechaCreacion;
   static const Field<Comentario, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion);
+      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion');
 
   @override
   final Map<Symbol, Field<Comentario, dynamic>> fields = const {
@@ -125,13 +125,13 @@ class _ComentarioCopyWithImpl<$R, $Out>
       ComentarioMapper.ensureInitialized();
   @override
   $R call(
-          {int? id,
+          {Object? id = $none,
           int? idPublicacion,
           Set<double>? offset,
           String? comentario,
           DateTime? fechaCreacion}) =>
       $apply(FieldCopyWithData({
-        if (id != null) #id: id,
+        if (id != $none) #id: id,
         if (idPublicacion != null) #idPublicacion: idPublicacion,
         if (offset != null) #offset: offset,
         if (comentario != null) #comentario: comentario,
