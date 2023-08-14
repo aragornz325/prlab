@@ -8,6 +8,7 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
+import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 
 /// Bloc que maneja los estados o logica de la pagina de registro
 class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
@@ -47,30 +48,27 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     BlocRegistroEventoEnviarDatosRegistro event,
     Emitter<BlocRegistroEstado> emit,
   ) async {
+    emit(
+      const BlocRegistroEstadoCargando(),
+    );
     try {
-      emit(
-        const BlocRegistroEstadoCargando(),
-      );
-
       final respuesta =
           await emailAuthControllerCustomPRLab.createAccountRequest(
         event.email,
         event.email,
         event.password,
       );
-// capturar token
-//funcion validarTokenPorMail(token) = devuelve el email y de ahi lo pongo
-//al textfield;
-
       if (respuesta) {
-        //getValidationCodeByEmail(email); = devuelve el codigo
-        await emailAuthControllerCustomPRLab.validateAccount(
-          event.email, 'asd', // codigoOculto,
-        );
-
-        final usuario = await emailAuthControllerCustomPRLab.signIn(
+        final codigo = await client.auth.getValidationCode(
           event.email,
-          event.password,
+        );
+        await emailAuthControllerCustomPRLab.validateAccount(
+          event.email,
+          codigo,
+        );
+        final usuario = await emailAuthControllerCustomPRLab.signIn(
+          state.email,
+          state.password,
         );
 
         if (usuario != null) {
@@ -115,26 +113,19 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     BlocRegistroEventoVerificarToken event,
     Emitter<BlocRegistroEstado> emit,
   ) async {
+    emit(
+      const BlocRegistroEstadoCargando(),
+    );
     try {
-      emit(
-        const BlocRegistroEstadoCargando(),
+      final email = await client.auth.validarTokenPorMail(
+        event.token,
       );
-// TODO(SAM): agregar funcion que checkea el token.
-      const tokenValidado = true;
 
-      if (tokenValidado != false) {
-        emit(
-          const BlocRegistroEstadoExitoso(
-            tokenValidado: tokenValidado,
-          ),
-        );
-      } else {
-        emit(
-          const BlocRegistroErrorState(
-            errorMessage: MensajesDeErrorRegistro.credencialesInvalidas,
-          ),
-        );
-      }
+      emit(
+        BlocRegistroEstadoExitoso(
+          email: email,
+        ),
+      );
     } catch (e, st) {
       emit(
         const BlocRegistroErrorState(

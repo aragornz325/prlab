@@ -121,8 +121,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                 controller: controllerEmail,
                                 decoration: InputDecoration(
                                   prefixIcon: const Icon(Icons.email),
-                                  labelText: l10n
-                                      .page_sign_up_text_field_hint_example_mail,
+                                  labelText: state.email,
                                   labelStyle: TextStyle(
                                     color: tema.primary,
                                   ),

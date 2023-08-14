@@ -14,7 +14,7 @@ import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart
 @RoutePage()
 class RegistroPage extends StatelessWidget {
   const RegistroPage({
-    @PathParam('tokenAuth') required this.tokenAuth,
+    @PathParam('token-auth') required this.tokenAuth,
     super.key,
   });
 
@@ -30,7 +30,11 @@ class RegistroPage extends StatelessWidget {
         emailAuthControllerCustomPRLab:
             context.read<EmailAuthControllerCustomPRLab>(),
       )..add(
-          BlocRegistroEventoVerificarToken(token: tokenAuth),
+          const BlocRegistroEventoVerificarToken(
+            token:
+                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNlYmFzYW1vbnRlcm9AZ21haWwuY29tIiwiZXhwIjoxNjk0NjM3MTE4LCJpYXQiOjE2OTIwNDUxMTgsImlzcyI6InBybGFiIn0.nM0OYkdjUxBNw90IYcaZvS3MIncnkvXddyb_Rc1FmJk',
+          ), // tokenAuth),
+          // TODO(SAM): Descomentar a la hora de mergear
         ),
       child: BlocBuilder<BlocRegistro, BlocRegistroEstado>(
         builder: (context, state) {

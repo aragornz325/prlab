@@ -16,8 +16,8 @@ class AppRouter extends $AppRouter {
     ),
     AutoRoute(
       page: RegistroRoute.page,
-      initial: true, // todo(sam): Remover luego
-      path: '/:tokenAuth',
+      initial: true,
+      path: '/:token-auth',
     ),
     AutoRoute(
       path: '/crear-cuenta',
