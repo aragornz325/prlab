@@ -53,7 +53,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     try {
       final respuesta =
           await emailAuthControllerCustomPRLab.createAccountRequest(
-        'sebasamontero@gmail.com',
+        'sebasamontero',
         'sebasamontero@gmail.com',
         'Naitsabes1@',
       );
