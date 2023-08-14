@@ -7,9 +7,9 @@ import 'package:prlab_flutter/utilidades/funciones/functions.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template PrLabDialog}
-/// PrLabDialog es un popup que tiene dos factory uno para ingresar el codigo de
-/// 8 digitos
-/// y un boton para enviar el codigo
+/// PrLabDialog es un popup que tiene dos factory uno para ingresar el código de
+/// 8 dígitos
+/// y un boton para enviar el código.
 ///
 /// el otro del email enviado si el state/estado es exitoso
 /// donde muestra un texto con el email al usuario enviado para crear una
@@ -21,17 +21,20 @@ class PRDialog extends StatefulWidget {
   const PRDialog({
     required this.content,
     super.key,
+    this.esCargando = false,
     this.height = 285,
     this.width = 455,
   });
 
-  /// Alertdialog que muestra un textfield de 8 digitos
-  /// y un boton para enviar el codigo.
+  /// Alertdialog que muestra un textfield de 8 dígitos
+  /// y un boton para enviar el código.
   factory PRDialog.recuperarContrasenia({
-    required AppLocalizations l10n,
     required String email,
     required TextEditingController controller,
+    required BuildContext context,
   }) {
+    final l10n = context.l10n;
+
     final codigoEmail = '${l10n.alert_dialog_sub_title_verification_code_send}'
         ' ${obtenerPrimerasLetrasAntesSimbolo(email)}***@'
         '${obtenerTextoDespuesSimbolo(email)}';
@@ -53,7 +56,7 @@ class PRDialog extends StatefulWidget {
                   ),
                 ),
                 SizedBox(height: 40.ph),
-                //TODO: cambiar por los textfield de manu
+                // TODO: cambiar por los textfield de manu
                 PrLabTextfield(
                   controller: controller,
                   solicitoNuevoCodigo: true,
@@ -72,10 +75,10 @@ class PRDialog extends StatefulWidget {
                 PRBoton.outlined(
                   width: 360.pw,
 
-                  ///TODO:agregarle funcionalidad del bloc
+                  // TODO:agregarle funcionalidad del bloc
                   habilitado: true,
                   onTap: () {
-                    ///TODO:agregarle funcionalidad del bloc
+                    // TODO:agregarle funcionalidad del bloc
                   },
                   texto: l10n.alert_dialog_button_title_send,
                 ),
@@ -91,10 +94,11 @@ class PRDialog extends StatefulWidget {
   /// donde muestra un texto con el email al usuario enviado para crear una
   /// cuenta admin.
   factory PRDialog.emailEnviado({
-    required AppLocalizations l10n,
     required BuildContext context,
     required String email,
   }) {
+    final l10n = context.l10n;
+
     final theme = context.theme.colorScheme;
 
     return PRDialog(
@@ -116,7 +120,7 @@ class PRDialog extends StatefulWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  //TODO: esto va a definirse por el cliente
+                  // TODO: esto va a definirse por el cliente
                   text: 'An email has been sent to\n',
                   style: TextStyle(
                     color: const Color(0xff707070),
@@ -125,7 +129,7 @@ class PRDialog extends StatefulWidget {
                   ),
                 ),
                 TextSpan(
-                  //TODO: esto va a definirse por el cliente
+                  // TODO: esto va a definirse por el cliente
                   text: '$email \n',
                   style: TextStyle(
                     color: theme.primary,
@@ -134,7 +138,7 @@ class PRDialog extends StatefulWidget {
                   ),
                 ),
                 TextSpan(
-                  //TODO: esto va a definirse por el cliente
+                  // TODO: esto va a definirse por el cliente
                   text: 'Lorem ipsum dolor sit amet consectetur.Tortor\nut '
                       'quis faucibus etiam.Euismod condimentum.',
                   style: TextStyle(
@@ -148,36 +152,83 @@ class PRDialog extends StatefulWidget {
           ),
           SizedBox(height: 30.ph),
           Center(
-            child: SizedBox(
+            child: PRBoton.outlined(
+              onTap: () {
+                // TODO: agregarle funcionalidad
+                Navigator.of(context).pop();
+              },
+              texto: l10n.page_create_admin_alertdialog_button_ok,
+              habilitado: true,
               width: 360.pw,
-              height: 50.pw,
-              child: ElevatedButton(
-                onPressed: () {
-                  //TODO: agregarle funcionalidad
-                  Navigator.of(context).pop();
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: theme.background,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(100),
-                    side: BorderSide(
-                      color: theme.primary,
-                      width: 2,
-                    ),
-                  ),
-                ),
-                child: Text(
-                  l10n.page_create_admin_alertdialog_button_ok,
-                  style: TextStyle(
-                    color: theme.primary,
-                    fontSize: 15.pf,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  /// Alert dialog que muestra un error en caso de que esError devuelva true
+  /// muestra error donde le podes pasar por parámetros el mensajeError
+  factory PRDialog.error({
+    required BuildContext context,
+    required bool esError,
+    String? mensajeError,
+  }) {
+    final l10n = context.l10n;
+
+    return PRDialog(
+      content: SizedBox(
+        width: 360.pw,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(height: 20.ph),
+            Text(
+              esError
+                  ? l10n.alert_dialog_button_title_error
+                  : l10n.alert_dialog_button_subtitle_something_went_wrong,
+              style: TextStyle(
+                fontSize: 20.pf,
+                // TODO: cambiar cuando este el theme
+                color: esError ? Color(0xffE00707) : Colors.black,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(height: 30.ph),
+            SizedBox(
+              width: 360.pw,
+              child: Text(
+                esError
+                    ? mensajeError ?? l10n.alert_dialog_button_title_error
+                    : l10n.alert_dialog_button_subtitle_link_expired,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15.pf,
+                  // TODO: cambiar cuando este el theme
+                  color: Color(0xff707070),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+            SizedBox(height: 30.ph),
+            Center(
+              child: SizedBox(
+                width: 360.pw,
+                child: PRBoton.outlined(
+                  onTap: () {
+                    // TODO: agregarle funcionalidad
+                    Navigator.of(context).pop();
+                  },
+                  texto: esError
+                      ? l10n.page_create_admin_account_button_back
+                      : l10n.alert_dialog_button_title_button_resend,
+                  habilitado: true,
+                  width: 360.pw,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -190,6 +241,9 @@ class PRDialog extends StatefulWidget {
 
   /// width del alertdialog [PRDialog].(default: 455)
   final int width;
+
+  /// bool de que si es cargando [PRDialog].(default: false)
+  final bool esCargando;
 
   @override
   State<PRDialog> createState() => _PRDialogState();
@@ -214,7 +268,6 @@ class _PRDialogState extends State<PRDialog> {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme.colorScheme;
-
     return AlertDialog(
       backgroundColor: theme.background,
       shape: RoundedRectangleBorder(

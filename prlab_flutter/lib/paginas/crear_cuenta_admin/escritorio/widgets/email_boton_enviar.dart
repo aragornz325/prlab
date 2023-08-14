@@ -42,7 +42,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             BoxShadow(
               offset: const Offset(0, 10),
               blurRadius: 30,
-              //TODO: cambiar cuando este seteado los themas
+              // TODO: cambiar cuando este seteado los themas
               color: const Color(0xff000000).withOpacity(.25),
             ),
           ],
@@ -56,7 +56,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             Text(
               l10n.page_create_admin_client_email,
               style: TextStyle(
-                //TODO: cambiar cuando este seteado los themas
+                // TODO: cambiar cuando este seteado los themas
                 color: const Color(0xff363636),
                 fontSize: 30.pf,
                 fontWeight: FontWeight.w600,
@@ -66,7 +66,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             Text(
               l10n.page_create_admin_leading_pr_agency,
               style: TextStyle(
-                //TODO: cambiar cuando este seteado los themas
+                // TODO: cambiar cuando este seteado los themas
                 color: const Color(0xff707070),
                 fontSize: 15.pf,
                 fontWeight: FontWeight.w400,
@@ -78,25 +78,48 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 15.pw),
                 height: 40.ph,
                 width: 785.pw,
-                //TODO: cambiarlo por el que esta en development
+                // TODO: cambiarlo por el que esta en development tambien
+                // cambiar la funcion
                 child: TextFormField(
                   controller: controller,
+                  onChanged: (value) => _funcionPasarleEmailAlBloc(context),
                 ),
               ),
             ),
             SizedBox(height: 50.ph),
             BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
               builder: (context, state) {
+                if (state is BlocCrearCuentaAdminEstadoCargando) {
+                  return Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: theme.colorScheme.primary,
+                      ),
+                      height: 50.ph,
+                      width: 765.pw,
+                      child: Center(
+                        child: SizedBox(
+                          height: 35.ph,
+                          width: 35.pw,
+                          child: CircularProgressIndicator(
+                            color: theme.colorScheme.background,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }
                 return Center(
                   child: PRBoton(
                     width: 782.pw,
                     onTap: state.esEmailValido
                         ? () {
-                            //TODO: agregarle funcionalidad
+                            _funcionEnviarEmail(context);
                           }
                         : () {},
                     texto: l10n.page_create_admin_button_send,
-                    //TODO: cambiar por la variable del bloc
+                    // TODO: cambiar por la variable del bloc
                     habilitado: state.esEmailValido,
                   ),
                 );
@@ -106,5 +129,21 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /// Funcion para enviar el email/la invitación a crear una cuenta
+  void _funcionEnviarEmail(BuildContext context) {
+    context.read<BlocCrearCuentaAdmin>().add(
+          const BlocCrearCuentaAdminEventEnviarEmail(),
+        );
+  }
+
+  /// Funcion para enviar el email al bloc [BlocCrearCuentaAdmin]
+  void _funcionPasarleEmailAlBloc(BuildContext context) {
+    context.read<BlocCrearCuentaAdmin>().add(
+          BlocCrearCuentaAdminEventVerificarEmail(
+            email: controller.text,
+          ),
+        );
   }
 }

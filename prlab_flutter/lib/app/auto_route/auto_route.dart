@@ -20,7 +20,7 @@ class AppRouter extends $AppRouter {
       path: '/:token',
     ),
     AutoRoute(
-      path: '/crear-cuenta',
+      path: '/create-account',
       page: PaginaCrearCuenta.page,
     ),
   ];

@@ -34,13 +34,13 @@ abstract class $AppRouter extends _i7.RootStackRouter {
     PaginaCrearCuenta.name: (routeData) {
       return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.PaginaCrearCuenta(),
+        child: const _i1.PaginaCrearCuenta(),
       );
     },
     PaginaLogin.name: (routeData) {
       return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.PaginaLogin(),
+        child: const _i2.PaginaLogin(),
       );
     },
     VistaRegistroEscritorio.name: (routeData) {
