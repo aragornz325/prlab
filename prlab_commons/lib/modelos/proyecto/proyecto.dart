@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:serverpod/serverpod.dart';
 
@@ -64,12 +66,6 @@ class Proyecto extends TableRow with ProyectoMappable {
 
   @override
   Map<String, dynamic> toJsonForDatabase() {
-    return {
-      'id': id,
-      'idOrganizacion': idOrganizacion,
-      'nombre': nombre,
-      'idEntregables': idEntregables,
-      'fechaCreacion': fechaCreacion,
-    };
+    return jsonDecode(toJson());
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:prlab_commons/modelos/entregable/entregable.dart';
 import 'package:serverpod/serverpod.dart';
@@ -128,22 +130,6 @@ class Publicacion extends Entregable with PublicacionMappable {
 
   @override
   Map<String, dynamic> toJsonForDatabase() {
-    return {
-      'id': id,
-      'idProyecto': idProyecto,
-      'titulo': titulo,
-      'idSubEntregables': idSubEntregables,
-      'fechaCreacion': fechaCreacion,
-      'contenido': contenido,
-      'idAutor': idAutor,
-      'idImagenes': idImagenes,
-      'idImagenDestacada': idImagenDestacada,
-      'resumen': resumen,
-      'idTags': idTags,
-      'idStatus': idStatus,
-      'idCategorias': idCategorias,
-      'idPadres': idPadres,
-      'idComentarios': idComentarios,
-    };
+    return jsonDecode(toJson());
   }
 }

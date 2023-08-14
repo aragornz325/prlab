@@ -1,9 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:serverpod/protocol.dart';
 import 'package:serverpod/serverpod.dart';
 
 part 'organizacion.mapper.dart';
@@ -17,7 +14,7 @@ class Organizacion extends TableRow with OrganizacionMappable {
     required this.nombre,
     required this.tipo,
     required this.contacto,
-    DateTime? this.fechaCreacion,
+    this.fechaCreacion,
   }) : super(id);
 
   /// Constructor requerido por Serverpod para la serialización de la clase.
@@ -69,12 +66,6 @@ class Organizacion extends TableRow with OrganizacionMappable {
 
   @override
   Map<String, dynamic> toJsonForDatabase() {
-    return {
-      'id': id,
-      'nombre': nombre,
-      'tipo': tipo,
-      'contacto': contacto,
-      'fechaCreacion': fechaCreacion,
-    };
+    return jsonDecode(toJson());
   }
 }

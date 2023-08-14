@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:serverpod/serverpod.dart';
 
@@ -64,12 +66,6 @@ abstract class Entregable extends TableRow with EntregableMappable {
 
   @override
   Map<String, dynamic> toJsonForDatabase() {
-    return {
-      'id': id,
-      'idProyecto': idProyecto,
-      'titulo': titulo,
-      'idSubEntregables': idSubEntregables,
-      'fechaCreacion': fechaCreacion,
-    };
+    return jsonDecode(toJson());
   }
 }

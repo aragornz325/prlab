@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:serverpod/serverpod.dart';
 
@@ -64,12 +66,6 @@ class Cliente extends TableRow with ClienteMappable {
 
   @override
   Map<String, dynamic> toJsonForDatabase() {
-    return {
-      'id': id,
-      'nombre': nombre,
-      'idOrganizacion': idOrganizacion,
-      'contacto': contacto,
-      'fechaCreacion': fechaCreacion,
-    };
+    return jsonDecode(toJson());
   }
 }

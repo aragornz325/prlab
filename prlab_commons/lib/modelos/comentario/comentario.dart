@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:serverpod/serverpod.dart';
 
@@ -64,12 +66,6 @@ class Comentario extends TableRow with ComentarioMappable {
 
   @override
   Map<String, dynamic> toJsonForDatabase() {
-    return {
-      'id': id,
-      'idPublicacion': idPublicacion,
-      'offset': offset,
-      'comentario': comentario,
-      'fechaCreacion': fechaCreacion,
-    };
+    return jsonDecode(toJson());
   }
 }
