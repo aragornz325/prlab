@@ -44,22 +44,30 @@ abstract class $AppRouter extends _i7.RootStackRouter {
       );
     },
     VistaRegistroEscritorio.name: (routeData) {
+      final args = routeData.argsAs<VistaRegistroEscritorioArgs>();
       return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.VistaRegistroEscritorio(),
+        child: _i4.VistaRegistroEscritorio(
+          email: args.email,
+          key: args.key,
+        ),
       );
     },
-    RegistroVistaMobile.name: (routeData) {
+    VistaRegistroMobile.name: (routeData) {
+      final args = routeData.argsAs<VistaRegistroMobileArgs>();
       return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i5.RegistroVistaMobile(),
+        child: _i5.VistaRegistroMobile(
+          email: args.email,
+          key: args.key,
+        ),
       );
     },
     RegistroRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<RegistroRouteArgs>(
           orElse: () =>
-              RegistroRouteArgs(tokenAuth: pathParams.getString('tokenAuth')));
+              RegistroRouteArgs(tokenAuth: pathParams.getString('token')));
       return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i6.RegistroPage(
@@ -115,30 +123,79 @@ class PaginaLogin extends _i7.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.VistaRegistroEscritorio]
-class VistaRegistroEscritorio extends _i7.PageRouteInfo<void> {
-  const VistaRegistroEscritorio({List<_i7.PageRouteInfo>? children})
-      : super(
+class VistaRegistroEscritorio
+    extends _i7.PageRouteInfo<VistaRegistroEscritorioArgs> {
+  VistaRegistroEscritorio({
+    required String email,
+    _i8.Key? key,
+    List<_i7.PageRouteInfo>? children,
+  }) : super(
           VistaRegistroEscritorio.name,
+          args: VistaRegistroEscritorioArgs(
+            email: email,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'VistaRegistroEscritorio';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i7.PageInfo<VistaRegistroEscritorioArgs> page =
+      _i7.PageInfo<VistaRegistroEscritorioArgs>(name);
+}
+
+class VistaRegistroEscritorioArgs {
+  const VistaRegistroEscritorioArgs({
+    required this.email,
+    this.key,
+  });
+
+  final String email;
+
+  final _i8.Key? key;
+
+  @override
+  String toString() {
+    return 'VistaRegistroEscritorioArgs{email: $email, key: $key}';
+  }
 }
 
 /// generated route for
-/// [_i5.RegistroVistaMobile]
-class RegistroVistaMobile extends _i7.PageRouteInfo<void> {
-  const RegistroVistaMobile({List<_i7.PageRouteInfo>? children})
-      : super(
-          RegistroVistaMobile.name,
+/// [_i5.VistaRegistroMobile]
+class VistaRegistroMobile extends _i7.PageRouteInfo<VistaRegistroMobileArgs> {
+  VistaRegistroMobile({
+    required String email,
+    _i8.Key? key,
+    List<_i7.PageRouteInfo>? children,
+  }) : super(
+          VistaRegistroMobile.name,
+          args: VistaRegistroMobileArgs(
+            email: email,
+            key: key,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'RegistroVistaMobile';
+  static const String name = 'VistaRegistroMobile';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i7.PageInfo<VistaRegistroMobileArgs> page =
+      _i7.PageInfo<VistaRegistroMobileArgs>(name);
+}
+
+class VistaRegistroMobileArgs {
+  const VistaRegistroMobileArgs({
+    required this.email,
+    this.key,
+  });
+
+  final String email;
+
+  final _i8.Key? key;
+
+  @override
+  String toString() {
+    return 'VistaRegistroMobileArgs{email: $email, key: $key}';
+  }
 }
 
 /// generated route for
@@ -154,7 +211,7 @@ class RegistroRoute extends _i7.PageRouteInfo<RegistroRouteArgs> {
             tokenAuth: tokenAuth,
             key: key,
           ),
-          rawPathParams: {'tokenAuth': tokenAuth},
+          rawPathParams: {'token': tokenAuth},
           initialChildren: children,
         );
 
