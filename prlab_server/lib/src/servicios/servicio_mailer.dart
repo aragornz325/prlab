@@ -6,11 +6,24 @@ import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 
 final plantillasCorreo = PlantillasCorreo();
 
+/// La clase ServicioMailer se utiliza para enviar correos electrónicos.
 class ServicioMailer {
   final AuthRepository authRepository = AuthRepository();
+
+  /// La función `envioMailRegistro` envía un correo electrónico de registro con un token a la dirección
+  /// de correo electrónico especificada, guarda el token en una base de datos y devuelve un valor
+  /// booleano que indica si el correo electrónico se envió correctamente.
+  ///
+  /// Args:
+  ///   session (Session): Un parámetro obligatorio de tipo Sesión, que representa la sesión de usuario
+  /// actual.
+  ///   email (String): El parámetro de correo electrónico es la dirección de correo electrónico a la
+  /// que se enviará el correo electrónico de registro.
+  ///
   Future<bool> envioMailRegistro({
     required Session session,
     required String email,
+    required int tipo_de_invitacion
   }) async {
     try {
       final jwt = JWT(
@@ -31,7 +44,8 @@ class ServicioMailer {
       enviarEmail(
           mailDestinatario: email, subject: "registro", mailHtml: mailHtml);
 
-      await guardarTokenEnDb(session: session, token: token, email: email);
+      await authRepository.guardarTokenEnDb(
+          session: session, token: token, email: email, tipo_de_invitacion: tipo_de_invitacion);
 
       return true;
     } catch (e) {

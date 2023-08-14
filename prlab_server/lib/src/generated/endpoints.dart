@@ -56,7 +56,25 @@ class Endpoints extends _i1.EndpointDispatch {
             session,
             params['email'],
           ),
-        )
+        ),
+        'validarTokenPorMail': _i1.MethodConnector(
+          name: 'validarTokenPorMail',
+          params: {
+            'token': _i1.ParameterDescription(
+              name: 'token',
+              type: _i1.getType<String>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['auth'] as _i2.AuthEndpoint).validarTokenPorMail(
+            session,
+            params['token'],
+          ),
+        ),
       },
     );
     connectors['example'] = _i1.EndpointConnector(
@@ -94,7 +112,12 @@ class Endpoints extends _i1.EndpointDispatch {
               name: 'email',
               type: _i1.getType<String>(),
               nullable: false,
-            )
+            ),
+            'tipo_de_invitacion': _i1.ParameterDescription(
+              name: 'tipo_de_invitacion',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
           },
           call: (
             _i1.Session session,
@@ -103,6 +126,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (endpoints['mailer'] as _i4.MailerEndpoint).envioMailRegistro(
             session,
             params['email'],
+            params['tipo_de_invitacion'],
           ),
         )
       },
