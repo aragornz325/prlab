@@ -36,6 +36,13 @@ class _EndpointAuth extends _i1.EndpointRef {
         'getValidationCode',
         {'email': email},
       );
+
+  _i2.Future<String> validarTokenPorMail(String token) =>
+      caller.callServerEndpoint<String>(
+        'auth',
+        'validarTokenPorMail',
+        {'token': token},
+      );
 }
 
 class _EndpointExample extends _i1.EndpointRef {
@@ -57,11 +64,17 @@ class _EndpointMailer extends _i1.EndpointRef {
   @override
   String get name => 'mailer';
 
-  _i2.Future<bool> envioMailRegistro(String email) =>
+  _i2.Future<bool> envioMailRegistro(
+    String email,
+    int tipo_de_invitacion,
+  ) =>
       caller.callServerEndpoint<bool>(
         'mailer',
         'envioMailRegistro',
-        {'email': email},
+        {
+          'email': email,
+          'tipo_de_invitacion': tipo_de_invitacion,
+        },
       );
 }
 

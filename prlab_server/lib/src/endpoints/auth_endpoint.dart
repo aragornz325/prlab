@@ -22,4 +22,12 @@ class AuthEndpoint extends Endpoint {
   ) async {
     return await authService.getValidationCode(session: session, email: email);
   }
+
+
+  Future<String> validarTokenPorMail(
+    Session session,
+    String token,
+  ) async {
+    return await authService.validarTokenPorMail(session: session, token: token,);
+  }
 }
