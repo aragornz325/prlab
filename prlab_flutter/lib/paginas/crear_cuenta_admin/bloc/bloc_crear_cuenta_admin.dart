@@ -25,7 +25,8 @@ class BlocCrearCuentaAdmin
   ) async {
     emit(BlocCrearCuentaAdminEstadoCargando.desde(state));
     try {
-      await client.mailer.envioMailRegistro(state.email);
+      // TODO: ver que quieren hacer con el tipo_de invitacion
+      await client.mailer.envioMailRegistro(state.email, 1);
 
       emit(BlocCrearCuentaAdminEstadoExitosoEmailEnviado.desde(state));
     } catch (e, st) {
