@@ -58,12 +58,15 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
         event.email,
         event.password,
       );
+// capturar token
+//funcion validarTokenPorMail(token) = devuelve el email y de ahi lo pongo
+//al textfield;
+
       if (respuesta) {
-        //    final String codigoOculto = getCodigoDelBack();
+        //getValidationCodeByEmail(email); = devuelve el codigo
         await emailAuthControllerCustomPRLab.validateAccount(
           event.email, 'asd', // codigoOculto,
         );
-        //   jwt.validate = token es valido o esta caducado (true or false)
 
         final usuario = await emailAuthControllerCustomPRLab.signIn(
           event.email,
