@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 import 'package:serverpod_auth_client/module.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
+import 'package:serverpod_flutter/serverpod_flutter.dart';
 
 //TODO(cualquiera): mejorar naming de clase
 class EmailAuthControllerCustomPRLab extends EmailAuthController {
@@ -50,6 +52,18 @@ class EmailAuthControllerCustomPRLab extends EmailAuthController {
     }
   }
 
+  Future<bool> cuenta() async {
+    try {
+      return await caller.email.createAccountRequest(
+        'sebasamontero',
+        'sebasamontero@gmail.com',
+        'Naitsabes1@',
+      );
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
   /// La función signOut es un future que devuelve un valor booleano que indica
   /// si el proceso de cierre de sesión fue exitoso o no.
   Future<bool> signOut() async {
@@ -62,3 +76,17 @@ class EmailAuthControllerCustomPRLab extends EmailAuthController {
     }
   }
 }
+
+// void main() async {
+//   client = Client(
+//     'https://prlab-production.up.railway.app/',
+//     // authenticationKeyManager: FlutterAuthenticationKeyManager(
+//     //   runMode: 'staging',
+//     //   storage: SharedPreferenceStorage(),
+//     // ),
+//   )..connectivityMonitor = FlutterConnectivityMonitor();
+
+//   final s = EmailAuthControllerCustomPRLab(client.modules.auth);
+
+//   await s.cuenta();
+// }
