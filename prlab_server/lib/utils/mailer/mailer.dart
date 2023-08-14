@@ -32,7 +32,7 @@ Future<Map<String, String>> enviarEmail(
     //..recipients.addAll(['no-responder.escuelas@nidus.dev'])
     ..recipients.addAll(destinatarios)
     // ..bccRecipients.addAll(['${config['mailer']['nidusMail']}'])
-    ..subject = ' $subject -  ${DateTime.now()}'
+    ..subject = subject
     ..html = mailHtml;
 
   // ..attachments = [
