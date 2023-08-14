@@ -190,7 +190,7 @@ class PRDialog extends StatefulWidget {
               style: TextStyle(
                 fontSize: 20.pf,
                 // TODO: cambiar cuando este el theme
-                color: esError ? Color(0xffE00707) : Colors.black,
+                color: esError ? const Color(0xffE00707) : Colors.black,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -205,7 +205,7 @@ class PRDialog extends StatefulWidget {
                 style: TextStyle(
                   fontSize: 15.pf,
                   // TODO: cambiar cuando este el theme
-                  color: Color(0xff707070),
+                  color: const Color(0xff707070),
                   fontWeight: FontWeight.w400,
                 ),
               ),
