@@ -43,7 +43,7 @@
     "@page_create_admin_account_subtitle_international_prlab_agency": {
         "description": "Text International PR Agency in subtitle of screen"
     },
-    "page_create_admin_account_button_back": "back",
+    "page_create_admin_account_button_back": "Back",
     "@page_create_admin_account_button_back": {
         "description": "Text back in button of screen create admin account"
     },
@@ -122,6 +122,24 @@
     "page_create_account_admin_error_message_send_email": "Error to send email",
     "@page_create_account_admin_error_message_send_email": {
         "description":"part text in error alertdialog in page create account admin, Error al enviar el email"
+    },
+    "alert_dialog_button_title_error" : "¡Error!",
+    "@alert_dialog_button_title_error": {
+        "description":"text in alertdialog title, Error"
+    },
+    "alert_dialog_button_subtitle_something_went_wrong" : "Something went wrong",
+    "@alert_dialog_button_subtitle_something_went_wrong": {
+        "description":"text in alertdialog sub title, Something went wrong"
+    },
+    "alert_dialog_button_title_button_resend" : "Resend",
+    "@alert_dialog_button_title_button_resend": {
+        "description":"text in alertdialog title button, Resend"
+    },
+    "alert_dialog_button_subtitle_link_expired" : "The link has expired,\nplease click on “resend” to get a new one",
+    "@alert_dialog_button_subtitle_link_expired": {
+        "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
     }
+    
+
 
 }

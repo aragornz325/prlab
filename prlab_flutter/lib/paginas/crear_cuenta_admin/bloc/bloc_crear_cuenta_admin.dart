@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:prlab_flutter/commons/commons.dart';
+import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 
 part 'bloc_crear_cuenta_admin_event.dart';
 part 'bloc_crear_cuenta_admin_state.dart';
@@ -10,7 +12,7 @@ part 'bloc_crear_cuenta_admin_state.dart';
 /// bloc maneja los estados y logica de crear cuenta admin
 class BlocCrearCuentaAdmin
     extends Bloc<BlocCrearCuentaAdminEvent, BlocCrearCuentaAdminEstado> {
-  BlocCrearCuentaAdmin() : super(BlocCrearCuentaAdminEstadoInicial()) {
+  BlocCrearCuentaAdmin() : super(const BlocCrearCuentaAdminEstadoInicial()) {
     on<BlocCrearCuentaAdminEventEnviarEmail>(_onEnviarEmail);
     on<BlocCrearCuentaAdminEventVerificarEmail>(_onVerificarEmail);
   }
@@ -21,17 +23,21 @@ class BlocCrearCuentaAdmin
     BlocCrearCuentaAdminEventEnviarEmail event,
     Emitter<BlocCrearCuentaAdminEstado> emit,
   ) async {
-    emit(BlocCrearCuentaAdminEstadoCargando());
+    emit(BlocCrearCuentaAdminEstadoCargando.desde(state));
     try {
-      //TODO: implementar la funcion de enviar el email
-      emit(const BlocCrearCuentaAdminEstadoExitosoEmailEnviado());
+      // TODO: ver que quieren hacer con el tipo_de invitacion
+      await client.mailer.envioMailRegistro(state.email, 1);
+
+      emit(BlocCrearCuentaAdminEstadoExitosoEmailEnviado.desde(state));
     } catch (e, st) {
       emit(
-        const BlocCrearCuentaAdminEstadoFallido(
+        BlocCrearCuentaAdminEstadoFallido.desde(
+          state,
           errorMessage:
               BlocCrearCuentaAdminEstadoFallidoMensaje.errorToSendEmail,
         ),
       );
+
       if (kDebugMode) {
         debugger();
         throw UnimplementedError('Implementa un error para esto: $e $st');
@@ -41,19 +47,16 @@ class BlocCrearCuentaAdmin
 
   /// Funcion que cambia el booleano del emailValido con la cual cambiamos el
   /// color del boton y podemos enviar el email
-  Future<void> _onVerificarEmail(
+  void _onVerificarEmail(
     BlocCrearCuentaAdminEventVerificarEmail event,
     Emitter<BlocCrearCuentaAdminEstado> emit,
-  ) async {
+  ) {
     try {
-      emit(
-        BlocCrearCuentaAdminEstadoExitoso(
-          esEmailValido: event.esEmailValido,
-        ),
-      );
+      emit(BlocCrearCuentaAdminEstadoExitoso(email: event.email));
     } catch (e, st) {
       emit(
-        const BlocCrearCuentaAdminEstadoFallido(
+        BlocCrearCuentaAdminEstadoFallido.desde(
+          state,
           errorMessage:
               BlocCrearCuentaAdminEstadoFallidoMensaje.errorToChangeEmail,
         ),
