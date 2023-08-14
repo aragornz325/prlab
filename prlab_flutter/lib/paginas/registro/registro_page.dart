@@ -14,7 +14,7 @@ import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart
 @RoutePage()
 class RegistroPage extends StatelessWidget {
   const RegistroPage({
-    @PathParam('token-auth') required this.tokenAuth,
+    @PathParam('token') required this.tokenAuth,
     super.key,
   });
 
@@ -29,10 +29,10 @@ class RegistroPage extends StatelessWidget {
       create: (context) => BlocRegistro(
         emailAuthControllerCustomPRLab:
             context.read<EmailAuthControllerCustomPRLab>(),
+        //    client: context.read<Client>(),
       )..add(
-          const BlocRegistroEventoVerificarToken(
-            token:
-                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNlYmFzYW1vbnRlcm9AZ21haWwuY29tIiwiZXhwIjoxNjk0NjM3MTE4LCJpYXQiOjE2OTIwNDUxMTgsImlzcyI6InBybGFiIn0.nM0OYkdjUxBNw90IYcaZvS3MIncnkvXddyb_Rc1FmJk',
+          BlocRegistroEventoVerificarToken(
+            token: tokenAuth,
           ), // tokenAuth),
           // TODO(SAM): Descomentar a la hora de mergear
         ),
@@ -58,9 +58,13 @@ class RegistroPage extends StatelessWidget {
           }
           if (state is BlocRegistroEstadoExitoso ||
               state is BlocRegistroEstadoInicial) {
-            return const FullResponsiveScreen(
-              mobile: RegistroVistaMobile(),
-              desktop: VistaRegistroEscritorio(),
+            return FullResponsiveScreen(
+              mobile: VistaRegistroMobile(
+                email: state.email,
+              ),
+              desktop: VistaRegistroEscritorio(
+                email: state.email,
+              ),
             );
           }
           return Container();

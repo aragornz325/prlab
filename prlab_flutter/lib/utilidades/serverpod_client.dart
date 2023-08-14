@@ -16,6 +16,7 @@ Future<void> initializeServerpodClient({required String host}) async {
   //para nada
 
   const ipAddress = 'https://prlab-production.up.railway.app/';
+  // TODO(Anyone): Luego cambiar por el host
 
   // Sets up a singleton client object that can be used to talk to the server
   // from

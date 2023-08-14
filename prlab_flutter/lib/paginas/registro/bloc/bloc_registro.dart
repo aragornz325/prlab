@@ -14,6 +14,7 @@ import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
   BlocRegistro({
     required this.emailAuthControllerCustomPRLab,
+    //   required this.client,
   }) : super(
           const BlocRegistroEstadoInicial(),
         ) {
@@ -22,6 +23,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     on<BlocRegistroEventoEnviarDatosRegistro>(_onEnviarDatosRegistro);
   }
   final EmailAuthControllerCustomPRLab emailAuthControllerCustomPRLab;
+  // final Client client;
 
   /// Evento que acepta (o declina) los terminos y guarda el estado del checkbox
 
@@ -29,9 +31,9 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     BlocRegistroEventoAceptarTerminos event,
     Emitter<BlocRegistroEstado> emit,
   ) async {
-    emit(
-      const BlocRegistroEstadoCargando(),
-    );
+    // emit(
+    //   const BlocRegistroEstadoCargando(),
+    // );
 
     emit(
       BlocRegistroEstadoExitoso(
@@ -48,15 +50,12 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     BlocRegistroEventoEnviarDatosRegistro event,
     Emitter<BlocRegistroEstado> emit,
   ) async {
-    emit(
-      const BlocRegistroEstadoCargando(),
-    );
     try {
       final respuesta =
           await emailAuthControllerCustomPRLab.createAccountRequest(
-        event.email,
-        event.email,
-        event.password,
+        'sebasamontero@gmail.com',
+        'sebasamontero@gmail.com',
+        'Naitsabes1@',
       );
       if (respuesta) {
         final codigo = await client.auth.getValidationCode(

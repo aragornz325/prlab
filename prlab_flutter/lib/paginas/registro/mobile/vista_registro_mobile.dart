@@ -17,14 +17,14 @@ import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
 
 /// Vista de mobile de la pantalla registro, la cual llega a traves del mail
 ///  donde el usuario puede registrarse y aceptar los terminos y condiciones.
-class RegistroVistaMobile extends StatefulWidget {
-  const RegistroVistaMobile({super.key});
-
+class VistaRegistroMobile extends StatefulWidget {
+  const VistaRegistroMobile({required this.email, super.key});
+  final String email;
   @override
-  State<RegistroVistaMobile> createState() => _RegistroVistaMobileState();
+  State<VistaRegistroMobile> createState() => _VistaRegistroMobileState();
 }
 
-class _RegistroVistaMobileState extends State<RegistroVistaMobile> {
+class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
   /// Controlador del textfield que tiene el email del usuario
   TextEditingController controllerEmail = TextEditingController();
 

@@ -16,8 +16,8 @@ import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
 /// Vista de escritorio de la pantalla registro, la cual llega a traves del mail
 ///  donde el usuario puede registrarse  y aceptar los terminos y condiciones.
 class VistaRegistroEscritorio extends StatefulWidget {
-  const VistaRegistroEscritorio({super.key});
-
+  const VistaRegistroEscritorio({required this.email, super.key});
+  final String email;
   @override
   State<VistaRegistroEscritorio> createState() =>
       _VistaRegistroEscritorioState();
@@ -32,6 +32,12 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
 
   /// Controlador del textfield que permite al usuario confirmar la password
   TextEditingController controllerConfirmarPassword = TextEditingController();
+
+  @override
+  void initState() {
+    controllerEmail.text = widget.email;
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -119,9 +125,11 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                               width: 259.pw,
                               child: TextField(
                                 controller: controllerEmail,
+                                style: TextStyle(
+                                  color: tema.primary,
+                                ),
                                 decoration: InputDecoration(
                                   prefixIcon: const Icon(Icons.email),
-                                  labelText: state.email,
                                   labelStyle: TextStyle(
                                     color: tema.primary,
                                   ),
