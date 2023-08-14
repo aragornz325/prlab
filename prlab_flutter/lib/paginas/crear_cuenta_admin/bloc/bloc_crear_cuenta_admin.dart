@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:prlab_flutter/utilidades/funciones/functions.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 
 part 'bloc_crear_cuenta_admin_event.dart';
@@ -67,7 +68,8 @@ class BlocCrearCuentaAdmin
     Emitter<BlocCrearCuentaAdminEstado> emit,
   ) async {
     try {
-      if (EmailValidator.validate(event.email) && event.email.isNotEmpty) {
+      if (Validators.emailRegExp.hasMatch(event.email) &&
+          event.email.isNotEmpty) {
         emit(
           BlocCrearCuentaAdminEstadoExitoso(
             esEmailValido: true,
