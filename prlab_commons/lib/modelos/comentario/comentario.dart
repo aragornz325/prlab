@@ -1,21 +1,22 @@
 import 'dart:convert';
 
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:prlab_commons/modelos/base/base.dart';
 import 'package:serverpod/serverpod.dart';
 
 part 'comentario.mapper.dart';
 
 /// Modelo de entidad Comentario (dentro de publicaciones u otros entregables).
 @MappableClass()
-class Comentario extends TableRow with ComentarioMappable {
+class Comentario extends Base with ComentarioMappable {
   @MappableConstructor()
   Comentario({
-    int? id,
-    required this.idPublicacion,
+    super.id,
+    required this.idEntregable,
     required this.offset,
     required this.comentario,
-    required this.fechaCreacion,
-  }) : super(id);
+    super.fechaCreacion,
+  });
 
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
@@ -24,19 +25,17 @@ class Comentario extends TableRow with ComentarioMappable {
     SerializationManager serializationManager,
   ) : this(
             id: json['id'],
-            idPublicacion: json['idPublicacion'],
+            idEntregable: json['id_entregable'],
             offset: json['offset'],
             comentario: json['comentario'],
-            fechaCreacion: json['fechaCreacion']);
+            fechaCreacion: json['fecha_creacion']);
 
-  @MappableField(key: 'idPublicacion')
-  int idPublicacion;
+  @MappableField(key: 'id_entregable')
+  int idEntregable;
   @MappableField(key: 'offset')
   Set<double> offset;
   @MappableField(key: 'comentario')
   String comentario;
-  @MappableField(key: 'fecha_creacion')
-  DateTime fechaCreacion;
 
   @override
   String get tableName => 'comentario';
@@ -47,8 +46,8 @@ class Comentario extends TableRow with ComentarioMappable {
       case 'id':
         id = value;
         return;
-      case 'idPublicacion':
-        idPublicacion = value;
+      case 'idEntregable':
+        idEntregable = value;
         return;
       case 'offset':
         offset = value;

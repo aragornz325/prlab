@@ -1,21 +1,21 @@
-import 'dart:convert';
-
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:prlab_commons/modelos/base/base.dart';
 import 'package:serverpod/serverpod.dart';
 
 part 'entregable.mapper.dart';
 
 /// Modelo de entidad Entregable (Abstracción para heredar a otras clases como Publicacion, curso, etc).
 @MappableClass()
-abstract class Entregable extends TableRow with EntregableMappable {
+abstract class Entregable extends Base with EntregableMappable {
   @MappableConstructor()
   Entregable({
-    int? id,
-    required this.idProyecto,
-    required this.titulo,
-    required this.idSubEntregables,
-    required this.fechaCreacion,
-  }) : super(id);
+    super.id,
+    required this.nombre,
+    required this.idAutor,
+    this.fechaInicio,
+    this.fechaFin,
+    super.fechaCreacion,
+  });
 
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
@@ -24,48 +24,18 @@ abstract class Entregable extends TableRow with EntregableMappable {
     SerializationManager serializationManager,
   ) : this(
             id: json['id'],
-            idProyecto: json['idProyecto'],
-            titulo: json['titulo'],
-            idSubEntregables: json['idSubEntregables'],
-            fechaCreacion: json['fechaCreacion']);
+            nombre: json['nombre'],
+            idAutor: json['id_autor'],
+            fechaInicio: json['fecha_inicio'],
+            fechaFin: json['fecha_fin'],
+            fechaCreacion: json['fecha_creacion']);
 
-  @MappableField(key: 'idProyecto')
-  int idProyecto;
-  @MappableField(key: 'titulo')
-  String titulo;
-  @MappableField(key: 'idSubEntregables')
-  List<int> idSubEntregables;
-  @MappableField(key: 'fecha_creacion')
-  DateTime fechaCreacion;
-
-  @override
-  String get tableName => 'entregable';
-
-  @override
-  void setColumn(String columnName, value) {
-    switch (columnName) {
-      case 'id':
-        id = value;
-        return;
-      case 'idProyecto':
-        idProyecto = value;
-        return;
-      case 'titulo':
-        titulo = value;
-        return;
-      case 'idSubEntregables':
-        idSubEntregables = value;
-        return;
-      case 'fechaCreacion':
-        fechaCreacion = value;
-        return;
-      default:
-        throw UnimplementedError();
-    }
-  }
-
-  @override
-  Map<String, dynamic> toJsonForDatabase() {
-    return jsonDecode(toJson());
-  }
+  @MappableField(key: 'nombre')
+  String nombre;
+  @MappableField(key: 'id_autor')
+  int idAutor;
+  @MappableField(key: 'fecha_inicio')
+  int? fechaInicio;
+  @MappableField(key: 'fecha_fin')
+  int? fechaFin;
 }

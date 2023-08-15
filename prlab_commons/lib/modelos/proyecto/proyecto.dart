@@ -1,21 +1,25 @@
 import 'dart:convert';
 
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:prlab_commons/modelos/base/base.dart';
+import 'package:prlab_commons/modelos/entregable/entregable.dart';
 import 'package:serverpod/serverpod.dart';
 
 part 'proyecto.mapper.dart';
 
 /// Modelo de entidad Proyecto (que depende de la Organizacion y que contiene entregables).
 @MappableClass()
-class Proyecto extends TableRow with ProyectoMappable {
+class Proyecto extends Entregable with ProyectoMappable {
   @MappableConstructor()
   Proyecto({
-    int? id,
+    super.id,
     required this.idOrganizacion,
-    required this.nombre,
-    required this.idEntregables,
-    required this.fechaCreacion,
-  }) : super(id);
+    required super.nombre,
+    required super.idAutor,
+    super.fechaInicio,
+    super.fechaFin,
+    super.fechaCreacion,
+  });
 
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
@@ -24,19 +28,15 @@ class Proyecto extends TableRow with ProyectoMappable {
     SerializationManager serializationManager,
   ) : this(
             id: json['id'],
-            idOrganizacion: json['idOrganizacion'],
+            idOrganizacion: json['id_organizacion'],
             nombre: json['nombre'],
-            idEntregables: json['idEntregables'],
-            fechaCreacion: json['fechaCreacion']);
+            idAutor: json['id_autor'],
+            fechaInicio: json['fecha_inicio'],
+            fechaFin: json['fecha_fin'],
+            fechaCreacion: json['fecha_creacion']);
 
-  @MappableField(key: 'idOrganizacion')
+  @MappableField(key: 'id_organizacion')
   int idOrganizacion;
-  @MappableField(key: 'nombre')
-  String nombre;
-  @MappableField(key: 'idEntregables')
-  List<int> idEntregables;
-  @MappableField(key: 'fecha_creacion')
-  DateTime fechaCreacion;
 
   @override
   String get tableName => 'proyecto';
@@ -53,8 +53,14 @@ class Proyecto extends TableRow with ProyectoMappable {
       case 'nombre':
         nombre = value;
         return;
-      case 'idEntregables':
-        idEntregables = value;
+      case 'idAutor':
+        idAutor = value;
+        return;
+      case 'fechaInicio':
+        fechaInicio = value;
+        return;
+      case 'fechaFin':
+        fechaFin = value;
         return;
       case 'fechaCreacion':
         fechaCreacion = value;

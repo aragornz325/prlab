@@ -2,14 +2,13 @@ import 'package:prlab_commons/prlab_commons.dart';
 import 'package:serverpod/serverpod.dart';
 
 class ClienteEndpoint extends Endpoint {
-  Future<String> crearOrganizacion(Session session, Organizacion orga) async {
+  Future<int> crearOrganizacion(Session session, Organizacion orga) async {
     try {
-      print("Llegamos acá");
-      
-      session.db.insert(orga.copyWith(fechaCreacion: DateTime.now()));
-      return "true";
+      session.db.insert(orga);
+      return 200;
     } catch (e, st) {
-      return "$e, $st";
+      print('$e, $st');
+      return 500;
     }
   }
 }

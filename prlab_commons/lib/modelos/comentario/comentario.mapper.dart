@@ -12,6 +12,7 @@ class ComentarioMapper extends ClassMapperBase<Comentario> {
   static ComentarioMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = ComentarioMapper._());
+      BaseMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -26,23 +27,23 @@ class ComentarioMapper extends ClassMapperBase<Comentario> {
 
   static int? _$id(Comentario v) => v.id;
   static const Field<Comentario, int> _f$id = Field('id', _$id, opt: true);
-  static int _$idPublicacion(Comentario v) => v.idPublicacion;
-  static const Field<Comentario, int> _f$idPublicacion =
-      Field('idPublicacion', _$idPublicacion);
+  static int _$idEntregable(Comentario v) => v.idEntregable;
+  static const Field<Comentario, int> _f$idEntregable =
+      Field('idEntregable', _$idEntregable, key: 'id_entregable');
   static Set<double> _$offset(Comentario v) => v.offset;
   static const Field<Comentario, Set<double>> _f$offset =
       Field('offset', _$offset);
   static String _$comentario(Comentario v) => v.comentario;
   static const Field<Comentario, String> _f$comentario =
       Field('comentario', _$comentario);
-  static DateTime _$fechaCreacion(Comentario v) => v.fechaCreacion;
+  static DateTime? _$fechaCreacion(Comentario v) => v.fechaCreacion;
   static const Field<Comentario, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion');
+      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion', opt: true);
 
   @override
   final Map<Symbol, Field<Comentario, dynamic>> fields = const {
     #id: _f$id,
-    #idPublicacion: _f$idPublicacion,
+    #idEntregable: _f$idEntregable,
     #offset: _f$offset,
     #comentario: _f$comentario,
     #fechaCreacion: _f$fechaCreacion,
@@ -51,7 +52,7 @@ class ComentarioMapper extends ClassMapperBase<Comentario> {
   static Comentario _instantiate(DecodingData data) {
     return Comentario(
         id: data.dec(_f$id),
-        idPublicacion: data.dec(_f$idPublicacion),
+        idEntregable: data.dec(_f$idEntregable),
         offset: data.dec(_f$offset),
         comentario: data.dec(_f$comentario),
         fechaCreacion: data.dec(_f$fechaCreacion));
@@ -105,10 +106,11 @@ extension ComentarioValueCopy<$R, $Out>
 }
 
 abstract class ComentarioCopyWith<$R, $In extends Comentario, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
+    implements BaseCopyWith<$R, $In, $Out> {
+  @override
   $R call(
       {int? id,
-      int? idPublicacion,
+      int? idEntregable,
       Set<double>? offset,
       String? comentario,
       DateTime? fechaCreacion});
@@ -126,21 +128,21 @@ class _ComentarioCopyWithImpl<$R, $Out>
   @override
   $R call(
           {Object? id = $none,
-          int? idPublicacion,
+          int? idEntregable,
           Set<double>? offset,
           String? comentario,
-          DateTime? fechaCreacion}) =>
+          Object? fechaCreacion = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
-        if (idPublicacion != null) #idPublicacion: idPublicacion,
+        if (idEntregable != null) #idEntregable: idEntregable,
         if (offset != null) #offset: offset,
         if (comentario != null) #comentario: comentario,
-        if (fechaCreacion != null) #fechaCreacion: fechaCreacion
+        if (fechaCreacion != $none) #fechaCreacion: fechaCreacion
       }));
   @override
   Comentario $make(CopyWithData data) => Comentario(
       id: data.get(#id, or: $value.id),
-      idPublicacion: data.get(#idPublicacion, or: $value.idPublicacion),
+      idEntregable: data.get(#idEntregable, or: $value.idEntregable),
       offset: data.get(#offset, or: $value.offset),
       comentario: data.get(#comentario, or: $value.comentario),
       fechaCreacion: data.get(#fechaCreacion, or: $value.fechaCreacion));

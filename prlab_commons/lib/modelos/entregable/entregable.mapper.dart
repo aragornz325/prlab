@@ -12,6 +12,7 @@ class EntregableMapper extends ClassMapperBase<Entregable> {
   static EntregableMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = EntregableMapper._());
+      BaseMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -26,24 +27,28 @@ class EntregableMapper extends ClassMapperBase<Entregable> {
 
   static int? _$id(Entregable v) => v.id;
   static const Field<Entregable, int> _f$id = Field('id', _$id, opt: true);
-  static int _$idProyecto(Entregable v) => v.idProyecto;
-  static const Field<Entregable, int> _f$idProyecto =
-      Field('idProyecto', _$idProyecto);
-  static String _$titulo(Entregable v) => v.titulo;
-  static const Field<Entregable, String> _f$titulo = Field('titulo', _$titulo);
-  static List<int> _$idSubEntregables(Entregable v) => v.idSubEntregables;
-  static const Field<Entregable, List<int>> _f$idSubEntregables =
-      Field('idSubEntregables', _$idSubEntregables);
-  static DateTime _$fechaCreacion(Entregable v) => v.fechaCreacion;
+  static String _$nombre(Entregable v) => v.nombre;
+  static const Field<Entregable, String> _f$nombre = Field('nombre', _$nombre);
+  static int _$idAutor(Entregable v) => v.idAutor;
+  static const Field<Entregable, int> _f$idAutor =
+      Field('idAutor', _$idAutor, key: 'id_autor');
+  static int? _$fechaInicio(Entregable v) => v.fechaInicio;
+  static const Field<Entregable, int> _f$fechaInicio =
+      Field('fechaInicio', _$fechaInicio, key: 'fecha_inicio', opt: true);
+  static int? _$fechaFin(Entregable v) => v.fechaFin;
+  static const Field<Entregable, int> _f$fechaFin =
+      Field('fechaFin', _$fechaFin, key: 'fecha_fin', opt: true);
+  static DateTime? _$fechaCreacion(Entregable v) => v.fechaCreacion;
   static const Field<Entregable, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion');
+      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion', opt: true);
 
   @override
   final Map<Symbol, Field<Entregable, dynamic>> fields = const {
     #id: _f$id,
-    #idProyecto: _f$idProyecto,
-    #titulo: _f$titulo,
-    #idSubEntregables: _f$idSubEntregables,
+    #nombre: _f$nombre,
+    #idAutor: _f$idAutor,
+    #fechaInicio: _f$fechaInicio,
+    #fechaFin: _f$fechaFin,
     #fechaCreacion: _f$fechaCreacion,
   };
 
@@ -70,13 +75,14 @@ mixin EntregableMappable {
 }
 
 abstract class EntregableCopyWith<$R, $In extends Entregable, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idSubEntregables;
+    implements BaseCopyWith<$R, $In, $Out> {
+  @override
   $R call(
       {int? id,
-      int? idProyecto,
-      String? titulo,
-      List<int>? idSubEntregables,
+      String? nombre,
+      int? idAutor,
+      int? fechaInicio,
+      int? fechaFin,
       DateTime? fechaCreacion});
   EntregableCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }

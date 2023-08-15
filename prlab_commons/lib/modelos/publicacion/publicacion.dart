@@ -13,10 +13,10 @@ class Publicacion extends Entregable with PublicacionMappable {
   @MappableConstructor()
   Publicacion({
     required super.id,
-    required super.idProyecto,
-    required super.titulo,
+    required this.idProyecto,
+    required super.nombre,
     required this.contenido,
-    required this.idAutor,
+    required super.idAutor,
     required this.idImagenes,
     required this.idImagenDestacada,
     required this.resumen,
@@ -24,8 +24,8 @@ class Publicacion extends Entregable with PublicacionMappable {
     required this.idStatus,
     required this.idCategorias,
     required this.idPadres,
-    required this.idComentarios,
-    required super.idSubEntregables,
+    required super.fechaInicio,
+    required super.fechaFin,
     required super.fechaCreacion,
   });
 
@@ -36,41 +36,39 @@ class Publicacion extends Entregable with PublicacionMappable {
     SerializationManager serializationManager,
   ) : this(
             id: json['id'],
-            idProyecto: json['idProyecto'],
-            titulo: json['titulo'],
+            idProyecto: json['id_proyecto'],
+            nombre: json['nombre'],
             contenido: json['contenido'],
-            idAutor: json['idAutor'],
-            idImagenes: json['idImagenes'],
-            idImagenDestacada: json['idImagenDestacada'],
+            idAutor: json['id_autor'],
+            idImagenes: json['id_imagenes'],
+            idImagenDestacada: json['id_imagen_destacada'],
             resumen: json['resumen'],
-            idTags: json['idTags'],
-            idStatus: json['idStatus'],
-            idCategorias: json['idCategorias'],
-            idPadres: json['idPadres'],
-            idComentarios: json['idComentarios'],
-            idSubEntregables: json['idSubEntregables'],
-            fechaCreacion: json['fechaCreacion']);
+            idTags: json['id_tags'],
+            idStatus: json['id_status'],
+            idCategorias: json['id_categorias'],
+            idPadres: json['id_padres'],
+            fechaInicio: json['fecha_inicio'],
+            fechaFin: json['fecha_fin'],
+            fechaCreacion: json['fecha_creacion']);
   
+  @MappableField(key: 'id_proyecto')
+  int idProyecto;
   @MappableField(key: 'contenido')
   String contenido;
-  @MappableField(key: 'idAutor')
-  int idAutor;
-  @MappableField(key: 'idImagenes')
+  @MappableField(key: 'id_imagenes')
   List<int> idImagenes;
-  @MappableField(key: 'idImagenDestacada')
+  @MappableField(key: 'id_imagen_destacada')
   int idImagenDestacada;
   @MappableField(key: 'resumen')
   String resumen;
-  @MappableField(key: 'idTags')
+  @MappableField(key: 'id_tags')
   List<int> idTags;
-  @MappableField(key: 'idStatus')
+  @MappableField(key: 'id_status')
   int idStatus;
-  @MappableField(key: 'idCategorias')
+  @MappableField(key: 'id_categorias')
   List<int> idCategorias;
-  @MappableField(key: 'idPadres')
+  @MappableField(key: 'id_padres')
   int idPadres;
-  @MappableField(key: 'idComentarios')
-  int idComentarios;
 
   @override
   String get tableName => 'publicacion';
@@ -84,14 +82,8 @@ class Publicacion extends Entregable with PublicacionMappable {
       case 'idProyecto':
         idProyecto = value;
         return;
-      case 'titulo':
-        titulo = value;
-        return;
-      case 'idSubEntregables':
-        idSubEntregables = value;
-        return;
-      case 'fechaCreacion':
-        fechaCreacion = value;
+      case 'nombre':
+        nombre = value;
         return;
       case 'contenido':
         contenido = value;
@@ -120,8 +112,14 @@ class Publicacion extends Entregable with PublicacionMappable {
       case 'idPadres':
         idPadres = value;
         return;
-      case 'idComentarios':
-        idComentarios = value;
+      case 'fechaInicio':
+        fechaInicio = value;
+        return;
+      case 'fechaFin':
+        fechaFin = value;
+        return;
+      case 'fechaCreacion':
+        fechaCreacion = value;
         return;
       default:
         throw UnimplementedError();

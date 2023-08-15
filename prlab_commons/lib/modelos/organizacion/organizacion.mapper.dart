@@ -12,6 +12,7 @@ class OrganizacionMapper extends ClassMapperBase<Organizacion> {
   static OrganizacionMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = OrganizacionMapper._());
+      ClienteMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -106,7 +107,8 @@ extension OrganizacionValueCopy<$R, $Out>
 }
 
 abstract class OrganizacionCopyWith<$R, $In extends Organizacion, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
+    implements ClienteCopyWith<$R, $In, $Out> {
+  @override
   $R call(
       {int? id,
       String? nombre,

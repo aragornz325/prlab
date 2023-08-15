@@ -12,6 +12,7 @@ class MensajeRegistroMapper extends ClassMapperBase<MensajeRegistro> {
   static MensajeRegistroMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = MensajeRegistroMapper._());
+      BaseMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -29,17 +30,18 @@ class MensajeRegistroMapper extends ClassMapperBase<MensajeRegistro> {
   static String _$mensaje(MensajeRegistro v) => v.mensaje;
   static const Field<MensajeRegistro, String> _f$mensaje =
       Field('mensaje', _$mensaje);
-  static int _$autor(MensajeRegistro v) => v.autor;
-  static const Field<MensajeRegistro, int> _f$autor = Field('autor', _$autor);
-  static DateTime _$fechaCreacion(MensajeRegistro v) => v.fechaCreacion;
+  static int _$idAutor(MensajeRegistro v) => v.idAutor;
+  static const Field<MensajeRegistro, int> _f$idAutor =
+      Field('idAutor', _$idAutor, key: 'id_autor');
+  static DateTime? _$fechaCreacion(MensajeRegistro v) => v.fechaCreacion;
   static const Field<MensajeRegistro, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion);
+      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion', opt: true);
 
   @override
   final Map<Symbol, Field<MensajeRegistro, dynamic>> fields = const {
     #id: _f$id,
     #mensaje: _f$mensaje,
-    #autor: _f$autor,
+    #idAutor: _f$idAutor,
     #fechaCreacion: _f$fechaCreacion,
   };
 
@@ -47,7 +49,7 @@ class MensajeRegistroMapper extends ClassMapperBase<MensajeRegistro> {
     return MensajeRegistro(
         id: data.dec(_f$id),
         mensaje: data.dec(_f$mensaje),
-        autor: data.dec(_f$autor),
+        idAutor: data.dec(_f$idAutor),
         fechaCreacion: data.dec(_f$fechaCreacion));
   }
 
@@ -102,8 +104,9 @@ extension MensajeRegistroValueCopy<$R, $Out>
 }
 
 abstract class MensajeRegistroCopyWith<$R, $In extends MensajeRegistro, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
-  $R call({int? id, String? mensaje, int? autor, DateTime? fechaCreacion});
+    implements BaseCopyWith<$R, $In, $Out> {
+  @override
+  $R call({int? id, String? mensaje, int? idAutor, DateTime? fechaCreacion});
   MensajeRegistroCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -120,19 +123,19 @@ class _MensajeRegistroCopyWithImpl<$R, $Out>
   $R call(
           {Object? id = $none,
           String? mensaje,
-          int? autor,
-          DateTime? fechaCreacion}) =>
+          int? idAutor,
+          Object? fechaCreacion = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (mensaje != null) #mensaje: mensaje,
-        if (autor != null) #autor: autor,
-        if (fechaCreacion != null) #fechaCreacion: fechaCreacion
+        if (idAutor != null) #idAutor: idAutor,
+        if (fechaCreacion != $none) #fechaCreacion: fechaCreacion
       }));
   @override
   MensajeRegistro $make(CopyWithData data) => MensajeRegistro(
       id: data.get(#id, or: $value.id),
       mensaje: data.get(#mensaje, or: $value.mensaje),
-      autor: data.get(#autor, or: $value.autor),
+      idAutor: data.get(#idAutor, or: $value.idAutor),
       fechaCreacion: data.get(#fechaCreacion, or: $value.fechaCreacion));
 
   @override

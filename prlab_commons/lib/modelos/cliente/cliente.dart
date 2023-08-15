@@ -1,21 +1,21 @@
 import 'dart:convert';
 
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:prlab_commons/modelos/base/base.dart';
 import 'package:serverpod/serverpod.dart';
 
 part 'cliente.mapper.dart';
 
 /// Modelo de entidad Cliente (quien posee la Organización).
 @MappableClass()
-class Cliente extends TableRow with ClienteMappable {
+class Cliente extends Base with ClienteMappable {
   @MappableConstructor()
   Cliente({
-    int? id,
+    super.id,
     required this.nombre,
-    required this.idOrganizacion,
     required this.contacto,
-    required this.fechaCreacion,
-  }) : super(id);
+    super.fechaCreacion,
+  });
 
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
@@ -25,18 +25,13 @@ class Cliente extends TableRow with ClienteMappable {
   ) : this(
             id: json['id'],
             nombre: json['nombre'],
-            idOrganizacion: json['idOrganizacion'],
             contacto: json['contacto'],
-            fechaCreacion: json['fechaCreacion']);
+            fechaCreacion: json['fecha_creacion']);
 
   @MappableField(key: 'nombre')
   String? nombre;
-  @MappableField(key: 'idOrganizacion')
-  int? idOrganizacion;
   @MappableField(key: 'contacto')
   int? contacto;
-  @MappableField(key: 'fecha_creacion')
-  DateTime? fechaCreacion;
 
   @override
   String get tableName => 'cliente';
@@ -49,9 +44,6 @@ class Cliente extends TableRow with ClienteMappable {
         return;
       case 'nombre':
         nombre = value;
-        return;
-      case 'idOrganizacion':
-        idOrganizacion = value;
         return;
       case 'contacto':
         contacto = value;

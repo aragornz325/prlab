@@ -19,8 +19,8 @@ class _EndpointCliente extends _i1.EndpointRef {
   @override
   String get name => 'cliente';
 
-  _i2.Future<String> crearOrganizacion(_i3.Organizacion orga) =>
-      caller.callServerEndpoint<String>(
+  _i2.Future<int> crearOrganizacion(_i3.Organizacion orga) =>
+      caller.callServerEndpoint<int>(
         'cliente',
         'crearOrganizacion',
         {'orga': orga},

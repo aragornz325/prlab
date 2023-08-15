@@ -12,6 +12,7 @@ class ProyectoMapper extends ClassMapperBase<Proyecto> {
   static ProyectoMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = ProyectoMapper._());
+      EntregableMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -28,22 +29,30 @@ class ProyectoMapper extends ClassMapperBase<Proyecto> {
   static const Field<Proyecto, int> _f$id = Field('id', _$id, opt: true);
   static int _$idOrganizacion(Proyecto v) => v.idOrganizacion;
   static const Field<Proyecto, int> _f$idOrganizacion =
-      Field('idOrganizacion', _$idOrganizacion);
+      Field('idOrganizacion', _$idOrganizacion, key: 'id_organizacion');
   static String _$nombre(Proyecto v) => v.nombre;
   static const Field<Proyecto, String> _f$nombre = Field('nombre', _$nombre);
-  static List<int> _$idEntregables(Proyecto v) => v.idEntregables;
-  static const Field<Proyecto, List<int>> _f$idEntregables =
-      Field('idEntregables', _$idEntregables);
-  static DateTime _$fechaCreacion(Proyecto v) => v.fechaCreacion;
+  static int _$idAutor(Proyecto v) => v.idAutor;
+  static const Field<Proyecto, int> _f$idAutor =
+      Field('idAutor', _$idAutor, key: 'id_autor');
+  static int? _$fechaInicio(Proyecto v) => v.fechaInicio;
+  static const Field<Proyecto, int> _f$fechaInicio =
+      Field('fechaInicio', _$fechaInicio, key: 'fecha_inicio', opt: true);
+  static int? _$fechaFin(Proyecto v) => v.fechaFin;
+  static const Field<Proyecto, int> _f$fechaFin =
+      Field('fechaFin', _$fechaFin, key: 'fecha_fin', opt: true);
+  static DateTime? _$fechaCreacion(Proyecto v) => v.fechaCreacion;
   static const Field<Proyecto, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion');
+      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion', opt: true);
 
   @override
   final Map<Symbol, Field<Proyecto, dynamic>> fields = const {
     #id: _f$id,
     #idOrganizacion: _f$idOrganizacion,
     #nombre: _f$nombre,
-    #idEntregables: _f$idEntregables,
+    #idAutor: _f$idAutor,
+    #fechaInicio: _f$fechaInicio,
+    #fechaFin: _f$fechaFin,
     #fechaCreacion: _f$fechaCreacion,
   };
 
@@ -52,7 +61,9 @@ class ProyectoMapper extends ClassMapperBase<Proyecto> {
         id: data.dec(_f$id),
         idOrganizacion: data.dec(_f$idOrganizacion),
         nombre: data.dec(_f$nombre),
-        idEntregables: data.dec(_f$idEntregables),
+        idAutor: data.dec(_f$idAutor),
+        fechaInicio: data.dec(_f$fechaInicio),
+        fechaFin: data.dec(_f$fechaFin),
         fechaCreacion: data.dec(_f$fechaCreacion));
   }
 
@@ -103,13 +114,15 @@ extension ProyectoValueCopy<$R, $Out> on ObjectCopyWith<$R, Proyecto, $Out> {
 }
 
 abstract class ProyectoCopyWith<$R, $In extends Proyecto, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idEntregables;
+    implements EntregableCopyWith<$R, $In, $Out> {
+  @override
   $R call(
       {int? id,
       int? idOrganizacion,
       String? nombre,
-      List<int>? idEntregables,
+      int? idAutor,
+      int? fechaInicio,
+      int? fechaFin,
       DateTime? fechaCreacion});
   ProyectoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -123,31 +136,31 @@ class _ProyectoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<Proyecto> $mapper =
       ProyectoMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get idEntregables =>
-      ListCopyWith(
-          $value.idEntregables,
-          (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(idEntregables: v));
-  @override
   $R call(
           {Object? id = $none,
           int? idOrganizacion,
           String? nombre,
-          List<int>? idEntregables,
-          DateTime? fechaCreacion}) =>
+          int? idAutor,
+          Object? fechaInicio = $none,
+          Object? fechaFin = $none,
+          Object? fechaCreacion = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (idOrganizacion != null) #idOrganizacion: idOrganizacion,
         if (nombre != null) #nombre: nombre,
-        if (idEntregables != null) #idEntregables: idEntregables,
-        if (fechaCreacion != null) #fechaCreacion: fechaCreacion
+        if (idAutor != null) #idAutor: idAutor,
+        if (fechaInicio != $none) #fechaInicio: fechaInicio,
+        if (fechaFin != $none) #fechaFin: fechaFin,
+        if (fechaCreacion != $none) #fechaCreacion: fechaCreacion
       }));
   @override
   Proyecto $make(CopyWithData data) => Proyecto(
       id: data.get(#id, or: $value.id),
       idOrganizacion: data.get(#idOrganizacion, or: $value.idOrganizacion),
       nombre: data.get(#nombre, or: $value.nombre),
-      idEntregables: data.get(#idEntregables, or: $value.idEntregables),
+      idAutor: data.get(#idAutor, or: $value.idAutor),
+      fechaInicio: data.get(#fechaInicio, or: $value.fechaInicio),
+      fechaFin: data.get(#fechaFin, or: $value.fechaFin),
       fechaCreacion: data.get(#fechaCreacion, or: $value.fechaCreacion));
 
   @override

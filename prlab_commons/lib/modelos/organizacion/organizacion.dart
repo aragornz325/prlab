@@ -1,21 +1,23 @@
 import 'dart:convert';
 
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:prlab_commons/modelos/base/base.dart';
+import 'package:prlab_commons/prlab_commons.dart';
 import 'package:serverpod/serverpod.dart';
 
 part 'organizacion.mapper.dart';
 
 /// Modelo de entidad Organizacion (que posee los proyectos).
 @MappableClass(ignoreNull: true)
-class Organizacion extends TableRow with OrganizacionMappable {
+class Organizacion extends Cliente with OrganizacionMappable {
   @MappableConstructor()
   Organizacion({
-    int? id,
-    required this.nombre,
+    super.id,
+    required super.nombre,
     required this.tipo,
-    required this.contacto,
-    this.fechaCreacion,
-  }) : super(id);
+    required super.contacto,
+    super.fechaCreacion,
+  });
 
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
@@ -27,16 +29,10 @@ class Organizacion extends TableRow with OrganizacionMappable {
             nombre: serializationManager.deserialize<String?>(jsonSerialization['nombre']),
             tipo: serializationManager.deserialize<int?>(jsonSerialization['tipo']),
             contacto: serializationManager.deserialize<int?>(jsonSerialization['contacto']),
-            fechaCreacion: serializationManager.deserialize<DateTime?>(jsonSerialization['fechaCreacion']),);
+            fechaCreacion: serializationManager.deserialize<DateTime?>(jsonSerialization['fecha_creacion']),);
 
-  @MappableField(key: 'nombre')
-  String? nombre;
   @MappableField(key: 'tipo')
   int? tipo;
-  @MappableField(key: 'contacto')
-  int? contacto;
-  @MappableField(key: 'fecha_creacion')
-  DateTime? fechaCreacion;
 
   @override
   String get tableName => 'organizacion';

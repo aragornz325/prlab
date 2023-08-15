@@ -1,18 +1,19 @@
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:prlab_commons/modelos/base/base.dart';
 import 'package:serverpod/serverpod.dart';
 
 part 'mensaje_registro.mapper.dart';
 
 /// Modelo de entidad MensajeRegistro (logs de actividad).
 @MappableClass()
-class MensajeRegistro extends TableRow with MensajeRegistroMappable {
+class MensajeRegistro extends Base with MensajeRegistroMappable {
   @MappableConstructor()
   MensajeRegistro({
-    int? id,
+    super.id,
     required this.mensaje,
-    required this.autor,
-    required this.fechaCreacion,
-  }) : super(id);
+    required this.idAutor,
+    super.fechaCreacion
+  });
 
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
@@ -22,15 +23,13 @@ class MensajeRegistro extends TableRow with MensajeRegistroMappable {
   ) : this(
             id: json['id'],
             mensaje: json['mensaje'],
-            autor: json['autor'],
-            fechaCreacion: json['fechaCreacion']);
+            idAutor: json['id_autor'],
+            fechaCreacion: json['fecha_creacion']);
 
   @MappableField(key: 'mensaje')
   String mensaje;
-  @MappableField(key: 'autor')
-  int autor;
-  @MappableField(key: 'fechaCreacion')
-  DateTime fechaCreacion;
+  @MappableField(key: 'id_autor')
+  int idAutor;
 
   @override
   String get tableName => 'mensaje_registro';
@@ -44,8 +43,8 @@ class MensajeRegistro extends TableRow with MensajeRegistroMappable {
       case 'mensaje':
         mensaje = value;
         return;
-      case 'autor':
-        autor = value;
+      case 'idAutor':
+        idAutor = value;
         return;
       case 'fechaCreacion':
         fechaCreacion = value;
@@ -60,7 +59,7 @@ class MensajeRegistro extends TableRow with MensajeRegistroMappable {
     return {
       'id': id,
       'mensaje': mensaje,
-      'autor': autor,
+      'autor': idAutor,
       'fechaCreacion': fechaCreacion,
     };
   }
