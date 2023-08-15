@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:prlab_flutter/prlab_configuracion/base.dart';
 import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
-import 'package:prlab_flutter/utilidades/serverpod_client.dart';
+import 'package:prlab_flutter/utilidades/funciones/validators.dart';
+import 'package:serverpod_auth_client/module.dart';
 
 part 'bloc_login_event.dart';
 part 'bloc_login_state.dart';
@@ -38,33 +37,43 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
         event.email,
         event.password,
       );
-      await sessionManager.registerSignedInUser(
-        respuesta.userInfo!,
-        respuesta.keyId!,
-        respuesta.key!,
-      );
 
-      if (respuesta.userInfo?.id != null) {
-        emit(
-          const BlocLoginEstadoExitoso(),
-        );
-      } else {
-        emit(
+      final userInfo = respuesta.userInfo;
+      if (userInfo == null) {
+        return emit(
+          // TODO(Gon): Preguntar al back que devuelve para handlear los errores
           const BlocLoginEstadoError(
-            errorMessage: LoginErrorMessages.userNotFound,
+            errorMessage: MensajesDeErrorDelLogin.userNotFound,
           ),
         );
       }
+
+      emit(const BlocLoginEstadoExitoso());
     } catch (e, st) {
-      emit(
-        const BlocLoginEstadoError(
-          errorMessage: LoginErrorMessages.invalidCredentials,
-        ),
-      );
       if (kDebugMode) {
         debugger();
-        throw UnimplementedError('Implementa un error para esto: $e $st');
+        print(st);
       }
+      MensajesDeErrorDelLogin loginErrorMessages;
+
+      switch (e) {
+        case AuthenticationFailReason.invalidCredentials:
+          loginErrorMessages = MensajesDeErrorDelLogin.invalidCredentials;
+
+        case AuthenticationFailReason.internalError:
+          loginErrorMessages = MensajesDeErrorDelLogin.internalError;
+
+        case AuthenticationFailReason.tooManyFailedAttempts:
+          loginErrorMessages = MensajesDeErrorDelLogin.tooManyFailedAttempts;
+
+        case AuthenticationFailReason.userCreationDenied:
+          loginErrorMessages = MensajesDeErrorDelLogin.userCreationDenied;
+
+        default:
+          loginErrorMessages = MensajesDeErrorDelLogin.unknown;
+      }
+
+      return emit(BlocLoginEstadoError(errorMessage: loginErrorMessages));
     }
   }
 
@@ -76,7 +85,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     Emitter<BlocLoginEstado> emit,
   ) async {
     try {
-      if (EmailValidator.validate(event.email) &&
+      if (Validators.emailRegExp.hasMatch(event.email) &&
           event.password.length >
               PRLabConfiguracion.minimoDeCaracteresContrasenia) {
         emit(
@@ -90,7 +99,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     } catch (e, st) {
       emit(
         const BlocLoginEstadoError(
-          errorMessage: LoginErrorMessages.invalidCredentials,
+          errorMessage: MensajesDeErrorDelLogin.invalidCredentials,
         ),
       );
       if (kDebugMode) {

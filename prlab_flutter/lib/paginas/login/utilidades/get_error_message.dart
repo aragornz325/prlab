@@ -6,11 +6,15 @@ import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 /// y devuelve un mensaje de error basado en el tipo de error dado.
 String getErrorMessage(
   BuildContext context,
-  LoginErrorMessages loginErrorMessage,
+  MensajesDeErrorDelLogin loginErrorMessage,
 ) {
   final l10n = context.l10n;
   return switch (loginErrorMessage) {
-    LoginErrorMessages.invalidCredentials => 'INVALID CREDENTIALS',
-    LoginErrorMessages.userNotFound => l10n.alert_dialgo_code_in,
+    MensajesDeErrorDelLogin.invalidCredentials => 'INVALID CREDENTIALS',
+    MensajesDeErrorDelLogin.userNotFound => l10n.alert_dialgo_code_in,
+    MensajesDeErrorDelLogin.unknown => l10n.alert_dialgo_code_in,
+    MensajesDeErrorDelLogin.userCreationDenied => l10n.alert_dialgo_code_in,
+    MensajesDeErrorDelLogin.internalError => l10n.alert_dialgo_code_in,
+    MensajesDeErrorDelLogin.tooManyFailedAttempts => l10n.alert_dialgo_code_in,
   };
 }

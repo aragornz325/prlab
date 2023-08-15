@@ -60,7 +60,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       child: TextFormField(
                         controller: controllerEmail,
                         onChanged: (value) {
-                          _revisarSiElBotonSePuedeHabilitar(context);
+                          _revisarSiElBotonSePuedeHabilitar();
                         },
                       ),
                     ),
@@ -73,13 +73,14 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       child: TextFormField(
                         controller: controllerPassword,
                         onChanged: (value) {
-                          _revisarSiElBotonSePuedeHabilitar(context);
+                          _revisarSiElBotonSePuedeHabilitar();
                         },
                       ),
                     ),
                     if (state is BlocLoginEstadoError &&
                         state.errorMessage ==
-                            LoginErrorMessages.invalidCredentials)
+                            MensajesDeErrorDelLogin.invalidCredentials)
+                      // TODO(Gon): mostrar los popups correspondientes a los errores
                       Container(
                         width: 20,
                         height: 20,
@@ -95,14 +96,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     PRBoton(
                       habilitado: state.botonHabilitado,
                       mostrarEstadoDeCarga: state.estaIniciandoSesion,
-                      onTap: () {
-                        context.read<BlocLogin>().add(
-                              BlocLoginEventoIniciarSesion(
-                                password: controllerPassword.text,
-                                email: controllerEmail.text,
-                              ),
-                            );
-                      },
+                      onTap: _onTapBotonIniciarSesion,
                       texto: l10n.page_login_button_text,
                     )
                   ],
@@ -116,11 +110,20 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
     );
   }
 
-  void _revisarSiElBotonSePuedeHabilitar(BuildContext context) {
+  void _revisarSiElBotonSePuedeHabilitar() {
     context.read<BlocLogin>().add(
           BlocLoginEventoHabilitarBoton(
             email: controllerEmail.text,
             password: controllerPassword.text,
+          ),
+        );
+  }
+
+  void _onTapBotonIniciarSesion() {
+    context.read<BlocLogin>().add(
+          BlocLoginEventoIniciarSesion(
+            password: controllerPassword.text,
+            email: controllerEmail.text,
           ),
         );
   }

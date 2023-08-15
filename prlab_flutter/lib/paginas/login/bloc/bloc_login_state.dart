@@ -40,7 +40,7 @@ class BlocLoginEstadoError extends BlocLoginEstado {
   });
 
   /// Mensaje de error
-  final LoginErrorMessages errorMessage;
+  final MensajesDeErrorDelLogin errorMessage;
 }
 
 /// Estado de cargando de los componentes de la pantalla login
@@ -50,8 +50,12 @@ class BlocLoginEstadoCargando extends BlocLoginEstado {
   });
 }
 
-/// emum de los tipos de errores a mostrar
-enum LoginErrorMessages {
+/// emum de los tipos de errores de login a mostrar
+enum MensajesDeErrorDelLogin {
   userNotFound,
-  invalidCredentials;
+  invalidCredentials,
+  userCreationDenied,
+  internalError,
+  tooManyFailedAttempts,
+  unknown;
 }
