@@ -16,7 +16,7 @@ class LogoPrLabAgencia extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final theme = context.esquemaDeColores;
+    final colores = context.colores;
 
     return Row(
       children: [
@@ -33,7 +33,7 @@ class LogoPrLabAgencia extends StatelessWidget {
               l10n.page_create_admin_account_title_prlab,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: theme.secondary,
+                color: colores.secondary,
                 fontSize: 40.pf,
                 fontWeight: FontWeight.w600,
               ),
@@ -41,7 +41,7 @@ class LogoPrLabAgencia extends StatelessWidget {
             Text(
               l10n.page_create_admin_account_subtitle_international_prlab_agency,
               style: TextStyle(
-                color: theme.secondary,
+                color: colores.secondary,
                 fontSize: 14.pf,
                 fontWeight: FontWeight.w400,
               ),

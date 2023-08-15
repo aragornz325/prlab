@@ -14,7 +14,7 @@ class TextoBienvenida extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final theme = context.esquemaDeColores;
+    final colores = context.colores;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -36,7 +36,7 @@ class TextoBienvenida extends StatelessWidget {
               child: Text(
                 l10n.page_login_greetings,
                 style: TextStyle(
-                  color: theme.tertiary,
+                  color: colores.tertiary,
                   fontSize: 40.pf,
                   fontWeight: FontWeight.w600,
                 ),
@@ -46,7 +46,7 @@ class TextoBienvenida extends StatelessWidget {
             Text(
               l10n.page_login_log_in_to,
               style: TextStyle(
-                color: theme.secondary,
+                color: colores.secondary,
                 fontSize: 15.pf,
                 fontWeight: FontWeight.w400,
               ),

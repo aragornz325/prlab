@@ -25,7 +25,7 @@ class PrLabButtonSend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final theme = context.esquemaDeColores;
+    final colores = context.colores;
     return SizedBox(
       width: 360.pw,
       height: 50.ph,
@@ -41,8 +41,8 @@ class PrLabButtonSend extends StatelessWidget {
               ),
               side: BorderSide(
                 color: habilitarColorBoton
-                    ? theme.primary
-                    : theme.primary.withOpacity(0.3),
+                    ? colores.primary
+                    : colores.primary.withOpacity(0.3),
                 width: 2,
               ),
             ),
@@ -53,8 +53,8 @@ class PrLabButtonSend extends StatelessWidget {
           l10n.alert_dialog_button_title_send,
           style: TextStyle(
             color: habilitarColorBoton
-                ? theme.primary
-                : theme.primary.withOpacity(0.3),
+                ? colores.primary
+                : colores.primary.withOpacity(0.3),
             fontSize: 20.pf,
             fontWeight: FontWeight.w600,
           ),

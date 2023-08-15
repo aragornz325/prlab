@@ -37,7 +37,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final theme = context.esquemaDeColores;
+    final theme = context.colores;
 
     return BlocBuilder<BlocLogin, BlocLoginEstado>(
       builder: (context, state) {

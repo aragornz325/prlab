@@ -16,7 +16,7 @@ class OlvidasteTuContrasenia extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final theme = context.esquemaDeColores;
+    final colores = context.colores;
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 12.ph),
@@ -35,7 +35,7 @@ class OlvidasteTuContrasenia extends StatelessWidget {
         child: Text(
           l10n.page_login_tappable_text,
           style: TextStyle(
-            color: theme.primary,
+            color: colores.primary,
             fontSize: 12.pf,
             fontWeight: FontWeight.w500,
             decoration: TextDecoration.underline,
