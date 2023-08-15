@@ -231,9 +231,9 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     BlocLoginEventoTiempoCompletado event,
     Emitter<BlocLoginEstado> emit,
   ) async {
-    // TODO(Gon): por ahora no hace nada si termino pero agregarle que vuelva o que
-    //le avise que se acabo el tiempo para que reenviar el codigo de
-    //verificacion
+    // TODO(Gon): por ahora no hace nada si termino pero agregarle
+    // que vuelva o que le avise que se acabo el tiempo para que
+    // reenviar el codigo de verificacion
     if (_time.isActive) {
       _time.cancel();
     }

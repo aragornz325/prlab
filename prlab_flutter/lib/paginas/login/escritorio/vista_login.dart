@@ -95,7 +95,8 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     if (state is BlocLoginEstadoError &&
                         state.mensajeDeError ==
                             MensajesDeErrorDelLogin.invalidCredentials)
-                      // TODO(Gon): mostrar los popups correspondientes a los errores
+                      // TODO(Gon): mostrar los popups correspondientes
+                      // a los errores
                       Container(
                         width: 20,
                         height: 20,

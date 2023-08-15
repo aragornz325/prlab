@@ -76,8 +76,8 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 15.pw),
                 height: 40.ph,
                 width: 785.pw,
-                // TODO(anyone): cambiarlo por el que esta en development tambien
-                // cambiar la funcion
+                // TODO(anyone): cambiarlo por el que esta en
+                //development tambien cambiar la funcion
                 child: TextFormField(
                   controller: controller,
                   onChanged: (value) => _funcionPasarleEmailAlBloc(context),

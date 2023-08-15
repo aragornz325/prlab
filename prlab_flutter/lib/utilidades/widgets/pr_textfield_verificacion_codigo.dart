@@ -128,7 +128,8 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                       textStyle: TextStyle(
                         fontSize: 12.pf,
                         fontWeight: FontWeight.w400,
-                        //TODO: cambiar para cuando esten los colores en el theme
+                        // TODO(anyone): cambiar para cuando esten los colores
+                        // en el theme
                         color: colores.background,
                       ),
                       message: tooltipMessage,
