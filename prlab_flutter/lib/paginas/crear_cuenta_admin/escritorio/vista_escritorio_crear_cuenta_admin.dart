@@ -46,10 +46,9 @@ class _VistaEscritorioCrearCuentaAdminState
             child: PRBoton.outlined(
               width: 200.pw,
               onTap: () {
-                // TODO(anyone): agregarle funcionalidad
+                // TODO: agregarle funcionalidad
               },
               texto: l10n.page_create_admin_account_button_back,
-              // TODO(anyone): cambiar por la variable del bloc
               habilitado: true,
             ),
           ),

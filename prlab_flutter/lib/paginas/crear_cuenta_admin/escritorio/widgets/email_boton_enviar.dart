@@ -42,7 +42,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             BoxShadow(
               offset: const Offset(0, 10),
               blurRadius: 30,
-              // TODO(anyone): cambiar cuando este seteado los themas
+              // TODO: cambiar cuando este seteado los themas
               color: const Color(0xff000000).withOpacity(.25),
             ),
           ],
@@ -76,15 +76,38 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 15.pw),
                 height: 40.ph,
                 width: 785.pw,
-                // TODO(anyone): cambiarlo por el que esta en development
+                // TODO(anyone): cambiarlo por el que esta en development tambien
+                // cambiar la funcion
                 child: TextFormField(
                   controller: controller,
+                  onChanged: (value) => _funcionPasarleEmailAlBloc(context),
                 ),
               ),
             ),
             SizedBox(height: 50.ph),
             BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
               builder: (context, state) {
+                if (state is BlocCrearCuentaAdminEstadoCargando) {
+                  return Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: theme.primary,
+                      ),
+                      height: 50.ph,
+                      width: 765.pw,
+                      child: Center(
+                        child: SizedBox(
+                          height: 35.ph,
+                          width: 35.pw,
+                          child: CircularProgressIndicator(
+                            color: theme.background,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }
                 return Center(
                   child: PRBoton(
                     width: 782.pw,
@@ -104,5 +127,21 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /// Funcion para enviar el email/la invitación a crear una cuenta
+  void _funcionEnviarEmail(BuildContext context) {
+    context.read<BlocCrearCuentaAdmin>().add(
+          const BlocCrearCuentaAdminEventEnviarEmail(),
+        );
+  }
+
+  /// Funcion para enviar el email al bloc [BlocCrearCuentaAdmin]
+  void _funcionPasarleEmailAlBloc(BuildContext context) {
+    context.read<BlocCrearCuentaAdmin>().add(
+          BlocCrearCuentaAdminEventVerificarEmail(
+            email: controller.text,
+          ),
+        );
   }
 }
