@@ -37,7 +37,7 @@ class OrganizacionMapper extends ClassMapperBase<Organizacion> {
       Field('contacto', _$contacto);
   static DateTime? _$fechaCreacion(Organizacion v) => v.fechaCreacion;
   static const Field<Organizacion, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion', opt: true);
+      Field('fechaCreacion', _$fechaCreacion, opt: true);
 
   @override
   final Map<Symbol, Field<Organizacion, dynamic>> fields = const {

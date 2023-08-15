@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:prlab_commons/modelos/base/base.dart';
 import 'package:prlab_commons/prlab_commons.dart';
 import 'package:serverpod/serverpod.dart';
 
@@ -29,9 +28,8 @@ class Organizacion extends Cliente with OrganizacionMappable {
             nombre: serializationManager.deserialize<String?>(jsonSerialization['nombre']),
             tipo: serializationManager.deserialize<int?>(jsonSerialization['tipo']),
             contacto: serializationManager.deserialize<int?>(jsonSerialization['contacto']),
-            fechaCreacion: serializationManager.deserialize<DateTime?>(jsonSerialization['fecha_creacion']),);
+            fechaCreacion: serializationManager.deserialize<DateTime?>(jsonSerialization['fechaCreacion']),);
 
-  @MappableField(key: 'tipo')
   int? tipo;
 
   @override

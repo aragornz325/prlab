@@ -9,9 +9,11 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
 import 'package:prlab_commons/modelos/organizacion/organizacion.dart' as _i3;
-import 'package:serverpod_auth_client/module.dart' as _i4;
-import 'dart:io' as _i5;
-import 'protocol.dart' as _i6;
+import 'package:prlab_commons/modelos/mensaje_registro/mensaje_registro.dart'
+    as _i4;
+import 'package:serverpod_auth_client/module.dart' as _i5;
+import 'dart:io' as _i6;
+import 'protocol.dart' as _i7;
 
 class _EndpointCliente extends _i1.EndpointRef {
   _EndpointCliente(_i1.EndpointCaller caller) : super(caller);
@@ -24,6 +26,13 @@ class _EndpointCliente extends _i1.EndpointRef {
         'cliente',
         'crearOrganizacion',
         {'orga': orga},
+      );
+
+  _i2.Future<int> crearLog(_i4.MensajeRegistro log) =>
+      caller.callServerEndpoint<int>(
+        'cliente',
+        'crearLog',
+        {'log': log},
       );
 }
 
@@ -56,20 +65,20 @@ class _EndpointMailer extends _i1.EndpointRef {
 
 class _Modules {
   _Modules(Client client) {
-    auth = _i4.Caller(client);
+    auth = _i5.Caller(client);
   }
 
-  late final _i4.Caller auth;
+  late final _i5.Caller auth;
 }
 
 class Client extends _i1.ServerpodClient {
   Client(
     String host, {
-    _i5.SecurityContext? context,
+    _i6.SecurityContext? context,
     _i1.AuthenticationKeyManager? authenticationKeyManager,
   }) : super(
           host,
-          _i6.Protocol(),
+          _i7.Protocol(),
           context: context,
           authenticationKeyManager: authenticationKeyManager,
         ) {

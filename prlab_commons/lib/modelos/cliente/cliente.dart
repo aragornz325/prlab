@@ -7,7 +7,7 @@ import 'package:serverpod/serverpod.dart';
 part 'cliente.mapper.dart';
 
 /// Modelo de entidad Cliente (quien posee la Organización).
-@MappableClass()
+@MappableClass(ignoreNull: true)
 class Cliente extends Base with ClienteMappable {
   @MappableConstructor()
   Cliente({
@@ -20,17 +20,19 @@ class Cliente extends Base with ClienteMappable {
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
   Cliente.fromJson(
-    Map<String, dynamic> json,
+    Map<String, dynamic> jsonSerialization,
     SerializationManager serializationManager,
   ) : this(
-            id: json['id'],
-            nombre: json['nombre'],
-            contacto: json['contacto'],
-            fechaCreacion: json['fecha_creacion']);
+          id: serializationManager.deserialize<int?>(jsonSerialization['id']),
+          nombre: serializationManager
+              .deserialize<String?>(jsonSerialization['nombre']),
+          contacto: serializationManager
+              .deserialize<int?>(jsonSerialization['contacto']),
+          fechaCreacion: serializationManager
+              .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
+        );
 
-  @MappableField(key: 'nombre')
   String? nombre;
-  @MappableField(key: 'contacto')
   int? contacto;
 
   @override

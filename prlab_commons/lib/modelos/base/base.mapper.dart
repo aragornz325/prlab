@@ -28,7 +28,7 @@ class BaseMapper extends ClassMapperBase<Base> {
   static const Field<Base, int> _f$id = Field('id', _$id, opt: true);
   static DateTime? _$fechaCreacion(Base v) => v.fechaCreacion;
   static const Field<Base, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion', opt: true);
+      Field('fechaCreacion', _$fechaCreacion, opt: true);
 
   @override
   final Map<Symbol, Field<Base, dynamic>> fields = const {

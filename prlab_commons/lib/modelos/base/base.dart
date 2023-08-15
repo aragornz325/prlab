@@ -11,6 +11,5 @@ abstract class Base extends TableRow with BaseMappable {
     this.fechaCreacion,
   }) : super(id);
 
-  @MappableField(key: 'fecha_creacion')
   DateTime? fechaCreacion;
 }

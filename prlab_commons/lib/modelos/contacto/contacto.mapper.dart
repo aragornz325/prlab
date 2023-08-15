@@ -29,42 +29,38 @@ class ContactoMapper extends ClassMapperBase<Contacto> {
   static const Field<Contacto, int> _f$id = Field('id', _$id, opt: true);
   static String? _$emailPrincipal(Contacto v) => v.emailPrincipal;
   static const Field<Contacto, String> _f$emailPrincipal =
-      Field('emailPrincipal', _$emailPrincipal, key: 'email_principal');
+      Field('emailPrincipal', _$emailPrincipal);
   static String? _$telefonoPrincipal(Contacto v) => v.telefonoPrincipal;
-  static const Field<Contacto, String> _f$telefonoPrincipal = Field(
-      'telefonoPrincipal', _$telefonoPrincipal,
-      key: 'telefono_principal');
+  static const Field<Contacto, String> _f$telefonoPrincipal =
+      Field('telefonoPrincipal', _$telefonoPrincipal);
   static String? _$emailSecundario(Contacto v) => v.emailSecundario;
   static const Field<Contacto, String> _f$emailSecundario =
-      Field('emailSecundario', _$emailSecundario, key: 'email_secundario');
+      Field('emailSecundario', _$emailSecundario);
   static String? _$telefonoSecundario(Contacto v) => v.telefonoSecundario;
-  static const Field<Contacto, String> _f$telefonoSecundario = Field(
-      'telefonoSecundario', _$telefonoSecundario,
-      key: 'telefono_secundario');
+  static const Field<Contacto, String> _f$telefonoSecundario =
+      Field('telefonoSecundario', _$telefonoSecundario);
   static String? _$domicilioCalle(Contacto v) => v.domicilioCalle;
   static const Field<Contacto, String> _f$domicilioCalle =
-      Field('domicilioCalle', _$domicilioCalle, key: 'domicilio_calle');
+      Field('domicilioCalle', _$domicilioCalle);
   static int? _$domicilioNumero(Contacto v) => v.domicilioNumero;
   static const Field<Contacto, int> _f$domicilioNumero =
-      Field('domicilioNumero', _$domicilioNumero, key: 'domicilio_numero');
+      Field('domicilioNumero', _$domicilioNumero);
   static String? _$domicilioCiudad(Contacto v) => v.domicilioCiudad;
   static const Field<Contacto, String> _f$domicilioCiudad =
-      Field('domicilioCiudad', _$domicilioCiudad, key: 'domicilio_ciudad');
+      Field('domicilioCiudad', _$domicilioCiudad);
   static String? _$domicilioCodigoPostal(Contacto v) => v.domicilioCodigoPostal;
-  static const Field<Contacto, String> _f$domicilioCodigoPostal = Field(
-      'domicilioCodigoPostal', _$domicilioCodigoPostal,
-      key: 'domicilio_codigo_postal');
+  static const Field<Contacto, String> _f$domicilioCodigoPostal =
+      Field('domicilioCodigoPostal', _$domicilioCodigoPostal);
   static String? _$domicilioEstadoProvincia(Contacto v) =>
       v.domicilioEstadoProvincia;
-  static const Field<Contacto, String> _f$domicilioEstadoProvincia = Field(
-      'domicilioEstadoProvincia', _$domicilioEstadoProvincia,
-      key: 'domicilio_estado_provincia');
+  static const Field<Contacto, String> _f$domicilioEstadoProvincia =
+      Field('domicilioEstadoProvincia', _$domicilioEstadoProvincia);
   static String? _$domicilioPais(Contacto v) => v.domicilioPais;
   static const Field<Contacto, String> _f$domicilioPais =
-      Field('domicilioPais', _$domicilioPais, key: 'domicilio_pais');
+      Field('domicilioPais', _$domicilioPais);
   static DateTime? _$fechaCreacion(Contacto v) => v.fechaCreacion;
   static const Field<Contacto, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion', opt: true);
+      Field('fechaCreacion', _$fechaCreacion, opt: true);
 
   @override
   final Map<Symbol, Field<Contacto, dynamic>> fields = const {
@@ -81,6 +77,8 @@ class ContactoMapper extends ClassMapperBase<Contacto> {
     #domicilioPais: _f$domicilioPais,
     #fechaCreacion: _f$fechaCreacion,
   };
+  @override
+  final bool ignoreNull = true;
 
   static Contacto _instantiate(DecodingData data) {
     return Contacto(

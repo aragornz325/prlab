@@ -1,14 +1,13 @@
 import 'dart:convert';
 
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:prlab_commons/modelos/base/base.dart';
 import 'package:prlab_commons/modelos/entregable/entregable.dart';
 import 'package:serverpod/serverpod.dart';
 
 part 'proyecto.mapper.dart';
 
 /// Modelo de entidad Proyecto (que depende de la Organizacion y que contiene entregables).
-@MappableClass()
+@MappableClass(ignoreNull: true)
 class Proyecto extends Entregable with ProyectoMappable {
   @MappableConstructor()
   Proyecto({
@@ -24,19 +23,25 @@ class Proyecto extends Entregable with ProyectoMappable {
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
   Proyecto.fromJson(
-    Map<String, dynamic> json,
+    Map<String, dynamic> jsonSerialization,
     SerializationManager serializationManager,
   ) : this(
-            id: json['id'],
-            idOrganizacion: json['id_organizacion'],
-            nombre: json['nombre'],
-            idAutor: json['id_autor'],
-            fechaInicio: json['fecha_inicio'],
-            fechaFin: json['fecha_fin'],
-            fechaCreacion: json['fecha_creacion']);
+          id: serializationManager.deserialize<int?>(jsonSerialization['id']),
+          idOrganizacion: serializationManager
+              .deserialize<int?>(jsonSerialization['idOrganizacion']),
+          nombre: serializationManager
+              .deserialize<String?>(jsonSerialization['nombre']),
+          idAutor: serializationManager
+              .deserialize<int?>(jsonSerialization['idAutor']),
+          fechaInicio: serializationManager
+              .deserialize<DateTime?>(jsonSerialization['fechaInicio']),
+          fechaFin: serializationManager
+              .deserialize<DateTime?>(jsonSerialization['fechaFin']),
+          fechaCreacion: serializationManager
+              .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
+        );
 
-  @MappableField(key: 'id_organizacion')
-  int idOrganizacion;
+  int? idOrganizacion;
 
   @override
   String get tableName => 'proyecto';

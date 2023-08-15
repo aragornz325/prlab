@@ -7,7 +7,7 @@ import 'package:serverpod/serverpod.dart';
 part 'contacto.mapper.dart';
 
 /// Modelo de entidad Cliente (quien posee la Organización).
-@MappableClass()
+@MappableClass(ignoreNull: true)
 class Contacto extends Base with ContactoMappable {
   @MappableConstructor()
   Contacto({
@@ -28,41 +28,43 @@ class Contacto extends Base with ContactoMappable {
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
   Contacto.fromJson(
-    Map<String, dynamic> json,
+    Map<String, dynamic> jsonSerialization,
     SerializationManager serializationManager,
   ) : this(
-            id: json['id'],
-            emailPrincipal: json['email_principal'],
-            emailSecundario: json['email_secundario'],
-            telefonoPrincipal: json['telefono_principal'],
-            telefonoSecundario: json['telefono_secundario'],
-            domicilioCalle: json['domicilio_calle'],
-            domicilioNumero: json['domicilio_numero'],
-            domicilioCiudad: json['domicilio_ciudad'],
-            domicilioCodigoPostal: json['domicilio_codigo_postal'],
-            domicilioEstadoProvincia: json['domicilio_estado_provincia'],
-            domicilioPais: json['domicilio_pais'],
-            fechaCreacion: json['fecha_creacion']);
+          id: serializationManager.deserialize<int?>(jsonSerialization['id']),
+          emailPrincipal: serializationManager
+              .deserialize<String?>(jsonSerialization['emailPrincipal']),
+          emailSecundario: serializationManager
+              .deserialize<String?>(jsonSerialization['emailSecundario']),
+          telefonoPrincipal: serializationManager
+              .deserialize<String?>(jsonSerialization['telefonoPrincipal']),
+          telefonoSecundario: serializationManager
+              .deserialize<String?>(jsonSerialization['telefonoSecundario']),
+          domicilioCalle: serializationManager
+              .deserialize<String?>(jsonSerialization['domicilioCalle']),
+          domicilioNumero: serializationManager
+              .deserialize<int?>(jsonSerialization['domicilioNumero']),
+          domicilioCiudad: serializationManager
+              .deserialize<String?>(jsonSerialization['domicilioCiudad']),
+          domicilioCodigoPostal: serializationManager
+              .deserialize<String?>(jsonSerialization['domicilioCodigoPostal']),
+          domicilioEstadoProvincia: serializationManager.deserialize<String?>(
+              jsonSerialization['domicilioEstadoProvincia']),
+          domicilioPais: serializationManager
+              .deserialize<String?>(jsonSerialization['domicilioPais']),
+          fechaCreacion: serializationManager
+              .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
+        );
 
-  @MappableField(key: 'email_principal')
   String? emailPrincipal;
-  @MappableField(key: 'email_secundario')
   String? emailSecundario;
-  @MappableField(key: 'telefono_principal')
   String? telefonoPrincipal;
-  @MappableField(key: 'telefono_secundario')
   String? telefonoSecundario;
-  @MappableField(key: 'domicilio_calle')
   String? domicilioCalle;
-  @MappableField(key: 'domicilio_numero')
   int? domicilioNumero;
-  @MappableField(key: 'domicilio_ciudad')
   String? domicilioCiudad;
-  @MappableField(key: 'domicilio_codigo_postal')
   String? domicilioCodigoPostal;
-  @MappableField(key: 'domicilio_estado_provincia')
   String? domicilioEstadoProvincia;
-  @MappableField(key: 'domicilio_pais')
   String? domicilioPais;
 
   @override

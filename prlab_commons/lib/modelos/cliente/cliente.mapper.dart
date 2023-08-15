@@ -33,7 +33,7 @@ class ClienteMapper extends ClassMapperBase<Cliente> {
   static const Field<Cliente, int> _f$contacto = Field('contacto', _$contacto);
   static DateTime? _$fechaCreacion(Cliente v) => v.fechaCreacion;
   static const Field<Cliente, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion', opt: true);
+      Field('fechaCreacion', _$fechaCreacion, opt: true);
 
   @override
   final Map<Symbol, Field<Cliente, dynamic>> fields = const {
@@ -42,6 +42,8 @@ class ClienteMapper extends ClassMapperBase<Cliente> {
     #contacto: _f$contacto,
     #fechaCreacion: _f$fechaCreacion,
   };
+  @override
+  final bool ignoreNull = true;
 
   static Cliente _instantiate(DecodingData data) {
     return Cliente(

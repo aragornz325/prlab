@@ -11,7 +11,9 @@ import '../endpoints/cliente_endpoint.dart' as _i2;
 import '../endpoints/example_endpoint.dart' as _i3;
 import '../endpoints/mailer_endpoint.dart' as _i4;
 import 'package:prlab_commons/modelos/organizacion/organizacion.dart' as _i5;
-import 'package:serverpod_auth_server/module.dart' as _i6;
+import 'package:prlab_commons/modelos/mensaje_registro/mensaje_registro.dart'
+    as _i6;
+import 'package:serverpod_auth_server/module.dart' as _i7;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -57,7 +59,25 @@ class Endpoints extends _i1.EndpointDispatch {
             session,
             params['orga'],
           ),
-        )
+        ),
+        'crearLog': _i1.MethodConnector(
+          name: 'crearLog',
+          params: {
+            'log': _i1.ParameterDescription(
+              name: 'log',
+              type: _i1.getType<_i6.MensajeRegistro>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['cliente'] as _i2.ClienteEndpoint).crearLog(
+            session,
+            params['log'],
+          ),
+        ),
       },
     );
     connectors['example'] = _i1.EndpointConnector(
@@ -108,6 +128,6 @@ class Endpoints extends _i1.EndpointDispatch {
         )
       },
     );
-    modules['serverpod_auth'] = _i6.Endpoints()..initializeEndpoints(server);
+    modules['serverpod_auth'] = _i7.Endpoints()..initializeEndpoints(server);
   }
 }

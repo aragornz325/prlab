@@ -27,34 +27,31 @@ class ComentarioMapper extends ClassMapperBase<Comentario> {
 
   static int? _$id(Comentario v) => v.id;
   static const Field<Comentario, int> _f$id = Field('id', _$id, opt: true);
-  static int _$idEntregable(Comentario v) => v.idEntregable;
+  static int? _$idEntregable(Comentario v) => v.idEntregable;
   static const Field<Comentario, int> _f$idEntregable =
-      Field('idEntregable', _$idEntregable, key: 'id_entregable');
-  static Set<double> _$offset(Comentario v) => v.offset;
-  static const Field<Comentario, Set<double>> _f$offset =
-      Field('offset', _$offset);
-  static String _$comentario(Comentario v) => v.comentario;
-  static const Field<Comentario, String> _f$comentario =
-      Field('comentario', _$comentario);
+      Field('idEntregable', _$idEntregable);
+  static String? _$textoComentario(Comentario v) => v.textoComentario;
+  static const Field<Comentario, String> _f$textoComentario =
+      Field('textoComentario', _$textoComentario);
   static DateTime? _$fechaCreacion(Comentario v) => v.fechaCreacion;
   static const Field<Comentario, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion', opt: true);
+      Field('fechaCreacion', _$fechaCreacion, opt: true);
 
   @override
   final Map<Symbol, Field<Comentario, dynamic>> fields = const {
     #id: _f$id,
     #idEntregable: _f$idEntregable,
-    #offset: _f$offset,
-    #comentario: _f$comentario,
+    #textoComentario: _f$textoComentario,
     #fechaCreacion: _f$fechaCreacion,
   };
+  @override
+  final bool ignoreNull = true;
 
   static Comentario _instantiate(DecodingData data) {
     return Comentario(
         id: data.dec(_f$id),
         idEntregable: data.dec(_f$idEntregable),
-        offset: data.dec(_f$offset),
-        comentario: data.dec(_f$comentario),
+        textoComentario: data.dec(_f$textoComentario),
         fechaCreacion: data.dec(_f$fechaCreacion));
   }
 
@@ -111,8 +108,7 @@ abstract class ComentarioCopyWith<$R, $In extends Comentario, $Out>
   $R call(
       {int? id,
       int? idEntregable,
-      Set<double>? offset,
-      String? comentario,
+      String? textoComentario,
       DateTime? fechaCreacion});
   ComentarioCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -128,23 +124,20 @@ class _ComentarioCopyWithImpl<$R, $Out>
   @override
   $R call(
           {Object? id = $none,
-          int? idEntregable,
-          Set<double>? offset,
-          String? comentario,
+          Object? idEntregable = $none,
+          Object? textoComentario = $none,
           Object? fechaCreacion = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
-        if (idEntregable != null) #idEntregable: idEntregable,
-        if (offset != null) #offset: offset,
-        if (comentario != null) #comentario: comentario,
+        if (idEntregable != $none) #idEntregable: idEntregable,
+        if (textoComentario != $none) #textoComentario: textoComentario,
         if (fechaCreacion != $none) #fechaCreacion: fechaCreacion
       }));
   @override
   Comentario $make(CopyWithData data) => Comentario(
       id: data.get(#id, or: $value.id),
       idEntregable: data.get(#idEntregable, or: $value.idEntregable),
-      offset: data.get(#offset, or: $value.offset),
-      comentario: data.get(#comentario, or: $value.comentario),
+      textoComentario: data.get(#textoComentario, or: $value.textoComentario),
       fechaCreacion: data.get(#fechaCreacion, or: $value.fechaCreacion));
 
   @override

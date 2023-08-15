@@ -32,10 +32,10 @@ class MensajeRegistroMapper extends ClassMapperBase<MensajeRegistro> {
       Field('mensaje', _$mensaje);
   static int _$idAutor(MensajeRegistro v) => v.idAutor;
   static const Field<MensajeRegistro, int> _f$idAutor =
-      Field('idAutor', _$idAutor, key: 'id_autor');
+      Field('idAutor', _$idAutor);
   static DateTime? _$fechaCreacion(MensajeRegistro v) => v.fechaCreacion;
   static const Field<MensajeRegistro, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion', opt: true);
+      Field('fechaCreacion', _$fechaCreacion, opt: true);
 
   @override
   final Map<Symbol, Field<MensajeRegistro, dynamic>> fields = const {
@@ -44,6 +44,8 @@ class MensajeRegistroMapper extends ClassMapperBase<MensajeRegistro> {
     #idAutor: _f$idAutor,
     #fechaCreacion: _f$fechaCreacion,
   };
+  @override
+  final bool ignoreNull = true;
 
   static MensajeRegistro _instantiate(DecodingData data) {
     return MensajeRegistro(

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:prlab_commons/modelos/base/base.dart';
 import 'package:serverpod/serverpod.dart';
@@ -5,30 +7,30 @@ import 'package:serverpod/serverpod.dart';
 part 'mensaje_registro.mapper.dart';
 
 /// Modelo de entidad MensajeRegistro (logs de actividad).
-@MappableClass()
+@MappableClass(ignoreNull: true)
 class MensajeRegistro extends Base with MensajeRegistroMappable {
   @MappableConstructor()
-  MensajeRegistro({
-    super.id,
-    required this.mensaje,
-    required this.idAutor,
-    super.fechaCreacion
-  });
+  MensajeRegistro(
+      {super.id,
+      required this.mensaje,
+      required this.idAutor,
+      super.fechaCreacion});
 
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
   MensajeRegistro.fromJson(
-    Map<String, dynamic> json,
+    Map<String, dynamic> jsonSerialization,
     SerializationManager serializationManager,
   ) : this(
-            id: json['id'],
-            mensaje: json['mensaje'],
-            idAutor: json['id_autor'],
-            fechaCreacion: json['fecha_creacion']);
+            id: serializationManager.deserialize<int?>(jsonSerialization['id']),
+            mensaje: serializationManager
+                .deserialize<String>(jsonSerialization['mensaje']),
+            idAutor: serializationManager
+                .deserialize<int>(jsonSerialization['idAutor']),
+            fechaCreacion: serializationManager
+                .deserialize<DateTime?>(jsonSerialization['fechaCreacion']));
 
-  @MappableField(key: 'mensaje')
   String mensaje;
-  @MappableField(key: 'id_autor')
   int idAutor;
 
   @override
@@ -56,11 +58,6 @@ class MensajeRegistro extends Base with MensajeRegistroMappable {
 
   @override
   Map<String, dynamic> toJsonForDatabase() {
-    return {
-      'id': id,
-      'mensaje': mensaje,
-      'autor': idAutor,
-      'fechaCreacion': fechaCreacion,
-    };
+    return jsonDecode(toJson());
   }
 }

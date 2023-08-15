@@ -27,23 +27,22 @@ class ProyectoMapper extends ClassMapperBase<Proyecto> {
 
   static int? _$id(Proyecto v) => v.id;
   static const Field<Proyecto, int> _f$id = Field('id', _$id, opt: true);
-  static int _$idOrganizacion(Proyecto v) => v.idOrganizacion;
+  static int? _$idOrganizacion(Proyecto v) => v.idOrganizacion;
   static const Field<Proyecto, int> _f$idOrganizacion =
-      Field('idOrganizacion', _$idOrganizacion, key: 'id_organizacion');
-  static String _$nombre(Proyecto v) => v.nombre;
+      Field('idOrganizacion', _$idOrganizacion);
+  static String? _$nombre(Proyecto v) => v.nombre;
   static const Field<Proyecto, String> _f$nombre = Field('nombre', _$nombre);
-  static int _$idAutor(Proyecto v) => v.idAutor;
-  static const Field<Proyecto, int> _f$idAutor =
-      Field('idAutor', _$idAutor, key: 'id_autor');
-  static int? _$fechaInicio(Proyecto v) => v.fechaInicio;
-  static const Field<Proyecto, int> _f$fechaInicio =
-      Field('fechaInicio', _$fechaInicio, key: 'fecha_inicio', opt: true);
-  static int? _$fechaFin(Proyecto v) => v.fechaFin;
-  static const Field<Proyecto, int> _f$fechaFin =
-      Field('fechaFin', _$fechaFin, key: 'fecha_fin', opt: true);
+  static int? _$idAutor(Proyecto v) => v.idAutor;
+  static const Field<Proyecto, int> _f$idAutor = Field('idAutor', _$idAutor);
+  static DateTime? _$fechaInicio(Proyecto v) => v.fechaInicio;
+  static const Field<Proyecto, DateTime> _f$fechaInicio =
+      Field('fechaInicio', _$fechaInicio, opt: true);
+  static DateTime? _$fechaFin(Proyecto v) => v.fechaFin;
+  static const Field<Proyecto, DateTime> _f$fechaFin =
+      Field('fechaFin', _$fechaFin, opt: true);
   static DateTime? _$fechaCreacion(Proyecto v) => v.fechaCreacion;
   static const Field<Proyecto, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion', opt: true);
+      Field('fechaCreacion', _$fechaCreacion, opt: true);
 
   @override
   final Map<Symbol, Field<Proyecto, dynamic>> fields = const {
@@ -55,6 +54,8 @@ class ProyectoMapper extends ClassMapperBase<Proyecto> {
     #fechaFin: _f$fechaFin,
     #fechaCreacion: _f$fechaCreacion,
   };
+  @override
+  final bool ignoreNull = true;
 
   static Proyecto _instantiate(DecodingData data) {
     return Proyecto(
@@ -121,8 +122,8 @@ abstract class ProyectoCopyWith<$R, $In extends Proyecto, $Out>
       int? idOrganizacion,
       String? nombre,
       int? idAutor,
-      int? fechaInicio,
-      int? fechaFin,
+      DateTime? fechaInicio,
+      DateTime? fechaFin,
       DateTime? fechaCreacion});
   ProyectoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -138,17 +139,17 @@ class _ProyectoCopyWithImpl<$R, $Out>
   @override
   $R call(
           {Object? id = $none,
-          int? idOrganizacion,
-          String? nombre,
-          int? idAutor,
+          Object? idOrganizacion = $none,
+          Object? nombre = $none,
+          Object? idAutor = $none,
           Object? fechaInicio = $none,
           Object? fechaFin = $none,
           Object? fechaCreacion = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
-        if (idOrganizacion != null) #idOrganizacion: idOrganizacion,
-        if (nombre != null) #nombre: nombre,
-        if (idAutor != null) #idAutor: idAutor,
+        if (idOrganizacion != $none) #idOrganizacion: idOrganizacion,
+        if (nombre != $none) #nombre: nombre,
+        if (idAutor != $none) #idAutor: idAutor,
         if (fechaInicio != $none) #fechaInicio: fechaInicio,
         if (fechaFin != $none) #fechaFin: fechaFin,
         if (fechaCreacion != $none) #fechaCreacion: fechaCreacion

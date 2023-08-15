@@ -9,7 +9,7 @@ modules:
 extraClasses:
   - package:prlab_commons/prlab_commons.dart:Cliente
   - package:prlab_commons/prlab_commons.dart:Comentario
-  # - package:prlab_commons/prlab_commons.dart:Entregable
+  - package:prlab_commons/prlab_commons.dart:Contacto
   - package:prlab_commons/prlab_commons.dart:MensajeRegistro
   - package:prlab_commons/prlab_commons.dart:Organizacion
   - package:prlab_commons/prlab_commons.dart:Proyecto

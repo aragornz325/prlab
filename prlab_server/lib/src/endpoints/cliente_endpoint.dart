@@ -11,4 +11,14 @@ class ClienteEndpoint extends Endpoint {
       return 500;
     }
   }
+
+  Future<int> crearLog(Session session, MensajeRegistro log) async {
+    try {
+      session.db.insert(log);
+      return 200;
+    } catch (e, st) {
+      print('$e, $st');
+      return 500;
+    }
+  }
 }

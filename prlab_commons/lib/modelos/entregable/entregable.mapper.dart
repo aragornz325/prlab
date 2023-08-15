@@ -27,20 +27,19 @@ class EntregableMapper extends ClassMapperBase<Entregable> {
 
   static int? _$id(Entregable v) => v.id;
   static const Field<Entregable, int> _f$id = Field('id', _$id, opt: true);
-  static String _$nombre(Entregable v) => v.nombre;
+  static String? _$nombre(Entregable v) => v.nombre;
   static const Field<Entregable, String> _f$nombre = Field('nombre', _$nombre);
-  static int _$idAutor(Entregable v) => v.idAutor;
-  static const Field<Entregable, int> _f$idAutor =
-      Field('idAutor', _$idAutor, key: 'id_autor');
-  static int? _$fechaInicio(Entregable v) => v.fechaInicio;
-  static const Field<Entregable, int> _f$fechaInicio =
-      Field('fechaInicio', _$fechaInicio, key: 'fecha_inicio', opt: true);
-  static int? _$fechaFin(Entregable v) => v.fechaFin;
-  static const Field<Entregable, int> _f$fechaFin =
-      Field('fechaFin', _$fechaFin, key: 'fecha_fin', opt: true);
+  static int? _$idAutor(Entregable v) => v.idAutor;
+  static const Field<Entregable, int> _f$idAutor = Field('idAutor', _$idAutor);
+  static DateTime? _$fechaInicio(Entregable v) => v.fechaInicio;
+  static const Field<Entregable, DateTime> _f$fechaInicio =
+      Field('fechaInicio', _$fechaInicio, opt: true);
+  static DateTime? _$fechaFin(Entregable v) => v.fechaFin;
+  static const Field<Entregable, DateTime> _f$fechaFin =
+      Field('fechaFin', _$fechaFin, opt: true);
   static DateTime? _$fechaCreacion(Entregable v) => v.fechaCreacion;
   static const Field<Entregable, DateTime> _f$fechaCreacion =
-      Field('fechaCreacion', _$fechaCreacion, key: 'fecha_creacion', opt: true);
+      Field('fechaCreacion', _$fechaCreacion, opt: true);
 
   @override
   final Map<Symbol, Field<Entregable, dynamic>> fields = const {
@@ -81,8 +80,8 @@ abstract class EntregableCopyWith<$R, $In extends Entregable, $Out>
       {int? id,
       String? nombre,
       int? idAutor,
-      int? fechaInicio,
-      int? fechaFin,
+      DateTime? fechaInicio,
+      DateTime? fechaFin,
       DateTime? fechaCreacion});
   EntregableCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }

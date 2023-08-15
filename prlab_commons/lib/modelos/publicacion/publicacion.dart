@@ -7,9 +7,8 @@ import 'package:serverpod/serverpod.dart';
 part 'publicacion.mapper.dart';
 
 /// Modelo de entidad Publicacion (un tipo de Entregable).
-@MappableClass()
+@MappableClass(ignoreNull: true)
 class Publicacion extends Entregable with PublicacionMappable {
-  
   @MappableConstructor()
   Publicacion({
     required super.id,
@@ -17,13 +16,10 @@ class Publicacion extends Entregable with PublicacionMappable {
     required super.nombre,
     required this.contenido,
     required super.idAutor,
-    required this.idImagenes,
-    required this.idImagenDestacada,
     required this.resumen,
     required this.idTags,
     required this.idStatus,
     required this.idCategorias,
-    required this.idPadres,
     required super.fechaInicio,
     required super.fechaFin,
     required super.fechaCreacion,
@@ -32,43 +28,40 @@ class Publicacion extends Entregable with PublicacionMappable {
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
   Publicacion.fromJson(
-    Map<String, dynamic> json,
+    Map<String, dynamic> jsonSerialization,
     SerializationManager serializationManager,
   ) : this(
-            id: json['id'],
-            idProyecto: json['id_proyecto'],
-            nombre: json['nombre'],
-            contenido: json['contenido'],
-            idAutor: json['id_autor'],
-            idImagenes: json['id_imagenes'],
-            idImagenDestacada: json['id_imagen_destacada'],
-            resumen: json['resumen'],
-            idTags: json['id_tags'],
-            idStatus: json['id_status'],
-            idCategorias: json['id_categorias'],
-            idPadres: json['id_padres'],
-            fechaInicio: json['fecha_inicio'],
-            fechaFin: json['fecha_fin'],
-            fechaCreacion: json['fecha_creacion']);
-  
-  @MappableField(key: 'id_proyecto')
-  int idProyecto;
-  @MappableField(key: 'contenido')
-  String contenido;
-  @MappableField(key: 'id_imagenes')
-  List<int> idImagenes;
-  @MappableField(key: 'id_imagen_destacada')
-  int idImagenDestacada;
-  @MappableField(key: 'resumen')
-  String resumen;
-  @MappableField(key: 'id_tags')
-  List<int> idTags;
-  @MappableField(key: 'id_status')
-  int idStatus;
-  @MappableField(key: 'id_categorias')
-  List<int> idCategorias;
-  @MappableField(key: 'id_padres')
-  int idPadres;
+          id: serializationManager.deserialize<int?>(jsonSerialization['id']),
+          idProyecto:
+              serializationManager.deserialize<int?>(jsonSerialization['idProyecto']),
+          nombre:
+              serializationManager.deserialize<String?>(jsonSerialization['nombre']),
+          contenido:
+              serializationManager.deserialize<String?>(jsonSerialization['contenido']),
+          idAutor:
+              serializationManager.deserialize<int?>(jsonSerialization['idAutor']),
+          resumen:
+              serializationManager.deserialize<String?>(jsonSerialization['resumen']),
+          idTags:
+              serializationManager.deserialize<List<int>?>(jsonSerialization['idTags']),
+          idStatus:
+              serializationManager.deserialize<int?>(jsonSerialization['idStatus']),
+          idCategorias:
+              serializationManager.deserialize<List<int>?>(jsonSerialization['idCategorias']),
+          fechaInicio:
+              serializationManager.deserialize<DateTime?>(jsonSerialization['fechaInicio']),
+          fechaFin:
+              serializationManager.deserialize<DateTime?>(jsonSerialization['fechaFin']),
+          fechaCreacion:
+              serializationManager.deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
+        );
+
+  int? idProyecto;
+  String? contenido;
+  String? resumen;
+  List<int>? idTags;
+  int? idStatus;
+  List<int>? idCategorias;
 
   @override
   String get tableName => 'publicacion';
@@ -91,12 +84,6 @@ class Publicacion extends Entregable with PublicacionMappable {
       case 'idAutor':
         idAutor = value;
         return;
-      case 'idImagenes':
-        idImagenes = value;
-        return;
-      case 'idImagenDestacada':
-        idImagenDestacada = value;
-        return;
       case 'resumen':
         resumen = value;
         return;
@@ -108,9 +95,6 @@ class Publicacion extends Entregable with PublicacionMappable {
         return;
       case 'idCategorias':
         idCategorias = value;
-        return;
-      case 'idPadres':
-        idPadres = value;
         return;
       case 'fechaInicio':
         fechaInicio = value;

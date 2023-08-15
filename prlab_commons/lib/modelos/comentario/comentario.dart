@@ -7,35 +7,36 @@ import 'package:serverpod/serverpod.dart';
 part 'comentario.mapper.dart';
 
 /// Modelo de entidad Comentario (dentro de publicaciones u otros entregables).
-@MappableClass()
+@MappableClass(ignoreNull: true)
 class Comentario extends Base with ComentarioMappable {
   @MappableConstructor()
   Comentario({
     super.id,
     required this.idEntregable,
-    required this.offset,
-    required this.comentario,
+    // required this.offset,
+    required this.textoComentario,
     super.fechaCreacion,
   });
 
   /// Constructor requerido por Serverpod para la serialización de la clase.
   @MappableConstructor()
   Comentario.fromJson(
-    Map<String, dynamic> json,
+    Map<String, dynamic> jsonSerialization,
     SerializationManager serializationManager,
   ) : this(
-            id: json['id'],
-            idEntregable: json['id_entregable'],
-            offset: json['offset'],
-            comentario: json['comentario'],
-            fechaCreacion: json['fecha_creacion']);
+          id: serializationManager.deserialize<int?>(jsonSerialization['id']),
+          idEntregable: serializationManager
+              .deserialize<int?>(jsonSerialization['idEntregable']),
+          // offset: serializationManager.deserialize<Set<double>?>(jsonSerialization['offset']),
+          textoComentario: serializationManager
+              .deserialize<String?>(jsonSerialization['textoComentario']),
+          fechaCreacion: serializationManager
+              .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
+        );
 
-  @MappableField(key: 'id_entregable')
-  int idEntregable;
-  @MappableField(key: 'offset')
-  Set<double> offset;
-  @MappableField(key: 'comentario')
-  String comentario;
+  int? idEntregable;
+  // Set<double>? offset;
+  String? textoComentario;
 
   @override
   String get tableName => 'comentario';
@@ -49,11 +50,11 @@ class Comentario extends Base with ComentarioMappable {
       case 'idEntregable':
         idEntregable = value;
         return;
-      case 'offset':
-        offset = value;
-        return;
-      case 'comentario':
-        comentario = value;
+      // case 'offset':
+      //   offset = value;
+      //   return;
+      case 'textoComentario':
+        textoComentario = value;
         return;
       case 'fechaCreacion':
         fechaCreacion = value;
