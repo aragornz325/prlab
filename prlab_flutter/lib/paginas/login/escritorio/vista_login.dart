@@ -42,7 +42,9 @@ class VistaLoginEscritorio extends StatelessWidget {
                 //Ejemplo Boton Login
                 //TODO(Gon): Cambiar por los botones factory
                 ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(100)),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(100),
+                  ),
                   child: SizedBox(
                     width: 359.pw,
                     height: 50.ph,

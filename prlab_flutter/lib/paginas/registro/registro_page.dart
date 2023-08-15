@@ -5,6 +5,7 @@ import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/paginas/registro/escritorio/vista_espera_validacion_de_token_escritorio.dart';
+import 'package:prlab_flutter/paginas/registro/mobile/vista_espera_validacion_de_token_mobile.dart';
 import 'package:prlab_flutter/paginas/registro/mobile/vista_registro_mobile.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
 import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
@@ -27,13 +28,15 @@ class RegistroPage extends StatelessWidget {
       create: (context) => BlocRegistro(
         emailAuthControllerCustomPRLab:
             context.read<EmailAuthControllerCustomPRLab>(),
-      )..add(BlocRegistroEventoVerificarToken(token: tokenAuth)),
+      )..add(
+          BlocRegistroEventoVerificarToken(token: tokenAuth),
+        ),
       child: FullResponsiveScreen(
         mobile: BlocBuilder<BlocRegistro, BlocRegistroEstado>(
           builder: (context, state) {
             if (state is BlocRegistroEstadoCargandoValidacionDeToken ||
                 state is BlocRegistroEstadoErrorTokenInvalido) {
-              return const VistaEsperaValidacionDeTokenEscritorio();
+              return const VistaEsperaValidacionDeTokenMobile();
             }
 
             return VistaRegistroMobile(

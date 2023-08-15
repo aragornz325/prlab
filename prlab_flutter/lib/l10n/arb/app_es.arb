@@ -112,8 +112,8 @@
         }
     },
 
-    "alert_dialgo_code_in": "código en",
-    "@alert_dialgo_code_in": {
+    "alert_dialog_code_in": "código en",
+    "@alert_dialog_code_in": {
         "description":"part text in alertdialog of textfield on tooltip, code in"
     },
     "page_create_account_admin_error_message_change_email": "Error al cambiar el email valido",

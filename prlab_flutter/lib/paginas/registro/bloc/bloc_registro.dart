@@ -146,8 +146,8 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     final l10n = context.l10n;
     return switch (loginErrorMessages) {
       MensajesDeErrorRegistro.credencialesInvalidas =>
-        l10n.alert_dialgo_code_in, //Todo(sam): revisar mensajes de error
-      MensajesDeErrorRegistro.usuarioNoEncontrado => l10n.alert_dialgo_code_in,
+        l10n.alert_dialog_code_in, //Todo(sam): revisar mensajes de error
+      MensajesDeErrorRegistro.usuarioNoEncontrado => l10n.alert_dialog_code_in,
     };
   }
 }
