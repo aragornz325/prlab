@@ -70,7 +70,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
           event.email,
           event.password,
         );
-        print(usuario);
+
         if (usuario != null) {
           emit(
             BlocRegistroEstadoExitoso(

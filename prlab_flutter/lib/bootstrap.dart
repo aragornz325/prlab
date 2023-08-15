@@ -36,12 +36,11 @@ Future<void> bootstrap(
   // version a la 4.0.0 la cual soporta web local storage,
   // cambia Hive x Isar.
 
-  // await initializeServerpodClient(host: url);
-
   /// Se instancia el objeto de la base de datos local Isar
   // await IsarService.openDB();
 
   // Add cross-flavor configuration here
   await initializeServerpodClient(host: url);
+
   runApp(await builder());
 }
