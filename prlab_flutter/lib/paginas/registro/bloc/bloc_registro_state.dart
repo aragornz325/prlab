@@ -1,20 +1,44 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
+@immutable
 class BlocRegistroEstado extends Equatable {
-  const BlocRegistroEstado({
+  const BlocRegistroEstado._({
     this.terminosAceptados = false,
+    this.passwordConfirmada = false,
     this.email = '',
     this.password = '',
-    this.passwordConfirmada = false,
   });
-  final bool? terminosAceptados;
+
+  BlocRegistroEstado.desde(
+    BlocRegistroEstado otro, {
+    bool? terminosAceptados,
+    String? email,
+    String? password,
+    bool? passwordConfirmada,
+  }) : this._(
+          terminosAceptados: terminosAceptados ?? otro.terminosAceptados,
+          passwordConfirmada: passwordConfirmada ?? otro.passwordConfirmada,
+          email: email ?? otro.email,
+          password: password ?? otro.password,
+        );
+
+  final bool terminosAceptados;
+
   final String email;
+
   final String password;
+
   final bool passwordConfirmada;
 
+  bool get isEstadoInicial => this is BlocRegistroEstadoInicial;
+
+  bool get isEstadoExitoso => this is BlocRegistroEstadoExitoso;
+
+  bool get isEstadoCargando => this is BlocRegistroEstadoCargando;
+
   @override
-  List<Object?> get props => [
+  List<Object> get props => [
         terminosAceptados,
         email,
         password,
@@ -24,34 +48,50 @@ class BlocRegistroEstado extends Equatable {
 
 /// Estado inicial de los componentes de la pantalla registro
 class BlocRegistroEstadoInicial extends BlocRegistroEstado {
-  const BlocRegistroEstadoInicial({
-    super.terminosAceptados,
-    super.email,
-    super.password,
-  });
+  const BlocRegistroEstadoInicial() : super._();
 }
 
 /// Estado exitoso de los componentes de la pantalla login
 class BlocRegistroEstadoExitoso extends BlocRegistroEstado {
-  const BlocRegistroEstadoExitoso({
+  BlocRegistroEstadoExitoso.desde(
+    super.otro, {
     super.terminosAceptados,
     super.email,
     super.password,
-  });
+  }) : super.desde();
 }
 
 /// Estado de carga de los componentes de la pantalla registro, para mostrar un
 /// CircularProgressIndicator()
 class BlocRegistroEstadoCargando extends BlocRegistroEstado {
-  const BlocRegistroEstadoCargando();
+  BlocRegistroEstadoCargando.desde(super.otro) : super.desde();
+}
+
+/// Estado de carga de los componentes de la pantalla registro, para mostrar un
+/// CircularProgressIndicator()
+class BlocRegistroEstadoCargandoValidacionDeToken extends BlocRegistroEstado {
+  BlocRegistroEstadoCargandoValidacionDeToken.desde(super.otro) : super.desde();
 }
 
 /// Estado de error de los componentes de la pantalla registro, acompañado
 /// por un mensaje de error
 class BlocRegistroErrorState extends BlocRegistroEstado {
-  const BlocRegistroErrorState({
+  BlocRegistroErrorState.desde(
+    super.otro, {
     required this.errorMessage,
-  });
+  }) : super.desde();
+
+  /// Mensaje de error
+  final MensajesDeErrorRegistro errorMessage;
+}
+
+/// Estado de error de los componentes de la pantalla registro, acompañado
+/// por un mensaje de error
+class BlocRegistroEstadoErrorTokenInvalido extends BlocRegistroEstado {
+  BlocRegistroEstadoErrorTokenInvalido.desde(
+    super.otro, {
+    required this.errorMessage,
+  }) : super.desde();
 
   /// Mensaje de error
   final MensajesDeErrorRegistro errorMessage;

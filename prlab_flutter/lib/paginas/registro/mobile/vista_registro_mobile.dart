@@ -1,7 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
@@ -11,9 +9,6 @@ import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/paginas/registro/widgets/titulo_bienvenida_con_imagen.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
-
-//Todo(sam): hacer exports
-@RoutePage()
 
 /// Vista de mobile de la pantalla registro, la cual llega a traves del mail
 ///  donde el usuario puede registrarse y aceptar los terminos y condiciones.
@@ -64,9 +59,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Center(
-                          child: TituloBienvenidaConImagen(),
-                        ),
+                        const Center(child: TituloBienvenidaConImagen()),
                         SizedBox(
                           child: Center(
                             child: Text(
@@ -97,6 +90,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                           ),
                         );
                       }
+
                       if (state is BlocRegistroErrorState) {
                         return Center(
                           child: SizedBox(
@@ -111,8 +105,9 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                           ),
                         );
                       }
-                      if ((state is BlocRegistroEstadoInicial) ||
-                          (state is BlocRegistroEstadoExitoso)) {
+
+                      if (state is BlocRegistroEstadoInicial ||
+                          state is BlocRegistroEstadoExitoso) {
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -130,9 +125,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: 20.ph,
-                            ),
+                            SizedBox(height: 20.ph),
                             SizedBox(
                               width: 259.pw,
                               child: TextField(
@@ -144,9 +137,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: 20.ph,
-                            ),
+                            SizedBox(height: 20.ph),
                             SizedBox(
                               width: 259.pw,
                               child: TextField(
@@ -158,9 +149,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: 20.ph,
-                            ),
+                            SizedBox(height: 20.ph),
                             SizedBox(
                               width: 259.pw,
                               child: Row(
@@ -170,13 +159,13 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                     onChanged: (value) {
                                       _agregarEventoAceptarTerminos(
                                         context,
-                                        value,
+                                        value ?? false,
                                       );
                                     },
                                   ),
                                   Text(
                                     l10n.page_sign_up_terms_and_conditions_text,
-                                    style: state.terminosAceptados!
+                                    style: state.terminosAceptados
                                         ? TextStyle(
                                             color: tema.primary,
                                           )
@@ -195,9 +184,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                 ],
                               ),
                             ),
-                            SizedBox(
-                              height: 40.ph,
-                            ),
+                            SizedBox(height: 40.ph),
                             ClipRRect(
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(100),
@@ -212,15 +199,15 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                     );
                                   },
                                   texto: l10n.page_sign_up_button_sign_up,
-                                  habilitado: state.terminosAceptados!,
+                                  habilitado: state.terminosAceptados,
                                 ),
                               ),
                             ),
                           ],
                         );
-                      } else {
-                        return Container();
                       }
+
+                      return const SizedBox.shrink();
                     },
                   ),
                 ],
@@ -242,7 +229,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
         );
   }
 
-  void _agregarEventoAceptarTerminos(BuildContext context, bool? value) {
+  void _agregarEventoAceptarTerminos(BuildContext context, bool value) {
     context.read<BlocRegistro>().add(
           BlocRegistroEventoAceptarTerminos(
             terminosAceptados: value,

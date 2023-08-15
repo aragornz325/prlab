@@ -17,7 +17,8 @@ class BlocRegistroEventoAceptarTerminos extends BlocRegistroEvento {
   const BlocRegistroEventoAceptarTerminos({
     required this.terminosAceptados,
   });
-  final bool? terminosAceptados;
+
+  final bool terminosAceptados;
 }
 
 /// Evento que  verifica si el token es el correcto
@@ -25,6 +26,7 @@ class BlocRegistroEventoVerificarToken extends BlocRegistroEvento {
   const BlocRegistroEventoVerificarToken({
     required this.token,
   });
+
   final String token;
 }
 
@@ -34,8 +36,10 @@ class BlocRegistroEventoEnviarDatosRegistro extends BlocRegistroEvento {
     required this.email,
     required this.password,
   });
+
   final String email;
   final String password;
+
   @override
   List<Object> get props => [
         email,

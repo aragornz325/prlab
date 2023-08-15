@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -11,13 +10,13 @@ import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/paginas/registro/widgets/titulo_bienvenida_con_imagen.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
 
-@RoutePage()
-
 /// Vista de escritorio de la pantalla registro, la cual llega a traves del mail
 ///  donde el usuario puede registrarse  y aceptar los terminos y condiciones.
 class VistaRegistroEscritorio extends StatefulWidget {
   const VistaRegistroEscritorio({required this.email, super.key});
+
   final String email;
+
   @override
   State<VistaRegistroEscritorio> createState() =>
       _VistaRegistroEscritorioState();
@@ -102,6 +101,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                           ),
                         );
                       }
+
                       if (state is BlocRegistroErrorState) {
                         return Center(
                           child: SizedBox(
@@ -116,8 +116,9 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                           ),
                         );
                       }
-                      if ((state is BlocRegistroEstadoInicial) ||
-                          (state is BlocRegistroEstadoExitoso)) {
+
+                      if (state is BlocRegistroEstadoInicial ||
+                          state is BlocRegistroEstadoExitoso) {
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -164,9 +165,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: 20.ph,
-                            ),
+                            SizedBox(height: 20.ph),
                             SizedBox(
                               width: 259.pw,
                               child: Row(
@@ -176,16 +175,14 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                     onChanged: (value) {
                                       _agregarEventoAceptarTerminos(
                                         context,
-                                        value,
+                                        value ?? false,
                                       );
                                     },
                                   ),
                                   Text(
                                     l10n.page_sign_up_terms_and_conditions_text,
-                                    style: state.terminosAceptados!
-                                        ? TextStyle(
-                                            color: tema.primary,
-                                          )
+                                    style: state.terminosAceptados
+                                        ? TextStyle(color: tema.primary)
                                         : null,
                                   ),
                                   GestureDetector(
@@ -201,9 +198,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                 ],
                               ),
                             ),
-                            SizedBox(
-                              height: 40.ph,
-                            ),
+                            SizedBox(height: 40.ph),
                             ClipRRect(
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(100),
@@ -218,15 +213,15 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                     );
                                   },
                                   texto: l10n.page_sign_up_button_sign_up,
-                                  habilitado: state.terminosAceptados!,
+                                  habilitado: state.terminosAceptados,
                                 ),
                               ),
                             ),
                           ],
                         );
-                      } else {
-                        return Container();
                       }
+
+                      return const SizedBox.shrink();
                     },
                   ),
                 ],
@@ -248,7 +243,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
         );
   }
 
-  void _agregarEventoAceptarTerminos(BuildContext context, bool? value) {
+  void _agregarEventoAceptarTerminos(BuildContext context, bool value) {
     context.read<BlocRegistro>().add(
           BlocRegistroEventoAceptarTerminos(
             terminosAceptados: value,

@@ -14,7 +14,6 @@ import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
   BlocRegistro({
     required this.emailAuthControllerCustomPRLab,
-    //   required this.client,
   }) : super(
           const BlocRegistroEstadoInicial(),
         ) {
@@ -31,15 +30,10 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     BlocRegistroEventoAceptarTerminos event,
     Emitter<BlocRegistroEstado> emit,
   ) async {
-    // emit(
-    //   const BlocRegistroEstadoCargando(),
-    // );
-
     emit(
-      BlocRegistroEstadoExitoso(
+      BlocRegistroEstadoExitoso.desde(
+        state,
         terminosAceptados: event.terminosAceptados,
-        email: state.email,
-        password: state.password,
       ),
     );
   }
@@ -57,45 +51,53 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
         event.email,
         event.password,
       );
-      if (respuesta) {
-        final codigo = await client.auth.getValidationCode(
-          event.email,
-        );
-        await emailAuthControllerCustomPRLab.validateAccount(
-          event.email,
-          codigo,
-        );
 
-        final usuario = await emailAuthControllerCustomPRLab.signIn(
-          event.email,
-          event.password,
-        );
-
-        if (usuario != null) {
-          emit(
-            BlocRegistroEstadoExitoso(
-              terminosAceptados: state.terminosAceptados,
-              email: event.email,
-              password: event.password,
-            ),
-          );
-        } else {
-          emit(
-            const BlocRegistroErrorState(
-              errorMessage: MensajesDeErrorRegistro.credencialesInvalidas,
-            ),
-          );
-        }
-      } else {
-        emit(
-          const BlocRegistroErrorState(
+      if (!respuesta) {
+        return emit(
+          BlocRegistroErrorState.desde(
+            state,
             errorMessage: MensajesDeErrorRegistro.credencialesInvalidas,
           ),
         );
       }
+
+      final codigo = await client.auth.getValidationCode(
+        event.email,
+      );
+
+      await emailAuthControllerCustomPRLab.validateAccount(
+        event.email,
+        codigo,
+      );
+
+      final usuario = await emailAuthControllerCustomPRLab.signIn(
+        event.email,
+        event.password,
+      );
+
+      if (usuario == null) {
+        emit(
+          BlocRegistroErrorState.desde(
+            state,
+            errorMessage: MensajesDeErrorRegistro.credencialesInvalidas,
+          ),
+        );
+
+        return;
+      }
+
+      emit(
+        BlocRegistroEstadoExitoso.desde(
+          state,
+          terminosAceptados: state.terminosAceptados,
+          email: event.email,
+          password: event.password,
+        ),
+      );
     } catch (e, st) {
       emit(
-        const BlocRegistroErrorState(
+        BlocRegistroErrorState.desde(
+          state,
           errorMessage: MensajesDeErrorRegistro.usuarioNoEncontrado,
         ),
       );
@@ -113,22 +115,18 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     BlocRegistroEventoVerificarToken event,
     Emitter<BlocRegistroEstado> emit,
   ) async {
-    emit(
-      const BlocRegistroEstadoCargando(),
-    );
+    emit(BlocRegistroEstadoCargandoValidacionDeToken.desde(state));
+
     try {
       final email = await client.auth.validarTokenPorMail(
         event.token,
       );
 
-      emit(
-        BlocRegistroEstadoExitoso(
-          email: email,
-        ),
-      );
+      emit(BlocRegistroEstadoExitoso.desde(state, email: email));
     } catch (e, st) {
       emit(
-        const BlocRegistroErrorState(
+        BlocRegistroEstadoErrorTokenInvalido.desde(
+          state,
           errorMessage: MensajesDeErrorRegistro.usuarioNoEncontrado,
         ),
       );
