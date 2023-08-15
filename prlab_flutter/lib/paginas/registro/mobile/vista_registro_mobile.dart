@@ -9,6 +9,7 @@ import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/paginas/registro/widgets/titulo_bienvenida_con_imagen.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
+import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
 
 /// Vista de mobile de la pantalla registro, la cual llega a traves del mail
 ///  donde el usuario puede registrarse y aceptar los terminos y condiciones.
@@ -30,6 +31,12 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
   TextEditingController controllerConfirmarPassword = TextEditingController();
 
   @override
+  void initState() {
+    controllerEmail.text = widget.email;
+    super.initState();
+  }
+
+  @override
   void dispose() {
     controllerEmail.dispose();
     controllerPassword.dispose();
@@ -41,7 +48,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
   Widget build(BuildContext context) {
     final bloc = context.watch<BlocRegistro>();
     final l10n = context.l10n;
-    final tema = context.theme.colorScheme;
+    final tema = context.colores;
 
     return Scaffold(
       body: Row(
@@ -59,7 +66,9 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Center(child: TituloBienvenidaConImagen()),
+                        const Center(
+                          child: TituloBienvenidaConImagen(),
+                        ),
                         SizedBox(
                           child: Center(
                             child: Text(
@@ -113,19 +122,19 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                           children: [
                             SizedBox(
                               width: 259.pw,
-                              child: TextField(
+                              child: PRTextFormField.email(
+                                // TODO(SAM): el color del mensajito no cambia
+                                hintText: controllerEmail.text,
+                                context: context,
                                 controller: controllerEmail,
-                                decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.email),
-                                  labelText: l10n
-                                      .page_sign_up_text_field_hint_example_mail,
-                                  labelStyle: TextStyle(
-                                    color: tema.primary,
-                                  ),
-                                ),
+                                estaVacio: false,
+                                soloLectura: true,
+                                onChanged: (p0) {},
                               ),
                             ),
-                            SizedBox(height: 20.ph),
+                            SizedBox(
+                              height: 20.ph,
+                            ),
                             SizedBox(
                               width: 259.pw,
                               child: TextField(
@@ -137,7 +146,9 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 20.ph),
+                            SizedBox(
+                              height: 20.ph,
+                            ),
                             SizedBox(
                               width: 259.pw,
                               child: TextField(
@@ -166,9 +177,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                   Text(
                                     l10n.page_sign_up_terms_and_conditions_text,
                                     style: state.terminosAceptados
-                                        ? TextStyle(
-                                            color: tema.primary,
-                                          )
+                                        ? TextStyle(color: tema.primary)
                                         : null,
                                   ),
                                   GestureDetector(

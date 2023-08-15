@@ -115,14 +115,18 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     BlocRegistroEventoVerificarToken event,
     Emitter<BlocRegistroEstado> emit,
   ) async {
-    emit(BlocRegistroEstadoCargandoValidacionDeToken.desde(state));
+    emit(
+      BlocRegistroEstadoCargandoValidacionDeToken.desde(state),
+    );
 
     try {
       final email = await client.auth.validarTokenPorMail(
         event.token,
       );
 
-      emit(BlocRegistroEstadoExitoso.desde(state, email: email));
+      emit(
+        BlocRegistroEstadoExitoso.desde(state, email: email),
+      );
     } catch (e, st) {
       emit(
         BlocRegistroEstadoErrorTokenInvalido.desde(
@@ -146,7 +150,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     final l10n = context.l10n;
     return switch (loginErrorMessages) {
       MensajesDeErrorRegistro.credencialesInvalidas =>
-        l10n.alert_dialog_code_in, //Todo(sam): revisar mensajes de error
+        l10n.alert_dialog_code_in, // TODO(sam): revisar mensajes de error
       MensajesDeErrorRegistro.usuarioNoEncontrado => l10n.alert_dialog_code_in,
     };
   }

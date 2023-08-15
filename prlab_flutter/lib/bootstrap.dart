@@ -31,8 +31,8 @@ Future<void> bootstrap(
 
   Bloc.observer = const AppBlocObserver();
 
-  // TODO(anyone):
-  // Esto queda como carryover, una vez que Isar actualice la
+  // TODO(anyone):  Esto queda como carryover, una vez que Isar actualice la
+
   // version a la 4.0.0 la cual soporta web local storage,
   // cambia Hive x Isar.
 

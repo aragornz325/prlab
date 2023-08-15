@@ -25,7 +25,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final theme = context.theme;
+    final colores = context.colores;
 
     return Center(
       child: Container(
@@ -34,7 +34,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
           vertical: 40.ph,
         ),
         decoration: BoxDecoration(
-          color: theme.colorScheme.background,
+          color: colores.background,
           borderRadius: const BorderRadius.all(
             Radius.circular(15),
           ),
@@ -42,7 +42,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             BoxShadow(
               offset: const Offset(0, 10),
               blurRadius: 30,
-              // TODO: cambiar cuando este seteado los themas
+              // TODO(mati): cambiar cuando este seteado los themas
               color: const Color(0xff000000).withOpacity(.25),
             ),
           ],
@@ -56,7 +56,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             Text(
               l10n.page_create_admin_client_email,
               style: TextStyle(
-                // TODO: cambiar cuando este seteado los themas
+                // TODO(mati): cambiar cuando este seteado los themas
                 color: const Color(0xff363636),
                 fontSize: 30.pf,
                 fontWeight: FontWeight.w600,
@@ -66,7 +66,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             Text(
               l10n.page_create_admin_leading_pr_agency,
               style: TextStyle(
-                // TODO: cambiar cuando este seteado los themas
+                // TODO(mati): cambiar cuando este seteado los themas
                 color: const Color(0xff707070),
                 fontSize: 15.pf,
                 fontWeight: FontWeight.w400,
@@ -78,7 +78,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 15.pw),
                 height: 40.ph,
                 width: 785.pw,
-                // TODO: cambiarlo por el que esta en development tambien
+                // TODO(mati): cambiarlo por el que esta en development tambien
                 // cambiar la funcion
                 child: TextFormField(
                   controller: controller,
@@ -94,7 +94,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
-                        color: theme.colorScheme.primary,
+                        color: colores.primary,
                       ),
                       height: 50.ph,
                       width: 765.pw,
@@ -103,7 +103,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                           height: 35.ph,
                           width: 35.pw,
                           child: CircularProgressIndicator(
-                            color: theme.colorScheme.background,
+                            color: colores.background,
                           ),
                         ),
                       ),
@@ -119,7 +119,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                           }
                         : () {},
                     texto: l10n.page_create_admin_button_send,
-                    // TODO: cambiar por la variable del bloc
+                    // TODO(mati): cambiar por la variable del bloc
                     habilitado: state.esEmailValido,
                   ),
                 );

@@ -9,6 +9,7 @@ import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/paginas/registro/widgets/titulo_bienvenida_con_imagen.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
+import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
 
 /// Vista de escritorio de la pantalla registro, la cual llega a traves del mail
 ///  donde el usuario puede registrarse  y aceptar los terminos y condiciones.
@@ -50,7 +51,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
   Widget build(BuildContext context) {
     final bloc = context.watch<BlocRegistro>();
     final l10n = context.l10n;
-    final tema = context.theme.colorScheme;
+    final tema = context.colores;
 
     return Scaffold(
       body: Row(
@@ -124,17 +125,14 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                           children: [
                             SizedBox(
                               width: 259.pw,
-                              child: TextField(
+                              child: PRTextFormField.email(
+                                // TODO(SAM): el color del mensajito no cambia
+                                hintText: controllerEmail.text,
+                                context: context,
                                 controller: controllerEmail,
-                                style: TextStyle(
-                                  color: tema.primary,
-                                ),
-                                decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.email),
-                                  labelStyle: TextStyle(
-                                    color: tema.primary,
-                                  ),
-                                ),
+                                estaVacio: false,
+                                soloLectura: true,
+                                onChanged: (p0) {},
                               ),
                             ),
                             SizedBox(

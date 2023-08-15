@@ -56,7 +56,7 @@ class PRDialog extends StatefulWidget {
                   ),
                 ),
                 SizedBox(height: 40.ph),
-                // TODO: cambiar por los textfield de manu
+                // TODO(anyone): cambiar por los textfield de manu
                 PrLabTextfield(
                   controller: controller,
                   solicitoNuevoCodigo: true,
@@ -75,10 +75,10 @@ class PRDialog extends StatefulWidget {
                 PRBoton.outlined(
                   width: 360.pw,
 
-                  // TODO:agregarle funcionalidad del bloc
+                  // TODO(anyone): agregarle funcionalidad del bloc
                   habilitado: true,
                   onTap: () {
-                    // TODO:agregarle funcionalidad del bloc
+                    // TODO(anyone): agregarle funcionalidad del bloc
                   },
                   texto: l10n.alert_dialog_button_title_send,
                 ),
@@ -99,7 +99,7 @@ class PRDialog extends StatefulWidget {
   }) {
     final l10n = context.l10n;
 
-    final theme = context.theme.colorScheme;
+    final colores = context.colores;
 
     return PRDialog(
       content: Column(
@@ -120,7 +120,7 @@ class PRDialog extends StatefulWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  // TODO: esto va a definirse por el cliente
+                  // TODO(anyone): esto va a definirse por el cliente
                   text: 'An email has been sent to\n',
                   style: TextStyle(
                     color: const Color(0xff707070),
@@ -129,16 +129,16 @@ class PRDialog extends StatefulWidget {
                   ),
                 ),
                 TextSpan(
-                  // TODO: esto va a definirse por el cliente
+                  // TODO(anyone): esto va a definirse por el cliente
                   text: '$email \n',
                   style: TextStyle(
-                    color: theme.primary,
+                    color: colores.primary,
                     fontSize: 15.pf,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
                 TextSpan(
-                  // TODO: esto va a definirse por el cliente
+                  // TODO(anyone): esto va a definirse por el cliente
                   text: 'Lorem ipsum dolor sit amet consectetur.Tortor\nut '
                       'quis faucibus etiam.Euismod condimentum.',
                   style: TextStyle(
@@ -154,7 +154,7 @@ class PRDialog extends StatefulWidget {
           Center(
             child: PRBoton.outlined(
               onTap: () {
-                // TODO: agregarle funcionalidad
+                // TODO(anyone): agregarle funcionalidad
                 Navigator.of(context).pop();
               },
               texto: l10n.page_create_admin_alertdialog_button_ok,
@@ -267,9 +267,10 @@ class PRDialog extends StatefulWidget {
 class _PRDialogState extends State<PRDialog> {
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme.colorScheme;
+    final colores = context.colores;
+
     return AlertDialog(
-      backgroundColor: theme.background,
+      backgroundColor: colores.background,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.sw),
       ),
