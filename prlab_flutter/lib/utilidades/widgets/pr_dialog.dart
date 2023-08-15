@@ -99,7 +99,7 @@ class PRDialog extends StatefulWidget {
   }) {
     final l10n = context.l10n;
 
-    final theme = context.theme.colorScheme;
+    final colores = context.colores;
 
     return PRDialog(
       content: Column(
@@ -132,7 +132,7 @@ class PRDialog extends StatefulWidget {
                   // TODO: esto va a definirse por el cliente
                   text: '$email \n',
                   style: TextStyle(
-                    color: theme.primary,
+                    color: colores.primary,
                     fontSize: 15.pf,
                     fontWeight: FontWeight.w400,
                   ),
@@ -267,9 +267,10 @@ class PRDialog extends StatefulWidget {
 class _PRDialogState extends State<PRDialog> {
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme.colorScheme;
+    final colores = context.colores;
+
     return AlertDialog(
-      backgroundColor: theme.background,
+      backgroundColor: colores.background,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.sw),
       ),

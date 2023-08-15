@@ -123,6 +123,32 @@
     "@page_create_account_admin_error_message_send_email": {
         "description":"part text in error alertdialog in page create account admin, Error al enviar el email"
     },
+
+    "commonCompleteTheField": "Complete the field",
+    "@commonCompleteTheField": {
+        "description": "text to indicate that the field must be completed"
+    },
+
+    "commonEnterValidEmail": "Enter a valid email",
+    "@commonEnterValidEmail" : {
+        "descripcion": "text to indicate that a valid email must be entered"
+    },
+    "commonPasswordDoNotMatch": "Password do not match",
+    "@commonPasswordDoNotMatch" : {
+        "descripcion": "text to indicate that the passwords do not match"
+    },
+
+    "commonOnlyLetters": "Only letters",
+    "@commonOnlyLetters":{
+        "description": "text to indicate that only letters can be used"
+    },
+    "commonEmail": "Email",
+    "@commonEmail":{
+        "description": "text to indicate that you must enter your email"},
+    "commonInvalidCharacters": "Invalid characters",
+    "@commonInvalidCharacters":{
+        "description":"Text indicating that invalid characters were used"},
+
     "alert_dialog_button_title_error" : "¡Error!",
     "@alert_dialog_button_title_error": {
         "description":"text in alertdialog title, Error"
@@ -139,7 +165,10 @@
     "@alert_dialog_button_subtitle_link_expired": {
         "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
     }
+
+
     
+
 
 
 }
