@@ -54,7 +54,7 @@ class RegistroPage extends StatelessWidget {
             );
           }
           if (state is BlocRegistroEstadoCargando) {
-            return const CircularProgressIndicator();
+            return const CircularProgressIndicator(); //cambiar
           }
           if (state is BlocRegistroEstadoExitoso ||
               state is BlocRegistroEstadoInicial) {

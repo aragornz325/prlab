@@ -51,12 +51,11 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     Emitter<BlocRegistroEstado> emit,
   ) async {
     try {
-      final respuesta =
-          await emailAuthControllerCustomPRLab.createAccountRequest(
-        'sebasamontero',
-        'sebasamontero@gmail.com',
-        'Naitsabes1@',
-      );
+      final respuesta = await emailAuthControllerCustomPRLab.cuenta(
+          // 'sebasamontero@gmail.com',
+          // 'sebasamontero@gmail.com',
+          // 'Naitsabes1@',
+          );
       if (respuesta) {
         final codigo = await client.auth.getValidationCode(
           event.email,

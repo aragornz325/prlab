@@ -112,7 +112,7 @@
         }
     },
 
-    "alert_dialgo_code_in": "codigo en",
+    "alert_dialgo_code_in": "código en",
     "@alert_dialgo_code_in": {
         "description":"part text in alertdialog of textfield on tooltip, code in"
     },
@@ -124,6 +124,22 @@
     "page_create_account_admin_error_message_send_email": "Error al enviar el email",
     "@page_create_account_admin_error_message_send_email": {
         "description":"part text in error alertdialog in page create account admin, Error al enviar el email"
+    },
+    "alert_dialog_button_title_error" : "¡Error!",
+    "@alert_dialog_button_title_error": {
+        "description":"text in alertdialog title, Error"
+    },
+    "alert_dialog_button_subtitle_something_went_wrong" : "Algo salio mal",
+    "@alert_dialog_button_subtitle_something_went_wrong": {
+        "description":"text in alertdialog sub title, Something went wrong"
+    },
+    "alert_dialog_button_title_button_resend" : "Reenviar",
+    "@alert_dialog_button_title_button_resend": {
+        "description":"text in alertdialog title button, Resend"
+    },
+    "alert_dialog_button_subtitle_link_expired" : "el link a expirado,\npor favor has click en “Reenviar” para obtener un nuevo código",
+    "@alert_dialog_button_subtitle_link_expired": {
+        "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
     }
 
 }

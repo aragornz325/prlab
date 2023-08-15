@@ -37,22 +37,23 @@ void run(List<String> args) async {
 
   auth.AuthConfig.set(auth.AuthConfig(
     sendValidationEmail: (session, email, validationCode) async {
-      try {
-        final cuerpoCorreo =
-            PlantillasCorreo().cuerpoVerificacion(codigo: validationCode);
-        final correo = PlantillasCorreo()
-            .mailingGeneral(contenido: cuerpoCorreo, nombre: 'nombre');
-        await enviarEmail(
-            mailDestinatario: email.toString().trim(),
-            subject: 'Email validation.',
-            mailHtml: correo);
-        print('Sending validation email to $email with code $validationCode');
-        print(validationCode);
-        return true;
-      } on Exception catch (e, st) {
-        print('$e $st');
-        rethrow;
-      }
+      return true;
+      // try {
+      //   final cuerpoCorreo =
+      //       PlantillasCorreo().cuerpoVerificacion(codigo: validationCode);
+      //   final correo = PlantillasCorreo()
+      //       .mailingGeneral(contenido: cuerpoCorreo, nombre: 'nombre');
+      //   await enviarEmail(
+      //       mailDestinatario: email.toString().trim(),
+      //       subject: 'Email validation.',
+      //       mailHtml: correo);
+      //   print('Sending validation email to $email with code $validationCode');
+      //   print(validationCode);
+      //   return true;
+      // } on Exception catch (e, st) {
+      //   print('$e $st');
+      //   rethrow;
+      // }
     },
     sendPasswordResetEmail: (session, userInfo, validationCode) async {
       try {
@@ -64,7 +65,8 @@ void run(List<String> args) async {
             mailDestinatario: userInfo.email.toString().trim(),
             subject: 'Password reset validation.',
             mailHtml: correo);
-        print('Sending password reset validation email to ${userInfo.email.toString()} with code $validationCode');
+        print(
+            'Sending password reset validation email to ${userInfo.email.toString()} with code $validationCode');
         print(validationCode);
         return true;
       } on Exception catch (e, st) {
