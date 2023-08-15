@@ -18,7 +18,18 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
   }) : super(const BlocLoginEstadoInicial()) {
     on<BlocLoginEventoIniciarSesion>(_iniciarSesion);
     on<BlocLoginEventoHabilitarBoton>(_habilitarBoton);
+
+    ///manejo del temporizador y cronometro
+    on<BLocLoginEventoEmpezarTemporizador>(_empezarCronometro);
+    on<BlocLoginEventoPausarTemporizador>(_pausarCronometro);
+    on<BlocLoginEventoTemporizadorResetearTemporizador>(_resetearCronometro);
+    on<BlocLoginEventoTiempoEjecucion>(_corriendoCronometro);
+    on<BlocLoginEventoTiempoCompletado>(_cronometroCompletado);
   }
+  static const int _duracion = 60;
+
+  late Timer _time;
+  int _tiempoCorriendoDuracion = _duracion;
 
   /// Repositorio editado para Serverpod
   final EmailAuthControllerCustomPRLab emailAuthControllerCustomPRLab;
@@ -30,7 +41,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     Emitter<BlocLoginEstado> emit,
   ) async {
     emit(
-      const BlocLoginEstadoCargando(estaIniciandoSesion: true),
+      BlocLoginEstadoCargando.desde(state, estaIniciandoSesion: true),
     );
     try {
       final respuesta = await emailAuthControllerCustomPRLab.iniciarSesion(
@@ -42,13 +53,14 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       if (userInfo == null) {
         return emit(
           // TODO(Gon): Preguntar al back que devuelve para handlear los errores
-          const BlocLoginEstadoError(
-            errorMessage: MensajesDeErrorDelLogin.userNotFound,
+          BlocLoginEstadoError.desde(
+            state,
+            mensajeDeError: MensajesDeErrorDelLogin.userNotFound,
           ),
         );
       }
 
-      emit(const BlocLoginEstadoExitoso());
+      emit(BlocLoginEstadoExitoso.desde(state));
     } catch (e, st) {
       if (kDebugMode) {
         debugger();
@@ -73,7 +85,12 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
           loginErrorMessages = MensajesDeErrorDelLogin.unknown;
       }
 
-      return emit(BlocLoginEstadoError(errorMessage: loginErrorMessages));
+      return emit(
+        BlocLoginEstadoError.desde(
+          state,
+          mensajeDeError: loginErrorMessages,
+        ),
+      );
     }
   }
 
@@ -89,17 +106,18 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
           event.password.length >
               PRLabConfiguracion.minimoDeCaracteresContrasenia) {
         emit(
-          const BlocLoginEstadoExitoso(botonHabilitado: true),
+          BlocLoginEstadoExitoso.desde(state, botonHabilitado: true),
         );
       } else {
         emit(
-          const BlocLoginEstadoExitoso(),
+          BlocLoginEstadoExitoso.desde(state),
         );
       }
     } catch (e, st) {
       emit(
-        const BlocLoginEstadoError(
-          errorMessage: MensajesDeErrorDelLogin.invalidCredentials,
+        BlocLoginEstadoError.desde(
+          state,
+          mensajeDeError: MensajesDeErrorDelLogin.invalidCredentials,
         ),
       );
       if (kDebugMode) {
@@ -107,5 +125,130 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
         throw UnimplementedError('Implementa un error para esto: $e $st');
       }
     }
+  }
+
+  ///funcion que empieza a correr el cronometro
+  FutureOr<void> _empezarCronometro(
+    BLocLoginEventoEmpezarTemporizador event,
+    Emitter<BlocLoginEstado> emit,
+  ) async {
+    _tiempoCorriendoDuracion = _duracion;
+    emit(
+      BlocLoginEstadoCronometroCorriendo.desde(
+        state,
+        duracionTimer: _tiempoCorriendoDuracion,
+      ),
+    );
+
+    final timeStreamController = StreamController<int>();
+
+    _time = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (_tiempoCorriendoDuracion > 0) {
+        _tiempoCorriendoDuracion--;
+        timeStreamController.sink.add(_tiempoCorriendoDuracion);
+      } else {
+        timeStreamController.close();
+        add(BlocLoginEventoTiempoCompletado());
+      }
+    });
+
+    await for (final int duracion in timeStreamController.stream) {
+      emit(
+        BlocLoginEstadoCronometroCorriendo.desde(
+          state,
+          duracionTimer: duracion,
+        ),
+      );
+    }
+  }
+
+  ///funcion que pausa el cronometro
+  FutureOr<void> _pausarCronometro(
+    BlocLoginEventoPausarTemporizador event,
+    Emitter<BlocLoginEstado> emit,
+  ) async {
+    _time.cancel();
+    emit(
+      BlocLoginEstadoCronometroPausado.desde(
+        state,
+        duracionTimer: _tiempoCorriendoDuracion,
+      ),
+    );
+  }
+
+  ///funcion para resetear el cronometro o que vuelva a 60 seg
+  FutureOr<void> _resetearCronometro(
+    BlocLoginEventoTemporizadorResetearTemporizador event,
+    Emitter<BlocLoginEstado> emit,
+  ) async {
+    _time.cancel();
+    emit(
+      BLocLoginEstadoIniciarCronometro.desde(
+        state,
+        duracionTimer: _duracion,
+      ),
+    );
+  }
+
+  ///funcion que corre el cronometro o muestra que el cronometro esta corriendo
+  FutureOr<void> _corriendoCronometro(
+    BlocLoginEventoTiempoEjecucion event,
+    Emitter<BlocLoginEstado> emit,
+  ) async {
+    emit(
+      BlocLoginEstadoCronometroCorriendo.desde(
+        state,
+        duracionTimer: _tiempoCorriendoDuracion,
+      ),
+    );
+
+    final timerStreamController = StreamController<int>();
+
+    _time = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (_tiempoCorriendoDuracion > 0) {
+        _tiempoCorriendoDuracion--;
+        timerStreamController.sink.add(_tiempoCorriendoDuracion);
+      } else {
+        timerStreamController.close();
+        _time.cancel();
+        add(BlocLoginEventoTiempoCompletado());
+      }
+    });
+
+    await for (final int duracion in timerStreamController.stream) {
+      emit(
+        BlocLoginEstadoCronometroCorriendo.desde(
+          state,
+          duracionTimer: duracion,
+        ),
+      );
+    }
+  }
+
+  ///funcion que termina el cronometro o muestra que el cronometro fue
+  ///completado
+  FutureOr<void> _cronometroCompletado(
+    BlocLoginEventoTiempoCompletado event,
+    Emitter<BlocLoginEstado> emit,
+  ) async {
+    // TODO(Gon): por ahora no hace nada si termino pero agregarle que vuelva o que
+    //le avise que se acabo el tiempo para que reenviar el codigo de
+    //verificacion
+    if (_time.isActive) {
+      _time.cancel();
+    }
+    emit(
+      BlocLoginEstadoCronometroCompletado.desde(
+        state,
+        duracionTimer: state.duracionTimer,
+      ),
+    );
+  }
+
+  ///cancela el cronometro y lo pausa para que no siga
+  @override
+  Future<void> close() {
+    _time.cancel();
+    return super.close();
   }
 }

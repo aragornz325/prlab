@@ -40,7 +40,38 @@
     "@page_login_button_reload": {
         "description": "Text shown when the user has to reload the page"
     },
-
+    "page_create_admin_account_title_prlab": "PR lab",
+    "@page_create_admin_account_title_prlab": {
+        "description": "Text PR lab in title of screen"
+    },
+    "page_create_admin_account_subtitle_international_prlab_agency": "Agencia internacional de relaciones públicas",
+    "@page_create_admin_account_subtitle_international_prlab_agency": {
+        "description": "Text International PR Agency in subtitle of screen"
+    },
+    "page_create_admin_account_button_back": "Atrás",
+    "@page_create_admin_account_button_back": {
+        "description": "Text back in button of screen create admin account"
+    },
+    "page_create_admin_client_email": "Ingrese el email del cliente",
+    "@page_create_admin_client_email": {
+        "description": "Text Enter the client email in screen create admin account above of textfield email"
+    },
+    "page_create_admin_leading_pr_agency": "La agencia de relaciones públicas líder a nivel mundial",
+    "@page_create_admin_leading_pr_agency": {
+        "description": "Text The leading global PR agency in screen create admin account above of textfield email"
+    },
+    "page_create_admin_button_send": "Enviar",
+    "@page_create_admin_button_send": {
+        "description": "Text Send in screen create admin account in button of send email"
+    },
+    "page_create_admin_alertdialog_title_email_send": "Email enviado",
+    "@page_create_admin_alertdialog_title_email_send": {
+        "description": "Text in screen create admin account in alertdialog in title, email send"
+    },
+    "page_create_admin_alertdialog_button_ok": "Ok",
+    "@page_create_admin_alertdialog_button_ok": {
+        "description": "Text in screen create admin account in alertdialog in button, Ok"
+    },
     "alert_dialog_title_recover_password" : "Recuperar contraseña",
     "@alert_dialog_title_recover_password": {
         "description":"text in title alertdialog of recover password"
@@ -111,6 +142,30 @@
     },
     "alert_dialog_button_subtitle_link_expired" : "el link a expirado,\npor favor has click en “Reenviar” para obtener un nuevo código",
     "@alert_dialog_button_subtitle_link_expired": {
+        "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
+    },
+    "login_error_user_not_found" : "La solicitud no pudo ser completada debido a que el usuario especificado no existe en el sistema. Por favor, verifica el nombre de usuario e inténtalo nuevamente.",
+    "@login_error_user_not_found": {
+        "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
+    },
+    "login_error_invalid_credentials" : " Las credenciales proporcionadas no son válidas para acceder al sistema. Asegúrate de ingresar la combinación correcta de nombre de usuario y contraseña, y vuelve a intentarlo.",
+    "@login_error_invalid_credentials": {
+        "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
+    },
+    "login_error_user_creation_denied" : "Descripción: No se pudo crear un nuevo usuario debido a restricciones o políticas de acceso. Contacta al administrador del sistema para obtener más información o asistencia.",
+    "@login_error_user_creation_denied": {
+        "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
+    },
+    "login_error_internal_error" : "Ha ocurrido un error inesperado en el servidor mientras se procesaba tu solicitud. Por favor, intenta de nuevo más tarde. Si el problema persiste, comunícalo al equipo de soporte técnico.",
+    "@login_error_internal_error": {
+        "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
+    },
+    "login_error_too_many_failed_attempts" : "Se ha excedido el número permitido de intentos fallidos para esta acción. Por razones de seguridad, tu acceso ha sido temporalmente bloqueado. Espera un tiempo antes de volver a intentarlo o comunica este problema al soporte.",
+    "@login_error_too_many_failed_attempts": {
+        "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
+    },
+    "login_error_desconocido" : "Se ha producido un error no identificado mientras se procesaba tu solicitud. Lamentablemente, no se dispone de más detalles en este momento. Por favor, comunica este problema al equipo de soporte para obtener asistencia.",
+    "@login_error_desconocido": {
         "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
     }
 

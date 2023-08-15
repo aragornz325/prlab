@@ -154,7 +154,7 @@ class PRDialog extends StatefulWidget {
           Center(
             child: PRBoton.outlined(
               onTap: () {
-                // TODO: agregarle funcionalidad
+                // TODO(anyone): agregarle funcionalidad
                 Navigator.of(context).pop();
               },
               texto: l10n.page_create_admin_alertdialog_button_ok,
@@ -176,6 +176,8 @@ class PRDialog extends StatefulWidget {
   }) {
     final l10n = context.l10n;
 
+    final theme = context.esquemaDeColores;
+
     return PRDialog(
       content: SizedBox(
         width: 360.pw,
@@ -189,8 +191,8 @@ class PRDialog extends StatefulWidget {
                   : l10n.alert_dialog_button_subtitle_something_went_wrong,
               style: TextStyle(
                 fontSize: 20.pf,
-                // TODO: cambiar cuando este el theme
-                color: esError ? Color(0xffE00707) : Colors.black,
+                // TODO(anyone): cambiar cuando este el theme
+                color: esError ? theme.error : Colors.black,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -204,8 +206,8 @@ class PRDialog extends StatefulWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 15.pf,
-                  // TODO: cambiar cuando este el theme
-                  color: Color(0xff707070),
+                  // TODO(anyone): cambiar cuando este el theme
+                  color: theme.secondary,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -216,7 +218,7 @@ class PRDialog extends StatefulWidget {
                 width: 360.pw,
                 child: PRBoton.outlined(
                   onTap: () {
-                    // TODO: agregarle funcionalidad
+                    // TODO(anyone): agregarle funcionalidad
                     Navigator.of(context).pop();
                   },
                   texto: esError

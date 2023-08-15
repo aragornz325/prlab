@@ -7,6 +7,7 @@ import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/olvidaste_tu_contrasenia.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/texto_bienvenida.dart';
+import 'package:prlab_flutter/paginas/login/utilidades/get_error_message.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// Vista de escritorio de la pantalla login donde el usuario
@@ -38,12 +39,26 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
 
     final theme = context.esquemaDeColores;
 
-    return Scaffold(
-      body: Row(
-        children: [
-          BlocBuilder<BlocLogin, BlocLoginEstado>(
-            builder: (context, state) {
-              return Container(
+    return BlocBuilder<BlocLogin, BlocLoginEstado>(
+      builder: (context, state) {
+        if (state is BlocLoginEstadoCargando &&
+            state.estaIniciandoSesion == false) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+
+        if (state is BlocLoginEstadoError) {
+          // TODO(Gon): Todavia no hay diseño para el error handling
+          print(getErrorMessage(context, state.mensajeDeError));
+        }
+
+        return Scaffold(
+          body: Row(
+            children: [
+              Container(
                 color: theme.background,
                 width: 44.5.wp,
                 height: 100.hp,
@@ -78,7 +93,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       ),
                     ),
                     if (state is BlocLoginEstadoError &&
-                        state.errorMessage ==
+                        state.mensajeDeError ==
                             MensajesDeErrorDelLogin.invalidCredentials)
                       // TODO(Gon): mostrar los popups correspondientes a los errores
                       Container(
@@ -89,24 +104,36 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     SizedBox(
                       height: 10.ph,
                     ),
+                    // TODO(Gon): ELIMINAR prueba de timer
+                    Text(state.duracionTimer.toString()),
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<BlocLogin>().add(
+                              BLocLoginEventoEmpezarTemporizador(),
+                            );
+                      },
+                      child: const Text(
+                        'data',
+                      ),
+                    ),
                     const OlvidasteTuContrasenia(),
                     SizedBox(
                       height: 50.ph,
                     ),
                     PRBoton(
                       habilitado: state.botonHabilitado,
-                      mostrarEstadoDeCarga: state.estaIniciandoSesion,
+                      mostrarEstadoDeCarga: state.estaCargandoInicioDeSesion,
                       onTap: _onTapBotonIniciarSesion,
                       texto: l10n.page_login_button_text,
                     )
                   ],
                 ),
-              );
-            },
+              ),
+              const SeccionLogoBienvenida(),
+            ],
           ),
-          const SeccionLogoBienvenida(),
-        ],
-      ),
+        );
+      },
     );
   }
 

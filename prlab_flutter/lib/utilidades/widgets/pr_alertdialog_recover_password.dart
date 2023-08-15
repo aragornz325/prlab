@@ -41,7 +41,7 @@ class _PrLabDialogVerificacionCodigoState
         borderRadius: BorderRadius.circular(20.sw),
       ),
       content: SizedBox(
-        height: 282.ph,
+        height: 292.ph,
         width: 455.pw,
         child: Column(
           children: [

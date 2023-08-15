@@ -49,7 +49,7 @@ class PRBoton extends StatelessWidget {
         decoration: BoxDecoration(
           color: outlined
               ? theme.background
-              : habilitado
+              : habilitado && !mostrarEstadoDeCarga
                   ? theme.primary
                   : theme.primary.withOpacity(.2),
           borderRadius: BorderRadius.circular(25),

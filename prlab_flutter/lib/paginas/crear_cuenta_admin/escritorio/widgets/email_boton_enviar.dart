@@ -42,7 +42,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             BoxShadow(
               offset: const Offset(0, 10),
               blurRadius: 30,
-              // TODO: cambiar cuando este seteado los themas
+              // TODO(anyone): cambiar cuando este seteado los themas
               color: const Color(0xff000000).withOpacity(.25),
             ),
           ],

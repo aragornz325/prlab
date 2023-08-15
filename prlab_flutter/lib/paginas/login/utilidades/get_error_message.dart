@@ -10,11 +10,14 @@ String getErrorMessage(
 ) {
   final l10n = context.l10n;
   return switch (loginErrorMessage) {
-    MensajesDeErrorDelLogin.invalidCredentials => 'INVALID CREDENTIALS',
-    MensajesDeErrorDelLogin.userNotFound => l10n.alert_dialgo_code_in,
-    MensajesDeErrorDelLogin.unknown => l10n.alert_dialgo_code_in,
-    MensajesDeErrorDelLogin.userCreationDenied => l10n.alert_dialgo_code_in,
-    MensajesDeErrorDelLogin.internalError => l10n.alert_dialgo_code_in,
-    MensajesDeErrorDelLogin.tooManyFailedAttempts => l10n.alert_dialgo_code_in,
+    MensajesDeErrorDelLogin.invalidCredentials =>
+      l10n.login_error_invalid_credentials,
+    MensajesDeErrorDelLogin.userNotFound => l10n.login_error_user_not_found,
+    MensajesDeErrorDelLogin.userCreationDenied =>
+      l10n.login_error_user_creation_denied,
+    MensajesDeErrorDelLogin.internalError => l10n.login_error_internal_error,
+    MensajesDeErrorDelLogin.tooManyFailedAttempts =>
+      l10n.login_error_too_many_failed_attempts,
+    MensajesDeErrorDelLogin.unknown => l10n.login_error_desconocido,
   };
 }

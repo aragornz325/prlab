@@ -143,6 +143,30 @@
     "alert_dialog_button_subtitle_link_expired" : "The link has expired,\nplease click on “resend” to get a new one",
     "@alert_dialog_button_subtitle_link_expired": {
         "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
+    },
+    "login_error_user_not_found" : "The request could not be completed because the specified user does not exist in the system. Please verify the username and try again",
+    "@login_error_user_not_found": {
+        "description":"This error is shown when the user does not exist in the system."
+    },
+    "login_error_invalid_credentials" : "The provided credentials are not valid to access the system. Make sure to enter the correct combination of username and password, and try again.",
+    "@login_error_invalid_credentials": {
+        "description":"This error is shown when the user provide the wrong answer or password"
+    },
+    "login_error_user_creation_denied" : " A new user could not be created due to access restrictions or policies. Please contact the system administrator for more information or assistance.",
+    "@login_error_user_creation_denied": {
+        "description":"This error is shown when the user cant create an account for a reason"
+    },
+    "login_error_internal_error" : "An unexpected error occurred on the server while processing your request. Please try again later. If the problem persists, report it to the technical support team.",
+    "@login_error_internal_error": {
+        "description":"This error is shown when a server error occurred trying to process a user request"
+    },
+    "login_error_too_many_failed_attempts" : "The allowed number of failed attempts for this action has been exceeded. For security reasons, your access has been temporarily blocked. Wait for some time before trying again, or report this issue to support.",
+    "@login_error_too_many_failed_attempts": {
+        "description":"This error is shown when the user tries too many times to login unsuccessfully"
+    },
+    "login_error_desconocido" : " An unidentified error has occurred while processing your request. Unfortunately, more details are not available at this time. Please report this issue to the support team for assistance.",
+    "@login_error_desconocido": {
+        "description":"This error is shown when the user makes a request and the server returns an unknow error"
     }
     
 
