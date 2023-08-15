@@ -8,6 +8,7 @@ import 'package:prlab_flutter/paginas/login/escritorio/widgets/olvidaste_tu_cont
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/texto_bienvenida.dart';
 import 'package:prlab_flutter/paginas/login/utilidades/get_error_message.dart';
+import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// Vista de escritorio de la pantalla login donde el usuario
@@ -67,31 +68,36 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                   children: [
                     const TextoBienvenida(),
 
-                    // Ejemplo textfield
-                    // TODO(Gon): Cambiar por los textfields factory
                     SizedBox(
-                      width: 259.pw,
-                      height: 20.ph,
-                      child: TextFormField(
+                      width: 360.pw,
+                      height: 40.ph,
+                      child: PRTextFormField.email(
+                        context: context,
                         controller: controllerEmail,
-                        onChanged: (value) {
+                        onChanged: (p0) {
                           _revisarSiElBotonSePuedeHabilitar();
+                          setState(() {});
                         },
+                        hintText: l10n.page_login_placeholder_email,
+                        estaVacio: controllerEmail.text.isEmpty,
+                        soloLectura: false,
                       ),
                     ),
 
-                    //Ejemplo textfield
-                    // TODO(Gon): Cambiar por los textfields factory
                     SizedBox(
-                      width: 259.pw,
-                      height: 20.ph,
-                      child: TextFormField(
+                      height: 10.ph,
+                    ),
+
+                    SizedBox(
+                      width: 360.pw,
+                      height: 40.ph,
+                      child: PRTextFormFielPassword(
                         controller: controllerPassword,
-                        onChanged: (value) {
-                          _revisarSiElBotonSePuedeHabilitar();
-                        },
+                        hintText: l10n.page_login_placeholder_password,
+                        funcionEnElOnChange: _revisarSiElBotonSePuedeHabilitar,
                       ),
                     ),
+
                     if (state is BlocLoginEstadoError &&
                         state.mensajeDeError ==
                             MensajesDeErrorDelLogin.invalidCredentials)
@@ -106,17 +112,17 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       height: 10.ph,
                     ),
                     // TODO(Gon): ELIMINAR prueba de timer
-                    Text(state.duracionTimer.toString()),
-                    ElevatedButton(
-                      onPressed: () {
-                        context.read<BlocLogin>().add(
-                              BLocLoginEventoEmpezarTemporizador(),
-                            );
-                      },
-                      child: const Text(
-                        'data',
-                      ),
-                    ),
+                    // Text(state.duracionTimer.toString()),
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     context.read<BlocLogin>().add(
+                    //           BLocLoginEventoEmpezarTemporizador(),
+                    //         );
+                    //   },
+                    //   child: const Text(
+                    //     'data',
+                    //   ),
+                    // ),
                     const OlvidasteTuContrasenia(),
                     SizedBox(
                       height: 50.ph,

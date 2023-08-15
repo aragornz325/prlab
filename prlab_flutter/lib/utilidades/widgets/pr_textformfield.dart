@@ -239,6 +239,7 @@ class PRTextFormFielPassword extends StatefulWidget {
   const PRTextFormFielPassword({
     required this.controller,
     required this.hintText,
+    required this.funcionEnElOnChange,
     this.esCreacionPassword = false,
     this.passwordCoinciden = false,
     super.key,
@@ -248,18 +249,21 @@ class PRTextFormFielPassword extends StatefulWidget {
   final String hintText;
   final bool passwordCoinciden;
   final bool esCreacionPassword;
+  final void Function()? funcionEnElOnChange;
   @override
   State<PRTextFormFielPassword> createState() => _PRTextFormFielPasswordState();
 }
 
 class _PRTextFormFielPasswordState extends State<PRTextFormFielPassword> {
   bool _obscureText = true;
-  bool controllerVacio = false;
+  bool controllerVacio = true;
 
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
     final l10n = context.l10n;
+
     return PRTextFormField(
       esPassword: true,
       controller: widget.controller,
@@ -285,8 +289,9 @@ class _PRTextFormFielPasswordState extends State<PRTextFormFielPassword> {
         },
       ),
       onChanged: (_) {
-        controllerVacio = widget.controller.text.isNotEmpty;
+        controllerVacio = widget.controller.text.isEmpty;
         setState(() {});
+        widget.funcionEnElOnChange?.call();
       },
       validator: (value) {
         final passwordDoNotMatch = widget.esCreacionPassword &&
