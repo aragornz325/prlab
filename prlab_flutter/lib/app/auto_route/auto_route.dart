@@ -15,7 +15,7 @@ class AppRouter extends $AppRouter {
       page: PaginaLogin.page,
     ),
     AutoRoute(
-      path: '/crear-cuenta',
+      path: '/create-account',
       page: PaginaCrearCuenta.page,
     ),
   ];

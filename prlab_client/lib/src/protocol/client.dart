@@ -36,6 +36,39 @@ class _EndpointCliente extends _i1.EndpointRef {
       );
 }
 
+/// La clase `AuthEndpoint` está ampliando la clase `Endpoint`. por tanto maneja
+/// todas las peticiones relacionadas con el auth del sistema
+class _EndpointAuth extends _i1.EndpointRef {
+  _EndpointAuth(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'auth';
+
+  /// La función `getValidationCode` devuelve un Future que recupera un código de validación del
+  /// `AuthService` utilizando la sesión y el correo electrónico proporcionados.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es un objeto que representa la sesión de usuario
+  /// actual. Puede contener información como el token de autenticación del usuario o el ID de sesión.
+  ///   email (String): El parámetro de correo electrónico es una cadena que representa la dirección de
+  /// correo electrónico del usuario para el que se solicita el código de validación.
+  ///
+  /// retorna un `Future<String>` (el codigo en si).
+  _i2.Future<String> getValidationCode(String email) =>
+      caller.callServerEndpoint<String>(
+        'auth',
+        'getValidationCode',
+        {'email': email},
+      );
+
+  _i2.Future<String> validarTokenPorMail(String token) =>
+      caller.callServerEndpoint<String>(
+        'auth',
+        'validarTokenPorMail',
+        {'token': token},
+      );
+}
+
 class _EndpointExample extends _i1.EndpointRef {
   _EndpointExample(_i1.EndpointCaller caller) : super(caller);
 
@@ -55,11 +88,17 @@ class _EndpointMailer extends _i1.EndpointRef {
   @override
   String get name => 'mailer';
 
-  _i2.Future<bool> envioMailRegistro(String email) =>
+  _i2.Future<bool> envioMailRegistro(
+    String email,
+    int tipo_de_invitacion,
+  ) =>
       caller.callServerEndpoint<bool>(
         'mailer',
         'envioMailRegistro',
-        {'email': email},
+        {
+          'email': email,
+          'tipo_de_invitacion': tipo_de_invitacion,
+        },
       );
 }
 
@@ -83,12 +122,14 @@ class Client extends _i1.ServerpodClient {
           authenticationKeyManager: authenticationKeyManager,
         ) {
     cliente = _EndpointCliente(this);
+    auth = _EndpointAuth(this);
     example = _EndpointExample(this);
     mailer = _EndpointMailer(this);
     modules = _Modules(this);
   }
 
   late final _EndpointCliente cliente;
+  late final _EndpointAuth auth;
 
   late final _EndpointExample example;
 
@@ -99,6 +140,7 @@ class Client extends _i1.ServerpodClient {
   @override
   Map<String, _i1.EndpointRef> get endpointRefLookup => {
         'cliente': cliente,
+        'auth': auth,
         'example': example,
         'mailer': mailer,
       };

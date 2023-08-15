@@ -12,18 +12,15 @@ abstract class BlocCrearCuentaAdminEvent extends Equatable {
 /// evento que envia al mail la nueva cuenta a creada por el administrador
 class BlocCrearCuentaAdminEventEnviarEmail extends BlocCrearCuentaAdminEvent {
   @override
-  const BlocCrearCuentaAdminEventEnviarEmail({required this.email});
-
-  /// Email del usuario para crear una nueva cuenta
-  final String email;
+  const BlocCrearCuentaAdminEventEnviarEmail();
 }
 
 /// evento que cambia el bool dependiendo si el email es valido o no
 class BlocCrearCuentaAdminEventVerificarEmail
     extends BlocCrearCuentaAdminEvent {
   @override
-  const BlocCrearCuentaAdminEventVerificarEmail({required this.esEmailValido});
+  const BlocCrearCuentaAdminEventVerificarEmail({required this.email});
 
-  /// booleano que indica si el email es valido
-  final bool esEmailValido;
+  /// String que indica si el email es valido
+  final String email;
 }
