@@ -50,17 +50,21 @@ class EmailAuthControllerCustomPRLab extends EmailAuthController {
     }
   }
 
-  Future<bool> cuenta() async {
-    try {
-      return await caller.email.createAccountRequest(
-        'sebasamontero',
-        'sebasamontero@gmail.com',
-        'Naitsabes1@',
-      );
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
+  // Future<bool> cuenta(
+  //   String userName,
+  //   String email,
+  //   String password,
+  // ) async {
+  //   try {
+  //     return await caller.email.createAccountRequest(
+  //       userName,
+  //       email,
+  //       password,
+  //     );
+  //   } catch (e) {
+  //     throw Exception(e);
+  //   }
+  // }
 
   /// La función signOut es un future que devuelve un valor booleano que indica
   /// si el proceso de cierre de sesión fue exitoso o no.
