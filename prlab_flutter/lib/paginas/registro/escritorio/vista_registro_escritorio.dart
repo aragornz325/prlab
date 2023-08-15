@@ -126,7 +126,6 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             SizedBox(
                               width: 259.pw,
                               child: PRTextFormField.email(
-                                // TODO(SAM): el color del mensajito no cambia
                                 hintText: controllerEmail.text,
                                 context: context,
                                 controller: controllerEmail,
