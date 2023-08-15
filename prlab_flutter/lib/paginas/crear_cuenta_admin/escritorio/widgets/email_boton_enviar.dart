@@ -25,7 +25,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final theme = context.theme;
+    final colores = context.colores;
 
     return Center(
       child: Container(
@@ -34,7 +34,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
           vertical: 40.ph,
         ),
         decoration: BoxDecoration(
-          color: theme.colorScheme.background,
+          color: colores.background,
           borderRadius: const BorderRadius.all(
             Radius.circular(15),
           ),
@@ -94,7 +94,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
-                        color: theme.colorScheme.primary,
+                        color: colores.primary,
                       ),
                       height: 50.ph,
                       width: 765.pw,
@@ -103,7 +103,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                           height: 35.ph,
                           width: 35.pw,
                           child: CircularProgressIndicator(
-                            color: theme.colorScheme.background,
+                            color: colores.background,
                           ),
                         ),
                       ),

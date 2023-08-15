@@ -45,7 +45,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final theme = context.theme;
+    final colores = context.colores;
 
     final tooltipMessage = l10n.alert_dialog_tooltip_request_new_code(
       widget.segundosFaltantes,
@@ -58,7 +58,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
       ],
       maxLength: 8,
       keyboardType: TextInputType.number,
-      cursorColor: theme.colorScheme.primary,
+      cursorColor: colores.primary,
       decoration: InputDecoration(
         counterText: '',
         labelText:
@@ -106,7 +106,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                           TextDecoration.none,
                       ]),
                       color: !widget.solicitoNuevoCodigo
-                          ? theme.colorScheme.primary
+                          ? colores.primary
                           //TODO: cambiar para cuando esten los colores en el theme
                           : const Color(0xff707070),
                       fontSize: 12.pf,
@@ -133,7 +133,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                         fontSize: 12.pf,
                         fontWeight: FontWeight.w400,
                         //TODO: cambiar para cuando esten los colores en el theme
-                        color: theme.colorScheme.background,
+                        color: colores.background,
                       ),
                       message: tooltipMessage,
                       child: const Icon(
