@@ -39,7 +39,7 @@ class PRBoton extends StatelessWidget {
   final bool mostrarEstadoDeCarga;
   @override
   Widget build(BuildContext context) {
-    final theme = context.esquemaDeColores;
+    final colores = context.colores;
 
     return GestureDetector(
       onTap: habilitado ? onTap : null,
@@ -48,16 +48,16 @@ class PRBoton extends StatelessWidget {
         height: 50.ph,
         decoration: BoxDecoration(
           color: outlined
-              ? theme.background
+              ? colores.background
               : habilitado && !mostrarEstadoDeCarga
-                  ? theme.primary
-                  : theme.primary.withOpacity(.2),
+                  ? colores.primary
+                  : colores.primary.withOpacity(.2),
           borderRadius: BorderRadius.circular(25),
           border: outlined
               ? Border.all(
                   color: habilitado
-                      ? theme.primary
-                      : theme.primary.withOpacity(.2),
+                      ? colores.primary
+                      : colores.primary.withOpacity(.2),
                 )
               : null,
         ),
@@ -71,9 +71,9 @@ class PRBoton extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     color: outlined
                         ? habilitado
-                            ? theme.primary
-                            : theme.primary.withOpacity(.2)
-                        : theme.background,
+                            ? colores.primary
+                            : colores.primary.withOpacity(.2)
+                        : colores.background,
                   ),
                 ),
         ),

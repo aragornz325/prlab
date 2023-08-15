@@ -99,7 +99,7 @@ class PRDialog extends StatefulWidget {
   }) {
     final l10n = context.l10n;
 
-    final theme = context.esquemaDeColores;
+    final colores = context.colores;
 
     return PRDialog(
       content: Column(
@@ -109,7 +109,7 @@ class PRDialog extends StatefulWidget {
           Text(
             l10n.page_create_admin_alertdialog_title_email_send,
             style: TextStyle(
-              color: theme.tertiary,
+              color: colores.tertiary,
               fontSize: 20.pf,
               fontWeight: FontWeight.w600,
             ),
@@ -123,7 +123,7 @@ class PRDialog extends StatefulWidget {
                   // TODO(anyone): esto va a definirse por el cliente
                   text: 'An email has been sent to\n',
                   style: TextStyle(
-                    color: theme.secondary,
+                    color: colores.secondary,
                     fontSize: 15.pf,
                     fontWeight: FontWeight.w400,
                   ),
@@ -132,7 +132,7 @@ class PRDialog extends StatefulWidget {
                   // TODO(anyone): esto va a definirse por el cliente
                   text: '$email \n',
                   style: TextStyle(
-                    color: theme.primary,
+                    color: colores.primary,
                     fontSize: 15.pf,
                     fontWeight: FontWeight.w400,
                   ),
@@ -142,7 +142,7 @@ class PRDialog extends StatefulWidget {
                   text: 'Lorem ipsum dolor sit amet consectetur.Tortor\nut '
                       'quis faucibus etiam.Euismod condimentum.',
                   style: TextStyle(
-                    color: theme.secondary,
+                    color: colores.secondary,
                     fontSize: 15.pf,
                     fontWeight: FontWeight.w400,
                   ),
@@ -176,7 +176,7 @@ class PRDialog extends StatefulWidget {
   }) {
     final l10n = context.l10n;
 
-    final theme = context.esquemaDeColores;
+    final colores = context.colores;
 
     return PRDialog(
       content: SizedBox(
@@ -192,7 +192,7 @@ class PRDialog extends StatefulWidget {
               style: TextStyle(
                 fontSize: 20.pf,
                 // TODO(anyone): cambiar cuando este el theme
-                color: esError ? theme.error : Colors.black,
+                color: esError ? colores.error : Colors.black,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -207,7 +207,7 @@ class PRDialog extends StatefulWidget {
                 style: TextStyle(
                   fontSize: 15.pf,
                   // TODO(anyone): cambiar cuando este el theme
-                  color: theme.secondary,
+                  color: colores.secondary,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -269,9 +269,10 @@ class PRDialog extends StatefulWidget {
 class _PRDialogState extends State<PRDialog> {
   @override
   Widget build(BuildContext context) {
-    final theme = context.esquemaDeColores;
+    final colores = context.colores;
+
     return AlertDialog(
-      backgroundColor: theme.background,
+      backgroundColor: colores.background,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.sw),
       ),

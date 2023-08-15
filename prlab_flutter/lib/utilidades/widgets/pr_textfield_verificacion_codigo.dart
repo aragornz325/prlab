@@ -45,7 +45,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final theme = context.esquemaDeColores;
+    final colores = context.colores;
 
     final tooltipMessage = l10n.alert_dialog_tooltip_request_new_code(
       widget.segundosFaltantes,
@@ -58,7 +58,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
       ],
       maxLength: 8,
       keyboardType: TextInputType.number,
-      cursorColor: theme.primary,
+      cursorColor: colores.primary,
       decoration: InputDecoration(
         counterText: '',
         labelText:
@@ -66,16 +66,16 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
         labelStyle: TextStyle(
           fontSize: 15.pf,
           fontWeight: FontWeight.w400,
-          color: theme.secondary,
+          color: colores.secondary,
         ),
         border: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: theme.secondary,
+            color: colores.secondary,
           ),
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: theme.secondary,
+            color: colores.secondary,
           ),
         ),
         suffixIcon: Padding(
@@ -104,8 +104,8 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                           TextDecoration.none,
                       ]),
                       color: !widget.solicitoNuevoCodigo
-                          ? theme.primary
-                          : theme.secondary,
+                          ? colores.primary
+                          : colores.secondary,
                       fontSize: 12.pf,
                       fontWeight: FontWeight.w500,
                     ),
@@ -123,17 +123,18 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                         borderRadius: const BorderRadius.all(
                           Radius.circular(10),
                         ),
-                        color: theme.tertiary,
+                        color: colores.tertiary,
                       ),
                       textStyle: TextStyle(
                         fontSize: 12.pf,
                         fontWeight: FontWeight.w400,
-                        color: theme.background,
+                        //TODO: cambiar para cuando esten los colores en el theme
+                        color: colores.background,
                       ),
                       message: tooltipMessage,
                       child: Icon(
                         Icons.info,
-                        color: theme.tertiary,
+                        color: colores.tertiary,
                         size: 12.5,
                       ),
                     ),

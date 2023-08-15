@@ -25,7 +25,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final theme = context.esquemaDeColores;
+    final colores = context.colores;
 
     return Center(
       child: Container(
@@ -34,7 +34,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
           vertical: 40.ph,
         ),
         decoration: BoxDecoration(
-          color: theme.background,
+          color: colores.background,
           borderRadius: const BorderRadius.all(
             Radius.circular(15),
           ),
@@ -56,7 +56,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             Text(
               l10n.page_create_admin_client_email,
               style: TextStyle(
-                color: theme.tertiary,
+                color: colores.tertiary,
                 fontSize: 30.pf,
                 fontWeight: FontWeight.w600,
               ),
@@ -65,7 +65,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             Text(
               l10n.page_create_admin_leading_pr_agency,
               style: TextStyle(
-                color: theme.secondary,
+                color: colores.secondary,
                 fontSize: 15.pf,
                 fontWeight: FontWeight.w400,
               ),
@@ -92,7 +92,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
-                        color: theme.primary,
+                        color: colores.primary,
                       ),
                       height: 50.ph,
                       width: 765.pw,
@@ -101,7 +101,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                           height: 35.ph,
                           width: 35.pw,
                           child: CircularProgressIndicator(
-                            color: theme.background,
+                            color: colores.background,
                           ),
                         ),
                       ),
