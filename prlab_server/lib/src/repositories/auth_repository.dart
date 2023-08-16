@@ -1,8 +1,11 @@
+import 'package:prlab_server/src/repositorio.dart';
 import 'package:serverpod/server.dart';
 
 /// La clase AuthRepository es responsable de manejar las operaciones contra la DB
 ///  relacionadas con la autenticación.
-class AuthRepository {
+
+// TODO(BACKEND): EXTENDER DE LA CLASE ABSTRACTA DE REPOSITORIO
+class AuthRepository extends Repositorio {
   /// La función `getValidationCode` recupera el código de verificación asociado con un correo
   /// electrónico determinado de la tabla serverpod_email_create_request de la base de datos.
   ///
