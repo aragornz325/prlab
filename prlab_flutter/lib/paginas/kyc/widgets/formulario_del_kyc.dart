@@ -68,7 +68,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
           width: widget.width,
           child: Column(
             children: [
-              const CabeceraDelKyc(),
+              const EncabezadoDelKyc(),
               PRTextFormField.soloLetras(
                 controller: nombreController,
                 hintText: l10n.pageKycNameHintText,

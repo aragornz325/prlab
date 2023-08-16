@@ -25,5 +25,9 @@ class AppRouter extends $AppRouter {
       path: '/kyc-form',
       page: PaginaKyc.page,
     ),
+    AutoRoute(
+      path: '/recover-password',
+      page: PaginaRecuperarContrasenia.page,
+    ),
   ];
 }

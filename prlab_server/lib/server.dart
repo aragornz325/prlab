@@ -36,41 +36,47 @@ void run(List<String> args) async {
   );
 
   auth.AuthConfig.set(auth.AuthConfig(
-    sendValidationEmail: (session, email, validationCode) async {
-      return true;
-      // try {
-      //   final cuerpoCorreo =
-      //       PlantillasCorreo().cuerpoVerificacion(codigo: validationCode);
-      //   final correo = PlantillasCorreo()
-      //       .mailingGeneral(contenido: cuerpoCorreo, nombre: 'nombre');
-      //   await enviarEmail(
-      //       mailDestinatario: email.toString().trim(),
-      //       subject: 'Email validation.',
-      //       mailHtml: correo);
-      //   print('Sending validation email to $email with code $validationCode');
-      //   print(validationCode);
-      //   return true;
-      // } on Exception catch (e, st) {
-      //   print('$e $st');
-      //   rethrow;
-      // }
-    },
-    sendPasswordResetEmail: (session, userInfo, validationCode) async {
+    passwordResetExpirationTime: Duration(minutes: 30),
+    sendValidationEmail: (
+      session,
+      email,
+      validationCode,
+    ) async {
       try {
         final cuerpoCorreo =
             PlantillasCorreo().cuerpoVerificacion(codigo: validationCode);
-        final correo = PlantillasCorreo()
-            .mailingGeneral(contenido: cuerpoCorreo, nombre: 'nombre');
+        final correo = PlantillasCorreo().mailingGeneral(
+          contenido: cuerpoCorreo,
+        );
         await enviarEmail(
-            mailDestinatario: userInfo.email.toString().trim(),
-            subject: 'Password reset validation.',
-            mailHtml: correo);
-        print(
-            'Sending password reset validation email to ${userInfo.email.toString()} with code $validationCode');
-        print(validationCode);
+          mailDestinatario: email,
+          subject: 'Email validation.',
+          mailHtml: correo,
+        );
         return true;
-      } on Exception catch (e, st) {
-        print('$e $st');
+      } on Exception {
+        rethrow;
+      }
+    },
+    sendPasswordResetEmail: (
+      session,
+      userInfo,
+      validationCode,
+    ) async {
+      try {
+        final cuerpoCorreo = PlantillasCorreo().cuerpoVerificacion(
+          codigo: validationCode,
+        );
+        final correo = PlantillasCorreo().mailingGeneral(
+          contenido: cuerpoCorreo,
+        );
+        await enviarEmail(
+          mailDestinatario: userInfo.email ?? '',
+          subject: 'Password reset validation.',
+          mailHtml: correo,
+        );
+        return true;
+      } on Exception {
         rethrow;
       }
     },

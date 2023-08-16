@@ -155,12 +155,11 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             SizedBox(
                               width: 359.pw,
                               child: PRTextFormFieldPassword(
+                                validator: _validarContraseniaRepetida,
                                 controller: controllerPassword,
                                 hintText:
                                     l10n.page_sign_up_text_field_hint_password,
                                 esCreacionPassword: true,
-                                passwordCoinciden: controllerPassword.text ==
-                                    controllerConfirmarPassword.text,
                                 onChanged: (_) {
                                   context.read<BlocRegistro>().add(
                                         BlocRegistroEventoRecolectarDatosRegistro(
@@ -176,12 +175,11 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             SizedBox(
                               width: 359.pw,
                               child: PRTextFormFieldPassword(
+                                validator: _validarContraseniaRepetida,
                                 controller: controllerConfirmarPassword,
                                 hintText: l10n
                                     .page_sign_up_text_field_hint_confirm_password,
                                 esCreacionPassword: true,
-                                passwordCoinciden: controllerPassword.text ==
-                                    controllerConfirmarPassword.text,
                                 onChanged: (_) {
                                   context.read<BlocRegistro>().add(
                                         BlocRegistroEventoRecolectarDatosRegistro(
@@ -266,6 +264,14 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
         ],
       ),
     );
+  }
+
+  String? _validarContraseniaRepetida(String? value) {
+    if (controllerPassword.text != value) {
+      return context.l10n.commonPasswordDoNotMatch;
+    }
+
+    return null;
   }
 
   void _agregarEventoDeEnviarDatosRegistro(
