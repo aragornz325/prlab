@@ -59,4 +59,24 @@ class AuthService {
       rethrow;
     }
   }
+
+  /// La función `validarCodigoResetPassword` toma una sesión y un código como parámetros y llama a la
+  /// función `validarCodigoResetPassword` desde el `authRepository` para validar el código para
+  /// restablecer la contraseña.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. Representa la
+  /// sesión de usuario actual o la sesión de autenticación.
+  ///   codigo (String): El parámetro "codigo" es una cadena requerida que representa el código de
+  /// restablecimiento de contraseña.
+  ///
+  Future<bool> validarCodigoResetPassword({
+    required Session session,
+    required String codigo,
+  }) {
+    return authRepository.validarCodigoResetPassword(
+      session: session,
+      codigo: codigo,
+    );
+  }
 }

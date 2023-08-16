@@ -164,11 +164,71 @@
     "alert_dialog_button_subtitle_link_expired" : "The link has expired,\nplease click on “resend” to get a new one",
     "@alert_dialog_button_subtitle_link_expired": {
         "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
-    }
+    },
 
+    "pageKycTitle" : "Tell us about yourself",
+    "@pageKycTitle": {
+        "description":"Text in page kyc setted on the top of the page as a title"
+    },
 
+    "pageKycSubtitle" : "Enter your data",
+    "@pageKycSubtitle": {
+        "description":"Text in page kyc setted on the top of the page as a subtitle"
+    },
+
+    "pageKycNameHintText" : "Name",
+    "@pageKycNameHintText": {
+        "description":"Text in page kyc setted on the name text field hint text"
+    },
+
+    "pageKycLastnameHintText" : "Last name",
+    "@pageKycLastnameHintText": {
+        "description":"Text in page kyc setted on the lastname text field hint text"
+    },
     
+    "pageKycCompanyNameHintText" : "Company name",
+    "@pageKycCompanyNameHintText": {
+        "description":"Text in page kyc setted on the company name text field hint text"
+    },
 
+    "pageKycCompanyLocationHintText" : "Company location",
+    "@pageKycCompanyLocationHintText": {
+        "description":"Text in page kyc setted on the company location text field hint text"
+    },
+    
+    "pageKycContactHintText" : "Contact",
+    "@pageKycContactHintText": {
+        "description":"Text in page kyc setted on the contact text field hint text"
+    },
 
+    "pageKycContinueTextButton" : "Continue",
+    "@pageKycContinueTextButton": {
+        "description":"Text in page kyc setted on the button that the user press to save the kyc data on the bottom of the screen"
+    },
+
+    "pageRecoverPasswordTitle" : "Recover Password",
+    "@pageRecoverPasswordTitle": {
+        "description":"Text in page recover password setted on the top of the page as a title"
+    },
+
+    "pageRecoverPasswordSubtitle" : "Please, enter your new password",
+    "@pageRecoverPasswordSubtitle": {
+        "description":"Text in page recover password setted on the top of the page as a subtitle"
+    },
+
+    "pageRecoverPasswordNewPasswordHintText" : "New password",
+    "@pageRecoverPasswordNewPasswordHintText": {
+        "description":"Text in page recover password setted on the new password text field hint text"
+    },
+
+    "pageRecoverPasswordRepeatPasswordHintText" : "Repeat password",
+    "@pageRecoverPasswordRepeatPasswordHintText": {
+        "description":"Text in page recover password setted on the reseat password text field hint text"
+    },
+
+    "pageRecoverPasswordContinueTextButton" : "Continue",
+    "@pageRecoverPasswordContinueTextButton": {
+        "description":"Text in page recover password setted on the button that the user press to save the new password on the bottom of the screen"
+    }
 
 }
