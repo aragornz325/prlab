@@ -1,5 +1,13 @@
 import 'package:flutter/services.dart';
 
+/// {@template formateador_de_fecha}
+/// Formatea el campo de texto para adaptar lo
+/// que se escribe y lo adapta a estilo fecha.
+///
+/// Ex:
+/// dd/mm/yyyy
+/// 31/01/2000
+/// {@endtemplate}
 class FormateadorDeFecha extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
