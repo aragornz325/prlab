@@ -56,6 +56,8 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
+    print('build');
+
     return SingleChildScrollView(
       child: Form(
         key: _formKey,
