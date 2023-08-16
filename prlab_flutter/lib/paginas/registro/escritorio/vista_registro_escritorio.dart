@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
@@ -8,6 +10,7 @@ import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/paginas/registro/widgets/titulo_bienvenida_con_imagen.dart';
+import 'package:prlab_flutter/utilidades/extensions/extension_de_form.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
 
@@ -24,6 +27,9 @@ class VistaRegistroEscritorio extends StatefulWidget {
 }
 
 class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
+  /// Key del form para validar luego.
+  final _formKey = GlobalKey<FormState>();
+
   /// Controlador del textfield que tiene el email del usuario
   late TextEditingController controllerEmail;
 
@@ -93,7 +99,14 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                     width: 90.pw,
                     height: 60.ph,
                   ),
-                  BlocBuilder<BlocRegistro, BlocRegistroEstado>(
+                  BlocConsumer<BlocRegistro, BlocRegistroEstado>(
+                    listener: (context, state) {
+                      if (state is BlocRegistroEstadoExitoso) {
+                        context.router.replace(
+                          const PaginaKyc(),
+                        );
+                      }
+                    },
                     builder: (context, state) {
                       if (state is BlocRegistroEstadoCargando) {
                         return SizedBox(
@@ -105,7 +118,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                         );
                       }
 
-                      if (state is BlocRegistroErrorState) {
+                      if (state is BlocRegistroEstadoError) {
                         return Center(
                           child: SizedBox(
                             width: 150.pw,
@@ -120,15 +133,15 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                         );
                       }
 
-                      if (state is BlocRegistroEstadoInicial ||
-                          state is BlocRegistroEstadoExitoso) {
-                        return Column(
+                      return Form(
+                        key: _formKey,
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
-                              width: 259.pw,
+                              width: 359.pw,
                               child: PRTextFormField.email(
-                                hintText: controllerEmail.text,
+                                //  hintText: controllerEmail.text,
                                 context: context,
                                 controller: controllerEmail,
                                 soloLectura: true,
@@ -138,7 +151,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                               height: 20.ph,
                             ),
                             SizedBox(
-                              width: 259.pw,
+                              width: 359.pw,
                               child: PRTextFormFieldPassword(
                                 controller: controllerPassword,
                                 hintText:
@@ -146,7 +159,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                 esCreacionPassword: true,
                                 passwordCoinciden: controllerPassword.text ==
                                     controllerConfirmarPassword.text,
-                                onChanged: (value) {
+                                onChanged: (_) {
                                   context.read<BlocRegistro>().add(
                                         BlocRegistroEventoRecolectarDatosRegistro(
                                           password: controllerPassword.text,
@@ -159,7 +172,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                               height: 20.ph,
                             ),
                             SizedBox(
-                              width: 259.pw,
+                              width: 359.pw,
                               child: PRTextFormFieldPassword(
                                 controller: controllerConfirmarPassword,
                                 hintText: l10n
@@ -167,7 +180,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                 esCreacionPassword: true,
                                 passwordCoinciden: controllerPassword.text ==
                                     controllerConfirmarPassword.text,
-                                onChanged: (value) {
+                                onChanged: (_) {
                                   context.read<BlocRegistro>().add(
                                         BlocRegistroEventoRecolectarDatosRegistro(
                                           confirmarPassword:
@@ -179,7 +192,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             ),
                             SizedBox(height: 20.ph),
                             SizedBox(
-                              width: 259.pw,
+                              width: 359.pw,
                               child: Row(
                                 children: [
                                   Checkbox(
@@ -220,31 +233,27 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(100),
                               ),
-                              child: SizedBox(
-                                width: 359.pw,
-                                height: 50.ph,
-                                child: BlocBuilder<BlocRegistro,
-                                    BlocRegistroEstado>(
-                                  builder: (context, state) {
-                                    return PRBoton(
-                                      onTap: () {
-                                        _agregarEventoDeEnviarDatosRegistro(
-                                          context,
-                                        );
-                                      },
-                                      texto: l10n.page_sign_up_button_sign_up,
-                                      habilitado:
-                                          state.estaCompletoElFormulario,
-                                    );
-                                  },
-                                ),
+                              child:
+                                  BlocBuilder<BlocRegistro, BlocRegistroEstado>(
+                                builder: (context, state) {
+                                  return PRBoton(
+                                    // TODO(SAM): Validar que el boton
+                                    //se deshabilite cuando hay algo incorrecto
+                                    onTap: () {
+                                      _agregarEventoDeEnviarDatosRegistro(
+                                        context,
+                                        state,
+                                      );
+                                    },
+                                    texto: l10n.page_sign_up_button_sign_up,
+                                    habilitado: state.estaCompletoElFormulario,
+                                  );
+                                },
                               ),
                             ),
                           ],
-                        );
-                      }
-
-                      return const SizedBox.shrink();
+                        ),
+                      );
                     },
                   ),
                 ],
@@ -257,7 +266,13 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
     );
   }
 
-  void _agregarEventoDeEnviarDatosRegistro(BuildContext context) {
+  void _agregarEventoDeEnviarDatosRegistro(
+    BuildContext context,
+    BlocRegistroEstado state,
+  ) {
+    if (!_formKey.esValido ||
+        !(controllerConfirmarPassword.text == controllerPassword.text) ||
+        !state.terminosAceptados) return;
     context.read<BlocRegistro>().add(
           BlocRegistroEventoEnviarDatosRegistro(
             email: controllerEmail.text,

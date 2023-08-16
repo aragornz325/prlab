@@ -57,7 +57,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
 
       if (!respuesta) {
         return emit(
-          BlocRegistroErrorState.desde(
+          BlocRegistroEstadoError.desde(
             state,
             errorMessage: MensajesDeErrorRegistro.credencialesInvalidas,
           ),
@@ -80,7 +80,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
 
       if (usuario == null) {
         emit(
-          BlocRegistroErrorState.desde(
+          BlocRegistroEstadoError.desde(
             state,
             errorMessage: MensajesDeErrorRegistro.credencialesInvalidas,
           ),
@@ -99,7 +99,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
       );
     } catch (e, st) {
       emit(
-        BlocRegistroErrorState.desde(
+        BlocRegistroEstadoError.desde(
           state,
           errorMessage: MensajesDeErrorRegistro.usuarioNoEncontrado,
         ),

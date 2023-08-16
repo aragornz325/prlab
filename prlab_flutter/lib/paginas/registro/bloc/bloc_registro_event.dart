@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 
 /// Clase abstracta de bloc registro para los eventos
 abstract class BlocRegistroEvento extends Equatable {
+  // TODO(SAM): Remover Equatable si no se usa.
   const BlocRegistroEvento();
 
   @override

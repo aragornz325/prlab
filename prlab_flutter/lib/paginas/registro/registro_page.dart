@@ -35,8 +35,7 @@ class RegistroPage extends StatelessWidget {
       child: FullResponsiveScreen(
         mobile: BlocBuilder<BlocRegistro, BlocRegistroEstado>(
           builder: (context, state) {
-            if (state is BlocRegistroEstadoCargandoValidacionDeToken ||
-                state is BlocRegistroEstadoErrorTokenInvalido) {
+            if (state.estaEnEstadoDeValidacion) {
               return const VistaEsperaValidacionDeTokenMobile();
             }
 
@@ -47,8 +46,7 @@ class RegistroPage extends StatelessWidget {
         ),
         desktop: BlocBuilder<BlocRegistro, BlocRegistroEstado>(
           builder: (context, state) {
-            if (state is BlocRegistroEstadoCargandoValidacionDeToken ||
-                state is BlocRegistroEstadoErrorTokenInvalido) {
+            if (state.estaEnEstadoDeValidacion) {
               return const VistaEsperaValidacionDeTokenEscritorio();
             }
 

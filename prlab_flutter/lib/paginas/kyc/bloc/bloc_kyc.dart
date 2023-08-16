@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 part 'bloc_kyc_estado.dart';
 part 'bloc_kyc_evento.dart';

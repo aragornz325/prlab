@@ -8,6 +8,7 @@ import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/paginas/registro/widgets/titulo_bienvenida_con_imagen.dart';
+import 'package:prlab_flutter/utilidades/extensions/extension_de_form.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
 
@@ -21,6 +22,9 @@ class VistaRegistroMobile extends StatefulWidget {
 }
 
 class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
+  /// Key del form para validar luego.
+  final _formKey = GlobalKey<FormState>();
+
   /// Controlador del textfield que tiene el email del usuario
   late TextEditingController controllerEmail;
 
@@ -102,7 +106,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                         );
                       }
 
-                      if (state is BlocRegistroErrorState) {
+                      if (state is BlocRegistroEstadoError) {
                         return Center(
                           child: SizedBox(
                             width: 150.pw,
@@ -117,13 +121,13 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                         );
                       }
 
-                      if (state is BlocRegistroEstadoInicial ||
-                          state is BlocRegistroEstadoExitoso) {
-                        return Column(
+                      return Form(
+                        key: _formKey,
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
-                              width: 259.pw,
+                              width: 359.pw,
                               child: PRTextFormField.email(
                                 hintText: controllerEmail.text,
                                 context: context,
@@ -135,7 +139,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                               height: 20.ph,
                             ),
                             SizedBox(
-                              width: 259.pw,
+                              width: 359.pw,
                               child: PRTextFormFieldPassword(
                                 controller: controllerPassword,
                                 hintText:
@@ -143,13 +147,20 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                 esCreacionPassword: true,
                                 passwordCoinciden: controllerPassword.text ==
                                     controllerConfirmarPassword.text,
+                                onChanged: (_) {
+                                  context.read<BlocRegistro>().add(
+                                        BlocRegistroEventoRecolectarDatosRegistro(
+                                          password: controllerPassword.text,
+                                        ),
+                                      );
+                                },
                               ),
                             ),
                             SizedBox(
                               height: 20.ph,
                             ),
                             SizedBox(
-                              width: 259.pw,
+                              width: 359.pw,
                               child: PRTextFormFieldPassword(
                                 controller: controllerConfirmarPassword,
                                 hintText: l10n
@@ -157,11 +168,19 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                 esCreacionPassword: true,
                                 passwordCoinciden: controllerPassword.text ==
                                     controllerConfirmarPassword.text,
+                                onChanged: (_) {
+                                  context.read<BlocRegistro>().add(
+                                        BlocRegistroEventoRecolectarDatosRegistro(
+                                          confirmarPassword:
+                                              controllerConfirmarPassword.text,
+                                        ),
+                                      );
+                                },
                               ),
                             ),
                             SizedBox(height: 20.ph),
                             SizedBox(
-                              width: 259.pw,
+                              width: 359.pw,
                               child: Row(
                                 children: [
                                   Checkbox(
@@ -171,6 +190,11 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                         context,
                                         value ?? false,
                                       );
+                                      context.read<BlocRegistro>().add(
+                                            BlocRegistroEventoRecolectarDatosRegistro(
+                                              terminosAceptados: value,
+                                            ),
+                                          );
                                     },
                                   ),
                                   Text(
@@ -197,27 +221,27 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(100),
                               ),
-                              child: SizedBox(
-                                width: 359.pw,
-                                height: 50.ph,
-                                // TODO(SAM): Agregar validacion y
-                                // que se desactive el boton.
-                                child: PRBoton(
-                                  onTap: () {
-                                    _agregarEventoDeEnviarDatosRegistro(
-                                      context,
-                                    );
-                                  },
-                                  texto: l10n.page_sign_up_button_sign_up,
-                                  habilitado: state.terminosAceptados,
-                                ),
+                              child:
+                                  BlocBuilder<BlocRegistro, BlocRegistroEstado>(
+                                builder: (context, state) {
+                                  return PRBoton(
+                                    // TODO(SAM): Validar que el boton
+                                    //se deshabilite cuando hay algo incorrecto
+                                    onTap: () {
+                                      _agregarEventoDeEnviarDatosRegistro(
+                                        context,
+                                        state,
+                                      );
+                                    },
+                                    texto: l10n.page_sign_up_button_sign_up,
+                                    habilitado: state.estaCompletoElFormulario,
+                                  );
+                                },
                               ),
                             ),
                           ],
-                        );
-                      }
-
-                      return const SizedBox.shrink();
+                        ),
+                      );
                     },
                   ),
                 ],
@@ -230,7 +254,13 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
     );
   }
 
-  void _agregarEventoDeEnviarDatosRegistro(BuildContext context) {
+  void _agregarEventoDeEnviarDatosRegistro(
+    BuildContext context,
+    BlocRegistroEstado state,
+  ) {
+    if (!_formKey.esValido ||
+        !(controllerConfirmarPassword.text == controllerPassword.text) ||
+        !state.terminosAceptados) return;
     context.read<BlocRegistro>().add(
           BlocRegistroEventoEnviarDatosRegistro(
             email: controllerEmail.text,
