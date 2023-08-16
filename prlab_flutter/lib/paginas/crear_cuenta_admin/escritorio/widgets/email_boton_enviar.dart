@@ -73,18 +73,23 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
               ),
             ),
             SizedBox(height: 50.ph),
-            Center(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 15.pw),
-                height: 40.ph,
-                width: 785.pw,
-                // TODO: cambiarlo por el que esta en development tambien
-                // cambiar la funcion
-                child: TextFormField(
-                  controller: controller,
-                  onChanged: (value) => _funcionPasarleEmailAlBloc(context),
-                ),
-              ),
+            BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
+              builder: (context, state) {
+                return Center(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15.pw),
+                    height: 40.ph,
+                    width: 785.pw,
+                    child: PRTextFormField.email(
+                      controller: controller,
+                      estaVacio: !state.esEmailValido,
+                      soloLectura: false,
+                      onChanged: (value) => _funcionPasarleEmailAlBloc(context),
+                      context: context,
+                    ),
+                  ),
+                );
+              },
             ),
             SizedBox(height: 50.ph),
             BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
@@ -115,7 +120,12 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                     width: 782.pw,
                     onTap: state.esEmailValido
                         ? () {
-                            _funcionEnviarEmail(context);
+                            // _funcionEnviarEmail(context);
+                            PRDialog.recuperarContrasenia(
+                              context: context,
+                              controller: controller,
+                              email: 'ejemplo123.123@asd',
+                            ).show<void, void>(context);
                           }
                         : () {},
                     texto: l10n.page_create_admin_button_send,
