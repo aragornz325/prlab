@@ -41,7 +41,10 @@ Future<void> bootstrap(
   // await IsarService.openDB();
 
   // Add cross-flavor configuration here
-  await initializeServerpodClient(hostUrl: hostUrl, entorno: entorno);
+  await initializeServerpodClient(
+    hostUrl: hostUrl,
+    entorno: entorno,
+  );
 
   runApp(
     await builder(),

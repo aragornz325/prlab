@@ -25,17 +25,19 @@ class VistaRegistroEscritorio extends StatefulWidget {
 
 class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
   /// Controlador del textfield que tiene el email del usuario
-  TextEditingController controllerEmail = TextEditingController();
+  late TextEditingController controllerEmail;
 
   /// Controlador del textfield que permite al usuario ingresar la password
-  TextEditingController controllerPassword = TextEditingController();
+  final controllerPassword = TextEditingController();
 
   /// Controlador del textfield que permite al usuario confirmar la password
-  TextEditingController controllerConfirmarPassword = TextEditingController();
+  final controllerConfirmarPassword = TextEditingController();
 
   @override
   void initState() {
-    controllerEmail.text = widget.email;
+    controllerEmail = TextEditingController(
+      text: widget.email,
+    );
     super.initState();
   }
 
@@ -126,10 +128,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             SizedBox(
                               width: 259.pw,
                               child: PRTextFormField.email(
-                                hintText: controllerEmail.text != ''
-                                    ? controllerEmail.text
-                                    : l10n
-                                        .page_sign_up_text_field_hint_example_mail,
+                                hintText: controllerEmail.text,
                                 context: context,
                                 controller: controllerEmail,
                                 estaVacio: false,
@@ -206,7 +205,8 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                               child: SizedBox(
                                 width: 359.pw,
                                 height: 50.ph,
-                                // TODO(SAM): Agregar validacion y que se desactive el boton.
+                                // TODO(SAM): Agregar validacion y
+                                // que se desactive el boton.
                                 child: PRBoton(
                                   onTap: () {
                                     _agregarEventoDeEnviarDatosRegistro(
