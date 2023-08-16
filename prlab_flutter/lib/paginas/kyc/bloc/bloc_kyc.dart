@@ -39,7 +39,6 @@ class BlocKyc extends Bloc<BlocKcyEvento, BlocKycEstado> {
       state.numeroDeContacto,
     ); */
 
-      const respuesta = true;
       emit(BlocKycEstadoExitoso.desde(state));
     } catch (e) {
       emit(BlocKycEstadoFallido.desde(state));
