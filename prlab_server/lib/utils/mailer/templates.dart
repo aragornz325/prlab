@@ -1,5 +1,7 @@
 class PlantillasCorreo {
-  mailingGeneral({required nombre, required String contenido}) {
+  mailingGeneral({
+    required String contenido,
+  }) {
     return '''<!DOCTYPE html>
 
 <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">

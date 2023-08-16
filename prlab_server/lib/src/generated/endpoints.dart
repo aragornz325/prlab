@@ -10,7 +10,7 @@ import 'package:serverpod/serverpod.dart' as _i1;
 import '../endpoints/auth_endpoint.dart' as _i2;
 import '../endpoints/cliente_endpoint.dart' as _i3;
 import '../endpoints/example_endpoint.dart' as _i4;
-import '../endpoints/mailer_endpoint.dart' as _i5;
+import '../endpoints/mail_endpoint.dart' as _i5;
 import 'package:prlab_commons/modelos/organizacion/organizacion.dart' as _i6;
 import 'package:prlab_commons/modelos/mensaje_registro/mensaje_registro.dart'
     as _i7;
@@ -38,10 +38,10 @@ class Endpoints extends _i1.EndpointDispatch {
           'example',
           null,
         ),
-      'mailer': _i5.MailerEndpoint()
+      'mail': _i5.MailEndpoint()
         ..initialize(
           server,
-          'mailer',
+          'mail',
           null,
         ),
     };
@@ -83,6 +83,25 @@ class Endpoints extends _i1.EndpointDispatch {
               (endpoints['auth'] as _i2.AuthEndpoint).validarTokenPorMail(
             session,
             params['token'],
+          ),
+        ),
+        'validarCodigoResetPassword': _i1.MethodConnector(
+          name: 'validarCodigoResetPassword',
+          params: {
+            'codigo': _i1.ParameterDescription(
+              name: 'codigo',
+              type: _i1.getType<String>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['auth'] as _i2.AuthEndpoint)
+                  .validarCodigoResetPassword(
+            session,
+            params['codigo'],
           ),
         ),
       },
@@ -153,9 +172,9 @@ class Endpoints extends _i1.EndpointDispatch {
         )
       },
     );
-    connectors['mailer'] = _i1.EndpointConnector(
-      name: 'mailer',
-      endpoint: endpoints['mailer']!,
+    connectors['mail'] = _i1.EndpointConnector(
+      name: 'mail',
+      endpoint: endpoints['mail']!,
       methodConnectors: {
         'envioMailRegistro': _i1.MethodConnector(
           name: 'envioMailRegistro',
@@ -165,8 +184,8 @@ class Endpoints extends _i1.EndpointDispatch {
               type: _i1.getType<String>(),
               nullable: false,
             ),
-            'tipo_de_invitacion': _i1.ParameterDescription(
-              name: 'tipo_de_invitacion',
+            'tipoInvitacion': _i1.ParameterDescription(
+              name: 'tipoInvitacion',
               type: _i1.getType<int>(),
               nullable: false,
             ),
@@ -175,10 +194,10 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['mailer'] as _i5.MailerEndpoint).envioMailRegistro(
+              (endpoints['mail'] as _i5.MailEndpoint).envioMailRegistro(
             session,
             params['email'],
-            params['tipo_de_invitacion'],
+            params['tipoInvitacion'],
           ),
         )
       },

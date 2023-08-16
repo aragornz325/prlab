@@ -41,15 +41,15 @@ class AuthRepository {
   ///   email (String): El parámetro de correo electrónico es una cadena obligatoria que representa la
   /// dirección de correo electrónico asociada con el token.
   ///
-  //TODO(chivo): remplazar por las consultas de los modelos
-  
+
   Future<bool> guardarTokenEnDb({
     required Session session,
     required String token,
     required String email,
-    required int tipo_de_invitacion,
+    required int tipoInvitacion,
   }) async {
     try {
+      final tipo_de_invitacion = tipoInvitacion;
       await session.db.transaction((txn) async {
         final checkearToken = await session.db
             .query('SELECT token FROM invitaciones WHERE email = \'$email\'');
@@ -77,19 +77,48 @@ class AuthRepository {
   /// acceder a la base de datos y realizar consultas.
   ///   email (String): El parámetro de correo electrónico es una cadena obligatoria que representa la
   /// dirección de correo electrónico para la que queremos recuperar el token.
-  
+
   Future<String> traerTokenPorEmail({
     required Session session,
     required String email,
   }) async {
     try {
-      final result = await session.db.query(
-          'SELECT token FROM invitaciones WHERE email = \'$email\'');
+      final result = await session.db
+          .query('SELECT token FROM invitaciones WHERE email = \'$email\'');
       if (result.isEmpty) {
         return 'Email not found';
       } else {
         return result.first.first;
       }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// La función `validarCodigoResetPassword` verifica si un código de verificación dado es válido
+  /// consultando una tabla de base de datos.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. Representa la
+  /// sesión o conexión actual a la base de datos.
+  ///   codigo (String): El parámetro "codigo" es una cadena requerida que representa el código de
+  /// verificación para restablecer una contraseña.
+  ///
+
+  Future<bool> validarCodigoResetPassword({
+    required Session session,
+    required String codigo,
+  }) async {
+    try {
+      final codigoEnDb = await session.db.query(
+        'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
+      );
+      if (codigoEnDb.isEmpty) {
+        throw Exception(
+          'Codigo no valido',
+        );
+      }
+      return true;
     } catch (e) {
       rethrow;
     }
