@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/utilidades/funciones/functions.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
@@ -22,7 +23,7 @@ class PRDialog extends StatefulWidget {
     required this.content,
     super.key,
     this.esCargando = false,
-    this.height = 285,
+    this.height = 290,
     this.width = 455,
   });
 
@@ -30,7 +31,8 @@ class PRDialog extends StatefulWidget {
   /// y un boton para enviar el código.
   factory PRDialog.recuperarContrasenia({
     required String email,
-    required TextEditingController controller,
+    required String password,
+    required TextEditingController controllerCodigo,
     required BuildContext context,
   }) {
     final l10n = context.l10n;
@@ -56,10 +58,9 @@ class PRDialog extends StatefulWidget {
                   ),
                 ),
                 SizedBox(height: 40.ph),
-                // TODO(anyone): Cambiar por los textfield de manu
-                PrLabTextfield(
-                  controller: controller,
-                  solicitoNuevoCodigo: true,
+                TextfieldCodigoDeRecuperarContrasenia(
+                  controller: controllerCodigo,
+                  email: email,
                 ),
                 SizedBox(height: 5.ph),
                 Text(
@@ -72,15 +73,25 @@ class PRDialog extends StatefulWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(height: 40.ph),
-                PRBoton.outlined(
-                  width: 360.pw,
+                BlocBuilder<BlocLogin, BlocLoginEstado>(
+                  builder: (context, state) {
+                    return PRBoton.outlined(
+                      width: 360.pw,
 
-                  // TODO(anyone): Agregarle funcionalidad del bloc
-                  habilitado: true,
-                  onTap: () {
-                    // TODO(anyone): Agregarle funcionalidad del bloc
+                      // TODO(anyone): Agregarle funcionalidad del bloc
+                      habilitado: state.estaCodigoCargado,
+                      onTap: () {
+                        context.read<BlocLogin>().add(
+                              BlocLoginEventoEnviarCodigoAlBack(
+                                password: password,
+                                email: email,
+                                codigo: controllerCodigo.text,
+                              ),
+                            );
+                      },
+                      texto: l10n.alert_dialog_button_title_send,
+                    );
                   },
-                  texto: l10n.alert_dialog_button_title_send,
                 ),
               ],
             ),
@@ -196,7 +207,7 @@ class PRDialog extends StatefulWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 30.ph),
+            SizedBox(height: 20.ph),
             SizedBox(
               width: 360.pw,
               child: Text(
@@ -212,7 +223,7 @@ class PRDialog extends StatefulWidget {
                 ),
               ),
             ),
-            SizedBox(height: 30.ph),
+            SizedBox(height: 20.ph),
             Center(
               child: SizedBox(
                 width: 360.pw,
@@ -269,10 +280,8 @@ class PRDialog extends StatefulWidget {
 class _PRDialogState extends State<PRDialog> {
   @override
   Widget build(BuildContext context) {
-    final colores = context.colores;
-
     return AlertDialog(
-      backgroundColor: colores.background,
+      backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.sw),
       ),
@@ -281,6 +290,34 @@ class _PRDialogState extends State<PRDialog> {
         width: widget.width.pw,
         child: widget.content,
       ),
+    );
+  }
+}
+
+class TextfieldCodigoDeRecuperarContrasenia extends StatefulWidget {
+  const TextfieldCodigoDeRecuperarContrasenia({
+    required this.controller,
+    required this.email,
+    super.key,
+  });
+  final TextEditingController controller;
+  final String email;
+
+  @override
+  State<TextfieldCodigoDeRecuperarContrasenia> createState() =>
+      _TextfieldCodigoDeRecuperarContraseniaState();
+}
+
+class _TextfieldCodigoDeRecuperarContraseniaState
+    extends State<TextfieldCodigoDeRecuperarContrasenia> {
+  @override
+  Widget build(BuildContext context) {
+    final state = context.watch<BlocLogin>().state;
+    return PrLabTextfield(
+      controller: widget.controller,
+      solicitoNuevoCodigo: state is BlocLoginEstadoCronometroCorriendo,
+      email: widget.email,
+      segundosFaltantes: state.duracionTimer,
     );
   }
 }

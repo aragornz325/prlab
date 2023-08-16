@@ -8,6 +8,7 @@ import 'package:prlab_flutter/src/full_responsive/full_responsive_app.g.dart';
 import 'package:prlab_flutter/theming/temas/tema_por_default_light_prlab.dart';
 import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';
+import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -18,6 +19,10 @@ class App extends StatelessWidget {
     return FullResponsiveApp(
       child: MultiRepositoryProvider(
         providers: [
+          RepositoryProvider<EmailAuthController>(
+            create: (BuildContext context) =>
+                EmailAuthController(client.modules.auth),
+          ),
           RepositoryProvider<EmailAuthControllerCustomPRLab>(
             create: (BuildContext context) => EmailAuthControllerCustomPRLab(
               client.modules.auth,
@@ -28,6 +33,7 @@ class App extends StatelessWidget {
           providers: [
             BlocProvider(
               create: (context) => BlocLogin(
+                emailAuth: EmailAuthController(client.modules.auth),
                 emailAuthControllerCustomPRLab: EmailAuthControllerCustomPRLab(
                   client.modules.auth,
                 ),

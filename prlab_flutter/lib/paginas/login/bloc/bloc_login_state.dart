@@ -5,6 +5,7 @@ class BlocLoginEstado extends Equatable {
     this.botonHabilitado = false,
     this.estaIniciandoSesion = false,
     this.duracionTimer = 60,
+    this.tamanioCodigo = 0,
   });
 
   BlocLoginEstado.desde(
@@ -12,10 +13,12 @@ class BlocLoginEstado extends Equatable {
     bool? botonHabilitado,
     bool estaIniciandoSesion = false,
     int? duracionTimer,
+    int? tamanioCodigo,
   }) : this._(
           botonHabilitado: botonHabilitado ?? otro.botonHabilitado,
           estaIniciandoSesion: estaIniciandoSesion,
           duracionTimer: duracionTimer ?? otro.duracionTimer,
+          tamanioCodigo: tamanioCodigo ?? otro.tamanioCodigo,
         );
 
   /// Bool para habilitar el boton o no dependiendo del contenido
@@ -29,8 +32,11 @@ class BlocLoginEstado extends Equatable {
   /// Duracion del temporizador
   final int duracionTimer;
 
+  final int tamanioCodigo;
+
   bool get estaCargandoInicioDeSesion =>
       estaIniciandoSesion && this is BlocLoginEstadoCargando;
+  bool get estaCodigoCargado => tamanioCodigo == 8;
 
   @override
   List<Object> get props => [
@@ -53,8 +59,11 @@ class BlocLoginEstadoCargando extends BlocLoginEstado {
 
 /// Estado exitoso de los componentes de la pantalla login
 class BlocLoginEstadoExitoso extends BlocLoginEstado {
-  BlocLoginEstadoExitoso.desde(super.otro, {super.botonHabilitado})
-      : super.desde();
+  BlocLoginEstadoExitoso.desde(
+    super.otro, {
+    super.botonHabilitado,
+    super.tamanioCodigo,
+  }) : super.desde();
 }
 
 /// Estado de error de los componentes de la pantalla login (se puede emitir
@@ -83,15 +92,6 @@ class BLocLoginEstadoIniciarCronometro extends BlocLoginEstado {
 /// representa el tiempo restante del temporizador.
 class BlocLoginEstadoCronometroCorriendo extends BlocLoginEstado {
   BlocLoginEstadoCronometroCorriendo.desde(
-    super.otro, {
-    super.duracionTimer,
-  }) : super.desde();
-}
-
-// Toma un entero `duración` como parámetro que representa el tiempo restante
-// del temporizador.
-class BlocLoginEstadoCronometroPausado extends BlocLoginEstado {
-  BlocLoginEstadoCronometroPausado.desde(
     super.otro, {
     super.duracionTimer,
   }) : super.desde();

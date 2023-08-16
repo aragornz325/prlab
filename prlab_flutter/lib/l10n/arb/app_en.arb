@@ -103,7 +103,7 @@
         "description":"text in alertdialog suffix textfield on button if the verificaction code was sent, Code sent"
     },
 
-    "alert_dialog_tooltip_request_new_code":"You can request a new code in {seconds} seconds.This will expire in {minutes} minutes.",
+    "alert_dialog_tooltip_request_new_code":"You can request a new code in {seconds} seconds.\nThis will expire in {minutes} minutes.",
     "@alert_dialog_tooltip_request_new_code": {
         "description":"part text in alertdialog of textfield on tooltip, You can request a new code in 56 seconds.This will expire in 30 minutes.",
         "placeholders" : {
@@ -193,6 +193,7 @@
     "login_error_desconocido" : " An unidentified error has occurred while processing your request. Unfortunately, more details are not available at this time. Please report this issue to the support team for assistance.",
     "@login_error_desconocido": {
         "description":"This error is shown when the user makes a request and the server returns an unknow error"
+        },
 
     "pageKycTitle" : "Tell us about yourself",
     "@pageKycTitle": {

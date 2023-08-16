@@ -7,6 +7,7 @@ import 'package:prlab_flutter/prlab_configuracion/base.dart';
 import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 import 'package:prlab_flutter/utilidades/funciones/validators.dart';
 import 'package:serverpod_auth_client/module.dart';
+import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
 part 'bloc_login_event.dart';
 part 'bloc_login_state.dart';
@@ -15,14 +16,19 @@ part 'bloc_login_state.dart';
 class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
   BlocLogin({
     required this.emailAuthControllerCustomPRLab,
+    required this.emailAuth,
   }) : super(const BlocLoginEstadoInicial()) {
     on<BlocLoginEventoIniciarSesion>(_iniciarSesion);
-    on<BlocLoginEventoHabilitarBoton>(_habilitarBoton);
+    on<BlocLoginEventoHabilitarBotonLogin>(_habilitarBotonLogin);
+    on<BlocLoginEventoEnviarCodigoAlMailDelUsuario>(
+      _enviarCodigoAlMailDelUsuario,
+    );
+    on<BlocLoginEventoCambiarTamanioCodigo>(_habilitarBotonEnviarCodigo);
+    on<BlocLoginEventoEnviarCodigoAlBack>(_chequearCodigo);
 
     ///manejo del temporizador y cronometro
     on<BLocLoginEventoEmpezarTemporizador>(_empezarCronometro);
-    on<BlocLoginEventoPausarTemporizador>(_pausarCronometro);
-    on<BlocLoginEventoTemporizadorResetearTemporizador>(_resetearCronometro);
+    on<BlocLoginEventoResetearTemporizador>(_resetearCronometro);
     on<BlocLoginEventoTiempoEjecucion>(_corriendoCronometro);
     on<BlocLoginEventoTiempoCompletado>(_cronometroCompletado);
   }
@@ -94,11 +100,99 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     }
   }
 
+  ///evento donde enviamos el codigo de recuperacion de la cuenta o cambio de
+  ///contraseña
+  FutureOr<void> _enviarCodigoAlMailDelUsuario(
+    BlocLoginEventoEnviarCodigoAlMailDelUsuario event,
+    Emitter<BlocLoginEstado> emit,
+  ) async {
+    emit(BlocLoginEstadoCargando.desde(state));
+    try {
+      ///hacer la validacion de si el codigo es correcto que se emita este
+      ///estado
+      final response = await emailAuth.initiatePasswordReset(event.email);
+
+      if (response) {
+        emit(
+          BlocLoginEstadoExitoso.desde(state),
+        );
+      } else {
+        throw UnimplementedError(
+          'error al mandar el codigo de cambiar contraseña',
+        );
+      }
+    } catch (e, st) {
+      emit(
+        BlocLoginEstadoError.desde(
+          state,
+          // TODO(Gon): Preguntar al back que devuelve para handlear los errores
+          mensajeDeError: MensajesDeErrorDelLogin.invalidCredentials,
+        ),
+      );
+      if (kDebugMode) {
+        debugger();
+        throw UnimplementedError('Implementa un error para esto: $e $st');
+      }
+    }
+  }
+
+  ///chequea el codigo enviado al back y lo verifica si esta bien
+  FutureOr<void> _chequearCodigo(
+    BlocLoginEventoEnviarCodigoAlBack event,
+    Emitter<BlocLoginEstado> emit,
+  ) async {
+    emit(BlocLoginEstadoCargando.desde(state));
+    try {
+      final respuesta = await emailAuth.resetPassword(
+        event.email,
+        event.codigo,
+        event.password,
+      );
+      if (respuesta) {
+        final response = await emailAuthControllerCustomPRLab.iniciarSesion(
+          event.email,
+          event.password,
+        );
+        final userInfo = response.userInfo;
+        if (userInfo == null) {
+          emit(
+            BlocLoginEstadoExitoso.desde(state),
+          );
+        } else {
+          emit(
+            BlocLoginEstadoError.desde(
+              state,
+              mensajeDeError: MensajesDeErrorDelLogin.userNotFound,
+            ),
+          );
+        }
+      } else {
+        emit(
+          BlocLoginEstadoError.desde(
+            state,
+            mensajeDeError: MensajesDeErrorDelLogin.unknown,
+          ),
+        );
+      }
+    } catch (e, st) {
+      emit(
+        BlocLoginEstadoError.desde(
+          state,
+          mensajeDeError: MensajesDeErrorDelLogin.internalError,
+        ),
+      );
+      if (kDebugMode) {
+        debugger();
+        throw UnimplementedError('Error al restablecer la contraseña: $e $st');
+      }
+    }
+  }
+
   /// La función `_habilitarBoton` verifica si el correo electrónico es válido
   ///  y la longitud de la contraseña es mayor a 7, y emite un estado exitoso
   ///  con el botón habilitado si se cumplen lascondiciones.
-  Future<void> _habilitarBoton(
-    BlocLoginEventoHabilitarBoton event,
+  Future<void> _habilitarBotonLogin(
+    BlocLoginEventoHabilitarBotonLogin event,
     Emitter<BlocLoginEstado> emit,
   ) async {
     try {
@@ -124,6 +218,22 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
         debugger();
         throw UnimplementedError('Implementa un error para esto: $e $st');
       }
+    }
+  }
+
+  Future<void> _habilitarBotonEnviarCodigo(
+    BlocLoginEventoCambiarTamanioCodigo event,
+    Emitter<BlocLoginEstado> emit,
+  ) async {
+    try {
+      emit(BlocLoginEstadoExitoso.desde(state, tamanioCodigo: event.tamanio));
+    } catch (e) {
+      emit(
+        BlocLoginEstadoError.desde(
+          state,
+          mensajeDeError: MensajesDeErrorDelLogin.internalError,
+        ),
+      );
     }
   }
 
@@ -162,23 +272,9 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     }
   }
 
-  ///funcion que pausa el cronometro
-  FutureOr<void> _pausarCronometro(
-    BlocLoginEventoPausarTemporizador event,
-    Emitter<BlocLoginEstado> emit,
-  ) async {
-    _time.cancel();
-    emit(
-      BlocLoginEstadoCronometroPausado.desde(
-        state,
-        duracionTimer: _tiempoCorriendoDuracion,
-      ),
-    );
-  }
-
   ///funcion para resetear el cronometro o que vuelva a 60 seg
   FutureOr<void> _resetearCronometro(
-    BlocLoginEventoTemporizadorResetearTemporizador event,
+    BlocLoginEventoResetearTemporizador event,
     Emitter<BlocLoginEstado> emit,
   ) async {
     _time.cancel();
@@ -251,4 +347,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     _time.cancel();
     return super.close();
   }
+
+  ///repo de los llamados a server pod
+  final EmailAuthController emailAuth;
 }

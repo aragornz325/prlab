@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
+
+// !!!
+// TODO(anyone): PASAR ESTO AL FACTORY
+// !!!
 
 /// {@template PrLabTextfield}
 /// Textfield de `PrLab` en `recover password` aparece en el alertdialog de
@@ -12,6 +18,7 @@ class PrLabTextfield extends StatefulWidget {
   /// {@macro PrLabTextfield}
   const PrLabTextfield({
     required this.controller,
+    required this.email,
     this.validator,
     this.minutosFaltantes = 30,
     this.segundosFaltantes = 60,
@@ -36,6 +43,9 @@ class PrLabTextfield extends StatefulWidget {
   /// int total para que se solicite un nuevo codigo [PrLabTextfield].
   /// (por default esta en 30)
   final int minutosFaltantes;
+
+  /// Email del usuario al que se le va a enviar el codigo
+  final String email;
   @override
   State<PrLabTextfield> createState() => _PrLabTextfieldState();
 }
@@ -59,6 +69,13 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
       maxLength: 8,
       keyboardType: TextInputType.number,
       cursorColor: colores.primary,
+      onChanged: (value) {
+        if (value.isNotEmpty || value != '') {
+          context.read<BlocLogin>().add(
+                BlocLoginEventoCambiarTamanioCodigo(tamanio: value.length),
+              );
+        }
+      },
       decoration: InputDecoration(
         counterText: '',
         labelText:
@@ -87,9 +104,14 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                 InkWell(
                   onTap: !widget.solicitoNuevoCodigo
                       ? () {
-                          // TODO(anyone): funcion para cuando aprete el boton
-                          // de Get code
-                          Navigator.pop(context);
+                          context.read<BlocLogin>().add(
+                                BlocLoginEventoEnviarCodigoAlMailDelUsuario(
+                                  email: widget.email,
+                                ),
+                              );
+                          context
+                              .read<BlocLogin>()
+                              .add(BLocLoginEventoEmpezarTemporizador());
                         }
                       : null,
                   child: Text(
@@ -128,8 +150,6 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                       textStyle: TextStyle(
                         fontSize: 12.pf,
                         fontWeight: FontWeight.w400,
-                        // TODO(anyone): cambiar para cuando esten los colores
-                        // en el theme
                         color: colores.background,
                       ),
                       message: tooltipMessage,

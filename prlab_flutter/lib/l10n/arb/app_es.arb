@@ -102,7 +102,7 @@
         "description":"text in alertdialog suffix textfield on button if the verificaction code was sent, Code sent"
     },
 
-    "alert_dialog_tooltip_request_new_code":"Puedes solicitar un nuevo código en {seconds} segundos.Este expirara en {minutes} minutos.",
+    "alert_dialog_tooltip_request_new_code":"Puedes solicitar un nuevo código en {seconds} segundos.\nEste expirara en {minutes} minutos.",
     "@alert_dialog_tooltip_request_new_code": {
         "description":"part text in alertdialog of textfield on tooltip, You can request a new code in 56 seconds.This will expire in 30 minutes.",
         "placeholders" : {
@@ -190,6 +190,7 @@
     "login_error_desconocido" : "Se ha producido un error no identificado mientras se procesaba tu solicitud. Lamentablemente, no se dispone de más detalles en este momento. Por favor, comunica este problema al equipo de soporte para obtener asistencia.",
     "@login_error_desconocido": {
         "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
+    },
 
     "pageKycTitle" : "Cuéntanos sobre tí",
     "@pageKycTitle": {

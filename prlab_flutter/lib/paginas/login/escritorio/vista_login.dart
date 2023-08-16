@@ -11,6 +11,8 @@ import 'package:prlab_flutter/paginas/login/utilidades/get_error_message.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
+import '../../../utilidades/funciones/validators.dart';
+
 /// Vista de escritorio de la pantalla login donde el usuario
 /// puede iniciar sesion
 class VistaLoginEscritorio extends StatefulWidget {
@@ -79,7 +81,6 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                           setState(() {});
                         },
                         hintText: l10n.page_login_placeholder_email,
-                        estaVacio: controllerEmail.text.isEmpty,
                         soloLectura: false,
                       ),
                     ),
@@ -87,11 +88,12 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     SizedBox(
                       height: 10.ph,
                     ),
-
+                    // TODO(Gon): Cuando se manejen errores de login agregar los errores
+                    // abajo de los textfields
                     SizedBox(
                       width: 360.pw,
                       height: 40.ph,
-                      child: PRTextFormFielPassword(
+                      child: PRTextFormFieldPassword(
                         controller: controllerPassword,
                         hintText: l10n.page_login_placeholder_password,
                         funcionEnElOnChange: _revisarSiElBotonSePuedeHabilitar,
@@ -123,7 +125,20 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     //     'data',
                     //   ),
                     // ),
-                    const OlvidasteTuContrasenia(),
+                    OlvidasteTuContrasenia(
+                      cargoElMail: Validators.emailRegExp.hasMatch(
+                        controllerEmail.text,
+                      ),
+                      email: controllerEmail.text,
+                      password: controllerPassword.text,
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          context.read<BlocLogin>().add(
+                              BlocLoginEventoEnviarCodigoAlMailDelUsuario(
+                                  email: controllerEmail.text));
+                        },
+                        child: Text('data')),
                     SizedBox(
                       height: 50.ph,
                     ),
@@ -146,7 +161,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
 
   void _revisarSiElBotonSePuedeHabilitar() {
     context.read<BlocLogin>().add(
-          BlocLoginEventoHabilitarBoton(
+          BlocLoginEventoHabilitarBotonLogin(
             email: controllerEmail.text,
             password: controllerPassword.text,
           ),
