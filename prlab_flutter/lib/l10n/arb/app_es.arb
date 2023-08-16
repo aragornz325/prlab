@@ -163,6 +163,46 @@
     "alert_dialog_button_subtitle_link_expired" : "el link a expirado,\npor favor has click en “Reenviar” para obtener un nuevo código",
     "@alert_dialog_button_subtitle_link_expired": {
         "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
+    },
+
+    "pageKycTitle" : "Cuéntanos sobre tí",
+    "@pageKycTitle": {
+        "description":"Text in page kyc setted on the top of the page as a title"
+    },
+
+    "pageKycSubtitle" : "Ingrese su información",
+    "@pageKycSubtitle": {
+        "description":"Text in page kyc setted on the top of the page as a subtitle"
+    },
+
+    "pageKycNameHintText" : "Nombre",
+    "@pageKycNameHintText": {
+        "description":"Text in page kyc setted on the name text field hint text"
+    },
+
+    "pageKycLastnameHintText" : "Apellido",
+    "@pageKycLastnameHintText": {
+        "description":"Text in page kyc setted on the lastname text field hint text"
+    },
+    
+    "pageKycCompanyNameHintText" : "Nombre de la compañía",
+    "@pageKycCompanyNameHintText": {
+        "description":"Text in page kyc setted on the company name text field hint text"
+    },
+
+    "pageKycCompanyLocationHintText" : "Ubicación",
+    "@pageKycCompanyLocationHintText": {
+        "description":"Text in page kyc setted on the company location text field hint text"
+    },
+    
+    "pageKycContactHintText" : "Contacto",
+    "@pageKycContactHintText": {
+        "description":"Text in page kyc setted on the contact text field hint text"
+    },
+
+    "pageKycContinueTextButton" : "Continuar",
+    "@pageKycContinueTextButton": {
+        "description":"Text in page kyc setted on the button that the user press to save the kyc data on the bottom of the screen"
     }
 
 }

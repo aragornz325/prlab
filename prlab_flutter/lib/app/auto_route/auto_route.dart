@@ -21,5 +21,9 @@ class AppRouter extends $AppRouter {
       path: '/create-account',
       page: PaginaCrearCuenta.page,
     ),
+    AutoRoute(
+      path: '/kyc-form',
+      page: PaginaKyc.page,
+    ),
   ];
 }

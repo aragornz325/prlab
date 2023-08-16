@@ -126,9 +126,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                 hintText: controllerEmail.text,
                                 context: context,
                                 controller: controllerEmail,
-                                estaVacio: false,
                                 soloLectura: true,
-                                onChanged: (p0) {},
                               ),
                             ),
                             SizedBox(
