@@ -123,7 +123,6 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                             SizedBox(
                               width: 259.pw,
                               child: PRTextFormField.email(
-                                // TODO(SAM): el color del mensajito no cambia
                                 hintText: controllerEmail.text,
                                 context: context,
                                 controller: controllerEmail,
@@ -137,13 +136,12 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                             ),
                             SizedBox(
                               width: 259.pw,
-                              child: TextField(
+                              child: PRTextFormFieldPassword(
                                 controller: controllerPassword,
-                                decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.lock),
-                                  labelText: l10n
-                                      .page_sign_up_text_field_hint_password,
-                                ),
+                                hintText: controllerPassword.text,
+                                esCreacionPassword: true,
+                                passwordCoinciden: controllerPassword.text ==
+                                    controllerConfirmarPassword.text,
                               ),
                             ),
                             SizedBox(
@@ -151,13 +149,12 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                             ),
                             SizedBox(
                               width: 259.pw,
-                              child: TextField(
+                              child: PRTextFormFieldPassword(
                                 controller: controllerConfirmarPassword,
-                                decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.lock),
-                                  labelText: l10n
-                                      .page_sign_up_text_field_hint_confirm_password,
-                                ),
+                                hintText: controllerConfirmarPassword.text,
+                                esCreacionPassword: true,
+                                passwordCoinciden: controllerPassword.text ==
+                                    controllerConfirmarPassword.text,
                               ),
                             ),
                             SizedBox(height: 20.ph),

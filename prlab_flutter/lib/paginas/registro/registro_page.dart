@@ -5,6 +5,7 @@ import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/paginas/registro/escritorio/vista_espera_validacion_de_token_escritorio.dart';
+import 'package:prlab_flutter/paginas/registro/escritorio/vista_registro_escritorio.dart';
 import 'package:prlab_flutter/paginas/registro/mobile/vista_espera_validacion_de_token_mobile.dart';
 import 'package:prlab_flutter/paginas/registro/mobile/vista_registro_mobile.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
@@ -51,7 +52,7 @@ class RegistroPage extends StatelessWidget {
               return const VistaEsperaValidacionDeTokenEscritorio();
             }
 
-            return VistaRegistroMobile(
+            return VistaRegistroEscritorio(
               email: state.email,
             );
           },

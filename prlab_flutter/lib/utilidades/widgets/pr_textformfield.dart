@@ -235,8 +235,8 @@ class PRTextFormField extends StatelessWidget {
 }
 
 /// TFF a utilizarse para contraseñas
-class PRTextFormFielPassword extends StatefulWidget {
-  const PRTextFormFielPassword({
+class PRTextFormFieldPassword extends StatefulWidget {
+  const PRTextFormFieldPassword({
     required this.controller,
     required this.hintText,
     this.esCreacionPassword = false,
@@ -249,10 +249,11 @@ class PRTextFormFielPassword extends StatefulWidget {
   final bool passwordCoinciden;
   final bool esCreacionPassword;
   @override
-  State<PRTextFormFielPassword> createState() => _PRTextFormFielPasswordState();
+  State<PRTextFormFieldPassword> createState() =>
+      _PRTextFormFieldPasswordState();
 }
 
-class _PRTextFormFielPasswordState extends State<PRTextFormFielPassword> {
+class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
   bool _obscureText = true;
   bool controllerVacio = false;
 
