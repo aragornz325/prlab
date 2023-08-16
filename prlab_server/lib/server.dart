@@ -49,7 +49,7 @@ void run(List<String> args) async {
           contenido: cuerpoCorreo,
         );
         await enviarEmail(
-          mailDestinatario: email.toString(),
+          mailDestinatario: email,
           subject: 'Email validation.',
           mailHtml: correo,
         );
@@ -58,7 +58,6 @@ void run(List<String> args) async {
         rethrow;
       }
     },
-
     sendPasswordResetEmail: (
       session,
       userInfo,
@@ -72,7 +71,7 @@ void run(List<String> args) async {
           contenido: cuerpoCorreo,
         );
         await enviarEmail(
-          mailDestinatario: userInfo.email.toString(),
+          mailDestinatario: userInfo.email ?? '',
           subject: 'Password reset validation.',
           mailHtml: correo,
         );
