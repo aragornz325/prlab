@@ -4,8 +4,8 @@ import 'package:serverpod/serverpod.dart';
 final servicioMail = ServicioMail();
 
 class MailEndpoint extends Endpoint {
-  @override
-  bool get requireLogin => true;
+  // @override
+  // bool get requireLogin => true;
 
   Future<bool> envioMailRegistro(
     Session session,

@@ -66,14 +66,14 @@ class _EndpointMail extends _i1.EndpointRef {
 
   _i2.Future<bool> envioMailRegistro(
     String email,
-    int tipo_de_invitacion,
+    int tipoInvitacion,
   ) =>
       caller.callServerEndpoint<bool>(
         'mail',
         'envioMailRegistro',
         {
           'email': email,
-          'tipo_de_invitacion': tipo_de_invitacion,
+          'tipoInvitacion': tipoInvitacion,
         },
       );
 }

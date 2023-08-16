@@ -113,8 +113,8 @@ class Endpoints extends _i1.EndpointDispatch {
               type: _i1.getType<String>(),
               nullable: false,
             ),
-            'tipo_de_invitacion': _i1.ParameterDescription(
-              name: 'tipo_de_invitacion',
+            'tipoInvitacion': _i1.ParameterDescription(
+              name: 'tipoInvitacion',
               type: _i1.getType<int>(),
               nullable: false,
             ),
@@ -126,7 +126,7 @@ class Endpoints extends _i1.EndpointDispatch {
               (endpoints['mail'] as _i4.MailEndpoint).envioMailRegistro(
             session,
             params['email'],
-            params['tipo_de_invitacion'],
+            params['tipoInvitacion'],
           ),
         )
       },
