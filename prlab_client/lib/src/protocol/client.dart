@@ -58,22 +58,22 @@ class _EndpointExample extends _i1.EndpointRef {
       );
 }
 
-class _EndpointMailer extends _i1.EndpointRef {
-  _EndpointMailer(_i1.EndpointCaller caller) : super(caller);
+class _EndpointMail extends _i1.EndpointRef {
+  _EndpointMail(_i1.EndpointCaller caller) : super(caller);
 
   @override
-  String get name => 'mailer';
+  String get name => 'mail';
 
   _i2.Future<bool> envioMailRegistro(
     String email,
-    int tipo_de_invitacion,
+    int tipoInvitacion,
   ) =>
       caller.callServerEndpoint<bool>(
-        'mailer',
+        'mail',
         'envioMailRegistro',
         {
           'email': email,
-          'tipo_de_invitacion': tipo_de_invitacion,
+          'tipoInvitacion': tipoInvitacion,
         },
       );
 }
@@ -99,7 +99,7 @@ class Client extends _i1.ServerpodClient {
         ) {
     auth = _EndpointAuth(this);
     example = _EndpointExample(this);
-    mailer = _EndpointMailer(this);
+    mail = _EndpointMail(this);
     modules = _Modules(this);
   }
 
@@ -107,7 +107,7 @@ class Client extends _i1.ServerpodClient {
 
   late final _EndpointExample example;
 
-  late final _EndpointMailer mailer;
+  late final _EndpointMail mail;
 
   late final _Modules modules;
 
@@ -115,7 +115,7 @@ class Client extends _i1.ServerpodClient {
   Map<String, _i1.EndpointRef> get endpointRefLookup => {
         'auth': auth,
         'example': example,
-        'mailer': mailer,
+        'mail': mail,
       };
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup =>
