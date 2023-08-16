@@ -11,7 +11,7 @@ import 'package:prlab_flutter/paginas/login/utilidades/get_error_message.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
-import '../../../utilidades/funciones/validators.dart';
+import 'package:prlab_flutter/utilidades/funciones/validators.dart';
 
 /// Vista de escritorio de la pantalla login donde el usuario
 /// puede iniciar sesion
@@ -96,7 +96,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       child: PRTextFormFieldPassword(
                         controller: controllerPassword,
                         hintText: l10n.page_login_placeholder_password,
-                        funcionEnElOnChange: _revisarSiElBotonSePuedeHabilitar,
+                        onChanged: (_) => _revisarSiElBotonSePuedeHabilitar,
                       ),
                     ),
 
@@ -133,12 +133,15 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       password: controllerPassword.text,
                     ),
                     ElevatedButton(
-                        onPressed: () {
-                          context.read<BlocLogin>().add(
+                      onPressed: () {
+                        context.read<BlocLogin>().add(
                               BlocLoginEventoEnviarCodigoAlMailDelUsuario(
-                                  email: controllerEmail.text));
-                        },
-                        child: Text('data')),
+                                email: controllerEmail.text,
+                              ),
+                            );
+                      },
+                      child: const Text('data'),
+                    ),
                     SizedBox(
                       height: 50.ph,
                     ),
