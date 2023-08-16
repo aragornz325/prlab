@@ -47,21 +47,18 @@ void run(List<String> args) async {
             PlantillasCorreo().cuerpoVerificacion(codigo: validationCode);
         final correo = PlantillasCorreo().mailingGeneral(
           contenido: cuerpoCorreo,
-          nombre: 'nombre',
         );
         await enviarEmail(
-          mailDestinatario: email.toString().trim(),
+          mailDestinatario: email.toString(),
           subject: 'Email validation.',
           mailHtml: correo,
         );
-        print('Sending validation email to $email with code $validationCode');
-        print(validationCode);
         return true;
-      } on Exception catch (e, st) {
-        print('$e $st');
+      } on Exception catch (e) {
         rethrow;
       }
     },
+
     sendPasswordResetEmail: (
       session,
       userInfo,
@@ -73,19 +70,14 @@ void run(List<String> args) async {
         );
         final correo = PlantillasCorreo().mailingGeneral(
           contenido: cuerpoCorreo,
-          nombre: 'nombre',
         );
         await enviarEmail(
-          mailDestinatario: userInfo.email.toString().trim(),
+          mailDestinatario: userInfo.email.toString(),
           subject: 'Password reset validation.',
           mailHtml: correo,
         );
-        print(
-            'Sending password reset validation email to ${userInfo.email.toString()} with code $validationCode');
-        print(validationCode);
         return true;
-      } on Exception catch (e, st) {
-        print('$e $st');
+      } on Exception catch (e) {
         rethrow;
       }
     },
