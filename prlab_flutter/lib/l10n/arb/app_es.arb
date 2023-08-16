@@ -170,6 +170,31 @@
     "pageKycContinueTextButton" : "Continuar",
     "@pageKycContinueTextButton": {
         "description":"Text in page kyc setted on the button that the user press to save the kyc data on the bottom of the screen"
+    },
+
+    "pageRecoverPasswordTitle" : "Recuperar contraseña",
+    "@pageRecoverPasswordTitle": {
+        "description":"Text in page recover password setted on the top of the page as a title"
+    },
+
+    "pageRecoverPasswordSubtitle" : "Por favor, ingrese la nueva contraseña",
+    "@pageRecoverPasswordSubtitle": {
+        "description":"Text in page recover password setted on the top of the page as a subtitle"
+    },
+
+    "pageRecoverPasswordNewPasswordHintText" : "Nueva contraseña",
+    "@pageRecoverPasswordNewPasswordHintText": {
+        "description":"Text in page recover password setted on the new password text field hint text"
+    },
+
+    "pageRecoverPasswordRepeatPasswordHintText" : "Repetir contraseña",
+    "@pageRecoverPasswordRepeatPasswordHintText": {
+        "description":"Text in page recover password setted on the reseat password text field hint text"
+    },
+
+    "pageRecoverPasswordContinueTextButton" : "Continuar",
+    "@pageRecoverPasswordContinueTextButton": {
+        "description":"Text in page recover password setted on the button that the user press to save the new password on the bottom of the screen"
     }
 
 }

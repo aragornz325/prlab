@@ -18,7 +18,7 @@ class BlocKycEventoInsertarInformacionDeKyc extends BlocKcyEvento {
 }
 
 /// {@template bloc_kyc_evento_recolectar_informacion_del_kyc}
-/// Evento que recoleta los valores que se van completando
+/// Evento que recolecta los valores que se van completando
 /// en el formulario cada vez que se actualiza.
 /// {@endtemplate}
 class BlocKycEventoRecolectarInformacionDeKyc extends BlocKcyEvento {
