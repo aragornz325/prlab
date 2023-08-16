@@ -311,17 +311,20 @@ class PRTextFormFieldPassword extends StatefulWidget {
   const PRTextFormFieldPassword({
     required this.controller,
     required this.hintText,
-    required this.funcionEnElOnChange,
     this.esCreacionPassword = false,
-    this.passwordCoinciden = false,
+    this.onChanged,
+    this.width = 359,
+    this.validator,
     super.key,
   });
 
   final TextEditingController controller;
   final String hintText;
-  final bool passwordCoinciden;
   final bool esCreacionPassword;
-  final void Function()? funcionEnElOnChange;
+  final double width;
+  final String? Function(String? value)? validator;
+
+  final void Function(String? value)? onChanged;
   @override
   State<PRTextFormFieldPassword> createState() =>
       _PRTextFormFieldPasswordState();
@@ -329,7 +332,6 @@ class PRTextFormFieldPassword extends StatefulWidget {
 
 class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
   bool _obscureText = true;
-  bool controllerVacio = true;
 
   @override
   Widget build(BuildContext context) {
@@ -339,10 +341,12 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
 
     return PRTextFormField(
       esPassword: true,
+      width: widget.width,
       controller: widget.controller,
       hintText: widget.hintText,
       prefixIcon: Icons.lock,
-      prefixIconColor: controllerVacio ? colores.primary : colores.secondary,
+      prefixIconColor:
+          widget.controller.text.isEmpty ? colores.primary : colores.secondary,
       obscureText: _obscureText,
       suffixIcon: IconButton(
         icon: _obscureText
@@ -360,22 +364,25 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
           });
         },
       ),
-      onChanged: (_) {
-        controllerVacio = widget.controller.text.isEmpty;
-        setState(() {});
-        widget.funcionEnElOnChange?.call();
+      onChanged: (value) {
+        setState(() {
+          widget.onChanged?.call(value);
+        });
       },
       validator: (value) {
-        final passwordDoNotMatch = widget.esCreacionPassword &&
-            !controllerVacio &&
-            !widget.passwordCoinciden;
-
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
         }
-        if (passwordDoNotMatch) {
-          return l10n.commonPasswordDoNotMatch;
+
+        // TODO(Andre): Cambiar por validacion de contraseña 12 caracteres de Gon.
+        if ((value?.length ?? 0) < 12) {
+          return 'At least 12 characters';
         }
+
+        if (widget.validator != null) {
+          return widget.validator?.call(value);
+        }
+
         return null;
       },
     );
