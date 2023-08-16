@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/kyc/bloc/bloc_kyc.dart';
 import 'package:prlab_flutter/paginas/kyc/widgets/widgets.dart';
@@ -56,15 +57,14 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    print('build');
+    final colores = context.colores;
 
     return SingleChildScrollView(
       child: Form(
         key: _formKey,
         child: Container(
           margin: EdgeInsets.only(top: 90.sh),
-          //TODO(Gon): Cambiar cuando esten los colores del theme
-          color: const Color(0xfff7f7f7),
+          color: colores.background,
           width: widget.width,
           child: Column(
             children: [

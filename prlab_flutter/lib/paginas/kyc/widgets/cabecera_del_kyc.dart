@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template cabecera_del_kyc}
@@ -16,6 +17,8 @@ class CabeceraDelKyc extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
+    final colores = context.colores;
+
     return Column(
       children: [
         Padding(
@@ -26,8 +29,7 @@ class CabeceraDelKyc extends StatelessWidget {
             // de telefono no se achica lo suficiente el texto.
             l10n.pageKycTitle,
             style: TextStyle(
-              //TODO(Gon): Cambiar cuando esten los colores del theme
-              color: const Color(0xff363636),
+              color: colores.tertiary,
               fontSize: 40.pf,
               fontWeight: FontWeight.w600,
             ),
@@ -40,8 +42,7 @@ class CabeceraDelKyc extends StatelessWidget {
           // de telefono no se achica lo suficiente el texto.
           l10n.pageKycSubtitle,
           style: TextStyle(
-            //TODO(Gon): Cambiar cuando esten los colores del theme
-            color: const Color(0xff707070),
+            color: colores.secondary,
             fontSize: 15.pf,
             fontWeight: FontWeight.w400,
           ),
