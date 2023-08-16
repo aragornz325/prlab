@@ -1,5 +1,2 @@
 example:
   - hello:
-
-client:
- - crearOrganizacion:
