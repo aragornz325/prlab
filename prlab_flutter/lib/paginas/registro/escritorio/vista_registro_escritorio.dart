@@ -141,7 +141,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             SizedBox(
                               width: 359.pw,
                               child: PRTextFormField.email(
-                                //  hintText: controllerEmail.text,
+                                hintText: controllerEmail.text,
                                 context: context,
                                 controller: controllerEmail,
                                 soloLectura: true,
