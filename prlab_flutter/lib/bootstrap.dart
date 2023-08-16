@@ -23,7 +23,7 @@ class AppBlocObserver extends BlocObserver {
 
 Future<void> bootstrap(
   FutureOr<Widget> Function() builder, {
-  required String url, // TODO(SAM): renombrar
+  required String hostUrl,
 }) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
@@ -40,7 +40,7 @@ Future<void> bootstrap(
   // await IsarService.openDB();
 
   // Add cross-flavor configuration here
-  await initializeServerpodClient(host: url);
+  await initializeServerpodClient(host: hostUrl);
 
   runApp(await builder());
 }

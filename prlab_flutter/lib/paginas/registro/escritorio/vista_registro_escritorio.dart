@@ -126,7 +126,10 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             SizedBox(
                               width: 259.pw,
                               child: PRTextFormField.email(
-                                hintText: controllerEmail.text,
+                                hintText: controllerEmail.text != ''
+                                    ? controllerEmail.text
+                                    : l10n
+                                        .page_sign_up_text_field_hint_example_mail,
                                 context: context,
                                 controller: controllerEmail,
                                 estaVacio: false,
@@ -141,7 +144,8 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                               width: 259.pw,
                               child: PRTextFormFieldPassword(
                                 controller: controllerPassword,
-                                hintText: controllerPassword.text,
+                                hintText:
+                                    l10n.page_sign_up_text_field_hint_password,
                                 esCreacionPassword: true,
                                 passwordCoinciden: controllerPassword.text ==
                                     controllerConfirmarPassword.text,
@@ -154,7 +158,8 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                               width: 259.pw,
                               child: PRTextFormFieldPassword(
                                 controller: controllerConfirmarPassword,
-                                hintText: controllerConfirmarPassword.text,
+                                hintText: l10n
+                                    .page_sign_up_text_field_hint_confirm_password,
                                 esCreacionPassword: true,
                                 passwordCoinciden: controllerPassword.text ==
                                     controllerConfirmarPassword.text,
