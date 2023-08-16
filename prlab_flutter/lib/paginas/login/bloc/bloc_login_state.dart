@@ -36,13 +36,13 @@ class BlocLoginEstado extends Equatable {
 
   bool get estaCargandoInicioDeSesion =>
       estaIniciandoSesion && this is BlocLoginEstadoCargando;
-  bool get estaCodigoCargado => tamanioCodigo == 8;
 
   @override
   List<Object> get props => [
         botonHabilitado,
         estaIniciandoSesion,
         duracionTimer,
+        tamanioCodigo,
       ];
 }
 

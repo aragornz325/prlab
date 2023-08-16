@@ -28,6 +28,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
 
   /// Controller para el textfield de password
   final controllerPassword = TextEditingController();
+  final controllerCodigo = TextEditingController();
 
   @override
   void dispose() {
@@ -131,14 +132,20 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       ),
                       email: controllerEmail.text,
                       password: controllerPassword.text,
+                      controllerCodigo: controllerCodigo,
                     ),
                     ElevatedButton(
-                        onPressed: () {
-                          context.read<BlocLogin>().add(
+                      onPressed: () {
+                        context.read<BlocLogin>().add(
                               BlocLoginEventoEnviarCodigoAlMailDelUsuario(
-                                  email: controllerEmail.text));
-                        },
-                        child: Text('data')),
+                                email: controllerEmail.text,
+                              ),
+                            );
+                      },
+                      child: const Text(
+                        'data',
+                      ),
+                    ),
                     SizedBox(
                       height: 50.ph,
                     ),

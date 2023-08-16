@@ -79,7 +79,7 @@ class PRDialog extends StatefulWidget {
                       width: 360.pw,
 
                       // TODO(anyone): Agregarle funcionalidad del bloc
-                      habilitado: state.estaCodigoCargado,
+                      habilitado: state.tamanioCodigo == 8,
                       onTap: () {
                         context.read<BlocLogin>().add(
                               BlocLoginEventoEnviarCodigoAlBack(

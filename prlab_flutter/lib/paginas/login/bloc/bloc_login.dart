@@ -143,6 +143,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
   ) async {
     emit(BlocLoginEstadoCargando.desde(state));
     try {
+      // TODO(Gon): Esta funcion es para la pantalla de louka aca va la funcion que verifica el codigo de chivo
       final respuesta = await emailAuth.resetPassword(
         event.email,
         event.codigo,

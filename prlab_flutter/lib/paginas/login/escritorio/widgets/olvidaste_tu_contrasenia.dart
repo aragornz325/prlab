@@ -12,18 +12,19 @@ class OlvidasteTuContrasenia extends StatefulWidget {
     required this.cargoElMail,
     required this.email,
     required this.password,
+    required this.controllerCodigo,
     super.key,
   });
   final String email;
   final String password;
   final bool cargoElMail;
+  final TextEditingController controllerCodigo;
 
   @override
   State<OlvidasteTuContrasenia> createState() => _OlvidasteTuContraseniaState();
 }
 
 class _OlvidasteTuContraseniaState extends State<OlvidasteTuContrasenia> {
-  final controllerCodigo = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -38,7 +39,7 @@ class _OlvidasteTuContraseniaState extends State<OlvidasteTuContrasenia> {
             PRDialog.recuperarContrasenia(
               password: widget.password,
               email: widget.email,
-              controllerCodigo: controllerCodigo,
+              controllerCodigo: widget.controllerCodigo,
               context: context,
             ).show(context, bloc: context.read<BlocLogin>());
           }
