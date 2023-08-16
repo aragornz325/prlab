@@ -313,9 +313,10 @@ class PRTextFormFieldPassword extends StatefulWidget {
     required this.hintText,
     this.esCreacionPassword = false,
     this.passwordCoinciden = false,
+    this.onChanged,
     super.key,
   });
-
+  final void Function(String? value)? onChanged;
   final TextEditingController controller;
   final String hintText;
   final bool passwordCoinciden;
@@ -356,9 +357,10 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
           });
         },
       ),
-      onChanged: (_) {
+      onChanged: (value) {
         controllerVacio = widget.controller.text.isNotEmpty;
         setState(() {});
+        widget.onChanged?.call(value);
       },
       validator: (value) {
         final passwordDoNotMatch = widget.esCreacionPassword &&

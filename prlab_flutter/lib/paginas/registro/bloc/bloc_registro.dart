@@ -20,6 +20,9 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     on<BlocRegistroEventoVerificarToken>(_onVerificarToken);
     on<BlocRegistroEventoAceptarTerminos>(_onAceptarTerminos);
     on<BlocRegistroEventoEnviarDatosRegistro>(_onEnviarDatosRegistro);
+    on<BlocRegistroEventoRecolectarDatosRegistro>(
+      _onRecolectarInformacionDeRegistro,
+    );
   }
   final EmailAuthControllerCustomPRLab emailAuthControllerCustomPRLab;
   // final Client client;
@@ -153,5 +156,23 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
         l10n.alert_dialog_code_in, // TODO(sam): revisar mensajes de error
       MensajesDeErrorRegistro.usuarioNoEncontrado => l10n.alert_dialog_code_in,
     };
+  }
+
+  /// Recolecta los datos que el usuario completo
+  /// en los campos de texto del formulario del registro para ir
+  /// actualizando los datos en el estado del [BlocRegistroEstado].
+  Future<void> _onRecolectarInformacionDeRegistro(
+    BlocRegistroEventoRecolectarDatosRegistro event,
+    Emitter<BlocRegistroEstado> emit,
+  ) async {
+    emit(
+      BlocRegistroEstadoRecolectandoDatos.desde(
+        state,
+        email: event.email,
+        password: event.password,
+        passwordConfirmada: event.confirmarPassword,
+        terminosAceptados: event.terminosAceptados,
+      ),
+    );
   }
 }

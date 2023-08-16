@@ -46,3 +46,20 @@ class BlocRegistroEventoEnviarDatosRegistro extends BlocRegistroEvento {
         password,
       ];
 }
+
+/// Evento que recolecta los valores que se van completando
+/// en el formulario cada vez que se actualiza.
+/// {@endtemplate}
+class BlocRegistroEventoRecolectarDatosRegistro extends BlocRegistroEvento {
+  const BlocRegistroEventoRecolectarDatosRegistro({
+    this.email,
+    this.password,
+    this.confirmarPassword,
+    this.terminosAceptados,
+  });
+
+  final String? email;
+  final String? password;
+  final String? confirmarPassword;
+  final bool? terminosAceptados;
+}

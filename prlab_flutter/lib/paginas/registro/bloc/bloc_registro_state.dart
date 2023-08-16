@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class BlocRegistroEstado extends Equatable {
   const BlocRegistroEstado._({
     this.terminosAceptados = false,
-    this.passwordConfirmada = false,
+    this.passwordConfirmada = '',
     this.email = '',
     this.password = '',
   });
@@ -15,7 +15,7 @@ class BlocRegistroEstado extends Equatable {
     bool? terminosAceptados,
     String? email,
     String? password,
-    bool? passwordConfirmada,
+    String? passwordConfirmada,
   }) : this._(
           terminosAceptados: terminosAceptados ?? otro.terminosAceptados,
           passwordConfirmada: passwordConfirmada ?? otro.passwordConfirmada,
@@ -29,7 +29,7 @@ class BlocRegistroEstado extends Equatable {
 
   final String password;
 
-  final bool passwordConfirmada;
+  final String passwordConfirmada;
 
   bool get isEstadoInicial => this is BlocRegistroEstadoInicial;
 
@@ -44,6 +44,12 @@ class BlocRegistroEstado extends Equatable {
         password,
         passwordConfirmada,
       ];
+
+  bool get estaCompletoElFormulario =>
+      terminosAceptados == true &&
+      email.isNotEmpty &&
+      password.isNotEmpty &&
+      passwordConfirmada.isNotEmpty;
 }
 
 /// Estado inicial de los componentes de la pantalla registro
@@ -95,6 +101,23 @@ class BlocRegistroEstadoErrorTokenInvalido extends BlocRegistroEstado {
 
   /// Mensaje de error
   final MensajesDeErrorRegistro errorMessage;
+}
+
+/// {@template bloc_registro_estado_recolectando_datos}
+/// Estado de recolecta del [BlocRegistro]
+/// A medida que el usuario va completando el registro
+/// el estado se va a ir actualizando con la nueva
+/// información completada en los campos de texto.
+/// {@endtemplate}
+class BlocRegistroEstadoRecolectandoDatos extends BlocRegistroEstado {
+  /// {@macro bloc_registro_estado_recolectando_datos}
+  BlocRegistroEstadoRecolectandoDatos.desde(
+    super.otro, {
+    super.email,
+    super.password,
+    super.passwordConfirmada,
+    super.terminosAceptados,
+  }) : super.desde();
 }
 
 /// Enum de mensajes de error

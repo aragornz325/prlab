@@ -22,17 +22,19 @@ class VistaRegistroMobile extends StatefulWidget {
 
 class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
   /// Controlador del textfield que tiene el email del usuario
-  TextEditingController controllerEmail = TextEditingController();
+  late TextEditingController controllerEmail;
 
   /// Controlador del textfield que permite al usuario ingresar la password
-  TextEditingController controllerPassword = TextEditingController();
+  final controllerPassword = TextEditingController();
 
   /// Controlador del textfield que permite al usuario confirmar la password
-  TextEditingController controllerConfirmarPassword = TextEditingController();
+  final controllerConfirmarPassword = TextEditingController();
 
   @override
   void initState() {
-    controllerEmail.text = widget.email;
+    controllerEmail = TextEditingController(
+      text: widget.email,
+    );
     super.initState();
   }
 
@@ -136,7 +138,8 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                               width: 259.pw,
                               child: PRTextFormFieldPassword(
                                 controller: controllerPassword,
-                                hintText: controllerPassword.text,
+                                hintText:
+                                    l10n.page_sign_up_text_field_hint_password,
                                 esCreacionPassword: true,
                                 passwordCoinciden: controllerPassword.text ==
                                     controllerConfirmarPassword.text,
@@ -149,7 +152,8 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                               width: 259.pw,
                               child: PRTextFormFieldPassword(
                                 controller: controllerConfirmarPassword,
-                                hintText: controllerConfirmarPassword.text,
+                                hintText: l10n
+                                    .page_sign_up_text_field_hint_confirm_password,
                                 esCreacionPassword: true,
                                 passwordCoinciden: controllerPassword.text ==
                                     controllerConfirmarPassword.text,
@@ -196,6 +200,8 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                               child: SizedBox(
                                 width: 359.pw,
                                 height: 50.ph,
+                                // TODO(SAM): Agregar validacion y
+                                // que se desactive el boton.
                                 child: PRBoton(
                                   onTap: () {
                                     _agregarEventoDeEnviarDatosRegistro(

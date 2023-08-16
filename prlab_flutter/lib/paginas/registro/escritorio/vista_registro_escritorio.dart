@@ -146,6 +146,13 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                 esCreacionPassword: true,
                                 passwordCoinciden: controllerPassword.text ==
                                     controllerConfirmarPassword.text,
+                                onChanged: (value) {
+                                  context.read<BlocRegistro>().add(
+                                        BlocRegistroEventoRecolectarDatosRegistro(
+                                          password: controllerPassword.text,
+                                        ),
+                                      );
+                                },
                               ),
                             ),
                             SizedBox(
@@ -160,6 +167,14 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                 esCreacionPassword: true,
                                 passwordCoinciden: controllerPassword.text ==
                                     controllerConfirmarPassword.text,
+                                onChanged: (value) {
+                                  context.read<BlocRegistro>().add(
+                                        BlocRegistroEventoRecolectarDatosRegistro(
+                                          confirmarPassword:
+                                              controllerConfirmarPassword.text,
+                                        ),
+                                      );
+                                },
                               ),
                             ),
                             SizedBox(height: 20.ph),
@@ -174,6 +189,11 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                                         context,
                                         value ?? false,
                                       );
+                                      context.read<BlocRegistro>().add(
+                                            BlocRegistroEventoRecolectarDatosRegistro(
+                                              terminosAceptados: value,
+                                            ),
+                                          );
                                     },
                                   ),
                                   Text(
@@ -203,16 +223,20 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                               child: SizedBox(
                                 width: 359.pw,
                                 height: 50.ph,
-                                // TODO(SAM): Agregar validacion y
-                                // que se desactive el boton.
-                                child: PRBoton(
-                                  onTap: () {
-                                    _agregarEventoDeEnviarDatosRegistro(
-                                      context,
+                                child: BlocBuilder<BlocRegistro,
+                                    BlocRegistroEstado>(
+                                  builder: (context, state) {
+                                    return PRBoton(
+                                      onTap: () {
+                                        _agregarEventoDeEnviarDatosRegistro(
+                                          context,
+                                        );
+                                      },
+                                      texto: l10n.page_sign_up_button_sign_up,
+                                      habilitado:
+                                          state.estaCompletoElFormulario,
                                     );
                                   },
-                                  texto: l10n.page_sign_up_button_sign_up,
-                                  habilitado: state.terminosAceptados,
                                 ),
                               ),
                             ),
