@@ -42,6 +42,8 @@ class PRTextFormField extends StatefulWidget {
 
     /// Texto interno
     String? hintText,
+
+    /// Ancho del campo de texto.
     double? width,
   }) {
     final l10n = context.l10n;
@@ -85,6 +87,8 @@ class PRTextFormField extends StatefulWidget {
 
     /// Funcion onChanged
     void Function(String)? onChanged,
+
+    /// Ancho del campo de texto.
     double? width,
   }) {
     final l10n = context.l10n;
@@ -96,6 +100,7 @@ class PRTextFormField extends StatefulWidget {
       hintText: hintText,
       onChanged: onChanged,
       prefixIcon: prefixIcon,
+      inputFormatters: [FilteringTextInputFormatter.deny(RegExp('[0-9]'))],
       validator: (value) {
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
@@ -126,16 +131,19 @@ class PRTextFormField extends StatefulWidget {
 
     /// Funcion onChanged
     void Function(String)? onChanged,
+
+    /// Ancho del campo de texto.
     double? width,
   }) {
     final l10n = context.l10n;
     return PRTextFormField(
       width: width,
       hintText: hintText,
-      keyboardType: TextInputType.datetime,
+      keyboardType: TextInputType.number,
       controller: controller,
       prefixIcon: prefixIcon,
       onChanged: onChanged,
+      inputFormatters: [FilteringTextInputFormatter.deny(RegExp('[a-zA-Z]'))],
       validator: (value) {
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
@@ -166,6 +174,8 @@ class PRTextFormField extends StatefulWidget {
 
     /// Funcion onChanged
     void Function(String)? onChanged,
+
+    /// Ancho del campo de texto.
     double? width,
   }) {
     final l10n = context.l10n;
@@ -177,9 +187,7 @@ class PRTextFormField extends StatefulWidget {
       hintText: hintText,
       onChanged: onChanged,
       prefixIcon: prefixIcon,
-      inputFormatters: [
-        FormateadorDeFecha(),
-      ],
+      inputFormatters: [FormateadorDeFecha()],
       validator: (value) {
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
@@ -224,8 +232,11 @@ class PRTextFormField extends StatefulWidget {
   /// Funcion onChanged
   final void Function(String)? onChanged;
 
+  /// Ancho del campo de texto.
   final double? width;
 
+  /// Formateadores de texto para ponerle restricciones a el usuario
+  /// sobre que tipo de caracteres puede completar en el campo de texto.
   final List<TextInputFormatter>? inputFormatters;
 
   @override
@@ -284,7 +295,11 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
           ),
         ),
         validator: widget.validator,
-        onChanged: widget.onChanged,
+        onChanged: (value) {
+          setState(() {
+            widget.onChanged?.call(value);
+          });
+        },
         obscureText: widget.obscureText,
       ),
     );
@@ -292,8 +307,8 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
 }
 
 /// TFF a utilizarse para contraseñas
-class PRTextFormFielPassword extends StatefulWidget {
-  const PRTextFormFielPassword({
+class PRTextFormFieldPassword extends StatefulWidget {
+  const PRTextFormFieldPassword({
     required this.controller,
     required this.hintText,
     this.esCreacionPassword = false,
@@ -306,10 +321,11 @@ class PRTextFormFielPassword extends StatefulWidget {
   final bool passwordCoinciden;
   final bool esCreacionPassword;
   @override
-  State<PRTextFormFielPassword> createState() => _PRTextFormFielPasswordState();
+  State<PRTextFormFieldPassword> createState() =>
+      _PRTextFormFieldPasswordState();
 }
 
-class _PRTextFormFielPasswordState extends State<PRTextFormFielPassword> {
+class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
   bool _obscureText = true;
   bool controllerVacio = false;
 

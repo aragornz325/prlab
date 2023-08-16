@@ -2,18 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/paginas/kyc/bloc/kyc_bloc.dart';
+import 'package:prlab_flutter/paginas/kyc/bloc/bloc_kyc.dart';
 import 'package:prlab_flutter/paginas/kyc/widgets/widgets.dart';
 import 'package:prlab_flutter/utilidades/extensions/extensions.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
+/// {@template formulario_del_kyc}
+/// Formulario que contiene todos los campos de texto
+/// para completar la información basica necesaria
+/// del usuario post registro.
+/// {@endtemplate}
 class FormularioDelKyc extends StatefulWidget {
+  /// {@macro formulario_del_kyc}
   const FormularioDelKyc({
     required this.width,
     super.key,
   });
 
+  /// Ancho de el formulario.
   final double width;
 
   @override
@@ -57,17 +64,16 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
           //TODO(Gon): Cambiar cuando esten los colores del theme
           color: const Color(0xfff7f7f7),
           width: widget.width,
-          height: 100.hp,
           child: Column(
             children: [
-              const TituloDelKyc(),
+              const CabeceraDelKyc(),
               PRTextFormField.soloLetras(
                 controller: nombreController,
                 hintText: l10n.pageKycNameHintText,
                 prefixIcon: Icons.person_outline,
                 context: context,
                 onChanged: (_) => context.read<BlocKyc>().add(
-                      BlocKycEventoSetearInformacionDeKyc(
+                      BlocKycEventoRecolectarInformacionDeKyc(
                         nombre: nombreController.text,
                       ),
                     ),
@@ -79,7 +85,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                 prefixIcon: Icons.person_outline,
                 context: context,
                 onChanged: (_) => context.read<BlocKyc>().add(
-                      BlocKycEventoSetearInformacionDeKyc(
+                      BlocKycEventoRecolectarInformacionDeKyc(
                         apellido: apellidoController.text,
                       ),
                     ),
@@ -90,8 +96,8 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                 hintText: '00/00/0000',
                 context: context,
                 onChanged: (_) => context.read<BlocKyc>().add(
-                      BlocKycEventoSetearInformacionDeKyc(
-                        fecha: fechaController.text,
+                      BlocKycEventoRecolectarInformacionDeKyc(
+                        fechaDeNacimiento: fechaController.text,
                       ),
                     ),
               ),
@@ -102,7 +108,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                 prefixIcon: Icons.apartment_outlined,
                 context: context,
                 onChanged: (_) => context.read<BlocKyc>().add(
-                      BlocKycEventoSetearInformacionDeKyc(
+                      BlocKycEventoRecolectarInformacionDeKyc(
                         nombreDeCompania: nombreDeCompaniaController.text,
                       ),
                     ),
@@ -114,7 +120,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                 prefixIcon: Icons.location_on_outlined,
                 context: context,
                 onChanged: (_) => context.read<BlocKyc>().add(
-                      BlocKycEventoSetearInformacionDeKyc(
+                      BlocKycEventoRecolectarInformacionDeKyc(
                         localidadDeCompania: localidadController.text,
                       ),
                     ),
@@ -126,7 +132,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                 prefixIcon: Icons.phone_outlined,
                 context: context,
                 onChanged: (_) => context.read<BlocKyc>().add(
-                      BlocKycEventoSetearInformacionDeKyc(
+                      BlocKycEventoRecolectarInformacionDeKyc(
                         numeroDeContacto: numeroContactoController.text,
                       ),
                     ),
@@ -141,6 +147,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                   );
                 },
               ),
+              SizedBox(height: 80.sh),
             ],
           ),
         ),
@@ -151,8 +158,6 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
   void _onTapContinuar() {
     if (!_formKey.esValido) return;
 
-    context.read<BlocKyc>().add(
-          BlocKycEventoGuardarInformacionDeKyc(),
-        );
+    context.read<BlocKyc>().add(BlocKycEventoInsertarInformacionDeKyc());
   }
 }
