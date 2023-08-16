@@ -11,5 +11,6 @@ void main() async {
   await bootstrap(
     App.new,
     hostUrl: dotenv.env['API_URL']!,
+    entorno: EntornosDeDesarrollo.production.name,
   );
 }

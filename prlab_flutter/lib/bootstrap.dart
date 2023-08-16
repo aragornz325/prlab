@@ -24,6 +24,7 @@ class AppBlocObserver extends BlocObserver {
 Future<void> bootstrap(
   FutureOr<Widget> Function() builder, {
   required String hostUrl,
+  required String entorno,
 }) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
@@ -40,7 +41,17 @@ Future<void> bootstrap(
   // await IsarService.openDB();
 
   // Add cross-flavor configuration here
-  await initializeServerpodClient(host: hostUrl);
+  await initializeServerpodClient(hostUrl: hostUrl, entorno: entorno);
 
-  runApp(await builder());
+  runApp(
+    await builder(),
+  );
+}
+
+/// Enum que especifica el entorno de desarrollo a utilizar para pasarselo
+/// por parametro a la funcion del initializeServerpodClient.
+enum EntornosDeDesarrollo {
+  staging,
+  development,
+  production,
 }
