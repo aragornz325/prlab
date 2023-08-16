@@ -8,12 +8,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
-import 'package:prlab_commons/modelos/organizacion/organizacion.dart' as _i3;
-import 'package:prlab_commons/modelos/mensaje_registro/mensaje_registro.dart'
-    as _i4;
-import 'package:serverpod_auth_client/module.dart' as _i5;
-import 'dart:io' as _i6;
-import 'protocol.dart' as _i7;
+import 'package:serverpod_auth_client/module.dart' as _i3;
+import 'dart:io' as _i4;
+import 'protocol.dart' as _i5;
 
 /// La clase `AuthEndpoint` está ampliando la clase `Endpoint`. por tanto maneja
 /// todas las peticiones relacionadas con el auth del sistema
@@ -64,27 +61,6 @@ class _EndpointAuth extends _i1.EndpointRef {
       );
 }
 
-class _EndpointCliente extends _i1.EndpointRef {
-  _EndpointCliente(_i1.EndpointCaller caller) : super(caller);
-
-  @override
-  String get name => 'cliente';
-
-  _i2.Future<int> crearOrganizacion(_i3.Organizacion orga) =>
-      caller.callServerEndpoint<int>(
-        'cliente',
-        'crearOrganizacion',
-        {'orga': orga},
-      );
-
-  _i2.Future<int> crearLog(_i4.MensajeRegistro log) =>
-      caller.callServerEndpoint<int>(
-        'cliente',
-        'crearLog',
-        {'log': log},
-      );
-}
-
 class _EndpointExample extends _i1.EndpointRef {
   _EndpointExample(_i1.EndpointCaller caller) : super(caller);
 
@@ -120,33 +96,30 @@ class _EndpointMail extends _i1.EndpointRef {
 
 class _Modules {
   _Modules(Client client) {
-    auth = _i5.Caller(client);
+    auth = _i3.Caller(client);
   }
 
-  late final _i5.Caller auth;
+  late final _i3.Caller auth;
 }
 
 class Client extends _i1.ServerpodClient {
   Client(
     String host, {
-    _i6.SecurityContext? context,
+    _i4.SecurityContext? context,
     _i1.AuthenticationKeyManager? authenticationKeyManager,
   }) : super(
           host,
-          _i7.Protocol(),
+          _i5.Protocol(),
           context: context,
           authenticationKeyManager: authenticationKeyManager,
         ) {
     auth = _EndpointAuth(this);
-    cliente = _EndpointCliente(this);
     example = _EndpointExample(this);
     mail = _EndpointMail(this);
     modules = _Modules(this);
   }
 
   late final _EndpointAuth auth;
-
-  late final _EndpointCliente cliente;
 
   late final _EndpointExample example;
 
@@ -157,7 +130,6 @@ class Client extends _i1.ServerpodClient {
   @override
   Map<String, _i1.EndpointRef> get endpointRefLookup => {
         'auth': auth,
-        'cliente': cliente,
         'example': example,
         'mail': mail,
       };
