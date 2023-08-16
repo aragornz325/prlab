@@ -10,13 +10,13 @@ class MailEndpoint extends Endpoint {
   Future<bool> envioMailRegistro(
     Session session,
     String email,
-    int tipo_de_invitacion,
+    int tipoInvitacion,
   ) async {
     try {
       return servicioMail.envioMailRegistro(
         session: session,
         email: email,
-        tipo_de_invitacion: tipo_de_invitacion,
+        tipoInvitacion: tipoInvitacion,
       );
     } catch (e) {
       rethrow;

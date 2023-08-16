@@ -42,14 +42,15 @@ class AuthRepository {
   /// dirección de correo electrónico asociada con el token.
   ///
   //TODO(chivo): remplazar por las consultas de los modelos
-  
+
   Future<bool> guardarTokenEnDb({
     required Session session,
     required String token,
     required String email,
-    required int tipo_de_invitacion,
+    required int tipoInvitacion,
   }) async {
     try {
+      final tipo_de_invitacion = tipoInvitacion;
       await session.db.transaction((txn) async {
         final checkearToken = await session.db
             .query('SELECT token FROM invitaciones WHERE email = \'$email\'');
@@ -77,14 +78,14 @@ class AuthRepository {
   /// acceder a la base de datos y realizar consultas.
   ///   email (String): El parámetro de correo electrónico es una cadena obligatoria que representa la
   /// dirección de correo electrónico para la que queremos recuperar el token.
-  
+
   Future<String> traerTokenPorEmail({
     required Session session,
     required String email,
   }) async {
     try {
-      final result = await session.db.query(
-          'SELECT token FROM invitaciones WHERE email = \'$email\'');
+      final result = await session.db
+          .query('SELECT token FROM invitaciones WHERE email = \'$email\'');
       if (result.isEmpty) {
         return 'Email not found';
       } else {

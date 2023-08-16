@@ -23,7 +23,7 @@ class ServicioMail {
   Future<bool> envioMailRegistro(
       {required Session session,
       required String email,
-      required int tipo_de_invitacion}) async {
+      required int tipoInvitacion}) async {
     try {
       final jwt = JWT(
         {
@@ -47,7 +47,7 @@ class ServicioMail {
           session: session,
           token: token,
           email: email,
-          tipo_de_invitacion: tipo_de_invitacion);
+          tipoInvitacion: tipoInvitacion);
 
       return true;
     } catch (e) {
