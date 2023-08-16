@@ -193,6 +193,45 @@
     "login_error_desconocido" : " An unidentified error has occurred while processing your request. Unfortunately, more details are not available at this time. Please report this issue to the support team for assistance.",
     "@login_error_desconocido": {
         "description":"This error is shown when the user makes a request and the server returns an unknow error"
+
+    "pageKycTitle" : "Tell us about yourself",
+    "@pageKycTitle": {
+        "description":"Text in page kyc setted on the top of the page as a title"
+    },
+
+    "pageKycSubtitle" : "Enter your data",
+    "@pageKycSubtitle": {
+        "description":"Text in page kyc setted on the top of the page as a subtitle"
+    },
+
+    "pageKycNameHintText" : "Name",
+    "@pageKycNameHintText": {
+        "description":"Text in page kyc setted on the name text field hint text"
+    },
+
+    "pageKycLastnameHintText" : "Last name",
+    "@pageKycLastnameHintText": {
+        "description":"Text in page kyc setted on the lastname text field hint text"
+    },
+    
+    "pageKycCompanyNameHintText" : "Company name",
+    "@pageKycCompanyNameHintText": {
+        "description":"Text in page kyc setted on the company name text field hint text"
+    },
+
+    "pageKycCompanyLocationHintText" : "Company location",
+    "@pageKycCompanyLocationHintText": {
+        "description":"Text in page kyc setted on the company location text field hint text"
+    },
+    
+    "pageKycContactHintText" : "Contact",
+    "@pageKycContactHintText": {
+        "description":"Text in page kyc setted on the contact text field hint text"
+    },
+
+    "pageKycContinueTextButton" : "Continue",
+    "@pageKycContinueTextButton": {
+        "description":"Text in page kyc setted on the button that the user press to save the kyc data on the bottom of the screen"
     }
 
 

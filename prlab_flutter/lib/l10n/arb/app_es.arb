@@ -190,6 +190,45 @@
     "login_error_desconocido" : "Se ha producido un error no identificado mientras se procesaba tu solicitud. Lamentablemente, no se dispone de más detalles en este momento. Por favor, comunica este problema al equipo de soporte para obtener asistencia.",
     "@login_error_desconocido": {
         "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
+
+    "pageKycTitle" : "Cuéntanos sobre tí",
+    "@pageKycTitle": {
+        "description":"Text in page kyc setted on the top of the page as a title"
+    },
+
+    "pageKycSubtitle" : "Ingrese su información",
+    "@pageKycSubtitle": {
+        "description":"Text in page kyc setted on the top of the page as a subtitle"
+    },
+
+    "pageKycNameHintText" : "Nombre",
+    "@pageKycNameHintText": {
+        "description":"Text in page kyc setted on the name text field hint text"
+    },
+
+    "pageKycLastnameHintText" : "Apellido",
+    "@pageKycLastnameHintText": {
+        "description":"Text in page kyc setted on the lastname text field hint text"
+    },
+    
+    "pageKycCompanyNameHintText" : "Nombre de la compañía",
+    "@pageKycCompanyNameHintText": {
+        "description":"Text in page kyc setted on the company name text field hint text"
+    },
+
+    "pageKycCompanyLocationHintText" : "Ubicación",
+    "@pageKycCompanyLocationHintText": {
+        "description":"Text in page kyc setted on the company location text field hint text"
+    },
+    
+    "pageKycContactHintText" : "Contacto",
+    "@pageKycContactHintText": {
+        "description":"Text in page kyc setted on the contact text field hint text"
+    },
+
+    "pageKycContinueTextButton" : "Continuar",
+    "@pageKycContinueTextButton": {
+        "description":"Text in page kyc setted on the button that the user press to save the kyc data on the bottom of the screen"
     }
 
 }
