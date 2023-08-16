@@ -30,4 +30,10 @@ class AuthEndpoint extends Endpoint {
   ) async {
     return await authService.validarTokenPorMail(session: session, token: token,);
   }
+
+
+
+  Future<void> validarCodigoResetPassword(Session session, String codigo){
+    return authService.validarCodigoResetPassword(session: session, codigo: codigo);
+  }
 }

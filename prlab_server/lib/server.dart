@@ -36,16 +36,24 @@ void run(List<String> args) async {
   );
 
   auth.AuthConfig.set(auth.AuthConfig(
-    sendValidationEmail: (session, email, validationCode) async {
+    passwordResetExpirationTime: Duration(minutes: 30),
+    sendValidationEmail: (
+      session,
+      email,
+      validationCode,
+    ) async {
       try {
         final cuerpoCorreo =
             PlantillasCorreo().cuerpoVerificacion(codigo: validationCode);
-        final correo = PlantillasCorreo()
-            .mailingGeneral(contenido: cuerpoCorreo, nombre: 'nombre');
+        final correo = PlantillasCorreo().mailingGeneral(
+          contenido: cuerpoCorreo,
+          nombre: 'nombre',
+        );
         await enviarEmail(
-            mailDestinatario: email.toString().trim(),
-            subject: 'Email validation.',
-            mailHtml: correo);
+          mailDestinatario: email.toString().trim(),
+          subject: 'Email validation.',
+          mailHtml: correo,
+        );
         print('Sending validation email to $email with code $validationCode');
         print(validationCode);
         return true;
@@ -54,17 +62,26 @@ void run(List<String> args) async {
         rethrow;
       }
     },
-    sendPasswordResetEmail: (session, userInfo, validationCode) async {
+    sendPasswordResetEmail: (
+      session,
+      userInfo,
+      validationCode,
+    ) async {
       try {
-        final cuerpoCorreo =
-            PlantillasCorreo().cuerpoVerificacion(codigo: validationCode);
-        final correo = PlantillasCorreo()
-            .mailingGeneral(contenido: cuerpoCorreo, nombre: 'nombre');
+        final cuerpoCorreo = PlantillasCorreo().cuerpoVerificacion(
+          codigo: validationCode,
+        );
+        final correo = PlantillasCorreo().mailingGeneral(
+          contenido: cuerpoCorreo,
+          nombre: 'nombre',
+        );
         await enviarEmail(
-            mailDestinatario: userInfo.email.toString().trim(),
-            subject: 'Password reset validation.',
-            mailHtml: correo);
-        print('Sending password reset validation email to ${userInfo.email.toString()} with code $validationCode');
+          mailDestinatario: userInfo.email.toString().trim(),
+          subject: 'Password reset validation.',
+          mailHtml: correo,
+        );
+        print(
+            'Sending password reset validation email to ${userInfo.email.toString()} with code $validationCode');
         print(validationCode);
         return true;
       } on Exception catch (e, st) {
