@@ -13,7 +13,7 @@ import 'package:prlab_flutter/paginas/crear_cuenta_admin/pagina_crear_cuenta_adm
     as _i1;
 import 'package:prlab_flutter/paginas/kyc/pagina_kyc.dart' as _i3;
 import 'package:prlab_flutter/paginas/login/pagina_login.dart' as _i2;
-import 'package:prlab_flutter/paginas/recuperar_contrasenia/pagina_recuparar_contrasenia.dart'
+import 'package:prlab_flutter/paginas/recuperar_contrasenia/pagina_recuperar_contrasenia.dart'
     as _i4;
 
 abstract class $AppRouter extends _i5.RootStackRouter {
