@@ -110,10 +110,10 @@ class AuthRepository {
     required String codigo,
   }) async {
     try {
-      final check = await session.db.query(
+      final codigoEnDb = await session.db.query(
         'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
       );
-      if (check.isEmpty) {
+      if (codigoEnDb.isEmpty) {
         throw Exception(
           'Codigo no valido',
         );

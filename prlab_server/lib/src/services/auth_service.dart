@@ -70,9 +70,13 @@ class AuthService {
   ///   codigo (String): El parámetro "codigo" es una cadena requerida que representa el código de
   /// restablecimiento de contraseña.
   ///
-  Future<void> validarCodigoResetPassword(
-      {required Session session, required String codigo}) {
+  Future<bool> validarCodigoResetPassword({
+    required Session session,
+    required String codigo,
+  }) {
     return authRepository.validarCodigoResetPassword(
-        session: session, codigo: codigo);
+      session: session,
+      codigo: codigo,
+    );
   }
 }

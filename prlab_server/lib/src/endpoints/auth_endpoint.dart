@@ -23,17 +23,32 @@ class AuthEndpoint extends Endpoint {
     return await authService.getValidationCode(session: session, email: email);
   }
 
-
   Future<String> validarTokenPorMail(
     Session session,
     String token,
   ) async {
-    return await authService.validarTokenPorMail(session: session, token: token,);
+    return await authService.validarTokenPorMail(
+      session: session,
+      token: token,
+    );
   }
 
-
-
-  Future<void> validarCodigoResetPassword(Session session, String codigo){
-    return authService.validarCodigoResetPassword(session: session, codigo: codigo);
+ /// La función `validarCodigoResetPassword` toma un objeto `Session` y una cadena `codigo` como
+ /// parámetros y devuelve un `Future<bool>` que indica si el código de restablecimiento de contraseña
+ /// es válido.
+ /// 
+ /// Args:
+ ///   session (Session): Un objeto Session que representa la sesión de usuario actual.
+ ///   codigo (String): El parámetro "codigo" es una cadena que representa el código de restablecimiento
+ /// de contraseña que debe validarse.
+ /// 
+  Future<bool> validarCodigoResetPassword(
+    Session session,
+    String codigo,
+  ) {
+    return authService.validarCodigoResetPassword(
+      session: session,
+      codigo: codigo,
+    );
   }
 }
