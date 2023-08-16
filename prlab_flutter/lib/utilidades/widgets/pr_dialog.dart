@@ -5,7 +5,7 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template TipoDialog}
-/// esto define los tipos de dialog que se puede usar en la clase PRDialog.
+/// Esto define los tipos de dialog que se puede usar en la clase PRDialog.
 /// Cada tipo representa un propósito o mensaje específico que el
 /// diálogo pretende transmitir al usuario.
 /// {@endtemplate}

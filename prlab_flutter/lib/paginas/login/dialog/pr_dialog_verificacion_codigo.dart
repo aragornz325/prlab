@@ -16,7 +16,7 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
     super.key,
   });
 
-  /// String del email del usuario al cual se le envio la invitación
+  /// email del usuario al cual se le envio la invitación
   final String email;
 
   /// controller del alertdialog
@@ -26,7 +26,8 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final codigoEmail = '${l10n.alert_dialog_sub_title_verification_code_send}'
+    final textoAQuienFueEnviadoEmail =
+        '${l10n.alert_dialog_sub_title_verification_code_send}'
         ' ${obtenerPrimerasLetrasAntesSimbolo(email)}***@'
         '${obtenerTextoDespuesSimbolo(email)}';
 
@@ -39,12 +40,10 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
       titulo: l10n.alert_dialog_title_recover_password,
       content: Column(
         children: [
-          PrLabTextfield(
-            controller: controller,
-          ),
+          PrLabTextfield(controller: controller),
           SizedBox(height: 5.ph),
           Text(
-            codigoEmail,
+            textoAQuienFueEnviadoEmail,
             style: TextStyle(
               fontSize: 12.pf,
               fontWeight: FontWeight.w400,

@@ -5,9 +5,8 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template PRDialogEmailEnviado}
-/// PRDialog tiene diferentes tipos de dialog/popup como solicitar la acción
-/// del usuario, mostrar información, mostrar advertencias o
-/// indicar errores.
+/// PRDialogEmailEnviado muestra informacion sobre si se mando un email
+/// correctamente al usuario y muestra a que email se envio
 /// {@endtemplate}
 class PRDialogEmailEnviado extends StatelessWidget {
   /// {@macro PRDialogEmailEnviado}
@@ -16,7 +15,7 @@ class PRDialogEmailEnviado extends StatelessWidget {
     super.key,
   });
 
-  /// String del email del usuario al cual se le envio la invitación
+  /// email del usuario al cual se le envio la invitación
   final String email;
 
   @override
