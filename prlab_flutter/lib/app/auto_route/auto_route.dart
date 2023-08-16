@@ -10,8 +10,7 @@ class AppRouter extends $AppRouter {
   final List<AutoRoute> routes = [
     AutoRoute(
       path: '/',
-      // TODO(Andreas): Descomentar lo de abajo antes de mergear
-      // initial: true,
+      initial: true,
       page: PaginaLogin.page,
     ),
     AutoRoute(
@@ -19,9 +18,7 @@ class AppRouter extends $AppRouter {
       page: PaginaCrearCuenta.page,
     ),
     AutoRoute(
-      initial: true,
-      // TODO(Andreas): Definir un mejor naming.
-      path: '/kyc-section',
+      path: '/kyc-form',
       page: PaginaKyc.page,
     ),
   ];
