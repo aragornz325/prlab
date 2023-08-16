@@ -39,9 +39,9 @@ class BlocRegistroEstado extends Equatable {
 
   /// Getter del BlocRegistro para ver si esta en estado inicial, error o cargando.
   bool get estaEnEstadoDeValidacion =>
-      this is BlocRegistroEstadoError ||
+      this is BlocRegistroEstadoErrorTokenInvalido ||
       this is BlocRegistroEstadoInicial ||
-      this is BlocRegistroEstadoCargando;
+      this is BlocRegistroEstadoCargandoValidacionDeToken;
 
   @override
   List<Object> get props => [
@@ -71,6 +71,12 @@ class BlocRegistroEstadoExitoso extends BlocRegistroEstado {
     super.email,
     super.password,
   }) : super.desde();
+}
+
+/// Estado que indica que el usuario fue registrado exitosamente
+
+class BlocRegistroEstadoUsuarioRegistradoConExito extends BlocRegistroEstado {
+  BlocRegistroEstadoUsuarioRegistradoConExito.desde(super.otro) : super.desde();
 }
 
 /// Estado de carga de los componentes de la pantalla registro, para mostrar un

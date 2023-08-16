@@ -41,6 +41,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
 
   @override
   void initState() {
+    print(widget.email);
     controllerEmail = TextEditingController(
       text: widget.email,
     );
@@ -101,7 +102,8 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                   ),
                   BlocConsumer<BlocRegistro, BlocRegistroEstado>(
                     listener: (context, state) {
-                      if (state is BlocRegistroEstadoExitoso) {
+                      if (state
+                          is BlocRegistroEstadoUsuarioRegistradoConExito) {
                         context.router.replace(
                           const PaginaKyc(),
                         );

@@ -90,11 +90,8 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
       }
 
       emit(
-        BlocRegistroEstadoExitoso.desde(
+        BlocRegistroEstadoUsuarioRegistradoConExito.desde(
           state,
-          terminosAceptados: state.terminosAceptados,
-          email: event.email,
-          password: event.password,
         ),
       );
     } catch (e, st) {
@@ -128,7 +125,10 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
       );
 
       emit(
-        BlocRegistroEstadoExitoso.desde(state, email: email),
+        BlocRegistroEstadoExitoso.desde(
+          state,
+          email: email,
+        ),
       );
     } catch (e, st) {
       emit(

@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
@@ -94,7 +96,15 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                     width: 90.pw,
                     height: 60.ph,
                   ),
-                  BlocBuilder<BlocRegistro, BlocRegistroEstado>(
+                  BlocConsumer<BlocRegistro, BlocRegistroEstado>(
+                    listener: (context, state) {
+                      if (state
+                          is BlocRegistroEstadoUsuarioRegistradoConExito) {
+                        context.router.replace(
+                          const PaginaKyc(),
+                        );
+                      }
+                    },
                     builder: (context, state) {
                       if (state is BlocRegistroEstadoCargando) {
                         return SizedBox(
