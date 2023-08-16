@@ -11,6 +11,7 @@ import 'package:serverpod/serverpod.dart' as _i1;
 import 'package:serverpod/protocol.dart' as _i2;
 import 'package:serverpod_auth_server/module.dart' as _i3;
 import 'example.dart' as _i4;
+import 'package:prlab_commons/prlab_commons.dart' as _i5;
 export 'example.dart';
 
 class Protocol extends _i1.SerializationManagerServer {
@@ -42,6 +43,49 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i1.getType<_i4.Example?>()) {
       return (data != null ? _i4.Example.fromJson(data, this) : null) as T;
     }
+    if (t == _i5.Cliente) {
+      return _i5.Cliente.fromJson(data, this) as T;
+    }
+    if (t == _i5.Comentario) {
+      return _i5.Comentario.fromJson(data, this) as T;
+    }
+    if (t == _i5.Contacto) {
+      return _i5.Contacto.fromJson(data, this) as T;
+    }
+    if (t == _i5.MensajeRegistro) {
+      return _i5.MensajeRegistro.fromJson(data, this) as T;
+    }
+    if (t == _i5.Organizacion) {
+      return _i5.Organizacion.fromJson(data, this) as T;
+    }
+    if (t == _i5.Proyecto) {
+      return _i5.Proyecto.fromJson(data, this) as T;
+    }
+    if (t == _i5.Publicacion) {
+      return _i5.Publicacion.fromJson(data, this) as T;
+    }
+    if (t == _i1.getType<_i5.Cliente?>()) {
+      return (data != null ? _i5.Cliente.fromJson(data, this) : null) as T;
+    }
+    if (t == _i1.getType<_i5.Comentario?>()) {
+      return (data != null ? _i5.Comentario.fromJson(data, this) : null) as T;
+    }
+    if (t == _i1.getType<_i5.Contacto?>()) {
+      return (data != null ? _i5.Contacto.fromJson(data, this) : null) as T;
+    }
+    if (t == _i1.getType<_i5.MensajeRegistro?>()) {
+      return (data != null ? _i5.MensajeRegistro.fromJson(data, this) : null)
+          as T;
+    }
+    if (t == _i1.getType<_i5.Organizacion?>()) {
+      return (data != null ? _i5.Organizacion.fromJson(data, this) : null) as T;
+    }
+    if (t == _i1.getType<_i5.Proyecto?>()) {
+      return (data != null ? _i5.Proyecto.fromJson(data, this) : null) as T;
+    }
+    if (t == _i1.getType<_i5.Publicacion?>()) {
+      return (data != null ? _i5.Publicacion.fromJson(data, this) : null) as T;
+    }
     try {
       return _i3.Protocol().deserialize<T>(data, t);
     } catch (_) {}
@@ -58,6 +102,27 @@ class Protocol extends _i1.SerializationManagerServer {
     if (className != null) {
       return 'serverpod_auth.$className';
     }
+    if (data is _i5.Cliente) {
+      return 'Cliente';
+    }
+    if (data is _i5.Comentario) {
+      return 'Comentario';
+    }
+    if (data is _i5.Contacto) {
+      return 'Contacto';
+    }
+    if (data is _i5.MensajeRegistro) {
+      return 'MensajeRegistro';
+    }
+    if (data is _i5.Organizacion) {
+      return 'Organizacion';
+    }
+    if (data is _i5.Proyecto) {
+      return 'Proyecto';
+    }
+    if (data is _i5.Publicacion) {
+      return 'Publicacion';
+    }
     if (data is _i4.Example) {
       return 'Example';
     }
@@ -69,6 +134,27 @@ class Protocol extends _i1.SerializationManagerServer {
     if (data['className'].startsWith('serverpod_auth.')) {
       data['className'] = data['className'].substring(15);
       return _i3.Protocol().deserializeByClassName(data);
+    }
+    if (data['className'] == 'Cliente') {
+      return deserialize<_i5.Cliente>(data['data']);
+    }
+    if (data['className'] == 'Comentario') {
+      return deserialize<_i5.Comentario>(data['data']);
+    }
+    if (data['className'] == 'Contacto') {
+      return deserialize<_i5.Contacto>(data['data']);
+    }
+    if (data['className'] == 'MensajeRegistro') {
+      return deserialize<_i5.MensajeRegistro>(data['data']);
+    }
+    if (data['className'] == 'Organizacion') {
+      return deserialize<_i5.Organizacion>(data['data']);
+    }
+    if (data['className'] == 'Proyecto') {
+      return deserialize<_i5.Proyecto>(data['data']);
+    }
+    if (data['className'] == 'Publicacion') {
+      return deserialize<_i5.Publicacion>(data['data']);
     }
     if (data['className'] == 'Example') {
       return deserialize<_i4.Example>(data['data']);

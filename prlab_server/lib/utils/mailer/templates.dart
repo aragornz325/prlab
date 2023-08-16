@@ -145,7 +145,7 @@ class PlantillasCorreo {
 																style="width:100%;padding-right:0px;padding-left:0px;">
 																<div align="center" class="alignment"
 																	style="line-height:10px"><img
-																		src="https://www.startpage.com/av/proxy-image?piurl=http%3A%2F%2Fsimpleicon.com%2Fwp-content%2Fuploads%2Fvector-path-square.png&sp=1691521773Tc6241e6175456eb4eccd24a2ab16f248876b299f32cdcde75c939b81b40cd493"
+																		src="https://vtbtqqvsbekddeaeqbdt.supabase.co/storage/v1/object/public/assets/prlablogo.png"
 																		style="display: block; height: auto; border: 0; max-width: 125px; width: 100%;"
 																		width="125" /></div>
 															</td>
