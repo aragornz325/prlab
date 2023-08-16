@@ -120,12 +120,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                     width: 782.pw,
                     onTap: state.esEmailValido
                         ? () {
-                            // _funcionEnviarEmail(context);
-                            PRDialog.recuperarContrasenia(
-                              context: context,
-                              controller: controller,
-                              email: 'ejemplo123.123@asd',
-                            ).show<void, void>(context);
+                            _funcionEnviarEmail(context);
                           }
                         : () {},
                     texto: l10n.page_create_admin_button_send,
