@@ -21,6 +21,9 @@ class CabeceraDelKyc extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 4.pw),
           child: Text(
+            // TODO(Andreas:
+            // Hablar con nico sobre problema con el paquete que en la resolucion
+            // de telefono no se achica lo suficiente el texto.
             l10n.pageKycTitle,
             style: TextStyle(
               //TODO(Gon): Cambiar cuando esten los colores del theme
@@ -32,6 +35,9 @@ class CabeceraDelKyc extends StatelessWidget {
         ),
         SizedBox(height: 10.ph),
         Text(
+          // TODO(Andreas:
+          // Hablar con nico sobre problema con el paquete que en la resolucion
+          // de telefono no se achica lo suficiente el texto.
           l10n.pageKycSubtitle,
           style: TextStyle(
             //TODO(Gon): Cambiar cuando esten los colores del theme
