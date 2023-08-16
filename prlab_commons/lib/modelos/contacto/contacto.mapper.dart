@@ -12,7 +12,6 @@ class ContactoMapper extends ClassMapperBase<Contacto> {
   static ContactoMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = ContactoMapper._());
-      BaseMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -143,8 +142,7 @@ extension ContactoValueCopy<$R, $Out> on ObjectCopyWith<$R, Contacto, $Out> {
 }
 
 abstract class ContactoCopyWith<$R, $In extends Contacto, $Out>
-    implements BaseCopyWith<$R, $In, $Out> {
-  @override
+    implements ClassCopyWith<$R, $In, $Out> {
   $R call(
       {int? id,
       String? emailPrincipal,

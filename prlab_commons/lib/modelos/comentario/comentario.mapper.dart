@@ -12,7 +12,6 @@ class ComentarioMapper extends ClassMapperBase<Comentario> {
   static ComentarioMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = ComentarioMapper._());
-      BaseMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -33,6 +32,8 @@ class ComentarioMapper extends ClassMapperBase<Comentario> {
   static String? _$textoComentario(Comentario v) => v.textoComentario;
   static const Field<Comentario, String> _f$textoComentario =
       Field('textoComentario', _$textoComentario);
+  static int? _$idAutor(Comentario v) => v.idAutor;
+  static const Field<Comentario, int> _f$idAutor = Field('idAutor', _$idAutor);
   static DateTime? _$fechaCreacion(Comentario v) => v.fechaCreacion;
   static const Field<Comentario, DateTime> _f$fechaCreacion =
       Field('fechaCreacion', _$fechaCreacion, opt: true);
@@ -42,6 +43,7 @@ class ComentarioMapper extends ClassMapperBase<Comentario> {
     #id: _f$id,
     #idEntregable: _f$idEntregable,
     #textoComentario: _f$textoComentario,
+    #idAutor: _f$idAutor,
     #fechaCreacion: _f$fechaCreacion,
   };
   @override
@@ -52,6 +54,7 @@ class ComentarioMapper extends ClassMapperBase<Comentario> {
         id: data.dec(_f$id),
         idEntregable: data.dec(_f$idEntregable),
         textoComentario: data.dec(_f$textoComentario),
+        idAutor: data.dec(_f$idAutor),
         fechaCreacion: data.dec(_f$fechaCreacion));
   }
 
@@ -103,12 +106,12 @@ extension ComentarioValueCopy<$R, $Out>
 }
 
 abstract class ComentarioCopyWith<$R, $In extends Comentario, $Out>
-    implements BaseCopyWith<$R, $In, $Out> {
-  @override
+    implements ClassCopyWith<$R, $In, $Out> {
   $R call(
       {int? id,
       int? idEntregable,
       String? textoComentario,
+      int? idAutor,
       DateTime? fechaCreacion});
   ComentarioCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -126,11 +129,13 @@ class _ComentarioCopyWithImpl<$R, $Out>
           {Object? id = $none,
           Object? idEntregable = $none,
           Object? textoComentario = $none,
+          Object? idAutor = $none,
           Object? fechaCreacion = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (idEntregable != $none) #idEntregable: idEntregable,
         if (textoComentario != $none) #textoComentario: textoComentario,
+        if (idAutor != $none) #idAutor: idAutor,
         if (fechaCreacion != $none) #fechaCreacion: fechaCreacion
       }));
   @override
@@ -138,6 +143,7 @@ class _ComentarioCopyWithImpl<$R, $Out>
       id: data.get(#id, or: $value.id),
       idEntregable: data.get(#idEntregable, or: $value.idEntregable),
       textoComentario: data.get(#textoComentario, or: $value.textoComentario),
+      idAutor: data.get(#idAutor, or: $value.idAutor),
       fechaCreacion: data.get(#fechaCreacion, or: $value.fechaCreacion));
 
   @override

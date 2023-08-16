@@ -1,24 +1,26 @@
 import 'dart:convert';
 
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:prlab_commons/modelos/base/base.dart';
 import 'package:prlab_commons/prlab_commons.dart';
 import 'package:serverpod/serverpod.dart';
 
 part 'organizacion.mapper.dart';
 
-/// Modelo de entidad Organizacion (que posee los proyectos).
+/// Modelo de entidad Organizacion (entidad desde la que el Cliente administra los Proyectos).
 @MappableClass(ignoreNull: true)
-class Organizacion extends Cliente with OrganizacionMappable {
+class Organizacion extends Base with OrganizacionMappable {
   @MappableConstructor()
   Organizacion({
     super.id,
-    required super.nombre,
+    required this.nombre,
     required this.tipo,
-    required super.contacto,
+    required this.contacto,
     super.fechaCreacion,
   });
 
-  /// Constructor requerido por Serverpod para la serialización de la clase.
+  /// Constructor requerido por Serverpod para la serialización de la clase y su insercion
+  /// en la Base de datos.
   @MappableConstructor()
   Organizacion.fromJson(
     Map<String, dynamic> jsonSerialization,
@@ -30,17 +32,25 @@ class Organizacion extends Cliente with OrganizacionMappable {
             contacto: serializationManager.deserialize<int?>(jsonSerialization['contacto']),
             fechaCreacion: serializationManager.deserialize<DateTime?>(jsonSerialization['fechaCreacion']),);
 
+  /// Nombre de la Organizacion.
+  String? nombre;
+
+  /// Tipo de la Organizacion (Persona Fisica, Juridica, etc).
   int? tipo;
 
+  /// ID de los datos de Contacto de la Organizacion.
+  int? contacto;
+
+  /// Getter requerido por Serverpod con el nombre de la tabla correspondiente a la entidad.
+  /// Extiende de la clase `TableRow` para manipular conexion con la Base de Datos.
   @override
   String get tableName => 'organizacion';
 
+  /// Metodo requerido por Serverpod de la clase `TableRow` para modificar los datos dentro
+  /// del objeto.
   @override
   void setColumn(String columnName, value) {
     switch (columnName) {
-      case 'id':
-        id = value;
-        return;
       case 'nombre':
         nombre = value;
         return;
@@ -50,14 +60,13 @@ class Organizacion extends Cliente with OrganizacionMappable {
       case 'contacto':
         contacto = value;
         return;
-      case 'fechaCreacion':
-        fechaCreacion = value;
-        return;
       default:
         throw UnimplementedError();
     }
   }
 
+  /// Metodo requerido por Serverpod de la clase `TableRow` para convertir el objeto en un `Map` (json), 
+  /// para su inserción en la Base de Datos.
   @override
   Map<String, dynamic> toJsonForDatabase() {
     return jsonDecode(toJson());

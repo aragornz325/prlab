@@ -12,7 +12,6 @@ class PublicacionMapper extends ClassMapperBase<Publicacion> {
   static PublicacionMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = PublicacionMapper._());
-      EntregableMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -40,15 +39,9 @@ class PublicacionMapper extends ClassMapperBase<Publicacion> {
   static String? _$resumen(Publicacion v) => v.resumen;
   static const Field<Publicacion, String> _f$resumen =
       Field('resumen', _$resumen);
-  static List<int>? _$idTags(Publicacion v) => v.idTags;
-  static const Field<Publicacion, List<int>> _f$idTags =
-      Field('idTags', _$idTags);
   static int? _$idStatus(Publicacion v) => v.idStatus;
   static const Field<Publicacion, int> _f$idStatus =
       Field('idStatus', _$idStatus);
-  static List<int>? _$idCategorias(Publicacion v) => v.idCategorias;
-  static const Field<Publicacion, List<int>> _f$idCategorias =
-      Field('idCategorias', _$idCategorias);
   static DateTime? _$fechaInicio(Publicacion v) => v.fechaInicio;
   static const Field<Publicacion, DateTime> _f$fechaInicio =
       Field('fechaInicio', _$fechaInicio);
@@ -67,9 +60,7 @@ class PublicacionMapper extends ClassMapperBase<Publicacion> {
     #contenido: _f$contenido,
     #idAutor: _f$idAutor,
     #resumen: _f$resumen,
-    #idTags: _f$idTags,
     #idStatus: _f$idStatus,
-    #idCategorias: _f$idCategorias,
     #fechaInicio: _f$fechaInicio,
     #fechaFin: _f$fechaFin,
     #fechaCreacion: _f$fechaCreacion,
@@ -85,9 +76,7 @@ class PublicacionMapper extends ClassMapperBase<Publicacion> {
         contenido: data.dec(_f$contenido),
         idAutor: data.dec(_f$idAutor),
         resumen: data.dec(_f$resumen),
-        idTags: data.dec(_f$idTags),
         idStatus: data.dec(_f$idStatus),
-        idCategorias: data.dec(_f$idCategorias),
         fechaInicio: data.dec(_f$fechaInicio),
         fechaFin: data.dec(_f$fechaFin),
         fechaCreacion: data.dec(_f$fechaCreacion));
@@ -141,10 +130,7 @@ extension PublicacionValueCopy<$R, $Out>
 }
 
 abstract class PublicacionCopyWith<$R, $In extends Publicacion, $Out>
-    implements EntregableCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get idTags;
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get idCategorias;
-  @override
+    implements ClassCopyWith<$R, $In, $Out> {
   $R call(
       {int? id,
       int? idProyecto,
@@ -152,9 +138,7 @@ abstract class PublicacionCopyWith<$R, $In extends Publicacion, $Out>
       String? contenido,
       int? idAutor,
       String? resumen,
-      List<int>? idTags,
       int? idStatus,
-      List<int>? idCategorias,
       DateTime? fechaInicio,
       DateTime? fechaFin,
       DateTime? fechaCreacion});
@@ -170,20 +154,6 @@ class _PublicacionCopyWithImpl<$R, $Out>
   late final ClassMapperBase<Publicacion> $mapper =
       PublicacionMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get idTags =>
-      $value.idTags != null
-          ? ListCopyWith($value.idTags!,
-              (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(idTags: v))
-          : null;
-  @override
-  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get idCategorias =>
-      $value.idCategorias != null
-          ? ListCopyWith(
-              $value.idCategorias!,
-              (v, t) => ObjectCopyWith(v, $identity, t),
-              (v) => call(idCategorias: v))
-          : null;
-  @override
   $R call(
           {Object? id = $none,
           Object? idProyecto = $none,
@@ -191,9 +161,7 @@ class _PublicacionCopyWithImpl<$R, $Out>
           Object? contenido = $none,
           Object? idAutor = $none,
           Object? resumen = $none,
-          Object? idTags = $none,
           Object? idStatus = $none,
-          Object? idCategorias = $none,
           Object? fechaInicio = $none,
           Object? fechaFin = $none,
           Object? fechaCreacion = $none}) =>
@@ -204,9 +172,7 @@ class _PublicacionCopyWithImpl<$R, $Out>
         if (contenido != $none) #contenido: contenido,
         if (idAutor != $none) #idAutor: idAutor,
         if (resumen != $none) #resumen: resumen,
-        if (idTags != $none) #idTags: idTags,
         if (idStatus != $none) #idStatus: idStatus,
-        if (idCategorias != $none) #idCategorias: idCategorias,
         if (fechaInicio != $none) #fechaInicio: fechaInicio,
         if (fechaFin != $none) #fechaFin: fechaFin,
         if (fechaCreacion != $none) #fechaCreacion: fechaCreacion
@@ -219,9 +185,7 @@ class _PublicacionCopyWithImpl<$R, $Out>
       contenido: data.get(#contenido, or: $value.contenido),
       idAutor: data.get(#idAutor, or: $value.idAutor),
       resumen: data.get(#resumen, or: $value.resumen),
-      idTags: data.get(#idTags, or: $value.idTags),
       idStatus: data.get(#idStatus, or: $value.idStatus),
-      idCategorias: data.get(#idCategorias, or: $value.idCategorias),
       fechaInicio: data.get(#fechaInicio, or: $value.fechaInicio),
       fechaFin: data.get(#fechaFin, or: $value.fechaFin),
       fechaCreacion: data.get(#fechaCreacion, or: $value.fechaCreacion));

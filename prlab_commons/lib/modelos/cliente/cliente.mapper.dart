@@ -12,7 +12,6 @@ class ClienteMapper extends ClassMapperBase<Cliente> {
   static ClienteMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = ClienteMapper._());
-      BaseMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -29,6 +28,15 @@ class ClienteMapper extends ClassMapperBase<Cliente> {
   static const Field<Cliente, int> _f$id = Field('id', _$id, opt: true);
   static String? _$nombre(Cliente v) => v.nombre;
   static const Field<Cliente, String> _f$nombre = Field('nombre', _$nombre);
+  static String? _$apellido(Cliente v) => v.apellido;
+  static const Field<Cliente, String> _f$apellido =
+      Field('apellido', _$apellido);
+  static DateTime? _$fechaDeNacimiento(Cliente v) => v.fechaDeNacimiento;
+  static const Field<Cliente, DateTime> _f$fechaDeNacimiento =
+      Field('fechaDeNacimiento', _$fechaDeNacimiento);
+  static int? _$idOrganizacion(Cliente v) => v.idOrganizacion;
+  static const Field<Cliente, int> _f$idOrganizacion =
+      Field('idOrganizacion', _$idOrganizacion);
   static int? _$contacto(Cliente v) => v.contacto;
   static const Field<Cliente, int> _f$contacto = Field('contacto', _$contacto);
   static DateTime? _$fechaCreacion(Cliente v) => v.fechaCreacion;
@@ -39,6 +47,9 @@ class ClienteMapper extends ClassMapperBase<Cliente> {
   final Map<Symbol, Field<Cliente, dynamic>> fields = const {
     #id: _f$id,
     #nombre: _f$nombre,
+    #apellido: _f$apellido,
+    #fechaDeNacimiento: _f$fechaDeNacimiento,
+    #idOrganizacion: _f$idOrganizacion,
     #contacto: _f$contacto,
     #fechaCreacion: _f$fechaCreacion,
   };
@@ -49,6 +60,9 @@ class ClienteMapper extends ClassMapperBase<Cliente> {
     return Cliente(
         id: data.dec(_f$id),
         nombre: data.dec(_f$nombre),
+        apellido: data.dec(_f$apellido),
+        fechaDeNacimiento: data.dec(_f$fechaDeNacimiento),
+        idOrganizacion: data.dec(_f$idOrganizacion),
         contacto: data.dec(_f$contacto),
         fechaCreacion: data.dec(_f$fechaCreacion));
   }
@@ -100,9 +114,15 @@ extension ClienteValueCopy<$R, $Out> on ObjectCopyWith<$R, Cliente, $Out> {
 }
 
 abstract class ClienteCopyWith<$R, $In extends Cliente, $Out>
-    implements BaseCopyWith<$R, $In, $Out> {
-  @override
-  $R call({int? id, String? nombre, int? contacto, DateTime? fechaCreacion});
+    implements ClassCopyWith<$R, $In, $Out> {
+  $R call(
+      {int? id,
+      String? nombre,
+      String? apellido,
+      DateTime? fechaDeNacimiento,
+      int? idOrganizacion,
+      int? contacto,
+      DateTime? fechaCreacion});
   ClienteCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -118,11 +138,17 @@ class _ClienteCopyWithImpl<$R, $Out>
   $R call(
           {Object? id = $none,
           Object? nombre = $none,
+          Object? apellido = $none,
+          Object? fechaDeNacimiento = $none,
+          Object? idOrganizacion = $none,
           Object? contacto = $none,
           Object? fechaCreacion = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (nombre != $none) #nombre: nombre,
+        if (apellido != $none) #apellido: apellido,
+        if (fechaDeNacimiento != $none) #fechaDeNacimiento: fechaDeNacimiento,
+        if (idOrganizacion != $none) #idOrganizacion: idOrganizacion,
         if (contacto != $none) #contacto: contacto,
         if (fechaCreacion != $none) #fechaCreacion: fechaCreacion
       }));
@@ -130,6 +156,10 @@ class _ClienteCopyWithImpl<$R, $Out>
   Cliente $make(CopyWithData data) => Cliente(
       id: data.get(#id, or: $value.id),
       nombre: data.get(#nombre, or: $value.nombre),
+      apellido: data.get(#apellido, or: $value.apellido),
+      fechaDeNacimiento:
+          data.get(#fechaDeNacimiento, or: $value.fechaDeNacimiento),
+      idOrganizacion: data.get(#idOrganizacion, or: $value.idOrganizacion),
       contacto: data.get(#contacto, or: $value.contacto),
       fechaCreacion: data.get(#fechaCreacion, or: $value.fechaCreacion));
 

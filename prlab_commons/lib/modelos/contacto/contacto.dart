@@ -6,7 +6,7 @@ import 'package:serverpod/serverpod.dart';
 
 part 'contacto.mapper.dart';
 
-/// Modelo de entidad Cliente (quien posee la Organización).
+/// Modelo de entidad Contacto (Contiene datos de contacto, ya sea de un Cliente, una Organizacion, etc).
 @MappableClass(ignoreNull: true)
 class Contacto extends Base with ContactoMappable {
   @MappableConstructor()
@@ -25,7 +25,8 @@ class Contacto extends Base with ContactoMappable {
     super.fechaCreacion,
   });
 
-  /// Constructor requerido por Serverpod para la serialización de la clase.
+  /// Constructor requerido por Serverpod para la serialización de la clase y su insercion
+  /// en la Base de datos.
   @MappableConstructor()
   Contacto.fromJson(
     Map<String, dynamic> jsonSerialization,
@@ -67,15 +68,16 @@ class Contacto extends Base with ContactoMappable {
   String? domicilioEstadoProvincia;
   String? domicilioPais;
 
+  /// Getter requerido por Serverpod con el nombre de la tabla correspondiente a la entidad.
+  /// Extiende de la clase `TableRow` para manipular conexion con la Base de Datos.
   @override
   String get tableName => 'contacto';
 
+  /// Metodo requerido por Serverpod de la clase `TableRow` para modificar los datos dentro
+  /// del objeto.
   @override
   void setColumn(String columnName, value) {
     switch (columnName) {
-      case 'id':
-        id = value;
-        return;
       case 'emailPrincipal':
         emailPrincipal = value;
         return;
@@ -106,14 +108,13 @@ class Contacto extends Base with ContactoMappable {
       case 'domicilioPais':
         domicilioPais = value;
         return;
-      case 'fechaCreacion':
-        fechaCreacion = value;
-        return;
       default:
         throw UnimplementedError();
     }
   }
 
+  /// Metodo requerido por Serverpod de la clase `TableRow` para convertir el objeto en un `Map` (json), 
+  /// para su inserción en la Base de Datos.
   @override
   Map<String, dynamic> toJsonForDatabase() {
     return jsonDecode(toJson());

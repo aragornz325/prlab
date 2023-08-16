@@ -6,7 +6,7 @@ import 'package:serverpod/serverpod.dart';
 
 part 'publicacion.mapper.dart';
 
-/// Modelo de entidad Publicacion (un tipo de Entregable).
+/// Modelo de entidad Publicacion (un tipo concreto de Entregable por dentro de Proyecto).
 @MappableClass(ignoreNull: true)
 class Publicacion extends Entregable with PublicacionMappable {
   @MappableConstructor()
@@ -17,15 +17,14 @@ class Publicacion extends Entregable with PublicacionMappable {
     required this.contenido,
     required super.idAutor,
     required this.resumen,
-    required this.idTags,
     required this.idStatus,
-    required this.idCategorias,
     required super.fechaInicio,
     required super.fechaFin,
     required super.fechaCreacion,
   });
 
-  /// Constructor requerido por Serverpod para la serialización de la clase.
+  /// Constructor requerido por Serverpod para la serialización de la clase y su insercion
+  /// en la Base de datos.
   @MappableConstructor()
   Publicacion.fromJson(
     Map<String, dynamic> jsonSerialization,
@@ -42,12 +41,8 @@ class Publicacion extends Entregable with PublicacionMappable {
               serializationManager.deserialize<int?>(jsonSerialization['idAutor']),
           resumen:
               serializationManager.deserialize<String?>(jsonSerialization['resumen']),
-          idTags:
-              serializationManager.deserialize<List<int>?>(jsonSerialization['idTags']),
           idStatus:
               serializationManager.deserialize<int?>(jsonSerialization['idStatus']),
-          idCategorias:
-              serializationManager.deserialize<List<int>?>(jsonSerialization['idCategorias']),
           fechaInicio:
               serializationManager.deserialize<DateTime?>(jsonSerialization['fechaInicio']),
           fechaFin:
@@ -56,22 +51,28 @@ class Publicacion extends Entregable with PublicacionMappable {
               serializationManager.deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
         );
 
+  /// ID del Proyecto al que corresponde la Publicacion.
   int? idProyecto;
-  String? contenido;
-  String? resumen;
-  List<int>? idTags;
-  int? idStatus;
-  List<int>? idCategorias;
 
+  /// Contenido de la Publicacion.
+  String? contenido;
+
+  /// Texto resumen de la Publicacion.
+  String? resumen;
+
+  /// Estado de la Publicacion (En proceso, terminada, etc)
+  int? idStatus;
+
+  /// Getter requerido por Serverpod con el nombre de la tabla correspondiente a la entidad.
+  /// Extiende de la clase `TableRow` para manipular conexion con la Base de Datos.
   @override
   String get tableName => 'publicacion';
 
+  /// Metodo requerido por Serverpod de la clase `TableRow` para modificar los datos dentro
+  /// del objeto.
   @override
   void setColumn(String columnName, value) {
     switch (columnName) {
-      case 'id':
-        id = value;
-        return;
       case 'idProyecto':
         idProyecto = value;
         return;
@@ -87,14 +88,8 @@ class Publicacion extends Entregable with PublicacionMappable {
       case 'resumen':
         resumen = value;
         return;
-      case 'idTags':
-        idTags = value;
-        return;
       case 'idStatus':
         idStatus = value;
-        return;
-      case 'idCategorias':
-        idCategorias = value;
         return;
       case 'fechaInicio':
         fechaInicio = value;
@@ -102,14 +97,13 @@ class Publicacion extends Entregable with PublicacionMappable {
       case 'fechaFin':
         fechaFin = value;
         return;
-      case 'fechaCreacion':
-        fechaCreacion = value;
-        return;
       default:
         throw UnimplementedError();
     }
   }
 
+  /// Metodo requerido por Serverpod de la clase `TableRow` para convertir el objeto en un `Map` (json), 
+  /// para su inserción en la Base de Datos.
   @override
   Map<String, dynamic> toJsonForDatabase() {
     return jsonDecode(toJson());

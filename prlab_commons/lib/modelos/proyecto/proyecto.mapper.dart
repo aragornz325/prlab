@@ -12,7 +12,6 @@ class ProyectoMapper extends ClassMapperBase<Proyecto> {
   static ProyectoMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = ProyectoMapper._());
-      EntregableMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -115,8 +114,7 @@ extension ProyectoValueCopy<$R, $Out> on ObjectCopyWith<$R, Proyecto, $Out> {
 }
 
 abstract class ProyectoCopyWith<$R, $In extends Proyecto, $Out>
-    implements EntregableCopyWith<$R, $In, $Out> {
-  @override
+    implements ClassCopyWith<$R, $In, $Out> {
   $R call(
       {int? id,
       int? idOrganizacion,

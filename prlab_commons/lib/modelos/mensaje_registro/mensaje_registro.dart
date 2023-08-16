@@ -6,17 +6,18 @@ import 'package:serverpod/serverpod.dart';
 
 part 'mensaje_registro.mapper.dart';
 
-/// Modelo de entidad MensajeRegistro (logs de actividad).
+/// Modelo de entidad MensajeRegistro (logs/registros de actividad).
 @MappableClass(ignoreNull: true)
 class MensajeRegistro extends Base with MensajeRegistroMappable {
   @MappableConstructor()
   MensajeRegistro(
       {super.id,
       required this.mensaje,
-      required this.idAutor,
+      required this.idUsuario,
       super.fechaCreacion});
 
-  /// Constructor requerido por Serverpod para la serialización de la clase.
+  /// Constructor requerido por Serverpod para la serialización de la clase y su insercion
+  /// en la Base de datos.
   @MappableConstructor()
   MensajeRegistro.fromJson(
     Map<String, dynamic> jsonSerialization,
@@ -25,37 +26,38 @@ class MensajeRegistro extends Base with MensajeRegistroMappable {
             id: serializationManager.deserialize<int?>(jsonSerialization['id']),
             mensaje: serializationManager
                 .deserialize<String>(jsonSerialization['mensaje']),
-            idAutor: serializationManager
-                .deserialize<int>(jsonSerialization['idAutor']),
+            idUsuario: serializationManager
+                .deserialize<int>(jsonSerialization['idUsuario']),
             fechaCreacion: serializationManager
                 .deserialize<DateTime?>(jsonSerialization['fechaCreacion']));
 
+  /// Mensaje contenido en el registro.
   String mensaje;
-  int idAutor;
 
+  /// ID del Usuario que ha realizado la operacion que genero el Mensaje.
+  int idUsuario;
+
+  /// Getter requerido por Serverpod con el nombre de la tabla correspondiente a la entidad.
+  /// Extiende de la clase `TableRow` para manipular conexion con la Base de Datos.
   @override
   String get tableName => 'mensaje_registro';
 
   @override
   void setColumn(String columnName, value) {
     switch (columnName) {
-      case 'id':
-        id = value;
-        return;
       case 'mensaje':
         mensaje = value;
         return;
-      case 'idAutor':
-        idAutor = value;
-        return;
-      case 'fechaCreacion':
-        fechaCreacion = value;
+      case 'idUsuario':
+        idUsuario = value;
         return;
       default:
         throw UnimplementedError();
     }
   }
 
+  /// Metodo requerido por Serverpod de la clase `TableRow` para convertir el objeto en un `Map` (json), 
+  /// para su inserción en la Base de Datos.
   @override
   Map<String, dynamic> toJsonForDatabase() {
     return jsonDecode(toJson());

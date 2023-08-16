@@ -1,11 +1,8 @@
-import 'package:dart_mappable/dart_mappable.dart';
 import 'package:prlab_commons/modelos/base/base.dart';
 
-part 'entregable.mapper.dart';
-
-/// Modelo de entidad Entregable (Abstracción para heredar a otras clases como Publicacion, curso, etc).
-@MappableClass()
-abstract class Entregable extends Base with EntregableMappable {
+/// Modelo de entidad abstracta Entregable (Extiende a otras clases como Publicacion, Curso, etc
+/// con sus atributos comunes).
+abstract class Entregable extends Base {
   Entregable({
     super.id,
     required this.nombre,
@@ -15,8 +12,15 @@ abstract class Entregable extends Base with EntregableMappable {
     super.fechaCreacion,
   });
 
+  /// Nombre/titulo del Entregable.
   String? nombre;
+
+  /// ID del usuario que crea el Entregable.
   int? idAutor;
+
+  /// Fecha de inicio del Entregable.
   DateTime? fechaInicio;
+
+  /// Fecha de finalizacion o plazo del Entregable.
   DateTime? fechaFin;
 }
