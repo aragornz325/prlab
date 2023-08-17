@@ -26,12 +26,12 @@ class OrganizacionMapper extends ClassMapperBase<Organizacion> {
 
   static int? _$id(Organizacion v) => v.id;
   static const Field<Organizacion, int> _f$id = Field('id', _$id, opt: true);
-  static String? _$nombre(Organizacion v) => v.nombre;
+  static String _$nombre(Organizacion v) => v.nombre;
   static const Field<Organizacion, String> _f$nombre =
       Field('nombre', _$nombre);
-  static int? _$tipo(Organizacion v) => v.tipo;
+  static int _$tipo(Organizacion v) => v.tipo;
   static const Field<Organizacion, int> _f$tipo = Field('tipo', _$tipo);
-  static int? _$contacto(Organizacion v) => v.contacto;
+  static int _$contacto(Organizacion v) => v.contacto;
   static const Field<Organizacion, int> _f$contacto =
       Field('contacto', _$contacto);
   static DateTime? _$fechaCreacion(Organizacion v) => v.fechaCreacion;
@@ -127,15 +127,15 @@ class _OrganizacionCopyWithImpl<$R, $Out>
   @override
   $R call(
           {Object? id = $none,
-          Object? nombre = $none,
-          Object? tipo = $none,
-          Object? contacto = $none,
+          String? nombre,
+          int? tipo,
+          int? contacto,
           Object? fechaCreacion = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
-        if (nombre != $none) #nombre: nombre,
-        if (tipo != $none) #tipo: tipo,
-        if (contacto != $none) #contacto: contacto,
+        if (nombre != null) #nombre: nombre,
+        if (tipo != null) #tipo: tipo,
+        if (contacto != null) #contacto: contacto,
         if (fechaCreacion != $none) #fechaCreacion: fechaCreacion
       }));
   @override

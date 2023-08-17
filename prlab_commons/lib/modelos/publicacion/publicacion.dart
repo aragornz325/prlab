@@ -32,36 +32,36 @@ class Publicacion extends Entregable with PublicacionMappable {
   ) : this(
           id: serializationManager.deserialize<int?>(jsonSerialization['id']),
           idProyecto:
-              serializationManager.deserialize<int?>(jsonSerialization['idProyecto']),
+              serializationManager.deserialize<int>(jsonSerialization['idProyecto']),
           nombre:
-              serializationManager.deserialize<String?>(jsonSerialization['nombre']),
+              serializationManager.deserialize<String>(jsonSerialization['nombre']),
           contenido:
-              serializationManager.deserialize<String?>(jsonSerialization['contenido']),
+              serializationManager.deserialize<String>(jsonSerialization['contenido']),
           idAutor:
-              serializationManager.deserialize<int?>(jsonSerialization['idAutor']),
+              serializationManager.deserialize<int>(jsonSerialization['idAutor']),
           resumen:
-              serializationManager.deserialize<String?>(jsonSerialization['resumen']),
+              serializationManager.deserialize<String>(jsonSerialization['resumen']),
           idStatus:
-              serializationManager.deserialize<int?>(jsonSerialization['idStatus']),
+              serializationManager.deserialize<int>(jsonSerialization['idStatus']),
           fechaInicio:
-              serializationManager.deserialize<DateTime?>(jsonSerialization['fechaInicio']),
+              serializationManager.deserialize<DateTime>(jsonSerialization['fechaInicio']),
           fechaFin:
-              serializationManager.deserialize<DateTime?>(jsonSerialization['fechaFin']),
+              serializationManager.deserialize<DateTime>(jsonSerialization['fechaFin']),
           fechaCreacion:
               serializationManager.deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
         );
 
   /// ID del Proyecto al que corresponde la Publicacion.
-  int? idProyecto;
+  int idProyecto;
 
   /// Contenido de la Publicacion.
-  String? contenido;
+  String contenido;
 
   /// Texto resumen de la Publicacion.
-  String? resumen;
+  String resumen;
 
   /// Estado de la Publicacion (En proceso, terminada, etc)
-  int? idStatus;
+  int idStatus;
 
   /// Getter requerido por Serverpod con el nombre de la tabla correspondiente a la entidad.
   /// Extiende de la clase `TableRow` para manipular conexion con la Base de Datos.

@@ -26,26 +26,26 @@ class PublicacionMapper extends ClassMapperBase<Publicacion> {
 
   static int? _$id(Publicacion v) => v.id;
   static const Field<Publicacion, int> _f$id = Field('id', _$id);
-  static int? _$idProyecto(Publicacion v) => v.idProyecto;
+  static int _$idProyecto(Publicacion v) => v.idProyecto;
   static const Field<Publicacion, int> _f$idProyecto =
       Field('idProyecto', _$idProyecto);
-  static String? _$nombre(Publicacion v) => v.nombre;
+  static String _$nombre(Publicacion v) => v.nombre;
   static const Field<Publicacion, String> _f$nombre = Field('nombre', _$nombre);
-  static String? _$contenido(Publicacion v) => v.contenido;
+  static String _$contenido(Publicacion v) => v.contenido;
   static const Field<Publicacion, String> _f$contenido =
       Field('contenido', _$contenido);
-  static int? _$idAutor(Publicacion v) => v.idAutor;
+  static int _$idAutor(Publicacion v) => v.idAutor;
   static const Field<Publicacion, int> _f$idAutor = Field('idAutor', _$idAutor);
-  static String? _$resumen(Publicacion v) => v.resumen;
+  static String _$resumen(Publicacion v) => v.resumen;
   static const Field<Publicacion, String> _f$resumen =
       Field('resumen', _$resumen);
-  static int? _$idStatus(Publicacion v) => v.idStatus;
+  static int _$idStatus(Publicacion v) => v.idStatus;
   static const Field<Publicacion, int> _f$idStatus =
       Field('idStatus', _$idStatus);
-  static DateTime? _$fechaInicio(Publicacion v) => v.fechaInicio;
+  static DateTime _$fechaInicio(Publicacion v) => v.fechaInicio;
   static const Field<Publicacion, DateTime> _f$fechaInicio =
       Field('fechaInicio', _$fechaInicio);
-  static DateTime? _$fechaFin(Publicacion v) => v.fechaFin;
+  static DateTime _$fechaFin(Publicacion v) => v.fechaFin;
   static const Field<Publicacion, DateTime> _f$fechaFin =
       Field('fechaFin', _$fechaFin);
   static DateTime? _$fechaCreacion(Publicacion v) => v.fechaCreacion;
@@ -156,25 +156,25 @@ class _PublicacionCopyWithImpl<$R, $Out>
   @override
   $R call(
           {Object? id = $none,
-          Object? idProyecto = $none,
-          Object? nombre = $none,
-          Object? contenido = $none,
-          Object? idAutor = $none,
-          Object? resumen = $none,
-          Object? idStatus = $none,
-          Object? fechaInicio = $none,
-          Object? fechaFin = $none,
+          int? idProyecto,
+          String? nombre,
+          String? contenido,
+          int? idAutor,
+          String? resumen,
+          int? idStatus,
+          DateTime? fechaInicio,
+          DateTime? fechaFin,
           Object? fechaCreacion = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
-        if (idProyecto != $none) #idProyecto: idProyecto,
-        if (nombre != $none) #nombre: nombre,
-        if (contenido != $none) #contenido: contenido,
-        if (idAutor != $none) #idAutor: idAutor,
-        if (resumen != $none) #resumen: resumen,
-        if (idStatus != $none) #idStatus: idStatus,
-        if (fechaInicio != $none) #fechaInicio: fechaInicio,
-        if (fechaFin != $none) #fechaFin: fechaFin,
+        if (idProyecto != null) #idProyecto: idProyecto,
+        if (nombre != null) #nombre: nombre,
+        if (contenido != null) #contenido: contenido,
+        if (idAutor != null) #idAutor: idAutor,
+        if (resumen != null) #resumen: resumen,
+        if (idStatus != null) #idStatus: idStatus,
+        if (fechaInicio != null) #fechaInicio: fechaInicio,
+        if (fechaFin != null) #fechaFin: fechaFin,
         if (fechaCreacion != $none) #fechaCreacion: fechaCreacion
       }));
   @override

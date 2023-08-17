@@ -27,23 +27,23 @@ class Comentario extends Base with ComentarioMappable {
   ) : this(
           id: serializationManager.deserialize<int?>(jsonSerialization['id']),
           idEntregable: serializationManager
-              .deserialize<int?>(jsonSerialization['idEntregable']),
+              .deserialize<int>(jsonSerialization['idEntregable']),
           textoComentario: serializationManager
-              .deserialize<String?>(jsonSerialization['textoComentario']),
+              .deserialize<String>(jsonSerialization['textoComentario']),
           idAutor: serializationManager
-              .deserialize<int?>(jsonSerialization['idAutor']),
+              .deserialize<int>(jsonSerialization['idAutor']),
           fechaCreacion: serializationManager
               .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
         );
 
   /// ID del Entregable al que corresponde el Comentario.
-  int? idEntregable;
+  int idEntregable;
 
   /// Texto contenido en el Comentario.
-  String? textoComentario;
+  String textoComentario;
 
   /// ID del Usuario que crea el comentario.
-  int? idAutor;
+  int idAutor;
 
   /// Getter requerido por Serverpod con el nombre de la tabla correspondiente a la entidad.
   /// Extiende de la clase `TableRow` para manipular conexion con la Base de Datos.

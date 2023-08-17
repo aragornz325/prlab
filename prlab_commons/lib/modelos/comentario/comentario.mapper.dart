@@ -26,13 +26,13 @@ class ComentarioMapper extends ClassMapperBase<Comentario> {
 
   static int? _$id(Comentario v) => v.id;
   static const Field<Comentario, int> _f$id = Field('id', _$id, opt: true);
-  static int? _$idEntregable(Comentario v) => v.idEntregable;
+  static int _$idEntregable(Comentario v) => v.idEntregable;
   static const Field<Comentario, int> _f$idEntregable =
       Field('idEntregable', _$idEntregable);
-  static String? _$textoComentario(Comentario v) => v.textoComentario;
+  static String _$textoComentario(Comentario v) => v.textoComentario;
   static const Field<Comentario, String> _f$textoComentario =
       Field('textoComentario', _$textoComentario);
-  static int? _$idAutor(Comentario v) => v.idAutor;
+  static int _$idAutor(Comentario v) => v.idAutor;
   static const Field<Comentario, int> _f$idAutor = Field('idAutor', _$idAutor);
   static DateTime? _$fechaCreacion(Comentario v) => v.fechaCreacion;
   static const Field<Comentario, DateTime> _f$fechaCreacion =
@@ -127,15 +127,15 @@ class _ComentarioCopyWithImpl<$R, $Out>
   @override
   $R call(
           {Object? id = $none,
-          Object? idEntregable = $none,
-          Object? textoComentario = $none,
-          Object? idAutor = $none,
+          int? idEntregable,
+          String? textoComentario,
+          int? idAutor,
           Object? fechaCreacion = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
-        if (idEntregable != $none) #idEntregable: idEntregable,
-        if (textoComentario != $none) #textoComentario: textoComentario,
-        if (idAutor != $none) #idAutor: idAutor,
+        if (idEntregable != null) #idEntregable: idEntregable,
+        if (textoComentario != null) #textoComentario: textoComentario,
+        if (idAutor != null) #idAutor: idAutor,
         if (fechaCreacion != $none) #fechaCreacion: fechaCreacion
       }));
   @override

@@ -29,33 +29,33 @@ class Cliente extends Base with ClienteMappable {
   ) : this(
           id: serializationManager.deserialize<int?>(jsonSerialization['id']),
           nombre: serializationManager
-              .deserialize<String?>(jsonSerialization['nombre']),
+              .deserialize<String>(jsonSerialization['nombre']),
           apellido: serializationManager
-              .deserialize<String?>(jsonSerialization['apellido']),
+              .deserialize<String>(jsonSerialization['apellido']),
           fechaDeNacimiento: serializationManager
-              .deserialize<DateTime?>(jsonSerialization['fechaDeNacimiento']),
+              .deserialize<DateTime>(jsonSerialization['fechaDeNacimiento']),
           idOrganizacion: serializationManager
-              .deserialize<int?>(jsonSerialization['idOrganizacion']),
+              .deserialize<int>(jsonSerialization['idOrganizacion']),
           contacto: serializationManager
-              .deserialize<int?>(jsonSerialization['contacto']),
+              .deserialize<int>(jsonSerialization['contacto']),
           fechaCreacion: serializationManager
               .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
         );
 
   /// Nombre/s del Cliente.
-  String? nombre;
+  String nombre;
 
   /// Apellido/s del Cliente.
-  String? apellido;
+  String apellido;
 
   /// Fecha de nacimiento del Cliente.
-  DateTime? fechaDeNacimiento;
+  DateTime fechaDeNacimiento;
 
   /// ID del registro de la Organizacion del Cliente.
-  int? idOrganizacion;
+  int idOrganizacion;
 
   /// ID de los datos de Contacto del Cliente.
-  int? contacto;
+  int contacto;
 
   /// Getter requerido por Serverpod con el nombre de la tabla correspondiente a la entidad.
   /// Extiende de la clase `TableRow` para manipular conexion con la Base de Datos.

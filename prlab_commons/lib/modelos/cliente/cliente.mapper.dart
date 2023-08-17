@@ -26,18 +26,18 @@ class ClienteMapper extends ClassMapperBase<Cliente> {
 
   static int? _$id(Cliente v) => v.id;
   static const Field<Cliente, int> _f$id = Field('id', _$id, opt: true);
-  static String? _$nombre(Cliente v) => v.nombre;
+  static String _$nombre(Cliente v) => v.nombre;
   static const Field<Cliente, String> _f$nombre = Field('nombre', _$nombre);
-  static String? _$apellido(Cliente v) => v.apellido;
+  static String _$apellido(Cliente v) => v.apellido;
   static const Field<Cliente, String> _f$apellido =
       Field('apellido', _$apellido);
-  static DateTime? _$fechaDeNacimiento(Cliente v) => v.fechaDeNacimiento;
+  static DateTime _$fechaDeNacimiento(Cliente v) => v.fechaDeNacimiento;
   static const Field<Cliente, DateTime> _f$fechaDeNacimiento =
       Field('fechaDeNacimiento', _$fechaDeNacimiento);
-  static int? _$idOrganizacion(Cliente v) => v.idOrganizacion;
+  static int _$idOrganizacion(Cliente v) => v.idOrganizacion;
   static const Field<Cliente, int> _f$idOrganizacion =
       Field('idOrganizacion', _$idOrganizacion);
-  static int? _$contacto(Cliente v) => v.contacto;
+  static int _$contacto(Cliente v) => v.contacto;
   static const Field<Cliente, int> _f$contacto = Field('contacto', _$contacto);
   static DateTime? _$fechaCreacion(Cliente v) => v.fechaCreacion;
   static const Field<Cliente, DateTime> _f$fechaCreacion =
@@ -137,19 +137,19 @@ class _ClienteCopyWithImpl<$R, $Out>
   @override
   $R call(
           {Object? id = $none,
-          Object? nombre = $none,
-          Object? apellido = $none,
-          Object? fechaDeNacimiento = $none,
-          Object? idOrganizacion = $none,
-          Object? contacto = $none,
+          String? nombre,
+          String? apellido,
+          DateTime? fechaDeNacimiento,
+          int? idOrganizacion,
+          int? contacto,
           Object? fechaCreacion = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
-        if (nombre != $none) #nombre: nombre,
-        if (apellido != $none) #apellido: apellido,
-        if (fechaDeNacimiento != $none) #fechaDeNacimiento: fechaDeNacimiento,
-        if (idOrganizacion != $none) #idOrganizacion: idOrganizacion,
-        if (contacto != $none) #contacto: contacto,
+        if (nombre != null) #nombre: nombre,
+        if (apellido != null) #apellido: apellido,
+        if (fechaDeNacimiento != null) #fechaDeNacimiento: fechaDeNacimiento,
+        if (idOrganizacion != null) #idOrganizacion: idOrganizacion,
+        if (contacto != null) #contacto: contacto,
         if (fechaCreacion != $none) #fechaCreacion: fechaCreacion
       }));
   @override

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:prlab_commons/modelos/base/base.dart';
-import 'package:prlab_commons/prlab_commons.dart';
 import 'package:serverpod/serverpod.dart';
 
 part 'organizacion.mapper.dart';
@@ -27,19 +26,19 @@ class Organizacion extends Base with OrganizacionMappable {
     SerializationManager serializationManager,
   ) : this(
             id: serializationManager.deserialize<int?>(jsonSerialization['id']),
-            nombre: serializationManager.deserialize<String?>(jsonSerialization['nombre']),
-            tipo: serializationManager.deserialize<int?>(jsonSerialization['tipo']),
-            contacto: serializationManager.deserialize<int?>(jsonSerialization['contacto']),
+            nombre: serializationManager.deserialize<String>(jsonSerialization['nombre']),
+            tipo: serializationManager.deserialize<int>(jsonSerialization['tipo']),
+            contacto: serializationManager.deserialize<int>(jsonSerialization['contacto']),
             fechaCreacion: serializationManager.deserialize<DateTime?>(jsonSerialization['fechaCreacion']),);
 
   /// Nombre de la Organizacion.
-  String? nombre;
+  String nombre;
 
   /// Tipo de la Organizacion (Persona Fisica, Juridica, etc).
-  int? tipo;
+  int tipo;
 
   /// ID de los datos de Contacto de la Organizacion.
-  int? contacto;
+  int contacto;
 
   /// Getter requerido por Serverpod con el nombre de la tabla correspondiente a la entidad.
   /// Extiende de la clase `TableRow` para manipular conexion con la Base de Datos.

@@ -26,19 +26,19 @@ class ProyectoMapper extends ClassMapperBase<Proyecto> {
 
   static int? _$id(Proyecto v) => v.id;
   static const Field<Proyecto, int> _f$id = Field('id', _$id, opt: true);
-  static int? _$idOrganizacion(Proyecto v) => v.idOrganizacion;
+  static int _$idOrganizacion(Proyecto v) => v.idOrganizacion;
   static const Field<Proyecto, int> _f$idOrganizacion =
       Field('idOrganizacion', _$idOrganizacion);
-  static String? _$nombre(Proyecto v) => v.nombre;
+  static String _$nombre(Proyecto v) => v.nombre;
   static const Field<Proyecto, String> _f$nombre = Field('nombre', _$nombre);
-  static int? _$idAutor(Proyecto v) => v.idAutor;
+  static int _$idAutor(Proyecto v) => v.idAutor;
   static const Field<Proyecto, int> _f$idAutor = Field('idAutor', _$idAutor);
-  static DateTime? _$fechaInicio(Proyecto v) => v.fechaInicio;
+  static DateTime _$fechaInicio(Proyecto v) => v.fechaInicio;
   static const Field<Proyecto, DateTime> _f$fechaInicio =
-      Field('fechaInicio', _$fechaInicio, opt: true);
-  static DateTime? _$fechaFin(Proyecto v) => v.fechaFin;
+      Field('fechaInicio', _$fechaInicio);
+  static DateTime _$fechaFin(Proyecto v) => v.fechaFin;
   static const Field<Proyecto, DateTime> _f$fechaFin =
-      Field('fechaFin', _$fechaFin, opt: true);
+      Field('fechaFin', _$fechaFin);
   static DateTime? _$fechaCreacion(Proyecto v) => v.fechaCreacion;
   static const Field<Proyecto, DateTime> _f$fechaCreacion =
       Field('fechaCreacion', _$fechaCreacion, opt: true);
@@ -137,19 +137,19 @@ class _ProyectoCopyWithImpl<$R, $Out>
   @override
   $R call(
           {Object? id = $none,
-          Object? idOrganizacion = $none,
-          Object? nombre = $none,
-          Object? idAutor = $none,
-          Object? fechaInicio = $none,
-          Object? fechaFin = $none,
+          int? idOrganizacion,
+          String? nombre,
+          int? idAutor,
+          DateTime? fechaInicio,
+          DateTime? fechaFin,
           Object? fechaCreacion = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
-        if (idOrganizacion != $none) #idOrganizacion: idOrganizacion,
-        if (nombre != $none) #nombre: nombre,
-        if (idAutor != $none) #idAutor: idAutor,
-        if (fechaInicio != $none) #fechaInicio: fechaInicio,
-        if (fechaFin != $none) #fechaFin: fechaFin,
+        if (idOrganizacion != null) #idOrganizacion: idOrganizacion,
+        if (nombre != null) #nombre: nombre,
+        if (idAutor != null) #idAutor: idAutor,
+        if (fechaInicio != null) #fechaInicio: fechaInicio,
+        if (fechaFin != null) #fechaFin: fechaFin,
         if (fechaCreacion != $none) #fechaCreacion: fechaCreacion
       }));
   @override

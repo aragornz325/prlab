@@ -7,20 +7,20 @@ abstract class Entregable extends Base {
     super.id,
     required this.nombre,
     required this.idAutor,
-    this.fechaInicio,
-    this.fechaFin,
+    required this.fechaInicio,
+    required this.fechaFin,
     super.fechaCreacion,
   });
 
   /// Nombre/titulo del Entregable.
-  String? nombre;
+  String nombre;
 
   /// ID del usuario que crea el Entregable.
-  int? idAutor;
+  int idAutor;
 
   /// Fecha de inicio del Entregable.
-  DateTime? fechaInicio;
+  DateTime fechaInicio;
 
   /// Fecha de finalizacion o plazo del Entregable.
-  DateTime? fechaFin;
+  DateTime fechaFin;
 }

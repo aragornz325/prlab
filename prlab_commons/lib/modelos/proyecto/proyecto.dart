@@ -15,8 +15,8 @@ class Proyecto extends Entregable with ProyectoMappable {
     required this.idOrganizacion,
     required super.nombre,
     required super.idAutor,
-    super.fechaInicio,
-    super.fechaFin,
+    required super.fechaInicio,
+    required super.fechaFin,
     super.fechaCreacion,
   });
 
@@ -29,21 +29,21 @@ class Proyecto extends Entregable with ProyectoMappable {
   ) : this(
           id: serializationManager.deserialize<int?>(jsonSerialization['id']),
           idOrganizacion: serializationManager
-              .deserialize<int?>(jsonSerialization['idOrganizacion']),
+              .deserialize<int>(jsonSerialization['idOrganizacion']),
           nombre: serializationManager
-              .deserialize<String?>(jsonSerialization['nombre']),
+              .deserialize<String>(jsonSerialization['nombre']),
           idAutor: serializationManager
-              .deserialize<int?>(jsonSerialization['idAutor']),
+              .deserialize<int>(jsonSerialization['idAutor']),
           fechaInicio: serializationManager
-              .deserialize<DateTime?>(jsonSerialization['fechaInicio']),
+              .deserialize<DateTime>(jsonSerialization['fechaInicio']),
           fechaFin: serializationManager
-              .deserialize<DateTime?>(jsonSerialization['fechaFin']),
+              .deserialize<DateTime>(jsonSerialization['fechaFin']),
           fechaCreacion: serializationManager
               .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
         );
 
   /// ID de la Organizacion a la que pertenece el Proyecto.
-  int? idOrganizacion;
+  int idOrganizacion;
 
   /// Getter requerido por Serverpod con el nombre de la tabla correspondiente a la entidad.
   /// Extiende de la clase `TableRow` para manipular conexion con la Base de Datos.
