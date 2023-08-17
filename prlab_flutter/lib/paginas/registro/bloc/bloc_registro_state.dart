@@ -37,7 +37,8 @@ class BlocRegistroEstado extends Equatable {
 
   bool get isEstadoCargando => this is BlocRegistroEstadoCargando;
 
-  /// Getter del BlocRegistro para ver si esta en estado inicial, error o cargando.
+  /// Getter del BlocRegistro para ver si esta en estado inicial,
+  /// error o cargando.
   bool get estaEnEstadoDeValidacion =>
       this is BlocRegistroEstadoErrorTokenInvalido ||
       this is BlocRegistroEstadoInicial ||

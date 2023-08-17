@@ -24,8 +24,8 @@ class EncabezadoDeRecuperarContrasenia extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 4.pw),
           child: Text(
-            // TODO(Andreas:
-            // Hablar con nico sobre problema con el paquete que en la resolucion
+            // TODO(Andreas): Hablar con nico sobre problema con
+            // el paquete que en la resolucion
             // de telefono no se achica lo suficiente el texto.
             l10n.pageRecoverPasswordTitle,
             style: TextStyle(

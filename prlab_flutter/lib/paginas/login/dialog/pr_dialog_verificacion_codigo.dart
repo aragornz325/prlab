@@ -16,7 +16,6 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
     required this.controllerCodigo,
     required this.email,
     required this.password,
-    required this.estaHabilitado,
     super.key,
   });
 
@@ -26,7 +25,6 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
   /// controller del alertdialog
   final TextEditingController controllerCodigo;
   final String password;
-  final bool estaHabilitado;
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +34,17 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
         '${l10n.alert_dialog_sub_title_verification_code_send}'
         ' ${obtenerPrimerasLetrasAntesSimbolo(email)}***@'
         '${obtenerTextoDespuesSimbolo(email)}';
-
+    final state = context.watch<BlocLogin>().state;
     return PRDialog.solicitudAccion(
       height: 270.ph,
       context: context,
-      estaHabilitado: estaHabilitado,
+      estaHabilitado: state.tamanioCodigo == 8,
       onTap: () {
         context.read<BlocLogin>().add(
               BlocLoginEventoEnviarCodigoAlBack(
                 codigo: controllerCodigo.text,
               ),
             );
-        Navigator.of(context).pop();
       },
       titulo: l10n.alert_dialog_title_recover_password,
       content: Column(
@@ -55,7 +52,9 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
           // TODO: cambiar para cuando este en los textfield de factory
           PrLabTextfield(
             controller: controllerCodigo,
+            solicitoNuevoCodigo: state is BlocLoginEstadoCronometroCorriendo,
             email: email,
+            segundosFaltantes: state.duracionTimer,
           ),
           SizedBox(height: 5.ph),
           Text(

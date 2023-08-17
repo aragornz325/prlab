@@ -6,7 +6,6 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/recuperar_contrasenia/bloc/bloc_recuperar_contrasenia.dart';
 import 'package:prlab_flutter/paginas/recuperar_contrasenia/widgets/widgets.dart';
 import 'package:prlab_flutter/utilidades/extensions/extensions.dart';
-import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template formulario_de_recuperar_contrasenia}

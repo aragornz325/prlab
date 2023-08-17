@@ -9,7 +9,6 @@ import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bien
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/texto_bienvenida.dart';
 import 'package:prlab_flutter/paginas/login/utilidades/get_error_message.dart';
 import 'package:prlab_flutter/utilidades/funciones/validators.dart';
-import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// Vista de escritorio de la pantalla login donde el usuario
@@ -83,7 +82,6 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                           setState(() {});
                         },
                         hintText: l10n.page_login_placeholder_email,
-                        soloLectura: false,
                       ),
                     ),
 

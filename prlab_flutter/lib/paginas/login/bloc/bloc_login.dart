@@ -183,8 +183,10 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
           event.password.length >
               PRLabConfiguracion.minimoDeCaracteresContrasenia) {
         emit(
-          BlocLoginEstadoExitosoInicioSesion.desde(state,
-              botonHabilitado: true),
+          BlocLoginEstadoExitosoInicioSesion.desde(
+            state,
+            botonHabilitado: true,
+          ),
         );
       } else {
         emit(
@@ -212,8 +214,12 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     Emitter<BlocLoginEstado> emit,
   ) async {
     try {
-      emit(BlocLoginEstadoExitosoInicioSesion.desde(state,
-          tamanioCodigo: event.tamanio));
+      emit(
+        BlocLoginEstadoExitosoInicioSesion.desde(
+          state,
+          tamanioCodigo: event.tamanio,
+        ),
+      );
     } catch (e) {
       emit(
         BlocLoginEstadoError.desde(

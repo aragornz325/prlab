@@ -50,7 +50,6 @@ class _OlvidasteTuContraseniaState extends State<OlvidasteTuContrasenia> {
                   context: context,
                   builder: (context) {
                     return PRDialogVerificacionCodigo(
-                      estaHabilitado: state.tamanioCodigo == 8,
                       password: widget.password,
                       email: widget.email,
                       controllerCodigo: widget.controllerCodigo,
