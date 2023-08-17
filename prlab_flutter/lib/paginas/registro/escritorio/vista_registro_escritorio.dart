@@ -59,9 +59,9 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.watch<BlocRegistro>();
     // TODO(SAM): baja performance, llamar watch dentro del build baja mucho,
     // localizar mejor
+    final bloc = context.watch<BlocRegistro>();
     final l10n = context.l10n;
     final tema = context.colores;
 
