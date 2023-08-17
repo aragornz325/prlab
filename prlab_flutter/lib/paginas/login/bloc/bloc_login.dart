@@ -49,7 +49,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       } else {
         emit(
           const BlocLoginEstadoError(
-            errorMessage: LoginErrorMessages.userNotFoud,
+            errorMessage: LoginErrorMessages.userNotFound,
           ),
         );
       }

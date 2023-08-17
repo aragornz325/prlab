@@ -35,7 +35,40 @@
     "@page_login_button_reload": {
         "description": "Text shown when the user has to reload the page"
     },
-
+  
+    "page_sign_up_title": "Bienvenida!",
+    "@page_sign_up_title": {
+        "description": "Title shown in the page SignUp"
+    },    
+    "page_sign_up_subtitle": "Crea una cuenta",
+    "@page_sign_up_subtitle": {
+        "description": "Subtitle shown in the page SignUp"
+    },     
+    "page_sign_up_text_field_hint_example_mail": "marcaejemplo@prlab.co",
+    "@page_sign_up_text_field_hint_example_mail": {
+        "description": "HintText shown in the mail textfield in the page Signup"
+    },    
+      "page_sign_up_text_field_hint_password": "Contraseña",
+    "@page_sign_up_text_field_hint_password": {
+        "description": "HintText  shown in the password textfield page SignUp"
+    },     
+      "page_sign_up_text_field_hint_confirm_password": "Confirma contraseña",
+    "@page_sign_up_text_field_hint_confirm_password": {
+        "description": "HintText shown in the confirm password textfield page SignUp"
+    }, 
+       "page_sign_up_terms_and_conditions_text": "Acepto los ",
+    "@page_sign_up_terms_and_conditions_text": {
+        "description": "Text of the first part of terms and conditions shown in the page SignUp"
+    },   
+           "page_sign_up_terms_and_conditions_text_link": "Términos y Condiciones",
+    "@page_sign_up_terms_and_conditions_text_link": {
+        "description": "Hyperlink Text of the second part of terms and conditions shown in the page SignUp"
+    },  
+       "page_sign_up_button_sign_up": "Registrarse",
+    "@page_sign_up_button_sign_up": {
+        "description": "Text of the button sign up shown in the page SignUp"
+    },
+ 
     "alert_dialog_title_recover_password" : "Recuperar contraseña",
     "@alert_dialog_title_recover_password": {
         "description":"text in title alertdialog of recover password"
@@ -79,8 +112,8 @@
         }
     },
 
-    "alert_dialgo_code_in": "código en",
-    "@alert_dialgo_code_in": {
+    "alert_dialog_code_in": "código en",
+    "@alert_dialog_code_in": {
         "description":"part text in alertdialog of textfield on tooltip, code in"
     },
     "page_create_account_admin_error_message_change_email": "Error al cambiar el email valido",
@@ -127,7 +160,7 @@
     "@alert_dialog_button_title_button_resend": {
         "description":"text in alertdialog title button, Resend"
     },
-    "alert_dialog_button_subtitle_link_expired" : "el link a expirado,\npor favor has click en “Reenviar” para obtener un nuevo código",
+    "alert_dialog_button_subtitle_link_expired" : "el link a expirado,\npor favor pide uno nuevo",
     "@alert_dialog_button_subtitle_link_expired": {
         "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
     },

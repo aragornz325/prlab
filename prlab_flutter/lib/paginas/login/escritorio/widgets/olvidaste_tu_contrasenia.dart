@@ -21,7 +21,7 @@ class OlvidasteTuContrasenia extends StatelessWidget {
         child: Text(
           l10n.page_login_tappable_text,
           style: TextStyle(
-            //TODO(Gon): Cambiar cuando esten los colores del theme
+            // TODO(Gon): Cambiar cuando esten los colores del theme
             color: const Color(0xffA12B46),
             fontSize: 12.pf,
             fontWeight: FontWeight.w500,

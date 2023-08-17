@@ -23,7 +23,8 @@ class AppBlocObserver extends BlocObserver {
 
 Future<void> bootstrap(
   FutureOr<Widget> Function() builder, {
-  required String url,
+  required String hostUrl,
+  required String entorno,
 }) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
@@ -31,17 +32,29 @@ Future<void> bootstrap(
 
   Bloc.observer = const AppBlocObserver();
 
-  // TODO(anyone):
-  // Esto queda como carryover, una vez que Isar actualice la
+  // TODO(anyone):  Esto queda como carryover, una vez que Isar actualice la
+
   // version a la 4.0.0 la cual soporta web local storage,
   // cambia Hive x Isar.
-
-  await initializeServerpodClient(host: url);
 
   /// Se instancia el objeto de la base de datos local Isar
   // await IsarService.openDB();
 
   // Add cross-flavor configuration here
+  await initializeServerpodClient(
+    hostUrl: hostUrl,
+    entorno: entorno,
+  );
 
-  runApp(await builder());
+  runApp(
+    await builder(),
+  );
+}
+
+/// Enum que especifica el entorno de desarrollo a utilizar para pasarselo
+/// por parametro a la funcion del initializeServerpodClient.
+enum EntornosDeDesarrollo {
+  staging,
+  development,
+  production,
 }
