@@ -39,13 +39,13 @@ class BlocLoginEventoHabilitarBotonLogin extends BlocLoginEvento {
 
 /// Evento donde se cambia el tamaño del codigo para poder usar su longitud
 /// (no se pudo usar el controller.text.lenght)
-class BlocLoginEventoCambiarTamanioCodigo extends BlocLoginEvento {
-  const BlocLoginEventoCambiarTamanioCodigo({
-    required this.tamanio,
-
-    /// tamaño del codigo
+class BlocLoginEventoCambiarLongitudCodigo extends BlocLoginEvento {
+  const BlocLoginEventoCambiarLongitudCodigo({
+    required this.longitudCodigo,
   });
-  final int tamanio;
+
+  /// tamaño del codigo (indica cuantos digitos ingreso el usuario)
+  final int longitudCodigo;
 }
 
 /// Evento que envia el codigo al mail del usuario
@@ -59,8 +59,8 @@ class BlocLoginEventoEnviarCodigoAlMailDelUsuario extends BlocLoginEvento {
 }
 
 /// Evento que envia el codigo al back para validarlo
-class BlocLoginEventoEnviarCodigoAlBack extends BlocLoginEvento {
-  const BlocLoginEventoEnviarCodigoAlBack({
+class BlocLoginEventoValidarCodigo extends BlocLoginEvento {
+  const BlocLoginEventoValidarCodigo({
     required this.codigo,
   });
 

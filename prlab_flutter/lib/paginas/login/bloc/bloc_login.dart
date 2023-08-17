@@ -24,8 +24,8 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     on<BlocLoginEventoEnviarCodigoAlMailDelUsuario>(
       _enviarCodigoAlMailDelUsuario,
     );
-    on<BlocLoginEventoCambiarTamanioCodigo>(_habilitarBotonEnviarCodigo);
-    on<BlocLoginEventoEnviarCodigoAlBack>(_validarCodigo);
+    on<BlocLoginEventoCambiarLongitudCodigo>(_cambiarLongitudCodigo);
+    on<BlocLoginEventoValidarCodigo>(_validarCodigo);
 
     //!!
     // TODO(anyone): EXTRAER ESTO A UN BLOC SEPARADO PARA SACAR LA LOGICA DEL TIMER
@@ -40,9 +40,6 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
 
   late Timer _time;
   int _tiempoCorriendoDuracion = _duracion;
-
-  /// Repositorio editado para Serverpod
-  final EmailAuthControllerCustomPRLab emailAuthControllerCustomPRLab;
 
   /// Funcion que inicia sesion donde llamamos al repo `emailAuth` que es de
   /// server pod y la funcion signIn y pasamos nuestros events
@@ -118,7 +115,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
 
       if (response) {
         emit(
-          BlocLoginEstadoExitosoDelOTP.desde(state),
+          BlocLoginEstadoExitosoAlValidarOTP.desde(state),
         );
       } else {
         throw UnimplementedError(
@@ -142,7 +139,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
 
   /// Chequea el codigo enviado al back y lo verifica si esta bien
   FutureOr<void> _validarCodigo(
-    BlocLoginEventoEnviarCodigoAlBack event,
+    BlocLoginEventoValidarCodigo event,
     Emitter<BlocLoginEstado> emit,
   ) async {
     emit(BlocLoginEstadoCargando.desde(state));
@@ -151,7 +148,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
           await client.auth.validarCodigoResetPassword(event.codigo);
       if (respuesta) {
         emit(
-          BlocLoginEstadoExitosoDelOTP.desde(state),
+          BlocLoginEstadoExitosoAlValidarOTP.desde(state),
         );
       } else {
         // TODO(Gon): Verificar si esto esta bien(creo que tambien
@@ -210,27 +207,18 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     }
   }
 
-  /// La funcion cambia el state del tamaño del codigo para despues
-  /// saber si ingreso el codigo completo
-  Future<void> _habilitarBotonEnviarCodigo(
-    BlocLoginEventoCambiarTamanioCodigo event,
+  /// La funcion cambia el valor de la variable para despues usar
+  /// ese valor para saber si ingreso el codigo completo
+  void _cambiarLongitudCodigo(
+    BlocLoginEventoCambiarLongitudCodigo event,
     Emitter<BlocLoginEstado> emit,
-  ) async {
-    try {
-      emit(
-        BlocLoginEstadoExitosoInicioSesion.desde(
-          state,
-          tamanioCodigo: event.tamanio,
-        ),
-      );
-    } catch (e) {
-      emit(
-        BlocLoginEstadoError.desde(
-          state,
-          mensajeDeError: MensajesDeErrorDelLogin.internalError,
-        ),
-      );
-    }
+  ) {
+    emit(
+      BlocLoginEstadoExitosoInicioSesion.desde(
+        state,
+        longitudCodigo: event.longitudCodigo,
+      ),
+    );
   }
 
   /// Funcion que empieza a correr el cronometro
@@ -346,4 +334,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
 
   /// Repo de los llamados a server pod
   final EmailAuthController emailAuth;
+
+  /// Repositorio editado para Serverpod
+  final EmailAuthControllerCustomPRLab emailAuthControllerCustomPRLab;
 }

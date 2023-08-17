@@ -38,10 +38,10 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
     return PRDialog.solicitudAccion(
       height: 270.ph,
       context: context,
-      estaHabilitado: state.tamanioCodigo == 8,
+      estaHabilitado: state.longitudCodigo == 8,
       onTap: () {
         context.read<BlocLogin>().add(
-              BlocLoginEventoEnviarCodigoAlBack(
+              BlocLoginEventoValidarCodigo(
                 codigo: controllerCodigo.text,
               ),
             );

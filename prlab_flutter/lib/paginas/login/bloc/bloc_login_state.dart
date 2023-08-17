@@ -5,7 +5,7 @@ class BlocLoginEstado extends Equatable {
     this.botonHabilitado = false,
     this.estaIniciandoSesion = false,
     this.duracionTimer = 60,
-    this.tamanioCodigo = 0,
+    this.longitudCodigo = 0,
   });
 
   BlocLoginEstado.desde(
@@ -13,12 +13,12 @@ class BlocLoginEstado extends Equatable {
     bool? botonHabilitado,
     bool estaIniciandoSesion = false,
     int? duracionTimer,
-    int? tamanioCodigo,
+    int? longitudCodigo,
   }) : this._(
           botonHabilitado: botonHabilitado ?? otro.botonHabilitado,
           estaIniciandoSesion: estaIniciandoSesion,
           duracionTimer: duracionTimer ?? otro.duracionTimer,
-          tamanioCodigo: tamanioCodigo ?? otro.tamanioCodigo,
+          longitudCodigo: longitudCodigo ?? otro.longitudCodigo,
         );
 
   /// Bool para habilitar el boton o no dependiendo del contenido
@@ -32,8 +32,8 @@ class BlocLoginEstado extends Equatable {
   /// Duracion del temporizador
   final int duracionTimer;
 
-  /// Tamaño del codigo ingresado por el usuario
-  final int tamanioCodigo;
+  /// Tamaño del codigo (indica cuantos digitos ingreso el usuario)
+  final int longitudCodigo;
 
   /// Getter que verifica si el estado actual es el estado cargando
   /// y apreto el boton de iniciar sesion
@@ -45,7 +45,7 @@ class BlocLoginEstado extends Equatable {
         botonHabilitado,
         estaIniciandoSesion,
         duracionTimer,
-        tamanioCodigo,
+        longitudCodigo,
       ];
 }
 
@@ -56,8 +56,10 @@ class BlocLoginEstadoInicial extends BlocLoginEstado {
 
 /// Estado de cargando de los componentes de la pantalla login
 class BlocLoginEstadoCargando extends BlocLoginEstado {
-  BlocLoginEstadoCargando.desde(super.otro, {super.estaIniciandoSesion})
-      : super.desde();
+  BlocLoginEstadoCargando.desde(
+    super.otro, {
+    super.estaIniciandoSesion,
+  }) : super.desde();
 }
 
 /// Estado exitoso de los componentes de la pantalla login
@@ -65,13 +67,13 @@ class BlocLoginEstadoExitosoInicioSesion extends BlocLoginEstado {
   BlocLoginEstadoExitosoInicioSesion.desde(
     super.otro, {
     super.botonHabilitado,
-    super.tamanioCodigo,
+    super.longitudCodigo,
   }) : super.desde();
 }
 
 /// Estado exitoso de los componentes de la pantalla login
-class BlocLoginEstadoExitosoDelOTP extends BlocLoginEstado {
-  BlocLoginEstadoExitosoDelOTP.desde(super.otro) : super.desde();
+class BlocLoginEstadoExitosoAlValidarOTP extends BlocLoginEstado {
+  BlocLoginEstadoExitosoAlValidarOTP.desde(super.otro) : super.desde();
 }
 
 /// Estado de error de los componentes de la pantalla login (se puede emitir

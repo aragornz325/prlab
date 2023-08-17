@@ -78,7 +78,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                         context: context,
                         controller: controllerEmail,
                         onChanged: (p0) {
-                          _revisarSiElBotonSePuedeHabilitar();
+                          _habilitarBotonLogin();
                           setState(() {});
                         },
                         hintText: l10n.page_login_placeholder_email,
@@ -97,7 +97,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       child: PRTextFormFieldPassword(
                         controller: controllerPassword,
                         hintText: l10n.page_login_placeholder_password,
-                        onChanged: (_) => _revisarSiElBotonSePuedeHabilitar,
+                        onChanged: (_) => _habilitarBotonLogin(),
                       ),
                     ),
 
@@ -109,6 +109,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       Container(
                         width: 20,
                         height: 20,
+                        // TODO(anyone): Cambiar colors a los del theme
                         color: Colors.red,
                       ),
                     SizedBox(
@@ -142,7 +143,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
     );
   }
 
-  void _revisarSiElBotonSePuedeHabilitar() {
+  void _habilitarBotonLogin() {
     context.read<BlocLogin>().add(
           BlocLoginEventoHabilitarBotonLogin(
             email: controllerEmail.text,

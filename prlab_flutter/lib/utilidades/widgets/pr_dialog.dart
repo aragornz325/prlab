@@ -166,7 +166,7 @@ class PRDialog extends StatelessWidget {
               titulo,
               style: TextStyle(
                 fontSize: 20.pf,
-                // TODO: cambiar cuando este el theme
+                // TODO(anyone): Cambiar colors a los del theme
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
               ),
@@ -281,6 +281,7 @@ class PRDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      // TODO(anyone): Cambiar colors a los del theme
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.sw),
