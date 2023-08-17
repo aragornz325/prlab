@@ -6,6 +6,7 @@ import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_dialog.dart';
 
+// TODO(Seba): Agregar docu.
 class VistaEsperaValidacionDeTokenEscritorio extends StatelessWidget {
   const VistaEsperaValidacionDeTokenEscritorio({
     super.key,

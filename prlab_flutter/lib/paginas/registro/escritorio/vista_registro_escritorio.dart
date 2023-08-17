@@ -107,9 +107,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                     listener: (context, state) {
                       if (state
                           is BlocRegistroEstadoUsuarioRegistradoConExito) {
-                        context.router.replace(
-                          const PaginaKyc(),
-                        );
+                        context.router.replace(const RutaKyc());
                       }
                     },
                     builder: (context, state) {

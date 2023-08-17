@@ -3,6 +3,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/paginas/kyc/widgets/widgets.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
 
+// TODO(Andreas): Agregar docu de template.
 /// {@template vista_kyc_escritorio}
 /// Vista del kyc en dispositivos de tipo
 /// desktop incluso en browsers.

@@ -3,7 +3,7 @@ import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 import 'package:serverpod_auth_client/module.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
-//TODO(cualquiera): mejorar naming de clase
+//TODO(Andreas): Ver si se usa esto, sino eliminarlo
 class EmailAuthControllerCustomPRLab extends EmailAuthController {
   EmailAuthControllerCustomPRLab(super.caller);
 

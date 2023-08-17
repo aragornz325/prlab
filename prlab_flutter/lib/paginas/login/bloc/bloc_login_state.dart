@@ -1,5 +1,6 @@
 part of 'bloc_login.dart';
 
+// TODO(Gon): Agregar documentacion
 class BlocLoginEstado extends Equatable {
   const BlocLoginEstado._({
     this.botonHabilitado = false,

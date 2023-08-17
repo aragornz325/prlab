@@ -1,3 +1,4 @@
+// TODO(Mati): Mejorar docuemtncion
 /// Función que trae las primeras letras del email
 String obtenerPrimerasLetrasAntesSimbolo(String email) {
   final indexOfAt = email.indexOf('@');
@@ -10,6 +11,7 @@ String obtenerPrimerasLetrasAntesSimbolo(String email) {
 
 /// Función que trae las ultimas letras despues del @ para saber si es gmail o
 /// otro correo electronico
+// TODO(Mati): Mejorar docuemtncion
 String obtenerTextoDespuesSimbolo(String email) {
   final indexOfAt = email.indexOf('@');
   return email.substring(indexOfAt + 1);

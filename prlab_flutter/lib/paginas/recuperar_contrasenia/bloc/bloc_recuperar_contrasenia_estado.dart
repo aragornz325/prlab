@@ -1,5 +1,6 @@
 part of 'bloc_recuperar_contrasenia.dart';
 
+// TODO(Andreas): Cambair la docu por los templates nuevos.
 /// {@template bloc_recuperar_contrasenia_estado}
 /// Estado que maneja el la información para el recupero de contraseña.
 /// {@endtemplate}
@@ -32,6 +33,7 @@ sealed class BlocRecuperarContraseniaEstado {
   bool get estanCompletasLasContrasenias =>
       contrasenia.isNotEmpty && contraseniaRepetida.isNotEmpty;
 
+  // TODO(Andreas): Agregar docu de los getters
   bool get esEstadoCargando => this is BlocRecuperarContraseniaEstadoCargando;
 
   bool get esEstadoFallido => this is BlocRecuperarContraseniaEstadoFallido;

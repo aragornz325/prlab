@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 
+// TODO(Manu): Mejorar documentacion!
+// cambiar el naming a validadores y unificar los validadores en un solo lugar.
 /// Botones a utilizarse en el proyecto, variantes fill y .outlined
 
 class PRBoton extends StatelessWidget {

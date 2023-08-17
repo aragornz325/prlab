@@ -12,8 +12,8 @@ import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart'
 import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 
 @RoutePage()
-class RegistroPage extends StatelessWidget {
-  const RegistroPage({
+class PaginaRegistro extends StatelessWidget {
+  const PaginaRegistro({
     @PathParam('token') required this.tokenAuth,
     super.key,
   });

@@ -6,9 +6,9 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/kyc/bloc/bloc_kyc.dart';
 import 'package:prlab_flutter/paginas/kyc/widgets/widgets.dart';
 import 'package:prlab_flutter/utilidades/extensions/extensions.dart';
-import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
+// TODO(Andreas): Agregar docu de template.
 /// {@template formulario_del_kyc}
 /// Formulario que contiene todos los campos de texto
 /// para completar la información basica necesaria
@@ -31,6 +31,7 @@ class FormularioDelKyc extends StatefulWidget {
 class _FormularioDelKycState extends State<FormularioDelKyc> {
   final _formKey = GlobalKey<FormState>();
 
+// TODO(Andreas): Cambiar naming a 'controllerNombre'
   final nombreController = TextEditingController();
 
   final apellidoController = TextEditingController();
@@ -95,6 +96,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
               SizedBox(height: 40.sh),
               PRTextFormField.fecha(
                 controller: fechaController,
+                // TODO(Andreas): Averiguar donde deberia dejar esto.
                 hintText: '00/00/0000',
                 context: context,
                 onChanged: (_) => context.read<BlocKyc>().add(

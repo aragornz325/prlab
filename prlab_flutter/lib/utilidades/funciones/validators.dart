@@ -1,3 +1,6 @@
+// TODO(Manu): Cambiar docu a español tambien ver que hay una carpeta de validators
+// cambiar el naming a validadores y unificar los validadores en un solo lugar.
+
 /// {@template validators}
 /// A collection of validators used all accross the app.
 /// {@endtemplate}

@@ -20,7 +20,7 @@ class VistaEscritorioCrearCuentaAdmin extends StatefulWidget {
 class _VistaEscritorioCrearCuentaAdminState
     extends State<VistaEscritorioCrearCuentaAdmin> {
   /// controller de la vista de escritorio
-  TextEditingController controllerEmail = TextEditingController();
+  final controllerEmail = TextEditingController();
 
   @override
   void dispose() {
@@ -46,7 +46,7 @@ class _VistaEscritorioCrearCuentaAdminState
             child: PRBoton.outlined(
               width: 200.pw,
               onTap: () {
-                // TODO(mati): agregarle funcionalidad
+                // TODO(mati): agregarle funcionalidad para volver atras.
               },
               texto: l10n.commonBack,
               habilitado: true,

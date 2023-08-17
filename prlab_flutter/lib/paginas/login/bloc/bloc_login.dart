@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
@@ -13,6 +14,7 @@ import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 part 'bloc_login_event.dart';
 part 'bloc_login_state.dart';
 
+// TODO(Gon): Agregar documentacion
 /// Bloc que maneja los estados o logica de la pagina de login
 class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
   BlocLogin({

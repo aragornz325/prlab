@@ -3,8 +3,12 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
+// TODO(Gon): Pasar esto a nivel global, sacarlo de login porque se usa en varios lugares.
+// TODO(Gon): Agrear documentacion.
+
 /// Seccion a la derecha de login/registro que muestra el logo y eslogan de la empresa
 class SeccionLogoBienvenida extends StatelessWidget {
+  // TODO(Gon): Agrear documentacion.
   const SeccionLogoBienvenida({
     super.key,
   });
@@ -49,7 +53,7 @@ class SeccionLogoBienvenida extends StatelessWidget {
                     l10n.pageLoginLeadingAgency,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      // TODO(anyone): Cambiar colors a los del theme
+                      // TODO(Manu): Cambiar colors a los del theme
                       color: Colors.white,
                       fontSize: 64.pf,
                       fontWeight: FontWeight.w700,

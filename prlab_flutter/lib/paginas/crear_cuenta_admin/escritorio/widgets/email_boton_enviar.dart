@@ -42,6 +42,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             BoxShadow(
               offset: const Offset(0, 10),
               blurRadius: 30,
+              // TODO(Manu): Cambiar esto.
               color: Colors.black.withOpacity(.25),
             ),
           ],
@@ -79,7 +80,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                     width: 785.pw,
                     child: PRTextFormField.email(
                       controller: controller,
-                      onChanged: (_) => _funcionPasarleEmailAlBloc(context),
+                      onChanged: (_) => _onPasarleEmailAlBloc(context),
                       context: context,
                     ),
                   ),
@@ -110,16 +111,16 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                     ),
                   );
                 }
+
                 return Center(
                   child: PRBoton(
                     width: 782.pw,
-                    onTap: state.esEmailValido
-                        ? () {
-                            // TODO(anyone): agregarle funcionalidad
-                          }
-                        : () {},
+                    onTap: () {
+                      if (!state.esEmailValido) return;
+
+                      _onEnviarEmail(context);
+                    },
                     texto: l10n.commonSend,
-                    // TODO: cambiar por la variable del bloc
                     habilitado: state.esEmailValido,
                   ),
                 );
@@ -132,14 +133,14 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
   }
 
   /// Funcion para enviar el email/la invitación a crear una cuenta
-  void _funcionEnviarEmail(BuildContext context) {
+  void _onEnviarEmail(BuildContext context) {
     context.read<BlocCrearCuentaAdmin>().add(
           const BlocCrearCuentaAdminEventEnviarEmail(),
         );
   }
 
   /// Funcion para enviar el email al bloc [BlocCrearCuentaAdmin]
-  void _funcionPasarleEmailAlBloc(BuildContext context) {
+  void _onPasarleEmailAlBloc(BuildContext context) {
     context.read<BlocCrearCuentaAdmin>().add(
           BlocCrearCuentaAdminEventVerificarEmail(
             email: controller.text,

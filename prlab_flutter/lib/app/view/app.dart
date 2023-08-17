@@ -5,11 +5,14 @@ import 'package:prlab_flutter/app/auto_route/auto_route.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_app.g.dart';
 import 'package:prlab_flutter/theming/temas/tema_por_default_light_prlab.dart';
+// TODO(Mati): Agregar export de utilidades, cambiar los exports que usen utilidades el el utilidades.dart.
 import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
+// TODO(Mati): Agregar ducumentacion.
 class App extends StatelessWidget {
+  // TODO(Mati): Agregar ducumentacion.
   const App({
     super.key,
   });
@@ -34,7 +37,9 @@ class App extends StatelessWidget {
   }
 }
 
+// TODO(Mati): Agregar ducumentacion.
 class AppView extends StatefulWidget {
+  // TODO(Mati): Agregar ducumentacion.
   const AppView({super.key});
 
   @override
@@ -78,7 +83,6 @@ class NoGlowBehavior extends ScrollBehavior {
     BuildContext context,
     Widget child,
     ScrollableDetails details,
-  ) {
-    return child;
-  }
+  ) =>
+      child;
 }
