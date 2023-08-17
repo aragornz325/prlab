@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
+import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template LogoPrLabAgencia}
@@ -14,7 +15,7 @@ class LogoPrLabAgencia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
+    final colores = context.colores;
     return Row(
       children: [
         SizedBox(
@@ -27,20 +28,18 @@ class LogoPrLabAgencia extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              l10n.page_create_admin_account_title_prlab,
+              l10n.commonPRLab,
               textAlign: TextAlign.center,
               style: TextStyle(
-                // TODO(mati): cambiar cuando este seteado los themas
-                color: const Color(0xff363636),
+                color: colores.tertiary,
                 fontSize: 40.pf,
                 fontWeight: FontWeight.w600,
               ),
             ),
             Text(
-              l10n.page_create_admin_account_subtitle_international_prlab_agency,
+              l10n.pageCreateAdminAccountSubtitleInternationalPRLabAgency,
               style: TextStyle(
-                // TODO(mati): cambiar cuando este seteado los themas
-                color: const Color(0xff363636),
+                color: colores.tertiary,
                 fontSize: 14.pf,
                 fontWeight: FontWeight.w400,
               ),

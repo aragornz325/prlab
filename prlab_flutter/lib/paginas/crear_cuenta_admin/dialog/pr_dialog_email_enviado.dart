@@ -25,7 +25,7 @@ class PRDialogEmailEnviado extends StatelessWidget {
     final colores = context.colores;
 
     return PRDialog.informacion(
-      titulo: l10n.page_create_admin_alertdialog_title_email_send,
+      titulo: l10n.pageCreateAdminAlertdialogTitleEmailSend,
       context: context,
       content: Column(
         children: [

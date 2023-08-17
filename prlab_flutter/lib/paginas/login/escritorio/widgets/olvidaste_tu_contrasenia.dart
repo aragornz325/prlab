@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// Texto clickeable que se muestra en la seccion de login
@@ -11,7 +12,7 @@ class OlvidasteTuContrasenia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
+    final colores = context.colores;
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 12.ph),
       child: GestureDetector(
@@ -19,10 +20,9 @@ class OlvidasteTuContrasenia extends StatelessWidget {
           // TODO(Gon): Agregar el push cuando este hecha la view
         },
         child: Text(
-          l10n.page_login_tappable_text,
+          l10n.pageLoginTappableText,
           style: TextStyle(
-            // TODO(Gon): Cambiar cuando esten los colores del theme
-            color: const Color(0xffA12B46),
+            color: colores.primary,
             fontSize: 12.pf,
             fontWeight: FontWeight.w500,
             decoration: TextDecoration.underline,
