@@ -160,7 +160,7 @@
     "@alert_dialog_button_title_button_resend": {
         "description":"text in alertdialog title button, Resend"
     },
-    "alert_dialog_button_subtitle_link_expired" : "el link a expirado,\npor favor has click en “Reenviar” para obtener un nuevo código",
+    "alert_dialog_button_subtitle_link_expired" : "el link a expirado,\npor favor pide uno nuevo",
     "@alert_dialog_button_subtitle_link_expired": {
         "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
     },

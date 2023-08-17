@@ -194,7 +194,7 @@
     "@alert_dialog_button_title_button_resend": {
         "description":"text in alertdialog title button, Resend"
     },
-    "alert_dialog_button_subtitle_link_expired" : "The link has expired,\nplease click on “resend” to get a new one",
+    "alert_dialog_button_subtitle_link_expired" : "The link has expired,\nplease ask for a new one",
     "@alert_dialog_button_subtitle_link_expired": {
         "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
     },
