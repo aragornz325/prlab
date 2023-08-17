@@ -237,12 +237,10 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                   BlocBuilder<BlocRegistro, BlocRegistroEstado>(
                                 builder: (context, state) {
                                   return PRBoton(
-                                    onTap: () {
-                                      _agregarEventoDeEnviarDatosRegistro(
-                                        context,
-                                        state,
-                                      );
-                                    },
+                                    onTap: () =>
+                                        _agregarEventoDeEnviarDatosRegistro(
+                                      state.terminosAceptados,
+                                    ),
                                     texto: l10n.page_sign_up_button_sign_up,
                                     habilitado: state.estaCompletoElFormulario,
                                   );
@@ -273,12 +271,11 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
   }
 
   void _agregarEventoDeEnviarDatosRegistro(
-    BuildContext context,
-    BlocRegistroEstado state,
+    bool terminosAceptados,
   ) {
     if (!_formKey.esValido ||
         !(controllerPasswordRepetida.text == controllerPassword.text) ||
-        !state.terminosAceptados) return;
+        !terminosAceptados) return;
     context.read<BlocRegistro>().add(
           BlocRegistroEventoEnviarDatosRegistro(
             email: controllerEmail.text,
