@@ -25,7 +25,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       _enviarCodigoAlMailDelUsuario,
     );
     on<BlocLoginEventoCambiarTamanioCodigo>(_habilitarBotonEnviarCodigo);
-    on<BlocLoginEventoEnviarCodigoAlBack>(_chequearCodigo);
+    on<BlocLoginEventoEnviarCodigoAlBack>(_validarCodigo);
 
     ///manejo del temporizador y cronometro
     on<BLocLoginEventoEmpezarTemporizador>(_empezarCronometro);
@@ -67,7 +67,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
         );
       }
 
-      emit(BlocLoginEstadoExitoso.desde(state));
+      emit(BlocLoginEstadoExitosoInicioSesion.desde(state));
     } catch (e, st) {
       if (kDebugMode) {
         debugger();
@@ -115,7 +115,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
 
       if (response) {
         emit(
-          BlocLoginEstadoExitoso.desde(state),
+          BlocLoginEstadoExitosoDelOTP.desde(state),
         );
       } else {
         throw UnimplementedError(
@@ -138,7 +138,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
   }
 
   /// Chequea el codigo enviado al back y lo verifica si esta bien
-  FutureOr<void> _chequearCodigo(
+  FutureOr<void> _validarCodigo(
     BlocLoginEventoEnviarCodigoAlBack event,
     Emitter<BlocLoginEstado> emit,
   ) async {
@@ -148,7 +148,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
           await client.auth.validarCodigoResetPassword(event.codigo);
       if (respuesta) {
         emit(
-          BlocLoginEstadoExitoso.desde(state),
+          BlocLoginEstadoExitosoDelOTP.desde(state),
         );
       } else {
         // TODO(Gon): Verificar si esto esta bien(creo que tambien
@@ -183,11 +183,12 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
           event.password.length >
               PRLabConfiguracion.minimoDeCaracteresContrasenia) {
         emit(
-          BlocLoginEstadoExitoso.desde(state, botonHabilitado: true),
+          BlocLoginEstadoExitosoInicioSesion.desde(state,
+              botonHabilitado: true),
         );
       } else {
         emit(
-          BlocLoginEstadoExitoso.desde(state),
+          BlocLoginEstadoExitosoInicioSesion.desde(state),
         );
       }
     } catch (e, st) {
@@ -211,7 +212,8 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     Emitter<BlocLoginEstado> emit,
   ) async {
     try {
-      emit(BlocLoginEstadoExitoso.desde(state, tamanioCodigo: event.tamanio));
+      emit(BlocLoginEstadoExitosoInicioSesion.desde(state,
+          tamanioCodigo: event.tamanio));
     } catch (e) {
       emit(
         BlocLoginEstadoError.desde(

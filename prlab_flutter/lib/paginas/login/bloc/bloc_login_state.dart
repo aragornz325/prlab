@@ -61,12 +61,17 @@ class BlocLoginEstadoCargando extends BlocLoginEstado {
 }
 
 /// Estado exitoso de los componentes de la pantalla login
-class BlocLoginEstadoExitoso extends BlocLoginEstado {
-  BlocLoginEstadoExitoso.desde(
+class BlocLoginEstadoExitosoInicioSesion extends BlocLoginEstado {
+  BlocLoginEstadoExitosoInicioSesion.desde(
     super.otro, {
     super.botonHabilitado,
     super.tamanioCodigo,
   }) : super.desde();
+}
+
+/// Estado exitoso de los componentes de la pantalla login
+class BlocLoginEstadoExitosoDelOTP extends BlocLoginEstado {
+  BlocLoginEstadoExitosoDelOTP.desde(super.otro) : super.desde();
 }
 
 /// Estado de error de los componentes de la pantalla login (se puede emitir
