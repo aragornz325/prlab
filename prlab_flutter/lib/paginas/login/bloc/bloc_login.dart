@@ -27,6 +27,9 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     on<BlocLoginEventoCambiarTamanioCodigo>(_habilitarBotonEnviarCodigo);
     on<BlocLoginEventoEnviarCodigoAlBack>(_validarCodigo);
 
+    //!!
+    // TODO(anyone): EXTRAER ESTO A UN BLOC SEPARADO PARA SACAR LA LOGICA DEL TIMER
+    //!!
     ///manejo del temporizador y cronometro
     on<BLocLoginEventoEmpezarTemporizador>(_empezarCronometro);
     on<BlocLoginEventoResetearTemporizador>(_resetearCronometro);
