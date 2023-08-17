@@ -4,7 +4,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
-import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
+import 'package:prlab_flutter/paginas/login/dialog/pr_dialog_verificacion_codigo.dart';
 
 /// Texto clickeable que se muestra en la seccion de login
 class OlvidasteTuContrasenia extends StatefulWidget {
@@ -39,34 +39,43 @@ class _OlvidasteTuContraseniaState extends State<OlvidasteTuContrasenia> {
 
     final colores = context.colores;
 
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 12.ph),
-      child: GestureDetector(
-        onTap: () {
-          if (widget.cargoElMail) {
-            PRDialog.recuperarContrasenia(
-              password: widget.password,
-              email: widget.email,
-              controllerCodigo: widget.controllerCodigo,
-              context: context,
-            ).show(context, bloc: context.read<BlocLogin>());
-          }
-        },
-        child: Text(
-          l10n.page_login_tappable_text,
-          style: TextStyle(
-            color: widget.cargoElMail
-                ? colores.primary
-                : colores.primary.withOpacity(.5),
-            fontSize: 12.pf,
-            fontWeight: FontWeight.w500,
-            decoration: TextDecoration.underline,
-            decorationColor: widget.cargoElMail
-                ? colores.primary
-                : colores.primary.withOpacity(.5),
+    return BlocBuilder<BlocLogin, BlocLoginEstado>(
+      builder: (context, state) {
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: 12.ph),
+          child: GestureDetector(
+            onTap: () {
+              if (widget.cargoElMail) {
+                showDialog<void>(
+                  context: context,
+                  builder: (context) {
+                    return PRDialogVerificacionCodigo(
+                      estaHabilitado: state.tamanioCodigo == 8,
+                      password: widget.password,
+                      email: widget.email,
+                      controllerCodigo: widget.controllerCodigo,
+                    );
+                  },
+                );
+              }
+            },
+            child: Text(
+              l10n.page_login_tappable_text,
+              style: TextStyle(
+                color: widget.cargoElMail
+                    ? colores.primary
+                    : colores.primary.withOpacity(.5),
+                fontSize: 12.pf,
+                fontWeight: FontWeight.w500,
+                decoration: TextDecoration.underline,
+                decorationColor: widget.cargoElMail
+                    ? colores.primary
+                    : colores.primary.withOpacity(.5),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

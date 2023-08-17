@@ -71,18 +71,21 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
               ),
             ),
             SizedBox(height: 50.ph),
-            Center(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 15.pw),
-                height: 40.ph,
-                width: 785.pw,
-                // TODO(anyone): cambiarlo por el que esta en
-                //development tambien cambiar la funcion
-                child: TextFormField(
-                  controller: controller,
-                  onChanged: (value) => _funcionPasarleEmailAlBloc(context),
-                ),
-              ),
+            BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
+              builder: (context, state) {
+                return Center(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15.pw),
+                    height: 40.ph,
+                    width: 785.pw,
+                    child: PRTextFormField.email(
+                      controller: controller,
+                      onChanged: (_) => _funcionPasarleEmailAlBloc(context),
+                      context: context,
+                    ),
+                  ),
+                );
+              },
             ),
             SizedBox(height: 50.ph),
             BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(

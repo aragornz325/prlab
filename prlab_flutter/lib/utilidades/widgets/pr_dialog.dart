@@ -4,44 +4,62 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
-import 'package:prlab_flutter/utilidades/funciones/functions.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
-/// {@template PrLabDialog}
-/// PrLabDialog es un popup que tiene dos factory uno para ingresar el código de
-/// 8 dígitos
-/// y un boton para enviar el código.
-///
-/// el otro del email enviado si el state/estado es exitoso
-/// donde muestra un texto con el email al usuario enviado para crear una
-/// cuenta admin.
+/// {@template TipoDialog}
+/// Esto define los tipos de dialog que se puede usar en la clase PRDialog.
+/// Cada tipo representa un propósito o mensaje específico que el
+/// diálogo pretende transmitir al usuario.
 /// {@endtemplate}
-class PRDialog extends StatefulWidget {
+enum TipoDialog {
+  /// este tipo de dialog/popup se usan para pedirle al usuario una acción en
+  /// concreto ej: (una verificacion de codigo dentro de un campo de texto).
+  solicitudAccion,
+
+  /// este tipo de dialog/popup se usan para advertir/avisar al usuario.
+  advertencia,
+
+  /// este tipo de dialog/popup se usan para darle informacion al usuario.
+  informacion,
+
+  /// este tipo de dialog/popup se usan para avisarle de algún tipo de error
+  /// al usuario.
+  error,
+}
+
+/// {@template PrLabDialog}
+/// PRDialog tiene diferentes tipos de dialog/popup como solicitar la acción
+/// del usuario, mostrar información, mostrar advertencias o
+/// indicar errores.
+/// {@endtemplate}
+class PRDialog extends StatelessWidget {
   /// {@macro PrLabDialog}
   @override
   const PRDialog({
+    required this.tipo,
     required this.content,
     super.key,
-    this.esCargando = false,
-    this.height = 290,
+    this.height = 285,
     this.width = 455,
   });
 
-  /// Alertdialog que muestra un textfield de 8 dígitos
-  /// y un boton para enviar el código.
-  factory PRDialog.recuperarContrasenia({
-    required String email,
-    required String password,
-    required TextEditingController controllerCodigo,
+  /// `PRDialog.solicitudAccion` donde puede tener un contenido editable para
+  /// hacer un tipo de solicitud de acción al usuario
+  factory PRDialog.solicitudAccion({
+    required String titulo,
+    required Widget content,
     required BuildContext context,
+    required VoidCallback onTap,
+    double height = 285,
+    double width = 455,
+    bool estaHabilitado = true,
   }) {
     final l10n = context.l10n;
 
-    final codigoEmail = '${l10n.alert_dialog_sub_title_verification_code_send}'
-        ' ${obtenerPrimerasLetrasAntesSimbolo(email)}***@'
-        '${obtenerTextoDespuesSimbolo(email)}';
-
     return PRDialog(
+      height: height,
+      width: width,
+      tipo: TipoDialog.solicitudAccion,
       content: Column(
         children: [
           SizedBox(
@@ -50,7 +68,7 @@ class PRDialog extends StatefulWidget {
               children: [
                 SizedBox(height: 40.ph),
                 Text(
-                  l10n.alert_dialog_title_recover_password,
+                  titulo,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.pf,
@@ -58,38 +76,13 @@ class PRDialog extends StatefulWidget {
                   ),
                 ),
                 SizedBox(height: 40.ph),
-                TextfieldCodigoDeRecuperarContrasenia(
-                  controller: controllerCodigo,
-                  email: email,
-                ),
-                SizedBox(height: 5.ph),
-                Text(
-                  codigoEmail,
-                  style: TextStyle(
-                    fontSize: 12.pf,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                content,
                 SizedBox(height: 40.ph),
-                BlocBuilder<BlocLogin, BlocLoginEstado>(
-                  builder: (context, state) {
-                    return PRBoton.outlined(
-                      width: 360.pw,
-
-                      // TODO(anyone): Agregarle funcionalidad del bloc
-                      habilitado: state.tamanioCodigo == 8,
-                      onTap: () {
-                        context.read<BlocLogin>().add(
-                              BlocLoginEventoEnviarCodigoAlBack(
-                                codigo: controllerCodigo.text,
-                              ),
-                            );
-                      },
-                      texto: l10n.alert_dialog_button_title_send,
-                    );
-                  },
+                PRBoton.outlined(
+                  width: 360.pw,
+                  habilitado: estaHabilitado,
+                  onTap: onTap,
+                  texto: l10n.alert_dialog_button_title_send,
                 ),
               ],
             ),
@@ -99,24 +92,30 @@ class PRDialog extends StatefulWidget {
     );
   }
 
-  /// Alert dialog de Pr Lab del email enviado si el state/estado es exitoso
-  /// donde muestra un texto con el email al usuario enviado para crear una
-  /// cuenta admin.
-  factory PRDialog.emailEnviado({
+  /// `PRDialog.informacion` donde puede tener un contenido editado para
+  ///  mostrar el tipo de informacion al usuario
+  factory PRDialog.informacion({
     required BuildContext context,
-    required String email,
+    required VoidCallback onTap,
+    required String titulo,
+    required Widget content,
+    double height = 285,
+    double width = 455,
   }) {
     final l10n = context.l10n;
 
     final colores = context.colores;
 
     return PRDialog(
+      height: height,
+      width: width,
+      tipo: TipoDialog.informacion,
       content: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(height: 20.ph),
           Text(
-            l10n.page_create_admin_alertdialog_title_email_send,
+            titulo,
             style: TextStyle(
               color: colores.tertiary,
               fontSize: 20.pf,
@@ -124,48 +123,11 @@ class PRDialog extends StatefulWidget {
             ),
           ),
           SizedBox(height: 30.ph),
-          RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  // TODO(anyone): esto va a definirse por el cliente
-                  text: 'An email has been sent to\n',
-                  style: TextStyle(
-                    color: colores.secondary,
-                    fontSize: 15.pf,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                TextSpan(
-                  // TODO(anyone): esto va a definirse por el cliente
-                  text: '$email \n',
-                  style: TextStyle(
-                    color: colores.primary,
-                    fontSize: 15.pf,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                TextSpan(
-                  // TODO(anyone): esto va a definirse por el cliente
-                  text: 'Lorem ipsum dolor sit amet consectetur.Tortor\nut '
-                      'quis faucibus etiam.Euismod condimentum.',
-                  style: TextStyle(
-                    color: colores.secondary,
-                    fontSize: 15.pf,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          content,
           SizedBox(height: 30.ph),
           Center(
             child: PRBoton.outlined(
-              onTap: () {
-                // TODO(anyone): agregarle funcionalidad
-                Navigator.of(context).pop();
-              },
+              onTap: onTap,
               texto: l10n.page_create_admin_alertdialog_button_ok,
               habilitado: true,
               width: 360.pw,
@@ -176,18 +138,24 @@ class PRDialog extends StatefulWidget {
     );
   }
 
-  /// Alert dialog que muestra un error en caso de que esError devuelva true
-  /// muestra error donde le podes pasar por parámetros el mensajeError
-  factory PRDialog.error({
+  /// `PRDialog.advertencia` Es un tipo de dialog donde se le avisa al usuario
+  /// de alguna advertencia
+  factory PRDialog.advertencia({
     required BuildContext context,
-    required bool esError,
-    String? mensajeError,
+    required VoidCallback onTap,
+    required String titulo,
+    required String textoDeAdvertencia,
+    double height = 285,
+    double width = 455,
   }) {
     final l10n = context.l10n;
 
     final colores = context.colores;
 
     return PRDialog(
+      height: height,
+      width: width,
+      tipo: TipoDialog.advertencia,
       content: SizedBox(
         width: 360.pw,
         child: Column(
@@ -195,13 +163,11 @@ class PRDialog extends StatefulWidget {
           children: [
             SizedBox(height: 20.ph),
             Text(
-              esError
-                  ? l10n.alert_dialog_button_title_error
-                  : l10n.alert_dialog_button_subtitle_something_went_wrong,
+              titulo,
               style: TextStyle(
                 fontSize: 20.pf,
-                // TODO(anyone): cambiar cuando este el theme
-                color: esError ? colores.error : Colors.black,
+                // TODO: cambiar cuando este el theme
+                color: Colors.black,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -209,13 +175,10 @@ class PRDialog extends StatefulWidget {
             SizedBox(
               width: 360.pw,
               child: Text(
-                esError
-                    ? mensajeError ?? l10n.alert_dialog_button_title_error
-                    : l10n.alert_dialog_button_subtitle_link_expired,
+                textoDeAdvertencia,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 15.pf,
-                  // TODO(anyone): cambiar cuando este el theme
                   color: colores.secondary,
                   fontWeight: FontWeight.w400,
                 ),
@@ -226,13 +189,72 @@ class PRDialog extends StatefulWidget {
               child: SizedBox(
                 width: 360.pw,
                 child: PRBoton.outlined(
-                  onTap: () {
-                    // TODO(anyone): agregarle funcionalidad
-                    Navigator.of(context).pop();
-                  },
-                  texto: esError
-                      ? l10n.page_create_admin_account_button_back
-                      : l10n.alert_dialog_button_title_button_resend,
+                  onTap: onTap,
+                  texto: l10n.alert_dialog_button_title_button_resend,
+                  habilitado: true,
+                  width: 360.pw,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// `PRDialog.error` Es un tipo de dialog donde se le avisa al usuario de
+  /// algún tipo de error
+  factory PRDialog.error({
+    required BuildContext context,
+    required VoidCallback onTap,
+    required String descripcionError,
+    double height = 285,
+    double width = 455,
+  }) {
+    final l10n = context.l10n;
+
+    final colores = context.colores;
+
+    return PRDialog(
+      height: height,
+      width: width,
+      tipo: TipoDialog.error,
+      content: Container(
+        width: 360.pw,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(height: 20.ph),
+            Text(
+              l10n.alert_dialog_button_title_error,
+              style: TextStyle(
+                fontSize: 20.pf,
+                // TODO: cambiar cuando este el theme
+                color: colores.error,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(height: 30.ph),
+            SizedBox(
+              width: 360.pw,
+              child: Text(
+                descripcionError,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15.pf,
+                  // TODO: cambiar cuando este el theme
+                  color: colores.secondary,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+            SizedBox(height: 30.ph),
+            Center(
+              child: SizedBox(
+                width: 360.pw,
+                child: PRBoton.outlined(
+                  onTap: onTap,
+                  texto: l10n.page_create_admin_account_button_back,
                   habilitado: true,
                   width: 360.pw,
                 ),
@@ -248,34 +270,14 @@ class PRDialog extends StatefulWidget {
   final Widget content;
 
   /// height del alertdialog [PRDialog].(default: 285)
-  final int height;
+  final double height;
 
   /// width del alertdialog [PRDialog].(default: 455)
-  final int width;
+  final double width;
 
-  /// bool de que si es cargando [PRDialog].(default: false)
-  final bool esCargando;
+  /// tipo de alertdialog [PRDialog].
+  final TipoDialog tipo;
 
-  @override
-  State<PRDialog> createState() => _PRDialogState();
-
-  Future<void> show<T, R>(
-    BuildContext context, {
-    Bloc<T, R>? bloc,
-  }) async =>
-      showDialog(
-        context: context,
-        builder: (_) {
-          if (bloc == null) return this;
-          return BlocProvider.value(
-            value: bloc,
-            child: this,
-          );
-        },
-      );
-}
-
-class _PRDialogState extends State<PRDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -284,9 +286,9 @@ class _PRDialogState extends State<PRDialog> {
         borderRadius: BorderRadius.circular(20.sw),
       ),
       content: SizedBox(
-        height: widget.height.ph,
-        width: widget.width.pw,
-        child: widget.content,
+        height: height.ph,
+        width: width.pw,
+        child: content,
       ),
     );
   }
