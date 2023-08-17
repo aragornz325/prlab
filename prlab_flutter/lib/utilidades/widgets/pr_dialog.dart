@@ -219,7 +219,7 @@ class PRDialog extends StatelessWidget {
       height: height,
       width: width,
       tipo: TipoDialog.error,
-      content: Container(
+      content: SizedBox(
         width: 360.pw,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -317,14 +317,13 @@ class PRTextFormFieldPassword extends StatefulWidget {
     this.validator,
     super.key,
   });
-
+  final void Function(String? value)? onChanged;
   final TextEditingController controller;
   final String hintText;
   final bool esCreacionPassword;
   final double width;
   final String? Function(String? value)? validator;
 
-  final void Function(String? value)? onChanged;
   @override
   State<PRTextFormFieldPassword> createState() =>
       _PRTextFormFieldPasswordState();
@@ -365,9 +364,8 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
         },
       ),
       onChanged: (value) {
-        setState(() {
-          widget.onChanged?.call(value);
-        });
+        setState(() {});
+        widget.onChanged?.call(value);
       },
       validator: (value) {
         if (value?.isEmpty ?? false) {

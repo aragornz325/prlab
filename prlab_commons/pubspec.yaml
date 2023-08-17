@@ -4,12 +4,12 @@ version: 1.0.0
 # repository: https://github.com/my_org/my_repo
 
 environment:
-  sdk: ^3.0.6
+  sdk: '>=2.19.0 <4.0.0'
 
 # Add regular dependencies here.
 dependencies:
   dart_mappable: ^3.1.3
-  serverpod: ^1.1.1
+  # serverpod: ^1.1.1
   # path: ^1.8.0
 
 dev_dependencies:

@@ -85,11 +85,7 @@ class AuthRepository {
     try {
       final result = await session.db
           .query('SELECT token FROM invitaciones WHERE email = \'$email\'');
-      if (result.isEmpty) {
-        return 'Email not found';
-      } else {
-        return result.first.first;
-      }
+      return result.first.first;
     } catch (e) {
       rethrow;
     }
@@ -105,7 +101,7 @@ class AuthRepository {
   /// verificación para restablecer una contraseña.
   ///
 
-  Future<bool> validarCodigoResetPassword({
+  Future<List> validarCodigoResetPassword({
     required Session session,
     required String codigo,
   }) async {
@@ -113,12 +109,8 @@ class AuthRepository {
       final codigoEnDb = await session.db.query(
         'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
       );
-      if (codigoEnDb.isEmpty) {
-        throw Exception(
-          'Codigo no valido',
-        );
-      }
-      return true;
+
+      return codigoEnDb;
     } catch (e) {
       rethrow;
     }

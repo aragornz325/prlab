@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 part 'bloc_kyc_estado.dart';
 part 'bloc_kyc_evento.dart';
@@ -25,7 +27,8 @@ class BlocKyc extends Bloc<BlocKcyEvento, BlocKycEstado> {
 
     try {
       // TODO(Andreas):
-      // Este codigo es seudo, cuando tengamos el endpoint descomentar esto y modificarlo
+      // Este codigo es seudo, cuando tengamos el endpoint descomentar esto y
+      // modificarlo
 
       /* client.user.insertarKyc(
       state.nombre,
@@ -36,7 +39,6 @@ class BlocKyc extends Bloc<BlocKcyEvento, BlocKycEstado> {
       state.numeroDeContacto,
     ); */
 
-      const respuesta = true;
       emit(BlocKycEstadoExitoso.desde(state));
     } catch (e) {
       emit(BlocKycEstadoFallido.desde(state));

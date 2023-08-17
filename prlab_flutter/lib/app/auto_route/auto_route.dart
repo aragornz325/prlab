@@ -9,9 +9,13 @@ class AppRouter extends $AppRouter {
   @override
   final List<AutoRoute> routes = [
     AutoRoute(
-      path: '/',
-      initial: true,
       page: PaginaLogin.page,
+      initial: true,
+      path: '/login',
+    ),
+    AutoRoute(
+      page: RegistroRoute.page,
+      path: '/:token',
     ),
     AutoRoute(
       path: '/create-account',

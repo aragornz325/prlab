@@ -46,6 +46,11 @@ class AuthService {
       final emailToken = tokenAbierto.payload['email'];
       final tokenDb = await authRepository.traerTokenPorEmail(
           session: session, email: emailToken);
+
+      if (tokenDb.isEmpty) {
+        throw Exception('Token no valido');
+      }
+      
       if (token != tokenDb) {
         throw Exception('Token no valido');
       }
@@ -73,10 +78,19 @@ class AuthService {
   Future<bool> validarCodigoResetPassword({
     required Session session,
     required String codigo,
-  }) {
-    return authRepository.validarCodigoResetPassword(
-      session: session,
-      codigo: codigo,
-    );
+  }) async {
+    try {
+      final validarEnDb = await authRepository.validarCodigoResetPassword(
+        session: session,
+        codigo: codigo,
+      );
+      if (validarEnDb.isEmpty) {
+        throw Exception('Codigo no valido');
+      } else {
+        return true;
+      }
+    } catch (e) {
+      rethrow;
+    }
   }
 }

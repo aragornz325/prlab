@@ -3,6 +3,7 @@ import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 import 'package:serverpod_auth_client/module.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
+//TODO(cualquiera): mejorar naming de clase
 class EmailAuthControllerCustomPRLab extends EmailAuthController {
   EmailAuthControllerCustomPRLab(super.caller);
 
@@ -49,3 +50,17 @@ class EmailAuthControllerCustomPRLab extends EmailAuthController {
     }
   }
 }
+
+// void main() async {
+//   client = Client(
+//     'https://prlab-production.up.railway.app/',
+//     // authenticationKeyManager: FlutterAuthenticationKeyManager(
+//     //   runMode: 'staging',
+//     //   storage: SharedPreferenceStorage(),
+//     // ),
+//   )..connectivityMonitor = FlutterConnectivityMonitor();
+
+//   final s = EmailAuthControllerCustomPRLab(client.modules.auth);
+
+//   await s.cuenta();
+// }

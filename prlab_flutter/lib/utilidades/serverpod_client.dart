@@ -5,7 +5,10 @@ import 'package:serverpod_flutter/serverpod_flutter.dart';
 late SessionManager sessionManager;
 late Client client;
 
-Future<void> initializeServerpodClient({required String host}) async {
+Future<void> initializeServerpodClient({
+  required String hostUrl,
+  required String entorno,
+}) async {
   // The android emulator does not have access to the localhost of the machine.
   // const ipAddress = '10.0.2.2'; // Android emulator ip for the host
 
@@ -13,6 +16,7 @@ Future<void> initializeServerpodClient({required String host}) async {
   // computer.
 
   const ipAddress = 'https://prlab-production.up.railway.app/';
+  // //'http://localhost:8080/';
 
   // Sets up a singleton client object that can be used to talk to the server
   // from
@@ -21,9 +25,9 @@ Future<void> initializeServerpodClient({required String host}) async {
   // the default port. You will need to modify this to connect to staging or
   // production servers.
   client = Client(
-    ipAddress,
+    hostUrl,
     authenticationKeyManager: FlutterAuthenticationKeyManager(
-      runMode: 'staging',
+      runMode: entorno,
       storage: SharedPreferenceStorage(),
     ),
   )..connectivityMonitor = FlutterConnectivityMonitor();

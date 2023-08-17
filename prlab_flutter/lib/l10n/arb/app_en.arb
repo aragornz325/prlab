@@ -60,6 +60,7 @@
     "@page_create_admin_leading_pr_agency": {
         "description": "Text The leading global PR agency in screen create admin account above of textfield email"
     },
+
     "page_create_admin_button_send": "Send",
     "@page_create_admin_button_send": {
         "description": "Text Send in screen create admin account in button of send email"
@@ -71,6 +72,38 @@
     "page_create_admin_alertdialog_button_ok": "Ok",
     "@page_create_admin_alertdialog_button_ok": {
         "description": "Text in screen create admin account in alertdialog in button, Ok"
+    },
+    "page_sign_up_title": "Welcome!",
+    "@page_sign_up_title": {
+        "description": "Title shown in the page SignUp"
+    },    
+    "page_sign_up_subtitle": "Create an account",
+    "@page_sign_up_subtitle": {
+        "description": "Subtitle shown in the page SignUp"
+    },     
+    "page_sign_up_text_field_hint_example_mail": "examplebrand@prlab.co",
+    "@page_sign_up_text_field_hint_example_mail": {
+        "description": "HintText shown in the mail textfield in the page Signup"
+    },    
+      "page_sign_up_text_field_hint_password": "Password",
+    "@page_sign_up_text_field_hint_password": {
+        "description": "HintText  shown in the password textfield page SignUp"
+    },     
+      "page_sign_up_text_field_hint_confirm_password": "Confirm Password",
+    "@page_sign_up_text_field_hint_confirm_password": {
+        "description": "HintText shown in the confirm password textfield page SignUp"
+    }, 
+       "page_sign_up_terms_and_conditions_text": "I agree to the ",
+    "@page_sign_up_terms_and_conditions_text": {
+        "description": "Text of the first part of terms and conditions shown in the page SignUp"
+    },   
+           "page_sign_up_terms_and_conditions_text_link": "Terms and Conditions",
+    "@page_sign_up_terms_and_conditions_text_link": {
+        "description": "Hyperlink Text of the second part of terms and conditions shown in the page SignUp"
+    },  
+       "page_sign_up_button_sign_up": "Sign Up",
+    "@page_sign_up_button_sign_up": {
+        "description": "Text of the button sign up shown in the page SignUp"
     },
 
     "alert_dialog_title_recover_password" : "Recover password",
@@ -115,8 +148,8 @@
             }
         }
     },
-    "alert_dialgo_code_in": "code in",
-    "@alert_dialgo_code_in": {
+    "alert_dialog_code_in": "code in",
+    "@alert_dialog_code_in": {
         "description":"part text in alertdialog of textfield on tooltip, code in"
     },
     "page_create_account_admin_error_message_change_email": "Error to changed email",
@@ -166,7 +199,7 @@
     "@alert_dialog_button_title_button_resend": {
         "description":"text in alertdialog title button, Resend"
     },
-    "alert_dialog_button_subtitle_link_expired" : "The link has expired,\nplease click on “resend” to get a new one",
+    "alert_dialog_button_subtitle_link_expired" : "The link has expired,\nplease ask for a new one",
     "@alert_dialog_button_subtitle_link_expired": {
         "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
     },

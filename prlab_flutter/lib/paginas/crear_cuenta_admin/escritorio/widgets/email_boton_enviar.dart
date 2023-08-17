@@ -42,7 +42,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             BoxShadow(
               offset: const Offset(0, 10),
               blurRadius: 30,
-              // TODO(anyone): cambiar cuando este seteado los themas
+              // TODO(mati): cambiar cuando este seteado los themas
               color: const Color(0xff000000).withOpacity(.25),
             ),
           ],
@@ -120,7 +120,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                           }
                         : () {},
                     texto: l10n.page_create_admin_button_send,
-                    // TODO(anyone): cambiar por la variable del bloc
+                    // TODO(mati): cambiar por la variable del bloc
                     habilitado: state.esEmailValido,
                   ),
                 );

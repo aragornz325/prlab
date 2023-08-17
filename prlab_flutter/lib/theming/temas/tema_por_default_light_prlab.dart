@@ -13,7 +13,6 @@ final temaPorDefectoPRLab = ThemeData.from(
 );
 
 // TODO(Manu): Arreglar cuando nico tenga la idea generada.
-
 // ThemeData? _temaPorDefectoPRLab;
 
 // ThemeData get temaPorDefectoPRLab {
