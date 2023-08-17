@@ -6,11 +6,11 @@ modules:
   serverpod_auth:
     nickname: auth
 
-extraClasses:
-  - package:prlab_commons/prlab_commons.dart:Cliente
-  - package:prlab_commons/prlab_commons.dart:Comentario
-  - package:prlab_commons/prlab_commons.dart:Contacto
-  - package:prlab_commons/prlab_commons.dart:MensajeRegistro
-  - package:prlab_commons/prlab_commons.dart:Organizacion
-  - package:prlab_commons/prlab_commons.dart:Proyecto
-  - package:prlab_commons/prlab_commons.dart:Publicacion
+# extraClasses:
+#   - package:prlab_commons/prlab_commons.dart:Cliente
+#   - package:prlab_commons/prlab_commons.dart:Comentario
+#   - package:prlab_commons/prlab_commons.dart:Contacto
+#   - package:prlab_commons/prlab_commons.dart:MensajeRegistro
+#   - package:prlab_commons/prlab_commons.dart:Organizacion
+#   - package:prlab_commons/prlab_commons.dart:Proyecto
+#   - package:prlab_commons/prlab_commons.dart:Publicacion
