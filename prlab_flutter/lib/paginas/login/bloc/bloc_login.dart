@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:prlab_flutter/prlab_configuracion/base.dart';
 import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 import 'package:prlab_flutter/utilidades/funciones/validators.dart';
+import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 import 'package:serverpod_auth_client/module.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
@@ -118,7 +119,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
         );
       } else {
         throw UnimplementedError(
-          'error al mandar el codigo de cambiar contraseña',
+          'Error al mandar el codigo de cambiar contraseña al mail del usuario',
         );
       }
     } catch (e, st) {
@@ -143,36 +144,17 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
   ) async {
     emit(BlocLoginEstadoCargando.desde(state));
     try {
-      // TODO(Gon): Esta funcion es para la pantalla de louka aca va la funcion que verifica el codigo de chivo
-      final respuesta = await emailAuth.resetPassword(
-        event.email,
-        event.codigo,
-        event.password,
-      );
+      final respuesta =
+          await client.auth.validarCodigoResetPassword(event.codigo);
       if (respuesta) {
-        final response = await emailAuthControllerCustomPRLab.iniciarSesion(
-          event.email,
-          event.password,
-        );
-        final userInfo = response.userInfo;
-        if (userInfo == null) {
-          emit(
-            BlocLoginEstadoExitoso.desde(state),
-          );
-        } else {
-          emit(
-            BlocLoginEstadoError.desde(
-              state,
-              mensajeDeError: MensajesDeErrorDelLogin.userNotFound,
-            ),
-          );
-        }
-      } else {
         emit(
-          BlocLoginEstadoError.desde(
-            state,
-            mensajeDeError: MensajesDeErrorDelLogin.unknown,
-          ),
+          BlocLoginEstadoExitoso.desde(state),
+        );
+      } else {
+        // TODO(Gon): Verificar si esto esta bien(creo que tambien
+        // puede saltar si el codigo es invalido)
+        throw UnimplementedError(
+          'Error al mandar el codigo de cambiar contraseña al back',
         );
       }
     } catch (e, st) {
@@ -351,6 +333,6 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     return super.close();
   }
 
-  /// Eepo de los llamados a server pod
+  /// Repo de los llamados a server pod
   final EmailAuthController emailAuth;
 }

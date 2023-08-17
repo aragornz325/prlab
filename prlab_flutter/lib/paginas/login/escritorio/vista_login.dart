@@ -8,10 +8,9 @@ import 'package:prlab_flutter/paginas/login/escritorio/widgets/olvidaste_tu_cont
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/texto_bienvenida.dart';
 import 'package:prlab_flutter/paginas/login/utilidades/get_error_message.dart';
+import 'package:prlab_flutter/utilidades/funciones/validators.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
-
-import 'package:prlab_flutter/utilidades/funciones/validators.dart';
 
 /// Vista de escritorio de la pantalla login donde el usuario
 /// puede iniciar sesion
@@ -91,7 +90,8 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     SizedBox(
                       height: 10.ph,
                     ),
-                    // TODO(Gon): Cuando se manejen errores de login agregar los errores
+                    // TODO(Gon): Cuando se manejen errores de login agregar
+                    // los errores
                     // abajo de los textfields
                     SizedBox(
                       width: 360.pw,

@@ -61,19 +61,11 @@ class BlocLoginEventoEnviarCodigoAlMailDelUsuario extends BlocLoginEvento {
 /// Evento que envia el codigo al back para validarlo
 class BlocLoginEventoEnviarCodigoAlBack extends BlocLoginEvento {
   const BlocLoginEventoEnviarCodigoAlBack({
-    required this.password,
-    required this.email,
     required this.codigo,
   });
 
   /// Codigo ingresado por el usuario
   final String codigo;
-
-  /// Contraseña del usuario
-  final String password;
-
-  /// Email del usuario
-  final String email;
 }
 
 /// Evento para que empiece el temporizador del cronometro

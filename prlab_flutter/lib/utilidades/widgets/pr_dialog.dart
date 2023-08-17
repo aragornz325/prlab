@@ -83,8 +83,6 @@ class PRDialog extends StatefulWidget {
                       onTap: () {
                         context.read<BlocLogin>().add(
                               BlocLoginEventoEnviarCodigoAlBack(
-                                password: password,
-                                email: email,
                                 codigo: controllerCodigo.text,
                               ),
                             );
