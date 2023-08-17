@@ -27,7 +27,7 @@ class EncabezadoDeRecuperarContrasenia extends StatelessWidget {
             // TODO(Andreas): Hablar con nico sobre problema con
             // el paquete que en la resolucion
             // de telefono no se achica lo suficiente el texto.
-            l10n.pageRecoverPasswordTitle,
+            l10n.commonRecoverPassword,
             style: TextStyle(
               color: colores.tertiary,
               fontSize: 40.pf,

@@ -51,7 +51,7 @@ class PrLabButtonSend extends StatelessWidget {
         ),
         onPressed: onPressed,
         child: Text(
-          l10n.alert_dialog_button_title_send,
+          l10n.commonSend,
           style: TextStyle(
             color: habilitarColorBoton
                 ? colores.primary

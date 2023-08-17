@@ -34,7 +34,7 @@ class TextoBienvenida extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 4.pw),
               child: Text(
-                l10n.page_login_greetings,
+                l10n.pageLoginGreetings,
                 style: TextStyle(
                   color: colores.tertiary,
                   fontSize: 40.pf,
@@ -44,7 +44,7 @@ class TextoBienvenida extends StatelessWidget {
             ),
             SizedBox(height: 10.ph),
             Text(
-              l10n.page_login_log_in_to,
+              l10n.pageLoginLogInTo,
               style: TextStyle(
                 color: colores.secondary,
                 fontSize: 15.pf,

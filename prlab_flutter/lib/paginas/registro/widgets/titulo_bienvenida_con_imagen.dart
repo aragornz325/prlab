@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
+import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 class TituloBienvenidaConImagen extends StatelessWidget {
@@ -11,6 +12,7 @@ class TituloBienvenidaConImagen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final colores = context.colores;
     return SizedBox(
       height: 150.ph,
       width: 300.pw,
@@ -29,10 +31,10 @@ class TituloBienvenidaConImagen extends StatelessWidget {
             left: 40.pw,
             child: Center(
               child: Text(
-                l10n.page_sign_up_title,
+                l10n.pageSignUpTitle,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: const Color(0xff363636),
+                  color: colores.secondary,
                   fontSize: 40.pf,
                   fontWeight: FontWeight.w600,
                 ),

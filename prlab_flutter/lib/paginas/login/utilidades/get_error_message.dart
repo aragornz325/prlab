@@ -11,13 +11,13 @@ String getErrorMessage(
   final l10n = context.l10n;
   return switch (loginErrorMessage) {
     MensajesDeErrorDelLogin.invalidCredentials =>
-      l10n.login_error_invalid_credentials,
-    MensajesDeErrorDelLogin.userNotFound => l10n.login_error_user_not_found,
+      l10n.pageLoginErrorInvalidCredentials,
+    MensajesDeErrorDelLogin.userNotFound => l10n.pageLoginErrorUserNotFound,
     MensajesDeErrorDelLogin.userCreationDenied =>
-      l10n.login_error_user_creation_denied,
-    MensajesDeErrorDelLogin.internalError => l10n.login_error_internal_error,
+      l10n.pageLoginErrorUserCreationDenied,
+    MensajesDeErrorDelLogin.internalError => l10n.pageLoginErrorInternalError,
     MensajesDeErrorDelLogin.tooManyFailedAttempts =>
-      l10n.login_error_too_many_failed_attempts,
-    MensajesDeErrorDelLogin.unknown => l10n.login_error_desconocido,
+      l10n.pageLoginErrorTooManyFailedAttempts,
+    MensajesDeErrorDelLogin.unknown => l10n.pageLoginErrorUnknown,
   };
 }

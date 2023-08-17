@@ -4,7 +4,7 @@ String obtenerPrimerasLetrasAntesSimbolo(String email) {
   return switch (indexOfAt) {
     1 => email.substring(0, 1),
     2 => email.substring(0, 2),
-    _ => email  .substring(0, 3),
+    _ => email.substring(0, 3),
   };
 }
 

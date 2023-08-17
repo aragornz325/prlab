@@ -57,7 +57,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
 
     final colores = context.colores;
 
-    final tooltipMessage = l10n.alert_dialog_tooltip_request_new_code(
+    final tooltipMessage = l10n.alertDialogTooltipRequestNewCode(
       widget.segundosFaltantes,
       widget.minutosFaltantes,
     );
@@ -80,8 +80,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
       },
       decoration: InputDecoration(
         counterText: '',
-        labelText:
-            l10n.alert_dialog_textfield_hitText_text_email_verification_code,
+        labelText: l10n.alertDialogTextfieldHitTextTextEmailVerificationCode,
         labelStyle: TextStyle(
           fontSize: 15.pf,
           fontWeight: FontWeight.w400,
@@ -118,8 +117,8 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                       : null,
                   child: Text(
                     !widget.solicitoNuevoCodigo
-                        ? l10n.alert_dialog_textfield_suffix_get_code
-                        : l10n.alert_dialog_textfield_suffix_get_code,
+                        ? l10n.alertDialogTextfieldSuffixGetCode
+                        : l10n.alertDialogTextfieldSuffixGetCode,
                     style: TextStyle(
                       decoration: TextDecoration.combine([
                         if (!widget.solicitoNuevoCodigo)

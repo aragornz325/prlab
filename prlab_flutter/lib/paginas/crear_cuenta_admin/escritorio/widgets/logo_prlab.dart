@@ -30,18 +30,18 @@ class LogoPrLabAgencia extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              l10n.page_create_admin_account_title_prlab,
+              l10n.commonPRLab,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: colores.secondary,
+                color: colores.tertiary,
                 fontSize: 40.pf,
                 fontWeight: FontWeight.w600,
               ),
             ),
             Text(
-              l10n.page_create_admin_account_subtitle_international_prlab_agency,
+              l10n.pageCreateAdminAccountSubtitleInternationalPRLabAgency,
               style: TextStyle(
-                color: colores.secondary,
+                color: colores.tertiary,
                 fontSize: 14.pf,
                 fontWeight: FontWeight.w400,
               ),

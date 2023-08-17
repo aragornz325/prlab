@@ -81,7 +81,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                           _habilitarBotonLogin();
                           setState(() {});
                         },
-                        hintText: l10n.page_login_placeholder_email,
+                        hintText: l10n.pageLoginPlaceholderEmail,
                       ),
                     ),
 
@@ -96,7 +96,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       height: 40.ph,
                       child: PRTextFormFieldPassword(
                         controller: controllerPassword,
-                        hintText: l10n.page_login_placeholder_password,
+                        hintText: l10n.pageLoginPlaceholderPassword,
                         onChanged: (_) => _habilitarBotonLogin(),
                       ),
                     ),
@@ -130,7 +130,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       habilitado: state.botonHabilitado,
                       mostrarEstadoDeCarga: state.estaCargandoInicioDeSesion,
                       onTap: _onTapBotonIniciarSesion,
-                      texto: l10n.page_login_button_text,
+                      texto: l10n.pageLoginButtonText,
                     )
                   ],
                 ),

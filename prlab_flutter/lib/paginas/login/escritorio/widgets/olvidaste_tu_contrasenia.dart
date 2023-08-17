@@ -59,7 +59,7 @@ class _OlvidasteTuContraseniaState extends State<OlvidasteTuContrasenia> {
               }
             },
             child: Text(
-              l10n.page_login_tappable_text,
+              l10n.pageLoginTappableText,
               style: TextStyle(
                 color: widget.cargoElMail
                     ? colores.primary

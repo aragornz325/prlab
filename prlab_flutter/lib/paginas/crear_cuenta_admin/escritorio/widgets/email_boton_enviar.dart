@@ -42,8 +42,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             BoxShadow(
               offset: const Offset(0, 10),
               blurRadius: 30,
-              // TODO(mati): cambiar cuando este seteado los themas
-              color: const Color(0xff000000).withOpacity(.25),
+              color: Colors.black.withOpacity(.25),
             ),
           ],
         ),
@@ -54,7 +53,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              l10n.page_create_admin_client_email,
+              l10n.pageCreateAdminClientEmail,
               style: TextStyle(
                 color: colores.tertiary,
                 fontSize: 30.pf,
@@ -63,7 +62,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             ),
             SizedBox(height: 10.ph),
             Text(
-              l10n.page_create_admin_leading_pr_agency,
+              l10n.pageCreateAdminLeadingPRAgency,
               style: TextStyle(
                 color: colores.secondary,
                 fontSize: 15.pf,
@@ -119,8 +118,8 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                             // TODO(anyone): agregarle funcionalidad
                           }
                         : () {},
-                    texto: l10n.page_create_admin_button_send,
-                    // TODO(mati): cambiar por la variable del bloc
+                    texto: l10n.commonSend,
+                    // TODO: cambiar por la variable del bloc
                     habilitado: state.esEmailValido,
                   ),
                 );

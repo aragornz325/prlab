@@ -30,10 +30,9 @@ class VistaEsperaValidacionDeTokenEscritorio extends StatelessWidget {
                       Navigator.of(context).pop();
                     },
                     context: context,
-                    titulo:
-                        l10n.alert_dialog_button_subtitle_something_went_wrong,
+                    titulo: l10n.commonSomethingWentWrong,
                     textoDeAdvertencia:
-                        l10n.alert_dialog_button_subtitle_link_expired,
+                        l10n.alertDialogButtonSubtitleLinkExpired,
                   ),
                 );
               }

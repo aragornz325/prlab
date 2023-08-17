@@ -31,7 +31,7 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
     final l10n = context.l10n;
 
     final textoAQuienFueEnviadoEmail =
-        '${l10n.alert_dialog_sub_title_verification_code_send}'
+        '${l10n.alertDialogSubTitleVerificationCodeSend}'
         ' ${obtenerPrimerasLetrasAntesSimbolo(email)}***@'
         '${obtenerTextoDespuesSimbolo(email)}';
     final state = context.watch<BlocLogin>().state;
@@ -46,7 +46,7 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
               ),
             );
       },
-      titulo: l10n.alert_dialog_title_recover_password,
+      titulo: l10n.commonRecoverPassword,
       content: Column(
         children: [
           // TODO: cambiar para cuando este en los textfield de factory

@@ -83,7 +83,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
               SizedBox(height: 40.sh),
               PRTextFormField.soloLetras(
                 controller: apellidoController,
-                hintText: l10n.pageKycLastnameHintText,
+                hintText: l10n.pageKycLastNameHintText,
                 prefixIcon: Icons.person_outline,
                 context: context,
                 onChanged: (_) => context.read<BlocKyc>().add(
@@ -144,7 +144,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                 builder: (context, state) {
                   return PRBoton(
                     onTap: _onTapContinuar,
-                    texto: l10n.pageKycContinueTextButton,
+                    texto: l10n.commonContinue,
                     habilitado: state.esFormularioCompletado,
                   );
                 },
