@@ -115,7 +115,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                     width: 782.pw,
                     onTap: state.esEmailValido
                         ? () {
-                            _funcionEnviarEmail(context);
+                            // TODO(anyone): agregarle funcionalidad
                           }
                         : () {},
                     texto: l10n.commonSend,

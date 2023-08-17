@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_app.g.dart';
 import 'package:prlab_flutter/theming/temas/tema_por_default_light_prlab.dart';
 import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';
+import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -18,24 +18,17 @@ class App extends StatelessWidget {
     return FullResponsiveApp(
       child: MultiRepositoryProvider(
         providers: [
+          RepositoryProvider<EmailAuthController>(
+            create: (BuildContext context) =>
+                EmailAuthController(client.modules.auth),
+          ),
           RepositoryProvider<EmailAuthControllerCustomPRLab>(
             create: (BuildContext context) => EmailAuthControllerCustomPRLab(
               client.modules.auth,
             ),
           ),
         ],
-        child: MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => BlocLogin(
-                emailAuthControllerCustomPRLab: EmailAuthControllerCustomPRLab(
-                  client.modules.auth,
-                ),
-              ),
-            ),
-          ],
-          child: const AppView(),
-        ),
+        child: const AppView(),
       ),
     );
   }

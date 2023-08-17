@@ -10,11 +10,11 @@ class AppRouter extends $AppRouter {
   final List<AutoRoute> routes = [
     AutoRoute(
       page: PaginaLogin.page,
+      initial: true,
       path: '/login',
     ),
     AutoRoute(
       page: RegistroRoute.page,
-      initial: true,
       path: '/:token',
     ),
     AutoRoute(

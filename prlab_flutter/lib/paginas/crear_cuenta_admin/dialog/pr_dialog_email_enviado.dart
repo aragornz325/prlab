@@ -34,7 +34,7 @@ class PRDialogEmailEnviado extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  // TODO: esto va a definirse por el cliente
+                  // TODO(anyone): esto va a definirse por el cliente
                   text: 'An email has been sent to\n',
                   style: TextStyle(
                     color: const Color(0xff707070),

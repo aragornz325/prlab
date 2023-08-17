@@ -49,6 +49,7 @@ class SeccionLogoBienvenida extends StatelessWidget {
                     l10n.pageLoginLeadingAgency,
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                      // TODO(anyone): Cambiar colors a los del theme
                       color: Colors.white,
                       fontSize: 64.pf,
                       fontWeight: FontWeight.w700,
@@ -67,9 +68,6 @@ class SeccionLogoBienvenida extends StatelessWidget {
                       width: 100.pw,
                     )
                   ],
-                ),
-                SizedBox(
-                  height: 85.ph,
                 ),
               ],
             ),

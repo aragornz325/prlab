@@ -11,9 +11,19 @@
         "description": "Log in to the web/app"
     },
 
+    "pageLoginButtonText": "Iniciar Sesión",
+    "@pageLoginButtonText": {
+        "description": "Log in to the web/app"
+    },
+
     "pageLoginPlaceholderEmail": "marcaejemplo@prlab.co",
     "@pageLoginPlaceholderEmail": {
         "description": "Text shown on a button that leads to register page"
+    },
+
+    "pageLoginPlaceholderPassword": "Contraseña",
+    "@pageLoginPlaceholderPassword": {
+        "description": "Placeholder passwordstextfields"
     },
 
     "pageLoginTappableText": "¿Olvidaste tu contraseña?",
@@ -24,6 +34,36 @@
     "pageLoginLeadingAgency": "La agencia de relaciones públicas líder a nivel mundial",
     "@pageLoginLeadingAgency": {
         "description": "Eslogan on the register/login page "
+    },
+
+    "pageLoginErrorInvalidCredentials": "Credenciales inválidas",
+    "@pageLoginErrorInvalidCredentials": {
+        "description": " Las credenciales proporcionadas no son válidas para acceder al sistema. Asegúrate de ingresar la combinación correcta de nombre de usuario y contraseña, y vuelve a intentarlo."
+    },
+
+    "pageLoginErrorUserNotFound": "Usuario no encontrado",
+    "@pageLoginErrorUserNotFound": {
+        "description": "La solicitud no pudo ser completada debido a que el usuario especificado no existe en el sistema. Por favor, verifica el nombre de usuario e inténtalo nuevamente."
+    },
+
+    "pageLoginErrorUserCreationDenied": "Denegación de creación de usuario",
+    "@pageLoginErrorUserCreationDenied": {
+        "description": "No se pudo crear un nuevo usuario debido a restricciones o políticas de acceso. Contacta al administrador del sistema para obtener más información o asistencia."
+    },
+
+    "pageLoginErrorInternalError": "Error interno del servidor",
+    "@pageLoginErrorInternalError": {
+        "description": "Ha ocurrido un error inesperado en el servidor mientras se procesaba tu solicitud. Por favor, intenta de nuevo más tarde. Si el problema persiste, comunícalo al equipo de soporte técnico."
+    },
+
+    "pageLoginErrorTooManyFailedAttempts": "Demasiados intentos fallidos",
+    "@pageLoginErrorTooManyFailedAttempts": {
+        "description": "Se ha excedido el número permitido de intentos fallidos para esta acción. Por razones de seguridad, tu acceso ha sido temporalmente bloqueado. Espera un tiempo antes de volver a intentarlo o comunica este problema al soporte."
+    },
+
+    "pageLoginErrorUnknown": "Error desconocidor",
+    "@pageLoginErrorUnknown": {
+        "description": "Se ha producido un error no identificado mientras se procesaba tu solicitud. Lamentablemente, no se dispone de más detalles en este momento. Por favor, comunica este problema al equipo de soporte para obtener asistencia."
     },
 
     "pageCreateAdminAccountSubtitleInternationalPRLabAgency": "International PR Agency",

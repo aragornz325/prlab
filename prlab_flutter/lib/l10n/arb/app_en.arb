@@ -11,12 +11,21 @@
         "description": "Log in to the web/app"
     },
 
-    "pageLoginPlaceholderEmail": "examplebrand@prlab.co",
-    "@pageLoginPlaceholderEmail": {
-        "description": "Text shown on a button that leads to register page"
+    "pageLoginButtonText": "Login",
+    "@pageLoginButtonText": {
+        "description": "Log in to the web/app"
     },
 
-    
+    "pageLoginPlaceholderEmail": "examplebrand@prlab.co",
+    "@pageLoginPlaceholderEmail": {
+        "description": "Placeholder emailtextfields"
+    },
+
+    "pageLoginPlaceholderPassword": "Password",
+    "@pageLoginPlaceholderPassword": {
+        "description": "Placeholder passwordstextfields"
+    },
+
     "pageLoginTappableText": "Did you forget your password?",
     "@pageLoginTappableText": {
         "description": "Ask you if you forget your password"
@@ -25,6 +34,36 @@
     "pageLoginLeadingAgency": "The leading global PR agency",
     "@pageLoginLeadingAgency": {
         "description": "Eslogan on the register/login page "
+    },
+
+    "pageLoginErrorInvalidCredentials": "Invalid Credentials",
+    "@pageLoginErrorInvalidCredentials": {
+        "description": "The provided credentials are not valid to access the system. Make sure to enter the correct combination of username and password, and try again."
+    },
+
+    "pageLoginErrorUserNotFound": "User Not Found",
+    "@pageLoginErrorUserNotFound": {
+        "description": "The request could not be completed because the specified user does not exist in the system. Please verify the username and try again."
+    },
+
+    "pageLoginErrorUserCreationDenied": "User Creation Denied",
+    "@pageLoginErrorUserCreationDenied": {
+        "description": "A new user could not be created due to access restrictions or policies. Please contact the system administrator for more information or assistance."
+    },
+
+    "pageLoginErrorInternalError": "Internal Server Error",
+    "@pageLoginErrorInternalError": {
+        "description": "An unexpected error occurred on the server while processing your request. Please try again later. If the problem persists, report it to the technical support team."
+    },
+
+    "pageLoginErrorTooManyFailedAttempts": "Too Many Failed Attempts",
+    "@pageLoginErrorTooManyFailedAttempts": {
+        "description": "The allowed number of failed attempts for this action has been exceeded. For security reasons, your access has been temporarily blocked. Wait for some time before trying again, or report this issue to support."
+    },
+
+    "pageLoginErrorUnknown": "Unknown Error",
+    "@pageLoginErrorUnknown": {
+        "description": "An unidentified error has occurred while processing your request. Unfortunately, more details are not available at this time. Please report this issue to the support team for assistance."
     },
     
     "pageCreateAdminAccountSubtitleInternationalPRLabAgency": "International PR Agency",
@@ -45,7 +84,6 @@
         "description": "Text in screen create admin account in alertdialog in title, email send"
     },
     
-    
     "pageSignUpTitle": "Welcome!",
     "@pageSignUpTitle": {
         "description": "Title shown in the page SignUp"
@@ -54,7 +92,6 @@
     "@pageSignUpSubtitle": {
         "description": "Subtitle shown in the page SignUp"
     },     
-    
     
     "pageSignUpTextFieldHintConfirmPassword": "Confirm Password",
     "@pageSignUpTextFieldHintConfirmPassword": {
@@ -72,8 +109,7 @@
     "@pageSignUpButtonSignUp": {
         "description": "Text of the button sign up shown in the page SignUp"
     },
-    
-    
+        
     "alertDialogSubTitleVerificationCodeSend" : "Enter the 8 digit verification code sent to",
     "@alertDialogSubTitleVerificationCodeSend": {
         "description":"text in subtitle textfield(who was the code sent to),Enter the 8 digit verification code sent to"

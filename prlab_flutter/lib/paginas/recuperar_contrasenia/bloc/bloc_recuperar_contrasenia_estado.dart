@@ -24,7 +24,8 @@ sealed class BlocRecuperarContraseniaEstado {
   final String contrasenia;
 
   /// Campo de texto para validar que efectivamente la contraseña se
-  /// haya escrito 2 veces, esto minimiza errores de tipeo por parte del usuario.
+  /// haya escrito 2 veces, esto minimiza errores de tipeo por
+  /// parte del usuario.
   final String contraseniaRepetida;
 
   /// Si los campos de texto de contraseñas fueron completados.

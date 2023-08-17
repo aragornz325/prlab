@@ -15,7 +15,9 @@ class LogoPrLabAgencia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     final colores = context.colores;
+
     return Row(
       children: [
         SizedBox(

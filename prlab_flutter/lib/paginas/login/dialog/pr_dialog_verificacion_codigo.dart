@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/utilidades/funciones/functions.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
@@ -11,8 +13,9 @@ import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 class PRDialogVerificacionCodigo extends StatelessWidget {
   /// {@macro PRDialogVerificacionCodigo}
   const PRDialogVerificacionCodigo({
-    required this.controller,
+    required this.controllerCodigo,
     required this.email,
+    required this.password,
     super.key,
   });
 
@@ -20,7 +23,8 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
   final String email;
 
   /// controller del alertdialog
-  final TextEditingController controller;
+  final TextEditingController controllerCodigo;
+  final String password;
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +34,28 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
         '${l10n.alertDialogSubTitleVerificationCodeSend}'
         ' ${obtenerPrimerasLetrasAntesSimbolo(email)}***@'
         '${obtenerTextoDespuesSimbolo(email)}';
-
+    final state = context.watch<BlocLogin>().state;
     return PRDialog.solicitudAccion(
       height: 270.ph,
       context: context,
+      estaHabilitado: state.longitudCodigo == 8,
       onTap: () {
-        Navigator.of(context).pop();
+        context.read<BlocLogin>().add(
+              BlocLoginEventoValidarCodigo(
+                codigo: controllerCodigo.text,
+              ),
+            );
       },
       titulo: l10n.commonRecoverPassword,
       content: Column(
         children: [
           // TODO: cambiar para cuando este en los textfield de factory
-          PrLabTextfield(controller: controller),
-
+          PrLabTextfield(
+            controller: controllerCodigo,
+            solicitoNuevoCodigo: state is BlocLoginEstadoCronometroCorriendo,
+            email: email,
+            segundosFaltantes: state.duracionTimer,
+          ),
           SizedBox(height: 5.ph),
           Text(
             textoAQuienFueEnviadoEmail,

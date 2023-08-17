@@ -11,6 +11,7 @@ class PRBoton extends StatelessWidget {
     required this.habilitado,
     this.width = 359,
     this.outlined = false,
+    this.mostrarEstadoDeCarga = false,
     super.key,
   });
 
@@ -35,6 +36,7 @@ class PRBoton extends StatelessWidget {
   final String texto;
   final bool habilitado;
   final bool outlined;
+  final bool mostrarEstadoDeCarga;
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
@@ -47,7 +49,7 @@ class PRBoton extends StatelessWidget {
         decoration: BoxDecoration(
           color: outlined
               ? colores.background
-              : habilitado
+              : habilitado && !mostrarEstadoDeCarga
                   ? colores.primary
                   : colores.primary.withOpacity(.2),
           borderRadius: BorderRadius.circular(25),
@@ -60,18 +62,20 @@ class PRBoton extends StatelessWidget {
               : null,
         ),
         child: Center(
-          child: Text(
-            texto,
-            style: TextStyle(
-              fontSize: 16.pf,
-              fontWeight: FontWeight.w600,
-              color: outlined
-                  ? habilitado
-                      ? colores.primary
-                      : colores.primary.withOpacity(.2)
-                  : colores.onPrimary,
-            ),
-          ),
+          child: mostrarEstadoDeCarga
+              ? const CircularProgressIndicator()
+              : Text(
+                  texto,
+                  style: TextStyle(
+                    fontSize: 16.pf,
+                    fontWeight: FontWeight.w600,
+                    color: outlined
+                        ? habilitado
+                            ? colores.primary
+                            : colores.primary.withOpacity(.2)
+                        : colores.background,
+                  ),
+                ),
         ),
       ),
     );

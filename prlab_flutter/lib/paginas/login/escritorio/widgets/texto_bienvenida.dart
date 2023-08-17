@@ -13,7 +13,9 @@ class TextoBienvenida extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     final colores = context.colores;
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -22,7 +24,9 @@ class TextoBienvenida extends StatelessWidget {
           padding: EdgeInsets.only(bottom: 30.ph),
           child: Image.asset(
             Assets.assets_images_mano_saludando_png,
-            fit: BoxFit.cover,
+            height: 180.ph,
+            width: 110.pw,
+            fit: BoxFit.contain,
           ),
         ),
         Column(
@@ -50,7 +54,7 @@ class TextoBienvenida extends StatelessWidget {
           ],
         ),
         SizedBox(
-          width: 90.pw,
+          width: 130.pw,
         )
       ],
     );
