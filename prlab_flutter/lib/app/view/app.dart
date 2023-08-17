@@ -23,11 +23,6 @@ class App extends StatelessWidget {
               client.modules.auth,
             ),
           ),
-          RepositoryProvider<EmailAuthControllerCustomPRLab>(
-            create: (BuildContext context) => EmailAuthControllerCustomPRLab(
-              client.modules.auth,
-            ),
-          ),
         ],
         child: MultiBlocProvider(
           providers: [

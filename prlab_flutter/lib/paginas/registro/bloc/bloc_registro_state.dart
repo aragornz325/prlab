@@ -52,7 +52,7 @@ class BlocRegistroEstado extends Equatable {
       ];
 
   bool get estaCompletoElFormulario =>
-      terminosAceptados == true &&
+      terminosAceptados &&
       email.isNotEmpty &&
       password.isNotEmpty &&
       passwordConfirmada.isNotEmpty;
@@ -79,14 +79,15 @@ class BlocRegistroEstadoUsuarioRegistradoConExito extends BlocRegistroEstado {
   BlocRegistroEstadoUsuarioRegistradoConExito.desde(super.otro) : super.desde();
 }
 
-/// Estado de carga de los componentes de la pantalla registro, para mostrar un
-/// CircularProgressIndicator()
+/// Estado de carga  de los componentes de la pantalla registro, para mostrar un
+/// estado de carga, de espera, hacerle saber al usuario que tiene que esperar.
 class BlocRegistroEstadoCargando extends BlocRegistroEstado {
   BlocRegistroEstadoCargando.desde(super.otro) : super.desde();
 }
 
-/// Estado de carga de los componentes de la pantalla registro, para mostrar un
-/// CircularProgressIndicator()
+/// Estado de carga de los componentes de la pantalla registro, especificamente
+/// para validar token, para mostrar un estado de carga, de espera,
+/// hacerle saber al usuario que tiene que esperar.
 class BlocRegistroEstadoCargandoValidacionDeToken extends BlocRegistroEstado {
   BlocRegistroEstadoCargandoValidacionDeToken.desde(super.otro) : super.desde();
 }
@@ -103,8 +104,8 @@ class BlocRegistroEstadoError extends BlocRegistroEstado {
   final MensajesDeErrorRegistro errorMessage;
 }
 
-/// Estado de error de los componentes de la pantalla registro, acompañado
-/// por un mensaje de error
+/// Estado de error de los componentes de la pantalla registro luego de validar
+/// el token, acompañado por un alert dialog que muestra un mensaje de error.
 class BlocRegistroEstadoErrorTokenInvalido extends BlocRegistroEstado {
   BlocRegistroEstadoErrorTokenInvalido.desde(
     super.otro, {

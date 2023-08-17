@@ -19,7 +19,8 @@ class RegistroPage extends StatelessWidget {
   });
 
   /// Token de autenticacion que recibe la pagina luego de que el usuario
-  /// clickea el link de registrar cuenta
+  /// clickea el link de registrar cuenta que lo recibe en un email
+  /// enviado previamente por un administrador.
 
   final String tokenAuth;
 

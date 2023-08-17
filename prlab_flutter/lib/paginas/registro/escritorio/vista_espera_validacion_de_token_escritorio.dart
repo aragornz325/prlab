@@ -21,7 +21,6 @@ class VistaEsperaValidacionDeTokenEscritorio extends StatelessWidget {
           BlocConsumer<BlocRegistro, BlocRegistroEstado>(
             listener: (context, state) {
               if (state is BlocRegistroEstadoErrorTokenInvalido) {
-                // TODO(Sam): Poner el fondo gris cuando se abre el dialog
                 PRDialog.error(
                   context: context,
                   esError: false,
@@ -35,9 +34,8 @@ class VistaEsperaValidacionDeTokenEscritorio extends StatelessWidget {
                     strokeWidth: 12,
                   ),
                 );
-              } else {
-                return Container();
               }
+              return const SizedBox.shrink();
             },
           ),
           const Spacer(),

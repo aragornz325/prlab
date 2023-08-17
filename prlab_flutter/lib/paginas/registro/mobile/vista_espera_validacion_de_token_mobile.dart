@@ -9,7 +9,7 @@ class VistaEsperaValidacionDeTokenMobile extends StatelessWidget {
   const VistaEsperaValidacionDeTokenMobile({
     super.key,
   });
-
+// TODO(SAM): Checkear doble laburo
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +34,8 @@ class VistaEsperaValidacionDeTokenMobile extends StatelessWidget {
                     strokeWidth: 12,
                   ),
                 );
-              } else {
-                return Container();
               }
+              return const SizedBox.shrink();
             },
           ),
           const Spacer(),

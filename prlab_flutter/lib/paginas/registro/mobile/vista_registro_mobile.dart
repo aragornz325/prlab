@@ -24,7 +24,9 @@ class VistaRegistroMobile extends StatefulWidget {
 }
 
 class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
-  /// Key del form para validar luego.
+  /// Key del form para validar que todos los textfields esten completos
+  /// adecuadamente para poder mostrar el mensaje de error pertinente y a su vez
+  /// deshabilitar el boton registrarse.
   final _formKey = GlobalKey<FormState>();
 
   /// Controlador del textfield que tiene el email del usuario
@@ -34,11 +36,10 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
   final controllerPassword = TextEditingController();
 
   /// Controlador del textfield que permite al usuario confirmar la password
-  final controllerConfirmarPassword = TextEditingController();
+  final controllerPasswordRepetida = TextEditingController();
 
   @override
   void initState() {
-    print(widget.email);
     controllerEmail = TextEditingController(
       text: widget.email,
     );
@@ -49,13 +50,15 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
   void dispose() {
     controllerEmail.dispose();
     controllerPassword.dispose();
-    controllerConfirmarPassword.dispose();
+    controllerPasswordRepetida.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final bloc = context.watch<BlocRegistro>();
+    // TODO(SAM): baja performance, llamar watch dentro del build baja mucho,
+    // localizar mejor
     final l10n = context.l10n;
     final tema = context.colores;
 
@@ -173,7 +176,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                               width: 359.pw,
                               child: PRTextFormFieldPassword(
                                 validator: _validarContraseniaRepetida,
-                                controller: controllerConfirmarPassword,
+                                controller: controllerPasswordRepetida,
                                 hintText: l10n
                                     .page_sign_up_text_field_hint_confirm_password,
                                 esCreacionPassword: true,
@@ -181,7 +184,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                   context.read<BlocRegistro>().add(
                                         BlocRegistroEventoRecolectarDatosRegistro(
                                           confirmarPassword:
-                                              controllerConfirmarPassword.text,
+                                              controllerPasswordRepetida.text,
                                         ),
                                       );
                                 },
@@ -234,8 +237,6 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                   BlocBuilder<BlocRegistro, BlocRegistroEstado>(
                                 builder: (context, state) {
                                   return PRBoton(
-                                    // TODO(SAM): Validar que el boton
-                                    //se deshabilite cuando hay algo incorrecto
                                     onTap: () {
                                       _agregarEventoDeEnviarDatosRegistro(
                                         context,
@@ -276,7 +277,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
     BlocRegistroEstado state,
   ) {
     if (!_formKey.esValido ||
-        !(controllerConfirmarPassword.text == controllerPassword.text) ||
+        !(controllerPasswordRepetida.text == controllerPassword.text) ||
         !state.terminosAceptados) return;
     context.read<BlocRegistro>().add(
           BlocRegistroEventoEnviarDatosRegistro(

@@ -10,9 +10,6 @@ abstract class BlocRegistroEvento extends Equatable {
   List<Object> get props => [];
 }
 
-/// Evento que inicializa la variable terminosAceptados en false
-class BlocRegistroEventoInicializar extends BlocRegistroEvento {}
-
 /// Evento que invierte el valor de terminosAceptados que se inicia el false
 class BlocRegistroEventoAceptarTerminos extends BlocRegistroEvento {
   const BlocRegistroEventoAceptarTerminos({
