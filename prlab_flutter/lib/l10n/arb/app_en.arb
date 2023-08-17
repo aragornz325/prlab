@@ -1,138 +1,101 @@
 {
     "@@locale": "en",
 
-    "page_login_greetings": "Hi Again!",
-    "@page_login_greetings": {
+    "pageLoginGreetings": "Hi Again!",
+    "@pageLoginGreetings": {
         "description": "Welcomes the user back"
     },
 
-    "page_login_log_in_to": "Log in to",
-    "@page_login_log_in_to": {
+    "pageLoginLogInTo": "Log in to",
+    "@pageLoginLogInTo": {
         "description": "Log in to the web/app"
     },
 
-    "page_login_placeholder_email": "examplebrand@prlab.co",
-    "@page_login_placeholder_email": {
+    "pageLoginPlaceholderEmail": "examplebrand@prlab.co",
+    "@pageLoginPlaceholderEmail": {
         "description": "Text shown on a button that leads to register page"
     },
 
-    "page_login_placeholder_password": "Password",
-    "@page_login_placeholder_password": {
-        "description": "Text shown on a button that leads to register page"
-    },
-
-    "page_login_tappable_text": "Did you forget your password?",
-    "@page_login_tappable_text": {
+    
+    "pageLoginTappableText": "Did you forget your password?",
+    "@pageLoginTappableText": {
         "description": "Ask you if you forget your password"
     },
-
-    "page_login_leading_agency": "The leading global PR agency",
-    "@page_login_leading_agency": {
+    
+    "pageLoginLeadingAgency": "The leading global PR agency",
+    "@pageLoginLeadingAgency": {
         "description": "Eslogan on the register/login page "
     },
-
-    "page_login_button_reload": "Reload",
-    "@page_login_button_reload": {
-        "description": "Text shown when the user has to reload the page"
-    },
-    "page_create_admin_account_title_prlab": "PR lab",
-    "@page_create_admin_account_title_prlab": {
-        "description": "Text PR lab in title of screen"
-    },
-    "page_create_admin_account_subtitle_international_prlab_agency": "International PR Agency",
-    "@page_create_admin_account_subtitle_international_prlab_agency": {
+    
+    "pageCreateAdminAccountSubtitleInternationalPRLabAgency": "International PR Agency",
+    "@pageCreateAdminAccountSubtitleInternationalPRLabAgency": {
         "description": "Text International PR Agency in subtitle of screen"
     },
-    "page_create_admin_account_button_back": "Back",
-    "@page_create_admin_account_button_back": {
-        "description": "Text back in button of screen create admin account"
-    },
-    "page_create_admin_client_email": "Enter the client email",
-    "@page_create_admin_client_email": {
+    "pageCreateAdminClientEmail": "Enter the client email",
+    "@pageCreateAdminClientEmail": {
         "description": "Text Enter the client email in screen create admin account above of textfield email"
     },
-    "page_create_admin_leading_pr_agency": "The leading global PR agency",
-    "@page_create_admin_leading_pr_agency": {
+    "pageCreateAdminLeadingPRAgency": "The leading global PR agency",
+    "@pageCreateAdminLeadingPRAgency": {
         "description": "Text The leading global PR agency in screen create admin account above of textfield email"
     },
-
-    "page_create_admin_button_send": "Send",
-    "@page_create_admin_button_send": {
-        "description": "Text Send in screen create admin account in button of send email"
-    },
-    "page_create_admin_alertdialog_title_email_send": "Email send",
-    "@page_create_admin_alertdialog_title_email_send": {
+    
+    "pageCreateAdminAlertdialogTitleEmailSend": "Email send",
+    "@pageCreateAdminAlertdialogTitleEmailSend": {
         "description": "Text in screen create admin account in alertdialog in title, email send"
     },
-    "page_create_admin_alertdialog_button_ok": "Ok",
-    "@page_create_admin_alertdialog_button_ok": {
-        "description": "Text in screen create admin account in alertdialog in button, Ok"
-    },
-    "page_sign_up_title": "Welcome!",
-    "@page_sign_up_title": {
+    
+    
+    "pageSignUpTitle": "Welcome!",
+    "@pageSignUpTitle": {
         "description": "Title shown in the page SignUp"
     },    
-    "page_sign_up_subtitle": "Create an account",
-    "@page_sign_up_subtitle": {
+    "pageSignUpSubtitle": "Create an account",
+    "@pageSignUpSubtitle": {
         "description": "Subtitle shown in the page SignUp"
     },     
-    "page_sign_up_text_field_hint_example_mail": "examplebrand@prlab.co",
-    "@page_sign_up_text_field_hint_example_mail": {
-        "description": "HintText shown in the mail textfield in the page Signup"
-    },    
-      "page_sign_up_text_field_hint_password": "Password",
-    "@page_sign_up_text_field_hint_password": {
-        "description": "HintText  shown in the password textfield page SignUp"
-    },     
-      "page_sign_up_text_field_hint_confirm_password": "Confirm Password",
-    "@page_sign_up_text_field_hint_confirm_password": {
+    
+    
+    "pageSignUpTextFieldHintConfirmPassword": "Confirm Password",
+    "@pageSignUpTextFieldHintConfirmPassword": {
         "description": "HintText shown in the confirm password textfield page SignUp"
     }, 
-       "page_sign_up_terms_and_conditions_text": "I agree to the ",
-    "@page_sign_up_terms_and_conditions_text": {
+    "pageSignUpTermsAndConditionsText": "I agree to the ",
+    "@pageSignUpTermsAndConditionsText": {
         "description": "Text of the first part of terms and conditions shown in the page SignUp"
     },   
-           "page_sign_up_terms_and_conditions_text_link": "Terms and Conditions",
-    "@page_sign_up_terms_and_conditions_text_link": {
+    "pageSignUpTermsAndConditionsTextLink": "Terms and Conditions",
+    "@pageSignUpTermsAndConditionsTextLink": {
         "description": "Hyperlink Text of the second part of terms and conditions shown in the page SignUp"
     },  
-       "page_sign_up_button_sign_up": "Sign Up",
-    "@page_sign_up_button_sign_up": {
+    "pageSignUpButtonSignUp": "Sign Up",
+    "@pageSignUpButtonSignUp": {
         "description": "Text of the button sign up shown in the page SignUp"
     },
-
-    "alert_dialog_title_recover_password" : "Recover password",
-    "@alert_dialog_title_recover_password": {
-        "description":"text in title alertdialog of recover password"
-    },
-
-    "alert_dialog_sub_title_verification_code_send" : "Enter the 8 digit verification code sent to",
-    "@alert_dialog_sub_title_verification_code_send": {
+    
+    
+    "alertDialogSubTitleVerificationCodeSend" : "Enter the 8 digit verification code sent to",
+    "@alertDialogSubTitleVerificationCodeSend": {
         "description":"text in subtitle textfield(who was the code sent to),Enter the 8 digit verification code sent to"
     },
-
-    "alert_dialog_button_title_send" : "Send",
-    "@alert_dialog_button_title_send": {
-        "description":"text in alertdialog on button, Send"
-    },
-
-    "alert_dialog_textfield_hitText_text_email_verification_code": "Email verification code",
-    "@alert_dialog_textfield_hitText_text_email_verification_code": {
+    
+    "alertDialogTextfieldHitTextTextEmailVerificationCode": "Email verification code",
+    "@alertDialogTextfieldHitTextTextEmailVerificationCode": {
         "description":"text in alertdialog in title textfield,Email verification code"
     },
-
-    "alert_dialog_textfield_suffix_get_code": "Get code",
-    "@alert_dialog_textfield_suffix_get_code": {
+    
+    "alertDialogTextfieldSuffixGetCode": "Get code",
+    "@alertDialogTextfieldSuffixGetCode": {
         "description":"text in alertdialog in suffix textfield on button if the verification code was not sent, Get code"
     },
-
-    "alert_dialog_textfield_suffix_code_send": "Code sent",
-    "@alert_dialog_textfield_suffix_code_send": {
+    
+    "alertDialogTextfieldSuffixCodeSend": "Code sent",
+    "@alertDialogTextfieldSuffixCodeSend": {
         "description":"text in alertdialog suffix textfield on button if the verificaction code was sent, Code sent"
     },
-
-    "alert_dialog_tooltip_request_new_code":"You can request a new code in {seconds} seconds.This will expire in {minutes} minutes.",
-    "@alert_dialog_tooltip_request_new_code": {
+        
+    "alertDialogTooltipRequestNewCode":"You can request a new code in {seconds} seconds.This will expire in {minutes} minutes.",
+    "@alertDialogTooltipRequestNewCode": {
         "description":"part text in alertdialog of textfield on tooltip, You can request a new code in 56 seconds.This will expire in 30 minutes.",
         "placeholders" : {
             "seconds" : {
@@ -143,34 +106,118 @@
             }
         }
     },
-    "alert_dialog_code_in": "code in",
-    "@alert_dialog_code_in": {
+    "alertDialogCodeIn": "code in",
+    "@alertDialogCodeIn": {
         "description":"part text in alertdialog of textfield on tooltip, code in"
     },
-    "page_create_account_admin_error_message_change_email": "Error to changed email",
-    "@page_create_account_admin_error_message_change_email": {
+    "pageCreateAccountAdminErrorMessageChangeEmail": "Error to changed email",
+    "@pageCreateAccountAdminErrorMessageChangeEmail": {
         "description":"part text in error alertdialog in page create account admin, Error al cambiar el email valido"
     },
     
-    "page_create_account_admin_error_message_send_email": "Error to send email",
-    "@page_create_account_admin_error_message_send_email": {
+    "pageCreateAccountAdminErrorMessageSendEmail": "Error to send email",
+    "@pageCreateAccountAdminErrorMessageSendEmail": {
         "description":"part text in error alertdialog in page create account admin, Error al enviar el email"
     },
-
+    
+    "alertDialogButtonSubtitleLinkExpired" : "The link has expired,\nplease click on “resend” to get a new one",
+    "@alertDialogButtonSubtitleLinkExpired": {
+        "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
+    },
+    
+    "pageKycTitle" : "Tell us about yourself",
+    "@pageKycTitle": {
+        "description":"Text in page kyc setted on the top of the page as a title"
+    },
+    
+    "pageKycSubtitle" : "Enter your data",
+    "@pageKycSubtitle": {
+        "description":"Text in page kyc setted on the top of the page as a subtitle"
+    },
+    
+    "pageKycNameHintText" : "Name",
+    "@pageKycNameHintText": {
+        "description":"Text in page kyc setted on the name text field hint text"
+    },
+    
+    "pageKycLastNameHintText" : "Last name",
+    "@pageKycLastNameHintText": {
+        "description":"Text in page kyc setted on the lastname text field hint text"
+    },
+    
+    "pageKycCompanyNameHintText" : "Company name",
+    "@pageKycCompanyNameHintText": {
+        "description":"Text in page kyc setted on the company name text field hint text"
+    },
+    
+    "pageKycCompanyLocationHintText" : "Company location",
+    "@pageKycCompanyLocationHintText": {
+        "description":"Text in page kyc setted on the company location text field hint text"
+    },
+    
+    "pageKycContactHintText" : "Contact",
+    "@pageKycContactHintText": {
+        "description":"Text in page kyc setted on the contact text field hint text"
+    },
+    
+    
+    "pageRecoverPasswordSubtitle" : "Please, enter your new password",
+    "@pageRecoverPasswordSubtitle": {
+        "description":"Text in page recover password setted on the top of the page as a subtitle"
+    },
+    
+    "pageRecoverPasswordNewPasswordHintText" : "New password",
+    "@pageRecoverPasswordNewPasswordHintText": {
+        "description":"Text in page recover password setted on the new password text field hint text"
+    },
+    
+    "pageRecoverPasswordRepeatPasswordHintText" : "Repeat password",
+    "@pageRecoverPasswordRepeatPasswordHintText": {
+        "description":"Text in page recover password setted on the reseat password text field hint text"
+    },
+    
+    "commonPRLab": "PR lab",
+    "@commonPRLab": {
+        "description": "Text PR lab in title of screen"
+    },
+    "commonBack": "Back",
+    "@commonBack": {
+        "description": "Text back in button of screen create admin account"
+    },
+    "commonContinue" : "Continue",
+    "@commonContinue": {
+        "description":"Text in page recover password setted on the button that the user press to save the new password on the bottom of the screen"
+    },
+    "commonReload": "Reload",
+    "@commonReload": {
+        "description": "Text shown when the user has to reload the page"
+    },
+    "commonResend" : "Resend",
+    "@commonResend": {
+        "description":"text in alertdialog title button, Resend"
+    },
     "commonCompleteTheField": "Complete the field",
     "@commonCompleteTheField": {
         "description": "text to indicate that the field must be completed"
     },
-
     "commonEnterValidEmail": "Enter a valid email",
     "@commonEnterValidEmail" : {
         "descripcion": "text to indicate that a valid email must be entered"
     },
+    "commonPassword": "Password",
+    "@commonPassword": {
+        "description": "Text shown on a button that leads to register page"
+    },
+    
     "commonPasswordDoNotMatch": "Password do not match",
     "@commonPasswordDoNotMatch" : {
         "descripcion": "text to indicate that the passwords do not match"
     },
-
+    "commonRecoverPassword" : "Recover Password",
+    "@commonRecoverPassword": {
+        "description":"Text in page recover password setted on the top of the page as a title"
+    },
+    
     "commonOnlyLetters": "Only letters",
     "@commonOnlyLetters":{
         "description": "text to indicate that only letters can be used"
@@ -182,86 +229,23 @@
     "@commonInvalidCharacters":{
         "description":"Text indicating that invalid characters were used"},
 
-    "alert_dialog_button_title_error" : "¡Error!",
-    "@alert_dialog_button_title_error": {
+    "commonError" : "Error!",
+    "@commonError": {
         "description":"text in alertdialog title, Error"
     },
-    "alert_dialog_button_subtitle_something_went_wrong" : "Something went wrong",
-    "@alert_dialog_button_subtitle_something_went_wrong": {
+    "commonSomethingWentWrong" : "Something went wrong",
+    "@commonWentWrong": {
         "description":"text in alertdialog sub title, Something went wrong"
     },
-    "alert_dialog_button_title_button_resend" : "Resend",
-    "@alert_dialog_button_title_button_resend": {
-        "description":"text in alertdialog title button, Resend"
+    "commonSend" : "Send",
+    "@commonSend": {
+        "description":"text in alertdialog on button, Send"
     },
-    "alert_dialog_button_subtitle_link_expired" : "The link has expired,\nplease ask for a new one",
-    "@alert_dialog_button_subtitle_link_expired": {
-        "description":"text in alertdialog subtitle , The link has expired,please click on “resend” to get a new one"
-    },
-
-    "pageKycTitle" : "Tell us about yourself",
-    "@pageKycTitle": {
-        "description":"Text in page kyc setted on the top of the page as a title"
-    },
-
-    "pageKycSubtitle" : "Enter your data",
-    "@pageKycSubtitle": {
-        "description":"Text in page kyc setted on the top of the page as a subtitle"
-    },
-
-    "pageKycNameHintText" : "Name",
-    "@pageKycNameHintText": {
-        "description":"Text in page kyc setted on the name text field hint text"
-    },
-
-    "pageKycLastnameHintText" : "Last name",
-    "@pageKycLastnameHintText": {
-        "description":"Text in page kyc setted on the lastname text field hint text"
-    },
-    
-    "pageKycCompanyNameHintText" : "Company name",
-    "@pageKycCompanyNameHintText": {
-        "description":"Text in page kyc setted on the company name text field hint text"
-    },
-
-    "pageKycCompanyLocationHintText" : "Company location",
-    "@pageKycCompanyLocationHintText": {
-        "description":"Text in page kyc setted on the company location text field hint text"
-    },
-    
-    "pageKycContactHintText" : "Contact",
-    "@pageKycContactHintText": {
-        "description":"Text in page kyc setted on the contact text field hint text"
-    },
-
-    "pageKycContinueTextButton" : "Continue",
-    "@pageKycContinueTextButton": {
-        "description":"Text in page kyc setted on the button that the user press to save the kyc data on the bottom of the screen"
-    },
-
-    "pageRecoverPasswordTitle" : "Recover Password",
-    "@pageRecoverPasswordTitle": {
-        "description":"Text in page recover password setted on the top of the page as a title"
-    },
-
-    "pageRecoverPasswordSubtitle" : "Please, enter your new password",
-    "@pageRecoverPasswordSubtitle": {
-        "description":"Text in page recover password setted on the top of the page as a subtitle"
-    },
-
-    "pageRecoverPasswordNewPasswordHintText" : "New password",
-    "@pageRecoverPasswordNewPasswordHintText": {
-        "description":"Text in page recover password setted on the new password text field hint text"
-    },
-
-    "pageRecoverPasswordRepeatPasswordHintText" : "Repeat password",
-    "@pageRecoverPasswordRepeatPasswordHintText": {
-        "description":"Text in page recover password setted on the reseat password text field hint text"
-    },
-
-    "pageRecoverPasswordContinueTextButton" : "Continue",
-    "@pageRecoverPasswordContinueTextButton": {
-        "description":"Text in page recover password setted on the button that the user press to save the new password on the bottom of the screen"
+    "commonOk": "Ok",
+    "@commonOk": {
+        "description": "Text in screen create admin account in alertdialog in button, Ok"
     }
+
+
 
 }

@@ -48,7 +48,7 @@ class _VistaEscritorioCrearCuentaAdminState
               onTap: () {
                 // TODO(mati): agregarle funcionalidad
               },
-              texto: l10n.page_create_admin_account_button_back,
+              texto: l10n.commonBack,
               habilitado: true,
             ),
           ),

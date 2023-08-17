@@ -77,10 +77,9 @@ class PRDialog extends StatelessWidget {
                 SizedBox(height: 40.ph),
                 PRBoton.outlined(
                   width: 360.pw,
-                  // TODO:agregarle funcionalidad del bloc
                   habilitado: true,
                   onTap: onTap,
-                  texto: l10n.alert_dialog_button_title_send,
+                  texto: l10n.commonSend,
                 ),
               ],
             ),
@@ -126,7 +125,7 @@ class PRDialog extends StatelessWidget {
           Center(
             child: PRBoton.outlined(
               onTap: onTap,
-              texto: l10n.page_create_admin_alertdialog_button_ok,
+              texto: l10n.commonOk,
               habilitado: true,
               width: 360.pw,
             ),
@@ -164,7 +163,6 @@ class PRDialog extends StatelessWidget {
               titulo,
               style: TextStyle(
                 fontSize: 20.pf,
-                // TODO: cambiar cuando este el theme
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
               ),
@@ -188,7 +186,7 @@ class PRDialog extends StatelessWidget {
                 width: 360.pw,
                 child: PRBoton.outlined(
                   onTap: onTap,
-                  texto: l10n.alert_dialog_button_title_button_resend,
+                  texto: l10n.commonResend,
                   habilitado: true,
                   width: 360.pw,
                 ),
@@ -224,10 +222,9 @@ class PRDialog extends StatelessWidget {
           children: [
             SizedBox(height: 20.ph),
             Text(
-              l10n.alert_dialog_button_title_error,
+              l10n.commonError,
               style: TextStyle(
                 fontSize: 20.pf,
-                // TODO: cambiar cuando este el theme
                 color: colores.error,
                 fontWeight: FontWeight.w600,
               ),
@@ -240,7 +237,6 @@ class PRDialog extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 15.pf,
-                  // TODO: cambiar cuando este el theme
                   color: colores.secondary,
                   fontWeight: FontWeight.w400,
                 ),
@@ -252,7 +248,7 @@ class PRDialog extends StatelessWidget {
                 width: 360.pw,
                 child: PRBoton.outlined(
                   onTap: onTap,
-                  texto: l10n.page_create_admin_account_button_back,
+                  texto: l10n.commonBack,
                   habilitado: true,
                   width: 360.pw,
                 ),

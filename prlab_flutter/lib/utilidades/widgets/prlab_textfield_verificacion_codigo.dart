@@ -47,7 +47,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
 
     final colores = context.colores;
 
-    final tooltipMessage = l10n.alert_dialog_tooltip_request_new_code(
+    final tooltipMessage = l10n.alertDialogTooltipRequestNewCode(
       widget.segundosFaltantes,
       widget.minutosFaltantes,
     );
@@ -61,24 +61,20 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
       cursorColor: colores.primary,
       decoration: InputDecoration(
         counterText: '',
-        labelText:
-            l10n.alert_dialog_textfield_hitText_text_email_verification_code,
+        labelText: l10n.alertDialogTextfieldHitTextTextEmailVerificationCode,
         labelStyle: TextStyle(
           fontSize: 15.pf,
           fontWeight: FontWeight.w400,
-          //TODO: cambiar para cuando esten los colores en el theme
-          color: const Color(0xff707070),
+          color: colores.secondary,
         ),
-        border: const UnderlineInputBorder(
+        border: UnderlineInputBorder(
           borderSide: BorderSide(
-            //TODO: cambiar para cuando esten los colores en el theme
-            color: Color(0xff707070),
+            color: colores.secondary,
           ),
         ),
-        focusedBorder: const UnderlineInputBorder(
+        focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            //TODO: cambiar para cuando esten los colores en el theme
-            color: Color(0xff707070),
+            color: colores.secondary,
           ),
         ),
         suffixIcon: Padding(
@@ -96,8 +92,8 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                       : null,
                   child: Text(
                     !widget.solicitoNuevoCodigo
-                        ? l10n.alert_dialog_textfield_suffix_get_code
-                        : l10n.alert_dialog_textfield_suffix_get_code,
+                        ? l10n.alertDialogTextfieldSuffixGetCode
+                        : l10n.alertDialogTextfieldSuffixGetCode,
                     style: TextStyle(
                       decoration: TextDecoration.combine([
                         if (!widget.solicitoNuevoCodigo)
@@ -107,8 +103,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                       ]),
                       color: !widget.solicitoNuevoCodigo
                           ? colores.primary
-                          //TODO: cambiar para cuando esten los colores en el theme
-                          : const Color(0xff707070),
+                          : colores.secondary,
                       fontSize: 12.pf,
                       fontWeight: FontWeight.w500,
                     ),
@@ -122,24 +117,21 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                         horizontal: 10.pw,
                         vertical: 10.ph,
                       ),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
                           Radius.circular(10),
                         ),
-                        //TODO: cambiar para cuando esten los colores en el theme
-                        color: Color(0xff363636),
+                        color: colores.tertiary,
                       ),
                       textStyle: TextStyle(
                         fontSize: 12.pf,
                         fontWeight: FontWeight.w400,
-                        //TODO: cambiar para cuando esten los colores en el theme
                         color: colores.background,
                       ),
                       message: tooltipMessage,
-                      child: const Icon(
+                      child: Icon(
                         Icons.info,
-                        //TODO: cambiar para cuando esten los colores en el theme
-                        color: Color(0xff363636),
+                        color: colores.tertiary,
                         size: 12.5,
                       ),
                     ),

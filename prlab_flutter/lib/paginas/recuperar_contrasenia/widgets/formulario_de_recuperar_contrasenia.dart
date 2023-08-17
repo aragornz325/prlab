@@ -100,7 +100,7 @@ class _FormularioDeRecuperarContraseniaState
                   builder: (context, state) {
                     return PRBoton(
                       onTap: _onTapContinuar,
-                      texto: l10n.pageRecoverPasswordContinueTextButton,
+                      texto: l10n.commonContinue,
                       habilitado: state.estanCompletasLasContrasenias,
                     );
                   },
