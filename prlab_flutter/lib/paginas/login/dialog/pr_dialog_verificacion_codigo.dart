@@ -40,7 +40,9 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
       titulo: l10n.alert_dialog_title_recover_password,
       content: Column(
         children: [
+          // TODO: cambiar para cuando este en los textfield de factory
           PrLabTextfield(controller: controller),
+
           SizedBox(height: 5.ph),
           Text(
             textoAQuienFueEnviadoEmail,

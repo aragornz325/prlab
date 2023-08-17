@@ -32,7 +32,7 @@ class PRTextFormField extends StatefulWidget {
     required TextEditingController controller,
 
     /// Define si el tff es readOnly.
-    required bool soloLectura,
+    bool soloLectura = false,
 
     /// Contexto para traducciones
     required BuildContext context,

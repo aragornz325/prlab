@@ -82,7 +82,6 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                     width: 785.pw,
                     child: PRTextFormField.email(
                       controller: controller,
-                      soloLectura: false,
                       onChanged: (_) => _funcionPasarleEmailAlBloc(context),
                       context: context,
                     ),
