@@ -28,6 +28,8 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
 
   /// Controller para el textfield de password
   final controllerPassword = TextEditingController();
+
+  /// Controller para el textfield de codigo
   final controllerCodigo = TextEditingController();
 
   @override

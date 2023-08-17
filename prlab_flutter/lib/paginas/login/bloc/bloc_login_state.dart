@@ -32,8 +32,11 @@ class BlocLoginEstado extends Equatable {
   /// Duracion del temporizador
   final int duracionTimer;
 
+  /// Tamaño del codigo ingresado por el usuario
   final int tamanioCodigo;
 
+  /// Getter que verifica si el estado actual es el estado cargando
+  /// y apreto el boton de iniciar sesion
   bool get estaCargandoInicioDeSesion =>
       estaIniciandoSesion && this is BlocLoginEstadoCargando;
 

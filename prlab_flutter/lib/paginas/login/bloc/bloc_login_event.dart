@@ -37,6 +37,8 @@ class BlocLoginEventoHabilitarBotonLogin extends BlocLoginEvento {
   final String password;
 }
 
+/// Evento donde se cambia el tamaño del codigo para poder usar su longitud
+/// (no se pudo usar el controller.text.lenght)
 class BlocLoginEventoCambiarTamanioCodigo extends BlocLoginEvento {
   const BlocLoginEventoCambiarTamanioCodigo({
     required this.tamanio,
@@ -46,6 +48,7 @@ class BlocLoginEventoCambiarTamanioCodigo extends BlocLoginEvento {
   final int tamanio;
 }
 
+/// Evento que envia el codigo al mail del usuario
 class BlocLoginEventoEnviarCodigoAlMailDelUsuario extends BlocLoginEvento {
   const BlocLoginEventoEnviarCodigoAlMailDelUsuario({
     required this.email,
@@ -55,6 +58,7 @@ class BlocLoginEventoEnviarCodigoAlMailDelUsuario extends BlocLoginEvento {
   final String email;
 }
 
+/// Evento que envia el codigo al back para validarlo
 class BlocLoginEventoEnviarCodigoAlBack extends BlocLoginEvento {
   const BlocLoginEventoEnviarCodigoAlBack({
     required this.password,
@@ -62,8 +66,13 @@ class BlocLoginEventoEnviarCodigoAlBack extends BlocLoginEvento {
     required this.codigo,
   });
 
+  /// Codigo ingresado por el usuario
   final String codigo;
+
+  /// Contraseña del usuario
   final String password;
+
+  /// Email del usuario
   final String email;
 }
 
@@ -79,6 +88,8 @@ class BlocLoginEventoResetearTemporizador extends BlocLoginEvento {}
 /// Evento para estar corriendo o ejecutando la duracion del cronometro
 class BlocLoginEventoTiempoEjecucion extends BlocLoginEvento {
   const BlocLoginEventoTiempoEjecucion(this.duracionTimer);
+
+  /// Duracion del timer
   final int duracionTimer;
 }
 

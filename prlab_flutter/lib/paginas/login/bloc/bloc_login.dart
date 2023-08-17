@@ -136,7 +136,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     }
   }
 
-  ///chequea el codigo enviado al back y lo verifica si esta bien
+  /// Chequea el codigo enviado al back y lo verifica si esta bien
   FutureOr<void> _chequearCodigo(
     BlocLoginEventoEnviarCodigoAlBack event,
     Emitter<BlocLoginEstado> emit,
@@ -222,6 +222,8 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     }
   }
 
+  /// La funcion cambia el state del tamaño del codigo para despues
+  /// saber si ingreso el codigo completo
   Future<void> _habilitarBotonEnviarCodigo(
     BlocLoginEventoCambiarTamanioCodigo event,
     Emitter<BlocLoginEstado> emit,
@@ -238,7 +240,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     }
   }
 
-  ///funcion que empieza a correr el cronometro
+  /// Funcion que empieza a correr el cronometro
   FutureOr<void> _empezarCronometro(
     BLocLoginEventoEmpezarTemporizador event,
     Emitter<BlocLoginEstado> emit,
@@ -273,7 +275,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     }
   }
 
-  ///funcion para resetear el cronometro o que vuelva a 60 seg
+  /// Funcion para resetear el cronometro o que vuelva a 60 seg
   FutureOr<void> _resetearCronometro(
     BlocLoginEventoResetearTemporizador event,
     Emitter<BlocLoginEstado> emit,
@@ -287,7 +289,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     );
   }
 
-  ///funcion que corre el cronometro o muestra que el cronometro esta corriendo
+  /// Funcion que corre el cronometro o muestra que el cronometro esta corriendo
   FutureOr<void> _corriendoCronometro(
     BlocLoginEventoTiempoEjecucion event,
     Emitter<BlocLoginEstado> emit,
@@ -322,8 +324,8 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     }
   }
 
-  ///funcion que termina el cronometro o muestra que el cronometro fue
-  ///completado
+  /// Funcion que termina el cronometro o muestra que el cronometro fue
+  /// completado
   FutureOr<void> _cronometroCompletado(
     BlocLoginEventoTiempoCompletado event,
     Emitter<BlocLoginEstado> emit,
@@ -349,6 +351,6 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     return super.close();
   }
 
-  ///repo de los llamados a server pod
+  /// Eepo de los llamados a server pod
   final EmailAuthController emailAuth;
 }

@@ -15,9 +15,17 @@ class OlvidasteTuContrasenia extends StatefulWidget {
     required this.controllerCodigo,
     super.key,
   });
+
+  /// Email ingresado por el usuario
   final String email;
+
+  /// Contraseña ingresada por el usuario
   final String password;
+
+  /// Bool para saber si el usuario cargo un email valido
   final bool cargoElMail;
+
+  /// Controller para el textfield del codigo
   final TextEditingController controllerCodigo;
 
   @override
