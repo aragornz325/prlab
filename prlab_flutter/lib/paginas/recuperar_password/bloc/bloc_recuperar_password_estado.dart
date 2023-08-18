@@ -29,7 +29,7 @@ sealed class BlocRecuperarPasswordEstado {
   final String passwordRepetida;
 
   /// Si los campos de texto de contraseñas fueron completados.
-  bool get estanCompletasLasContrasenias =>
+  bool get estanCompletasLasPasswords =>
       password.isNotEmpty && passwordRepetida.isNotEmpty;
 
   // Si está o no en estado de carga.

@@ -1,7 +1,10 @@
 part of 'bloc_login.dart';
 
-// TODO(Gon): Agregar documentacion
+/// {@template BlocLoginEvento}
+/// Maneja los distintos estados y varibles guardadas en los mismos
+/// {@endtemplate}
 class BlocLoginEstado extends Equatable {
+  /// {@macro BlocLoginEstado}
   const BlocLoginEstado._({
     this.botonHabilitado = false,
     this.estaIniciandoSesion = false,
@@ -50,21 +53,30 @@ class BlocLoginEstado extends Equatable {
       ];
 }
 
+/// {@template BlocLoginEstadoInicial}
 /// Estado inicial de los componentes de la pantalla login
+/// {@endtemplate}
 class BlocLoginEstadoInicial extends BlocLoginEstado {
+  /// {@macro BlocLoginEstadoInicial}
   const BlocLoginEstadoInicial() : super._();
 }
 
+/// {@template BlocLoginEstadoCargando}
 /// Estado de cargando de los componentes de la pantalla login
+/// {@endtemplate}
 class BlocLoginEstadoCargando extends BlocLoginEstado {
+  /// {@macro BlocLoginEstadoCargando}
   BlocLoginEstadoCargando.desde(
     super.otro, {
     super.estaIniciandoSesion,
   }) : super.desde();
 }
 
-/// Estado exitoso de los componentes de la pantalla login
+/// {@template BlocLoginEstadoExitosoInicioSesion}
+/// Estado exitoso emitido al iniciar sesión
+/// {@endtemplate}
 class BlocLoginEstadoExitosoInicioSesion extends BlocLoginEstado {
+  /// {@macro BlocLoginEstadoExitosoInicioSesion}
   BlocLoginEstadoExitosoInicioSesion.desde(
     super.otro, {
     super.botonHabilitado,
@@ -72,14 +84,19 @@ class BlocLoginEstadoExitosoInicioSesion extends BlocLoginEstado {
   }) : super.desde();
 }
 
-/// Estado exitoso de los componentes de la pantalla login
+/// {@template BlocLoginEstadoExitosoAlValidarOTP}
+/// Estado exitoso emitido al validar el codigo de verificacion
+/// {@endtemplate}
 class BlocLoginEstadoExitosoAlValidarOTP extends BlocLoginEstado {
+  /// {@macro BlocLoginEstadoExitosoAlValidarOTP}
   BlocLoginEstadoExitosoAlValidarOTP.desde(super.otro) : super.desde();
 }
 
-/// Estado de error de los componentes de la pantalla login (se puede emitir
-/// cuando hay un error la iniciar sesion)
+/// {@template BlocLoginEstadoError}
+/// Estado de error de los componentes de la pantalla login
+/// {@endtemplate}
 class BlocLoginEstadoError extends BlocLoginEstado {
+  /// {@macro BlocLoginEstadoError}
   BlocLoginEstadoError.desde(
     super.otro, {
     required this.mensajeDeError,
@@ -89,35 +106,7 @@ class BlocLoginEstadoError extends BlocLoginEstado {
   final MensajesDeErrorDelLogin mensajeDeError;
 }
 
-/// temporizador cuando se inicializa y se inicia. Toma un entero `duración`
-///  como parámetro que
-/// representa la duración total del temporizador.
-class BLocLoginEstadoIniciarCronometro extends BlocLoginEstado {
-  BLocLoginEstadoIniciarCronometro.desde(
-    super.otro, {
-    super.duracionTimer,
-  }) : super.desde();
-}
-
-//  Toma un entero `duración` como parámetro que
-/// representa el tiempo restante del temporizador.
-class BlocLoginEstadoCronometroCorriendo extends BlocLoginEstado {
-  BlocLoginEstadoCronometroCorriendo.desde(
-    super.otro, {
-    super.duracionTimer,
-  }) : super.desde();
-}
-
-//  No toma ningún parámetro ya que
-/// simplemente indica que el temporizador ha terminado la cuenta regresiva.
-class BlocLoginEstadoCronometroCompletado extends BlocLoginEstado {
-  BlocLoginEstadoCronometroCompletado.desde(
-    super.otro, {
-    super.duracionTimer,
-  }) : super.desde();
-}
-
-/// emum de los tipos de errores de login a mostrar
+/// Tipos de errores de login a mostrar
 enum MensajesDeErrorDelLogin {
   userNotFound,
   invalidCredentials,

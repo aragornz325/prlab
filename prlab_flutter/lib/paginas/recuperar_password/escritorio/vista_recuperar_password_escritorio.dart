@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
 import 'package:prlab_flutter/paginas/recuperar_password/widgets/widgets.dart';
+import 'package:prlab_flutter/utilidades/widgets/pr_seccion_logo_y_eslogan.dart';
 
 /// {@template VistaRecuperarPasswordEscritorio}
 /// Vista de recuperar contraseña para escritorio o browsers.
@@ -16,7 +16,7 @@ class VistaRecuperarPasswordEscritorio extends StatelessWidget {
       body: Row(
         children: [
           FormularioDeRecuperarPassword(width: 44.5.wp),
-          const SeccionLogoBienvenida(),
+          const SeccionLogoYEslogan(),
         ],
       ),
     );

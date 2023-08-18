@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
+import 'package:prlab_flutter/paginas/login/bloc_temporizador/bloc_temporizador.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template TipoDialog}
@@ -292,8 +292,8 @@ class PRDialog extends StatelessWidget {
   }
 }
 
-class TextfieldCodigoDeRecuperarContrasenia extends StatefulWidget {
-  const TextfieldCodigoDeRecuperarContrasenia({
+class TextfieldCodigoDeRecuperarPassword extends StatefulWidget {
+  const TextfieldCodigoDeRecuperarPassword({
     required this.controller,
     required this.email,
     super.key,
@@ -302,18 +302,19 @@ class TextfieldCodigoDeRecuperarContrasenia extends StatefulWidget {
   final String email;
 
   @override
-  State<TextfieldCodigoDeRecuperarContrasenia> createState() =>
-      _TextfieldCodigoDeRecuperarContraseniaState();
+  State<TextfieldCodigoDeRecuperarPassword> createState() =>
+      _TextfieldCodigoDeRecuperarPasswordState();
 }
 
-class _TextfieldCodigoDeRecuperarContraseniaState
-    extends State<TextfieldCodigoDeRecuperarContrasenia> {
+class _TextfieldCodigoDeRecuperarPasswordState
+    extends State<TextfieldCodigoDeRecuperarPassword> {
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<BlocLogin>().state;
+    final state = context.watch<BlocTemporizador>().state;
+
     return PrLabTextfield(
       controller: widget.controller,
-      solicitoNuevoCodigo: state is BlocLoginEstadoCronometroCorriendo,
+      solicitoNuevoCodigo: state is BlocTemporizadorEstadoCorriendo,
       email: widget.email,
       segundosFaltantes: state.duracionTimer,
     );

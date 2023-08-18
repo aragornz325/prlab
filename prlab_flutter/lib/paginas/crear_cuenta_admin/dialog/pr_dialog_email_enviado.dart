@@ -51,8 +51,10 @@ class PRDialogEmailEnviado extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                TextSpan(
-                  // TODO(anyone): esto va a definirse por el cliente
+                //!
+                // TODO(anyone): esto todavia esta a definirse por el cliente, queda como Carryover del Sprint 1
+                //!
+                /*TextSpan(
                   text: 'Lorem ipsum dolor sit amet consectetur.Tortor\nut '
                       'quis faucibus etiam.Euismod condimentum.',
                   style: TextStyle(
@@ -60,7 +62,7 @@ class PRDialogEmailEnviado extends StatelessWidget {
                     fontSize: 15.pf,
                     fontWeight: FontWeight.w400,
                   ),
-                ),
+                ),*/
               ],
             ),
           ),

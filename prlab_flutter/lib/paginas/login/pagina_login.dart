@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
+import 'package:prlab_flutter/paginas/login/bloc_temporizador/bloc_temporizador.dart';
 import 'package:prlab_flutter/paginas/login/celular/vista_login.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/vista_login.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
@@ -14,10 +15,17 @@ class PaginaLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => BlocLogin(
-        emailAuth: context.read<EmailAuthController>(),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => BlocLogin(
+            emailAuth: context.read<EmailAuthController>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => BlocTemporizador(),
+        ),
+      ],
       child: const FullResponsiveScreen(
         mobile: VistaLoginCelular(),
         desktop: VistaLoginEscritorio(),

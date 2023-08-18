@@ -5,14 +5,12 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/paginas/registro/widgets/titulo_bienvenida_con_imagen.dart';
 import 'package:prlab_flutter/utilidades/extensions/extension_de_form.dart';
-import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
-import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// Vista de escritorio de la pantalla registro, la cual llega a traves del mail
 ///  donde el usuario puede registrarse  y aceptar los terminos y condiciones.
@@ -156,7 +154,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             SizedBox(
                               width: 359.pw,
                               child: PRTextFormFieldPassword(
-                                validator: _validarContraseniaRepetida,
+                                validator: _validarPasswordRepetida,
                                 controller: controllerPassword,
                                 hintText: l10n.commonPassword,
                                 esCreacionPassword: true,
@@ -175,7 +173,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                             SizedBox(
                               width: 359.pw,
                               child: PRTextFormFieldPassword(
-                                validator: _validarContraseniaRepetida,
+                                validator: _validarPasswordRepetida,
                                 controller: controllerPasswordRepetida,
                                 hintText:
                                     l10n.pageSignUpTextFieldHintConfirmPassword,
@@ -256,13 +254,13 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
               ),
             ),
           ),
-          const SeccionLogoBienvenida(),
+          const SeccionLogoYEslogan(),
         ],
       ),
     );
   }
 
-  String? _validarContraseniaRepetida(String? value) {
+  String? _validarPasswordRepetida(String? value) {
     if (controllerPassword.text != value) {
       return context.l10n.commonPasswordDoNotMatch;
     }
