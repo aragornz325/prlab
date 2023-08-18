@@ -26,20 +26,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     );
     on<BlocLoginEventoCambiarLongitudCodigo>(_cambiarLongitudCodigo);
     on<BlocLoginEventoValidarCodigo>(_validarCodigo);
-
-    //!!
-    // TODO(anyone): EXTRAER ESTO A UN BLOC SEPARADO PARA SACAR LA LOGICA DEL TIMER
-    //!!
-    ///manejo del temporizador y cronometro
-    on<BLocLoginEventoEmpezarTemporizador>(_empezarCronometro);
-    on<BlocLoginEventoResetearTemporizador>(_resetearCronometro);
-    on<BlocLoginEventoTiempoEjecucion>(_corriendoCronometro);
-    on<BlocLoginEventoTiempoCompletado>(_cronometroCompletado);
   }
-  static const int _duracion = 60;
-
-  late Timer _time;
-  int _tiempoCorriendoDuracion = _duracion;
 
   /// Funcion que inicia sesion donde llamamos al repo `emailAuth` que es de
   /// server pod y la funcion signIn y pasamos nuestros events
@@ -218,117 +205,6 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
         longitudCodigo: event.longitudCodigo,
       ),
     );
-  }
-
-  /// Funcion que empieza a correr el cronometro
-  FutureOr<void> _empezarCronometro(
-    BLocLoginEventoEmpezarTemporizador event,
-    Emitter<BlocLoginEstado> emit,
-  ) async {
-    _tiempoCorriendoDuracion = _duracion;
-    emit(
-      BlocLoginEstadoCronometroCorriendo.desde(
-        state,
-        duracionTimer: _tiempoCorriendoDuracion,
-      ),
-    );
-
-    final timeStreamController = StreamController<int>();
-
-    _time = Timer.periodic(const Duration(seconds: 1), (_) {
-      if (_tiempoCorriendoDuracion > 0) {
-        _tiempoCorriendoDuracion--;
-        timeStreamController.sink.add(_tiempoCorriendoDuracion);
-      } else {
-        timeStreamController.close();
-        add(BlocLoginEventoTiempoCompletado());
-      }
-    });
-
-    await for (final int duracion in timeStreamController.stream) {
-      emit(
-        BlocLoginEstadoCronometroCorriendo.desde(
-          state,
-          duracionTimer: duracion,
-        ),
-      );
-    }
-  }
-
-  /// Funcion para resetear el cronometro o que vuelva a 60 seg
-  FutureOr<void> _resetearCronometro(
-    BlocLoginEventoResetearTemporizador event,
-    Emitter<BlocLoginEstado> emit,
-  ) async {
-    _time.cancel();
-    emit(
-      BLocLoginEstadoIniciarCronometro.desde(
-        state,
-        duracionTimer: _duracion,
-      ),
-    );
-  }
-
-  /// Funcion que corre el cronometro o muestra que el cronometro esta corriendo
-  FutureOr<void> _corriendoCronometro(
-    BlocLoginEventoTiempoEjecucion event,
-    Emitter<BlocLoginEstado> emit,
-  ) async {
-    emit(
-      BlocLoginEstadoCronometroCorriendo.desde(
-        state,
-        duracionTimer: _tiempoCorriendoDuracion,
-      ),
-    );
-
-    final timerStreamController = StreamController<int>();
-
-    _time = Timer.periodic(const Duration(seconds: 1), (_) {
-      if (_tiempoCorriendoDuracion > 0) {
-        _tiempoCorriendoDuracion--;
-        timerStreamController.sink.add(_tiempoCorriendoDuracion);
-      } else {
-        timerStreamController.close();
-        _time.cancel();
-        add(BlocLoginEventoTiempoCompletado());
-      }
-    });
-
-    await for (final int duracion in timerStreamController.stream) {
-      emit(
-        BlocLoginEstadoCronometroCorriendo.desde(
-          state,
-          duracionTimer: duracion,
-        ),
-      );
-    }
-  }
-
-  /// Funcion que termina el cronometro o muestra que el cronometro fue
-  /// completado
-  FutureOr<void> _cronometroCompletado(
-    BlocLoginEventoTiempoCompletado event,
-    Emitter<BlocLoginEstado> emit,
-  ) async {
-    // TODO(Gon): por ahora no hace nada si termino pero agregarle
-    // que vuelva o que le avise que se acabo el tiempo para que
-    // reenviar el codigo de verificacion
-    if (_time.isActive) {
-      _time.cancel();
-    }
-    emit(
-      BlocLoginEstadoCronometroCompletado.desde(
-        state,
-        duracionTimer: state.duracionTimer,
-      ),
-    );
-  }
-
-  ///cancela el cronometro y lo pausa para que no siga
-  @override
-  Future<void> close() {
-    _time.cancel();
-    return super.close();
   }
 
   /// Repo de los llamados a server pod

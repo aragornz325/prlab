@@ -69,23 +69,3 @@ class BlocLoginEventoValidarCodigo extends BlocLoginEvento {
   /// Codigo ingresado por el usuario
   final String codigo;
 }
-
-/// Evento para que empiece el temporizador del cronometro
-class BLocLoginEventoEmpezarTemporizador extends BlocLoginEvento {}
-
-/// Evento para pausar el tiempo del cronometro
-class BlocLoginEventoPausarTemporizador extends BlocLoginEvento {}
-
-/// Evento para resetear el tiempo del cronometro
-class BlocLoginEventoResetearTemporizador extends BlocLoginEvento {}
-
-/// Evento para estar corriendo o ejecutando la duracion del cronometro
-class BlocLoginEventoTiempoEjecucion extends BlocLoginEvento {
-  const BlocLoginEventoTiempoEjecucion(this.duracionTimer);
-
-  /// Duracion del timer
-  final int duracionTimer;
-}
-
-/// Evento que el cronometro ya a finalizado o completado
-class BlocLoginEventoTiempoCompletado extends BlocLoginEvento {}
