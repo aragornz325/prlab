@@ -15,7 +15,7 @@ class VistaLoginEscritorio extends StatelessWidget {
       body: Row(
         children: [
           Container(
-            //TODO(Gon): Cambiar cuando esten los colores del theme
+            // TODO(Gon): Cambiar cuando esten los colores del theme
             color: const Color(0xfff7f7f7),
             width: 44.5.wp,
             height: 100.hp,
@@ -25,14 +25,14 @@ class VistaLoginEscritorio extends StatelessWidget {
                 const TextoBienvenida(),
 
                 //Ejemplo textfield
-                //TODO(Gon): Cambiar por los textfields factory
+                // TODO(Gon): Cambiar por los textfields factory
                 SizedBox(
                   width: 259.pw,
                   child: const TextField(),
                 ),
 
                 //Ejemplo textfield
-                //TODO(Gon): Cambiar por los textfields factory
+                // TODO(Gon): Cambiar por los textfields factory
                 SizedBox(
                   width: 259.pw,
                   child: const TextField(),
@@ -40,9 +40,11 @@ class VistaLoginEscritorio extends StatelessWidget {
                 const OlvidasteTuContrasenia(),
 
                 //Ejemplo Boton Login
-                //TODO(Gon): Cambiar por los botones factory
+                // TODO(Gon): Cambiar por los botones factory
                 ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(100)),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(100),
+                  ),
                   child: SizedBox(
                     width: 359.pw,
                     height: 50.ph,

@@ -30,7 +30,7 @@ class LogoPrLabAgencia extends StatelessWidget {
               l10n.page_create_admin_account_title_prlab,
               textAlign: TextAlign.center,
               style: TextStyle(
-                // TODO: cambiar cuando este seteado los themas
+                // TODO(mati): cambiar cuando este seteado los themas
                 color: const Color(0xff363636),
                 fontSize: 40.pf,
                 fontWeight: FontWeight.w600,
@@ -39,7 +39,7 @@ class LogoPrLabAgencia extends StatelessWidget {
             Text(
               l10n.page_create_admin_account_subtitle_international_prlab_agency,
               style: TextStyle(
-                // TODO: cambiar cuando este seteado los themas
+                // TODO(mati): cambiar cuando este seteado los themas
                 color: const Color(0xff363636),
                 fontSize: 14.pf,
                 fontWeight: FontWeight.w400,

@@ -69,8 +69,8 @@ class SeccionLogoBienvenida extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 180.ph,
-                )
+                  height: 85.ph,
+                ),
               ],
             ),
           ),

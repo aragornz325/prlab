@@ -4,7 +4,7 @@ import 'package:prlab_flutter/theming/esquemas_de_color/colores_default_light_pr
 /// ColorsScheme base donde se agregan colores custom.
 
 extension PRLabColorScheme on ColorScheme {
-  Color get primaryBajaOpacidad => themeDefaultPRLab.primary.withOpacity(0.2);
+  Color get primaryBajaOpacidad => themeDefaultPRLab.primary.withOpacity(0.6);
   Color get secondaryBajaOpacidad =>
-      themeDefaultPRLab.secondary.withOpacity(.2);
+      themeDefaultPRLab.secondary.withOpacity(.6);
 }
