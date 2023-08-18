@@ -102,7 +102,7 @@ class _FormularioDeRecuperarPasswordState
                     return PRBoton(
                       onTap: _onTapContinuar,
                       texto: l10n.commonContinue,
-                      habilitado: state.estanCompletasLasPasswords,
+                      estaHabilitado: state.estanCompletasLasPasswords,
                     );
                   },
                 ),

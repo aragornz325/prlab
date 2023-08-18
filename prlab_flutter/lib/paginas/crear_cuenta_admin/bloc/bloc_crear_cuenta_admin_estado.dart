@@ -23,7 +23,7 @@ class BlocCrearCuentaAdminEstado extends Equatable {
   final String email;
 
   /// Booleano que indica si el correo/email esta bien
-  bool get esEmailValido => Validators.emailRegExp.hasMatch(email);
+  bool get esEmailValido => ExpresionRegular.emailRegExp.hasMatch(email);
 
   @override
   List<Object> get props => [
