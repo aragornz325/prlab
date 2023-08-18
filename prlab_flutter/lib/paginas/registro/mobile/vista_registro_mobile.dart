@@ -156,7 +156,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                             SizedBox(
                               width: 359.pw,
                               child: PRTextFormFieldPassword(
-                                validator: _validarContraseniaRepetida,
+                                validator: _validarPasswordRepetida,
                                 controller: controllerPassword,
                                 hintText: l10n.commonPassword,
                                 esCreacionPassword: true,
@@ -175,7 +175,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                             SizedBox(
                               width: 359.pw,
                               child: PRTextFormFieldPassword(
-                                validator: _validarContraseniaRepetida,
+                                validator: _validarPasswordRepetida,
                                 controller: controllerPasswordRepetida,
                                 hintText:
                                     l10n.pageSignUpTextFieldHintConfirmPassword,
@@ -262,7 +262,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
     );
   }
 
-  String? _validarContraseniaRepetida(String? value) {
+  String? _validarPasswordRepetida(String? value) {
     if (controllerPassword.text != value) {
       return context.l10n.commonPasswordDoNotMatch;
     }

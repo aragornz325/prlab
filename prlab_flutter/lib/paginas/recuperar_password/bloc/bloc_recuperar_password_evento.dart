@@ -14,21 +14,21 @@ class BlocRecuperarPasswordEventoRecolectarData
     extends BlocRecuperarPasswordEvento {
   /// {@macro BlocRecuperarPasswordEventoRecolectarData}
   BlocRecuperarPasswordEventoRecolectarData({
-    this.contrasenia,
-    this.contraseniaRepetida,
+    this.password,
+    this.passwordRepetida,
   });
 
-  final String? contrasenia;
+  final String? password;
 
-  final String? contraseniaRepetida;
+  final String? passwordRepetida;
 }
 
-/// {@template BlocRecuperarPasswordEventoCambiarContrasenia}
+/// {@template BlocRecuperarPasswordEventoCambiarPassword}
 /// Evento que recolecta los valores de las contraseñas de los campos
 /// de texto y las actualiza dentro del estado.
 /// {@endtemplate}
 class BlocRecuperarPasswordEventoCambiarPassword
     extends BlocRecuperarPasswordEvento {
-  /// {@macro BlocRecuperarPasswordEventoCambiarContrasenia}
+  /// {@macro BlocRecuperarPasswordEventoCambiarPassword}
   BlocRecuperarPasswordEventoCambiarPassword();
 }

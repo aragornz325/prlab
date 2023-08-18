@@ -178,8 +178,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     Emitter<BlocLoginEstado> emit,
   ) {
     if (Validators.emailRegExp.hasMatch(event.email) &&
-        event.password.length >
-            PRLabConfiguracion.minimoDeCaracteresContrasenia) {
+        event.password.length > PRLabConfiguracion.minimoDeCaracteresPassword) {
       emit(
         BlocLoginEstadoExitosoInicioSesion.desde(
           state,
