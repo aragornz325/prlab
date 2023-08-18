@@ -12,52 +12,52 @@ import 'package:auto_route/auto_route.dart' as _i6;
 import 'package:flutter/material.dart' as _i7;
 import 'package:prlab_flutter/paginas/crear_cuenta_admin/pagina_crear_cuenta_admin.dart'
     as _i1;
-import 'package:prlab_flutter/paginas/kyc/pagina_kyc.dart' as _i4;
+import 'package:prlab_flutter/paginas/kyc/pagina_kyc.dart' as _i3;
 import 'package:prlab_flutter/paginas/login/pagina_login.dart' as _i2;
-import 'package:prlab_flutter/paginas/recuperar_contrasenia/pagina_recuperar_contrasenia.dart'
+import 'package:prlab_flutter/paginas/recuperar_password/pagina_recuperar_password.dart'
     as _i5;
-import 'package:prlab_flutter/paginas/registro/registro_page.dart' as _i3;
+import 'package:prlab_flutter/paginas/registro/pagina_registro.dart' as _i4;
 
 abstract class $AppRouter extends _i6.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
   final Map<String, _i6.PageFactory> pagesMap = {
-    PaginaCrearCuenta.name: (routeData) {
+    RutaCrearCuenta.name: (routeData) {
       return _i6.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.PaginaCrearCuenta(),
       );
     },
-    PaginaLogin.name: (routeData) {
+    RutaLogin.name: (routeData) {
       return _i6.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i2.PaginaLogin(),
       );
     },
-    RegistroRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<RegistroRouteArgs>(
-          orElse: () =>
-              RegistroRouteArgs(tokenAuth: pathParams.getString('token')));
+    RutaKyc.name: (routeData) {
       return _i6.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i3.RegistroPage(
+        child: const _i3.PaginaKyc(),
+      );
+    },
+    RutaRegistro.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<RutaRegistroArgs>(
+          orElse: () =>
+              RutaRegistroArgs(tokenAuth: pathParams.getString('token')));
+      return _i6.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i4.PaginaRegistro(
           tokenAuth: args.tokenAuth,
           key: args.key,
         ),
       );
     },
-    PaginaKyc.name: (routeData) {
+    RutaRecuperarPassword.name: (routeData) {
       return _i6.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.PaginaKyc(),
-      );
-    },
-    PaginaRecuperarContrasenia.name: (routeData) {
-      return _i6.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i5.PaginaRecuperarContrasenia(),
+        child: const _i5.PaginaRecuperarPassword(),
       );
     },
   };
@@ -65,42 +65,56 @@ abstract class $AppRouter extends _i6.RootStackRouter {
 
 /// generated route for
 /// [_i1.PaginaCrearCuenta]
-class PaginaCrearCuenta extends _i6.PageRouteInfo<void> {
-  const PaginaCrearCuenta({List<_i6.PageRouteInfo>? children})
+class RutaCrearCuenta extends _i6.PageRouteInfo<void> {
+  const RutaCrearCuenta({List<_i6.PageRouteInfo>? children})
       : super(
-          PaginaCrearCuenta.name,
+          RutaCrearCuenta.name,
           initialChildren: children,
         );
 
-  static const String name = 'PaginaCrearCuenta';
+  static const String name = 'RutaCrearCuenta';
 
   static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.PaginaLogin]
-class PaginaLogin extends _i6.PageRouteInfo<void> {
-  const PaginaLogin({List<_i6.PageRouteInfo>? children})
+class RutaLogin extends _i6.PageRouteInfo<void> {
+  const RutaLogin({List<_i6.PageRouteInfo>? children})
       : super(
-          PaginaLogin.name,
+          RutaLogin.name,
           initialChildren: children,
         );
 
-  static const String name = 'PaginaLogin';
+  static const String name = 'RutaLogin';
 
   static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i3.RegistroPage]
-class RegistroRoute extends _i6.PageRouteInfo<RegistroRouteArgs> {
-  RegistroRoute({
+/// [_i3.PaginaKyc]
+class RutaKyc extends _i6.PageRouteInfo<void> {
+  const RutaKyc({List<_i6.PageRouteInfo>? children})
+      : super(
+          RutaKyc.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RutaKyc';
+
+  static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i4.PaginaRegistro]
+class RutaRegistro extends _i6.PageRouteInfo<RutaRegistroArgs> {
+  RutaRegistro({
     required String tokenAuth,
     _i7.Key? key,
     List<_i6.PageRouteInfo>? children,
   }) : super(
-          RegistroRoute.name,
-          args: RegistroRouteArgs(
+          RutaRegistro.name,
+          args: RutaRegistroArgs(
             tokenAuth: tokenAuth,
             key: key,
           ),
@@ -108,14 +122,14 @@ class RegistroRoute extends _i6.PageRouteInfo<RegistroRouteArgs> {
           initialChildren: children,
         );
 
-  static const String name = 'RegistroRoute';
+  static const String name = 'RutaRegistro';
 
-  static const _i6.PageInfo<RegistroRouteArgs> page =
-      _i6.PageInfo<RegistroRouteArgs>(name);
+  static const _i6.PageInfo<RutaRegistroArgs> page =
+      _i6.PageInfo<RutaRegistroArgs>(name);
 }
 
-class RegistroRouteArgs {
-  const RegistroRouteArgs({
+class RutaRegistroArgs {
+  const RutaRegistroArgs({
     required this.tokenAuth,
     this.key,
   });
@@ -126,34 +140,20 @@ class RegistroRouteArgs {
 
   @override
   String toString() {
-    return 'RegistroRouteArgs{tokenAuth: $tokenAuth, key: $key}';
+    return 'RutaRegistroArgs{tokenAuth: $tokenAuth, key: $key}';
   }
 }
 
 /// generated route for
-/// [_i4.PaginaKyc]
-class PaginaKyc extends _i6.PageRouteInfo<void> {
-  const PaginaKyc({List<_i6.PageRouteInfo>? children})
+/// [_i5.PaginaRecuperarPassword]
+class RutaRecuperarPassword extends _i6.PageRouteInfo<void> {
+  const RutaRecuperarPassword({List<_i6.PageRouteInfo>? children})
       : super(
-          PaginaKyc.name,
+          RutaRecuperarPassword.name,
           initialChildren: children,
         );
 
-  static const String name = 'PaginaKyc';
-
-  static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i5.PaginaRecuperarContrasenia]
-class PaginaRecuperarContrasenia extends _i6.PageRouteInfo<void> {
-  const PaginaRecuperarContrasenia({List<_i6.PageRouteInfo>? children})
-      : super(
-          PaginaRecuperarContrasenia.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'PaginaRecuperarContrasenia';
+  static const String name = 'RutaRecuperarPassword';
 
   static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
 }

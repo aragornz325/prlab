@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/paginas/crear_cuenta_admin/escritorio/widgets/widgets.dart';
+import 'package:prlab_flutter/paginas/crear_cuenta_admin/escritorio/widgets/email_boton_enviar.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template VistaEscritorioCrearCuentaAdmin}
@@ -20,7 +20,7 @@ class VistaEscritorioCrearCuentaAdmin extends StatefulWidget {
 class _VistaEscritorioCrearCuentaAdminState
     extends State<VistaEscritorioCrearCuentaAdmin> {
   /// controller de la vista de escritorio
-  TextEditingController controllerEmail = TextEditingController();
+  final controllerEmail = TextEditingController();
 
   @override
   void dispose() {
@@ -33,26 +33,28 @@ class _VistaEscritorioCrearCuentaAdminState
     final l10n = context.l10n;
 
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const LogoPrLabAgencia(),
-          SizedBox(height: 130.ph),
-          PrLabEmailYBotonEnviar(
-            controller: controllerEmail,
-          ),
-          SizedBox(height: 80.ph),
-          Center(
-            child: PRBoton.outlined(
-              width: 200.pw,
-              onTap: () {
-                // TODO(mati): agregarle funcionalidad
-              },
-              texto: l10n.commonBack,
-              habilitado: true,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const LogoPrLabAgencia(),
+            SizedBox(height: 100.ph),
+            PrLabEmailYBotonEnviar(controller: controllerEmail),
+            SizedBox(height: 50.ph),
+            Center(
+              child: PRBoton.outlined(
+                width: 200.pw,
+                onTap: () {
+                  // TODO(anyone): agregarle funcionalidad para volver atras.
+                  // todavía no esta definido que función cumple
+                  // el boton hacia atrás en esta vista
+                },
+                texto: l10n.commonBack,
+                habilitado: true,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Esquema de colores a utilizar en el theme light
 
+// TODO(Manu): Agregar docu.
 // TODO(Manu): agregar cuadno diseño tenga asignados los colores restantes
 const themeDefaultPRLab = ColorScheme.light(
   primary: Color(0xFFA12B46),

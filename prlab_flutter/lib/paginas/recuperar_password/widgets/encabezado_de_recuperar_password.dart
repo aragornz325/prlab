@@ -3,13 +3,13 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
-/// {@template encabezado_de_recuperar_contrasenia}
+/// {@template EncabezadoDeRecuperarPassword}
 /// Contiene título y subtítulo que aparece en
 /// la parte superior del formulario de recuperar contraseña.
 /// {@endtemplate}
-class EncabezadoDeRecuperarContrasenia extends StatelessWidget {
-  /// {@macro encabezado_de_recuperar_contrasenia}
-  const EncabezadoDeRecuperarContrasenia({
+class EncabezadoDeRecuperarPassword extends StatelessWidget {
+  /// {@macro EncabezadoDeRecuperarPassword}
+  const EncabezadoDeRecuperarPassword({
     super.key,
   });
 
@@ -24,9 +24,6 @@ class EncabezadoDeRecuperarContrasenia extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 4.pw),
           child: Text(
-            // TODO(Andreas): Hablar con nico sobre problema con
-            // el paquete que en la resolucion
-            // de telefono no se achica lo suficiente el texto.
             l10n.commonRecoverPassword,
             style: TextStyle(
               color: colores.tertiary,
@@ -37,9 +34,6 @@ class EncabezadoDeRecuperarContrasenia extends StatelessWidget {
         ),
         SizedBox(height: 10.ph),
         Text(
-          // TODO(Andreas:
-          // Hablar con nico sobre problema con el paquete que en la resolucion
-          // de telefono no se achica lo suficiente el texto.
           l10n.pageRecoverPasswordSubtitle,
           style: TextStyle(
             color: colores.secondary,

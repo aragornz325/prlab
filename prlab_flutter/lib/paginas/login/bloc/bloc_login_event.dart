@@ -1,8 +1,10 @@
 part of 'bloc_login.dart';
 
+// TODO(Gon): Agregar documentacion
 /// La clase `BlocLoginEvento` es una clase abstracta que amplía
 /// la clase `Equatable`.
 abstract class BlocLoginEvento extends Equatable {
+  // TODO(Gon): Agregar documentacion
   const BlocLoginEvento();
 
   @override

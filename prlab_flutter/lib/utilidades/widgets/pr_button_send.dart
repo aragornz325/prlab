@@ -32,7 +32,7 @@ class PrLabButtonSend extends StatelessWidget {
       child: TextButton(
         style: ButtonStyle(
           backgroundColor: const MaterialStatePropertyAll(
-            // TODO(anyone): Cambiar colors a los del theme
+            // TODO(Manu): Cambiar colors a los del theme
             Colors.transparent,
           ),
           shape: MaterialStateProperty.all(

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/paginas/crear_cuenta_admin/escritorio/widgets/widgets.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
-import 'package:prlab_flutter/utilidades/widgets/pr_dialog.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
+// TODO(Seba): Agregar docu.
 class VistaEsperaValidacionDeTokenEscritorio extends StatelessWidget {
   const VistaEsperaValidacionDeTokenEscritorio({
     super.key,
@@ -29,6 +29,7 @@ class VistaEsperaValidacionDeTokenEscritorio extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).pop();
                     },
+                    textButton: l10n.commonBack,
                     context: context,
                     titulo: l10n.commonSomethingWentWrong,
                     textoDeAdvertencia:

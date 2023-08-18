@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// ColorScheme a utilizarse en el theme de debugeo
+// TODO(Manu): Agregar docu.
 
 const coloresDebug = ColorScheme(
   brightness: Brightness.light,

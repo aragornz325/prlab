@@ -107,9 +107,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
                     listener: (context, state) {
                       if (state
                           is BlocRegistroEstadoUsuarioRegistradoConExito) {
-                        context.router.replace(
-                          const PaginaKyc(),
-                        );
+                        context.router.replace(const RutaKyc());
                       }
                     },
                     builder: (context, state) {
@@ -275,7 +273,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
   void _agregarEventoDeEnviarDatosRegistro(
     bool terminosAceptados,
   ) {
-    if (!_formKey.esValido ||
+    if (!_formKey.esFormularioValido ||
         !(controllerPasswordRepetida.text == controllerPassword.text) ||
         !terminosAceptados) return;
     context.read<BlocRegistro>().add(

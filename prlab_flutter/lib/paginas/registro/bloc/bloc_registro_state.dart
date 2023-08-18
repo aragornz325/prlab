@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
+// TODO(Seba): Agregar docu.
 @immutable
 class BlocRegistroEstado extends Equatable {
   const BlocRegistroEstado._({

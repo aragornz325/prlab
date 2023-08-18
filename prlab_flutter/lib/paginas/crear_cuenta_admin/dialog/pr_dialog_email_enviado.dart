@@ -5,7 +5,7 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template PRDialogEmailEnviado}
-/// PRDialogEmailEnviado muestra informacion sobre si se mando un email
+/// Muestra informacion sobre si se mando un email
 /// correctamente al usuario y muestra a que email se envio
 /// {@endtemplate}
 class PRDialogEmailEnviado extends StatelessWidget {
@@ -37,13 +37,13 @@ class PRDialogEmailEnviado extends StatelessWidget {
                   // TODO(anyone): esto va a definirse por el cliente
                   text: 'An email has been sent to\n',
                   style: TextStyle(
-                    color: const Color(0xff707070),
+                    color: colores.secondary,
                     fontSize: 15.pf,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
                 TextSpan(
-                  // TODO: esto va a definirse por el cliente
+                  // TODO(anyone): esto va a definirse por el cliente
                   text: '$email \n',
                   style: TextStyle(
                     color: colores.primary,
@@ -52,7 +52,7 @@ class PRDialogEmailEnviado extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  // TODO: esto va a definirse por el cliente
+                  // TODO(anyone): esto va a definirse por el cliente
                   text: 'Lorem ipsum dolor sit amet consectetur.Tortor\nut '
                       'quis faucibus etiam.Euismod condimentum.',
                   style: TextStyle(
@@ -66,9 +66,7 @@ class PRDialogEmailEnviado extends StatelessWidget {
           ),
         ],
       ),
-      onTap: () {
-        Navigator.of(context).pop();
-      },
+      onTap: () => Navigator.of(context).pop(),
     );
   }
 }

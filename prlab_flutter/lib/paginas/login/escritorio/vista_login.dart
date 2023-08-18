@@ -34,6 +34,8 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
   void dispose() {
     controllerEmail.dispose();
     controllerPassword.dispose();
+    controllerCodigo.dispose();
+
     super.dispose();
   }
 
@@ -55,6 +57,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
         }
 
         if (state is BlocLoginEstadoError) {
+          // TODO(Gon): Esto tiene que estar dentro de un listener con el popup correspndiente.
           // TODO(Gon): Todavia no hay diseño para el error handling
           print(getErrorMessage(context, state.mensajeDeError));
         }
@@ -70,7 +73,6 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const TextoBienvenida(),
-
                     SizedBox(
                       width: 360.pw,
                       height: 40.ph,
@@ -79,15 +81,14 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                         controller: controllerEmail,
                         onChanged: (p0) {
                           _habilitarBotonLogin();
+                          // TODO(Gon): Cambiar la logica y esto manejarlo en el bloc
+                          // tomar de ejemplo el bloc de KYC.
                           setState(() {});
                         },
                         hintText: l10n.pageLoginPlaceholderEmail,
                       ),
                     ),
-
-                    SizedBox(
-                      height: 10.ph,
-                    ),
+                    SizedBox(height: 10.ph),
                     // TODO(Gon): Cuando se manejen errores de login agregar
                     // los errores
                     // abajo de los textfields
@@ -100,21 +101,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                         onChanged: (_) => _habilitarBotonLogin(),
                       ),
                     ),
-
-                    if (state is BlocLoginEstadoError &&
-                        state.mensajeDeError ==
-                            MensajesDeErrorDelLogin.invalidCredentials)
-                      // TODO(Gon): mostrar los popups correspondientes
-                      // a los errores
-                      Container(
-                        width: 20,
-                        height: 20,
-                        // TODO(anyone): Cambiar colors a los del theme
-                        color: Colors.red,
-                      ),
-                    SizedBox(
-                      height: 10.ph,
-                    ),
+                    SizedBox(height: 10.ph),
                     OlvidasteTuContrasenia(
                       cargoElMail: Validators.emailRegExp.hasMatch(
                         controllerEmail.text,

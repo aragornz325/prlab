@@ -6,6 +6,8 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/paginas/login/dialog/pr_dialog_verificacion_codigo.dart';
 
+// TODO(Gon): Agregar documentacion
+// TODO(Gon): Cambiar en TODOS LOS LUGARES que diga 'contrasenia'.
 /// Texto clickeable que se muestra en la seccion de login
 class OlvidasteTuContrasenia extends StatefulWidget {
   const OlvidasteTuContrasenia({
@@ -44,20 +46,20 @@ class _OlvidasteTuContraseniaState extends State<OlvidasteTuContrasenia> {
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 12.ph),
           child: GestureDetector(
-            onTap: () {
-              if (widget.cargoElMail) {
-                showDialog<void>(
-                  context: context,
-                  builder: (context) {
-                    return PRDialogVerificacionCodigo(
-                      password: widget.password,
-                      email: widget.email,
-                      controllerCodigo: widget.controllerCodigo,
+            onTap: widget.cargoElMail
+                ? () {
+                    showDialog<void>(
+                      context: context,
+                      builder: (context) {
+                        return PRDialogVerificacionCodigo(
+                          password: widget.password,
+                          email: widget.email,
+                          controllerCodigo: widget.controllerCodigo,
+                        );
+                      },
                     );
-                  },
-                );
-              }
-            },
+                  }
+                : null,
             child: Text(
               l10n.pageLoginTappableText,
               style: TextStyle(

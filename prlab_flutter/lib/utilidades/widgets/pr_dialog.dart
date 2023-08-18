@@ -145,11 +145,10 @@ class PRDialog extends StatelessWidget {
     required VoidCallback onTap,
     required String titulo,
     required String textoDeAdvertencia,
+    required String textButton,
     double height = 285,
     double width = 455,
   }) {
-    final l10n = context.l10n;
-
     final colores = context.colores;
 
     return PRDialog(
@@ -190,7 +189,7 @@ class PRDialog extends StatelessWidget {
                 width: 360.pw,
                 child: PRBoton.outlined(
                   onTap: onTap,
-                  texto: l10n.commonResend,
+                  texto: textButton,
                   habilitado: true,
                   width: 360.pw,
                 ),

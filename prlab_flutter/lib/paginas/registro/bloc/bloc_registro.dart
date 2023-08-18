@@ -7,16 +7,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
-import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';
+import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
+// TODO(Seba): Agregar docu.
 /// Bloc que maneja los estados o logica de la pagina de registro
 class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
   BlocRegistro({
-    required this.emailAuthControllerCustomPRLab,
-  }) : super(
-          const BlocRegistroEstadoInicial(),
-        ) {
+    required EmailAuthController emailAuth,
+  })  : _emailAuth = emailAuth,
+        super(const BlocRegistroEstadoInicial()) {
     on<BlocRegistroEventoVerificarToken>(_onVerificarToken);
     on<BlocRegistroEventoAceptarTerminos>(_onAceptarTerminos);
     on<BlocRegistroEventoEnviarDatosRegistro>(_onEnviarDatosRegistro);
@@ -24,8 +24,8 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
       _onRecolectarInformacionDeRegistro,
     );
   }
-  final EmailAuthControllerCustomPRLab emailAuthControllerCustomPRLab;
-  // final Client client;
+
+  final EmailAuthController _emailAuth;
 
   /// Evento que acepta (o declina) los terminos y guarda el estado del checkbox
 
@@ -48,8 +48,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     Emitter<BlocRegistroEstado> emit,
   ) async {
     try {
-      final respuesta =
-          await emailAuthControllerCustomPRLab.createAccountRequest(
+      final respuesta = await _emailAuth.createAccountRequest(
         event.email,
         event.email,
         event.password,
@@ -68,12 +67,12 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
         event.email,
       );
 
-      await emailAuthControllerCustomPRLab.validateAccount(
+      await _emailAuth.validateAccount(
         event.email,
         codigo,
       );
 
-      final usuario = await emailAuthControllerCustomPRLab.signIn(
+      final usuario = await _emailAuth.signIn(
         event.email,
         event.password,
       );

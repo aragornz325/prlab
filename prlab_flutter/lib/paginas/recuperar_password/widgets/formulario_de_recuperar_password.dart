@@ -3,19 +3,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/paginas/recuperar_contrasenia/bloc/bloc_recuperar_contrasenia.dart';
-import 'package:prlab_flutter/paginas/recuperar_contrasenia/widgets/widgets.dart';
+import 'package:prlab_flutter/paginas/recuperar_password/bloc/bloc_recuperar_password.dart';
+import 'package:prlab_flutter/paginas/recuperar_password/dialog/dialog.dart';
+import 'package:prlab_flutter/paginas/recuperar_password/widgets/widgets.dart';
 import 'package:prlab_flutter/utilidades/extensions/extensions.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
-/// {@template formulario_de_recuperar_contrasenia}
+/// {@template FormularioDeRecuperarPassword}
 /// Formulario que contiene todos los campos de texto
 /// para completar la información basica necesaria
 /// para cambiar la contraseña de un usuario.
 /// {@endtemplate}
-class FormularioDeRecuperarContrasenia extends StatefulWidget {
-  /// {@macro formulario_de_recuperar_contrasenia}
-  const FormularioDeRecuperarContrasenia({
+class FormularioDeRecuperarPassword extends StatefulWidget {
+  /// {@macro FormularioDeRecuperarPassword}
+  const FormularioDeRecuperarPassword({
     required this.width,
     super.key,
   });
@@ -24,22 +25,22 @@ class FormularioDeRecuperarContrasenia extends StatefulWidget {
   final double width;
 
   @override
-  State<FormularioDeRecuperarContrasenia> createState() =>
-      _FormularioDeRecuperarContraseniaState();
+  State<FormularioDeRecuperarPassword> createState() =>
+      _FormularioDeRecuperarPasswordState();
 }
 
-class _FormularioDeRecuperarContraseniaState
-    extends State<FormularioDeRecuperarContrasenia> {
+class _FormularioDeRecuperarPasswordState
+    extends State<FormularioDeRecuperarPassword> {
   final _formKey = GlobalKey<FormState>();
 
-  final contraseniaController = TextEditingController();
+  final controllerPassword = TextEditingController();
 
-  final contraseniaRepetidaController = TextEditingController();
+  final controllerPasswordRepetida = TextEditingController();
 
   @override
   void dispose() {
-    contraseniaController.dispose();
-    contraseniaRepetidaController.dispose();
+    controllerPassword.dispose();
+    controllerPasswordRepetida.dispose();
     super.dispose();
   }
 
@@ -49,15 +50,20 @@ class _FormularioDeRecuperarContraseniaState
 
     final colores = context.colores;
 
-    return BlocListener<BlocRecuperarContrasenia,
-        BlocRecuperarContraseniaEstado>(
+    return BlocListener<BlocRecuperarPassword, BlocRecuperarPasswordEstado>(
       listener: (context, state) {
         if (state.esEstadoExitoso) {
-          // TODO(Andreas): Completar esto cuando esten los popups
+          showDialog<void>(
+            context: context,
+            builder: (_) => const PRDialogRecuperoDePasswordExitoso(),
+          );
         }
 
         if (state.esEstadoFallido) {
-          // TODO(Andreas): Completar esto cuando esten los popups
+          showDialog<void>(
+            context: context,
+            builder: (_) => const PRDialogError(),
+          );
         }
       },
       child: Form(
@@ -69,33 +75,29 @@ class _FormularioDeRecuperarContraseniaState
             width: widget.width,
             child: Column(
               children: [
-                const EncabezadoDeRecuperarContrasenia(),
+                const EncabezadoDeRecuperarPassword(),
                 PRTextFormFieldPassword(
-                  controller: contraseniaController,
+                  controller: controllerPassword,
                   hintText: l10n.pageRecoverPasswordNewPasswordHintText,
-                  onChanged: (_) =>
-                      context.read<BlocRecuperarContrasenia>().add(
-                            BlocRecuperarContraseniaEventoRecolectarData(
-                              contrasenia: contraseniaController.text,
-                            ),
-                          ),
+                  onChanged: (_) => context.read<BlocRecuperarPassword>().add(
+                        BlocRecuperarPasswordEventoRecolectarData(
+                          contrasenia: controllerPassword.text,
+                        ),
+                      ),
                 ),
                 SizedBox(height: 40.sh),
                 PRTextFormFieldPassword(
-                  controller: contraseniaRepetidaController,
+                  controller: controllerPasswordRepetida,
                   hintText: l10n.pageRecoverPasswordRepeatPasswordHintText,
                   validator: _validarContraseniaRepetida,
-                  onChanged: (_) =>
-                      context.read<BlocRecuperarContrasenia>().add(
-                            BlocRecuperarContraseniaEventoRecolectarData(
-                              contraseniaRepetida:
-                                  contraseniaRepetidaController.text,
-                            ),
-                          ),
+                  onChanged: (_) => context.read<BlocRecuperarPassword>().add(
+                        BlocRecuperarPasswordEventoRecolectarData(
+                          contraseniaRepetida: controllerPasswordRepetida.text,
+                        ),
+                      ),
                 ),
                 SizedBox(height: 50.sh),
-                BlocBuilder<BlocRecuperarContrasenia,
-                    BlocRecuperarContraseniaEstado>(
+                BlocBuilder<BlocRecuperarPassword, BlocRecuperarPasswordEstado>(
                   builder: (context, state) {
                     return PRBoton(
                       onTap: _onTapContinuar,
@@ -114,7 +116,7 @@ class _FormularioDeRecuperarContraseniaState
   }
 
   String? _validarContraseniaRepetida(String? value) {
-    if (contraseniaController.text != value) {
+    if (controllerPassword.text != value) {
       return context.l10n.commonPasswordDoNotMatch;
     }
 
@@ -122,10 +124,10 @@ class _FormularioDeRecuperarContraseniaState
   }
 
   void _onTapContinuar() {
-    if (!_formKey.esValido) return;
+    if (!_formKey.esFormularioValido) return;
 
     context
-        .read<BlocRecuperarContrasenia>()
-        .add(BlocRecuperarContraseniaEventoRecolectarData());
+        .read<BlocRecuperarPassword>()
+        .add(BlocRecuperarPasswordEventoRecolectarData());
   }
 }
