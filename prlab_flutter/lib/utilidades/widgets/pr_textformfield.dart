@@ -375,7 +375,7 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
 
         if ((value?.length ?? 0) <
             PRLabConfiguracion.minimoDeCaracteresPassword) {
-          return 'At least 12 characters';
+          return l10n.commonMinimumCharactersForAPassword;
         }
 
         if (widget.validator != null) {

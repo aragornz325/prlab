@@ -43,8 +43,9 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
   late Timer _time;
   int _tiempoCorriendoDuracion = _duracion;
 
-  /// Inicia sesión con el email y contraseña emite un loading para que
-  /// aparezca un circularprogress en el boton de login
+  /// Inicia sesión con el email y contraseña
+  /// en caso de ser exitoso, se devuelve la info del usuario y se lo redirige
+  /// al dashboard correspondiente, en caso de fallo tira el error respectivo.
   Future<void> _iniciarSesion(
     BlocLoginEventoIniciarSesion event,
     Emitter<BlocLoginEstado> emit,

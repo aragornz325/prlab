@@ -317,5 +317,10 @@
     "commonDateHintText" : "00/00/0000",
     "@commonDateHintText": {
         "description": "This text provides a sample date format '00/00/0000' that serves as a visual hint for users when entering dates."
+    },
+
+    "commonMinimumCharactersForAPassword" : "Al menos 12 caracteres",
+    "@commonMinimumCharactersForAPassword": {
+        "description": "This text is shown when the user enter a password too short on the register page"
     }
 }
