@@ -1,18 +1,22 @@
 part of 'bloc_login.dart';
 
-// TODO(Gon): Agregar documentacion
-/// La clase `BlocLoginEvento` es una clase abstracta que amplía
-/// la clase `Equatable`.
+/// {@template BlocLoginEvento}
+/// Padre de los eventos de la pagina login, maneja el inicio de sesion
+/// y el envio del codigo de verificacion
+/// {@endtemplate}
 abstract class BlocLoginEvento extends Equatable {
-  // TODO(Gon): Agregar documentacion
+  /// {@macro BlocLoginEvento}
   const BlocLoginEvento();
 
   @override
   List<Object> get props => [];
 }
 
-/// Evento donde iniciamos sesión
+/// {@template BlocLoginEventoIniciarSesion}
+/// Maneja la informacion del usuario para poder iniciar sesión
+/// {@endtemplate}
 class BlocLoginEventoIniciarSesion extends BlocLoginEvento {
+  /// {@macro BlocLoginEventoIniciarSesion}
   const BlocLoginEventoIniciarSesion({
     required this.password,
     required this.email,
@@ -25,8 +29,11 @@ class BlocLoginEventoIniciarSesion extends BlocLoginEvento {
   final String password;
 }
 
-/// Evento donde se hablita el boton de iniciar sesión
+/// {@template BlocLoginEventoHabilitarBotonLogin}
+/// Hablita el boton de iniciar sesión segun si se cumplen las validaciones
+/// {@endtemplate}
 class BlocLoginEventoHabilitarBotonLogin extends BlocLoginEvento {
+  /// {@macro BlocLoginEventoHabilitarBotonLogin}
   const BlocLoginEventoHabilitarBotonLogin({
     required this.password,
     required this.email,
@@ -39,9 +46,11 @@ class BlocLoginEventoHabilitarBotonLogin extends BlocLoginEvento {
   final String password;
 }
 
-/// Evento donde se cambia el tamaño del codigo para poder usar su longitud
-/// (no se pudo usar el controller.text.lenght)
+/// {@template BlocLoginEventoCambiarLongitudCodigo}
+/// Cambia el tamaño del codigo para poder usar su longitud
+/// {@endtemplate}
 class BlocLoginEventoCambiarLongitudCodigo extends BlocLoginEvento {
+  /// {@macro BlocLoginEventoCambiarLongitudCodigo}
   const BlocLoginEventoCambiarLongitudCodigo({
     required this.longitudCodigo,
   });
@@ -50,9 +59,12 @@ class BlocLoginEventoCambiarLongitudCodigo extends BlocLoginEvento {
   final int longitudCodigo;
 }
 
-/// Evento que envia el codigo al mail del usuario
-class BlocLoginEventoEnviarCodigoAlMailDelUsuario extends BlocLoginEvento {
-  const BlocLoginEventoEnviarCodigoAlMailDelUsuario({
+/// {@template BlocLoginEventoEnviarCodigoAlMailDelUsuario}
+/// Envia un correo electronico con el codigo al usuario
+/// {@endtemplate}
+class BlocLoginEventoEnviarCodigoAlUsuario extends BlocLoginEvento {
+  /// {@macro BlocLoginEventoEnviarCodigoAlMailDelUsuario}
+  const BlocLoginEventoEnviarCodigoAlUsuario({
     required this.email,
   });
 
@@ -60,8 +72,12 @@ class BlocLoginEventoEnviarCodigoAlMailDelUsuario extends BlocLoginEvento {
   final String email;
 }
 
-/// Evento que envia el codigo al back para validarlo
+/// {@template BlocLoginEventoValidarCodigo}
+/// Valida el codigo ingresado por el usuario para poder seguir con el flujo
+/// de recuperar contraseña
+/// {@endtemplate}
 class BlocLoginEventoValidarCodigo extends BlocLoginEvento {
+  /// {@macro BlocLoginEventoValidarCodigo}
   const BlocLoginEventoValidarCodigo({
     required this.codigo,
   });
@@ -69,23 +85,3 @@ class BlocLoginEventoValidarCodigo extends BlocLoginEvento {
   /// Codigo ingresado por el usuario
   final String codigo;
 }
-
-/// Evento para que empiece el temporizador del cronometro
-class BLocLoginEventoEmpezarTemporizador extends BlocLoginEvento {}
-
-/// Evento para pausar el tiempo del cronometro
-class BlocLoginEventoPausarTemporizador extends BlocLoginEvento {}
-
-/// Evento para resetear el tiempo del cronometro
-class BlocLoginEventoResetearTemporizador extends BlocLoginEvento {}
-
-/// Evento para estar corriendo o ejecutando la duracion del cronometro
-class BlocLoginEventoTiempoEjecucion extends BlocLoginEvento {
-  const BlocLoginEventoTiempoEjecucion(this.duracionTimer);
-
-  /// Duracion del timer
-  final int duracionTimer;
-}
-
-/// Evento que el cronometro ya a finalizado o completado
-class BlocLoginEventoTiempoCompletado extends BlocLoginEvento {}

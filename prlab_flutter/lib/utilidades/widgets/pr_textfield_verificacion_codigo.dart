@@ -5,6 +5,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
+import 'package:prlab_flutter/paginas/login/bloc_temporizador/bloc_temporizador.dart';
 
 // !!!
 // TODO(anyone): PASAR ESTO AL FACTORY
@@ -106,13 +107,13 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                   onTap: !widget.solicitoNuevoCodigo
                       ? () {
                           context.read<BlocLogin>().add(
-                                BlocLoginEventoEnviarCodigoAlMailDelUsuario(
+                                BlocLoginEventoEnviarCodigoAlUsuario(
                                   email: widget.email,
                                 ),
                               );
                           context
-                              .read<BlocLogin>()
-                              .add(BLocLoginEventoEmpezarTemporizador());
+                              .read<BlocTemporizador>()
+                              .add(BlocTemporizadorEventoEmpezar());
                         }
                       : null,
                   child: Text(
