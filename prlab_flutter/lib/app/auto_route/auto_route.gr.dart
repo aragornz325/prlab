@@ -11,9 +11,9 @@
 import 'package:auto_route/auto_route.dart' as _i6;
 import 'package:flutter/material.dart' as _i7;
 import 'package:prlab_flutter/paginas/crear_cuenta_admin/pagina_crear_cuenta_admin.dart'
-    as _i1;
-import 'package:prlab_flutter/paginas/kyc/pagina_kyc.dart' as _i3;
-import 'package:prlab_flutter/paginas/login/pagina_login.dart' as _i2;
+    as _i2;
+import 'package:prlab_flutter/paginas/kyc/pagina_kyc.dart' as _i1;
+import 'package:prlab_flutter/paginas/login/pagina_login.dart' as _i3;
 import 'package:prlab_flutter/paginas/recuperar_password/pagina_recuperar_password.dart'
     as _i5;
 import 'package:prlab_flutter/paginas/registro/pagina_registro.dart' as _i4;
@@ -23,22 +23,22 @@ abstract class $AppRouter extends _i6.RootStackRouter {
 
   @override
   final Map<String, _i6.PageFactory> pagesMap = {
+    RutaKyc.name: (routeData) {
+      return _i6.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i1.PaginaKyc(),
+      );
+    },
     RutaCrearCuenta.name: (routeData) {
       return _i6.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.PaginaCrearCuenta(),
+        child: const _i2.PaginaCrearCuenta(),
       );
     },
     RutaLogin.name: (routeData) {
       return _i6.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.PaginaLogin(),
-      );
-    },
-    RutaKyc.name: (routeData) {
-      return _i6.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i3.PaginaKyc(),
+        child: const _i3.PaginaLogin(),
       );
     },
     RutaRegistro.name: (routeData) {
@@ -55,16 +55,34 @@ abstract class $AppRouter extends _i6.RootStackRouter {
       );
     },
     RutaRecuperarPassword.name: (routeData) {
+      final args = routeData.argsAs<RutaRecuperarPasswordArgs>();
       return _i6.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i5.PaginaRecuperarPassword(),
+        child: _i5.PaginaRecuperarPassword(
+          codigoOtp: args.codigoOtp,
+          key: args.key,
+        ),
       );
     },
   };
 }
 
 /// generated route for
-/// [_i1.PaginaCrearCuenta]
+/// [_i1.PaginaKyc]
+class RutaKyc extends _i6.PageRouteInfo<void> {
+  const RutaKyc({List<_i6.PageRouteInfo>? children})
+      : super(
+          RutaKyc.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RutaKyc';
+
+  static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i2.PaginaCrearCuenta]
 class RutaCrearCuenta extends _i6.PageRouteInfo<void> {
   const RutaCrearCuenta({List<_i6.PageRouteInfo>? children})
       : super(
@@ -78,7 +96,7 @@ class RutaCrearCuenta extends _i6.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.PaginaLogin]
+/// [_i3.PaginaLogin]
 class RutaLogin extends _i6.PageRouteInfo<void> {
   const RutaLogin({List<_i6.PageRouteInfo>? children})
       : super(
@@ -87,20 +105,6 @@ class RutaLogin extends _i6.PageRouteInfo<void> {
         );
 
   static const String name = 'RutaLogin';
-
-  static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i3.PaginaKyc]
-class RutaKyc extends _i6.PageRouteInfo<void> {
-  const RutaKyc({List<_i6.PageRouteInfo>? children})
-      : super(
-          RutaKyc.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'RutaKyc';
 
   static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
 }
@@ -146,14 +150,39 @@ class RutaRegistroArgs {
 
 /// generated route for
 /// [_i5.PaginaRecuperarPassword]
-class RutaRecuperarPassword extends _i6.PageRouteInfo<void> {
-  const RutaRecuperarPassword({List<_i6.PageRouteInfo>? children})
-      : super(
+class RutaRecuperarPassword
+    extends _i6.PageRouteInfo<RutaRecuperarPasswordArgs> {
+  RutaRecuperarPassword({
+    required String codigoOtp,
+    _i7.Key? key,
+    List<_i6.PageRouteInfo>? children,
+  }) : super(
           RutaRecuperarPassword.name,
+          args: RutaRecuperarPasswordArgs(
+            codigoOtp: codigoOtp,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'RutaRecuperarPassword';
 
-  static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
+  static const _i6.PageInfo<RutaRecuperarPasswordArgs> page =
+      _i6.PageInfo<RutaRecuperarPasswordArgs>(name);
+}
+
+class RutaRecuperarPasswordArgs {
+  const RutaRecuperarPasswordArgs({
+    required this.codigoOtp,
+    this.key,
+  });
+
+  final String codigoOtp;
+
+  final _i7.Key? key;
+
+  @override
+  String toString() {
+    return 'RutaRecuperarPasswordArgs{codigoOtp: $codigoOtp, key: $key}';
+  }
 }
