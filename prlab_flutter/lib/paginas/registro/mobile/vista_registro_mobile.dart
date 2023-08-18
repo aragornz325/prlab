@@ -216,9 +216,9 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                     child: Text(
                                       l10n.pageSignUpTermsAndConditionsTextLink,
                                       style: TextStyle(
-                                        color: tema.secondary,
+                                        color: Colors.blue,
                                         decoration: TextDecoration.underline,
-                                        decorationColor: tema.secondary,
+                                        decorationColor: Colors.blue,
                                       ),
                                     ),
                                   ),

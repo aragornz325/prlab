@@ -73,9 +73,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
       onChanged: (value) {
         if (value.isNotEmpty || value != '') {
           context.read<BlocLogin>().add(
-                BlocLoginEventoCambiarLongitudCodigo(
-                  longitudCodigo: value.length,
-                ),
+                BlocLoginEventoAgregarCodigoAlEstado(codigo: value),
               );
         }
       },

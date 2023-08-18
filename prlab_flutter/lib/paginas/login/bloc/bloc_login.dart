@@ -26,7 +26,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     on<BlocLoginEventoEnviarCodigoAlUsuario>(
       _enviarCodigoAlUsuario,
     );
-    on<BlocLoginEventoCambiarLongitudCodigo>(_cambiarLongitudCodigo);
+    on<BlocLoginEventoAgregarCodigoAlEstado>(_cambiarLongitudCodigo);
     on<BlocLoginEventoValidarCodigo>(_validarCodigo);
   }
 
@@ -136,7 +136,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     emit(BlocLoginEstadoCargando.desde(state));
     try {
       final respuesta =
-          await client.auth.validarCodigoResetPassword(event.codigo);
+          await client.auth.validarCodigoResetPassword(state.codigo);
       if (respuesta) {
         emit(
           BlocLoginEstadoExitosoAlValidarOTP.desde(state),
@@ -152,16 +152,36 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       }
     } catch (e, st) {
       // TODO(Gon): Preguntar al back que devuelve para handlear los errores
-      emit(
-        BlocLoginEstadoError.desde(
-          state,
-          mensajeDeError: MensajesDeErrorDelLogin.unknown,
-        ),
-      );
+      // TODO(Gon): Preguntar al back que devuelve para handlear los errores
       if (kDebugMode) {
         debugger();
-        throw UnimplementedError('Error al restablecer la contraseña: $e $st');
+        print(st);
       }
+      MensajesDeErrorDelLogin loginErrorMessages;
+
+      switch (e) {
+        case AuthenticationFailReason.invalidCredentials:
+          loginErrorMessages = MensajesDeErrorDelLogin.invalidCredentials;
+
+        case AuthenticationFailReason.internalError:
+          loginErrorMessages = MensajesDeErrorDelLogin.internalError;
+
+        case AuthenticationFailReason.tooManyFailedAttempts:
+          loginErrorMessages = MensajesDeErrorDelLogin.tooManyFailedAttempts;
+
+        case AuthenticationFailReason.userCreationDenied:
+          loginErrorMessages = MensajesDeErrorDelLogin.userCreationDenied;
+
+        default:
+          loginErrorMessages = MensajesDeErrorDelLogin.unknown;
+      }
+
+      return emit(
+        BlocLoginEstadoError.desde(
+          state,
+          mensajeDeError: loginErrorMessages,
+        ),
+      );
     }
   }
 
@@ -171,8 +191,14 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     BlocLoginEventoHabilitarBotonLogin event,
     Emitter<BlocLoginEstado> emit,
   ) {
-    if (Validators.emailRegExp.hasMatch(event.email) &&
-        event.password.length > PRLabConfiguracion.minimoDeCaracteresPassword) {
+    emit(
+      BlocLoginEstadoExitosoInicioSesion.desde(
+        state,
+        botonHabilitado: true,
+        email: event.email,
+      ),
+    );
+    if (event.password.length > PRLabConfiguracion.minimoDeCaracteresPassword) {
       emit(
         BlocLoginEstadoExitosoInicioSesion.desde(
           state,
@@ -181,21 +207,24 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       );
     } else {
       emit(
-        BlocLoginEstadoExitosoInicioSesion.desde(state),
+        BlocLoginEstadoExitosoInicioSesion.desde(
+          state,
+          botonHabilitado: false,
+        ),
       );
     }
   }
 
-  /// Cambia el valor de la variable que es utilizadapara saber si ingreso
+  /// Cambia el valor de la variable que es utilizada para saber si ingreso
   /// el codigo completo
   void _cambiarLongitudCodigo(
-    BlocLoginEventoCambiarLongitudCodigo event,
+    BlocLoginEventoAgregarCodigoAlEstado event,
     Emitter<BlocLoginEstado> emit,
   ) {
     emit(
       BlocLoginEstadoExitosoInicioSesion.desde(
         state,
-        longitudCodigo: event.longitudCodigo,
+        codigo: event.codigo,
       ),
     );
   }

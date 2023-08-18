@@ -7,7 +7,6 @@ import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/olvidaste_tu_password.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/texto_bienvenida.dart';
 import 'package:prlab_flutter/paginas/recuperar_password/dialog/dialog.dart';
-import 'package:prlab_flutter/utilidades/utilidades.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// Vista de escritorio de la pantalla login donde el usuario
@@ -34,7 +33,6 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
     controllerEmail.dispose();
     controllerPassword.dispose();
     controllerCodigo.dispose();
-
     super.dispose();
   }
 
@@ -46,8 +44,9 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
 
     return BlocConsumer<BlocLogin, BlocLoginEstado>(
       listener: (context, state) {
-        if (state is BlocLoginEstadoError) {
-          // TODO(Gon): Implementar el manejo de errores
+        if (state.estadoErroneo) {
+          // TODO(Gon): Implementar el manejo de errores :D
+          Navigator.of(context).pop();
           showDialog<void>(
             context: context,
             builder: (context) => const PRDialogError(),
@@ -99,9 +98,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     // los errores abajo de los textfields
                     SizedBox(height: 10.ph),
                     OlvidasteTuPassword(
-                      cargoElMail: Validators.emailRegExp.hasMatch(
-                        controllerEmail.text,
-                      ),
+                      cargoElMail: state.estaVerificadoEmail,
                       email: controllerEmail.text,
                       password: controllerPassword.text,
                       controllerCodigo: controllerCodigo,

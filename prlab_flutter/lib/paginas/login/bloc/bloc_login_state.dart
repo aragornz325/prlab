@@ -9,20 +9,23 @@ class BlocLoginEstado extends Equatable {
     this.botonHabilitado = false,
     this.estaIniciandoSesion = false,
     this.duracionTimer = 60,
-    this.longitudCodigo = 0,
+    this.codigo = '',
+    this.email = '',
   });
 
   BlocLoginEstado.desde(
     BlocLoginEstado otro, {
     bool? botonHabilitado,
     bool estaIniciandoSesion = false,
+    String? email,
     int? duracionTimer,
-    int? longitudCodigo,
+    String? codigo,
   }) : this._(
           botonHabilitado: botonHabilitado ?? otro.botonHabilitado,
           estaIniciandoSesion: estaIniciandoSesion,
           duracionTimer: duracionTimer ?? otro.duracionTimer,
-          longitudCodigo: longitudCodigo ?? otro.longitudCodigo,
+          codigo: codigo ?? otro.codigo,
+          email: email ?? otro.email,
         );
 
   /// Bool para habilitar el boton o no dependiendo del contenido
@@ -36,20 +39,28 @@ class BlocLoginEstado extends Equatable {
   /// Duracion del temporizador
   final int duracionTimer;
 
-  /// Tamaño del codigo (indica cuantos digitos ingreso el usuario)
-  final int longitudCodigo;
+  /// codigo que te llega del email
+  final String codigo;
+
+  /// email del usuario a guardar
+  final String email;
 
   /// Getter que verifica si el estado actual es el estado cargando
   /// y apreto el boton de iniciar sesion
   bool get estaCargandoInicioDeSesion =>
       estaIniciandoSesion && this is BlocLoginEstadoCargando;
 
+  bool get estadoErroneo => this is BlocLoginEstadoError &&
+      (this as BlocLoginEstadoError).mensajeDeError == MensajesDeErrorDelLogin.unknown;
+
+  bool get estaVerificadoEmail => Validators.emailRegExp.hasMatch(email);
+
   @override
   List<Object> get props => [
         botonHabilitado,
         estaIniciandoSesion,
         duracionTimer,
-        longitudCodigo,
+        codigo,
       ];
 }
 
@@ -80,7 +91,8 @@ class BlocLoginEstadoExitosoInicioSesion extends BlocLoginEstado {
   BlocLoginEstadoExitosoInicioSesion.desde(
     super.otro, {
     super.botonHabilitado,
-    super.longitudCodigo,
+    super.codigo,
+    super.email,
   }) : super.desde();
 }
 

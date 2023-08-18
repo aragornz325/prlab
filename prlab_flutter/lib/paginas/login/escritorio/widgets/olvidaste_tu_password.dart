@@ -52,10 +52,13 @@ class _OlvidasteTuPasswordState extends State<OlvidasteTuPassword> {
                     showDialog<void>(
                       context: context,
                       builder: (context) {
-                        return PRDialogVerificacionCodigo(
-                          password: widget.password,
-                          email: widget.email,
-                          controllerCodigo: widget.controllerCodigo,
+                        return BlocBuilder<BlocLogin, BlocLoginEstado>(
+                          builder: (context, state) =>
+                              PRDialogVerificacionCodigo(
+                            password: widget.password,
+                            email: widget.email,
+                            controllerCodigo: widget.controllerCodigo,
+                          ),
                         );
                       },
                     );

@@ -25,6 +25,8 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
 
   /// controller del alertdialog
   final TextEditingController controllerCodigo;
+
+  /// password del usuario
   final String password;
 
   @override
@@ -41,20 +43,16 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
     final estadoTemporizador = context.watch<BlocTemporizador>().state;
 
     return PRDialog.solicitudAccion(
-      height: 270.ph,
       context: context,
-      estaHabilitado: estadoLogin.longitudCodigo == 8,
+      estaHabilitado: estadoLogin.codigo.length == 8,
       onTap: () {
         context.read<BlocLogin>().add(
-              BlocLoginEventoValidarCodigo(
-                codigo: controllerCodigo.text,
-              ),
+              const BlocLoginEventoValidarCodigo(),
             );
       },
       titulo: l10n.commonRecoverPassword,
       content: Column(
         children: [
-          // TODO(Mati): cambiar para cuando este en los textfield de factory
           PrLabTextfield(
             controller: controllerCodigo,
             solicitoNuevoCodigo:
@@ -62,7 +60,6 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
             email: email,
             segundosFaltantes: estadoLogin.duracionTimer,
           ),
-          SizedBox(height: 5.ph),
           Text(
             textoAQuienFueEnviadoEmail,
             style: TextStyle(

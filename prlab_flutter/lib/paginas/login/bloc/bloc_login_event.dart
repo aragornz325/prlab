@@ -46,17 +46,17 @@ class BlocLoginEventoHabilitarBotonLogin extends BlocLoginEvento {
   final String password;
 }
 
-/// {@template BlocLoginEventoCambiarLongitudCodigo}
+/// {@template BlocLoginEventoAgregarCodigoAlEstado}
 /// Cambia el tamaño del codigo para poder usar su longitud
 /// {@endtemplate}
-class BlocLoginEventoCambiarLongitudCodigo extends BlocLoginEvento {
-  /// {@macro BlocLoginEventoCambiarLongitudCodigo}
-  const BlocLoginEventoCambiarLongitudCodigo({
-    required this.longitudCodigo,
+class BlocLoginEventoAgregarCodigoAlEstado extends BlocLoginEvento {
+  /// {@macro BlocLoginEventoAgregarCodigoAlEstado}
+  const BlocLoginEventoAgregarCodigoAlEstado({
+    required this.codigo,
   });
 
   /// tamaño del codigo (indica cuantos digitos ingreso el usuario)
-  final int longitudCodigo;
+  final String codigo;
 }
 
 /// {@template BlocLoginEventoEnviarCodigoAlMailDelUsuario}
@@ -78,10 +78,5 @@ class BlocLoginEventoEnviarCodigoAlUsuario extends BlocLoginEvento {
 /// {@endtemplate}
 class BlocLoginEventoValidarCodigo extends BlocLoginEvento {
   /// {@macro BlocLoginEventoValidarCodigo}
-  const BlocLoginEventoValidarCodigo({
-    required this.codigo,
-  });
-
-  /// Codigo ingresado por el usuario
-  final String codigo;
+  const BlocLoginEventoValidarCodigo();
 }
