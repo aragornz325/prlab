@@ -149,8 +149,6 @@ class PRDialog extends StatelessWidget {
     double height = 285,
     double width = 455,
   }) {
-    final l10n = context.l10n;
-
     final colores = context.colores;
 
     return PRDialog(
