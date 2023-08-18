@@ -63,7 +63,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
           // TODO(Gon): Preguntar al back que devuelve para handlear los errores
           BlocLoginEstadoError.desde(
             state,
-            mensajeDeError: MensajesDeErrorDelLogin.userNotFound,
+            mensajeDeError: MensajesDeErrorDelLogin.unknown,
           ),
         );
       }
@@ -118,8 +118,11 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
         );
       } else {
         // TODO(Gon): Preguntar al back que devuelve para handlear los errores
-        throw UnimplementedError(
-          'Error al mandar el codigo de cambiar contraseña al mail del usuario',
+        emit(
+          BlocLoginEstadoError.desde(
+            state,
+            mensajeDeError: MensajesDeErrorDelLogin.unknown,
+          ),
         );
       }
     } catch (e, st) {
@@ -127,7 +130,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       emit(
         BlocLoginEstadoError.desde(
           state,
-          mensajeDeError: MensajesDeErrorDelLogin.invalidCredentials,
+          mensajeDeError: MensajesDeErrorDelLogin.unknown,
         ),
       );
       if (kDebugMode) {
@@ -152,8 +155,11 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
         );
       } else {
         // TODO(Gon): Preguntar al back que devuelve para handlear los errores
-        throw UnimplementedError(
-          'Error al mandar el codigo de cambiar contraseña al back',
+        emit(
+          BlocLoginEstadoError.desde(
+            state,
+            mensajeDeError: MensajesDeErrorDelLogin.unknown,
+          ),
         );
       }
     } catch (e, st) {
@@ -161,7 +167,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       emit(
         BlocLoginEstadoError.desde(
           state,
-          mensajeDeError: MensajesDeErrorDelLogin.internalError,
+          mensajeDeError: MensajesDeErrorDelLogin.unknown,
         ),
       );
       if (kDebugMode) {
