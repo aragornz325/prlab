@@ -3,13 +3,13 @@ import 'package:prlab_flutter/paginas/registro/widgets/cuerpo_de_vista_espera_va
 
 /// {@template VistaEsperaValidacionDeTokenEscritorio}
 /// Vista de espera cuando se esta validando el token del mail
-/// en dispositivos de tipo desktop incluso en browsers,
+/// en dispositivos de tipo celular
 /// que en el caso de error mostrara un alert dialog.
 /// {@endtemplate}
 
-class VistaEsperaValidacionDeTokenEscritorio extends StatelessWidget {
-  /// {@macro VistaEsperaValidacionDeTokenEscritorio}
-  const VistaEsperaValidacionDeTokenEscritorio({
+class VistaEsperaValidacionDeTokenCelular extends StatelessWidget {
+  /// {@macro VistaEsperaValidacionDeTokenCelular}
+  const VistaEsperaValidacionDeTokenCelular({
     super.key,
   });
 

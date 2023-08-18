@@ -15,7 +15,10 @@ class AppRouter extends $AppRouter {
     ),
     AutoRoute(
       page: RutaRegistro.page,
-      // TODO(Seba): Agregar docu, que es este token.
+
+      /// Este token proviene del email del cliente que le indica que va
+      /// a crearse la cuenta al clickear el link, este token sirve para
+      ///  verificarlo en el evento del BLoC.
       path: '/register/:token',
     ),
     AutoRoute(

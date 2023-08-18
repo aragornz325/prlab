@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
-import 'package:prlab_flutter/extensiones/theme_extension.dart';
+import 'package:prlab_flutter/extensiones/extensiones.dart';
+
 import 'package:prlab_flutter/l10n/l10n.dart';
 
-// TODO(Seba): Agregar docu.
+/// {@template TituloBienvenidaConImagen}
+/// Widget custom de la vista de registro, que muestra un titulo de bienvenida
+/// con una imagen que lo acompaña.
+/// {@endtemplate}
 class TituloBienvenidaConImagen extends StatelessWidget {
+  /// {@macro TituloBienvenidaConImagen}
   const TituloBienvenidaConImagen({
     super.key,
   });

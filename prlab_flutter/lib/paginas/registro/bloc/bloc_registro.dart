@@ -10,9 +10,14 @@ import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
-// TODO(Seba): Agregar docu.
-/// Bloc que maneja los estados o logica de la pagina de registro
+/// {@template BlocRegistro}
+/// El [Bloc] maneja el formulario de información del usuario
+/// en el momento que el usuario se esta registrando, validando token y
+/// recolectando datos.
+/// {@endtemplate}
+
 class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
+  /// {@macro BlocRegistro}
   BlocRegistro({
     required EmailAuthController emailAuth,
   })  : _emailAuth = emailAuth,
@@ -27,8 +32,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
 
   final EmailAuthController _emailAuth;
 
-  /// Evento que acepta (o declina) los terminos y guarda el estado del checkbox
-
+  /// Acepta (o declina) los terminos y guarda el estado del checkbox
   Future<void> _onAceptarTerminos(
     BlocRegistroEventoAceptarTerminos event,
     Emitter<BlocRegistroEstado> emit,
@@ -41,8 +45,8 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     );
   }
 
-  /// Evento que envia los datos de registro y registra al usuario.
-
+  /// Envia los datos de registro, los agrega del evento al estado
+  ///  y registra al usuario.
   Future<void> _onEnviarDatosRegistro(
     BlocRegistroEventoEnviarDatosRegistro event,
     Emitter<BlocRegistroEstado> emit,
@@ -108,7 +112,8 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     }
   }
 
-  /// Evento que envia los datos de registro y registra al usuario.
+  /// Verifica el token que le llego al usuario al mail
+  /// devolviendo el mail del usuario en caso de una validacion exitosa.
 
   Future<void> _onVerificarToken(
     BlocRegistroEventoVerificarToken event,
