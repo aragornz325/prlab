@@ -4,7 +4,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
-import 'package:prlab_flutter/paginas/login/escritorio/widgets/olvidaste_tu_contrasenia.dart';
+import 'package:prlab_flutter/paginas/login/escritorio/widgets/olvidaste_tu_password.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/texto_bienvenida.dart';
 import 'package:prlab_flutter/paginas/login/utilidades/get_error_message.dart';
 import 'package:prlab_flutter/utilidades/funciones/validators.dart';
@@ -89,8 +89,6 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       ),
                     ),
                     SizedBox(height: 10.ph),
-                    // TODO(Gon): Cuando se manejen errores de login agregar
-                    // los errores abajo de los textfields
                     SizedBox(
                       width: 360.pw,
                       height: 40.ph,
@@ -100,6 +98,8 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                         onChanged: (_) => _habilitarBotonLogin(),
                       ),
                     ),
+                    // TODO(Gon): Cuando se manejen errores de login agregar
+                    // los errores abajo de los textfields
                     SizedBox(height: 10.ph),
                     OlvidasteTuPassword(
                       cargoElMail: Validators.emailRegExp.hasMatch(
