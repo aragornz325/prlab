@@ -56,7 +56,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
         );
       }
 
-      emit(BlocLoginEstadoExitosoInicioSesion.desde(state));
+      emit(BlocLoginEstadoExitosoIniciarSesion.desde(state));
     } catch (e, st) {
       // TODO(Gon): Preguntar al back que devuelve para handlear los errores
       if (kDebugMode) {
@@ -174,14 +174,14 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     if (ExpresionRegular.emailRegExp.hasMatch(event.email) &&
         event.password.length > PRLabConfiguracion.minimoDeCaracteresPassword) {
       emit(
-        BlocLoginEstadoExitosoInicioSesion.desde(
+        BlocLoginEstadoExitosoGeneral.desde(
           state,
           botonHabilitado: true,
         ),
       );
     } else {
       emit(
-        BlocLoginEstadoExitosoInicioSesion.desde(state),
+        BlocLoginEstadoExitosoGeneral.desde(state),
       );
     }
   }
@@ -193,7 +193,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     Emitter<BlocLoginEstado> emit,
   ) {
     emit(
-      BlocLoginEstadoExitosoInicioSesion.desde(
+      BlocLoginEstadoExitosoGeneral.desde(
         state,
         longitudCodigo: event.longitudCodigo,
       ),

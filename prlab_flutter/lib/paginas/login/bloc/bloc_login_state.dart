@@ -72,16 +72,26 @@ class BlocLoginEstadoCargando extends BlocLoginEstado {
   }) : super.desde();
 }
 
-/// {@template BlocLoginEstadoExitosoInicioSesion}
-/// Estado exitoso emitido al iniciar sesión
+/// {@template BlocLoginEstadoExitosoGeneral}
+// TODO(Gon): Verificar esta docu y naming
+/// Existe este estado para separarlo de los demas estados de exito,
+/// por ejemplo iniciar sesion o recuperar contraseña
 /// {@endtemplate}
-class BlocLoginEstadoExitosoInicioSesion extends BlocLoginEstado {
-  /// {@macro BlocLoginEstadoExitosoInicioSesion}
-  BlocLoginEstadoExitosoInicioSesion.desde(
+class BlocLoginEstadoExitosoGeneral extends BlocLoginEstado {
+  /// {@macro BlocLoginEstadoExitosoGeneral}
+  BlocLoginEstadoExitosoGeneral.desde(
     super.otro, {
     super.botonHabilitado,
     super.longitudCodigo,
   }) : super.desde();
+}
+
+/// {@template BlocLoginEstadoExitosoInicioSesion}
+/// Estado exitoso emitido al iniciar sesión
+/// {@endtemplate}
+class BlocLoginEstadoExitosoIniciarSesion extends BlocLoginEstado {
+  /// {@macro BlocLoginEstadoExitosoInicioSesion}
+  BlocLoginEstadoExitosoIniciarSesion.desde(super.otro) : super.desde();
 }
 
 /// {@template BlocLoginEstadoExitosoAlValidarOTP}
