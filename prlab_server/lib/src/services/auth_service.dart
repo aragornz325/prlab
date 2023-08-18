@@ -50,7 +50,7 @@ class AuthService {
       if (tokenDb.isEmpty) {
         throw Exception('Token no valido');
       }
-      
+
       if (token != tokenDb) {
         throw Exception('Token no valido');
       }
@@ -89,6 +89,30 @@ class AuthService {
       } else {
         return true;
       }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// La función `eliminarOTPResetPassword` es una función de Dart que toma una sesión y un código, e
+  /// intenta eliminar el código de la base de datos, devolviendo verdadero si tiene éxito.
+  ///
+  /// Args:
+  ///   session (Session): Un parámetro requerido de tipo Sesión, que representa la información de la
+  /// sesión del usuario.
+  ///   codigo (String): El parámetro "codigo" es un String requerido que representa el código OTP
+  /// (One-Time Password) para restablecer la contraseña.
+  ///
+  Future<bool> eliminarOTPResetPassword({
+    required Session session,
+    required String codigo,
+  }) async {
+    try {
+      await authRepository.eliminarOTPResetPassword(
+        session: session,
+        codigo: codigo,
+      );
+      return true;
     } catch (e) {
       rethrow;
     }

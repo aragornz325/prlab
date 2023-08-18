@@ -33,20 +33,39 @@ class AuthEndpoint extends Endpoint {
     );
   }
 
- /// La función `validarCodigoResetPassword` toma un objeto `Session` y una cadena `codigo` como
- /// parámetros y devuelve un `Future<bool>` que indica si el código de restablecimiento de contraseña
- /// es válido.
- /// 
- /// Args:
- ///   session (Session): Un objeto Session que representa la sesión de usuario actual.
- ///   codigo (String): El parámetro "codigo" es una cadena que representa el código de restablecimiento
- /// de contraseña que debe validarse.
- /// 
+  /// La función `validarCodigoResetPassword` toma un objeto `Session` y una cadena `codigo` como
+  /// parámetros y devuelve un `Future<bool>` que indica si el código de restablecimiento de contraseña
+  /// es válido.
+  ///
+  /// Args:
+  ///   session (Session): Un objeto Session que representa la sesión de usuario actual.
+  ///   codigo (String): El parámetro "codigo" es una cadena que representa el código de restablecimiento
+  /// de contraseña que debe validarse.
+  ///
   Future<bool> validarCodigoResetPassword(
     Session session,
     String codigo,
   ) {
     return authService.validarCodigoResetPassword(
+      session: session,
+      codigo: codigo,
+    );
+  }
+
+  /// La función `eliminarOTPResetPassword` llama al método `eliminarOTPResetPassword` desde
+  /// `authService` y devuelve `Future<bool>`.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la información de la
+  /// sesión del usuario. Se utiliza para autenticar y autorizar al usuario para la operación.
+  ///   codigo (String): El parámetro "codigo" es una cadena que representa el código utilizado para
+  /// restablecer la contraseña.
+  ///
+  Future<bool> eliminarOTPResetPassword(
+    Session session,
+    String codigo,
+  ) {
+    return authService.eliminarOTPResetPassword(
       session: session,
       codigo: codigo,
     );

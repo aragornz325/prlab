@@ -115,4 +115,26 @@ class AuthRepository {
       rethrow;
     }
   }
+
+  /// La función `eliminarOTPResetPassword` elimina un registro de la tabla `serverpod_email_reset` según
+  /// un código de verificación determinado.
+  ///
+  /// Args:
+  ///   sesion (Session): El parámetro "sesion" es de tipo Sesión y es obligatorio. Representa la sesión
+  /// actual o la conexión a la base de datos.
+  ///   codigo (String): El parámetro "código" es una cadena obligatoria que representa el código de
+  /// verificación utilizado para restablecer una contraseña.
+  ///
+  Future<List> eliminarOTPResetPassword({
+    required Session session,
+    required String codigo,
+  }) async {
+    try {
+      return await session.db.query(
+        'DELETE FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
