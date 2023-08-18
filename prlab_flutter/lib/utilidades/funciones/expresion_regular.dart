@@ -1,10 +1,10 @@
-// TODO(Manu): Cambiar docu a español tambien ver que hay una carpeta de validators
-// cambiar el naming a validadores y unificar los validadores en un solo lugar.
-
-/// {@template validators}
-/// A collection of validators used all accross the app.
+/// {@template ExpresionRegular}
+/// Esta clase es utilizada para agregar las expresiones regulares que
+/// admitiran o restringiran utilizacion de tipos de caracteres.
 /// {@endtemplate}
-class Validators {
+class ExpresionRegular {
+  /// {@macro ExpresionRegular}
+
   /// Expresion regular que solo admite formato email.
   static RegExp get emailRegExp => RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",

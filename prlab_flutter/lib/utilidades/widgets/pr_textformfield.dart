@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/extensiones/theme_extension.dart';
+
+import 'package:prlab_flutter/extensiones/extensiones.dart';
+
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/prlab_configuracion/base.dart';
 import 'package:prlab_flutter/theming/base.dart';
-import 'package:prlab_flutter/utilidades/extensions/extensions.dart';
+
 import 'package:prlab_flutter/utilidades/funciones/functions.dart';
 
 /// Textformfields base y variantes para uso en PRLab
@@ -60,7 +62,7 @@ class PRTextFormField extends StatefulWidget {
       validator: (email) {
         if (email?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
-        } else if (!Validators.emailRegExp.hasMatch(email ?? '')) {
+        } else if (!ExpresionRegular.emailRegExp.hasMatch(email ?? '')) {
           return l10n.commonEnterValidEmail;
         }
         return null;
@@ -105,7 +107,7 @@ class PRTextFormField extends StatefulWidget {
       validator: (value) {
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
-        } else if (!Validators.letrasRegExp.hasMatch(value ?? '')) {
+        } else if (!ExpresionRegular.letrasRegExp.hasMatch(value ?? '')) {
           return l10n.commonOnlyLetters;
         }
 
@@ -148,7 +150,7 @@ class PRTextFormField extends StatefulWidget {
       validator: (value) {
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
-        } else if (!Validators.dateTimeRegExp.hasMatch(value ?? '')) {
+        } else if (!ExpresionRegular.dateTimeRegExp.hasMatch(value ?? '')) {
           return l10n.commonInvalidCharacters;
         }
 
@@ -192,7 +194,7 @@ class PRTextFormField extends StatefulWidget {
       validator: (value) {
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
-        } else if (!Validators.dateTimeRegExp.hasMatch(value ?? '')) {
+        } else if (!ExpresionRegular.dateTimeRegExp.hasMatch(value ?? '')) {
           return l10n.commonInvalidCharacters;
         }
         return null;
@@ -290,7 +292,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
                   height: 31.5.ph,
                   width: 1.pw,
                   decoration: BoxDecoration(color: colores.onSecondary),
-                )
+                ),
               ],
             ),
           ),

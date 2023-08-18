@@ -14,12 +14,17 @@ import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart'
 @RoutePage()
 class PaginaRecuperarPassword extends StatelessWidget {
   /// {@macro PaginaRecuperarPassword}
-  const PaginaRecuperarPassword({super.key});
+  const PaginaRecuperarPassword({
+    required this.codigoOtp,
+    super.key,
+  });
+
+  final String codigoOtp;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BlocRecuperarPassword(),
+      create: (context) => BlocRecuperarPassword(codigoOTP: codigoOtp),
       child: const FullResponsiveScreen(
         mobile: VistaRecuperarPasswordCelular(),
         desktop: VistaRecuperarPasswordEscritorio(),

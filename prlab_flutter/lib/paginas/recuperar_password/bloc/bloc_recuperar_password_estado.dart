@@ -7,6 +7,7 @@ part of 'bloc_recuperar_password.dart';
 sealed class BlocRecuperarPasswordEstado {
   /// {@macro BlocRecuperarPasswordEstado}
   const BlocRecuperarPasswordEstado._({
+    required this.codigoOTP,
     this.password = '',
     this.passwordRepetida = '',
   });
@@ -16,6 +17,7 @@ sealed class BlocRecuperarPasswordEstado {
     String? password,
     String? passwordRepetida,
   }) : this._(
+          codigoOTP: otro.codigoOTP,
           password: password ?? otro.password,
           passwordRepetida: passwordRepetida ?? otro.passwordRepetida,
         );
@@ -27,6 +29,12 @@ sealed class BlocRecuperarPasswordEstado {
   /// haya escrito 2 veces, esto minimiza errores de tipeo por
   /// parte del usuario.
   final String passwordRepetida;
+
+  /// Código que se uso en la página de login para poder
+  /// entrar al flujo de cambiar contraseña, este valor
+  /// es requerido para el modulo de auth de email de serverpod
+  /// en la funcion `resetPassword`.
+  final String codigoOTP;
 
   /// Si los campos de texto de contraseñas fueron completados.
   bool get estanCompletasLasPasswords =>
@@ -47,7 +55,8 @@ sealed class BlocRecuperarPasswordEstado {
 /// {@endtemplate}
 class BlocRecuperarPasswordEstadoInicial extends BlocRecuperarPasswordEstado {
   /// {@macro BlocRecuperarPasswordEstadoInicial}
-  const BlocRecuperarPasswordEstadoInicial() : super._();
+  const BlocRecuperarPasswordEstadoInicial(String codigoOTP)
+      : super._(codigoOTP: codigoOTP);
 }
 
 /// {@template BlocRecuperarPasswordEstadoCargando}

@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/extensiones/theme_extension.dart';
+import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
+import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/olvidaste_tu_password.dart';
@@ -51,6 +53,10 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
             context: context,
             builder: (context) => const PRDialogError(),
           );
+        }
+
+        if (state is BlocLoginEstadoExitosoIniciarSesion) {
+          context.router.replace(const RutaLogin());
         }
       },
       builder: (context, state) {
@@ -107,11 +113,11 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       height: 50.ph,
                     ),
                     PRBoton(
-                      habilitado: state.botonHabilitado,
-                      mostrarEstadoDeCarga: state.estaCargandoInicioDeSesion,
+                      estaHabilitado: state.botonHabilitado,
+                      muestraEstadoDeCarga: state.estaCargandoInicioDeSesion,
                       onTap: _onTapBotonIniciarSesion,
                       texto: l10n.pageLoginButtonText,
-                    )
+                    ),
                   ],
                 ),
               ),

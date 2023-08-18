@@ -1,18 +1,21 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
-// TODO(Seba): Agregar docu.
-/// Clase abstracta de bloc registro para los eventos
+/// {@template BlocRegistroEvento}
+/// Maneja el formulario de información del usuario
+/// en el momento que el usuario se esta  registrando.
+/// {@endtemplate}
 abstract class BlocRegistroEvento extends Equatable {
-  // TODO(SAM): Remover Equatable si no se usa.
+  /// {@macro BlocRegistroEvento}
   const BlocRegistroEvento();
 
   @override
   List<Object> get props => [];
 }
 
-/// Evento que invierte el valor de terminosAceptados que se inicia el false
+/// Invierte el valor de terminosAceptados que se inicia el false
 class BlocRegistroEventoAceptarTerminos extends BlocRegistroEvento {
+  /// {@macro BlocRegistroEventoAceptarTerminos}
   const BlocRegistroEventoAceptarTerminos({
     required this.terminosAceptados,
   });
@@ -20,8 +23,10 @@ class BlocRegistroEventoAceptarTerminos extends BlocRegistroEvento {
   final bool terminosAceptados;
 }
 
-/// Evento que  verifica si el token es el correcto
+/// Verifica si el token es el correcto y agrega el email correspondiente
+/// al estado.
 class BlocRegistroEventoVerificarToken extends BlocRegistroEvento {
+  /// {@macro BlocRegistroEventoVerificarToken}
   const BlocRegistroEventoVerificarToken({
     required this.token,
   });
@@ -29,8 +34,9 @@ class BlocRegistroEventoVerificarToken extends BlocRegistroEvento {
   final String token;
 }
 
-/// Evento que envia los datos y hace el registro.
+/// Envia los datos y hace el registro.
 class BlocRegistroEventoEnviarDatosRegistro extends BlocRegistroEvento {
+  /// {@macro BlocRegistroEventoEnviarDatosRegistro}
   const BlocRegistroEventoEnviarDatosRegistro({
     required this.email,
     required this.password,
@@ -46,10 +52,10 @@ class BlocRegistroEventoEnviarDatosRegistro extends BlocRegistroEvento {
       ];
 }
 
-/// Evento que recolecta los valores que se van completando
+/// Recolecta los valores que se van completando
 /// en el formulario cada vez que se actualiza.
-/// {@endtemplate}
 class BlocRegistroEventoRecolectarDatosRegistro extends BlocRegistroEvento {
+  /// {@macro BlocRegistroEventoRecolectarDatosRegistro}
   const BlocRegistroEventoRecolectarDatosRegistro({
     this.email,
     this.password,

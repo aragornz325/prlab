@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 
 part 'bloc_recuperar_password_estado.dart';
 part 'bloc_recuperar_password_evento.dart';
@@ -10,7 +11,8 @@ part 'bloc_recuperar_password_evento.dart';
 class BlocRecuperarPassword
     extends Bloc<BlocRecuperarPasswordEvento, BlocRecuperarPasswordEstado> {
   /// {@macro BlocRecuperarPassword}
-  BlocRecuperarPassword() : super(const BlocRecuperarPasswordEstadoInicial()) {
+  BlocRecuperarPassword({required String codigoOTP})
+      : super(BlocRecuperarPasswordEstadoInicial(codigoOTP)) {
     on<BlocRecuperarPasswordEventoRecolectarData>(_onRecolectarData);
     on<BlocRecuperarPasswordEventoCambiarPassword>(_onCambiarPassword);
   }
@@ -39,9 +41,12 @@ class BlocRecuperarPassword
     emit(BlocRecuperarPasswordEstadoCargando.desde(state));
 
     try {
-      // TODO(Andreas):
-      // Aca falta comunicarse con el cliente para poder
-      // hacer el cambio de contraseña en la db.
+      // TODO(anyone):
+      // Ver si este codigo efectivamente funcion!
+      await client.modules.auth.email.resetPassword(
+        state.codigoOTP,
+        state.password,
+      );
       emit(BlocRecuperarPasswordEstadoExitoso.desde(state));
     } catch (e) {
       emit(BlocRecuperarPasswordEstadoFallido.desde(state));

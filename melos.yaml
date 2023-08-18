@@ -1,0 +1,12 @@
+name: prlab
+
+packages:
+  - prlab_client/
+  - prlab_flutter/
+  - prlab_server/
+
+scripts:
+  pubget:
+    run: melos exec "flutter pub get"
+  servergen:
+    run: melos exec --scope="*server*" -- "serverpod generate"

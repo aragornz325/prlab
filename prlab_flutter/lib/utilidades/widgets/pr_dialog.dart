@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/extensiones/theme_extension.dart';
+import 'package:prlab_flutter/extensiones/extensiones.dart';
+
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/login/bloc_temporizador/bloc_temporizador.dart';
+
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template TipoDialog}
@@ -78,9 +80,9 @@ class PRDialog extends StatelessWidget {
                 SizedBox(height: 40.ph),
                 content,
                 SizedBox(height: 40.ph),
-                PRBoton.outlined(
+                PRBoton.esOutlined(
                   width: 360.pw,
-                  habilitado: estaHabilitado,
+                  estaHabilitado: estaHabilitado,
                   onTap: onTap,
                   texto: l10n.commonSend,
                 ),
@@ -126,10 +128,10 @@ class PRDialog extends StatelessWidget {
           content,
           SizedBox(height: 30.ph),
           Center(
-            child: PRBoton.outlined(
+            child: PRBoton.esOutlined(
               onTap: onTap,
               texto: l10n.commonOk,
-              habilitado: true,
+              estaHabilitado: true,
               width: 360.pw,
             ),
           ),
@@ -187,10 +189,10 @@ class PRDialog extends StatelessWidget {
             Center(
               child: SizedBox(
                 width: 360.pw,
-                child: PRBoton.outlined(
+                child: PRBoton.esOutlined(
                   onTap: onTap,
                   texto: textButton,
-                  habilitado: true,
+                  estaHabilitado: true,
                   width: 360.pw,
                 ),
               ),
@@ -249,10 +251,10 @@ class PRDialog extends StatelessWidget {
             Center(
               child: SizedBox(
                 width: 360.pw,
-                child: PRBoton.outlined(
+                child: PRBoton.esOutlined(
                   onTap: onTap,
                   texto: l10n.commonBack,
-                  habilitado: true,
+                  estaHabilitado: true,
                   width: 360.pw,
                 ),
               ),

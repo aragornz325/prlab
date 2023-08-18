@@ -50,10 +50,12 @@ class BlocLoginEstado extends Equatable {
   bool get estaCargandoInicioDeSesion =>
       estaIniciandoSesion && this is BlocLoginEstadoCargando;
 
-  bool get estadoErroneo => this is BlocLoginEstadoError &&
-      (this as BlocLoginEstadoError).mensajeDeError == MensajesDeErrorDelLogin.unknown;
+  bool get estadoErroneo =>
+      this is BlocLoginEstadoError &&
+      (this as BlocLoginEstadoError).mensajeDeError ==
+          MensajesDeErrorDelLogin.unknown;
 
-  bool get estaVerificadoEmail => Validators.emailRegExp.hasMatch(email);
+  bool get estaVerificadoEmail => ExpresionRegular.emailRegExp.hasMatch(email);
 
   @override
   List<Object> get props => [
@@ -83,17 +85,27 @@ class BlocLoginEstadoCargando extends BlocLoginEstado {
   }) : super.desde();
 }
 
-/// {@template BlocLoginEstadoExitosoInicioSesion}
-/// Estado exitoso emitido al iniciar sesión
+/// {@template BlocLoginEstadoExitosoGeneral}
+// TODO(Gon): Verificar esta docu y naming
+/// Existe este estado para separarlo de los demas estados de exito,
+/// por ejemplo iniciar sesion o recuperar contraseña
 /// {@endtemplate}
-class BlocLoginEstadoExitosoInicioSesion extends BlocLoginEstado {
-  /// {@macro BlocLoginEstadoExitosoInicioSesion}
-  BlocLoginEstadoExitosoInicioSesion.desde(
+class BlocLoginEstadoExitosoGeneral extends BlocLoginEstado {
+  /// {@macro BlocLoginEstadoExitosoGeneral}
+  BlocLoginEstadoExitosoGeneral.desde(
     super.otro, {
     super.botonHabilitado,
     super.codigo,
     super.email,
   }) : super.desde();
+}
+
+/// {@template BlocLoginEstadoExitosoInicioSesion}
+/// Estado exitoso emitido al iniciar sesión
+/// {@endtemplate}
+class BlocLoginEstadoExitosoIniciarSesion extends BlocLoginEstado {
+  /// {@macro BlocLoginEstadoExitosoInicioSesion}
+  BlocLoginEstadoExitosoIniciarSesion.desde(super.otro) : super.desde();
 }
 
 /// {@template BlocLoginEstadoExitosoAlValidarOTP}

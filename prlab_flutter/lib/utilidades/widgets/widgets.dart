@@ -1,5 +1,4 @@
 export 'pr_boton.dart';
-export 'pr_button_send.dart';
 export 'pr_dialog.dart';
 export 'pr_logo_agencia.dart';
 export 'pr_seccion_logo_y_eslogan.dart';
