@@ -51,12 +51,17 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
           Navigator.of(context).pop();
           showDialog<void>(
             context: context,
-            builder: (context) => const PRDialogError(),
+            builder: (_) => const PRDialogError(),
           );
         }
-
+        if (state is BlocLoginEstadoExitosoAlValidarOTP) {
+          Navigator.of(context).pop();
+          context.router.push(
+            RutaRecuperarPassword(codigoOtp: state.codigo),
+          );
+        }
         if (state is BlocLoginEstadoExitosoIniciarSesion) {
-          context.router.replace(const RutaLogin());
+          context.router.replace(const RutaDashboard());
         }
       },
       builder: (context, state) {

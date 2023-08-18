@@ -152,7 +152,6 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       }
     } catch (e, st) {
       // TODO(Gon): Preguntar al back que devuelve para handlear los errores
-      // TODO(Gon): Preguntar al back que devuelve para handlear los errores
       if (kDebugMode) {
         debugger();
         print(st);
