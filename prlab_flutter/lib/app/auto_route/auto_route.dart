@@ -30,5 +30,9 @@ class AppRouter extends $AppRouter {
       path: '/recover-password',
       page: RutaRecuperarPassword.page,
     ),
+    AutoRoute(
+      path: '/dashboard',
+      page: RutaDashboard.page,
+    ),
   ];
 }
