@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/prlab_configuracion/base.dart';
 import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/extensions/extensions.dart';
 import 'package:prlab_flutter/utilidades/funciones/functions.dart';
@@ -31,11 +32,11 @@ class PRTextFormField extends StatefulWidget {
     /// Controller de [PRTextFormField]
     required TextEditingController controller,
 
-    /// Define si el tff es readOnly.
-    bool soloLectura = false,
-
     /// Contexto para traducciones
     required BuildContext context,
+
+    /// Define si el tff es readOnly.
+    bool soloLectura = false,
 
     /// Funcion onChanged
     void Function(String)? onChanged,
@@ -372,8 +373,8 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
           return l10n.commonCompleteTheField;
         }
 
-        // TODO(Andre): Cambiar por validacion de contraseña 12 caracteres de Gon.
-        if ((value?.length ?? 0) < 12) {
+        if ((value?.length ?? 0) <
+            PRLabConfiguracion.minimoDeCaracteresContrasenia) {
           return 'At least 12 characters';
         }
 

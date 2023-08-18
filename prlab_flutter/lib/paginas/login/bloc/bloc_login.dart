@@ -5,7 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:prlab_flutter/prlab_configuracion/base.dart';
-import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 import 'package:prlab_flutter/utilidades/funciones/validators.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 import 'package:serverpod_auth_client/module.dart';
@@ -18,7 +17,6 @@ part 'bloc_login_state.dart';
 /// Bloc que maneja los estados o logica de la pagina de login
 class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
   BlocLogin({
-    required this.emailAuthControllerCustomPRLab,
     required this.emailAuth,
   }) : super(const BlocLoginEstadoInicial()) {
     on<BlocLoginEventoIniciarSesion>(_iniciarSesion);
@@ -53,12 +51,11 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       BlocLoginEstadoCargando.desde(state, estaIniciandoSesion: true),
     );
     try {
-      final respuesta = await emailAuthControllerCustomPRLab.iniciarSesion(
+      final userInfo = await emailAuth.signIn(
         event.email,
         event.password,
       );
 
-      final userInfo = respuesta.userInfo;
       if (userInfo == null) {
         return emit(
           // TODO(Gon): Preguntar al back que devuelve para handlear los errores
@@ -336,7 +333,4 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
 
   /// Repo de los llamados a server pod
   final EmailAuthController emailAuth;
-
-  /// Repositorio editado para Serverpod
-  final EmailAuthControllerCustomPRLab emailAuthControllerCustomPRLab;
 }
