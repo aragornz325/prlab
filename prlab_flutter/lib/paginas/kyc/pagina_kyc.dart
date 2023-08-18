@@ -6,14 +6,14 @@ import 'package:prlab_flutter/paginas/kyc/celular/vista_kyc_celular.dart';
 import 'package:prlab_flutter/paginas/kyc/escritorio/vista_kyc_escritorio.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
 
-/// {@template pagina_kyc}
+/// {@template PaginaKyc}
 /// La pagina de kyc de la aplicación.
-/// Contiene la inyecciones de dependencias para
+/// Contiene las inyecciones de dependencias para
 /// el manejo de estado y setea las vistas.
 /// {@endtemplate}
 @RoutePage()
 class PaginaKyc extends StatefulWidget {
-  /// {@macro pagina_kyc}
+  /// {@macro PaginaKyc}
   const PaginaKyc({super.key});
 
   @override

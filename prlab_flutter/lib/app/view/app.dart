@@ -27,11 +27,6 @@ class App extends StatelessWidget {
             create: (BuildContext context) =>
                 EmailAuthController(client.modules.auth),
           ),
-          RepositoryProvider<EmailAuthControllerCustomPRLab>(
-            create: (BuildContext context) => EmailAuthControllerCustomPRLab(
-              client.modules.auth,
-            ),
-          ),
         ],
         child: const AppView(),
       ),

@@ -7,14 +7,13 @@ part of 'bloc_kyc.dart';
 @immutable
 sealed class BlocKcyEvento {}
 
-// TODO(Andreas): Agregar docu de getter.
-/// {@template bloc_kyc_evento_insertar_informacion_del_kyc}
+/// {@template BlocKycEventoInsertarInformacionDeKyc}
 /// Inserta los valores que se completaron en el formulario,
 /// guardados dentro del estado dentro de la informacion
 /// del usuario en la base de datos.
 /// {@endtemplate}
 class BlocKycEventoInsertarInformacionDeKyc extends BlocKcyEvento {
-  /// {@macro bloc_kyc_evento_insertar_informacion_del_kyc}
+  /// {@macro BlocKycEventoInsertarInformacionDeKyc}
   BlocKycEventoInsertarInformacionDeKyc();
 }
 
@@ -33,11 +32,22 @@ class BlocKycEventoRecolectarInformacionDeKyc extends BlocKcyEvento {
     this.numeroDeContacto,
   });
 
-  // TODO(Andreas): Agregar docu.
+  // Nombre/s del usuario.
   final String? nombre;
+
+  // Apellido/s del usuario.
   final String? apellido;
-  final String? nombreDeCompania;
-  final String? localidadDeCompania;
-  final String? fechaDeNacimiento;
+
+  // Número de contacto del usuario.
   final String? numeroDeContacto;
+
+  // Empresa donde trabaja el usuario.
+  final String? nombreDeCompania;
+
+  // Lugar físico, dirección donde esta la sede
+  // de la empresa donde trabaja el usuario.
+  final String? localidadDeCompania;
+
+  // Fecha de nacimiento del usuario.
+  final String? fechaDeNacimiento;
 }

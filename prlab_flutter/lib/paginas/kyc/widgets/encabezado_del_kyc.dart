@@ -3,13 +3,12 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
-// TODO(Andreas): Agregar docu de template.
-/// {@template encabezado_del_kyc}
+/// {@template EncabezadoDelKyc}
 /// Contiene título y subtítulo que aparece en
 /// la parte superior del formulario del kyc.
 /// {@endtemplate}
 class EncabezadoDelKyc extends StatelessWidget {
-  /// {@macro encabezado_del_kyc}
+  /// {@macro EncabezadoDelKyc}
   const EncabezadoDelKyc({
     super.key,
   });
@@ -25,9 +24,6 @@ class EncabezadoDelKyc extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 4.pw),
           child: Text(
-            // TODO(Andreas:
-            // Hablar con nico sobre problema con el paquete que en la resolucion
-            // de telefono no se achica lo suficiente el texto.
             l10n.pageKycTitle,
             style: TextStyle(
               color: colores.tertiary,
@@ -38,9 +34,6 @@ class EncabezadoDelKyc extends StatelessWidget {
         ),
         SizedBox(height: 10.ph),
         Text(
-          // TODO(Andreas:
-          // Hablar con nico sobre problema con el paquete que en la resolucion
-          // de telefono no se achica lo suficiente el texto.
           l10n.pageKycSubtitle,
           style: TextStyle(
             color: colores.secondary,

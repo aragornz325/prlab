@@ -273,7 +273,7 @@ class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
   void _agregarEventoDeEnviarDatosRegistro(
     bool terminosAceptados,
   ) {
-    if (!_formKey.esValido ||
+    if (!_formKey.esFormularioValido ||
         !(controllerPasswordRepetida.text == controllerPassword.text) ||
         !terminosAceptados) return;
     context.read<BlocRegistro>().add(

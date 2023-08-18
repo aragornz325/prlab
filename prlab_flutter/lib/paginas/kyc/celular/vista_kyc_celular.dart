@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/paginas/kyc/widgets/widgets.dart';
 
-// TODO(Andreas): Agregar docu de template.
-/// {@template vista_kyc_celular}
+/// {@template VistaKycCelular}
 /// Vista del kyc en dispositivos mobiles.
 /// {@endtemplate}
 class VistaKycCelular extends StatelessWidget {
-  /// {@macro vista_kyc_celular}
+  /// {@macro VistaKycCelular}
   const VistaKycCelular({super.key});
 
   @override

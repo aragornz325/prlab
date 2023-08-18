@@ -5,13 +5,12 @@ import 'package:flutter/material.dart';
 part 'bloc_kyc_estado.dart';
 part 'bloc_kyc_evento.dart';
 
-// TODO(Andreas): Agregar docu.
-/// {@template bloc_kyc}
+/// {@template BlocKyc}
 /// El [Bloc] que maneja el formulario de información del usuario
 /// en el momento subsiguiente a que se crea una cuenta.
 /// {@endtemplate}
 class BlocKyc extends Bloc<BlocKcyEvento, BlocKycEstado> {
-  /// {@macro bloc_kyc}
+  /// {@macro BlocKyc}
   BlocKyc() : super(const BlocKycEstadoInicial()) {
     on<BlocKycEventoInsertarInformacionDeKyc>(_onInsertarInformacionDeKyc);
     on<BlocKycEventoRecolectarInformacionDeKyc>(_onRecolectarInformacionDeKyc);

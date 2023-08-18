@@ -5,7 +5,6 @@ import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/paginas/login/celular/vista_login.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/vista_login.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
-import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
 /// Pagina de la pantalla login donde el usuario puede iniciar sesion
@@ -18,8 +17,6 @@ class PaginaLogin extends StatelessWidget {
     return BlocProvider(
       create: (context) => BlocLogin(
         emailAuth: context.read<EmailAuthController>(),
-        emailAuthControllerCustomPRLab:
-            context.read<EmailAuthControllerCustomPRLab>(),
       ),
       child: const FullResponsiveScreen(
         mobile: VistaLoginCelular(),

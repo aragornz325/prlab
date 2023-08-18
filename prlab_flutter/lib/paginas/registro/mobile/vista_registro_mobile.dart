@@ -272,7 +272,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
   void _agregarEventoDeEnviarDatosRegistro(
     bool terminosAceptados,
   ) {
-    if (!_formKey.esValido ||
+    if (!_formKey.esFormularioValido ||
         !(controllerPasswordRepetida.text == controllerPassword.text) ||
         !terminosAceptados) return;
     context.read<BlocRegistro>().add(

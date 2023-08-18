@@ -28,7 +28,7 @@ class AppRouter extends $AppRouter {
     ),
     AutoRoute(
       path: '/recover-password',
-      page: RutaRecuperarContrasenia.page,
+      page: RutaRecuperarPassword.page,
     ),
   ];
 }
