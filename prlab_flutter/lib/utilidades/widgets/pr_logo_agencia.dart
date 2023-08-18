@@ -4,7 +4,6 @@ import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
-// TODO(Mati): Dejar esto a nivel global y eliminar el componete similar qie este extra.
 /// {@template LogoPrLabAgencia}
 /// Muestra el logo de pr lab y la internacional PR agencia
 /// {@endtemplate}
