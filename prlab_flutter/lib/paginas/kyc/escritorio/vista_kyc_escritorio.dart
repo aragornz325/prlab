@@ -3,13 +3,12 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/paginas/kyc/widgets/widgets.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_seccion_logo_y_eslogan.dart';
 
-// TODO(Andreas): Agregar docu de template.
-/// {@template vista_kyc_escritorio}
+/// {@template VistaKycEscritorio}
 /// Vista del kyc en dispositivos de tipo
-/// desktop incluso en browsers.
+/// desktop incluso en browsers de web.
 /// {@endtemplate}
 class VistaKycEscritorio extends StatelessWidget {
-  /// {@macro vista_kyc_escritorio}
+  /// {@macro VistaKycEscritorio}
   const VistaKycEscritorio({super.key});
 
   @override

@@ -9,7 +9,7 @@ import 'package:prlab_flutter/paginas/registro/escritorio/vista_registro_escrito
 import 'package:prlab_flutter/paginas/registro/mobile/vista_espera_validacion_de_token_mobile.dart';
 import 'package:prlab_flutter/paginas/registro/mobile/vista_registro_mobile.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
-import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
+import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
 @RoutePage()
 class PaginaRegistro extends StatelessWidget {
@@ -28,8 +28,7 @@ class PaginaRegistro extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => BlocRegistro(
-        emailAuthControllerCustomPRLab:
-            context.read<EmailAuthControllerCustomPRLab>(),
+        emailAuth: context.read<EmailAuthController>(),
       )..add(
           BlocRegistroEventoVerificarToken(token: tokenAuth),
         ),

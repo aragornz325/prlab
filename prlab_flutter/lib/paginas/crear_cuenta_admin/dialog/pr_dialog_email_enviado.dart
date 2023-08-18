@@ -37,14 +37,13 @@ class PRDialogEmailEnviado extends StatelessWidget {
                   // TODO(anyone): esto va a definirse por el cliente
                   text: 'An email has been sent to\n',
                   style: TextStyle(
-                    // TODO(Mati): Cambiar color
-                    color: const Color(0xff707070),
+                    color: colores.secondary,
                     fontSize: 15.pf,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
                 TextSpan(
-                  // TODO(Mati): esto va a definirse por el cliente
+                  // TODO(anyone): esto va a definirse por el cliente
                   text: '$email \n',
                   style: TextStyle(
                     color: colores.primary,
@@ -53,7 +52,7 @@ class PRDialogEmailEnviado extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  // TODO(Mati): esto va a definirse por el cliente
+                  // TODO(anyone): esto va a definirse por el cliente
                   text: 'Lorem ipsum dolor sit amet consectetur.Tortor\nut '
                       'quis faucibus etiam.Euismod condimentum.',
                   style: TextStyle(

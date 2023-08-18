@@ -7,16 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/src/widgets/full_responsive_resolution.dart';
 import 'package:full_responsive/src/widgets/full_responsive_screen_base.dart';
 
-import 'package:prlab_flutter/src/full_responsive/full_responsive_app.g.dart';
+import 'full_responsive_app.g.dart';
 
 class FullResponsiveScreen extends FullResponsiveScreenBase<FullResponsiveApp> {
-  const FullResponsiveScreen({
-    required this.mobile,
-    required this.desktop,
-    super.orientationsOverrides,
-    super.resolutionsOverrides,
-    super.key,
-  });
+  const FullResponsiveScreen(
+      {required this.mobile,
+      required this.desktop,
+      super.orientationsOverrides,
+      super.resolutionsOverrides,
+      super.key});
 
   /// The widget to render when the screen size is suitable for 390x844
   final Widget mobile;

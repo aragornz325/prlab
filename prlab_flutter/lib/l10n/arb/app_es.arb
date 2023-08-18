@@ -214,6 +214,31 @@
     "@pageRecoverPasswordRepeatPasswordHintText": {
         "description":"Text in page recover password setted on the reseat password text field hint text"
     },
+
+    "pageLoginInsertedCodeSuccessfullyDialogDescription" : "Tu código ha sido ingresado correctamente, continúa para recuperar tu cuenta.",
+    "@pageLoginInsertedCodeSuccessfullyDialogDescription": {
+        "description":"Indicates that the password recovery was successful once the process ends"
+    },
+
+    "pageLoginExpiredCodeFailDialogTitle" : "Código expirado",
+    "@pageLoginExpiredCodeFailDialogTitle": {
+        "description":"Indicates that the one-time password (OTP) has become invalid due to the expiration of the predefined time period during which it was supposed to be used."
+    },
+
+    "pageLoginExpiredCodeFailDialogDescription" : "Tu código ha expirado, por favor solicita uno nuevo para continuar con el proceso de recuperación de contraseña.",
+    "@pageLoginExpiredCodeFailDialogDescription": {
+        "description":"Informs the user that the previously provided code has become invalid due to its expiration. The user is advised to initiate a new code request in order to proceed with the process of recovering their password."
+    },
+
+    "pageLoginInsertedCodeFailDialogDescription" : "El código que ingresaste es incorrecto, por favor inténtalo nuevamente.",
+    "@pageLoginInsertedCodeFailDialogDescription": {
+        "description":"Pertains to a scenario in which a user attempts to enter a code, such as a password or verification code, but the input is found to be incorrect. The user is then advised to make another attempt in order to rectify the error."
+    },
+
+    "pageRecoverPasswordChangePasswordSuccessDialogDescription" : "Tu contraseña ha sido cambiada exitosamente.",
+    "@pageRecoverPasswordChangePasswordSuccessDialogDescription": {
+        "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
+    },
     
     "commonPRLab": "PR lab",
     "@commonPRLab": {
@@ -282,6 +307,15 @@
     "commonSomethingWentWrong" : "Algo salio mal",
     "@commonSomethingWentWrong": {
         "description":"text in alertdialog sub title, Something went wrong"
-    }
+    },
 
+    "commonSuccess" : "Exitoso",
+    "@commonSuccess": {
+        "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph."
+    },
+
+    "commonDateHintText" : "00/00/0000",
+    "@commonDateHintText": {
+        "description": "This text provides a sample date format '00/00/0000' that serves as a visual hint for users when entering dates."
+    }
 }
