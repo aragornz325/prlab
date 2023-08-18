@@ -292,8 +292,8 @@ class PRDialog extends StatelessWidget {
   }
 }
 
-class TextfieldCodigoDeRecuperarContrasenia extends StatefulWidget {
-  const TextfieldCodigoDeRecuperarContrasenia({
+class TextfieldCodigoDeRecuperarPassword extends StatefulWidget {
+  const TextfieldCodigoDeRecuperarPassword({
     required this.controller,
     required this.email,
     super.key,
@@ -302,12 +302,12 @@ class TextfieldCodigoDeRecuperarContrasenia extends StatefulWidget {
   final String email;
 
   @override
-  State<TextfieldCodigoDeRecuperarContrasenia> createState() =>
-      _TextfieldCodigoDeRecuperarContraseniaState();
+  State<TextfieldCodigoDeRecuperarPassword> createState() =>
+      _TextfieldCodigoDeRecuperarPasswordState();
 }
 
-class _TextfieldCodigoDeRecuperarContraseniaState
-    extends State<TextfieldCodigoDeRecuperarContrasenia> {
+class _TextfieldCodigoDeRecuperarPasswordState
+    extends State<TextfieldCodigoDeRecuperarPassword> {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<BlocTemporizador>().state;

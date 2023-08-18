@@ -4,11 +4,10 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
-import 'package:prlab_flutter/paginas/login/escritorio/widgets/olvidaste_tu_contrasenia.dart';
-import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
+import 'package:prlab_flutter/paginas/login/escritorio/widgets/olvidaste_tu_password.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/texto_bienvenida.dart';
-import 'package:prlab_flutter/paginas/login/utilidades/get_error_message.dart';
-import 'package:prlab_flutter/utilidades/funciones/validators.dart';
+import 'package:prlab_flutter/paginas/recuperar_password/dialog/dialog.dart';
+import 'package:prlab_flutter/utilidades/utilidades.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// Vista de escritorio de la pantalla login donde el usuario
@@ -45,7 +44,16 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
 
     final theme = context.colores;
 
-    return BlocBuilder<BlocLogin, BlocLoginEstado>(
+    return BlocConsumer<BlocLogin, BlocLoginEstado>(
+      listener: (context, state) {
+        if (state is BlocLoginEstadoError) {
+          // TODO(Gon): Implementar el manejo de errores
+          showDialog<void>(
+            context: context,
+            builder: (context) => const PRDialogError(),
+          );
+        }
+      },
       builder: (context, state) {
         if (state is BlocLoginEstadoCargando &&
             state.estaIniciandoSesion == false) {
@@ -54,12 +62,6 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
               child: CircularProgressIndicator(),
             ),
           );
-        }
-
-        if (state is BlocLoginEstadoError) {
-          // TODO(Gon): Esto tiene que estar dentro de un listener con el popup correspndiente.
-          // TODO(Gon): Todavia no hay diseño para el error handling
-          print(getErrorMessage(context, state.mensajeDeError));
         }
 
         return Scaffold(
@@ -79,19 +81,11 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       child: PRTextFormField.email(
                         context: context,
                         controller: controllerEmail,
-                        onChanged: (p0) {
-                          _habilitarBotonLogin();
-                          // TODO(Gon): Cambiar la logica y esto manejarlo en el bloc
-                          // tomar de ejemplo el bloc de KYC.
-                          setState(() {});
-                        },
+                        onChanged: (_) => _habilitarBotonLogin(),
                         hintText: l10n.pageLoginPlaceholderEmail,
                       ),
                     ),
                     SizedBox(height: 10.ph),
-                    // TODO(Gon): Cuando se manejen errores de login agregar
-                    // los errores
-                    // abajo de los textfields
                     SizedBox(
                       width: 360.pw,
                       height: 40.ph,
@@ -101,8 +95,10 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                         onChanged: (_) => _habilitarBotonLogin(),
                       ),
                     ),
+                    // TODO(Gon): Cuando se manejen errores de login agregar
+                    // los errores abajo de los textfields
                     SizedBox(height: 10.ph),
-                    OlvidasteTuContrasenia(
+                    OlvidasteTuPassword(
                       cargoElMail: Validators.emailRegExp.hasMatch(
                         controllerEmail.text,
                       ),
@@ -122,7 +118,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                   ],
                 ),
               ),
-              const SeccionLogoBienvenida(),
+              const SeccionLogoYEslogan(),
             ],
           ),
         );
