@@ -19,6 +19,8 @@ sealed class BlocTemporizadorEstado {
           duracionTimer: duracionTimer ?? otro.duracionTimer,
         );
 
+  /// Indica la cantidad de tiempo restante para la finalización
+  /// del cronometro, este valor representa el tiempo en segundos.
   final int duracionTimer;
 }
 

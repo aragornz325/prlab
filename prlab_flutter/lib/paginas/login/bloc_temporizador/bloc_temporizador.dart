@@ -17,15 +17,12 @@ class BlocTemporizador
   /// {@macro BlocTemporizador}
   BlocTemporizador() : super(const BlocTemporizadorEstadoInicial()) {
     on<BlocTemporizadorEventoEmpezar>(_empezarCronometro);
-    on<BlocTemporizadorEventoResetear>(_resetearCronometro);
-    on<BlocTemporizadorEventoActualizarTiempoDeEjecucion>(
-      _actualizarTiempoDeEjecucion,
-    );
+    on<BlocTemporizadorEventoReiniciar>(_resetearCronometro);
     on<BlocTemporizadorEventoCortarEjecucion>(_cortarEjecucion);
   }
 
   static const int _duracion = 60;
-  late Timer _time;
+  late Timer _timer;
 
   /// El tiempo actual faltante para que se termine el cronometro.
   int _tiempoCorriendoDuracion = _duracion;
@@ -48,7 +45,7 @@ class BlocTemporizador
 
     final timeStreamController = StreamController<int>();
 
-    _time = Timer.periodic(const Duration(seconds: 1), (_) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (_tiempoCorriendoDuracion > 0) {
         _tiempoCorriendoDuracion--;
         timeStreamController.sink.add(_tiempoCorriendoDuracion);
@@ -71,48 +68,12 @@ class BlocTemporizador
   /// Cancela la ejecución previa del temporizador
   /// y vuelva a ejecutarlo desde un principio.
   FutureOr<void> _resetearCronometro(
-    BlocTemporizadorEventoResetear event,
+    BlocTemporizadorEventoReiniciar event,
     Emitter<BlocTemporizadorEstado> emit,
   ) async {
-    _time.cancel();
+    _timer.cancel();
 
     emit(const BlocTemporizadorEstadoInicial());
-  }
-
-  // Va actualizando el tiempo restante de ejecución y lo
-  // va guardando dentro del estado.
-  FutureOr<void> _actualizarTiempoDeEjecucion(
-    BlocTemporizadorEventoActualizarTiempoDeEjecucion event,
-    Emitter<BlocTemporizadorEstado> emit,
-  ) async {
-    emit(
-      BlocTemporizadorEstadoCorriendo.desde(
-        state,
-        duracionTimer: _tiempoCorriendoDuracion,
-      ),
-    );
-
-    final timerStreamController = StreamController<int>();
-
-    _time = Timer.periodic(const Duration(seconds: 1), (_) {
-      if (_tiempoCorriendoDuracion > 0) {
-        _tiempoCorriendoDuracion--;
-        timerStreamController.sink.add(_tiempoCorriendoDuracion);
-      } else {
-        timerStreamController.close();
-        _time.cancel();
-        add(BlocTemporizadorEventoCortarEjecucion());
-      }
-    });
-
-    await for (final int duracion in timerStreamController.stream) {
-      emit(
-        BlocTemporizadorEstadoCorriendo.desde(
-          state,
-          duracionTimer: duracion,
-        ),
-      );
-    }
   }
 
   /// Corta/cancela la ejecución del temporizador.
@@ -123,8 +84,8 @@ class BlocTemporizador
     // TODO(Gon): por ahora no hace nada si termino pero agregarle
     // que vuelva o que le avise que se acabo el tiempo para que
     // reenviar el codigo de verificacion/
-    if (_time.isActive) {
-      _time.cancel();
+    if (_timer.isActive) {
+      _timer.cancel();
     }
 
     emit(BlocTemporizadorEstadoCompleto.desde(state));
@@ -133,7 +94,7 @@ class BlocTemporizador
   /// Cancela el cronometro y lo pausa para que no siga.
   @override
   Future<void> close() {
-    _time.cancel();
+    _timer.cancel();
     return super.close();
   }
 }

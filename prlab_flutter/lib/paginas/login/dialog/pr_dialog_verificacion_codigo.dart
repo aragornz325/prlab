@@ -36,14 +36,14 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
         ' ${obtenerPrimerasLetrasAntesSimbolo(email)}***@'
         '${obtenerTextoDespuesSimbolo(email)}';
 
-    final stateLogin = context.watch<BlocLogin>().state;
+    final estadoLogin = context.watch<BlocLogin>().state;
 
-    final stateTemporizador = context.watch<BlocTemporizador>().state;
+    final estadoTemporizador = context.watch<BlocTemporizador>().state;
 
     return PRDialog.solicitudAccion(
       height: 270.ph,
       context: context,
-      estaHabilitado: stateLogin.longitudCodigo == 8,
+      estaHabilitado: estadoLogin.longitudCodigo == 8,
       onTap: () {
         context.read<BlocLogin>().add(
               BlocLoginEventoValidarCodigo(
@@ -58,9 +58,9 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
           PrLabTextfield(
             controller: controllerCodigo,
             solicitoNuevoCodigo:
-                stateTemporizador is BlocTemporizadorEstadoCorriendo,
+                estadoTemporizador is BlocTemporizadorEstadoCorriendo,
             email: email,
-            segundosFaltantes: stateLogin.duracionTimer,
+            segundosFaltantes: estadoLogin.duracionTimer,
           ),
           SizedBox(height: 5.ph),
           Text(

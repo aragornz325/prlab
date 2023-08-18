@@ -18,22 +18,10 @@ class BlocTemporizadorEventoEmpezar extends BlocTemporizadorEvento {}
 /// {@macro BlocTemporizadorEventoPausar}
 class BlocTemporizadorEventoPausar extends BlocTemporizadorEvento {}
 
-/// {@template BlocTemporizadorEventoResetear}
-/// Resetea el contador del temporizador.
-/// {@macro BlocTemporizadorEventoResetear}
-class BlocTemporizadorEventoResetear extends BlocTemporizadorEvento {}
-
-/// {@template BlocTemporizadorEventoActualizarTiempoDeEjecucion}
-/// Actualiza en el estado cuanto tiempo en segundos
-/// falta para que se termine la ejecución
-/// {@macro BlocTemporizadorEventoActualizarTiempoDeEjecucion}
-class BlocTemporizadorEventoActualizarTiempoDeEjecucion
-    extends BlocTemporizadorEvento {
-  BlocTemporizadorEventoActualizarTiempoDeEjecucion(this.duracionTimer);
-
-  /// Duración del timer
-  final int duracionTimer;
-}
+/// {@template BlocTemporizadorEventoReiniciar}
+/// Reinicia el contador del temporizador.
+/// {@macro BlocTemporizadorEventoReiniciar}
+class BlocTemporizadorEventoReiniciar extends BlocTemporizadorEvento {}
 
 /// {@template BlocTemporizadorEventoCortarEjecucion}
 /// Corta/cancela la ejecución del temporizador para que no
