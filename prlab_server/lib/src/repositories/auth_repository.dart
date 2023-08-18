@@ -147,15 +147,17 @@ class AuthRepository {
   ///   codigo (String): El parámetro `codigo` es una cadena requerida que representa el código OTP
   /// (contraseña de un solo uso) que debe verificarse.
   ///
-  Future<bool> checkearCodigoOTP(
-      {required Session session, required String codigo}) async {
+  Future<bool> checkearCodigoOTP({
+    required Session session,
+    required String codigo,
+  }) async {
     try {
       final codigoEnDb = await session.db.query(
         'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
       );
 
       if (codigoEnDb.isEmpty) {
-        session.log('codigo no encontrado en la db');
+        session.log('codigo $codigo no encontrado en la db');
         return false;
       } else {
         return true;

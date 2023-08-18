@@ -117,6 +117,7 @@ class AuthService {
       if (checkearCodigoOTP == false) {
         throw Exception('el codigo no existe');
       }
+
       await authRepository.eliminarOTPResetPassword(
         session: session,
         codigo: codigo,
