@@ -8,9 +8,11 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
-import 'package:serverpod_auth_client/module.dart' as _i3;
-import 'dart:io' as _i4;
-import 'protocol.dart' as _i5;
+import 'package:prlab_client/src/modelos/mensaje_registro/mensaje_registro.dart'
+    as _i3;
+import 'package:serverpod_auth_client/module.dart' as _i4;
+import 'dart:io' as _i5;
+import 'protocol.dart' as _i6;
 
 /// La clase `AuthEndpoint` está ampliando la clase `Endpoint`. por tanto maneja
 /// todas las peticiones relacionadas con el auth del sistema
@@ -59,6 +61,22 @@ class _EndpointAuth extends _i1.EndpointRef {
         'validarCodigoResetPassword',
         {'codigo': codigo},
       );
+
+  /// La función `eliminarOTPResetPassword` llama al método `eliminarOTPResetPassword` desde
+  /// `authService` y devuelve `Future<bool>`.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la información de la
+  /// sesión del usuario. Se utiliza para autenticar y autorizar al usuario para la operación.
+  ///   codigo (String): El parámetro "codigo" es una cadena que representa el código utilizado para
+  /// restablecer la contraseña.
+  ///
+  _i2.Future<bool> eliminarOTPResetPassword(String codigo) =>
+      caller.callServerEndpoint<bool>(
+        'auth',
+        'eliminarOTPResetPassword',
+        {'codigo': codigo},
+      );
 }
 
 class _EndpointExample extends _i1.EndpointRef {
@@ -67,10 +85,17 @@ class _EndpointExample extends _i1.EndpointRef {
   @override
   String get name => 'example';
 
-  _i2.Future<String> hello(String name) => caller.callServerEndpoint<String>(
+  _i2.Future<int> hello(
+    String name,
+    _i3.MensajeRegistro log,
+  ) =>
+      caller.callServerEndpoint<int>(
         'example',
         'hello',
-        {'name': name},
+        {
+          'name': name,
+          'log': log,
+        },
       );
 }
 
@@ -96,20 +121,20 @@ class _EndpointMail extends _i1.EndpointRef {
 
 class _Modules {
   _Modules(Client client) {
-    auth = _i3.Caller(client);
+    auth = _i4.Caller(client);
   }
 
-  late final _i3.Caller auth;
+  late final _i4.Caller auth;
 }
 
 class Client extends _i1.ServerpodClient {
   Client(
     String host, {
-    _i4.SecurityContext? context,
+    _i5.SecurityContext? context,
     _i1.AuthenticationKeyManager? authenticationKeyManager,
   }) : super(
           host,
-          _i5.Protocol(),
+          _i6.Protocol(),
           context: context,
           authenticationKeyManager: authenticationKeyManager,
         ) {

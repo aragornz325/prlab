@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 
-@AutoRouterConfig(replaceInRouteName: 'Page,Route')
+@AutoRouterConfig(replaceInRouteName: 'Pagina,Ruta')
 class AppRouter extends $AppRouter {
   @override
   RouteType get defaultRouteType => const RouteType.material();
@@ -9,21 +9,26 @@ class AppRouter extends $AppRouter {
   @override
   final List<AutoRoute> routes = [
     AutoRoute(
-      path: '/',
+      page: RutaLogin.page,
       initial: true,
-      page: PaginaLogin.page,
+      path: '/login',
+    ),
+    AutoRoute(
+      page: RutaRegistro.page,
+      // TODO(Seba): Agregar docu, que es este token.
+      path: '/register/:token',
     ),
     AutoRoute(
       path: '/create-account',
-      page: PaginaCrearCuenta.page,
+      page: RutaCrearCuenta.page,
     ),
     AutoRoute(
       path: '/kyc-form',
-      page: PaginaKyc.page,
+      page: RutaKyc.page,
     ),
     AutoRoute(
       path: '/recover-password',
-      page: PaginaRecuperarContrasenia.page,
+      page: RutaRecuperarPassword.page,
     ),
   ];
 }

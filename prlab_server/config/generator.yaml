@@ -7,10 +7,10 @@ modules:
     nickname: auth
 
 extraClasses:
-  - package:prlab_commons/prlab_commons.dart:Cliente
-  - package:prlab_commons/prlab_commons.dart:Comentario
-  - package:prlab_commons/prlab_commons.dart:Contacto
-  - package:prlab_commons/prlab_commons.dart:MensajeRegistro
-  - package:prlab_commons/prlab_commons.dart:Organizacion
-  - package:prlab_commons/prlab_commons.dart:Proyecto
-  - package:prlab_commons/prlab_commons.dart:Publicacion
+  - package:prlab_client/prlab_client.dart:Cliente
+  - package:prlab_client/prlab_client.dart:Comentario
+  - package:prlab_client/prlab_client.dart:Contacto
+  - package:prlab_client/prlab_client.dart:MensajeRegistro
+  - package:prlab_client/prlab_client.dart:Organizacion
+  - package:prlab_client/prlab_client.dart:Proyecto
+  - package:prlab_client/prlab_client.dart:Publicacion

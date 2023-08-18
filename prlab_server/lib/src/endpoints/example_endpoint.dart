@@ -1,3 +1,4 @@
+import 'package:prlab_client/prlab_client.dart';
 import 'package:serverpod/serverpod.dart';
 
 // This is an example endpoint of your server. It's best practice to use the
@@ -15,7 +16,13 @@ class ExampleEndpoint extends Endpoint {
   // should return a typed future; the same types as for the parameters are
   // supported. The `session` object provides access to the database, logging,
   // passwords, and information about the request being made to the server.
-  Future<String> hello(Session session, String name) async {
-    return 'Hello $name';
+  Future<int> hello(Session session, String name, MensajeRegistro log) async {
+    try {
+      session.db.insert(log as TableRow);
+      return 200;
+    } catch (e) {
+      print(e.toString());
+      return 500;
+    }
   }
 }

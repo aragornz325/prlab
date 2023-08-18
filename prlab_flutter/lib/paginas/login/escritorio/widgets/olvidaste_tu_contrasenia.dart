@@ -1,34 +1,82 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
+import 'package:prlab_flutter/paginas/login/dialog/pr_dialog_verificacion_codigo.dart';
 
+// TODO(Gon): Agregar documentacion
+// TODO(Gon): Cambiar en TODOS LOS LUGARES que diga 'contrasenia'.
 /// Texto clickeable que se muestra en la seccion de login
-class OlvidasteTuContrasenia extends StatelessWidget {
+class OlvidasteTuContrasenia extends StatefulWidget {
   const OlvidasteTuContrasenia({
+    required this.cargoElMail,
+    required this.email,
+    required this.password,
+    required this.controllerCodigo,
     super.key,
   });
 
+  /// Email ingresado por el usuario
+  final String email;
+
+  /// Contraseña ingresada por el usuario
+  final String password;
+
+  /// Bool para saber si el usuario cargo un email valido
+  final bool cargoElMail;
+
+  /// Controller para el textfield del codigo
+  final TextEditingController controllerCodigo;
+
+  @override
+  State<OlvidasteTuContrasenia> createState() => _OlvidasteTuContraseniaState();
+}
+
+class _OlvidasteTuContraseniaState extends State<OlvidasteTuContrasenia> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 12.ph),
-      child: GestureDetector(
-        onTap: () {
-          // TODO(Gon): Agregar el push cuando este hecha la view
-        },
-        child: Text(
-          l10n.page_login_tappable_text,
-          style: TextStyle(
-            //TODO(Gon): Cambiar cuando esten los colores del theme
-            color: const Color(0xffA12B46),
-            fontSize: 12.pf,
-            fontWeight: FontWeight.w500,
-            decoration: TextDecoration.underline,
+    final colores = context.colores;
+
+    return BlocBuilder<BlocLogin, BlocLoginEstado>(
+      builder: (context, state) {
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: 12.ph),
+          child: GestureDetector(
+            onTap: widget.cargoElMail
+                ? () {
+                    showDialog<void>(
+                      context: context,
+                      builder: (context) {
+                        return PRDialogVerificacionCodigo(
+                          password: widget.password,
+                          email: widget.email,
+                          controllerCodigo: widget.controllerCodigo,
+                        );
+                      },
+                    );
+                  }
+                : null,
+            child: Text(
+              l10n.pageLoginTappableText,
+              style: TextStyle(
+                color: widget.cargoElMail
+                    ? colores.primary
+                    : colores.primary.withOpacity(.5),
+                fontSize: 12.pf,
+                fontWeight: FontWeight.w500,
+                decoration: TextDecoration.underline,
+                decorationColor: widget.cargoElMail
+                    ? colores.primary
+                    : colores.primary.withOpacity(.5),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

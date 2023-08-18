@@ -10,6 +10,7 @@ void main() async {
 
   await bootstrap(
     App.new,
-    url: dotenv.env['API_URL']!,
+    hostUrl: dotenv.env['API_URL']!,
+    entorno: EntornosDeDesarrollo.staging.name,
   );
 }

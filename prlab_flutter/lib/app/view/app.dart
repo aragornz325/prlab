@@ -3,13 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_app.g.dart';
 import 'package:prlab_flutter/theming/temas/tema_por_default_light_prlab.dart';
-import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
-import 'package:prlab_flutter/utilidades/serverpod_client.dart';
+import 'package:prlab_flutter/utilidades/utilidades.dart';
+import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
+/// {@template App}
+/// Es el principal punto de entrada de la aplicación.que crea
+/// la estructura general de la aplicación.y instancia los repositorios
+/// providers que se utilizaran en toda la app.
+/// {@endtemplate}
 class App extends StatelessWidget {
+  /// {@macro App}
   const App({
     super.key,
   });
@@ -18,30 +23,23 @@ class App extends StatelessWidget {
     return FullResponsiveApp(
       child: MultiRepositoryProvider(
         providers: [
-          RepositoryProvider<EmailAuthControllerCustomPRLab>(
-            create: (BuildContext context) => EmailAuthControllerCustomPRLab(
-              client.modules.auth,
-            ),
+          RepositoryProvider<EmailAuthController>(
+            create: (BuildContext context) =>
+                EmailAuthController(client.modules.auth),
           ),
         ],
-        child: MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => BlocLogin(
-                emailAuthControllerCustomPRLab: EmailAuthControllerCustomPRLab(
-                  client.modules.auth,
-                ),
-              ),
-            ),
-          ],
-          child: const AppView(),
-        ),
+        child: const AppView(),
       ),
     );
   }
 }
 
+/// {@template AppView}
+/// Es la estructura general de la aplicación.También
+/// inicializa `AppRouter` para fines de manejo de rutas/routes.
+/// {@endtemplate}
 class AppView extends StatefulWidget {
+  /// {@macro AppView}
   const AppView({super.key});
 
   @override
@@ -85,7 +83,6 @@ class NoGlowBehavior extends ScrollBehavior {
     BuildContext context,
     Widget child,
     ScrollableDetails details,
-  ) {
-    return child;
-  }
+  ) =>
+      child;
 }

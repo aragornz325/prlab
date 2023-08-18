@@ -11,7 +11,7 @@ import 'package:serverpod/serverpod.dart' as _i1;
 import 'package:serverpod/protocol.dart' as _i2;
 import 'package:serverpod_auth_server/module.dart' as _i3;
 import 'example.dart' as _i4;
-import 'package:prlab_commons/prlab_commons.dart' as _i5;
+import 'package:prlab_client/prlab_client.dart' as _i5;
 export 'example.dart';
 
 class Protocol extends _i1.SerializationManagerServer {

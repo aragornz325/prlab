@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/prlab_configuracion/base.dart';
 import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/extensions/extensions.dart';
 import 'package:prlab_flutter/utilidades/funciones/functions.dart';
@@ -31,11 +32,11 @@ class PRTextFormField extends StatefulWidget {
     /// Controller de [PRTextFormField]
     required TextEditingController controller,
 
-    /// Define si el tff es readOnly.
-    required bool soloLectura,
-
     /// Contexto para traducciones
     required BuildContext context,
+
+    /// Define si el tff es readOnly.
+    bool soloLectura = false,
 
     /// Funcion onChanged
     void Function(String)? onChanged,
@@ -317,14 +318,13 @@ class PRTextFormFieldPassword extends StatefulWidget {
     this.validator,
     super.key,
   });
-
+  final void Function(String? value)? onChanged;
   final TextEditingController controller;
   final String hintText;
   final bool esCreacionPassword;
   final double width;
   final String? Function(String? value)? validator;
 
-  final void Function(String? value)? onChanged;
   @override
   State<PRTextFormFieldPassword> createState() =>
       _PRTextFormFieldPasswordState();
@@ -336,6 +336,7 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
     final l10n = context.l10n;
 
     return PRTextFormField(
@@ -364,17 +365,16 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
         },
       ),
       onChanged: (value) {
-        setState(() {
-          widget.onChanged?.call(value);
-        });
+        setState(() {});
+        widget.onChanged?.call(value);
       },
       validator: (value) {
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
         }
 
-        // TODO(Andre): Cambiar por validacion de contraseña 12 caracteres de Gon.
-        if ((value?.length ?? 0) < 12) {
+        if ((value?.length ?? 0) <
+            PRLabConfiguracion.minimoDeCaracteresContrasenia) {
           return 'At least 12 characters';
         }
 

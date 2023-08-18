@@ -46,6 +46,11 @@ class AuthService {
       final emailToken = tokenAbierto.payload['email'];
       final tokenDb = await authRepository.traerTokenPorEmail(
           session: session, email: emailToken);
+
+      if (tokenDb.isEmpty) {
+        throw Exception('Token no valido');
+      }
+
       if (token != tokenDb) {
         throw Exception('Token no valido');
       }
@@ -73,10 +78,54 @@ class AuthService {
   Future<bool> validarCodigoResetPassword({
     required Session session,
     required String codigo,
-  }) {
-    return authRepository.validarCodigoResetPassword(
-      session: session,
-      codigo: codigo,
-    );
+  }) async {
+    try {
+      final validarEnDb = await authRepository.validarCodigoResetPassword(
+        session: session,
+        codigo: codigo,
+      );
+      if (validarEnDb.isEmpty) {
+        throw Exception('Codigo no valido');
+      } else {
+        return true;
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// La función `eliminarOTPResetPassword` es una función de Dart que toma una sesión y un código, e
+  /// intenta eliminar el código de la base de datos, devolviendo verdadero si tiene éxito.
+  ///
+  /// Args:
+  ///   session (Session): Un parámetro requerido de tipo Sesión, que representa la información de la
+  /// sesión del usuario.
+  ///   codigo (String): El parámetro "codigo" es un String requerido que representa el código OTP
+  /// (One-Time Password) para restablecer la contraseña.
+  ///
+  Future<bool> eliminarOTPResetPassword({
+    required Session session,
+    required String codigo,
+  }) async {
+    try {
+      session.log('chequeando codigo: $codigo');
+      final checkearCodigoOTP = await authRepository.checkearCodigoOTP(
+        session: session,
+        codigo: codigo,
+      );
+
+      if (checkearCodigoOTP == false) {
+        throw Exception('el codigo no existe');
+      }
+
+      await authRepository.eliminarOTPResetPassword(
+        session: session,
+        codigo: codigo,
+      );
+      session.log('codigo otp $codigo eliminado');
+      return true;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

@@ -6,16 +6,15 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/kyc/bloc/bloc_kyc.dart';
 import 'package:prlab_flutter/paginas/kyc/widgets/widgets.dart';
 import 'package:prlab_flutter/utilidades/extensions/extensions.dart';
-import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
-/// {@template formulario_del_kyc}
+/// {@template FormularioDelKyc}
 /// Formulario que contiene todos los campos de texto
 /// para completar la información basica necesaria
 /// del usuario post registro.
 /// {@endtemplate}
 class FormularioDelKyc extends StatefulWidget {
-  /// {@macro formulario_del_kyc}
+  /// {@macro FormularioDelKyc}
   const FormularioDelKyc({
     required this.width,
     super.key,
@@ -31,25 +30,26 @@ class FormularioDelKyc extends StatefulWidget {
 class _FormularioDelKycState extends State<FormularioDelKyc> {
   final _formKey = GlobalKey<FormState>();
 
-  final nombreController = TextEditingController();
+  final controllerNombre = TextEditingController();
 
-  final apellidoController = TextEditingController();
+  final controllerApellido = TextEditingController();
 
-  final fechaController = TextEditingController();
+  final controllerFechaDeNacimiento = TextEditingController();
 
-  final nombreDeCompaniaController = TextEditingController();
+  final controllerNombreDeCompania = TextEditingController();
 
-  final localidadController = TextEditingController();
+  final controllerLocalidad = TextEditingController();
 
-  final numeroContactoController = TextEditingController();
+  final controllerNumeroContacto = TextEditingController();
 
   @override
   void dispose() {
-    nombreController.dispose();
-    apellidoController.dispose();
-    nombreDeCompaniaController.dispose();
-    localidadController.dispose();
-    numeroContactoController.dispose();
+    controllerNombre.dispose();
+    controllerApellido.dispose();
+    controllerFechaDeNacimiento.dispose();
+    controllerNombreDeCompania.dispose();
+    controllerLocalidad.dispose();
+    controllerNumeroContacto.dispose();
     super.dispose();
   }
 
@@ -70,72 +70,72 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
             children: [
               const EncabezadoDelKyc(),
               PRTextFormField.soloLetras(
-                controller: nombreController,
+                controller: controllerNombre,
                 hintText: l10n.pageKycNameHintText,
                 prefixIcon: Icons.person_outline,
                 context: context,
                 onChanged: (_) => context.read<BlocKyc>().add(
                       BlocKycEventoRecolectarInformacionDeKyc(
-                        nombre: nombreController.text,
+                        nombre: controllerNombre.text,
                       ),
                     ),
               ),
               SizedBox(height: 40.sh),
               PRTextFormField.soloLetras(
-                controller: apellidoController,
-                hintText: l10n.pageKycLastnameHintText,
+                controller: controllerApellido,
+                hintText: l10n.pageKycLastNameHintText,
                 prefixIcon: Icons.person_outline,
                 context: context,
                 onChanged: (_) => context.read<BlocKyc>().add(
                       BlocKycEventoRecolectarInformacionDeKyc(
-                        apellido: apellidoController.text,
+                        apellido: controllerApellido.text,
                       ),
                     ),
               ),
               SizedBox(height: 40.sh),
               PRTextFormField.fecha(
-                controller: fechaController,
-                hintText: '00/00/0000',
+                controller: controllerFechaDeNacimiento,
+                hintText: l10n.commonDateHintText,
                 context: context,
                 onChanged: (_) => context.read<BlocKyc>().add(
                       BlocKycEventoRecolectarInformacionDeKyc(
-                        fechaDeNacimiento: fechaController.text,
+                        fechaDeNacimiento: controllerFechaDeNacimiento.text,
                       ),
                     ),
               ),
               SizedBox(height: 40.sh),
               PRTextFormField.soloLetras(
-                controller: nombreDeCompaniaController,
+                controller: controllerNombreDeCompania,
                 hintText: l10n.pageKycCompanyNameHintText,
                 prefixIcon: Icons.apartment_outlined,
                 context: context,
                 onChanged: (_) => context.read<BlocKyc>().add(
                       BlocKycEventoRecolectarInformacionDeKyc(
-                        nombreDeCompania: nombreDeCompaniaController.text,
+                        nombreDeCompania: controllerNombreDeCompania.text,
                       ),
                     ),
               ),
               SizedBox(height: 40.sh),
               PRTextFormField.soloLetras(
-                controller: localidadController,
+                controller: controllerLocalidad,
                 hintText: l10n.pageKycCompanyLocationHintText,
                 prefixIcon: Icons.location_on_outlined,
                 context: context,
                 onChanged: (_) => context.read<BlocKyc>().add(
                       BlocKycEventoRecolectarInformacionDeKyc(
-                        localidadDeCompania: localidadController.text,
+                        localidadDeCompania: controllerLocalidad.text,
                       ),
                     ),
               ),
               SizedBox(height: 40.sh),
               PRTextFormField.soloNumeros(
-                controller: numeroContactoController,
+                controller: controllerNumeroContacto,
                 hintText: l10n.pageKycContactHintText,
                 prefixIcon: Icons.phone_outlined,
                 context: context,
                 onChanged: (_) => context.read<BlocKyc>().add(
                       BlocKycEventoRecolectarInformacionDeKyc(
-                        numeroDeContacto: numeroContactoController.text,
+                        numeroDeContacto: controllerNumeroContacto.text,
                       ),
                     ),
               ),
@@ -144,7 +144,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                 builder: (context, state) {
                   return PRBoton(
                     onTap: _onTapContinuar,
-                    texto: l10n.pageKycContinueTextButton,
+                    texto: l10n.commonContinue,
                     habilitado: state.esFormularioCompletado,
                   );
                 },
@@ -158,7 +158,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
   }
 
   void _onTapContinuar() {
-    if (!_formKey.esValido) return;
+    if (!_formKey.esFormularioValido) return;
 
     context.read<BlocKyc>().add(BlocKycEventoInsertarInformacionDeKyc());
   }

@@ -7,8 +7,8 @@ environment:
   sdk: '>=2.19.0 <4.0.0'
 
 dependencies:
-  prlab_commons:
-    path: ../prlab_commons
+  prlab_client:
+    path: ../prlab_client
 
   dart_jsonwebtoken: ^2.8.2
   mailer: ^6.0.1

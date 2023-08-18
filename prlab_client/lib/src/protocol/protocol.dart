@@ -9,7 +9,7 @@ library protocol; // ignore_for_file: no_leading_underscores_for_library_prefixe
 
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'example.dart' as _i2;
-import 'package:prlab_commons/prlab_commons.dart' as _i3;
+import 'package:prlab_client/prlab_client.dart' as _i3;
 import 'package:serverpod_auth_client/module.dart' as _i4;
 export 'example.dart';
 export 'client.dart';

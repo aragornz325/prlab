@@ -85,11 +85,7 @@ class AuthRepository {
     try {
       final result = await session.db
           .query('SELECT token FROM invitaciones WHERE email = \'$email\'');
-      if (result.isEmpty) {
-        return 'Email not found';
-      } else {
-        return result.first.first;
-      }
+      return result.first.first;
     } catch (e) {
       rethrow;
     }
@@ -105,7 +101,7 @@ class AuthRepository {
   /// verificación para restablecer una contraseña.
   ///
 
-  Future<bool> validarCodigoResetPassword({
+  Future<List> validarCodigoResetPassword({
     required Session session,
     required String codigo,
   }) async {
@@ -113,12 +109,59 @@ class AuthRepository {
       final codigoEnDb = await session.db.query(
         'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
       );
+
+      return codigoEnDb;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// La función `eliminarOTPResetPassword` elimina un registro de la tabla `serverpod_email_reset` según
+  /// un código de verificación determinado.
+  ///
+  /// Args:
+  ///   sesion (Session): El parámetro "sesion" es de tipo Sesión y es obligatorio. Representa la sesión
+  /// actual o la conexión a la base de datos.
+  ///   codigo (String): El parámetro "código" es una cadena obligatoria que representa el código de
+  /// verificación utilizado para restablecer una contraseña.
+  ///
+  Future<List> eliminarOTPResetPassword({
+    required Session session,
+    required String codigo,
+  }) async {
+    try {
+      return await session.db.query(
+        'DELETE FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// La función `checkearCodigoOTP` verifica si un código de verificación dado existe en la base de
+  /// datos.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. Representa la
+  /// sesión o conexión actual a la base de datos.
+  ///   codigo (String): El parámetro `codigo` es una cadena requerida que representa el código OTP
+  /// (contraseña de un solo uso) que debe verificarse.
+  ///
+  Future<bool> checkearCodigoOTP({
+    required Session session,
+    required String codigo,
+  }) async {
+    try {
+      final codigoEnDb = await session.db.query(
+        'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
+      );
+
       if (codigoEnDb.isEmpty) {
-        throw Exception(
-          'Codigo no valido',
-        );
+        session.log('codigo $codigo no encontrado en la db');
+        return false;
+      } else {
+        return true;
       }
-      return true;
     } catch (e) {
       rethrow;
     }

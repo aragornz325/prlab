@@ -1,4 +1,6 @@
-/// Función que trae las primeras letras del email
+/// Trae las primeras letras del email/correo antes del arroba las primeras
+/// 3 letras ejemplo: example@test.com
+/// trae : exa
 String obtenerPrimerasLetrasAntesSimbolo(String email) {
   final indexOfAt = email.indexOf('@');
   return switch (indexOfAt) {
@@ -8,8 +10,10 @@ String obtenerPrimerasLetrasAntesSimbolo(String email) {
   };
 }
 
-/// Función que trae las ultimas letras despues del @ para saber si es gmail o
-/// otro correo electronico
+/// trae el tipo de email/correo electrónico después del @ para saber si es
+/// gmail,hotmail,etc.
+/// ejem: example@test.com
+/// trae: @test.com
 String obtenerTextoDespuesSimbolo(String email) {
   final indexOfAt = email.indexOf('@');
   return email.substring(indexOfAt + 1);

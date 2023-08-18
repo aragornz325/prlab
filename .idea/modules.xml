@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/prlab_client/melos_prlab_client.iml" filepath="$PROJECT_DIR$/prlab_client/melos_prlab_client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prlab_flutter/melos_prlab_flutter.iml" filepath="$PROJECT_DIR$/prlab_flutter/melos_prlab_flutter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prlab_server/melos_prlab_server.iml" filepath="$PROJECT_DIR$/prlab_server/melos_prlab_server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/melos_prlab.iml" filepath="$PROJECT_DIR$/melos_prlab.iml" />
+    </modules>
+  </component>
+</project>

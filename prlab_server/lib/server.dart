@@ -54,7 +54,7 @@ void run(List<String> args) async {
           mailHtml: correo,
         );
         return true;
-      } on Exception catch (e) {
+      } on Exception {
         rethrow;
       }
     },
@@ -76,7 +76,7 @@ void run(List<String> args) async {
           mailHtml: correo,
         );
         return true;
-      } on Exception catch (e) {
+      } on Exception {
         rethrow;
       }
     },
