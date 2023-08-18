@@ -6,11 +6,12 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/paginas/login/dialog/pr_dialog_verificacion_codigo.dart';
 
-// TODO(Gon): Agregar documentacion
-// TODO(Gon): Cambiar en TODOS LOS LUGARES que diga 'contrasenia'.
-/// Texto clickeable que se muestra en la seccion de login
-class OlvidasteTuContrasenia extends StatefulWidget {
-  const OlvidasteTuContrasenia({
+/// {@template OlvidasteTuPassword}
+/// Texto clickeable que se muestra un popup para solicitar un codigo
+///  {@endtemplate}
+class OlvidasteTuPassword extends StatefulWidget {
+  /// {@macro OlvidasteTuPassword}
+  const OlvidasteTuPassword({
     required this.cargoElMail,
     required this.email,
     required this.password,
@@ -31,10 +32,10 @@ class OlvidasteTuContrasenia extends StatefulWidget {
   final TextEditingController controllerCodigo;
 
   @override
-  State<OlvidasteTuContrasenia> createState() => _OlvidasteTuContraseniaState();
+  State<OlvidasteTuPassword> createState() => _OlvidasteTuPasswordState();
 }
 
-class _OlvidasteTuContraseniaState extends State<OlvidasteTuContrasenia> {
+class _OlvidasteTuPasswordState extends State<OlvidasteTuPassword> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;

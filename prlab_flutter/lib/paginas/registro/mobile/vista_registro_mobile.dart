@@ -5,7 +5,6 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
@@ -13,6 +12,8 @@ import 'package:prlab_flutter/paginas/registro/widgets/titulo_bienvenida_con_ima
 import 'package:prlab_flutter/utilidades/extensions/extension_de_form.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
+
+import '../../../utilidades/widgets/pr_seccion_logo_y_eslogan.dart';
 
 // TODO(Seba): Agregar docu.
 // TODO(Seba): Extraer el formulario para usarlo en ambas vistas.
@@ -255,7 +256,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
               ),
             ),
           ),
-          const SeccionLogoBienvenida(),
+          const SeccionLogoYEslogan(),
         ],
       ),
     );

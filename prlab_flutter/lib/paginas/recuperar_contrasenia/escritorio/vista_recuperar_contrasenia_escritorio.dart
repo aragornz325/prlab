@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
 import 'package:prlab_flutter/paginas/recuperar_contrasenia/widgets/widgets.dart';
+import 'package:prlab_flutter/utilidades/widgets/pr_seccion_logo_y_eslogan.dart';
 
 // TODO(Andreas): Agregar docu.
 /// {@template vista_recuperar_contrasenia_escritorio}
@@ -17,7 +17,7 @@ class VistaRecuperarContraseniaEscritorio extends StatelessWidget {
       body: Row(
         children: [
           FormularioDeRecuperarContrasenia(width: 44.5.wp),
-          const SeccionLogoBienvenida(),
+          const SeccionLogoYEslogan(),
         ],
       ),
     );
