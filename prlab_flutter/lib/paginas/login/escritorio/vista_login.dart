@@ -99,7 +99,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     // los errores abajo de los textfields
                     SizedBox(height: 10.ph),
                     OlvidasteTuPassword(
-                      cargoElMail: Validators.emailRegExp.hasMatch(
+                      cargoElMail: ExpresionRegular.emailRegExp.hasMatch(
                         controllerEmail.text,
                       ),
                       email: controllerEmail.text,
@@ -110,8 +110,8 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       height: 50.ph,
                     ),
                     PRBoton(
-                      habilitado: state.botonHabilitado,
-                      mostrarEstadoDeCarga: state.estaCargandoInicioDeSesion,
+                      estaHabilitado: state.botonHabilitado,
+                      muestraEstadoDeCarga: state.estaCargandoInicioDeSesion,
                       onTap: _onTapBotonIniciarSesion,
                       texto: l10n.pageLoginButtonText,
                     )
