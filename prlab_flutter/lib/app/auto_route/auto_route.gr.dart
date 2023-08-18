@@ -14,7 +14,7 @@ import 'package:prlab_flutter/paginas/crear_cuenta_admin/pagina_crear_cuenta_adm
     as _i3;
 import 'package:prlab_flutter/paginas/kyc/pagina_kyc.dart' as _i2;
 import 'package:prlab_flutter/paginas/login/pagina_login.dart' as _i4;
-import 'package:prlab_flutter/paginas/recuperar_contrasenia/pagina_recuperar_contrasenia.dart'
+import 'package:prlab_flutter/paginas/recuperar_password/pagina_recuperar_password.dart'
     as _i1;
 import 'package:prlab_flutter/paginas/registro/pagina_registro.dart' as _i5;
 
@@ -26,7 +26,7 @@ abstract class $AppRouter extends _i6.RootStackRouter {
     RutaRecuperarContrasenia.name: (routeData) {
       return _i6.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.PaginaRecuperarContrasenia(),
+        child: const _i1.PaginaRecuperarPassword(),
       );
     },
     RutaKyc.name: (routeData) {
@@ -64,7 +64,7 @@ abstract class $AppRouter extends _i6.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.PaginaRecuperarContrasenia]
+/// [_i1.PaginaRecuperarPassword]
 class RutaRecuperarContrasenia extends _i6.PageRouteInfo<void> {
   const RutaRecuperarContrasenia({List<_i6.PageRouteInfo>? children})
       : super(

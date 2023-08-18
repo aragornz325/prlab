@@ -1,13 +1,12 @@
 part of 'bloc_kyc.dart';
 
-// TODO(Andreas): cambiar todos los templates por PascalCase.
-/// {@template bloc_kyc_estado}
+/// {@template BlocKycEstado}
 /// Estado que maneja el formulario de información del usuario
 /// en el momento subsiguiente a que se crea una cuenta.
 /// {@endtemplate}
 @immutable
 sealed class BlocKycEstado {
-  /// {@macro bloc_kyc_estado}
+  /// {@macro BlocKycEstado}
   const BlocKycEstado._({
     this.nombre = '',
     this.apellido = '',
@@ -53,7 +52,8 @@ sealed class BlocKycEstado {
   // Numero de contacto del usuario.
   final String numeroContacto;
 
-  // TODO(Andreas): Agregar docu de getter.
+  // Si todos los campos de texto del formularios fueron
+  // completados.
   bool get esFormularioCompletado =>
       nombre.isNotEmpty &&
       apellido.isNotEmpty &&
@@ -63,30 +63,30 @@ sealed class BlocKycEstado {
       numeroContacto.isNotEmpty;
 }
 
-/// {@template bloc_kyc_estado_inicial}
+/// {@template BlocKycEstadoInicial}
 /// Estado inicial del [BlocKyc].
 /// {@endtemplate}
 class BlocKycEstadoInicial extends BlocKycEstado {
-  /// {@macro bloc_estado_inicial}
+  /// {@macro BlocKycEstadoInicial}
   const BlocKycEstadoInicial() : super._();
 }
 
-/// {@template bloc_kyc_estado_cargando}
+/// {@template BlocKycEstadoCargando}
 /// Estado de carga del [BlocKyc].
 /// {@endtemplate}
 class BlocKycEstadoCargando extends BlocKycEstado {
-  /// {@macro bloc_kyc_estado_cargando}
+  /// {@macro BlocKycEstadoCargando}
   BlocKycEstadoCargando.desde(super.otro) : super.desde();
 }
 
-/// {@template bloc_kyc_estado_recolectando_datos}
+/// {@template BlocKycEstadoRecolectandoDatos}
 /// Recolecta del [BlocKyc]
 /// A medida que el usuario va completando el kyc
 /// el estado se va a ir actualizando con la nueva
 /// información completada en los campos de texto.
 /// {@endtemplate}
 class BlocKycEstadoRecolectandoDatos extends BlocKycEstado {
-  /// {@macro bloc_kyc_estado_recolectando_datos}
+  /// {@macro BlocKycEstadoRecolectandoDatos}
   BlocKycEstadoRecolectandoDatos.desde(
     super.otro, {
     super.nombre,
@@ -98,18 +98,18 @@ class BlocKycEstadoRecolectandoDatos extends BlocKycEstado {
   }) : super.desde();
 }
 
-/// {@template bloc_kyc_estado_exitoso}
+/// {@template BlocKycEstadoExitoso}
 /// Estado de exito del [BlocKyc].
 /// {@endtemplate}
 class BlocKycEstadoExitoso extends BlocKycEstado {
-  /// {@macro bloc_kyc_estado_exitoso}
+  /// {@macro BlocKycEstadoExitoso}
   BlocKycEstadoExitoso.desde(super.otro) : super.desde();
 }
 
-/// {@template bloc_kyc_estado_fallido}
+/// {@template BlocKycEstadoFallido}
 /// Estado de fallo del [BlocKyc].
 /// {@endtemplate}
 class BlocKycEstadoFallido extends BlocKycEstado {
-  /// {@macro bloc_kyc_estado_fallido}
+  /// {@macro BlocKycEstadoFallido}
   BlocKycEstadoFallido.desde(super.otro) : super.desde();
 }
