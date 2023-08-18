@@ -239,7 +239,8 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                       state.terminosAceptados,
                                     ),
                                     texto: l10n.pageSignUpButtonSignUp,
-                                    habilitado: state.estaCompletoElFormulario,
+                                    estaHabilitado:
+                                        state.estaCompletoElFormulario,
                                   );
                                 },
                               ),

@@ -145,7 +145,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                   return PRBoton(
                     onTap: _onTapContinuar,
                     texto: l10n.commonContinue,
-                    habilitado: state.esFormularioCompletado,
+                    estaHabilitado: state.esFormularioCompletado,
                   );
                 },
               ),

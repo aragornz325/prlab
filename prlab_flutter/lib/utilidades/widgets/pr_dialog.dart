@@ -78,9 +78,9 @@ class PRDialog extends StatelessWidget {
                 SizedBox(height: 40.ph),
                 content,
                 SizedBox(height: 40.ph),
-                PRBoton.outlined(
+                PRBoton.esOutlined(
                   width: 360.pw,
-                  habilitado: estaHabilitado,
+                  estaHabilitado: estaHabilitado,
                   onTap: onTap,
                   texto: l10n.commonSend,
                 ),
@@ -126,10 +126,10 @@ class PRDialog extends StatelessWidget {
           content,
           SizedBox(height: 30.ph),
           Center(
-            child: PRBoton.outlined(
+            child: PRBoton.esOutlined(
               onTap: onTap,
               texto: l10n.commonOk,
-              habilitado: true,
+              estaHabilitado: true,
               width: 360.pw,
             ),
           ),
@@ -187,10 +187,10 @@ class PRDialog extends StatelessWidget {
             Center(
               child: SizedBox(
                 width: 360.pw,
-                child: PRBoton.outlined(
+                child: PRBoton.esOutlined(
                   onTap: onTap,
                   texto: textButton,
-                  habilitado: true,
+                  estaHabilitado: true,
                   width: 360.pw,
                 ),
               ),
@@ -249,10 +249,10 @@ class PRDialog extends StatelessWidget {
             Center(
               child: SizedBox(
                 width: 360.pw,
-                child: PRBoton.outlined(
+                child: PRBoton.esOutlined(
                   onTap: onTap,
                   texto: l10n.commonBack,
-                  habilitado: true,
+                  estaHabilitado: true,
                   width: 360.pw,
                 ),
               ),

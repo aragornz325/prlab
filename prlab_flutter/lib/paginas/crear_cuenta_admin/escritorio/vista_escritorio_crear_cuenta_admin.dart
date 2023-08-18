@@ -42,7 +42,7 @@ class _VistaEscritorioCrearCuentaAdminState
             PrLabEmailYBotonEnviar(controller: controllerEmail),
             SizedBox(height: 50.ph),
             Center(
-              child: PRBoton.outlined(
+              child: PRBoton.esOutlined(
                 width: 200.pw,
                 onTap: () {
                   // TODO(anyone): agregarle funcionalidad para volver atras.
@@ -50,7 +50,7 @@ class _VistaEscritorioCrearCuentaAdminState
                   // el boton hacia atrás en esta vista
                 },
                 texto: l10n.commonBack,
-                habilitado: true,
+                estaHabilitado: true,
               ),
             ),
           ],

@@ -60,7 +60,7 @@ class PRTextFormField extends StatefulWidget {
       validator: (email) {
         if (email?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
-        } else if (!Validators.emailRegExp.hasMatch(email ?? '')) {
+        } else if (!ExpresionRegular.emailRegExp.hasMatch(email ?? '')) {
           return l10n.commonEnterValidEmail;
         }
         return null;
@@ -105,7 +105,7 @@ class PRTextFormField extends StatefulWidget {
       validator: (value) {
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
-        } else if (!Validators.letrasRegExp.hasMatch(value ?? '')) {
+        } else if (!ExpresionRegular.letrasRegExp.hasMatch(value ?? '')) {
           return l10n.commonOnlyLetters;
         }
 
@@ -148,7 +148,7 @@ class PRTextFormField extends StatefulWidget {
       validator: (value) {
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
-        } else if (!Validators.dateTimeRegExp.hasMatch(value ?? '')) {
+        } else if (!ExpresionRegular.dateTimeRegExp.hasMatch(value ?? '')) {
           return l10n.commonInvalidCharacters;
         }
 
@@ -192,7 +192,7 @@ class PRTextFormField extends StatefulWidget {
       validator: (value) {
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
-        } else if (!Validators.dateTimeRegExp.hasMatch(value ?? '')) {
+        } else if (!ExpresionRegular.dateTimeRegExp.hasMatch(value ?? '')) {
           return l10n.commonInvalidCharacters;
         }
         return null;

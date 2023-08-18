@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:prlab_flutter/prlab_configuracion/base.dart';
-import 'package:prlab_flutter/utilidades/funciones/validators.dart';
+import 'package:prlab_flutter/utilidades/funciones/expresion_regular.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 import 'package:serverpod_auth_client/module.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
@@ -171,7 +171,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     BlocLoginEventoHabilitarBotonLogin event,
     Emitter<BlocLoginEstado> emit,
   ) {
-    if (Validators.emailRegExp.hasMatch(event.email) &&
+    if (ExpresionRegular.emailRegExp.hasMatch(event.email) &&
         event.password.length > PRLabConfiguracion.minimoDeCaracteresPassword) {
       emit(
         BlocLoginEstadoExitosoInicioSesion.desde(

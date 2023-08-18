@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
+import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template SeccionLogoYEslogan}
@@ -15,6 +16,7 @@ class SeccionLogoYEslogan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final colores = context.colores;
 
     return SizedBox(
       height: 100.hp,
@@ -52,8 +54,7 @@ class SeccionLogoYEslogan extends StatelessWidget {
                     l10n.pageLoginLeadingAgency,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      // TODO(Manu): Cambiar colors a los del theme
-                      color: Colors.white,
+                      color: colores.onPrimary,
                       fontSize: 64.pf,
                       fontWeight: FontWeight.w700,
                     ),
