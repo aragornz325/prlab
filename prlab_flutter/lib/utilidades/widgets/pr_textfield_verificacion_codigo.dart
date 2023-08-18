@@ -118,7 +118,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                   child: Text(
                     !widget.solicitoNuevoCodigo
                         ? l10n.alertDialogTextfieldSuffixGetCode
-                        : l10n.alertDialogTextfieldSuffixGetCode,
+                        : l10n.alertDialogTextfieldSuffixCodeSend,
                     style: TextStyle(
                       decoration: TextDecoration.combine([
                         if (!widget.solicitoNuevoCodigo)

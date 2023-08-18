@@ -5,14 +5,16 @@ import 'package:prlab_flutter/app/auto_route/auto_route.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_app.g.dart';
 import 'package:prlab_flutter/theming/temas/tema_por_default_light_prlab.dart';
-// TODO(Mati): Agregar export de utilidades, cambiar los exports que usen utilidades el el utilidades.dart.
-import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
-import 'package:prlab_flutter/utilidades/serverpod_client.dart';
+import 'package:prlab_flutter/utilidades/utilidades.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
-// TODO(Mati): Agregar ducumentacion.
+/// {@template App}
+/// Es el principal punto de entrada de la aplicación.que crea
+/// la estructura general de la aplicación.y instancia los repositorios
+/// providers que se utilizaran en toda la app.
+/// {@endtemplate}
 class App extends StatelessWidget {
-  // TODO(Mati): Agregar ducumentacion.
+  /// {@macro App}
   const App({
     super.key,
   });
@@ -37,9 +39,12 @@ class App extends StatelessWidget {
   }
 }
 
-// TODO(Mati): Agregar ducumentacion.
+/// {@template AppView}
+/// Es la estructura general de la aplicación.También
+/// inicializa `AppRouter` para fines de manejo de rutas/routes.
+/// {@endtemplate}
 class AppView extends StatefulWidget {
-  // TODO(Mati): Agregar ducumentacion.
+  /// {@macro AppView}
   const AppView({super.key});
 
   @override
