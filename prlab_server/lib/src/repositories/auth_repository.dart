@@ -155,6 +155,7 @@ class AuthRepository {
       );
 
       if (codigoEnDb.isEmpty) {
+        session.log('codigo no encontrado en la db');
         return false;
       } else {
         return true;

@@ -108,6 +108,7 @@ class AuthService {
     required String codigo,
   }) async {
     try {
+      session.log('chequeando codigo: $codigo');
       final checkearCodigoOTP = await authRepository.checkearCodigoOTP(
         session: session,
         codigo: codigo,
@@ -120,6 +121,7 @@ class AuthService {
         session: session,
         codigo: codigo,
       );
+      session.log('codigo otp $codigo eliminado');
       return true;
     } catch (e) {
       rethrow;
