@@ -4,6 +4,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/recuperar_password/bloc/bloc_recuperar_password.dart';
+import 'package:prlab_flutter/paginas/recuperar_password/dialog/dialog.dart';
 import 'package:prlab_flutter/paginas/recuperar_password/widgets/widgets.dart';
 import 'package:prlab_flutter/utilidades/extensions/extensions.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
@@ -52,11 +53,17 @@ class _FormularioDeRecuperarPasswordState
     return BlocListener<BlocRecuperarPassword, BlocRecuperarPasswordEstado>(
       listener: (context, state) {
         if (state.esEstadoExitoso) {
-          // TODO(Andreas): Completar esto cuando esten los popups
+          showDialog<void>(
+            context: context,
+            builder: (_) => const PRDialogRecuperoDePasswordExitoso(),
+          );
         }
 
         if (state.esEstadoFallido) {
-          // TODO(Andreas): Completar esto cuando esten los popups
+          showDialog<void>(
+            context: context,
+            builder: (_) => const PRDialogError(),
+          );
         }
       },
       child: Form(

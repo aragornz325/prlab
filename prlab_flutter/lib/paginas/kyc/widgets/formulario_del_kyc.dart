@@ -95,8 +95,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
               SizedBox(height: 40.sh),
               PRTextFormField.fecha(
                 controller: controllerFechaDeNacimiento,
-                // TODO(Andreas): Averiguar donde deberia dejar esto.
-                hintText: '00/00/0000',
+                hintText: l10n.commonDateHintText,
                 context: context,
                 onChanged: (_) => context.read<BlocKyc>().add(
                       BlocKycEventoRecolectarInformacionDeKyc(
