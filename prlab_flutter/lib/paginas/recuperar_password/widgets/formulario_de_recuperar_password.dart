@@ -81,7 +81,7 @@ class _FormularioDeRecuperarPasswordState
                   hintText: l10n.pageRecoverPasswordNewPasswordHintText,
                   onChanged: (_) => context.read<BlocRecuperarPassword>().add(
                         BlocRecuperarPasswordEventoRecolectarData(
-                          contrasenia: controllerPassword.text,
+                          password: controllerPassword.text,
                         ),
                       ),
                 ),
@@ -89,10 +89,10 @@ class _FormularioDeRecuperarPasswordState
                 PRTextFormFieldPassword(
                   controller: controllerPasswordRepetida,
                   hintText: l10n.pageRecoverPasswordRepeatPasswordHintText,
-                  validator: _validarContraseniaRepetida,
+                  validator: _validarPasswordRepetida,
                   onChanged: (_) => context.read<BlocRecuperarPassword>().add(
                         BlocRecuperarPasswordEventoRecolectarData(
-                          contraseniaRepetida: controllerPasswordRepetida.text,
+                          passwordRepetida: controllerPasswordRepetida.text,
                         ),
                       ),
                 ),
@@ -102,7 +102,7 @@ class _FormularioDeRecuperarPasswordState
                     return PRBoton(
                       onTap: _onTapContinuar,
                       texto: l10n.commonContinue,
-                      habilitado: state.estanCompletasLasContrasenias,
+                      habilitado: state.estanCompletasLasPasswords,
                     );
                   },
                 ),
@@ -115,7 +115,7 @@ class _FormularioDeRecuperarPasswordState
     );
   }
 
-  String? _validarContraseniaRepetida(String? value) {
+  String? _validarPasswordRepetida(String? value) {
     if (controllerPassword.text != value) {
       return context.l10n.commonPasswordDoNotMatch;
     }

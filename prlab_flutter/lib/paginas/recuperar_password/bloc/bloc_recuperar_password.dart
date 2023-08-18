@@ -24,8 +24,8 @@ class BlocRecuperarPassword
     emit(
       BlocRecuperarPasswordEstadoRecolectarData.desde(
         state,
-        password: event.contrasenia,
-        passwordRepetida: event.contraseniaRepetida,
+        password: event.password,
+        passwordRepetida: event.passwordRepetida,
       ),
     );
   }

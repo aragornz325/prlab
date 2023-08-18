@@ -107,7 +107,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                   onTap: !widget.solicitoNuevoCodigo
                       ? () {
                           context.read<BlocLogin>().add(
-                                BlocLoginEventoEnviarCodigoAlMailDelUsuario(
+                                BlocLoginEventoEnviarCodigoAlUsuario(
                                   email: widget.email,
                                 ),
                               );

@@ -4,10 +4,12 @@ import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
-// TODO(Gon): Agrear documentacion.
-/// Header de la pagina de login
+/// {@template TextoBienvenida}
+/// Header de la pagina de login donde se muestra el logo y
+/// eslogan de la empresa
+/// {@endtemplate}
 class TextoBienvenida extends StatelessWidget {
-  // TODO(Gon): Agrear documentacion.
+  /// {@macro TextoBienvenida}
   const TextoBienvenida({
     super.key,
   });

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-// TODO(Gon): Agregar documentacion
+/// {@template VistaLoginCelular}
 /// Vista de celular de la pantalla login donde el usuario
-/// puede iniciar sesion
+/// puede iniciar sesion y recuperar contraseña
+/// {@endtemplate}
 class VistaLoginCelular extends StatelessWidget {
-// TODO(Gon): Agregar documentacion
+  /// {@macro VistaLoginCelular}
   const VistaLoginCelular({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO(Gon): Hablar con guille sobre como deberia ser la vista de celular de esta feature.
+    // TODO(Gon): Todavia no esta diseñada la pagina de celular
+
     return const Placeholder();
   }
 }
