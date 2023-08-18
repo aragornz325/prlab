@@ -108,6 +108,14 @@ class AuthService {
     required String codigo,
   }) async {
     try {
+      final checkearCodigoOTP = await authRepository.checkearCodigoOTP(
+        session: session,
+        codigo: codigo,
+      );
+
+      if (checkearCodigoOTP == false) {
+        throw Exception('el codigo no existe');
+      }
       await authRepository.eliminarOTPResetPassword(
         session: session,
         codigo: codigo,

@@ -137,4 +137,30 @@ class AuthRepository {
       rethrow;
     }
   }
+
+  /// La función `checkearCodigoOTP` verifica si un código de verificación dado existe en la base de
+  /// datos.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. Representa la
+  /// sesión o conexión actual a la base de datos.
+  ///   codigo (String): El parámetro `codigo` es una cadena requerida que representa el código OTP
+  /// (contraseña de un solo uso) que debe verificarse.
+  ///
+  Future<bool> checkearCodigoOTP(
+      {required Session session, required String codigo}) async {
+    try {
+      final codigoEnDb = await session.db.query(
+        'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
+      );
+
+      if (codigoEnDb.isEmpty) {
+        return false;
+      } else {
+        return true;
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
