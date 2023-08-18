@@ -89,34 +89,6 @@ class BlocLoginEstadoError extends BlocLoginEstado {
   final MensajesDeErrorDelLogin mensajeDeError;
 }
 
-/// temporizador cuando se inicializa y se inicia. Toma un entero `duración`
-///  como parámetro que
-/// representa la duración total del temporizador.
-class BLocLoginEstadoIniciarCronometro extends BlocLoginEstado {
-  BLocLoginEstadoIniciarCronometro.desde(
-    super.otro, {
-    super.duracionTimer,
-  }) : super.desde();
-}
-
-//  Toma un entero `duración` como parámetro que
-/// representa el tiempo restante del temporizador.
-class BlocLoginEstadoCronometroCorriendo extends BlocLoginEstado {
-  BlocLoginEstadoCronometroCorriendo.desde(
-    super.otro, {
-    super.duracionTimer,
-  }) : super.desde();
-}
-
-//  No toma ningún parámetro ya que
-/// simplemente indica que el temporizador ha terminado la cuenta regresiva.
-class BlocLoginEstadoCronometroCompletado extends BlocLoginEstado {
-  BlocLoginEstadoCronometroCompletado.desde(
-    super.otro, {
-    super.duracionTimer,
-  }) : super.desde();
-}
-
 /// emum de los tipos de errores de login a mostrar
 enum MensajesDeErrorDelLogin {
   userNotFound,
