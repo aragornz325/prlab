@@ -6,28 +6,30 @@ import 'package:flutter/foundation.dart';
 import 'package:prlab_flutter/utilidades/funciones/functions.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 
-part 'bloc_crear_cuenta_admin_event.dart';
-part 'bloc_crear_cuenta_admin_state.dart';
+part 'bloc_crear_cuenta_admin_evento.dart';
+part 'bloc_crear_cuenta_admin_estado.dart';
 
-// TODO(Mati): Agregar ducumentacion
-/// bloc maneja los estados y logica de crear cuenta admin
+/// {@template BlocCrearCuentaAdmin}
+/// Verifica el email y envia ese email/correo donde se envia una invitación al
+/// usuario para que se cree una nueva cuenta
+/// {@endtemplate}
 class BlocCrearCuentaAdmin
     extends Bloc<BlocCrearCuentaAdminEvent, BlocCrearCuentaAdminEstado> {
-  // TODO(Mati): Agregar ducumentacion
+  /// {@macro BlocCrearCuentaAdmin}
   BlocCrearCuentaAdmin() : super(const BlocCrearCuentaAdminEstadoInicial()) {
     on<BlocCrearCuentaAdminEventEnviarEmail>(_onEnviarEmail);
     on<BlocCrearCuentaAdminEventVerificarEmail>(_onVerificarEmail);
   }
 
   /// Envia el email ingresado al back para crear una
-  /// nueva `Admin`
+  /// nueva admin y que continue con la creación de su cuenta
   Future<void> _onEnviarEmail(
     BlocCrearCuentaAdminEventEnviarEmail event,
     Emitter<BlocCrearCuentaAdminEstado> emit,
   ) async {
     emit(BlocCrearCuentaAdminEstadoCargando.desde(state));
     try {
-      // TODO(mati): ver que quieren hacer con el tipo_de invitacion
+      // TODO(mati): ver que quieren hacer con el tipo de invitacion
       await client.mail.envioMailRegistro(state.email, 1);
 
       emit(BlocCrearCuentaAdminEstadoExitosoEmailEnviado.desde(state));
@@ -47,8 +49,8 @@ class BlocCrearCuentaAdmin
     }
   }
 
-  /// Funcion que cambia el booleano del emailValido con la cual cambiamos el
-  /// color del boton y podemos enviar el email
+  /// Cambia el booleano del esEmailValido con la cual cambiamos el
+  /// color del boton y se habilita el poder enviar el email
   void _onVerificarEmail(
     BlocCrearCuentaAdminEventVerificarEmail event,
     Emitter<BlocCrearCuentaAdminEstado> emit,
