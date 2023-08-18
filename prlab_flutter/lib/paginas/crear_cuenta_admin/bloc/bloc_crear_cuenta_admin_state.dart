@@ -1,9 +1,11 @@
 part of 'bloc_crear_cuenta_admin.dart';
 
+// TODO(Mati): Agregar ducumentacion y cambiar el nombre del archivo.
 /// Clase abstracta de los tipos de state/estados manejados por el bloc
 /// BlocCrearCuentaAdmin
 @immutable
 class BlocCrearCuentaAdminEstado extends Equatable {
+  // TODO(Mati): Agregar ducumentacion
   @override
   const BlocCrearCuentaAdminEstado._({
     this.email = '',
@@ -27,13 +29,17 @@ class BlocCrearCuentaAdminEstado extends Equatable {
       ];
 }
 
+// TODO(Mati): Agregar ducumentacion
 /// State/estado `inicial` de BlocCrearCuentaAdmin
 class BlocCrearCuentaAdminEstadoInicial extends BlocCrearCuentaAdminEstado {
+  // TODO(Mati): Agregar ducumentacion
   const BlocCrearCuentaAdminEstadoInicial() : super._();
 }
 
+// TODO(Mati): Agregar ducumentacion
 /// State/estado `exitoso` de BlocCrearCuentaAdmin
 class BlocCrearCuentaAdminEstadoExitoso extends BlocCrearCuentaAdminEstado {
+  // TODO(Mati): Agregar ducumentacion
   const BlocCrearCuentaAdminEstadoExitoso({
     required super.email,
   }) : super._();

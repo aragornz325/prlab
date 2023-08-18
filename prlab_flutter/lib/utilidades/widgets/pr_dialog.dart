@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template TipoDialog}
@@ -50,6 +52,7 @@ class PRDialog extends StatelessWidget {
     required VoidCallback onTap,
     double height = 285,
     double width = 455,
+    bool estaHabilitado = true,
   }) {
     final l10n = context.l10n;
 
@@ -77,10 +80,9 @@ class PRDialog extends StatelessWidget {
                 SizedBox(height: 40.ph),
                 PRBoton.outlined(
                   width: 360.pw,
-                  // TODO:agregarle funcionalidad del bloc
-                  habilitado: true,
+                  habilitado: estaHabilitado,
                   onTap: onTap,
-                  texto: l10n.alert_dialog_button_title_send,
+                  texto: l10n.commonSend,
                 ),
               ],
             ),
@@ -126,7 +128,7 @@ class PRDialog extends StatelessWidget {
           Center(
             child: PRBoton.outlined(
               onTap: onTap,
-              texto: l10n.page_create_admin_alertdialog_button_ok,
+              texto: l10n.commonOk,
               habilitado: true,
               width: 360.pw,
             ),
@@ -164,12 +166,12 @@ class PRDialog extends StatelessWidget {
               titulo,
               style: TextStyle(
                 fontSize: 20.pf,
-                // TODO: cambiar cuando este el theme
+                // TODO(anyone): Cambiar colors a los del theme
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 30.ph),
+            SizedBox(height: 20.ph),
             SizedBox(
               width: 360.pw,
               child: Text(
@@ -182,13 +184,13 @@ class PRDialog extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 30.ph),
+            SizedBox(height: 20.ph),
             Center(
               child: SizedBox(
                 width: 360.pw,
                 child: PRBoton.outlined(
                   onTap: onTap,
-                  texto: l10n.alert_dialog_button_title_button_resend,
+                  texto: l10n.commonResend,
                   habilitado: true,
                   width: 360.pw,
                 ),
@@ -224,10 +226,9 @@ class PRDialog extends StatelessWidget {
           children: [
             SizedBox(height: 20.ph),
             Text(
-              l10n.alert_dialog_button_title_error,
+              l10n.commonError,
               style: TextStyle(
                 fontSize: 20.pf,
-                // TODO: cambiar cuando este el theme
                 color: colores.error,
                 fontWeight: FontWeight.w600,
               ),
@@ -240,7 +241,6 @@ class PRDialog extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 15.pf,
-                  // TODO: cambiar cuando este el theme
                   color: colores.secondary,
                   fontWeight: FontWeight.w400,
                 ),
@@ -252,7 +252,7 @@ class PRDialog extends StatelessWidget {
                 width: 360.pw,
                 child: PRBoton.outlined(
                   onTap: onTap,
-                  texto: l10n.page_create_admin_account_button_back,
+                  texto: l10n.commonBack,
                   habilitado: true,
                   width: 360.pw,
                 ),
@@ -278,10 +278,9 @@ class PRDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colores = context.colores;
-
     return AlertDialog(
-      backgroundColor: colores.background,
+      // TODO(anyone): Cambiar colors a los del theme
+      backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.sw),
       ),
@@ -290,6 +289,34 @@ class PRDialog extends StatelessWidget {
         width: width.pw,
         child: content,
       ),
+    );
+  }
+}
+
+class TextfieldCodigoDeRecuperarContrasenia extends StatefulWidget {
+  const TextfieldCodigoDeRecuperarContrasenia({
+    required this.controller,
+    required this.email,
+    super.key,
+  });
+  final TextEditingController controller;
+  final String email;
+
+  @override
+  State<TextfieldCodigoDeRecuperarContrasenia> createState() =>
+      _TextfieldCodigoDeRecuperarContraseniaState();
+}
+
+class _TextfieldCodigoDeRecuperarContraseniaState
+    extends State<TextfieldCodigoDeRecuperarContrasenia> {
+  @override
+  Widget build(BuildContext context) {
+    final state = context.watch<BlocLogin>().state;
+    return PrLabTextfield(
+      controller: widget.controller,
+      solicitoNuevoCodigo: state is BlocLoginEstadoCronometroCorriendo,
+      email: widget.email,
+      segundosFaltantes: state.duracionTimer,
     );
   }
 }

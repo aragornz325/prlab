@@ -3,6 +3,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/seccion_logo_bienvenida.dart';
 import 'package:prlab_flutter/paginas/recuperar_contrasenia/widgets/widgets.dart';
 
+// TODO(Andreas): Agregar docu.
 /// {@template vista_recuperar_contrasenia_escritorio}
 /// Vista de recuperar contraseña para escritorio o browsers.
 /// {@endtemplate}

@@ -1,5 +1,6 @@
 part of 'bloc_kyc.dart';
 
+// TODO(Andreas): cambiar todos los templates por PascalCase.
 /// {@template bloc_kyc_estado}
 /// Estado que maneja el formulario de información del usuario
 /// en el momento subsiguiente a que se crea una cuenta.
@@ -52,6 +53,7 @@ sealed class BlocKycEstado {
   // Numero de contacto del usuario.
   final String numeroContacto;
 
+  // TODO(Andreas): Agregar docu de getter.
   bool get esFormularioCompletado =>
       nombre.isNotEmpty &&
       apellido.isNotEmpty &&
@@ -78,7 +80,7 @@ class BlocKycEstadoCargando extends BlocKycEstado {
 }
 
 /// {@template bloc_kyc_estado_recolectando_datos}
-/// Estado de recolecta del [BlocKyc]
+/// Recolecta del [BlocKyc]
 /// A medida que el usuario va completando el kyc
 /// el estado se va a ir actualizando con la nueva
 /// información completada en los campos de texto.

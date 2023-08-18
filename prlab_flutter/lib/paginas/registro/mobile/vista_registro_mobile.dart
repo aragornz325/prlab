@@ -14,6 +14,8 @@ import 'package:prlab_flutter/utilidades/extensions/extension_de_form.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
 
+// TODO(Seba): Agregar docu.
+// TODO(Seba): Extraer el formulario para usarlo en ambas vistas.
 /// Vista de mobile de la pantalla registro, la cual llega a traves del mail
 ///  donde el usuario puede registrarse y aceptar los terminos y condiciones.
 class VistaRegistroMobile extends StatefulWidget {
@@ -84,7 +86,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                         SizedBox(
                           child: Center(
                             child: Text(
-                              l10n.page_sign_up_subtitle,
+                              l10n.pageSignUpSubtitle,
                               style: TextStyle(
                                 color: tema.shadow,
                                 fontSize: 15.pf,
@@ -104,9 +106,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                     listener: (context, state) {
                       if (state
                           is BlocRegistroEstadoUsuarioRegistradoConExito) {
-                        context.router.replace(
-                          const PaginaKyc(),
-                        );
+                        context.router.replace(const RutaKyc());
                       }
                     },
                     builder: (context, state) {
@@ -157,8 +157,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                               child: PRTextFormFieldPassword(
                                 validator: _validarContraseniaRepetida,
                                 controller: controllerPassword,
-                                hintText:
-                                    l10n.page_sign_up_text_field_hint_password,
+                                hintText: l10n.commonPassword,
                                 esCreacionPassword: true,
                                 onChanged: (_) {
                                   context.read<BlocRegistro>().add(
@@ -177,8 +176,8 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                               child: PRTextFormFieldPassword(
                                 validator: _validarContraseniaRepetida,
                                 controller: controllerPasswordRepetida,
-                                hintText: l10n
-                                    .page_sign_up_text_field_hint_confirm_password,
+                                hintText:
+                                    l10n.pageSignUpTextFieldHintConfirmPassword,
                                 esCreacionPassword: true,
                                 onChanged: (_) {
                                   context.read<BlocRegistro>().add(
@@ -210,14 +209,14 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                     },
                                   ),
                                   Text(
-                                    l10n.page_sign_up_terms_and_conditions_text,
+                                    l10n.pageSignUpTermsAndConditionsText,
                                     style: state.terminosAceptados
                                         ? TextStyle(color: tema.primary)
                                         : null,
                                   ),
                                   GestureDetector(
                                     child: Text(
-                                      l10n.page_sign_up_terms_and_conditions_text_link,
+                                      l10n.pageSignUpTermsAndConditionsTextLink,
                                       style: TextStyle(
                                         color: tema.secondary,
                                         decoration: TextDecoration.underline,
@@ -241,7 +240,7 @@ class _VistaRegistroMobileState extends State<VistaRegistroMobile> {
                                         _agregarEventoDeEnviarDatosRegistro(
                                       state.terminosAceptados,
                                     ),
-                                    texto: l10n.page_sign_up_button_sign_up,
+                                    texto: l10n.pageSignUpButtonSignUp,
                                     habilitado: state.estaCompletoElFormulario,
                                   );
                                 },

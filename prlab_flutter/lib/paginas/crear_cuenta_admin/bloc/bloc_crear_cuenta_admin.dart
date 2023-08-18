@@ -9,15 +9,17 @@ import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 part 'bloc_crear_cuenta_admin_event.dart';
 part 'bloc_crear_cuenta_admin_state.dart';
 
+// TODO(Mati): Agregar ducumentacion
 /// bloc maneja los estados y logica de crear cuenta admin
 class BlocCrearCuentaAdmin
     extends Bloc<BlocCrearCuentaAdminEvent, BlocCrearCuentaAdminEstado> {
+  // TODO(Mati): Agregar ducumentacion
   BlocCrearCuentaAdmin() : super(const BlocCrearCuentaAdminEstadoInicial()) {
     on<BlocCrearCuentaAdminEventEnviarEmail>(_onEnviarEmail);
     on<BlocCrearCuentaAdminEventVerificarEmail>(_onVerificarEmail);
   }
 
-  /// Funcion que envia el email ingresado al back para crear una
+  /// Envia el email ingresado al back para crear una
   /// nueva `Admin`
   Future<void> _onEnviarEmail(
     BlocCrearCuentaAdminEventEnviarEmail event,

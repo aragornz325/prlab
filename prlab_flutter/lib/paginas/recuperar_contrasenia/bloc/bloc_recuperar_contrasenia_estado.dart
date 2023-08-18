@@ -1,5 +1,6 @@
 part of 'bloc_recuperar_contrasenia.dart';
 
+// TODO(Andreas): Cambair la docu por los templates nuevos.
 /// {@template bloc_recuperar_contrasenia_estado}
 /// Estado que maneja el la información para el recupero de contraseña.
 /// {@endtemplate}
@@ -24,13 +25,15 @@ sealed class BlocRecuperarContraseniaEstado {
   final String contrasenia;
 
   /// Campo de texto para validar que efectivamente la contraseña se
-  /// haya escrito 2 veces, esto minimiza errores de tipeo por parte del usuario.
+  /// haya escrito 2 veces, esto minimiza errores de tipeo por
+  /// parte del usuario.
   final String contraseniaRepetida;
 
   /// Si los campos de texto de contraseñas fueron completados.
   bool get estanCompletasLasContrasenias =>
       contrasenia.isNotEmpty && contraseniaRepetida.isNotEmpty;
 
+  // TODO(Andreas): Agregar docu de los getters
   bool get esEstadoCargando => this is BlocRecuperarContraseniaEstadoCargando;
 
   bool get esEstadoFallido => this is BlocRecuperarContraseniaEstadoFallido;

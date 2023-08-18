@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
+// TODO(Seba): Agregar docu.
 @immutable
 class BlocRegistroEstado extends Equatable {
   const BlocRegistroEstado._({
@@ -37,7 +38,8 @@ class BlocRegistroEstado extends Equatable {
 
   bool get isEstadoCargando => this is BlocRegistroEstadoCargando;
 
-  /// Getter del BlocRegistro para ver si esta en estado inicial, error o cargando.
+  /// Getter del BlocRegistro para ver si esta en estado inicial,
+  /// error o cargando.
   bool get estaEnEstadoDeValidacion =>
       this is BlocRegistroEstadoErrorTokenInvalido ||
       this is BlocRegistroEstadoInicial ||

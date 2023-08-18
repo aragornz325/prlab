@@ -10,6 +10,7 @@ import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/utilidades/email_auth_controller_custom_prlab.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 
+// TODO(Seba): Agregar docu.
 /// Bloc que maneja los estados o logica de la pagina de registro
 class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
   BlocRegistro({
@@ -153,8 +154,8 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     final l10n = context.l10n;
     return switch (loginErrorMessages) {
       MensajesDeErrorRegistro.credencialesInvalidas =>
-        l10n.alert_dialog_code_in, // TODO(sam): revisar mensajes de error
-      MensajesDeErrorRegistro.usuarioNoEncontrado => l10n.alert_dialog_code_in,
+        l10n.alertDialogCodeIn, // TODO(sam): revisar mensajes de error
+      MensajesDeErrorRegistro.usuarioNoEncontrado => l10n.alertDialogCodeIn,
     };
   }
 

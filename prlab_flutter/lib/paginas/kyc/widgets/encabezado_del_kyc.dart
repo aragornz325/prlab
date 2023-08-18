@@ -3,6 +3,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/theme_extension.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
+// TODO(Andreas): Agregar docu de template.
 /// {@template encabezado_del_kyc}
 /// Contiene título y subtítulo que aparece en
 /// la parte superior del formulario del kyc.

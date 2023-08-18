@@ -3,7 +3,7 @@ import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 import 'package:serverpod_auth_client/module.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
-//TODO(cualquiera): mejorar naming de clase
+//TODO(Andreas): Ver si se usa esto, sino eliminarlo
 class EmailAuthControllerCustomPRLab extends EmailAuthController {
   EmailAuthControllerCustomPRLab(super.caller);
 
@@ -23,18 +23,8 @@ class EmailAuthControllerCustomPRLab extends EmailAuthController {
     try {
       final serverResponse = await caller.email.authenticate(email, password);
 
-      if (!serverResponse.success) {
-        throw Exception(
-          'ERROR: Algo salió mal, ${serverResponse.failReason}',
-        );
-      }
-
-      if (serverResponse.userInfo == null ||
-          serverResponse.keyId == null ||
-          serverResponse.key == null) {
-        throw Exception(
-          'ERROR: Algo salió mal, valores requeridos faltantes',
-        );
+      if (serverResponse.failReason != null) {
+        throw Exception(serverResponse.failReason);
       }
 
       return serverResponse;
@@ -44,9 +34,7 @@ class EmailAuthControllerCustomPRLab extends EmailAuthController {
         print('$stackTrace');
       }
 
-      throw Exception(
-        'ERROR: Algo salió mal, error: $e, stackTrace: $stackTrace',
-      );
+      throw Exception(e);
     }
   }
 

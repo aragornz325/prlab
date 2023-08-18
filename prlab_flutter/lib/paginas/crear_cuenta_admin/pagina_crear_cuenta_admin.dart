@@ -24,7 +24,7 @@ class PaginaCrearCuenta extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<BlocCrearCuentaAdmin>(
       create: (_) => BlocCrearCuentaAdmin(),
-      child: BlocConsumer<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
+      child: BlocListener<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
         listener: (context, state) {
           /// estado si el email fue enviado correctamente sale este alertdialog
           if (state is BlocCrearCuentaAdminEstadoExitosoEmailEnviado) {
@@ -35,6 +35,7 @@ class PaginaCrearCuenta extends StatelessWidget {
               ),
             );
           }
+
           if (state is BlocCrearCuentaAdminEstadoFallido) {
             showDialog<void>(
               context: context,
@@ -51,12 +52,10 @@ class PaginaCrearCuenta extends StatelessWidget {
             );
           }
         },
-        builder: (context, state) {
-          return const FullResponsiveScreen(
-            mobile: VistaEscritorioCrearCuentaAdmin(),
-            desktop: VistaEscritorioCrearCuentaAdmin(),
-          );
-        },
+        child: const FullResponsiveScreen(
+          mobile: VistaEscritorioCrearCuentaAdmin(),
+          desktop: VistaEscritorioCrearCuentaAdmin(),
+        ),
       ),
     );
   }

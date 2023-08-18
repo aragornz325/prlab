@@ -6,6 +6,8 @@ import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_dialog.dart';
 
+// TODO(Seba): cambiar nombre de file y de archivo, no es mobile, es celular.
+// TODO(Seba): Agregar docu.
 class VistaEsperaValidacionDeTokenMobile extends StatelessWidget {
   const VistaEsperaValidacionDeTokenMobile({
     super.key,
@@ -31,10 +33,9 @@ class VistaEsperaValidacionDeTokenMobile extends StatelessWidget {
                       Navigator.of(context).pop();
                     },
                     context: context,
-                    titulo:
-                        l10n.alert_dialog_button_subtitle_something_went_wrong,
+                    titulo: l10n.commonSomethingWentWrong,
                     textoDeAdvertencia:
-                        l10n.alert_dialog_button_subtitle_link_expired,
+                        l10n.alertDialogButtonSubtitleLinkExpired,
                   ),
                 );
               }

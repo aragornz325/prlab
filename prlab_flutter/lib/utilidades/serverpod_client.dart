@@ -15,8 +15,8 @@ Future<void> initializeServerpodClient({
   // On a real device replace the ipAddress with the IP address of your
   // computer.
 
-  // const ipAddress =
-  //     'https://prlab-production.up.railway.app/'; //'http://localhost:8080/';
+  const ipAddress = 'https://prlab-production.up.railway.app/';
+  // //'http://localhost:8080/';
 
   // Sets up a singleton client object that can be used to talk to the server
   // from
