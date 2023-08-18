@@ -1,0 +1,4 @@
+# melos_managed_dependency_overrides: prlab_client
+dependency_overrides:
+  prlab_client:
+    path: ../prlab_client
