@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/extensiones/theme_extension.dart';
+import 'package:prlab_flutter/extensiones/extensiones.dart';
+
 import 'package:prlab_flutter/l10n/l10n.dart';
+
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template PRDialogEmailEnviado}
@@ -52,7 +54,8 @@ class PRDialogEmailEnviado extends StatelessWidget {
                   ),
                 ),
                 //!
-                // TODO(anyone): esto todavia esta a definirse por el cliente, queda como Carryover del Sprint 1
+                // TODO(anyone): esto todavia esta a definirse por el cliente,
+                // queda como Carryover del Sprint 1
                 //!
                 /*TextSpan(
                   text: 'Lorem ipsum dolor sit amet consectetur.Tortor\nut '

@@ -25,8 +25,8 @@ class BlocKyc extends Bloc<BlocKcyEvento, BlocKycEstado> {
     emit(BlocKycEstadoCargando.desde(state));
 
     try {
-      // TODO(Andreas):
-      // Este codigo es seudo, cuando tengamos el endpoint descomentar esto y
+      // TODO(Andreas): Este codigo es seudo, cuando tengamos el endpoint
+      // descomentar esto y
       // modificarlo
 
       /* client.user.insertarKyc(

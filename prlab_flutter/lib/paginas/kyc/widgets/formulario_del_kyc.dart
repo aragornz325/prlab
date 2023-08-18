@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/extensiones/theme_extension.dart';
+import 'package:prlab_flutter/extensiones/extensiones.dart';
+
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/kyc/bloc/bloc_kyc.dart';
 import 'package:prlab_flutter/paginas/kyc/widgets/widgets.dart';
-import 'package:prlab_flutter/utilidades/extensions/extensions.dart';
+
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template FormularioDelKyc}

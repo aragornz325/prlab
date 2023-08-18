@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/paginas/registro/bloc/bloc_registro_state.dart';
+import 'package:prlab_flutter/paginas/registro/celular/vista_espera_validacion_de_token_celular.dart';
+import 'package:prlab_flutter/paginas/registro/celular/vista_registro_celular.dart';
 import 'package:prlab_flutter/paginas/registro/escritorio/vista_espera_validacion_de_token_escritorio.dart';
 import 'package:prlab_flutter/paginas/registro/escritorio/vista_registro_escritorio.dart';
-import 'package:prlab_flutter/paginas/registro/mobile/vista_espera_validacion_de_token_mobile.dart';
-import 'package:prlab_flutter/paginas/registro/mobile/vista_registro_mobile.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
@@ -36,10 +36,10 @@ class PaginaRegistro extends StatelessWidget {
         mobile: BlocBuilder<BlocRegistro, BlocRegistroEstado>(
           builder: (context, state) {
             if (state.estaEnEstadoDeValidacion) {
-              return const VistaEsperaValidacionDeTokenMobile();
+              return const VistaEsperaValidacionDeTokenCelular();
             }
 
-            return VistaRegistroMobile(
+            return VistaRegistroCelular(
               email: state.email,
             );
           },
