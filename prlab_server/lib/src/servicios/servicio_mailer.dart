@@ -1,4 +1,5 @@
 import 'package:prlab_server/src/repositories/auth_repository.dart';
+import 'package:prlab_server/utils/config/constants.dart';
 import 'package:prlab_server/utils/mailer/mailer.dart';
 import 'package:prlab_server/utils/mailer/templates.dart';
 import 'package:serverpod/server.dart';
@@ -38,10 +39,13 @@ class ServicioMail {
       final token = jwt.sign(
           SecretKey('sweetHomeAlabama')); //TODO cambiar por variable de entorno
 
-      final mailHtml = plantillasCorreo.cuerpoRegistro(
-          enlace: "http://google.com/token=$token");
+      final cuerpoMensajeEmailHtml = plantillasCorreo.cuerpoRegistro(
+          enlace: "$frontendUrl/token=$token");
+
+      final cuerpoCompletoEmail = plantillasCorreo.mailingGeneral(contenido: cuerpoMensajeEmailHtml);
+
       enviarEmail(
-          mailDestinatario: email, subject: "registro", mailHtml: mailHtml);
+          mailDestinatario: email, subject: "registro", mailHtml: cuerpoCompletoEmail);
 
       await authRepository.guardarTokenEnDb(
           session: session,

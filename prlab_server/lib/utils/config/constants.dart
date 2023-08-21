@@ -1,0 +1,1 @@
+final String frontendUrl = 'https://prlab-front-production.up.railway.app';
