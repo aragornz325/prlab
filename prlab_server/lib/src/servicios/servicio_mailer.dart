@@ -39,13 +39,18 @@ class ServicioMail {
       final token = jwt.sign(
           SecretKey('sweetHomeAlabama')); //TODO cambiar por variable de entorno
 
-      final cuerpoMensajeEmailHtml = plantillasCorreo.cuerpoRegistro(
-          enlace: "$frontendUrl/token=$token");
+      final mailURL = config["mail"]!["frontendUrl"];
 
-      final cuerpoCompletoEmail = plantillasCorreo.mailingGeneral(contenido: cuerpoMensajeEmailHtml);
+      final cuerpoMensajeEmailHtml =
+          plantillasCorreo.cuerpoRegistro(enlace: "$mailURL/#/register/$token");
+
+      final cuerpoCompletoEmail =
+          plantillasCorreo.mailingGeneral(contenido: cuerpoMensajeEmailHtml);
 
       enviarEmail(
-          mailDestinatario: email, subject: "registro", mailHtml: cuerpoCompletoEmail);
+          mailDestinatario: email,
+          subject: "registro",
+          mailHtml: cuerpoCompletoEmail);
 
       await authRepository.guardarTokenEnDb(
           session: session,

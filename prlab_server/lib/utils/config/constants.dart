@@ -1,1 +1,5 @@
-final String frontendUrl = 'https://prlab-front-production.up.railway.app';
+final config = {
+  "mail": {
+    "frontendUrl": "https://prlab-front-production.up.railway.app",
+  }
+};
