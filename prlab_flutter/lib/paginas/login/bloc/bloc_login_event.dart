@@ -46,6 +46,19 @@ class BlocLoginEventoHabilitarBotonLogin extends BlocLoginEvento {
   final String password;
 }
 
+/// {@template BlocLoginEventoHabilitarBotonOlvidastePassword}
+/// Hablita el boton de iniciar sesión segun si se cumplen las validaciones
+/// {@endtemplate}
+class BlocLoginEventoHabilitarBotonOlvidePassword extends BlocLoginEvento {
+  /// {@macro BlocLoginEventoHabilitarBotonOlvidastePassword}
+  const BlocLoginEventoHabilitarBotonOlvidePassword({
+    required this.email,
+  });
+
+  /// Email del usuario
+  final String email;
+}
+
 /// {@template BlocLoginEventoAgregarCodigoAlEstado}
 /// Cambia el tamaño del codigo para poder usar su longitud
 /// {@endtemplate}

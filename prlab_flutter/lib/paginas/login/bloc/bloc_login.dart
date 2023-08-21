@@ -23,6 +23,8 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
   }) : super(const BlocLoginEstadoInicial()) {
     on<BlocLoginEventoIniciarSesion>(_iniciarSesion);
     on<BlocLoginEventoHabilitarBotonLogin>(_habilitarBotonLogin);
+    on<BlocLoginEventoHabilitarBotonOlvidePassword>(
+        _habilitarBotonOlvidePassword);
     on<BlocLoginEventoEnviarCodigoAlUsuario>(
       _enviarCodigoAlUsuario,
     );
@@ -96,13 +98,12 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     BlocLoginEventoEnviarCodigoAlUsuario event,
     Emitter<BlocLoginEstado> emit,
   ) async {
-    emit(BlocLoginEstadoCargando.desde(state));
     try {
       final response = await emailAuth.initiatePasswordReset(event.email);
 
       if (response) {
         emit(
-          BlocLoginEstadoExitosoAlValidarOTP.desde(state),
+          BlocLoginEstadoExitosoGeneral.desde(state),
         );
       } else {
         // TODO(Gon): Preguntar al back que devuelve para handlear los errores
@@ -190,25 +191,44 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     BlocLoginEventoHabilitarBotonLogin event,
     Emitter<BlocLoginEstado> emit,
   ) {
-    emit(
-      BlocLoginEstadoExitosoGeneral.desde(
-        state,
-        botonHabilitado: true,
-        email: event.email,
-      ),
-    );
-    if (event.password.length > PRLabConfiguracion.minimoDeCaracteresPassword) {
+    if (ExpresionRegular.emailRegExp.hasMatch(event.email) &&
+        event.password.length > PRLabConfiguracion.minimoDeCaracteresPassword) {
       emit(
         BlocLoginEstadoExitosoGeneral.desde(
           state,
-          botonHabilitado: true,
+          botonLoginHabilitado: true,
         ),
       );
     } else {
       emit(
         BlocLoginEstadoExitosoGeneral.desde(
           state,
-          botonHabilitado: false,
+          botonLoginHabilitado: false,
+        ),
+      );
+    }
+  }
+
+  /// Verifica si el correo electrónico es válido, y emite
+  /// un estado exitoso para habilitar el botón.
+  void _habilitarBotonOlvidePassword(
+    BlocLoginEventoHabilitarBotonOlvidePassword event,
+    Emitter<BlocLoginEstado> emit,
+  ) {
+    if (ExpresionRegular.emailRegExp.hasMatch(event.email)) {
+      emit(
+        BlocLoginEstadoExitosoGeneral.desde(
+          state,
+          botonOlvidePasswordHabilitado: true,
+          email: event.email,
+        ),
+      );
+    } else {
+      emit(
+        BlocLoginEstadoExitosoGeneral.desde(
+          state,
+          botonOlvidePasswordHabilitado: false,
+          email: event.email,
         ),
       );
     }

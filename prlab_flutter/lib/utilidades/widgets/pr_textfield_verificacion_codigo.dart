@@ -20,7 +20,6 @@ class PrLabTextfield extends StatefulWidget {
   /// {@macro PrLabTextfield}
   const PrLabTextfield({
     required this.controller,
-    required this.email,
     this.validator,
     this.minutosFaltantes = 30,
     this.segundosFaltantes = 60,
@@ -46,8 +45,6 @@ class PrLabTextfield extends StatefulWidget {
   /// (por default esta en 30)
   final int minutosFaltantes;
 
-  /// Email del usuario al que se le va a enviar el codigo
-  final String email;
   @override
   State<PrLabTextfield> createState() => _PrLabTextfieldState();
 }
@@ -102,37 +99,41 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
             width: widget.solicitoNuevoCodigo ? 76.pw : 55.pw,
             child: Row(
               children: [
-                InkWell(
-                  onTap: !widget.solicitoNuevoCodigo
-                      ? () {
-                          context.read<BlocLogin>().add(
-                                BlocLoginEventoEnviarCodigoAlUsuario(
-                                  email: widget.email,
-                                ),
-                              );
-                          context
-                              .read<BlocTemporizador>()
-                              .add(BlocTemporizadorEventoEmpezar());
-                        }
-                      : null,
-                  child: Text(
-                    !widget.solicitoNuevoCodigo
-                        ? l10n.alertDialogTextfieldSuffixGetCode
-                        : l10n.alertDialogTextfieldSuffixCodeSend,
-                    style: TextStyle(
-                      decoration: TextDecoration.combine([
-                        if (!widget.solicitoNuevoCodigo)
-                          TextDecoration.underline
-                        else
-                          TextDecoration.none,
-                      ]),
-                      color: !widget.solicitoNuevoCodigo
-                          ? colores.primary
-                          : colores.secondary,
-                      fontSize: 12.pf,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                BlocBuilder<BlocLogin, BlocLoginEstado>(
+                  builder: (context, state) {
+                    return InkWell(
+                      onTap: !widget.solicitoNuevoCodigo
+                          ? () {
+                              context.read<BlocLogin>().add(
+                                    BlocLoginEventoEnviarCodigoAlUsuario(
+                                      email: state.email,
+                                    ),
+                                  );
+                              context
+                                  .read<BlocTemporizador>()
+                                  .add(BlocTemporizadorEventoEmpezar());
+                            }
+                          : null,
+                      child: Text(
+                        !widget.solicitoNuevoCodigo
+                            ? l10n.alertDialogTextfieldSuffixGetCode
+                            : l10n.alertDialogTextfieldSuffixCodeSend,
+                        style: TextStyle(
+                          decoration: TextDecoration.combine([
+                            if (!widget.solicitoNuevoCodigo)
+                              TextDecoration.underline
+                            else
+                              TextDecoration.none,
+                          ]),
+                          color: !widget.solicitoNuevoCodigo
+                              ? colores.primary
+                              : colores.secondary,
+                          fontSize: 12.pf,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 ...[
                   if (widget.solicitoNuevoCodigo)
