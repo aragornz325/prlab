@@ -46,7 +46,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
 
     return BlocConsumer<BlocLogin, BlocLoginEstado>(
       listener: (context, state) {
-        if (state.estadoErroneo) {
+        if (state.estadoErroneo || state is BlocLoginEstadoError) {
           // TODO(Gon): Implementar el manejo de errores :D
           Navigator.of(context).pop();
           showDialog<void>(

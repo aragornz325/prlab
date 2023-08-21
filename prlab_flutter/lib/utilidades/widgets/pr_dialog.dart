@@ -279,9 +279,11 @@ class PRDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colores = context.colores;
+
     return AlertDialog(
       // TODO(anyone): Cambiar colors a los del theme
-      backgroundColor: Colors.white,
+      backgroundColor: colores.background,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.sw),
       ),
@@ -294,6 +296,7 @@ class PRDialog extends StatelessWidget {
   }
 }
 
+// TODO(anyone): sacar y poner en los refactor de los textfield
 class TextfieldCodigoDeRecuperarPassword extends StatefulWidget {
   const TextfieldCodigoDeRecuperarPassword({
     required this.controller,

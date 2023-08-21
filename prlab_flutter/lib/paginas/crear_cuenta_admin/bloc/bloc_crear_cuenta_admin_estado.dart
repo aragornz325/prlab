@@ -13,9 +13,8 @@ class BlocCrearCuentaAdminEstado extends Equatable {
     this.email = '',
   });
 
-  BlocCrearCuentaAdminEstado.desde(
-    BlocCrearCuentaAdminEstado otro,
-  ) : this._(
+  BlocCrearCuentaAdminEstado.desde(BlocCrearCuentaAdminEstado otro)
+      : this._(
           email: otro.email,
         );
 
@@ -63,8 +62,9 @@ class BlocCrearCuentaAdminEstadoExitosoEmailEnviado
   BlocCrearCuentaAdminEstadoExitosoEmailEnviado(super.otro) : super.desde();
 
   /// {@macro BlocCrearCuentaAdminEstadoExitosoEmailEnviado}
-  BlocCrearCuentaAdminEstadoExitosoEmailEnviado.desde(super.otro)
-      : super.desde();
+  BlocCrearCuentaAdminEstadoExitosoEmailEnviado.desde(
+    super.otro,
+  ) : super.desde();
 }
 
 /// {@template BlocCrearCuentaAdminEstadoFallido}

@@ -30,7 +30,7 @@ class BlocCrearCuentaAdmin
     emit(BlocCrearCuentaAdminEstadoCargando.desde(state));
     try {
       // TODO(mati): ver que quieren hacer con el tipo de invitacion
-      final response = await client.mail.envioMailRegistro(state.email, 1);
+      await client.mail.envioMailRegistro(state.email, 1);
 
       emit(BlocCrearCuentaAdminEstadoExitosoEmailEnviado.desde(state));
     } catch (e, st) {
