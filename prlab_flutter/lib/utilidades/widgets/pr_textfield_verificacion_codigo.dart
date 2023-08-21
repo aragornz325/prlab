@@ -66,7 +66,9 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
 
     return TextFormField(
       inputFormatters: [
-        FilteringTextInputFormatter.allow(RegExp(r'^\d+$')),
+        FilteringTextInputFormatter.allow(
+          RegExp(r'^\d+$'),
+        ),
       ],
       maxLength: 8,
       keyboardType: TextInputType.number,
@@ -99,8 +101,9 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
         suffixIcon: Padding(
           padding: EdgeInsets.only(top: 20.ph),
           child: SizedBox(
-            width: widget.solicitoNuevoCodigo ? 76.pw : 55.pw,
+            width: 100.pw,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 InkWell(
                   onTap: !widget.solicitoNuevoCodigo
@@ -115,22 +118,27 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
                               .add(BlocTemporizadorEventoEmpezar());
                         }
                       : null,
-                  child: Text(
-                    !widget.solicitoNuevoCodigo
-                        ? l10n.alertDialogTextfieldSuffixGetCode
-                        : l10n.alertDialogTextfieldSuffixCodeSend,
-                    style: TextStyle(
-                      decoration: TextDecoration.combine([
-                        if (!widget.solicitoNuevoCodigo)
-                          TextDecoration.underline
-                        else
-                          TextDecoration.none,
-                      ]),
-                      color: !widget.solicitoNuevoCodigo
-                          ? colores.primary
-                          : colores.secondary,
-                      fontSize: 12.pf,
-                      fontWeight: FontWeight.w500,
+                  child: SizedBox(
+                    child: Text(
+                      maxLines: 1,
+                      !widget.solicitoNuevoCodigo
+                          ? l10n.alertDialogTextfieldSuffixGetCode
+                          : l10n.alertDialogTextfieldSuffixCodeSend,
+                      style: TextStyle(
+                        decoration: TextDecoration.combine(
+                          [
+                            if (!widget.solicitoNuevoCodigo)
+                              TextDecoration.underline
+                            else
+                              TextDecoration.none,
+                          ],
+                        ),
+                        color: !widget.solicitoNuevoCodigo
+                            ? colores.primary
+                            : colores.secondary,
+                        fontSize: 12.pf,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),

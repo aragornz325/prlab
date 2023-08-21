@@ -114,13 +114,13 @@
     
     "alertDialogSubTitleVerificationCodeSend" : "Ingrese el código de verificación de 8 dígitos enviado a",
     "@alertDialogSubTitleVerificationCodeSend": {
-        "description":"text in subtitle textfield(who was the code sent to),Enter the 8 digit verification code sent to"
+        "description":"text in subtitle textfield(who was the code sent to), Enter the 8 digit verification code sent to"
     },
     
     
-    "alertDialogTextfieldHitTextTextEmailVerificationCode": "Código de verificación de correo electrónico",
+    "alertDialogTextfieldHitTextTextEmailVerificationCode": "Código de verificación de email",
     "@alertDialogTextfieldHitTextTextEmailVerificationCode": {
-        "description":"text in alertdialog in title textfield,Email verification code"
+        "description":"text in alertdialog in title textfield, Email verification code"
     },
     
     "alertDialogTextfieldSuffixGetCode": "Obtener código",
