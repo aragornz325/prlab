@@ -57,8 +57,7 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
             controller: controllerCodigo,
             solicitoNuevoCodigo:
                 estadoTemporizador is BlocTemporizadorEstadoCorriendo,
-            email: email,
-            segundosFaltantes: estadoLogin.duracionTimer,
+            segundosFaltantes: estadoTemporizador.duracionTimer,
           ),
           Text(
             textoAQuienFueEnviadoEmail,

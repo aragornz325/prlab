@@ -320,7 +320,6 @@ class _TextfieldCodigoDeRecuperarPasswordState
     return PrLabTextfield(
       controller: widget.controller,
       solicitoNuevoCodigo: state is BlocTemporizadorEstadoCorriendo,
-      email: widget.email,
       segundosFaltantes: state.duracionTimer,
     );
   }

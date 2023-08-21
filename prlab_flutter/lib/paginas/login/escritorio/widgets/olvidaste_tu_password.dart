@@ -14,14 +14,10 @@ class OlvidasteTuPassword extends StatefulWidget {
   /// {@macro OlvidasteTuPassword}
   const OlvidasteTuPassword({
     required this.cargoElMail,
-    required this.email,
     required this.password,
     required this.controllerCodigo,
     super.key,
   });
-
-  /// Email ingresado por el usuario
-  final String email;
 
   /// Contraseña ingresada por el usuario
   final String password;
@@ -57,7 +53,7 @@ class _OlvidasteTuPasswordState extends State<OlvidasteTuPassword> {
                           value: context.read<BlocLogin>(),
                           child: PRDialogVerificacionCodigo(
                             password: widget.password,
-                            email: widget.email,
+                            email: state.email,
                             controllerCodigo: widget.controllerCodigo,
                           ),
                         );
