@@ -96,8 +96,9 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
         suffixIcon: Padding(
           padding: EdgeInsets.only(top: 20.ph),
           child: SizedBox(
-            width: widget.solicitoNuevoCodigo ? 76.pw : 55.pw,
+            width: 100.pw,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 BlocBuilder<BlocLogin, BlocLoginEstado>(
                   builder: (context, state) {
