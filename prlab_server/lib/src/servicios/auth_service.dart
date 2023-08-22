@@ -2,7 +2,7 @@
 // ignore_for_file: unnecessary_await_in_return, avoid_dynamic_calls, overridden_fields
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
-import 'package:prlab_server/src/odms/auth_repository.dart';
+import 'package:prlab_server/src/odms/auth_odm.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/serverpod.dart';
 

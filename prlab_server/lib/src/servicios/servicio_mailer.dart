@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_dynamic_calls
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
-import 'package:prlab_server/src/odms/auth_repository.dart';
+import 'package:prlab_server/src/odms/auth_odm.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:prlab_server/utils/config/constants.dart';
 import 'package:prlab_server/utils/mailer/mailer.dart';
