@@ -15,6 +15,7 @@ class VistaRegistroCelular extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //blocbuilder afuera del scaffold
       body: CuerpoVistaRegistroPRLab(
         email: email,
       ),

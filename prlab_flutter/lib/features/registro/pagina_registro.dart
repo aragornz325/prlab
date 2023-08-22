@@ -37,7 +37,7 @@ class PaginaRegistro extends StatelessWidget {
           // TODO(SAM): Cambiar a una sola vista y que ahi adentro se haga la validacion.
           builder: (context, state) {
             if (state.estaEnEstadoDeValidacion) {
-              return const VistaEsperaValidacionDeTokenCelular();
+              return const VistaEsperaValidacionDeTokenCelular(); //Renombrar a widgetEspera
             }
 
             return VistaRegistroCelular(
