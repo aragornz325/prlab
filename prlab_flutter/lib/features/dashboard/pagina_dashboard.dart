@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
 
-// TODO(anyone): .
+// TODO(anyone):
 // Esto esta para poder redirigir al usuario desde el login
 // a algun especie de dashboard, para poder continuar el flujo
 // de las tareas del primer sprint, una vez que se cree

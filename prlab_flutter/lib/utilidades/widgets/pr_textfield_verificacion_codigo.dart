@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/auth/login/bloc/bloc_login.dart';
+import 'package:prlab_flutter/features/auth/login/bloc_temporizador/bloc_temporizador.dart';
 
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
-import 'package:prlab_flutter/paginas/login/bloc_temporizador/bloc_temporizador.dart';
 
 // !!!
 // TODO(anyone): PASAR ESTO AL FACTORY
