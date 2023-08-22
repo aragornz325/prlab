@@ -7,9 +7,9 @@ import 'package:prlab_flutter/features/auth/registro/widgets/cuerpo_de_vista_esp
 /// que en el caso de error mostrara un alert dialog.
 /// {@endtemplate}
 
-class VistaEsperaValidacionDeTokenCelular extends StatelessWidget {
-  /// {@macro VistaEsperaValidacionDeTokenCelular}
-  const VistaEsperaValidacionDeTokenCelular({
+class WidgetEsperaValidacionDeTokenCelular extends StatelessWidget {
+  /// {@macro WidgetEsperaValidacionDeTokenCelular}
+  const WidgetEsperaValidacionDeTokenCelular({
     super.key,
   });
 
