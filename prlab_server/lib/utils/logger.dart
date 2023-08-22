@@ -1,13 +1,14 @@
-import 'package:logger/logger.dart';
 import 'dart:io';
 
+import 'package:logger/logger.dart';
 
-
+/// Clase de logger que imprime el log por pantalla.
 class PrintOutput extends LogOutput {
   @override
   void output(OutputEvent event) {
-    final logData = {
-      'nivel': event.origin.level.name.toString(),
+    // ignore: always_specify_types
+    final Map<String, dynamic> logData = {
+      'nivel': event.origin.level.name,
       'mensaje': event.origin.message,
       'host': Platform.localHostname,
     };
@@ -15,15 +16,13 @@ class PrintOutput extends LogOutput {
   }
 }
 
-final loggerPrint = Logger(
+/// Logger para imprimir por consola.
+final Logger loggerPrint = Logger(
   filter: ProductionFilter(),
   printer: PrettyPrinter(
     methodCount: 0,
-    errorMethodCount: 8,
-    lineLength: 120,
-    colors: true,
-    printEmojis: true,
     printTime: true,
   ),
+  // ignore: always_specify_types
   output: MultiOutput([ConsoleOutput(), PrintOutput()]),
 );

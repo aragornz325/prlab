@@ -7,6 +7,7 @@ abstract class Servicio<T extends ODM> {
   late final T odm;
 
   /// Instancia del logger.
+  // ignore: always_specify_types
   final logger = loggerPrint;
 
   /// Metodo para ejecutar las operaciones y manejar errores.
