@@ -2,6 +2,7 @@
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:prlab_server/src/odms/auth_repository.dart';
+import 'package:prlab_server/src/servicio.dart';
 import 'package:prlab_server/utils/config/constants.dart';
 import 'package:prlab_server/utils/mailer/mailer.dart';
 import 'package:prlab_server/utils/mailer/templates.dart';
@@ -11,7 +12,8 @@ import 'package:serverpod/server.dart';
 final PlantillasCorreo plantillasCorreo = PlantillasCorreo();
 
 /// La clase ServicioMailer se utiliza para enviar correos electrónicos.
-class ServicioMail {
+class ServicioMail extends Servicio<AuthODM> {
+
   /// Instancia de la clase del odm.
   final AuthODM authRepository = AuthODM();
 

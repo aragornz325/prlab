@@ -33,7 +33,7 @@ class AuthODM extends ODM {
           'SELECT "verificationCode" FROM serverpod_email_create_request WHERE email = \'$email\'',
         ),
       );
-
+    
       return result.first.first;
 
       // final result = await session.db.query(

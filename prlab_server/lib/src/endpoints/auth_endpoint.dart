@@ -1,6 +1,7 @@
-// ignore_for_file: unnecessary_await_in_return
+// ignore_for_file: unnecessary_await_in_return, avoid_dynamic_calls
 
 import 'package:prlab_server/src/services/auth_service.dart';
+import 'package:prlab_server/utils/logger.dart';
 import 'package:serverpod/server.dart';
 
 /// La clase `AuthEndpoint` está ampliando la clase `Endpoint`. por tanto maneja
@@ -25,8 +26,10 @@ class AuthEndpoint extends Endpoint {
   Future<String> getValidationCode(
     Session session,
     String email,
-  ) async =>
-      await authService.getValidationCode(session: session, email: email);
+  ) async {
+    loggerPrint.e('getValidationCode');
+    return await authService.getValidationCode(session: session, email: email);
+  }
 
   /// La función `validarTokenPorMail` valida un token usando `authService` y
   /// devuelve un `Future` que se resuelve en una `String`.
