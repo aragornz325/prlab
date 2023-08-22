@@ -8,7 +8,7 @@
 
 
 # Name of the class to generate.
-class: Example
+# class: Example
 
 # Add the table key, if this class represents a row in the database.
 #table: example
@@ -17,6 +17,6 @@ class: Example
 # types are `bool`, `int`, `double`, `String`, `DateTime`, and any other
 # generated classes. You can also add lists of objects and types have support
 # for null safety. Eg. `List<int>?` or `List<MyOtherClass?>`.
-fields:
-  name: String
-  data: int
+# fields:
+#   name: String
+#   data: int

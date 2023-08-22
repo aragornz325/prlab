@@ -1,23 +1,19 @@
+import 'package:prlab_server/src/generated/endpoints.dart';
+import 'package:prlab_server/src/generated/protocol.dart';
+import 'package:prlab_server/src/web/routes/root.dart';
 import 'package:prlab_server/utils/config/rewrite_yaml.dart';
 import 'package:prlab_server/utils/mailer/mailer.dart';
 import 'package:prlab_server/utils/mailer/templates.dart';
 import 'package:serverpod/serverpod.dart';
-
-import 'package:prlab_server/src/web/routes/root.dart';
-
-import 'src/generated/protocol.dart';
-import 'src/generated/endpoints.dart';
-
 import 'package:serverpod_auth_server/module.dart' as auth;
 
-// This is the starting point of your Serverpod server. In most cases, you will
-// only need to make additions to this file if you add future calls,  are
-// configuring Relic (Serverpod's web-server), or need custom setup work.
-
-void run(List<String> args) async {
+/// This is the starting point of your Serverpod server. In most cases, you will
+/// only need to make additions to this file if you add future calls,  are
+/// configuring Relic (Serverpod's web-server), or need custom setup work.
+Future<void> run(List<String> args) async {
   rewriteConfigYaml('staging');
   // Initialize Serverpod and connect it with your generated code.
-  final pod = Serverpod(
+  final Serverpod pod = Serverpod(
     args,
     Protocol(),
     Endpoints(),
@@ -35,52 +31,54 @@ void run(List<String> args) async {
     '/*',
   );
 
-  auth.AuthConfig.set(auth.AuthConfig(
-    passwordResetExpirationTime: Duration(minutes: 30),
-    sendValidationEmail: (
-      session,
-      email,
-      validationCode,
-    ) async {
-      try {
-        final cuerpoCorreo =
-            PlantillasCorreo().cuerpoVerificacion(codigo: validationCode);
-        final correo = PlantillasCorreo().mailingGeneral(
-          contenido: cuerpoCorreo,
-        );
-        await enviarEmail(
-          mailDestinatario: email,
-          subject: 'Email validation.',
-          mailHtml: correo,
-        );
-        return true;
-      } on Exception {
-        rethrow;
-      }
-    },
-    sendPasswordResetEmail: (
-      session,
-      userInfo,
-      validationCode,
-    ) async {
-      try {
-        final cuerpoCorreo = PlantillasCorreo().cuerpoVerificacion(
-          codigo: validationCode,
-        );
-        final correo = PlantillasCorreo().mailingGeneral(
-          contenido: cuerpoCorreo,
-        );
-        await enviarEmail(
-          mailDestinatario: userInfo.email ?? '',
-          subject: 'Password reset validation.',
-          mailHtml: correo,
-        );
-        return true;
-      } on Exception {
-        rethrow;
-      }
-    },
-  ));
+  auth.AuthConfig.set(
+    auth.AuthConfig(
+      passwordResetExpirationTime: const Duration(minutes: 30),
+      sendValidationEmail: (
+        Session session,
+        String email,
+        String validationCode,
+      ) async {
+        try {
+          final String cuerpoCorreo =
+              PlantillasCorreo().cuerpoVerificacion(codigo: validationCode);
+          final String correo = PlantillasCorreo().mailingGeneral(
+            contenido: cuerpoCorreo,
+          );
+          await enviarEmail(
+            mailDestinatario: email,
+            subject: 'Email validation.',
+            mailHtml: correo,
+          );
+          return true;
+        } on Exception {
+          rethrow;
+        }
+      },
+      sendPasswordResetEmail: (
+        Session session,
+        auth.UserInfo userInfo,
+        String validationCode,
+      ) async {
+        try {
+          final String cuerpoCorreo = PlantillasCorreo().cuerpoVerificacion(
+            codigo: validationCode,
+          );
+          final String correo = PlantillasCorreo().mailingGeneral(
+            contenido: cuerpoCorreo,
+          );
+          await enviarEmail(
+            mailDestinatario: userInfo.email ?? '',
+            subject: 'Password reset validation.',
+            mailHtml: correo,
+          );
+          return true;
+        } on Exception {
+          rethrow;
+        }
+      },
+    ),
+  );
 
   // Start the server.
   await pod.start();

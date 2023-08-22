@@ -229,9 +229,9 @@ linter:
     - valid_regexps
     - void_checks
 
-# analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+analyzer:
+  exclude:
+    - lib/src/generated/
 
 # For more information about the core and recommended set of lints, see
 # https://dart.dev/go/core-lints
