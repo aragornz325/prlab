@@ -1,6 +1,6 @@
 // ignore_for_file: unnecessary_await_in_return, avoid_dynamic_calls
 
-import 'package:prlab_server/src/services/auth_service.dart';
+import 'package:prlab_server/src/servicios/auth_service.dart';
 import 'package:prlab_server/utils/logger.dart';
 import 'package:serverpod/server.dart';
 
