@@ -1,5 +1,4 @@
 import 'package:prlab_server/src/odm.dart';
-import 'package:serverpod/server.dart';
 
 abstract class Servicio<T extends ODM> {
 
