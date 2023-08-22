@@ -47,86 +47,95 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             ),
           ],
         ),
-        width: 910.ph,
-        height: 350.pw,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              l10n.pageCreateAdminClientEmail,
-              style: TextStyle(
-                color: colores.tertiary,
-                fontSize: 30.pf,
-                fontWeight: FontWeight.w600,
+        constraints: BoxConstraints(
+          minWidth: 910.pw,
+          maxWidth: 910.pw,
+          minHeight: 355.ph,
+          maxHeight: 500.ph,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.pageCreateAdminClientEmail,
+                style: TextStyle(
+                  color: colores.tertiary,
+                  fontSize: 30.pf,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-            SizedBox(height: 10.ph),
-            Text(
-              l10n.pageCreateAdminLeadingPRAgency,
-              style: TextStyle(
-                color: colores.secondary,
-                fontSize: 15.pf,
-                fontWeight: FontWeight.w400,
+              SizedBox(height: 10.ph),
+              Text(
+                l10n.pageCreateAdminLeadingPRAgency,
+                style: TextStyle(
+                  color: colores.secondary,
+                  fontSize: 15.pf,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-            ),
-            SizedBox(height: 50.ph),
-            BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
-              builder: (context, state) {
-                return Center(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 15.pw),
-                    height: 40.ph,
-                    width: 785.pw,
-                    child: PRTextFormField.email(
-                      controller: controller,
-                      onChanged: (_) => _onPasarleEmailAlBloc(context),
-                      context: context,
-                    ),
-                  ),
-                );
-              },
-            ),
-            SizedBox(height: 50.ph),
-            BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
-              builder: (context, state) {
-                if (state is BlocCrearCuentaAdminEstadoCargando) {
+              SizedBox(height: 50.ph),
+              BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
+                builder: (context, state) {
+                  if (state is BlocCrearCuentaAdminEstadoExitosoEmailEnviado) {
+                    controller.clear();
+                  }
                   return Center(
                     child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: colores.primary,
-                      ),
-                      height: 50.ph,
-                      width: 765.pw,
-                      child: Center(
-                        child: SizedBox(
-                          height: 35.ph,
-                          width: 35.pw,
-                          child: CircularProgressIndicator(
-                            color: colores.background,
-                          ),
-                        ),
+                      padding: EdgeInsets.symmetric(horizontal: 15.pw),
+                      height: 40.ph,
+                      width: 785.pw,
+                      child: PRTextFormField.email(
+                        controller: controller,
+                        onChanged: (_) => _onPasarleEmailAlBloc(context),
+                        context: context,
                       ),
                     ),
                   );
-                }
+                },
+              ),
+              SizedBox(height: 50.ph),
+              BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
+                builder: (context, state) {
+                  if (state is BlocCrearCuentaAdminEstadoCargando) {
+                    return Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: colores.primary,
+                        ),
+                        height: 50.ph,
+                        width: 765.pw,
+                        child: Center(
+                          child: SizedBox(
+                            height: 35.ph,
+                            width: 35.pw,
+                            child: CircularProgressIndicator(
+                              color: colores.background,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
 
-                return Center(
-                  child: PRBoton(
-                    width: 782.pw,
-                    onTap: () {
-                      if (!state.esEmailValido) return;
+                  return Center(
+                    child: PRBoton(
+                      width: 782.pw,
+                      onTap: () {
+                        if (!state.esEmailValido) return;
 
-                      _onEnviarEmail(context);
-                    },
-                    texto: l10n.commonSend,
-                    estaHabilitado: state.esEmailValido,
-                  ),
-                );
-              },
-            ),
-          ],
+                        _onEnviarEmail(context);
+                      },
+                      texto: l10n.commonSend,
+                      estaHabilitado: state.esEmailValido,
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -46,7 +46,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
 
     return BlocConsumer<BlocLogin, BlocLoginEstado>(
       listener: (context, state) {
-        if (state.estadoErroneo) {
+        if (state.estadoErroneo || state is BlocLoginEstadoError) {
           // TODO(Gon): Implementar el manejo de errores :D
           Navigator.of(context).pop();
           showDialog<void>(
@@ -91,7 +91,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       child: PRTextFormField.email(
                         context: context,
                         controller: controllerEmail,
-                        onChanged: (_) => _habilitarBotonLogin(),
+                        onChanged: (_) => _habilitarBotones(),
                         hintText: l10n.pageLoginPlaceholderEmail,
                       ),
                     ),
@@ -102,15 +102,14 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       child: PRTextFormFieldPassword(
                         controller: controllerPassword,
                         hintText: l10n.pageLoginPlaceholderPassword,
-                        onChanged: (_) => _habilitarBotonLogin(),
+                        onChanged: (_) => _habilitarBotones(),
                       ),
                     ),
                     // TODO(Gon): Cuando se manejen errores de login agregar
                     // los errores abajo de los textfields
                     SizedBox(height: 10.ph),
                     OlvidasteTuPassword(
-                      cargoElMail: state.estaVerificadoEmail,
-                      email: controllerEmail.text,
+                      cargoElMail: state.botonOlvidePasswordHabilitado,
                       password: controllerPassword.text,
                       controllerCodigo: controllerCodigo,
                     ),
@@ -118,7 +117,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       height: 50.ph,
                     ),
                     PRBoton(
-                      estaHabilitado: state.botonHabilitado,
+                      estaHabilitado: state.botonLoginHabilitado,
                       muestraEstadoDeCarga: state.estaCargandoInicioDeSesion,
                       onTap: _onTapBotonIniciarSesion,
                       texto: l10n.pageLoginButtonText,
@@ -134,11 +133,16 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
     );
   }
 
-  void _habilitarBotonLogin() {
+  void _habilitarBotones() {
     context.read<BlocLogin>().add(
           BlocLoginEventoHabilitarBotonLogin(
             email: controllerEmail.text,
             password: controllerPassword.text,
+          ),
+        );
+    context.read<BlocLogin>().add(
+          BlocLoginEventoHabilitarBotonOlvidePassword(
+            email: controllerEmail.text,
           ),
         );
   }

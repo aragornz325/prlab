@@ -6,7 +6,8 @@ part of 'bloc_login.dart';
 class BlocLoginEstado extends Equatable {
   /// {@macro BlocLoginEstado}
   const BlocLoginEstado._({
-    this.botonHabilitado = false,
+    this.botonLoginHabilitado = false,
+    this.botonOlvidePasswordHabilitado = false,
     this.estaIniciandoSesion = false,
     this.duracionTimer = 60,
     this.codigo = '',
@@ -15,13 +16,17 @@ class BlocLoginEstado extends Equatable {
 
   BlocLoginEstado.desde(
     BlocLoginEstado otro, {
-    bool? botonHabilitado,
+    bool? botonLoginHabilitado,
+    bool? botonOlvidePasswordHabilitado,
     bool estaIniciandoSesion = false,
     String? email,
     int? duracionTimer,
     String? codigo,
   }) : this._(
-          botonHabilitado: botonHabilitado ?? otro.botonHabilitado,
+          botonLoginHabilitado:
+              botonLoginHabilitado ?? otro.botonLoginHabilitado,
+          botonOlvidePasswordHabilitado: botonOlvidePasswordHabilitado ??
+              otro.botonOlvidePasswordHabilitado,
           estaIniciandoSesion: estaIniciandoSesion,
           duracionTimer: duracionTimer ?? otro.duracionTimer,
           codigo: codigo ?? otro.codigo,
@@ -30,7 +35,11 @@ class BlocLoginEstado extends Equatable {
 
   /// Bool para habilitar el boton o no dependiendo del contenido
   /// de los textfields
-  final bool botonHabilitado;
+  final bool botonLoginHabilitado;
+
+  /// Bool para habilitar el boton 'Olvidaste tu contraseña' o no dependiendo
+  /// del contenido del textfield
+  final bool botonOlvidePasswordHabilitado;
 
   /// Bool para diferenciar los estados de cargando
   /// normales a cuando esta iniciando sesión
@@ -55,11 +64,11 @@ class BlocLoginEstado extends Equatable {
       (this as BlocLoginEstadoError).mensajeDeError ==
           MensajesDeErrorDelLogin.unknown;
 
-  bool get estaVerificadoEmail => ExpresionRegular.emailRegExp.hasMatch(email);
-
   @override
   List<Object> get props => [
-        botonHabilitado,
+        email,
+        botonLoginHabilitado,
+        botonOlvidePasswordHabilitado,
         estaIniciandoSesion,
         duracionTimer,
         codigo,
@@ -94,7 +103,8 @@ class BlocLoginEstadoExitosoGeneral extends BlocLoginEstado {
   /// {@macro BlocLoginEstadoExitosoGeneral}
   BlocLoginEstadoExitosoGeneral.desde(
     super.otro, {
-    super.botonHabilitado,
+    super.botonLoginHabilitado,
+    super.botonOlvidePasswordHabilitado,
     super.codigo,
     super.email,
   }) : super.desde();
