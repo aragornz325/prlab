@@ -13,9 +13,11 @@ class BlocCrearCuentaAdminEstado extends Equatable {
     this.email = '',
   });
 
-  BlocCrearCuentaAdminEstado.desde(BlocCrearCuentaAdminEstado otro)
-      : this._(
-          email: otro.email,
+  BlocCrearCuentaAdminEstado.desde(
+    BlocCrearCuentaAdminEstado otro, {
+    String? email,
+  }) : this._(
+          email: email ?? otro.email,
         );
 
   /// Email del Usuario al crear una cuenta Admin
@@ -62,9 +64,8 @@ class BlocCrearCuentaAdminEstadoExitosoEmailEnviado
   BlocCrearCuentaAdminEstadoExitosoEmailEnviado(super.otro) : super.desde();
 
   /// {@macro BlocCrearCuentaAdminEstadoExitosoEmailEnviado}
-  BlocCrearCuentaAdminEstadoExitosoEmailEnviado.desde(
-    super.otro,
-  ) : super.desde();
+  BlocCrearCuentaAdminEstadoExitosoEmailEnviado.desde(super.otro, {super.email})
+      : super.desde();
 }
 
 /// {@template BlocCrearCuentaAdminEstadoFallido}

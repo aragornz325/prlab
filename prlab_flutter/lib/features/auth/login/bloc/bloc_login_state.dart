@@ -60,8 +60,8 @@ class BlocLoginEstado extends Equatable {
       estaIniciandoSesion && this is BlocLoginEstadoCargando;
 
   bool get estadoErroneo =>
-      this is BlocLoginEstadoError &&
-      (this as BlocLoginEstadoError).mensajeDeError ==
+      this is BlocLoginEstadoErrorGeneral &&
+      (this as BlocLoginEstadoErrorGeneral).mensajeDeError ==
           MensajesDeErrorDelLogin.unknown;
 
   @override
@@ -129,9 +129,37 @@ class BlocLoginEstadoExitosoAlValidarOTP extends BlocLoginEstado {
 /// {@template BlocLoginEstadoError}
 /// Estado de error de los componentes de la pantalla login
 /// {@endtemplate}
-class BlocLoginEstadoError extends BlocLoginEstado {
+class BlocLoginEstadoErrorAlRecuperarPassword extends BlocLoginEstado {
   /// {@macro BlocLoginEstadoError}
-  BlocLoginEstadoError.desde(
+  BlocLoginEstadoErrorAlRecuperarPassword.desde(
+    super.otro, {
+    required this.mensajeDeError,
+  }) : super.desde();
+
+  /// Mensaje de error
+  final MensajesDeErrorDelLogin mensajeDeError;
+}
+
+/// {@template BlocLoginEstadoError}
+/// Estado de error de los componentes de la pantalla login
+/// {@endtemplate}
+class BlocLoginEstadoErrorAlIniciarSesion extends BlocLoginEstado {
+  /// {@macro BlocLoginEstadoError}
+  BlocLoginEstadoErrorAlIniciarSesion.desde(
+    super.otro, {
+    required this.mensajeDeError,
+  }) : super.desde();
+
+  /// Mensaje de error
+  final MensajesDeErrorDelLogin mensajeDeError;
+}
+
+/// {@template BlocLoginEstadoError}
+/// Estado de error de los componentes de la pantalla login
+/// {@endtemplate}
+class BlocLoginEstadoErrorGeneral extends BlocLoginEstado {
+  /// {@macro BlocLoginEstadoError}
+  BlocLoginEstadoErrorGeneral.desde(
     super.otro, {
     required this.mensajeDeError,
   }) : super.desde();

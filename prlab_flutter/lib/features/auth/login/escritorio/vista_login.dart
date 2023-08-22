@@ -4,11 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/features/auth/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/features/auth/login/escritorio/widgets/olvidaste_tu_password.dart';
 import 'package:prlab_flutter/features/auth/login/escritorio/widgets/texto_bienvenida.dart';
 import 'package:prlab_flutter/features/auth/recuperar_password/dialog/dialog.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// Vista de escritorio de la pantalla login donde el usuario
@@ -46,14 +46,27 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
 
     return BlocConsumer<BlocLogin, BlocLoginEstado>(
       listener: (context, state) {
-        if (state.estadoErroneo || state is BlocLoginEstadoError) {
-          // TODO(Gon): Implementar el manejo de errores :D
+        if (state is BlocLoginEstadoErrorAlRecuperarPassword) {
           Navigator.of(context).pop();
           showDialog<void>(
             context: context,
             builder: (_) => const PRDialogError(),
           );
         }
+
+        if (state is BlocLoginEstadoErrorAlIniciarSesion) {
+          showDialog<void>(
+            context: context,
+            builder: (_) => const PRDialogError(),
+          );
+        }
+        if (state is BlocLoginEstadoErrorGeneral) {
+          showDialog<void>(
+            context: context,
+            builder: (_) => const PRDialogError(),
+          );
+        }
+
         if (state is BlocLoginEstadoExitosoAlValidarOTP) {
           Navigator.pop(context);
           Future.delayed(const Duration(milliseconds: 180), () {
@@ -62,6 +75,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
             );
           });
         }
+
         if (state is BlocLoginEstadoExitosoIniciarSesion) {
           context.router.replace(const RutaDashboard());
         }

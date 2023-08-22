@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -32,7 +34,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: 40.pw,
-          vertical: 40.ph,
+          vertical: 40.sh,
         ),
         decoration: BoxDecoration(
           color: colores.background,
@@ -47,12 +49,8 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
             ),
           ],
         ),
-        constraints: BoxConstraints(
-          minWidth: 910.pw,
-          maxWidth: 910.pw,
-          minHeight: 355.ph,
-          maxHeight: 500.ph,
-        ),
+        width: max(910.pw, 910.sw),
+        height: max(354.ph, 354.sh),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -66,7 +64,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(height: 10.ph),
+              SizedBox(height: 10.sh),
               Text(
                 l10n.pageCreateAdminLeadingPRAgency,
                 style: TextStyle(
@@ -75,7 +73,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              SizedBox(height: 50.ph),
+              SizedBox(height: 50.sh),
               BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
                 builder: (context, state) {
                   if (state is BlocCrearCuentaAdminEstadoExitosoEmailEnviado) {
@@ -84,7 +82,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                   return Center(
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 15.pw),
-                      height: 40.ph,
+                      height: 40.sh,
                       width: 785.pw,
                       child: PRTextFormField.email(
                         controller: controller,
@@ -95,7 +93,7 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                   );
                 },
               ),
-              SizedBox(height: 50.ph),
+              SizedBox(height: 50.sh),
               BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
                 builder: (context, state) {
                   if (state is BlocCrearCuentaAdminEstadoCargando) {
@@ -105,12 +103,12 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                           borderRadius: BorderRadius.circular(25),
                           color: colores.primary,
                         ),
-                        height: 50.ph,
-                        width: 765.pw,
+                        height: 50.sh,
+                        width: 782.pw,
                         child: Center(
                           child: SizedBox(
-                            height: 35.ph,
-                            width: 35.pw,
+                            height: 30.sh,
+                            width: 30.sw,
                             child: CircularProgressIndicator(
                               color: colores.background,
                             ),
@@ -121,15 +119,18 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                   }
 
                   return Center(
-                    child: PRBoton(
+                    child: SizedBox(
                       width: 782.pw,
-                      onTap: () {
-                        if (!state.esEmailValido) return;
+                      child: PRBoton(
+                        width: 782.pw,
+                        onTap: () {
+                          if (!state.esEmailValido) return;
 
-                        _onEnviarEmail(context);
-                      },
-                      texto: l10n.commonSend,
-                      estaHabilitado: state.esEmailValido,
+                          _onEnviarEmail(context);
+                        },
+                        texto: l10n.commonSend,
+                        estaHabilitado: state.esEmailValido,
+                      ),
                     ),
                   );
                 },
