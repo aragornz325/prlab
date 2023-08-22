@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_shadowing_type_parameters
+
 import 'package:prlab_server/src/odm.dart';
 import 'package:prlab_server/utils/logger.dart';
 
