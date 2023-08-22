@@ -4,7 +4,7 @@ import 'package:serverpod/server.dart';
 /// La clase `AuthEndpoint` está ampliando la clase `Endpoint`. por tanto maneja
 /// todas las peticiones relacionadas con el auth del sistema
 class AuthEndpoint extends Endpoint {
-  final authService = AuthService();
+  final AuthService authService = AuthService();
 
   /// La función `getValidationCode` devuelve un Future que recupera un código de validación del
   /// `AuthService` utilizando la sesión y el correo electrónico proporcionados.

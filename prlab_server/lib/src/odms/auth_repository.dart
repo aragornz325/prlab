@@ -1,11 +1,11 @@
-import 'package:prlab_server/src/repositorio.dart';
+import 'package:prlab_server/src/odm.dart';
 import 'package:serverpod/server.dart';
 
 /// La clase AuthRepository es responsable de manejar las operaciones contra la DB
 ///  relacionadas con la autenticación.
 
 // TODO(BACKEND): EXTENDER DE LA CLASE ABSTRACTA DE REPOSITORIO
-class AuthRepository extends Repositorio {
+class AuthODM extends ODM {
   /// La función `getValidationCode` recupera el código de verificación asociado con un correo
   /// electrónico determinado de la tabla serverpod_email_create_request de la base de datos.
   ///
@@ -22,13 +22,21 @@ class AuthRepository extends Repositorio {
     required String email,
   }) async {
     try {
-      final result = await session.db.query(
-          'SELECT "verificationCode" FROM serverpod_email_create_request WHERE email = \'$email\'');
-      if (result.isEmpty) {
-        return 'Email not found';
-      } else {
-        return result.first.first;
-      }
+      super.session = session;
+      final List<List> result = await performOdmOperation(
+        (Session session) => session.db.query(
+            'SELECT "verificationCode" FROM serverpod_email_create_request WHERE email = \'$email\''),
+      );
+
+      return result.first.first;
+
+      // final result = await session.db.query(
+      //     'SELECT "verificationCode" FROM serverpod_email_create_request WHERE email = \'$email\'');
+      // if (result.isEmpty) {
+      //   return 'Email not found';
+      // } else {
+      //   return result.first.first;
+      // }
     } catch (e) {
       rethrow;
     }

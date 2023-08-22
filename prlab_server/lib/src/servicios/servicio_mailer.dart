@@ -1,4 +1,4 @@
-import 'package:prlab_server/src/repositories/auth_repository.dart';
+import 'package:prlab_server/src/odms/auth_repository.dart';
 import 'package:prlab_server/utils/config/constants.dart';
 import 'package:prlab_server/utils/mailer/mailer.dart';
 import 'package:prlab_server/utils/mailer/templates.dart';
@@ -9,7 +9,7 @@ final plantillasCorreo = PlantillasCorreo();
 
 /// La clase ServicioMailer se utiliza para enviar correos electrónicos.
 class ServicioMail {
-  final AuthRepository authRepository = AuthRepository();
+  final AuthODM authRepository = AuthODM();
 
   /// La función `envioMailRegistro` envía un correo electrónico de registro con un token a la dirección
   /// de correo electrónico especificada, guarda el token en una base de datos y devuelve un valor

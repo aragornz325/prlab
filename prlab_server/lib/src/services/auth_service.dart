@@ -1,11 +1,12 @@
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
-import 'package:prlab_server/src/repositories/auth_repository.dart';
+import 'package:prlab_server/src/odms/auth_repository.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/serverpod.dart';
 
 /// La clase AuthService es responsable de manejar la funcionalidad relacionada con la autenticación.
-class AuthService extends Servicio<AuthRepository> {
-  final authRepository = AuthRepository();
+class AuthService extends Servicio<AuthODM> {
+  @override
+  final odm = AuthODM();
 
   /// La función `getValidationCode` devuelve un Future que recupera un código de validación del
   /// `AuthRepository` mediante una sesión y un correo electrónico.
@@ -22,8 +23,12 @@ class AuthService extends Servicio<AuthRepository> {
     required Session session,
     required String email,
   }) async {
-    return await authRepository.getValidationCode(
-        session: session, email: email);
+    return await performOperation(
+      () => odm.getValidationCode(
+        session: session,
+        email: email,
+      ),
+    );
   }
 
   /// La función `validarTokenPorMail` valida un token decodificándolo, recuperando el correo
@@ -45,8 +50,8 @@ class AuthService extends Servicio<AuthRepository> {
     try {
       final tokenAbierto = JWT.decode(token);
       final emailToken = tokenAbierto.payload['email'];
-      final tokenDb = await authRepository.traerTokenPorEmail(
-          session: session, email: emailToken);
+      final tokenDb =
+          await odm.traerTokenPorEmail(session: session, email: emailToken);
 
       if (tokenDb.isEmpty) {
         throw Exception('Token no valido');
@@ -81,7 +86,7 @@ class AuthService extends Servicio<AuthRepository> {
     required String codigo,
   }) async {
     try {
-      final validarEnDb = await authRepository.validarCodigoResetPassword(
+      final validarEnDb = await odm.validarCodigoResetPassword(
         session: session,
         codigo: codigo,
       );
@@ -110,7 +115,7 @@ class AuthService extends Servicio<AuthRepository> {
   }) async {
     try {
       session.log('chequeando codigo: $codigo');
-      final checkearCodigoOTP = await authRepository.checkearCodigoOTP(
+      final checkearCodigoOTP = await odm.checkearCodigoOTP(
         session: session,
         codigo: codigo,
       );
@@ -119,7 +124,7 @@ class AuthService extends Servicio<AuthRepository> {
         throw Exception('el codigo no existe');
       }
 
-      await authRepository.eliminarOTPResetPassword(
+      await odm.eliminarOTPResetPassword(
         session: session,
         codigo: codigo,
       );
