@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-/// ColorScheme a utilizarse en el theme de debugeo
+/// ColorScheme a utilizarse en el theme de debugeo.
+/// Este tema es necesario para reconocer los colores que seran utilizados por
+/// los componentes. Asi, sera más fácil identificar el color a cambiar.
 
 const coloresDebug = ColorScheme(
   brightness: Brightness.light,

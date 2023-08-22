@@ -1,77 +1,92 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/extensiones/theme_extension.dart';
+import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/theming/base.dart';
 
+/// {@template PRBoton}
 /// Botones a utilizarse en el proyecto, variantes fill y .outlined
-
+/// {@endtemplate}
 class PRBoton extends StatelessWidget {
+  /// {@macro PRBoton}
   const PRBoton({
     required this.onTap,
     required this.texto,
-    required this.habilitado,
+    required this.estaHabilitado,
     this.width = 359,
-    this.outlined = false,
+    this.esOutlined = false,
+    this.muestraEstadoDeCarga = false,
     super.key,
   });
 
   /// Variante outlined de PRBoton
-  factory PRBoton.outlined({
+  factory PRBoton.esOutlined({
     required VoidCallback onTap,
     required String texto,
-    required bool habilitado,
+    required bool estaHabilitado,
     required double width,
   }) {
     return PRBoton(
       onTap: onTap,
       texto: texto,
-      habilitado: habilitado,
-      outlined: true,
+      estaHabilitado: estaHabilitado,
+      esOutlined: true,
       width: width.pw,
     );
   }
 
   final double width;
   final VoidCallback onTap;
+
+  /// Asigna el texto interno en el boton.
   final String texto;
-  final bool habilitado;
-  final bool outlined;
+
+  /// Da funcionalidad y color dependiendo de cuestiones externas.
+  final bool estaHabilitado;
+
+  /// Asigna diseño si es outlined
+  final bool esOutlined;
+
+  /// Si es true muestra un circular progress indicator dentro del boton.
+  final bool muestraEstadoDeCarga;
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
 
     return GestureDetector(
-      onTap: habilitado ? onTap : null,
+      onTap: estaHabilitado ? onTap : null,
       child: Container(
         width: width.pw,
         height: 50.ph,
         decoration: BoxDecoration(
-          color: outlined
+          color: esOutlined
               ? colores.background
-              : habilitado
+              : estaHabilitado && !muestraEstadoDeCarga
                   ? colores.primary
-                  : colores.primary.withOpacity(.2),
+                  : colores.primaryBajaOpacidad,
           borderRadius: BorderRadius.circular(25),
-          border: outlined
+          border: esOutlined
               ? Border.all(
-                  color: habilitado
+                  color: estaHabilitado
                       ? colores.primary
-                      : colores.primary.withOpacity(.2),
+                      : colores.primaryBajaOpacidad,
                 )
               : null,
         ),
         child: Center(
-          child: Text(
-            texto,
-            style: TextStyle(
-              fontSize: 16.pf,
-              fontWeight: FontWeight.w600,
-              color: outlined
-                  ? habilitado
-                      ? colores.primary
-                      : colores.primary.withOpacity(.2)
-                  : colores.onPrimary,
-            ),
-          ),
+          child: muestraEstadoDeCarga
+              ? const CircularProgressIndicator()
+              : Text(
+                  texto,
+                  style: TextStyle(
+                    fontSize: 16.pf,
+                    fontWeight: FontWeight.w600,
+                    color: esOutlined
+                        ? estaHabilitado
+                            ? colores.primary
+                            : colores.primaryBajaOpacidad
+                        : colores.background,
+                  ),
+                ),
         ),
       ),
     );

@@ -1,27 +1,28 @@
 part of 'bloc_kyc.dart';
 
-/// {@template bloc_kyc_evento}
-/// Evento que maneja el formulario de información del usuario
+/// {@template BlocKcyEvento}
+/// Maneja el formulario de información del usuario
 /// en el momento subsiguiente a que se crea una cuenta.
 /// {@endtemplate}
 @immutable
 sealed class BlocKcyEvento {}
 
-/// {@template bloc_kyc_evento_insertar_informacion_del_kyc}
-/// Evento que inserta los valores que se completaron en el formulario,
+/// {@template BlocKycEventoInsertarInformacionDeKyc}
+/// Inserta los valores que se completaron en el formulario,
 /// guardados dentro del estado dentro de la informacion
 /// del usuario en la base de datos.
 /// {@endtemplate}
 class BlocKycEventoInsertarInformacionDeKyc extends BlocKcyEvento {
-  /// {@macro bloc_kyc_evento_insertar_informacion_del_kyc}
+  /// {@macro BlocKycEventoInsertarInformacionDeKyc}
   BlocKycEventoInsertarInformacionDeKyc();
 }
 
-/// {@template bloc_kyc_evento_recolectar_informacion_del_kyc}
-/// Evento que recoleta los valores que se van completando
+/// {@template BlocKycEventoRecolectarInformacionDeKyc}
+/// Recolecta los valores que se van completando
 /// en el formulario cada vez que se actualiza.
 /// {@endtemplate}
 class BlocKycEventoRecolectarInformacionDeKyc extends BlocKcyEvento {
+  /// {@macro BlocKycEventoRecolectarInformacionDeKyc}
   BlocKycEventoRecolectarInformacionDeKyc({
     this.nombre,
     this.apellido,
@@ -31,10 +32,22 @@ class BlocKycEventoRecolectarInformacionDeKyc extends BlocKcyEvento {
     this.numeroDeContacto,
   });
 
+  // Nombre/s del usuario.
   final String? nombre;
+
+  // Apellido/s del usuario.
   final String? apellido;
-  final String? nombreDeCompania;
-  final String? localidadDeCompania;
-  final String? fechaDeNacimiento;
+
+  // Número de contacto del usuario.
   final String? numeroDeContacto;
+
+  // Empresa donde trabaja el usuario.
+  final String? nombreDeCompania;
+
+  // Lugar físico, dirección donde esta la sede
+  // de la empresa donde trabaja el usuario.
+  final String? localidadDeCompania;
+
+  // Fecha de nacimiento del usuario.
+  final String? fechaDeNacimiento;
 }

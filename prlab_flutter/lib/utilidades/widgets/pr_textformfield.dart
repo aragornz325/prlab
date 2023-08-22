@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/extensiones/theme_extension.dart';
+
+import 'package:prlab_flutter/extensiones/extensiones.dart';
+
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/prlab_configuracion/base.dart';
 import 'package:prlab_flutter/theming/base.dart';
-import 'package:prlab_flutter/utilidades/extensions/extensions.dart';
+
 import 'package:prlab_flutter/utilidades/funciones/functions.dart';
 
 /// Textformfields base y variantes para uso en PRLab
@@ -31,11 +34,11 @@ class PRTextFormField extends StatefulWidget {
     /// Controller de [PRTextFormField]
     required TextEditingController controller,
 
-    /// Define si el tff es readOnly.
-    required bool soloLectura,
-
     /// Contexto para traducciones
     required BuildContext context,
+
+    /// Define si el tff es readOnly.
+    bool soloLectura = false,
 
     /// Funcion onChanged
     void Function(String)? onChanged,
@@ -59,7 +62,7 @@ class PRTextFormField extends StatefulWidget {
       validator: (email) {
         if (email?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
-        } else if (!Validators.emailRegExp.hasMatch(email ?? '')) {
+        } else if (!ExpresionRegular.emailRegExp.hasMatch(email ?? '')) {
           return l10n.commonEnterValidEmail;
         }
         return null;
@@ -104,7 +107,7 @@ class PRTextFormField extends StatefulWidget {
       validator: (value) {
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
-        } else if (!Validators.letrasRegExp.hasMatch(value ?? '')) {
+        } else if (!ExpresionRegular.letrasRegExp.hasMatch(value ?? '')) {
           return l10n.commonOnlyLetters;
         }
 
@@ -147,7 +150,7 @@ class PRTextFormField extends StatefulWidget {
       validator: (value) {
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
-        } else if (!Validators.dateTimeRegExp.hasMatch(value ?? '')) {
+        } else if (!ExpresionRegular.dateTimeRegExp.hasMatch(value ?? '')) {
           return l10n.commonInvalidCharacters;
         }
 
@@ -191,7 +194,7 @@ class PRTextFormField extends StatefulWidget {
       validator: (value) {
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
-        } else if (!Validators.dateTimeRegExp.hasMatch(value ?? '')) {
+        } else if (!ExpresionRegular.dateTimeRegExp.hasMatch(value ?? '')) {
           return l10n.commonInvalidCharacters;
         }
         return null;
@@ -289,7 +292,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
                   height: 31.5.ph,
                   width: 1.pw,
                   decoration: BoxDecoration(color: colores.onSecondary),
-                )
+                ),
               ],
             ),
           ),
@@ -312,14 +315,18 @@ class PRTextFormFieldPassword extends StatefulWidget {
     required this.controller,
     required this.hintText,
     this.esCreacionPassword = false,
-    this.passwordCoinciden = false,
+    this.onChanged,
+    this.width = 359,
+    this.validator,
     super.key,
   });
-
+  final void Function(String? value)? onChanged;
   final TextEditingController controller;
   final String hintText;
-  final bool passwordCoinciden;
   final bool esCreacionPassword;
+  final double width;
+  final String? Function(String? value)? validator;
+
   @override
   State<PRTextFormFieldPassword> createState() =>
       _PRTextFormFieldPasswordState();
@@ -327,18 +334,21 @@ class PRTextFormFieldPassword extends StatefulWidget {
 
 class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
   bool _obscureText = true;
-  bool controllerVacio = false;
 
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
     final l10n = context.l10n;
+
     return PRTextFormField(
       esPassword: true,
+      width: widget.width,
       controller: widget.controller,
       hintText: widget.hintText,
       prefixIcon: Icons.lock,
-      prefixIconColor: controllerVacio ? colores.primary : colores.secondary,
+      prefixIconColor:
+          widget.controller.text.isEmpty ? colores.primary : colores.secondary,
       obscureText: _obscureText,
       suffixIcon: IconButton(
         icon: _obscureText
@@ -356,21 +366,24 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
           });
         },
       ),
-      onChanged: (_) {
-        controllerVacio = widget.controller.text.isNotEmpty;
+      onChanged: (value) {
         setState(() {});
+        widget.onChanged?.call(value);
       },
       validator: (value) {
-        final passwordDoNotMatch = widget.esCreacionPassword &&
-            !controllerVacio &&
-            !widget.passwordCoinciden;
-
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
         }
-        if (passwordDoNotMatch) {
-          return l10n.commonPasswordDoNotMatch;
+
+        if ((value?.length ?? 0) <
+            PRLabConfiguracion.minimoDeCaracteresPassword) {
+          return l10n.commonMinimumCharactersForAPassword;
         }
+
+        if (widget.validator != null) {
+          return widget.validator?.call(value);
+        }
+
         return null;
       },
     );

@@ -43,6 +43,38 @@ class _EndpointAuth extends _i1.EndpointRef {
         'validarTokenPorMail',
         {'token': token},
       );
+
+  /// La función `validarCodigoResetPassword` toma un objeto `Session` y una cadena `codigo` como
+  /// parámetros y devuelve un `Future<bool>` que indica si el código de restablecimiento de contraseña
+  /// es válido.
+  ///
+  /// Args:
+  ///   session (Session): Un objeto Session que representa la sesión de usuario actual.
+  ///   codigo (String): El parámetro "codigo" es una cadena que representa el código de restablecimiento
+  /// de contraseña que debe validarse.
+  ///
+  _i2.Future<bool> validarCodigoResetPassword(String codigo) =>
+      caller.callServerEndpoint<bool>(
+        'auth',
+        'validarCodigoResetPassword',
+        {'codigo': codigo},
+      );
+
+  /// La función `eliminarOTPResetPassword` llama al método `eliminarOTPResetPassword` desde
+  /// `authService` y devuelve `Future<bool>`.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la información de la
+  /// sesión del usuario. Se utiliza para autenticar y autorizar al usuario para la operación.
+  ///   codigo (String): El parámetro "codigo" es una cadena que representa el código utilizado para
+  /// restablecer la contraseña.
+  ///
+  _i2.Future<bool> eliminarOTPResetPassword(String codigo) =>
+      caller.callServerEndpoint<bool>(
+        'auth',
+        'eliminarOTPResetPassword',
+        {'codigo': codigo},
+      );
 }
 
 class _EndpointExample extends _i1.EndpointRef {

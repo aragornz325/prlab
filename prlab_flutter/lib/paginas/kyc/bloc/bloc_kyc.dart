@@ -1,15 +1,16 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 part 'bloc_kyc_estado.dart';
 part 'bloc_kyc_evento.dart';
 
-/// {@template bloc_kyc}
+/// {@template BlocKyc}
 /// El [Bloc] que maneja el formulario de información del usuario
 /// en el momento subsiguiente a que se crea una cuenta.
 /// {@endtemplate}
 class BlocKyc extends Bloc<BlocKcyEvento, BlocKycEstado> {
-  /// {@macro bloc_kyc}
+  /// {@macro BlocKyc}
   BlocKyc() : super(const BlocKycEstadoInicial()) {
     on<BlocKycEventoInsertarInformacionDeKyc>(_onInsertarInformacionDeKyc);
     on<BlocKycEventoRecolectarInformacionDeKyc>(_onRecolectarInformacionDeKyc);
@@ -24,8 +25,9 @@ class BlocKyc extends Bloc<BlocKcyEvento, BlocKycEstado> {
     emit(BlocKycEstadoCargando.desde(state));
 
     try {
-      // TODO(Andreas):
-      // Este codigo es seudo, cuando tengamos el endpoint descomentar esto y modificarlo
+      // TODO(Andreas): Este codigo es seudo, cuando tengamos el endpoint
+      // descomentar esto y
+      // modificarlo
 
       /* client.user.insertarKyc(
       state.nombre,
@@ -36,7 +38,6 @@ class BlocKyc extends Bloc<BlocKcyEvento, BlocKycEstado> {
       state.numeroDeContacto,
     ); */
 
-      const respuesta = true;
       emit(BlocKycEstadoExitoso.desde(state));
     } catch (e) {
       emit(BlocKycEstadoFallido.desde(state));

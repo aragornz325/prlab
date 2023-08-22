@@ -11,8 +11,8 @@ String getErrorMessageCreateAccountAdmin(
   final l10n = context.l10n;
   return switch (loginErrorMessages) {
     BlocCrearCuentaAdminEstadoFallidoMensaje.errorToSendEmail =>
-      l10n.page_create_account_admin_error_message_send_email,
+      l10n.pageCreateAccountAdminErrorMessageSendEmail,
     BlocCrearCuentaAdminEstadoFallidoMensaje.errorToChangeEmail =>
-      l10n.page_create_account_admin_error_message_change_email,
+      l10n.pageCreateAccountAdminErrorMessageChangeEmail,
   };
 }
