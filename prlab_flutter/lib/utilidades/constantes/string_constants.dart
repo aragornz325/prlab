@@ -1,3 +1,3 @@
 class StringConstants {
-  static const String urlPRLab = 'prlab.co';
+  static const String mailPRLab = 'prlab@prlab.co';
 }

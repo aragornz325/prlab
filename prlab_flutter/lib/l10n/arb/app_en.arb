@@ -236,15 +236,15 @@
     "@pageRecoverPasswordChangePasswordSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
     },
-        "pageKYCSuccessDialogDescription" : "Congratulations! Your account was created successfully. Log in to start at PRLab",
+        "pageKYCSuccessDialogDescription" : "Congratulations! Your account was\n created successfully.\n Log in to start at PRLAB",
     "@pageKYCSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the register of the user is a success. This is shown in an alert dialog after pressing button continue."
     },
-      "pageRegisterErrorDialogDescription" : "Your account could not be created, contact us ",
+      "pageRegisterErrorDialogDescription" : "Your account could not be created,\n  contact us ",
     "@pageRegisterErrorDialogDescription": {
         "description":"This message corresponds to a situation where the register of the user is an error. This is shown in an alert dialog after pressing sign up."
     },
-          "pageRegisterErrorDialogButtonText" : "Go to LOG IN",
+          "pageRegisterErrorDialogButtonText" : "Go to Log in",
     "@pageRegisterErrorDialogButtonText": {
         "description":" This message corresponds to a situation where the register of the user is an error. This is shown in the button of the alert dialog after pressing sign up."
     },
@@ -321,6 +321,10 @@
     "commonSuccess" : "Success",
     "@commonSuccess": {
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph."
+    },
+       "commonSuccessWithExclamation" : "Success!",
+    "@commonSuccess": {
+        "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph but with an exclamation sign."
     },
 
     "commonDateHintText" : "00/00/0000",

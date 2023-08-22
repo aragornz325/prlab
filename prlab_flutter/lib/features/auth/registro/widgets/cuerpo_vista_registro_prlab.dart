@@ -9,6 +9,7 @@ import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro_state.da
 import 'package:prlab_flutter/features/auth/registro/dialog/pr_dialog_error_registro.dart';
 import 'package:prlab_flutter/features/auth/registro/widgets/form_registro.dart';
 import 'package:prlab_flutter/features/auth/registro/widgets/titulo_bienvenida_con_imagen.dart';
+
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template CuerpoVistaRegistroPRLab}

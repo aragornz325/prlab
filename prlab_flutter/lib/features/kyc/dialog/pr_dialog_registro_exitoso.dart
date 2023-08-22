@@ -23,7 +23,7 @@ class PrDialogRegistroExitoso extends StatelessWidget {
       onTap: () => context.router.replace(
         const RutaLogin(),
       ),
-      titulo: l10n.commonSuccess,
+      titulo: l10n.commonSuccessWithExclamation,
       botonText: l10n.pageRegisterErrorDialogButtonText,
       content: Text(
         l10n.pageKYCSuccessDialogDescription,
