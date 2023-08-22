@@ -42,7 +42,7 @@ class BlocRecuperarPassword
 
     try {
       // TODO(anyone):
-      // Ver si este codigo efectivamente funcion!
+      // Ver si este codigo efectivamente funciona!
       await client.modules.auth.email.resetPassword(
         state.codigoOTP,
         state.password,

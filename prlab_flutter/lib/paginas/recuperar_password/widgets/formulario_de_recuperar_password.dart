@@ -126,9 +126,11 @@ class _FormularioDeRecuperarPasswordState
 
   void _onTapContinuar() {
     if (!_formKey.esFormularioValido) return;
-
     context
         .read<BlocRecuperarPassword>()
         .add(BlocRecuperarPasswordEventoRecolectarData());
+    context
+        .read<BlocRecuperarPassword>()
+        .add(BlocRecuperarPasswordEventoCambiarPassword());
   }
 }
