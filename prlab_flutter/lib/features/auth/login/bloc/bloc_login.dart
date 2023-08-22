@@ -51,7 +51,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       if (userInfo == null) {
         return emit(
           // TODO(Gon): Preguntar al back que devuelve para handlear los errores
-          BlocLoginEstadoError.desde(
+          BlocLoginEstadoErrorAlIniciarSesion.desde(
             state,
             mensajeDeError: MensajesDeErrorDelLogin.unknown,
           ),
@@ -85,7 +85,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       }
 
       return emit(
-        BlocLoginEstadoError.desde(
+        BlocLoginEstadoErrorAlIniciarSesion.desde(
           state,
           mensajeDeError: loginErrorMessages,
         ),
@@ -108,7 +108,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       } else {
         // TODO(Gon): Preguntar al back que devuelve para handlear los errores
         emit(
-          BlocLoginEstadoError.desde(
+          BlocLoginEstadoErrorAlRecuperarPassword.desde(
             state,
             mensajeDeError: MensajesDeErrorDelLogin.unknown,
           ),
@@ -117,7 +117,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     } catch (e, st) {
       // TODO(Gon): Preguntar al back que devuelve para handlear los errores
       emit(
-        BlocLoginEstadoError.desde(
+        BlocLoginEstadoErrorAlRecuperarPassword.desde(
           state,
           mensajeDeError: MensajesDeErrorDelLogin.unknown,
         ),
@@ -145,7 +145,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       } else {
         // TODO(Gon): Preguntar al back que devuelve para handlear los errores
         emit(
-          BlocLoginEstadoError.desde(
+          BlocLoginEstadoErrorAlRecuperarPassword.desde(
             state,
             mensajeDeError: MensajesDeErrorDelLogin.unknown,
           ),
@@ -177,7 +177,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       }
 
       return emit(
-        BlocLoginEstadoError.desde(
+        BlocLoginEstadoErrorGeneral.desde(
           state,
           mensajeDeError: loginErrorMessages,
         ),

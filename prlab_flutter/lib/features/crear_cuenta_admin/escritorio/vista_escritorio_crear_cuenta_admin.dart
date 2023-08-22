@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
@@ -38,12 +40,12 @@ class _VistaEscritorioCrearCuentaAdminState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const LogoPrLabAgencia(),
-            SizedBox(height: 100.ph),
+            SizedBox(height: 100.sh),
             PrLabEmailYBotonEnviar(controller: controllerEmail),
-            SizedBox(height: 50.ph),
+            SizedBox(height: 100.sh),
             Center(
               child: PRBoton.esOutlined(
-                width: 200.pw,
+                width: max(200.pw, 200.sw),
                 onTap: () {
                   // TODO(anyone): agregarle funcionalidad para volver atras.
                   // todavía no esta definido que función cumple

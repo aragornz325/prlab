@@ -56,7 +56,7 @@ class PRBoton extends StatelessWidget {
       onTap: estaHabilitado ? onTap : null,
       child: Container(
         width: width.pw,
-        height: 50.ph,
+        height: 50.sh,
         decoration: BoxDecoration(
           color: esOutlined
               ? colores.background
