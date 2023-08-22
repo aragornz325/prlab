@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-
-import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/features/kyc/bloc/bloc_kyc.dart';
+import 'package:prlab_flutter/features/kyc/dialog/pr_dialog_registro_exitoso.dart';
 import 'package:prlab_flutter/features/kyc/widgets/widgets.dart';
-
+import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template FormularioDelKyc}
@@ -141,7 +140,12 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                     ),
               ),
               SizedBox(height: 50.sh),
-              BlocBuilder<BlocKyc, BlocKycEstado>(
+              BlocConsumer<BlocKyc, BlocKycEstado>(
+                listener: (context, state) {
+                  if (state is BlocKycEstadoExitoso) {
+                    _showSuccessDialog(context);
+                  }
+                },
                 builder: (context, state) {
                   return PRBoton(
                     onTap: _onTapContinuar,
@@ -155,6 +159,13 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
           ),
         ),
       ),
+    );
+  }
+
+  void _showSuccessDialog(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => const PrDialogRegistroExitoso(),
     );
   }
 

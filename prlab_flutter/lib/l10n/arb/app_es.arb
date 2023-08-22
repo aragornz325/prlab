@@ -239,7 +239,18 @@
     "@pageRecoverPasswordChangePasswordSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
     },
-    
+       "pageKYCSuccessDialogDescription" : "Felicitaciones! Tu cuenta ha sido creada correctamente. Inicia sesión para empezar en PRLab",
+    "@pageKYCSuccessDialogDescription": {
+        "description":"This message corresponds to a situation where the register of the user is a success. This is shown in an alert dialog after pressing button continue."
+    },
+    "pageRegisterErrorDialogDescription" : "Tu cuenta no pudo ser creada, contáctanos ",
+    "@pageRegisterErrorDialogDescription": {
+        "description":"This message corresponds to a situation where the register of the user is an error. This is shown in an alert dialog after pressing sign up."
+    },
+         "pageRegisterErrorDialogButtonText" : "Ir a INICIAR SESIÓN",
+    "@pageRegisterErrorDialogButtonText": {
+        "description":" This message corresponds to a situation where the register of the user is an error. This is shown in the button of the alert dialog after pressing sign up."
+    },
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"

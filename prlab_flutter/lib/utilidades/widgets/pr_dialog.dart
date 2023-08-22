@@ -101,6 +101,7 @@ class PRDialog extends StatelessWidget {
     required VoidCallback onTap,
     required String titulo,
     required Widget content,
+    String? botonText,
     double height = 285,
     double width = 455,
   }) {
@@ -130,7 +131,7 @@ class PRDialog extends StatelessWidget {
           Center(
             child: PRBoton.esOutlined(
               onTap: onTap,
-              texto: l10n.commonOk,
+              texto: botonText ?? l10n.commonOk,
               estaHabilitado: true,
               width: 360.pw,
             ),

@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro_state.dart';
-import 'package:prlab_flutter/features/auth/registro/helpers/helpers.dart';
+import 'package:prlab_flutter/features/auth/registro/dialog/pr_dialog_error_registro.dart';
 import 'package:prlab_flutter/features/auth/registro/widgets/form_registro.dart';
 import 'package:prlab_flutter/features/auth/registro/widgets/titulo_bienvenida_con_imagen.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template CuerpoVistaRegistroPRLab}
 /// Cuerpo de la vista de registro que contiene textfields y un boton para
@@ -69,6 +69,9 @@ class CuerpoVistaRegistroPRLab extends StatelessWidget {
                 if (state is BlocRegistroEstadoUsuarioRegistradoConExito) {
                   context.router.replace(const RutaKyc());
                 }
+                if (state is BlocRegistroEstadoError) {
+                  _showErrorDialog(context);
+                }
               },
               builder: (context, state) {
                 if (state is BlocRegistroEstadoCargando) {
@@ -81,20 +84,6 @@ class CuerpoVistaRegistroPRLab extends StatelessWidget {
                   );
                 }
 
-                if (state is BlocRegistroEstadoError) {
-                  return Center(
-                    child: SizedBox(
-                      width: 150.pw,
-                      height: 150.ph,
-                      child: Text(
-                        obtenerErroresDeRegistro(
-                          context,
-                          state.errorMessage,
-                        ),
-                      ),
-                    ),
-                  );
-                }
                 return FormRegistro(
                   email: email,
                 );
@@ -103,6 +92,13 @@ class CuerpoVistaRegistroPRLab extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void _showErrorDialog(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => const PrDialogErrorRegistro(),
     );
   }
 }
