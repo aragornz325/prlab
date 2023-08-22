@@ -63,7 +63,9 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
 
     return TextFormField(
       inputFormatters: [
-        FilteringTextInputFormatter.allow(RegExp(r'^\d+$')),
+        FilteringTextInputFormatter.allow(
+          RegExp(r'^\d+$'),
+        ),
       ],
       maxLength: 8,
       keyboardType: TextInputType.number,
