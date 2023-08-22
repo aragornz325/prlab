@@ -1,15 +1,16 @@
 import 'package:prlab_server/src/odm.dart';
 
-abstract class Servicio<T extends ODM> {
 
+import '../utils/logger.dart';
+
+abstract class Servicio<T extends ODM> {
   /// Variable con la instancia del odm.
   late final T odm;
-
+  final logger = loggerPrint;
+  //final logger = loggerPrint;
   // TODO(BACKEND): CREAR LOGGER ESPECIFICO
-  // final logger = Logger('Servicio');
-
-  // TODO(BACKEND): CREAR UN PERFORM OPERATION SERVICIO
   
+
   /// Metodo para ejecutar las operaciones y manejar errores.
   Future<T> performOperation<T>(Future<T> Function() operation) async {
     try {

@@ -1,4 +1,5 @@
 import 'package:prlab_server/src/odms/auth_repository.dart';
+import 'package:prlab_server/src/servicio.dart';
 import 'package:prlab_server/utils/config/constants.dart';
 import 'package:prlab_server/utils/mailer/mailer.dart';
 import 'package:prlab_server/utils/mailer/templates.dart';
@@ -8,7 +9,7 @@ import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 final plantillasCorreo = PlantillasCorreo();
 
 /// La clase ServicioMailer se utiliza para enviar correos electrónicos.
-class ServicioMail {
+class ServicioMail extends Servicio<AuthODM> {
   final AuthODM authRepository = AuthODM();
 
   /// La función `envioMailRegistro` envía un correo electrónico de registro con un token a la dirección
@@ -26,6 +27,7 @@ class ServicioMail {
       required String email,
       required int tipoInvitacion}) async {
     try {
+      
       final jwt = JWT(
         {
           "email": email,
@@ -43,7 +45,7 @@ class ServicioMail {
 
       final cuerpoMensajeEmailHtml =
           plantillasCorreo.cuerpoRegistro(enlace: "$mailURL/#/register/$token");
-
+      
       final cuerpoCompletoEmail =
           plantillasCorreo.mailingGeneral(contenido: cuerpoMensajeEmailHtml);
 

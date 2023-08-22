@@ -1,3 +1,4 @@
+
 import 'package:prlab_server/src/odm.dart';
 import 'package:serverpod/server.dart';
 
@@ -6,6 +7,7 @@ import 'package:serverpod/server.dart';
 
 // TODO(BACKEND): EXTENDER DE LA CLASE ABSTRACTA DE REPOSITORIO
 class AuthODM extends ODM {
+
   /// La función `getValidationCode` recupera el código de verificación asociado con un correo
   /// electrónico determinado de la tabla serverpod_email_create_request de la base de datos.
   ///
@@ -27,7 +29,7 @@ class AuthODM extends ODM {
         (Session session) => session.db.query(
             'SELECT "verificationCode" FROM serverpod_email_create_request WHERE email = \'$email\''),
       );
-
+    
       return result.first.first;
 
       // final result = await session.db.query(

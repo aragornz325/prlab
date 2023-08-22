@@ -1,6 +1,8 @@
 import 'package:prlab_server/src/services/auth_service.dart';
 import 'package:serverpod/server.dart';
 
+import '../../utils/logger.dart';
+
 /// La clase `AuthEndpoint` está ampliando la clase `Endpoint`. por tanto maneja
 /// todas las peticiones relacionadas con el auth del sistema
 class AuthEndpoint extends Endpoint {
@@ -20,6 +22,7 @@ class AuthEndpoint extends Endpoint {
     Session session,
     String email,
   ) async {
+    loggerPrint.e('getValidationCode');
     return await authService.getValidationCode(session: session, email: email);
   }
 
