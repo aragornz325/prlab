@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro_event.dart';
-import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro_state.dart';
-import 'package:prlab_flutter/features/auth/registro/celular/vista_espera_validacion_de_token_celular.dart';
+
 import 'package:prlab_flutter/features/auth/registro/celular/vista_registro_celular.dart';
-import 'package:prlab_flutter/features/auth/registro/escritorio/vista_espera_validacion_de_token_escritorio.dart';
+
 import 'package:prlab_flutter/features/auth/registro/escritorio/vista_registro_escritorio.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
@@ -32,29 +31,9 @@ class PaginaRegistro extends StatelessWidget {
       )..add(
           BlocRegistroEventoVerificarToken(token: tokenAuth),
         ),
-      child: FullResponsiveScreen(
-        mobile: BlocBuilder<BlocRegistro, BlocRegistroEstado>(
-          builder: (context, state) {
-            if (state.estaEnEstadoDeValidacion) {
-              return const VistaEsperaValidacionDeTokenCelular();
-            }
-
-            return VistaRegistroCelular(
-              email: state.email,
-            );
-          },
-        ),
-        desktop: BlocBuilder<BlocRegistro, BlocRegistroEstado>(
-          builder: (context, state) {
-            if (state.estaEnEstadoDeValidacion) {
-              return const VistaEsperaValidacionDeTokenEscritorio();
-            }
-
-            return VistaRegistroEscritorio(
-              email: state.email,
-            );
-          },
-        ),
+      child: const FullResponsiveScreen(
+        mobile: VistaRegistroCelular(),
+        desktop: VistaRegistroEscritorio(),
       ),
     );
   }

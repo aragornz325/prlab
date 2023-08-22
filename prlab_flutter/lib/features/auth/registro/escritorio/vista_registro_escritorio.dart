@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro.dart';
+import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro_state.dart';
+import 'package:prlab_flutter/features/auth/registro/escritorio/widget_espera_validacion_de_token_escritorio.dart';
 import 'package:prlab_flutter/features/auth/registro/widgets/cuerpo_vista_registro_prlab.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_seccion_logo_y_eslogan.dart';
 
@@ -7,29 +11,28 @@ import 'package:prlab_flutter/utilidades/widgets/pr_seccion_logo_y_eslogan.dart'
 /// del mail donde el usuario puede registrarse  y aceptar los terminos
 /// y condiciones.
 /// {@endtemplate}
-class VistaRegistroEscritorio extends StatefulWidget {
+class VistaRegistroEscritorio extends StatelessWidget {
   /// {@macro VistaRegistroEscritorio}
-  const VistaRegistroEscritorio({required this.email, super.key});
+  const VistaRegistroEscritorio({super.key});
 
-  final String email;
-
-  @override
-  State<VistaRegistroEscritorio> createState() =>
-      _VistaRegistroEscritorioState();
-}
-
-class _VistaRegistroEscritorioState extends State<VistaRegistroEscritorio> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        children: [
-          CuerpoVistaRegistroPRLab(
-            email: widget.email,
+    return BlocBuilder<BlocRegistro, BlocRegistroEstado>(
+      builder: (context, state) {
+        if (state.estaEnEstadoDeValidacion) {
+          return const WidgetEsperaValidacionDeTokenEscritorio();
+        }
+        return Scaffold(
+          body: Row(
+            children: [
+              CuerpoVistaRegistroPRLab(
+                email: state.email,
+              ),
+              const SeccionLogoYEslogan(),
+            ],
           ),
-          const SeccionLogoYEslogan(),
-        ],
-      ),
+        );
+      },
     );
   }
 }
