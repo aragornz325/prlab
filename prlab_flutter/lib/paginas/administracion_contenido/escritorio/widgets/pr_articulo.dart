@@ -17,6 +17,7 @@ class PRArticulo extends StatelessWidget {
     super.key,
   });
   final String nombre;
+  // TODO(anyone): remplazar por el enum que se utilice
   final String status;
   final DateTime ultimaFecha;
   final bool tieneAutor;
@@ -31,7 +32,7 @@ class PRArticulo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              width: 500.pw,
+              width: tieneAutor ? 400.pw : 500.pw,
               child: Text(
                 nombre,
                 maxLines: 1,
@@ -44,7 +45,7 @@ class PRArticulo extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: tieneAutor ? 350.pw : 300.pw,
+              width: tieneAutor ? 400.pw : 300.pw,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -80,20 +81,24 @@ class PRArticulo extends StatelessWidget {
                       fontSize: 16.pf,
                       fontWeight: FontWeight.w400,
                     ),
-                  ), // TODO(mati): sacar si no es mi articulo
+                  ),
                   ...[
                     if (tieneAutor)
-                      SizedBox(
-                        width: 70.pw,
-                        child: CircleAvatar(
-                          radius: 15.pf,
-                          backgroundColor: colores.onSecondary,
+                      Container(
+                        width: 100.pw,
+                        padding: EdgeInsets.symmetric(horizontal: 10.pw),
+                        child: Align(
+                          alignment: Alignment.centerRight,
                           child: CircleAvatar(
                             radius: 15.pf,
                             backgroundColor: colores.onSecondary,
-                            backgroundImage: urlImageAutor != null
-                                ? NetworkImage(urlImageAutor!)
-                                : null,
+                            child: CircleAvatar(
+                              radius: 15.pf,
+                              backgroundColor: colores.onSecondary,
+                              backgroundImage: urlImageAutor != null
+                                  ? NetworkImage(urlImageAutor!)
+                                  : null,
+                            ),
                           ),
                         ),
                       ),
@@ -103,7 +108,9 @@ class PRArticulo extends StatelessWidget {
             ),
             const Spacer(),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                // TODO(anyone): agregarle funcionalidad
+              },
               icon: Icon(
                 Icons.share_outlined,
                 size: 18.pf,
@@ -111,7 +118,9 @@ class PRArticulo extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                // TODO(anyone): agregarle funcionalidad
+              },
               icon: Icon(
                 Icons.more_vert_outlined,
                 size: 18.pf,

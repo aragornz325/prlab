@@ -236,7 +236,30 @@
     "@pageRecoverPasswordChangePasswordSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
     },
+    "pageContentAdministrationCreateArticle" : "Create an article",
+    "@pageContentAdministrationCreateArticle": {
+        "description":"This text is in content management view in the button to create a new article"
+    },
+
+    "pageContentAdministrationButtonNavegationClippings" : "Clippings",
+    "@pageContentAdministrationButtonNavegationClippings": {
+        "description":"This text is only used in a navigation button between clippings and article"
+    },
+
+    "pageContentAdministrationBarInformationStatus" : "Status",
+    "@pageContentAdministrationBarStatus": {
+        "description":"text that shows information or the status of the article.For example: Draft, feedback, finish, etc. in the list of items"
+    },
     
+    "pageContentAdministrationBarInformationLastUpdate" : "Last update",
+    "@pageContentAdministrationBarLastUpdate": {
+        "description":"text that shows the last date the article was updated the list of articles"
+    },
+
+    "pageContentAdministrationBarInformationAuthor" : "Author",
+    "@pageContentAdministrationBarInformationAuthor": {
+        "description":"shows the image of the author or who created this article or their two initials"
+    },
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
@@ -320,6 +343,20 @@
     "commonMinimumCharactersForAPassword" : "At least 12 characters",
     "@commonMinimumCharactersForAPassword": {
         "description": "This text is shown when the user enter a password too short on the register page"
+    },
+    "commonArticle": "Articles",
+    "@commonArticle": {
+        "description": "This text is for articles and is used in a button to navigate between articles and is used to display the name of your articles"
+    },
+
+    "commonSearch": "Search",
+    "@commonSearch": {
+        "description": "Text in the search textfield of a particular article on the content management page is now only used on that page"
+    },
+
+    "commonAll": "All",
+    "@commonAll": {
+        "description": "Text where a dropdown is used to filter by certain characteristics that an article has in general. Example, status or date."
     }
 
 }

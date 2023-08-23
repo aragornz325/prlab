@@ -1,6 +1,17 @@
 part of 'bloc_administracion_contenido.dart';
 
+//TODO(mati): hacer documentacion
 @immutable
-sealed class BlocAdministracionContenidoState {}
+abstract class BlocAdministracionContenidoEstado {}
 
-final class BlocAdministracionContenidoInitial extends BlocAdministracionContenidoState {}
+final class BlocAdministracionContenidoEstadoInicial
+    extends BlocAdministracionContenidoEstado {}
+
+final class BlocAdministracionContenidoEstadoCargando
+    extends BlocAdministracionContenidoEstado {}
+
+final class BlocAdministracionContenidoEstadoExitoso
+    extends BlocAdministracionContenidoEstado {}
+
+final class BlocAdministracionContenidoEstadoFallido
+    extends BlocAdministracionContenidoEstado {}

@@ -1,4 +1,5 @@
 part of 'bloc_administracion_contenido.dart';
 
+//TODO(mati): hacer documentacion
 @immutable
-sealed class BlocAdministracionContenidoEvent {}
+abstract class BlocAdministracionContenidoEvento {}
