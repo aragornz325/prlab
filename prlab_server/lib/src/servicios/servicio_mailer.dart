@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_dynamic_calls
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
-import 'package:prlab_server/src/odms/auth_odm.dart';
+import 'package:prlab_server/src/odms/odm_auth.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:prlab_server/utils/config/constants.dart';
 import 'package:prlab_server/utils/mailer/mailer.dart';
@@ -12,10 +12,10 @@ import 'package:serverpod/server.dart';
 final PlantillasCorreo plantillasCorreo = PlantillasCorreo();
 
 /// La clase ServicioMailer se utiliza para enviar correos electrónicos.
-class ServicioMail extends Servicio<AuthODM> {
+class ServicioMailer extends Servicio<OdmAuth> {
 
   /// Instancia de la clase del odm.
-  final AuthODM authRepository = AuthODM();
+  final OdmAuth authRepository = OdmAuth();
 
   /// La función `envioMailRegistro` envía un correo electrónico de registro
   /// con un token a la dirección de correo electrónico especificada, guarda el

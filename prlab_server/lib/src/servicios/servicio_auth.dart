@@ -2,15 +2,15 @@
 // ignore_for_file: unnecessary_await_in_return, avoid_dynamic_calls, overridden_fields
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
-import 'package:prlab_server/src/odms/auth_odm.dart';
+import 'package:prlab_server/src/odms/odm_auth.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/serverpod.dart';
 
 /// La clase AuthService es responsable de manejar la funcionalidad relacionada 
 /// con la autenticación.
-class AuthService extends Servicio<AuthODM> {
+class ServicioAuth extends Servicio<OdmAuth> {
   @override
-  final AuthODM odm = AuthODM();
+  final OdmAuth odm = OdmAuth();
 
   /// La función `getValidationCode` devuelve un Future que recupera un código 
   /// de validación del `AuthRepository` mediante una sesión y un correo 

@@ -7,7 +7,7 @@ import 'package:serverpod/server.dart';
 /// La clase AuthRepository es responsable de manejar las operaciones contra la
 /// DB relacionadas con la autenticación.
 
-class AuthODM extends ODM {
+class OdmAuth extends ODM {
   /// La función `getValidationCode` recupera el código de verificación
   /// asociado con un correo electrónico determinado de la tabla
   /// serverpod_email_create_request de la base de datos.
