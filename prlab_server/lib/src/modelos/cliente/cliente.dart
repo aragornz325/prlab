@@ -1,72 +1,86 @@
 import 'dart:convert';
 
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:prlab_client/src/modelos/entregable/entregable.dart';
-import 'package:serverpod_client/serverpod_client.dart';
+import 'package:prlab_server/src/modelos/base/base.dart';
+import 'package:serverpod/serverpod.dart';
 
-part 'proyecto.mapper.dart';
+part 'cliente.mapper.dart';
 
-/// Modelo de entidad Proyecto (Tipo concreto de Entregable, de mayor nivel).
+/// Modelo de entidad Cliente (cliente de la empresa, quien posee una Organizacion).
 @MappableClass(ignoreNull: true)
-class Proyecto extends Entregable with ProyectoMappable {
+class Cliente extends ModeloBase with ClienteMappable {
   @MappableConstructor()
-  Proyecto({
+  Cliente({
     super.id,
+    required this.nombre,
+    required this.apellido,
+    required this.fechaDeNacimiento,
     required this.idOrganizacion,
-    required super.nombre,
-    required super.idAutor,
-    super.fechaInicio,
-    super.fechaFin,
+    required this.contacto,
     super.fechaCreacion,
   });
 
   /// Constructor requerido por Serverpod para la serialización de la clase y su insercion
   /// en la Base de datos.
   @MappableConstructor()
-  Proyecto.fromJson(
+  Cliente.fromJson(
     Map<String, dynamic> jsonSerialization,
     SerializationManager serializationManager,
   ) : this(
           id: serializationManager.deserialize<int?>(jsonSerialization['id']),
-          idOrganizacion: serializationManager
-              .deserialize<int?>(jsonSerialization['idOrganizacion']),
           nombre: serializationManager
               .deserialize<String?>(jsonSerialization['nombre']),
-          idAutor: serializationManager
-              .deserialize<int?>(jsonSerialization['idAutor']),
-          fechaInicio: serializationManager
-              .deserialize<DateTime?>(jsonSerialization['fechaInicio']),
-          fechaFin: serializationManager
-              .deserialize<DateTime?>(jsonSerialization['fechaFin']),
+          apellido: serializationManager
+              .deserialize<String?>(jsonSerialization['apellido']),
+          fechaDeNacimiento: serializationManager
+              .deserialize<DateTime?>(jsonSerialization['fechaDeNacimiento']),
+          idOrganizacion: serializationManager
+              .deserialize<int?>(jsonSerialization['idOrganizacion']),
+          contacto: serializationManager
+              .deserialize<int?>(jsonSerialization['contacto']),
           fechaCreacion: serializationManager
               .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
         );
 
-  /// ID de la Organizacion a la que pertenece el Proyecto.
+  /// Nombre/s del Cliente.
+  String? nombre;
+
+  /// Apellido/s del Cliente.
+  String? apellido;
+
+  /// Fecha de nacimiento del Cliente.
+  DateTime? fechaDeNacimiento;
+
+  /// ID del registro de la Organizacion del Cliente.
   int? idOrganizacion;
+
+  /// ID de los datos de Contacto del Cliente.
+  int? contacto;
 
   /// Getter requerido por Serverpod con el nombre de la tabla correspondiente a la entidad.
   /// Extiende de la clase `TableRow` para manipular conexion con la Base de Datos.
-  String get tableName => 'proyecto';
+  @override
+  String get tableName => 'cliente';
 
   /// Metodo requerido por Serverpod de la clase `TableRow` para modificar los datos dentro
   /// del objeto.
+  @override
   void setColumn(String columnName, value) {
     switch (columnName) {
-      case 'idOrganizacion':
-        idOrganizacion = value;
-        return;
       case 'nombre':
         nombre = value;
         return;
-      case 'idAutor':
-        idAutor = value;
+      case 'apellido':
+        apellido = value;
         return;
-      case 'fechaInicio':
-        fechaInicio = value;
+      case 'fechaDeNacimiento':
+        fechaDeNacimiento = value;
         return;
-      case 'fechaFin':
-        fechaFin = value;
+      case 'idOrganizacion':
+        idOrganizacion = value;
+        return;
+      case 'contacto':
+        contacto = value;
         return;
       default:
         throw UnimplementedError();
@@ -75,12 +89,11 @@ class Proyecto extends Entregable with ProyectoMappable {
 
   /// Metodo requerido por Serverpod de la clase `TableRow` para convertir el objeto en un `Map` (json), 
   /// para su inserción en la Base de Datos.
+  @override
   Map<String, dynamic> toJsonForDatabase() {
     return jsonDecode(toJson());
   }
   
-  @override
-  int? id;
   
   @override
   allToJson() {

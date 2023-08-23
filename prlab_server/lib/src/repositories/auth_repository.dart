@@ -49,7 +49,7 @@ class AuthRepository {
     required int tipoInvitacion,
   }) async {
     try {
-      final tipo_de_invitacion = tipoInvitacion;
+      final tipoDeInvitacion = tipoInvitacion;
       await session.db.transaction((txn) async {
         final checkearToken = await session.db
             .query('SELECT token FROM invitaciones WHERE email = \'$email\'');
@@ -60,7 +60,7 @@ class AuthRepository {
         }
 
         await session.db.query(
-            'INSERT INTO invitaciones (email, token, tipo_de_invitacion) VALUES (\'$email\', \'$token\', \'$tipo_de_invitacion\')');
+            'INSERT INTO invitaciones (email, token, tipo_de_invitacion) VALUES (\'$email\', \'$token\', \'$tipoDeInvitacion\')');
       });
 
       return true;

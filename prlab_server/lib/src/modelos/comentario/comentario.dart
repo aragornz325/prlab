@@ -1,89 +1,86 @@
 import 'dart:convert';
 
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:prlab_client/src/modelos/entregable/entregable.dart';
-import 'package:serverpod_client/serverpod_client.dart';
+import 'package:prlab_server/src/modelos/base/base.dart';
+import 'package:serverpod/serverpod.dart';
 
-part 'proyecto.mapper.dart';
+part 'comentario.mapper.dart';
 
-/// Modelo de entidad Proyecto (Tipo concreto de Entregable, de mayor nivel).
+/// Modelo de entidad Comentario (realizado dentro de un Entregable).
 @MappableClass(ignoreNull: true)
-class Proyecto extends Entregable with ProyectoMappable {
+class Comentario extends ModeloBase with ComentarioMappable {
   @MappableConstructor()
-  Proyecto({
+  Comentario({
     super.id,
-    required this.idOrganizacion,
-    required super.nombre,
-    required super.idAutor,
-    super.fechaInicio,
-    super.fechaFin,
+    required this.idEntregable,
+    required this.textoComentario,
+    required this.idAutor,
     super.fechaCreacion,
   });
 
   /// Constructor requerido por Serverpod para la serialización de la clase y su insercion
   /// en la Base de datos.
   @MappableConstructor()
-  Proyecto.fromJson(
+  Comentario.fromJson(
     Map<String, dynamic> jsonSerialization,
     SerializationManager serializationManager,
   ) : this(
           id: serializationManager.deserialize<int?>(jsonSerialization['id']),
-          idOrganizacion: serializationManager
-              .deserialize<int?>(jsonSerialization['idOrganizacion']),
-          nombre: serializationManager
-              .deserialize<String?>(jsonSerialization['nombre']),
+          idEntregable: serializationManager
+              .deserialize<int?>(jsonSerialization['idEntregable']),
+          textoComentario: serializationManager
+              .deserialize<String?>(jsonSerialization['textoComentario']),
           idAutor: serializationManager
               .deserialize<int?>(jsonSerialization['idAutor']),
-          fechaInicio: serializationManager
-              .deserialize<DateTime?>(jsonSerialization['fechaInicio']),
-          fechaFin: serializationManager
-              .deserialize<DateTime?>(jsonSerialization['fechaFin']),
           fechaCreacion: serializationManager
               .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
         );
 
-  /// ID de la Organizacion a la que pertenece el Proyecto.
-  int? idOrganizacion;
+  /// ID del Entregable al que corresponde el Comentario.
+  int? idEntregable;
+
+  /// Texto contenido en el Comentario.
+  String? textoComentario;
+
+  /// ID del Usuario que crea el comentario.
+  int? idAutor;
 
   /// Getter requerido por Serverpod con el nombre de la tabla correspondiente a la entidad.
   /// Extiende de la clase `TableRow` para manipular conexion con la Base de Datos.
-  String get tableName => 'proyecto';
+  @override
+  String get tableName => 'comentario';
 
   /// Metodo requerido por Serverpod de la clase `TableRow` para modificar los datos dentro
   /// del objeto.
+  @override
   void setColumn(String columnName, value) {
     switch (columnName) {
-      case 'idOrganizacion':
-        idOrganizacion = value;
+      case 'idEntregable':
+        idEntregable = value;
         return;
-      case 'nombre':
-        nombre = value;
+      case 'textoComentario':
+        textoComentario = value;
         return;
       case 'idAutor':
         idAutor = value;
-        return;
-      case 'fechaInicio':
-        fechaInicio = value;
-        return;
-      case 'fechaFin':
-        fechaFin = value;
         return;
       default:
         throw UnimplementedError();
     }
   }
 
-  /// Metodo requerido por Serverpod de la clase `TableRow` para convertir el objeto en un `Map` (json), 
+  /// Metodo requerido por Serverpod de la clase `TableRow` para convertir el objeto en un `Map` (json),
   /// para su inserción en la Base de Datos.
+  @override
   Map<String, dynamic> toJsonForDatabase() {
     return jsonDecode(toJson());
   }
-  
-  @override
-  int? id;
-  
+
   @override
   allToJson() {
     return jsonDecode(toJson());
   }
+  
+  
+
 }

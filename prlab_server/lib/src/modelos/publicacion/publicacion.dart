@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:prlab_client/src/modelos/entregable/entregable.dart';
-import 'package:serverpod_client/serverpod_client.dart';
+import 'package:prlab_server/src/modelos/entregable/entregable.dart';
+import 'package:serverpod/serverpod.dart';
 
 part 'publicacion.mapper.dart';
 
@@ -65,10 +65,12 @@ class Publicacion extends Entregable with PublicacionMappable {
 
   /// Getter requerido por Serverpod con el nombre de la tabla correspondiente a la entidad.
   /// Extiende de la clase `TableRow` para manipular conexion con la Base de Datos.
+  @override
   String get tableName => 'publicacion';
 
   /// Metodo requerido por Serverpod de la clase `TableRow` para modificar los datos dentro
   /// del objeto.
+  @override
   void setColumn(String columnName, value) {
     switch (columnName) {
       case 'idProyecto':
@@ -102,12 +104,10 @@ class Publicacion extends Entregable with PublicacionMappable {
 
   /// Metodo requerido por Serverpod de la clase `TableRow` para convertir el objeto en un `Map` (json), 
   /// para su inserción en la Base de Datos.
+  @override
   Map<String, dynamic> toJsonForDatabase() {
     return jsonDecode(toJson());
   }
-  
-  @override
-  int? id;
   
   @override
   allToJson() {

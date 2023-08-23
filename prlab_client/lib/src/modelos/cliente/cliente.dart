@@ -62,12 +62,10 @@ class Cliente extends ModeloBase with ClienteMappable {
 
   /// Getter requerido por Serverpod con el nombre de la tabla correspondiente a la entidad.
   /// Extiende de la clase `TableRow` para manipular conexion con la Base de Datos.
-  @override
   String get tableName => 'cliente';
 
   /// Metodo requerido por Serverpod de la clase `TableRow` para modificar los datos dentro
   /// del objeto.
-  @override
   void setColumn(String columnName, value) {
     switch (columnName) {
       case 'nombre':
@@ -92,7 +90,6 @@ class Cliente extends ModeloBase with ClienteMappable {
 
   /// Metodo requerido por Serverpod de la clase `TableRow` para convertir el objeto en un `Map` (json), 
   /// para su inserción en la Base de Datos.
-  @override
   Map<String, dynamic> toJsonForDatabase() {
     return jsonDecode(toJson());
   }

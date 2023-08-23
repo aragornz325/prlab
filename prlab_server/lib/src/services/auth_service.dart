@@ -55,10 +55,8 @@ class AuthService {
         throw Exception('Token no valido');
       }
 
-      final check = JWT.verify(token, SecretKey('sweetHomeAlabama'));
-      if (check == false) {
-        throw Exception('Token no valido');
-      }
+      JWT.verify(token, SecretKey('sweetHomeAlabama'));
+      
       return emailToken;
     } catch (e) {
       rethrow;

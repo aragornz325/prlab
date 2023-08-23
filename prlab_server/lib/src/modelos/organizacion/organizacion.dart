@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:prlab_client/src/modelos/base/base.dart';
-import 'package:serverpod_client/serverpod_client.dart';
+import 'package:prlab_server/src/modelos/base/base.dart';
+import 'package:serverpod/serverpod.dart';
 
 part 'organizacion.mapper.dart';
 
@@ -31,9 +31,6 @@ class Organizacion extends ModeloBase with OrganizacionMappable {
             contacto: serializationManager.deserialize<int?>(jsonSerialization['contacto']),
             fechaCreacion: serializationManager.deserialize<DateTime?>(jsonSerialization['fechaCreacion']),);
 
-  @override
-  int? id;
-
   /// Nombre de la Organizacion.
   String? nombre;
 
@@ -45,10 +42,12 @@ class Organizacion extends ModeloBase with OrganizacionMappable {
 
   /// Getter requerido por Serverpod con el nombre de la tabla correspondiente a la entidad.
   /// Extiende de la clase `TableRow` para manipular conexion con la Base de Datos.
+  @override
   String get tableName => 'organizacion';
 
   /// Metodo requerido por Serverpod de la clase `TableRow` para modificar los datos dentro
   /// del objeto.
+  @override
   void setColumn(String columnName, value) {
     switch (columnName) {
       case 'nombre':
@@ -67,6 +66,7 @@ class Organizacion extends ModeloBase with OrganizacionMappable {
 
   /// Metodo requerido por Serverpod de la clase `TableRow` para convertir el objeto en un `Map` (json), 
   /// para su inserción en la Base de Datos.
+  @override
   Map<String, dynamic> toJsonForDatabase() {
     return jsonDecode(toJson());
   }
