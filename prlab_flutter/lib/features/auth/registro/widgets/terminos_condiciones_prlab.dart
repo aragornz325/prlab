@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro_state.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template TerminosCondicionesPRLab}
 /// Widget custom de terminos y condiciones que tiene un checkbox, permitiendo
@@ -49,16 +49,26 @@ class _TerminosCondicionesPRLabState extends State<TerminosCondicionesPRLab> {
               Text(
                 l10n.pageSignUpTermsAndConditionsText,
                 style: state.terminosAceptados
-                    ? TextStyle(color: colores.primary)
-                    : null,
+                    ? TextStyle(
+                        color: colores.primary,
+                        fontSize: 15.pf,
+                        fontWeight: FontWeight.w400,
+                      )
+                    : TextStyle(
+                        color: colores.secondary,
+                        fontSize: 15.pf,
+                        fontWeight: FontWeight.w400,
+                      ),
               ),
               GestureDetector(
                 child: Text(
                   l10n.pageSignUpTermsAndConditionsTextLink,
                   style: TextStyle(
-                    color: colores.secondary,
+                    fontSize: 15.pf,
+                    fontWeight: FontWeight.w500,
+                    color: colores.primaryContainer,
                     decoration: TextDecoration.underline,
-                    decorationColor: colores.secondary,
+                    decorationColor: colores.primaryContainer,
                   ),
                 ),
               ),

@@ -30,10 +30,7 @@ class App extends StatelessWidget {
                 EmailAuthController(client.modules.auth),
           ),
         ],
-        child: MultiBlocProvider(
-          providers: const [],
-          child: const AppView(),
-        ),
+        child: const AppView(),
       ),
     );
   }
