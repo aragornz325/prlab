@@ -7,7 +7,7 @@ import 'package:serverpod/server.dart';
 /// La clase AuthRepository es responsable de manejar las operaciones contra la
 /// DB relacionadas con la autenticación.
 
-class AuthODM extends ODM {
+class OdmAuth extends ODM {
   /// La función `getValidationCode` recupera el código de verificación
   /// asociado con un correo electrónico determinado de la tabla
   /// serverpod_email_create_request de la base de datos.
@@ -70,7 +70,8 @@ class AuthODM extends ODM {
   }) async {
     try {
       final int tipoDeInvitacion = tipoInvitacion;
-      await session.db.transaction((Transaction txn) async {
+      super.session = session;
+      await performOdmOperation((Session session) => session.db.transaction((Transaction txn) async {
         final List<List<dynamic>> checkearToken = await session.db
             .query('SELECT token FROM invitaciones WHERE email = \'$email\'');
 
@@ -82,7 +83,7 @@ class AuthODM extends ODM {
         await session.db.query(
           'INSERT INTO invitaciones (email, token, tipo_de_invitacion) VALUES (\'$email\', \'$token\', \'$tipoDeInvitacion\')',
         );
-      });
+      }),);
 
       return true;
     } on Exception catch (e) {
@@ -106,8 +107,10 @@ class AuthODM extends ODM {
     required String email,
   }) async {
     try {
-      final List<List<dynamic>> result = await session.db
-          .query('SELECT token FROM invitaciones WHERE email = \'$email\'');
+      super.session = session;
+      final List<List<dynamic>> result = await performOdmOperation(
+        (Session session) => session.db
+          .query('SELECT token FROM invitaciones WHERE email = \'$email\''),);
       return result.first.first;
     } on Exception catch (e) {
       throw Exception('$e');
@@ -129,8 +132,10 @@ class AuthODM extends ODM {
     required String codigo,
   }) async {
     try {
-      final List<List<dynamic>> codigoEnDb = await session.db.query(
-        'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
+      super.session = session;
+      final List<List<dynamic>> codigoEnDb = await performOdmOperation(
+        (Session session) => session.db.query(
+        'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',),
       );
 
       return codigoEnDb;
@@ -154,9 +159,11 @@ class AuthODM extends ODM {
     required String codigo,
   }) async {
     try {
-      return await session.db.query(
+      super.session = session;
+      return await performOdmOperation(
+        (Session session) => session.db.query(
         'DELETE FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
-      );
+      ),);
     } on Exception catch (e) {
       throw Exception('$e');
     }
@@ -176,9 +183,11 @@ class AuthODM extends ODM {
     required String codigo,
   }) async {
     try {
-      final List<List<dynamic>> codigoEnDb = await session.db.query(
+      super.session = session;
+      final List<List<dynamic>> codigoEnDb = await performOdmOperation(
+        (Session session) => session.db.query(
         'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
-      );
+      ),);
 
       if (codigoEnDb.isEmpty) {
         session.log('codigo $codigo no encontrado en la db');

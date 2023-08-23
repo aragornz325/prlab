@@ -2,7 +2,7 @@ import 'package:prlab_server/src/servicios/servicio_mailer.dart';
 import 'package:serverpod/serverpod.dart';
 
 /// Instancia de `ServicioMail`.
-final ServicioMail servicioMail = ServicioMail();
+final ServicioMailer servicioMail = ServicioMailer();
 
 /// Clase con endopoint para envio de email de registro.
 class MailEndpoint extends Endpoint {

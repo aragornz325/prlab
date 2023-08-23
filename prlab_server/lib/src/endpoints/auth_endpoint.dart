@@ -1,6 +1,6 @@
 // ignore_for_file: unnecessary_await_in_return, avoid_dynamic_calls
 
-import 'package:prlab_server/src/servicios/auth_service.dart';
+import 'package:prlab_server/src/servicios/servicio_auth.dart';
 import 'package:prlab_server/utils/logger.dart';
 import 'package:serverpod/server.dart';
 
@@ -8,7 +8,7 @@ import 'package:serverpod/server.dart';
 /// todas las peticiones relacionadas con el auth del sistema
 class AuthEndpoint extends Endpoint {
   /// Instancia del `AuthService`.
-  final AuthService authService = AuthService();
+  final ServicioAuth authService = ServicioAuth();
 
   /// La función `getValidationCode` devuelve un Future que recupera un código
   /// de validación del `AuthService` utilizando la sesión y el correo
