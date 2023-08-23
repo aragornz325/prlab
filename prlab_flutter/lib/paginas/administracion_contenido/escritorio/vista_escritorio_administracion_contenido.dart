@@ -21,8 +21,9 @@ class VistaEscritorioAdministracionContenido extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 560.ph,
+              height: max(560.ph, 560.sh),
               width: 1000.pw,
+              // TODO(mati): cambiar el color
               color: colores.onPrimary,
               child: SingleChildScrollView(
                 child: Column(
@@ -254,7 +255,7 @@ class VistaEscritorioAdministracionContenido extends StatelessWidget {
                       ),
                     ),
                     Divider(color: colores.onSecondary),
-                    ListaDeArticulos(),
+                    const ListaDeArticulos(),
                   ],
                 ),
               ),
@@ -268,22 +269,24 @@ class VistaEscritorioAdministracionContenido extends StatelessWidget {
 
 class ListaDeArticulos extends StatelessWidget {
   const ListaDeArticulos({super.key});
-
+  final bool tieneAutor = true;
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
 
-    return Container(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 25.pw,
-          vertical: max(30.ph, 30.sh),
-        ),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Text(
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 25.pw,
+        vertical: max(30.ph, 30.sh),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: 500.pw,
+                child: Text(
                   // TODO(mati): hacer l10n
                   'Articles',
                   style: TextStyle(
@@ -292,69 +295,94 @@ class ListaDeArticulos extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(width: 500.pw),
-                Text(
-                  // TODO(mati): hacer l10n
-                  'Status',
-                  style: TextStyle(
-                    color: colores.primary,
-                    fontSize: 16.pf,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                SizedBox(width: 80.pw),
-                Text(
-                  // TODO(mati): hacer l10n
-                  'Last update',
-                  style: TextStyle(
-                    color: colores.primary,
-                    fontSize: 16.pf,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                // TODO(mati): sacar si no es mi articulo
-                // Text(
-                //   // TODO(mati): hacer l10n
-                //   'Author',
-                //   style: TextStyle(
-                //     color: colores.primary,
-                //     fontSize: 15.pf,
-                //     fontWeight: FontWeight.w400,
-                //   ),
-                // ),
-                SizedBox(width: 175.pw),
-              ],
-            ),
-            Container(
-              width: 1000.pw,
-              height: max(200.ph, 200.sh),
-              padding: EdgeInsets.symmetric(vertical: max(10.ph, 10.sh)),
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) => PRArticulos(
-                  nombre: 'Flutter article',
-                  status: 'Draft',
-                  ultimaFecha: DateTime.now(),
+              ),
+              SizedBox(
+                width: tieneAutor ? 300.pw : 400.pw,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                      width: 100.pw,
+                      height: max(30.ph, 30.sh),
+                      decoration: BoxDecoration(
+                        color: colores.onPrimary,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(100)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          // TODO(mati): hacer l10n
+                          'Status',
+                          style: TextStyle(
+                            color: colores.primary,
+                            fontSize: 16.pf,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      // TODO(mati): hacer l10n
+                      'Last update',
+                      style: TextStyle(
+                        color: colores.primary,
+                        fontSize: 16.pf,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    // TODO(mati): sacar si no es mi articulo
+                    ...[
+                      if (tieneAutor)
+                        Text(
+                          // TODO(mati): hacer l10n
+                          'Author',
+                          style: TextStyle(
+                            color: colores.primary,
+                            fontSize: 16.pf,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        )
+                    ]
+                  ],
                 ),
               ),
+              const Spacer(),
+            ],
+          ),
+          Container(
+            width: 1000.pw,
+            height: max(200.ph, 200.sh),
+            padding: EdgeInsets.symmetric(vertical: max(10.ph, 10.sh)),
+            child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) => PRArticulo(
+                nombre: 'Flutter article',
+                status: 'Feedback',
+                ultimaFecha: DateTime.now(),
+                tieneAutor: tieneAutor,
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
-class PRArticulos extends StatelessWidget {
-  const PRArticulos({
+class PRArticulo extends StatelessWidget {
+  const PRArticulo({
     required this.ultimaFecha,
     required this.nombre,
     required this.status,
+    required this.tieneAutor,
+    this.autor,
     super.key,
   });
   final String nombre;
   final String status;
   final DateTime ultimaFecha;
+  final bool tieneAutor;
+  final String? autor;
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
@@ -362,9 +390,10 @@ class PRArticulos extends StatelessWidget {
     return Column(
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              width: 300.pw,
+              width: 500.pw,
               child: Text(
                 nombre,
                 maxLines: 1,
@@ -376,29 +405,54 @@ class PRArticulos extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              width: 100.pw,
-              height: max(30.ph, 30.sh),
-              color: Colors.black,
-              child: Text(
-                status,
-                style: TextStyle(
-                  color: colores.onPrimary,
-                  fontSize: 15.pf,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-            Text(
-              ' ${DateFormat.M().format(ultimaFecha)}'
-              ' ${DateFormat.MMMM().format(ultimaFecha)}'
-              ' ${DateFormat.y().format(ultimaFecha)}',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                color: colores.tertiary,
-                fontSize: 16.pf,
-                fontWeight: FontWeight.w400,
+            SizedBox(
+              width: tieneAutor ? 300.pw : 400.pw,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    width: 100.pw,
+                    height: max(30.ph, 30.sh),
+                    decoration: const BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.all(Radius.circular(100)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        status,
+                        style: TextStyle(
+                          color: colores.onPrimary,
+                          fontSize: 15.pf,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    ' ${DateFormat.M().format(ultimaFecha)}'
+                    ' ${DateFormat.MMM().format(ultimaFecha)}'
+                    ' ${DateFormat.y().format(ultimaFecha)}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: colores.tertiary,
+                      fontSize: 16.pf,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ), // TODO(mati): sacar si no es mi articulo
+                  ...[
+                    if (tieneAutor)
+                      Text(
+                        // TODO(mati): hacer l10n
+                        'Author',
+                        style: TextStyle(
+                          color: colores.primary,
+                          fontSize: 16.pf,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      )
+                  ]
+                ],
               ),
             ),
             const Spacer(),
@@ -421,6 +475,85 @@ class PRArticulos extends StatelessWidget {
           ],
         ),
         Divider(color: colores.onSecondary),
+      ],
+    );
+  }
+}
+
+class Lista<T> extends StatelessWidget {
+  const Lista({required this.listita, super.key});
+
+  final List<ModeloDeLaLista<T>> listita;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            ...listita.map(
+              (e) => Column(
+                children: [
+                  if (e.celdaDeColumna != null)
+                    e.celdaDeColumna!(e.nombreDeColumna ?? '')
+                  else
+                    Text(e.nombreDeColumna ?? ''),
+                  ListView.builder(
+                    itemCount: e.lista.length,
+                    itemBuilder: (BuildContext context, int index) =>
+                        e.celda(e.lista[index]),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class ModeloDeLaLista<T> {
+  ModeloDeLaLista({
+    required this.lista,
+    required this.celda,
+    this.nombreDeColumna,
+    this.celdaDeColumna,
+  });
+
+  final String? nombreDeColumna;
+  final List<T> lista;
+  final Widget Function(T value) celda;
+  final Widget Function(String value)? celdaDeColumna;
+}
+
+class CualquierPagina extends StatelessWidget {
+  const CualquierPagina({required this.arts, super.key});
+
+  final List<PRArticulo> arts;
+
+  @override
+  Widget build(BuildContext context) {
+    return Lista(
+      listita: [
+        ModeloDeLaLista(
+          lista: arts.map((e) => e.nombre).toList(),
+          nombreDeColumna: 'Nombre de usuario',
+          celda: (value) => SizedBox(
+            height: 20,
+            width: 100,
+            child: Text(value),
+          ),
+        ),
+        ModeloDeLaLista(
+          lista: arts.map((e) => e.ultimaFecha).toList(),
+          nombreDeColumna: 'Cuanto se regustro el usuario',
+          celda: (value) => SizedBox(
+            height: 20,
+            width: 100,
+            child: Text(value.toIso8601String()),
+          ),
+        ),
       ],
     );
   }
