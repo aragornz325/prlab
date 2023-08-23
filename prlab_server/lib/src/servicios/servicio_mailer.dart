@@ -13,7 +13,6 @@ final PlantillasCorreo plantillasCorreo = PlantillasCorreo();
 
 /// La clase ServicioMailer se utiliza para enviar correos electrónicos.
 class ServicioMailer extends Servicio<OdmAuth> {
-
   /// Instancia de la clase del odm.
   final OdmAuth authRepository = OdmAuth();
 
@@ -57,17 +56,21 @@ class ServicioMailer extends Servicio<OdmAuth> {
       final String cuerpoCompletoEmail =
           plantillasCorreo.mailingGeneral(contenido: cuerpoMensajeEmailHtml);
 
-      await enviarEmail(
-        mailDestinatario: email,
-        subject: 'registro',
-        mailHtml: cuerpoCompletoEmail,
+      await performOperation(
+        () => enviarEmail(
+          mailDestinatario: email,
+          subject: 'registro',
+          mailHtml: cuerpoCompletoEmail,
+        ),
       );
 
-      await authRepository.guardarTokenEnDb(
-        session: session,
-        token: token,
-        email: email,
-        tipoInvitacion: tipoInvitacion,
+      await performOperation(
+        () => authRepository.guardarTokenEnDb(
+          session: session,
+          token: token,
+          email: email,
+          tipoInvitacion: tipoInvitacion,
+        ),
       );
 
       return true;

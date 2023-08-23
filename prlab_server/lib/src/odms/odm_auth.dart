@@ -34,7 +34,7 @@ class OdmAuth extends ODM {
       ),
     );
 
-    if (result.isEmpty || result == null) {
+    if (result.isEmpty) {
       throw ErrorPrLab.errorElementoNoEncontrado;
     }
 
@@ -107,6 +107,11 @@ class OdmAuth extends ODM {
         (Session session) => session.db
             .query('SELECT token FROM invitaciones WHERE email = \'$email\''),
       );
+
+      if (result.isEmpty) {
+        throw ErrorPrLab.errorElementoNoEncontrado;
+      }
+
       return result.first.first;
     } on Exception catch (e) {
       throw Exception('$e');
@@ -129,13 +134,17 @@ class OdmAuth extends ODM {
   }) async {
     try {
       super.session = session;
-      final List<List<dynamic>> codigoEnDb = await performOdmOperation(
+      final List<List<dynamic>> result = await performOdmOperation(
         (Session session) => session.db.query(
           'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
         ),
       );
 
-      return codigoEnDb;
+      if (result.isEmpty) {
+        throw ErrorPrLab.errorElementoNoEncontrado;
+      }
+
+      return result;
     } on Exception catch (e) {
       throw Exception('$e');
     }

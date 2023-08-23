@@ -16,10 +16,13 @@ abstract class Servicio<T extends ODM> {
   /// Metodo para ejecutar las operaciones y manejar errores.
   Future<T> performOperation<T>(Future<T> Function() operation) async {
     try {
+      logger.fine('Ejecutando $operation...');
       return await operation();
     } on ErrorPrLab catch (e) {
+      logger.shout(e.mensaje);
       rethrow;
     } on Exception catch (e, st) {
+      logger.shout('$e');
       throw UnimplementedError('Error no identificado: $e \n$st');
     }
   }
