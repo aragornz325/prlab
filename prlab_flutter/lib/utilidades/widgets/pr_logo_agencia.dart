@@ -22,7 +22,7 @@ class LogoPrLabAgencia extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          height: 70.ph,
+          height: 70.sh,
           width: 75.pw,
           child: Image.asset(Assets.assets_icons_logo_png),
         ),
@@ -32,7 +32,6 @@ class LogoPrLabAgencia extends StatelessWidget {
           children: [
             Text(
               l10n.commonPRLab,
-              textAlign: TextAlign.center,
               style: TextStyle(
                 color: colores.tertiary,
                 fontSize: 40.pf,
