@@ -244,9 +244,9 @@
     "@pageRegisterErrorDialogDescription": {
         "description":"This message corresponds to a situation where the register of the user is an error. This is shown in an alert dialog after pressing sign up."
     },
-          "pageRegisterErrorDialogButtonText" : "Go to Log in",
-    "@pageRegisterErrorDialogButtonText": {
-        "description":" This message corresponds to a situation where the register of the user is an error. This is shown in the button of the alert dialog after pressing sign up."
+          "pageKYCSuccessDialogButtonText" : "Go to Log in",
+    "@pageKYCSuccessDialogButtonText": {
+        "description":"This message corresponds to a situation where the registration of the user is successful. This is shown in the button of the alert dialog after pressing continue button in KYC."
     },
     "commonPRLab": "PR lab",
     "@commonPRLab": {

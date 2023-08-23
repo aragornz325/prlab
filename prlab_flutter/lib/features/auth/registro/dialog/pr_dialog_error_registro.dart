@@ -5,12 +5,12 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/constantes/string_constants.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_dialog.dart';
 
-/// {@template PRDialogError}
+/// {@template PrDialogErrorRegistro}
 /// Muestra un mensaje de error en cualquier caso
 /// que ocurra un error cuando el usuario intenta registrarse.
 /// {@endtemplate}
 class PrDialogErrorRegistro extends StatelessWidget {
-  /// {@macro PrDialogErrorRegister}
+  /// {@macro PrDialogErrorRegistro}
   const PrDialogErrorRegistro({super.key});
 
   @override
@@ -19,6 +19,10 @@ class PrDialogErrorRegistro extends StatelessWidget {
     final colores = context.colores;
 
     return PRDialog.informacion(
+      // TODO(Anyone): Se uso el informacion en vez del .error porque el error
+      //no permite pasar un widget como content ( y en este caso se necesita
+      //pasar un string estilo mail (azul con underline)Por razones de tiempo no
+      //hice modificaciones en el .error para que se adapte a lo que necesito.
       botonText: l10n.commonBack,
       context: context,
       onTap: () => Navigator.of(context).pop(),

@@ -24,11 +24,12 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     on<BlocLoginEventoIniciarSesion>(_iniciarSesion);
     on<BlocLoginEventoHabilitarBotonLogin>(_habilitarBotonLogin);
     on<BlocLoginEventoHabilitarBotonOlvidePassword>(
-        _habilitarBotonOlvidePassword);
+      _habilitarBotonOlvidePassword,
+    );
     on<BlocLoginEventoEnviarCodigoAlUsuario>(
       _enviarCodigoAlUsuario,
     );
-    on<BlocLoginEventoAgregarCodigoAlEstado>(_cambiarLongitudCodigo);
+    on<BlocLoginEventoActualizarCodigo>(_actualizarCodigo);
     on<BlocLoginEventoValidarCodigo>(_validarCodigo);
   }
 
@@ -192,7 +193,8 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     Emitter<BlocLoginEstado> emit,
   ) {
     if (ExpresionRegular.emailRegExp.hasMatch(event.email) &&
-        event.password.length > PRLabConfiguracion.minimoDeCaracteresPassword) {
+        event.password.length >=
+            PRLabConfiguracion.minimoDeCaracteresPassword) {
       emit(
         BlocLoginEstadoExitosoGeneral.desde(
           state,
@@ -234,10 +236,10 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
     }
   }
 
-  /// Cambia el valor de la variable que es utilizada para saber si ingreso
-  /// el codigo completo
-  void _cambiarLongitudCodigo(
-    BlocLoginEventoAgregarCodigoAlEstado event,
+  /// Actualiza el valor del codigo a traves del evento
+
+  void _actualizarCodigo(
+    BlocLoginEventoActualizarCodigo event,
     Emitter<BlocLoginEstado> emit,
   ) {
     emit(

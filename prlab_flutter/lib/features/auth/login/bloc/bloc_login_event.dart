@@ -30,7 +30,7 @@ class BlocLoginEventoIniciarSesion extends BlocLoginEvento {
 }
 
 /// {@template BlocLoginEventoHabilitarBotonLogin}
-/// Hablita el boton de iniciar sesión segun si se cumplen las validaciones
+/// Habilita el boton de iniciar sesión segun si se cumplen las validaciones
 /// {@endtemplate}
 class BlocLoginEventoHabilitarBotonLogin extends BlocLoginEvento {
   /// {@macro BlocLoginEventoHabilitarBotonLogin}
@@ -47,7 +47,7 @@ class BlocLoginEventoHabilitarBotonLogin extends BlocLoginEvento {
 }
 
 /// {@template BlocLoginEventoHabilitarBotonOlvidastePassword}
-/// Hablita el boton de iniciar sesión segun si se cumplen las validaciones
+/// Habilita el boton de iniciar sesión segun si se cumplen las validaciones
 /// {@endtemplate}
 class BlocLoginEventoHabilitarBotonOlvidePassword extends BlocLoginEvento {
   /// {@macro BlocLoginEventoHabilitarBotonOlvidastePassword}
@@ -60,15 +60,15 @@ class BlocLoginEventoHabilitarBotonOlvidePassword extends BlocLoginEvento {
 }
 
 /// {@template BlocLoginEventoAgregarCodigoAlEstado}
-/// Cambia el tamaño del codigo para poder usar su longitud
+/// Actualiza el estado con el ultimo codigo.
 /// {@endtemplate}
-class BlocLoginEventoAgregarCodigoAlEstado extends BlocLoginEvento {
+class BlocLoginEventoActualizarCodigo extends BlocLoginEvento {
   /// {@macro BlocLoginEventoAgregarCodigoAlEstado}
-  const BlocLoginEventoAgregarCodigoAlEstado({
+  const BlocLoginEventoActualizarCodigo({
     required this.codigo,
   });
 
-  /// tamaño del codigo (indica cuantos digitos ingreso el usuario)
+  /// Tamaño del codigo (indica cuantos digitos ingreso el usuario)
   final String codigo;
 }
 

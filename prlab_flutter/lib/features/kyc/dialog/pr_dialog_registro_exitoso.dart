@@ -6,12 +6,12 @@ import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_dialog.dart';
 
-/// {@template PRDialogError}
-/// Muestra un mensaje de error en cualquier caso
-/// que ocurra un error cuando el usuario intenta registrarse.
+/// {@template PrDialogRegistroExitoso}
+/// Muestra un mensaje de exito cuando el usuario logra registrarse
+/// correctamente luego de ingresar sus datos KYC y presionar boton "Continue".
 /// {@endtemplate}
 class PrDialogRegistroExitoso extends StatelessWidget {
-  /// {@macro PrDialogErrorRegister}
+  /// {@macro PrDialogRegistroExitoso}
   const PrDialogRegistroExitoso({super.key});
 
   @override
@@ -24,7 +24,7 @@ class PrDialogRegistroExitoso extends StatelessWidget {
         const RutaLogin(),
       ),
       titulo: l10n.commonSuccessWithExclamation,
-      botonText: l10n.pageRegisterErrorDialogButtonText,
+      botonText: l10n.pageKYCSuccessDialogButtonText,
       content: Text(
         l10n.pageKYCSuccessDialogDescription,
         textAlign: TextAlign.center,

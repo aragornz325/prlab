@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.dart';
 import 'package:prlab_flutter/app/auto_route/auto_router_observer.dart';
+
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/features/auth/login/bloc/bloc_login.dart';
-import 'package:prlab_flutter/features/auth/login/bloc_temporizador/bloc_temporizador.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_app.g.dart';
 import 'package:prlab_flutter/theming/temas/tema_por_default_light_prlab.dart';
 import 'package:prlab_flutter/utilidades/utilidades.dart';
@@ -32,16 +31,7 @@ class App extends StatelessWidget {
           ),
         ],
         child: MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => BlocLogin(
-                emailAuth: EmailAuthController(client.modules.auth),
-              ),
-            ),
-            BlocProvider(
-              create: (context) => BlocTemporizador(),
-            ),
-          ],
+          providers: const [],
           child: const AppView(),
         ),
       ),

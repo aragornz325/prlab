@@ -6,6 +6,7 @@ import 'package:prlab_flutter/features/auth/login/bloc_temporizador/bloc_tempori
 import 'package:prlab_flutter/features/auth/login/celular/vista_login.dart';
 import 'package:prlab_flutter/features/auth/login/escritorio/vista_login.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
+import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
 /// Pagina de la pantalla login donde el usuario puede iniciar sesion
@@ -19,7 +20,7 @@ class PaginaLogin extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => BlocLogin(
-            emailAuth: context.read<EmailAuthController>(),
+            emailAuth: EmailAuthController(client.modules.auth),
           ),
         ),
         BlocProvider(

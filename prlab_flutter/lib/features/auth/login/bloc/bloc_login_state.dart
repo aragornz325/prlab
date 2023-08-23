@@ -1,12 +1,17 @@
 part of 'bloc_login.dart';
 
 /// {@template BlocLoginEvento}
-/// Maneja los distintos estados y varibles guardadas en los mismos
+/// Maneja los distintos estados y variables guardadas en los mismos
 /// {@endtemplate}
 class BlocLoginEstado extends Equatable {
   /// {@macro BlocLoginEstado}
   const BlocLoginEstado._({
     this.botonLoginHabilitado = false,
+    // TODO(Anyone):
+    // Si el condicional de que estos botones esten habilitados o no es que el mail
+    // sea valido y la variable esta en el estado, es mejor hacer un getter desde
+    // el estado, asi tenes que mantener menos variables, inclusive creo que te
+    // ahorrarias un evento para modificar este valor
     this.botonOlvidePasswordHabilitado = false,
     this.estaIniciandoSesion = false,
     this.duracionTimer = 60,
@@ -48,10 +53,11 @@ class BlocLoginEstado extends Equatable {
   /// Duracion del temporizador
   final int duracionTimer;
 
-  /// codigo que te llega del email
+  /// Codigo que le llega al usuario al email para poder validar la recuperacion
+  ///  de contraseña
   final String codigo;
 
-  /// email del usuario a guardar
+  /// Email del usuario a guardar
   final String email;
 
   /// Getter que verifica si el estado actual es el estado cargando
@@ -59,7 +65,7 @@ class BlocLoginEstado extends Equatable {
   bool get estaCargandoInicioDeSesion =>
       estaIniciandoSesion && this is BlocLoginEstadoCargando;
 
-  bool get estadoErroneo =>
+  bool get esEstadoErroneo =>
       this is BlocLoginEstadoErrorGeneral &&
       (this as BlocLoginEstadoErrorGeneral).mensajeDeError ==
           MensajesDeErrorDelLogin.unknown;

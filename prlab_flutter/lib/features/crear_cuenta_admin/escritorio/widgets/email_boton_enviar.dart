@@ -13,7 +13,7 @@ import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 /// Muestra el textfield a completar con el email y un boton con el cual enviar
 /// al email
 /// {@endtemplate}
-class PrLabEmailYBotonEnviar extends StatelessWidget {
+class PrLabEmailYBotonEnviar extends StatefulWidget {
   /// {@macro PrLabEmailYBotonEnviar}
   @override
   const PrLabEmailYBotonEnviar({
@@ -24,6 +24,11 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
   /// controller para el email de [PrLabEmailYBotonEnviar]
   final TextEditingController controller;
 
+  @override
+  State<PrLabEmailYBotonEnviar> createState() => _PrLabEmailYBotonEnviarState();
+}
+
+class _PrLabEmailYBotonEnviarState extends State<PrLabEmailYBotonEnviar> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -74,19 +79,21 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 50.sh),
-              BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
-                builder: (context, state) {
+              BlocConsumer<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
+                listener: (context, state) {
                   if (state is BlocCrearCuentaAdminEstadoExitosoEmailEnviado) {
-                    controller.clear();
+                    widget.controller.clear();
                   }
+                },
+                builder: (context, state) {
                   return Center(
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 15.pw),
                       height: 40.sh,
                       width: 785.pw,
                       child: PRTextFormField.email(
-                        controller: controller,
-                        onChanged: (_) => _onPasarleEmailAlBloc(context),
+                        controller: widget.controller,
+                        onChanged: (_) => _onPasarleEmailAlBloc(),
                         context: context,
                       ),
                     ),
@@ -150,10 +157,10 @@ class PrLabEmailYBotonEnviar extends StatelessWidget {
   }
 
   /// Funcion para enviar el email al bloc [BlocCrearCuentaAdmin]
-  void _onPasarleEmailAlBloc(BuildContext context) {
+  void _onPasarleEmailAlBloc() {
     context.read<BlocCrearCuentaAdmin>().add(
           BlocCrearCuentaAdminEventVerificarEmail(
-            email: controller.text,
+            email: widget.controller.text,
           ),
         );
   }

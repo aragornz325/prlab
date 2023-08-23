@@ -73,7 +73,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
       onChanged: (value) {
         if (value.isNotEmpty || value != '') {
           context.read<BlocLogin>().add(
-                BlocLoginEventoAgregarCodigoAlEstado(codigo: value),
+                BlocLoginEventoActualizarCodigo(codigo: value),
               );
         }
       },
