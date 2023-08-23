@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/extensiones/theme_extension.dart';
+import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/auth/login/bloc_temporizador/bloc_temporizador.dart';
+
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/paginas/login/bloc_temporizador/bloc_temporizador.dart';
+
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template TipoDialog}
@@ -78,9 +80,9 @@ class PRDialog extends StatelessWidget {
                 SizedBox(height: 40.ph),
                 content,
                 SizedBox(height: 40.ph),
-                PRBoton.outlined(
+                PRBoton.esOutlined(
                   width: 360.pw,
-                  habilitado: estaHabilitado,
+                  estaHabilitado: estaHabilitado,
                   onTap: onTap,
                   texto: l10n.commonSend,
                 ),
@@ -99,6 +101,7 @@ class PRDialog extends StatelessWidget {
     required VoidCallback onTap,
     required String titulo,
     required Widget content,
+    String? botonText,
     double height = 285,
     double width = 455,
   }) {
@@ -126,10 +129,10 @@ class PRDialog extends StatelessWidget {
           content,
           SizedBox(height: 30.ph),
           Center(
-            child: PRBoton.outlined(
+            child: PRBoton.esOutlined(
               onTap: onTap,
-              texto: l10n.commonOk,
-              habilitado: true,
+              texto: botonText ?? l10n.commonOk,
+              estaHabilitado: true,
               width: 360.pw,
             ),
           ),
@@ -187,10 +190,10 @@ class PRDialog extends StatelessWidget {
             Center(
               child: SizedBox(
                 width: 360.pw,
-                child: PRBoton.outlined(
+                child: PRBoton.esOutlined(
                   onTap: onTap,
                   texto: textButton,
-                  habilitado: true,
+                  estaHabilitado: true,
                   width: 360.pw,
                 ),
               ),
@@ -249,10 +252,10 @@ class PRDialog extends StatelessWidget {
             Center(
               child: SizedBox(
                 width: 360.pw,
-                child: PRBoton.outlined(
+                child: PRBoton.esOutlined(
                   onTap: onTap,
                   texto: l10n.commonBack,
-                  habilitado: true,
+                  estaHabilitado: true,
                   width: 360.pw,
                 ),
               ),
@@ -277,9 +280,11 @@ class PRDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colores = context.colores;
+
     return AlertDialog(
       // TODO(anyone): Cambiar colors a los del theme
-      backgroundColor: Colors.white,
+      backgroundColor: colores.background,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.sw),
       ),
@@ -292,6 +297,7 @@ class PRDialog extends StatelessWidget {
   }
 }
 
+// TODO(anyone): sacar y poner en los refactor de los textfield
 class TextfieldCodigoDeRecuperarPassword extends StatefulWidget {
   const TextfieldCodigoDeRecuperarPassword({
     required this.controller,
@@ -315,7 +321,6 @@ class _TextfieldCodigoDeRecuperarPasswordState
     return PrLabTextfield(
       controller: widget.controller,
       solicitoNuevoCodigo: state is BlocTemporizadorEstadoCorriendo,
-      email: widget.email,
       segundosFaltantes: state.duracionTimer,
     );
   }

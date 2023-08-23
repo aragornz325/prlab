@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
-import 'package:prlab_flutter/extensiones/theme_extension.dart';
+import 'package:prlab_flutter/extensiones/extensiones.dart';
+
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template LogoPrLabAgencia}
@@ -21,7 +22,7 @@ class LogoPrLabAgencia extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          height: 70.ph,
+          height: 70.sh,
           width: 75.pw,
           child: Image.asset(Assets.assets_icons_logo_png),
         ),
@@ -31,7 +32,6 @@ class LogoPrLabAgencia extends StatelessWidget {
           children: [
             Text(
               l10n.commonPRLab,
-              textAlign: TextAlign.center,
               style: TextStyle(
                 color: colores.tertiary,
                 fontSize: 40.pf,

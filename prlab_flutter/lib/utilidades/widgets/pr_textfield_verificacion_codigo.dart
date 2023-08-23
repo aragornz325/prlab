@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/extensiones/theme_extension.dart';
+import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/auth/login/bloc/bloc_login.dart';
+import 'package:prlab_flutter/features/auth/login/bloc_temporizador/bloc_temporizador.dart';
+
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
-import 'package:prlab_flutter/paginas/login/bloc_temporizador/bloc_temporizador.dart';
 
 // !!!
 // TODO(anyone): PASAR ESTO AL FACTORY
@@ -19,7 +20,6 @@ class PrLabTextfield extends StatefulWidget {
   /// {@macro PrLabTextfield}
   const PrLabTextfield({
     required this.controller,
-    required this.email,
     this.validator,
     this.minutosFaltantes = 30,
     this.segundosFaltantes = 60,
@@ -45,8 +45,6 @@ class PrLabTextfield extends StatefulWidget {
   /// (por default esta en 30)
   final int minutosFaltantes;
 
-  /// Email del usuario al que se le va a enviar el codigo
-  final String email;
   @override
   State<PrLabTextfield> createState() => _PrLabTextfieldState();
 }
@@ -65,7 +63,9 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
 
     return TextFormField(
       inputFormatters: [
-        FilteringTextInputFormatter.allow(RegExp(r'^\d+$')),
+        FilteringTextInputFormatter.allow(
+          RegExp(r'^\d+$'),
+        ),
       ],
       maxLength: 8,
       keyboardType: TextInputType.number,
@@ -73,9 +73,7 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
       onChanged: (value) {
         if (value.isNotEmpty || value != '') {
           context.read<BlocLogin>().add(
-                BlocLoginEventoCambiarLongitudCodigo(
-                  longitudCodigo: value.length,
-                ),
+                BlocLoginEventoActualizarCodigo(codigo: value),
               );
         }
       },
@@ -100,40 +98,45 @@ class _PrLabTextfieldState extends State<PrLabTextfield> {
         suffixIcon: Padding(
           padding: EdgeInsets.only(top: 20.ph),
           child: SizedBox(
-            width: widget.solicitoNuevoCodigo ? 76.pw : 55.pw,
+            width: 100.pw,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                InkWell(
-                  onTap: !widget.solicitoNuevoCodigo
-                      ? () {
-                          context.read<BlocLogin>().add(
-                                BlocLoginEventoEnviarCodigoAlUsuario(
-                                  email: widget.email,
-                                ),
-                              );
-                          context
-                              .read<BlocTemporizador>()
-                              .add(BlocTemporizadorEventoEmpezar());
-                        }
-                      : null,
-                  child: Text(
-                    !widget.solicitoNuevoCodigo
-                        ? l10n.alertDialogTextfieldSuffixGetCode
-                        : l10n.alertDialogTextfieldSuffixCodeSend,
-                    style: TextStyle(
-                      decoration: TextDecoration.combine([
-                        if (!widget.solicitoNuevoCodigo)
-                          TextDecoration.underline
-                        else
-                          TextDecoration.none,
-                      ]),
-                      color: !widget.solicitoNuevoCodigo
-                          ? colores.primary
-                          : colores.secondary,
-                      fontSize: 12.pf,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                BlocBuilder<BlocLogin, BlocLoginEstado>(
+                  builder: (context, state) {
+                    return InkWell(
+                      onTap: !widget.solicitoNuevoCodigo
+                          ? () {
+                              context.read<BlocLogin>().add(
+                                    BlocLoginEventoEnviarCodigoAlUsuario(
+                                      email: state.email,
+                                    ),
+                                  );
+                              context
+                                  .read<BlocTemporizador>()
+                                  .add(BlocTemporizadorEventoEmpezar());
+                            }
+                          : null,
+                      child: Text(
+                        !widget.solicitoNuevoCodigo
+                            ? l10n.alertDialogTextfieldSuffixGetCode
+                            : l10n.alertDialogTextfieldSuffixCodeSend,
+                        style: TextStyle(
+                          decoration: TextDecoration.combine([
+                            if (!widget.solicitoNuevoCodigo)
+                              TextDecoration.underline
+                            else
+                              TextDecoration.none,
+                          ]),
+                          color: !widget.solicitoNuevoCodigo
+                              ? colores.primary
+                              : colores.secondary,
+                          fontSize: 12.pf,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 ...[
                   if (widget.solicitoNuevoCodigo)
