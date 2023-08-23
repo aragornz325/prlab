@@ -1,28 +1,66 @@
+import 'dart:developer' as developer;
 import 'dart:io';
 
-import 'package:logger/logger.dart';
+import 'package:logging/logging.dart';
 
-/// Clase de logger que imprime el log por pantalla.
-class PrintOutput extends LogOutput {
-  @override
-  void output(OutputEvent event) {
-    // ignore: always_specify_types
-    final Map<String, dynamic> logData = {
-      'nivel': event.origin.level.name,
-      'mensaje': event.origin.message,
-      'host': Platform.localHostname,
-    };
-    print(logData);
-  }
+void initRootLogger(
+    {bool debugMode = false, bool colores = true, bool timestamp = true}) {
+  Logger.root.level = Level.ALL;
+
+  hierarchicalLoggingEnabled = true;
+
+  // specify the levels for lower level loggers, if desired
+  // Logger('SiteInfoService').level = Level.ALL;
+
+  Logger.root.onRecord.listen((record) {
+    String message;
+    String tiempo = timestamp ? '${record.time}:' : '';
+    if (colores) {
+      var start = '\x1b[90m';
+      const end = '\x1b[0m';
+      const white = '\x1b[37m';
+
+      switch (record.level.name) {
+        case 'INFO':
+          start = '\x1b[37m';
+          break;
+        case 'FINE':
+          start = '\x1B[32m';
+          break;
+        case 'FINER':
+          start = '\x1B[34m';
+          break;
+        case 'FINEST':
+          start = '\x1B[36m';
+          break;
+        case 'SEVERE':
+          start = '\x1b[103m\x1b[31m';
+          break;
+        case 'SHOUT':
+          start = '\x1b[41m\x1b[93m';
+          break;
+      }
+
+      message =
+          '$white$tiempo$end$start [${record.level.name}]: ${record.message} $end';
+    } else {
+      message = '$tiempo [${record.level.name}]: ${record.message}';
+    }
+    if (record.error != null) {
+      message += '\n${record.error}';
+      if (record.stackTrace != null) {
+        message += '\n${record.stackTrace}';
+      }
+    }
+    if (debugMode) {
+      developer.log(
+        message,
+        name: record.loggerName.padRight(25),
+        level: record.level.value,
+        time: record.time,
+      );
+    } else {
+      stdout.writeln(message);
+    }
+  });
 }
-
-/// Logger para imprimir por consola.
-final Logger loggerPrint = Logger(
-  filter: ProductionFilter(),
-  printer: PrettyPrinter(
-    methodCount: 0,
-    printTime: true,
-  ),
-  // ignore: always_specify_types
-  output: MultiOutput([ConsoleOutput(), PrintOutput()]),
-);

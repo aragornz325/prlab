@@ -8,7 +8,7 @@ import 'package:serverpod/serverpod.dart';
 
 /// La clase AuthService es responsable de manejar la funcionalidad relacionada
 /// con la autenticación.
-class ServicioAuth extends Servicio<OdmAuth> {
+class AuthService extends Servicio<OdmAuth> {
   @override
   final OdmAuth odm = OdmAuth();
 
@@ -29,15 +29,12 @@ class ServicioAuth extends Servicio<OdmAuth> {
   Future<String> getValidationCode({
     required Session session,
     required String email,
-  }) async {
-    logger.info('getValidationCode');
-    return await performOperation(
+  }) async => await performOperation(
       () => odm.getValidationCode(
         session: session,
         email: email,
       ),
     );
-  }
 
   /// La función `validarTokenPorMail` valida un token decodificándolo,
   /// recuperando el correo electrónico de la carga útil del token, comparando

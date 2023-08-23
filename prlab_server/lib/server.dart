@@ -2,6 +2,7 @@ import 'package:prlab_server/src/generated/endpoints.dart';
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/web/routes/root.dart';
 import 'package:prlab_server/utils/config/rewrite_yaml.dart';
+import 'package:prlab_server/utils/logger.dart';
 import 'package:prlab_server/utils/mailer/mailer.dart';
 import 'package:prlab_server/utils/mailer/templates.dart';
 import 'package:serverpod/serverpod.dart';
@@ -12,6 +13,7 @@ import 'package:serverpod_auth_server/module.dart' as auth;
 /// configuring Relic (Serverpod's web-server), or need custom setup work.
 Future<void> run(List<String> args) async {
   rewriteConfigYaml('staging');
+  initRootLogger();
   // Initialize Serverpod and connect it with your generated code.
   final Serverpod pod = Serverpod(
     args,
