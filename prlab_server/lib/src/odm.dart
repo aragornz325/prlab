@@ -1,3 +1,4 @@
+import 'package:prlab_client/prlab_client.dart';
 import 'package:serverpod/serverpod.dart';
 
 /// Tipo de funcion que ejecuta el metodo performOdmOperation.
@@ -13,8 +14,10 @@ abstract class ODM {
   Future<T> performOdmOperation<T>(ServerpodDbFunction<T> function) async {
     try {
       return await function(session!);
-    } on Exception catch (e) {
-      throw Exception('$e');
+    } on ErrorPrLab catch (e) {
+      rethrow;
+    } on Exception catch (e, st) {
+      throw UnimplementedError('Error no identificado: $e \n$st');
     }
   }
 }

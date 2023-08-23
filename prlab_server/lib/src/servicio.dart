@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_shadowing_type_parameters
 
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_server/src/odm.dart';
 import 'package:prlab_server/utils/logger.dart';
 
@@ -13,14 +14,18 @@ abstract class Servicio<T extends ODM> {
   /// Instancia del logger.
   // ignore: always_specify_types
   final logger = loggerPrint;
-  final sLogger = SimpleLogger();
+
+  /// Instancia de SimpleLogger.
+  final SimpleLogger sLogger = SimpleLogger();
 
   /// Metodo para ejecutar las operaciones y manejar errores.
   Future<T> performOperation<T>(Future<T> Function() operation) async {
     try {
       return await operation();
-    } on Exception catch (e) {
-      throw Exception('$e');
+    } on ErrorPrLab catch (e) {
+      rethrow;
+    } on Exception catch (e, st) {
+      throw UnimplementedError('Error no identificado: $e \n$st');
     }
   }
 }

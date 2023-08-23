@@ -5,7 +5,6 @@ import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:prlab_server/src/odms/odm_auth.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/serverpod.dart';
-import 'package:simple_logger/simple_logger.dart';
 
 /// La clase AuthService es responsable de manejar la funcionalidad relacionada
 /// con la autenticación.

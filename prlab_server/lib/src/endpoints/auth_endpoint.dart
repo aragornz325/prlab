@@ -1,14 +1,13 @@
 // ignore_for_file: unnecessary_await_in_return, avoid_dynamic_calls
 
 import 'package:prlab_server/src/servicios/servicio_auth.dart';
-import 'package:prlab_server/utils/logger.dart';
 import 'package:serverpod/server.dart';
 
 /// La clase `AuthEndpoint` está ampliando la clase `Endpoint`. por tanto maneja
 /// todas las peticiones relacionadas con el auth del sistema
 class AuthEndpoint extends Endpoint {
   /// Instancia del `AuthService`.
-  final ServicioAuth authService = ServicioAuth();
+  final ServicioAuth servicioAuth = ServicioAuth();
 
   /// La función `getValidationCode` devuelve un Future que recupera un código
   /// de validación del `AuthService` utilizando la sesión y el correo
@@ -26,7 +25,8 @@ class AuthEndpoint extends Endpoint {
   Future<String> getValidationCode(
     Session session,
     String email,
-  ) async => await authService.getValidationCode(session: session, email: email);
+  ) async =>
+      await servicioAuth.getValidationCode(session: session, email: email);
 
   /// La función `validarTokenPorMail` valida un token usando `authService` y
   /// devuelve un `Future` que se resuelve en una `String`.
@@ -40,7 +40,7 @@ class AuthEndpoint extends Endpoint {
     Session session,
     String token,
   ) async =>
-      await authService.validarTokenPorMail(
+      await servicioAuth.validarTokenPorMail(
         session: session,
         token: token,
       );
@@ -58,7 +58,7 @@ class AuthEndpoint extends Endpoint {
     Session session,
     String codigo,
   ) =>
-      authService.validarCodigoResetPassword(
+      servicioAuth.validarCodigoResetPassword(
         session: session,
         codigo: codigo,
       );
@@ -76,7 +76,7 @@ class AuthEndpoint extends Endpoint {
     Session session,
     String codigo,
   ) =>
-      authService.eliminarOTPResetPassword(
+      servicioAuth.eliminarOTPResetPassword(
         session: session,
         codigo: codigo,
       );
