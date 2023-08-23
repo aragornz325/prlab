@@ -5,23 +5,24 @@ import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:prlab_server/src/odms/auth_repository.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/serverpod.dart';
+import 'package:simple_logger/simple_logger.dart';
 
-/// La clase AuthService es responsable de manejar la funcionalidad relacionada 
+/// La clase AuthService es responsable de manejar la funcionalidad relacionada
 /// con la autenticación.
 class AuthService extends Servicio<AuthODM> {
   @override
   final AuthODM odm = AuthODM();
 
-  /// La función `getValidationCode` devuelve un Future que recupera un código 
-  /// de validación del `AuthRepository` mediante una sesión y un correo 
+  /// La función `getValidationCode` devuelve un Future que recupera un código
+  /// de validación del `AuthRepository` mediante una sesión y un correo
   /// electrónico.
   ///
   /// Args:
-  ///   session (Session): Un parámetro requerido de tipo Sesión. Representa la 
+  ///   session (Session): Un parámetro requerido de tipo Sesión. Representa la
   /// sesión de usuario actual
   /// y es necesaria para fines de autenticación.
-  ///   email (String): El parámetro de correo electrónico es una cadena 
-  /// obligatoria que representa la dirección de correo electrónico para la que 
+  ///   email (String): El parámetro de correo electrónico es una cadena
+  /// obligatoria que representa la dirección de correo electrónico para la que
   /// se solicita el código de validación.
   ///
   /// Returns:
@@ -29,26 +30,30 @@ class AuthService extends Servicio<AuthODM> {
   Future<String> getValidationCode({
     required Session session,
     required String email,
-  }) async => await performOperation(
+  }) async {
+    logger.d('probando el logger');
+    sLogger.shout(() => 'probando el logger');
+    return await performOperation(
       () => odm.getValidationCode(
         session: session,
         email: email,
       ),
     );
+  }
 
-  /// La función `validarTokenPorMail` valida un token decodificándolo, 
-  /// recuperando el correo electrónico de la carga útil del token, comparando 
-  /// el token con el almacenado en la base de datos y verificando el token 
+  /// La función `validarTokenPorMail` valida un token decodificándolo,
+  /// recuperando el correo electrónico de la carga útil del token, comparando
+  /// el token con el almacenado en la base de datos y verificando el token
   /// usando una clave secreta.
   ///
   /// Args:
-  ///   session (Session): Un objeto de sesión que contiene información sobre 
+  ///   session (Session): Un objeto de sesión que contiene información sobre
   /// la sesión de usuario actual.
-  ///   token (String): El token es una cadena que representa un JWT (JSON Web 
+  ///   token (String): El token es una cadena que representa un JWT (JSON Web
   /// Token). Se utiliza con fines de autenticación y autorización.
   ///
   /// Returns:
-  ///   El método `validarTokenPorMail` devuelve un el correo electronico del 
+  ///   El método `validarTokenPorMail` devuelve un el correo electronico del
   /// token.
   Future<String> validarTokenPorMail({
     required Session session,
@@ -69,22 +74,22 @@ class AuthService extends Servicio<AuthODM> {
       }
 
       JWT.verify(token, SecretKey('sweetHomeAlabama'));
-      
+
       return emailToken;
     } on Exception catch (e) {
       throw Exception('$e');
     }
   }
 
-  /// La función `validarCodigoResetPassword` toma una sesión y un código como 
-  /// parámetros y llama a la función `validarCodigoResetPassword` desde el 
+  /// La función `validarCodigoResetPassword` toma una sesión y un código como
+  /// parámetros y llama a la función `validarCodigoResetPassword` desde el
   /// `authRepository` para validar el código para restablecer la contraseña.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es 
-  /// obligatorio. Representa la sesión de usuario actual o la sesión de 
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y es
+  /// obligatorio. Representa la sesión de usuario actual o la sesión de
   /// autenticación.
-  ///   codigo (String): El parámetro "codigo" es una cadena requerida que 
+  ///   codigo (String): El parámetro "codigo" es una cadena requerida que
   /// representa el código de restablecimiento de contraseña.
   Future<bool> validarCodigoResetPassword({
     required Session session,
@@ -105,15 +110,15 @@ class AuthService extends Servicio<AuthODM> {
     }
   }
 
-  /// La función `eliminarOTPResetPassword` es una función de Dart que toma una 
-  /// sesión y un código, e intenta eliminar el código de la base de datos, 
+  /// La función `eliminarOTPResetPassword` es una función de Dart que toma una
+  /// sesión y un código, e intenta eliminar el código de la base de datos,
   /// devolviendo verdadero si tiene éxito.
   ///
   /// Args:
-  ///   session (Session): Un parámetro requerido de tipo Sesión, que 
+  ///   session (Session): Un parámetro requerido de tipo Sesión, que
   /// representa la información de la sesión del usuario.
-  ///   codigo (String): El parámetro "codigo" es un String requerido que 
-  /// representa el código OTP (One-Time Password) para restablecer la 
+  ///   codigo (String): El parámetro "codigo" es un String requerido que
+  /// representa el código OTP (One-Time Password) para restablecer la
   /// contraseña.
   Future<bool> eliminarOTPResetPassword({
     required Session session,

@@ -26,10 +26,7 @@ class AuthEndpoint extends Endpoint {
   Future<String> getValidationCode(
     Session session,
     String email,
-  ) async {
-    loggerPrint.e('getValidationCode');
-    return await authService.getValidationCode(session: session, email: email);
-  }
+  ) async => await authService.getValidationCode(session: session, email: email);
 
   /// La función `validarTokenPorMail` valida un token usando `authService` y
   /// devuelve un `Future` que se resuelve en una `String`.
