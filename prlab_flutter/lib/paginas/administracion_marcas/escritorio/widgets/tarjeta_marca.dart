@@ -1,0 +1,199 @@
+import 'package:flutter/material.dart';
+import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/extensiones/extension_tema.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+// TODO(Gon): Documentar
+class TarjetaMarca extends StatelessWidget {
+// TODO(Gon): Documentar
+  const TarjetaMarca({
+    required this.linkMarca,
+    required this.nombreMarca,
+    required this.linksArticulos,
+    super.key,
+  });
+// TODO(Gon): Documentar
+  final String linkMarca;
+  final String nombreMarca;
+  final List<String> linksArticulos;
+
+  @override
+  Widget build(BuildContext context) {
+    final colores = context.colores;
+
+    final l10n = context.l10n;
+
+    return Container(
+      width: 485.pw,
+      height: 398.ph,
+      color: colores.onPrimary,
+      child: Column(
+        children: [
+          Container(
+            height: 64.ph,
+            padding: EdgeInsets.symmetric(
+              vertical: 20.ph,
+              horizontal: 20.pw,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.language,
+                      color: colores.tertiary,
+                      size: 20.pf,
+                    ),
+                    SizedBox(width: 5.pw),
+                    GestureDetector(
+                      onTap: () => launchUrl(Uri.parse(linkMarca)),
+                      child: Text(
+                        linkMarca,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14.pf,
+                          color: colores.primaryContainer,
+                          decoration: TextDecoration.underline,
+                          decorationColor: colores.primaryContainer,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Icon(
+                  Icons.settings_outlined,
+                  color: colores.primary,
+                  size: 24.pf,
+                )
+              ],
+            ),
+          ),
+          const Divider(
+            thickness: .2,
+            height: 1,
+            //TODO(Gon): Agregar al theme
+            color: Colors.grey,
+          ),
+          Container(
+            height: 90.ph,
+            padding: EdgeInsets.symmetric(
+              vertical: 20.ph,
+              horizontal: 20.pw,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  nombreMarca,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 25.pf,
+                    color: colores.tertiary,
+                  ),
+                ),
+                Row(
+                  children: [
+                    PRBoton.esOutlined(
+                      onTap: () {},
+                      texto: l10n.commonList,
+                      estaHabilitado: true,
+                      width: 100.pw,
+                      height: 30.ph,
+                    ),
+                    SizedBox(width: 20.pw),
+                    PRBoton(
+                      onTap: () {},
+                      texto: l10n.commonCreate,
+                      estaHabilitado: true,
+                      width: 100.pw,
+                      height: 30.ph,
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const Divider(
+            thickness: .2,
+            height: 1,
+            //TODO(Gon): Agregar al theme
+            color: Colors.grey,
+          ),
+          Container(
+            height: 203.ph,
+            padding: EdgeInsets.symmetric(
+              vertical: 20.ph,
+              horizontal: 20.pw,
+            ),
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l10n.pageBrandAdministrationRecentlyModifiedText,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12.pf,
+                        color: colores.secondary,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5.ph,
+                    ),
+                    SizedBox(
+                      width: 445.pw,
+                      height: 135.ph,
+                      child: ListView.separated(
+                        separatorBuilder: (context, index) {
+                          return SizedBox(
+                            height: 10.ph,
+                          );
+                        },
+                        itemCount: linksArticulos.length,
+                        itemBuilder: (context, index) {
+                          return Row(
+                            children: [
+                              Container(
+                                width: 10.pw,
+                                height: 10.ph,
+                                decoration: const BoxDecoration(
+                                  //TODO(Gon): Agregar al theme
+                                  color: Colors.grey,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                              SizedBox(width: 5.pw),
+                              GestureDetector(
+                                onTap: () {
+                                  // TODO(Gon): Agregar funcion al apretar link
+                                },
+                                child: Text(
+                                  linksArticulos[index],
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14.pf,
+                                    color: colores.primaryContainer,
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: colores.primaryContainer,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

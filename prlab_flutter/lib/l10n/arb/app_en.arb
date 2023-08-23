@@ -236,7 +236,12 @@
     "@pageRecoverPasswordChangePasswordSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
     },
-    
+
+     "pageBrandAdministrationRecentlyModifiedText" : "Recently modified",
+    "@pageBrandAdministrationRecentlyModifiedText": {
+        "description":"Section Header of the recently modified articles"
+    },
+
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
@@ -320,6 +325,16 @@
     "commonMinimumCharactersForAPassword" : "At least 12 characters",
     "@commonMinimumCharactersForAPassword": {
         "description": "This text is shown when the user enter a password too short on the register page"
+    },
+
+    "commonList" : "List",
+    "@commonList": {
+        "description": "Text shown on a list of things"
+    },
+
+    "commonCreate" : "Create",
+    "@commonCreate": {
+        "description": "Text on a button that creates something"
     }
 
 }

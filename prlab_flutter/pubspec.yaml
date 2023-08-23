@@ -40,6 +40,7 @@ dependencies:
   
  
   assets_gen: ^1.5.0
+  url_launcher: ^6.1.12
  
 
 dev_dependencies:
@@ -75,4 +76,4 @@ full_responsive:
       height: 844
     - name: "desktop"
       width: 1280
-      height: 720
+      height: 832
