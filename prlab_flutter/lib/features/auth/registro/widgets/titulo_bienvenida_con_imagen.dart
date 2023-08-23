@@ -40,7 +40,7 @@ class TituloBienvenidaConImagen extends StatelessWidget {
                 l10n.pageSignUpTitle,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: colores.secondary,
+                  color: colores.tertiary,
                   fontSize: 40.pf,
                   fontWeight: FontWeight.w600,
                 ),
