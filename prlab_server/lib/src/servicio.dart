@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_shadowing_type_parameters
 
 import 'package:logging/logging.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_server/src/odm.dart';
 
 /// Clase abstracta para la capa de Servicio.
@@ -16,8 +17,10 @@ abstract class Servicio<T extends ODM> {
   Future<T> performOperation<T>(Future<T> Function() operation) async {
     try {
       return await operation();
-    } on Exception catch (e) {
-      throw Exception('$e');
+    } on ErrorPrLab catch (e) {
+      rethrow;
+    } on Exception catch (e, st) {
+      throw UnimplementedError('Error no identificado: $e \n$st');
     }
   }
 }
