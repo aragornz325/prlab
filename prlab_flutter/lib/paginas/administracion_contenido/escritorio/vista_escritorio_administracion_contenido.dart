@@ -297,7 +297,7 @@ class ListaDeArticulos extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: tieneAutor ? 300.pw : 400.pw,
+                width: tieneAutor ? 350.pw : 400.pw,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -375,6 +375,7 @@ class PRArticulo extends StatelessWidget {
     required this.nombre,
     required this.status,
     required this.tieneAutor,
+    this.urlImage,
     this.autor,
     super.key,
   });
@@ -383,6 +384,7 @@ class PRArticulo extends StatelessWidget {
   final DateTime ultimaFecha;
   final bool tieneAutor;
   final String? autor;
+  final String? urlImage;
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
@@ -406,7 +408,7 @@ class PRArticulo extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: tieneAutor ? 300.pw : 400.pw,
+              width: tieneAutor ? 335.pw : 400.pw,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -420,6 +422,8 @@ class PRArticulo extends StatelessWidget {
                     child: Center(
                       child: Text(
                         status,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: colores.onPrimary,
                           fontSize: 15.pf,
@@ -429,11 +433,12 @@ class PRArticulo extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    ' ${DateFormat.M().format(ultimaFecha)}'
+                    '${DateFormat.M().format(ultimaFecha)}'
                     ' ${DateFormat.MMM().format(ultimaFecha)}'
                     ' ${DateFormat.y().format(ultimaFecha)}',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.start,
                     style: TextStyle(
                       color: colores.tertiary,
                       fontSize: 16.pf,
@@ -442,15 +447,16 @@ class PRArticulo extends StatelessWidget {
                   ), // TODO(mati): sacar si no es mi articulo
                   ...[
                     if (tieneAutor)
-                      Text(
-                        // TODO(mati): hacer l10n
-                        'Author',
-                        style: TextStyle(
-                          color: colores.primary,
-                          fontSize: 16.pf,
-                          fontWeight: FontWeight.w600,
+                      CircleAvatar(
+                        radius: 15.pf,
+                        backgroundColor: colores.onSecondary,
+                        child: CircleAvatar(
+                          radius: 15.pf,
+                          backgroundColor: colores.onSecondary,
+                          backgroundImage:
+                              urlImage != null ? NetworkImage(urlImage!) : null,
                         ),
-                      )
+                      ),
                   ]
                 ],
               ),
