@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
+import 'package:prlab_flutter/features/dashboard/administracion_marcas/escritorio/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/paginas/administracion_marcas/escritorio/widgets/widgets.dart';
 
 /// {@template InformacionDeLaMarca}
 /// Seccion de los 3 bloques de informacion de la marca

@@ -17,10 +17,10 @@ import 'package:prlab_flutter/features/auth/registro/pagina_registro.dart'
     as _i3;
 import 'package:prlab_flutter/features/crear_cuenta_admin/pagina_crear_cuenta_admin.dart'
     as _i4;
-import 'package:prlab_flutter/features/dashboard/pagina_dashboard.dart' as _i5;
-import 'package:prlab_flutter/features/kyc/pagina_kyc.dart' as _i6;
-import 'package:prlab_flutter/paginas/administracion_marcas/pagina_administracion_marcas.dart'
-    as _i7;
+import 'package:prlab_flutter/features/dashboard/administracion_marcas/pagina_administracion_marcas.dart'
+    as _i5;
+import 'package:prlab_flutter/features/dashboard/pagina_dashboard.dart' as _i6;
+import 'package:prlab_flutter/features/kyc/pagina_kyc.dart' as _i7;
 
 abstract class $AppRouter extends _i8.RootStackRouter {
   $AppRouter({super.navigatorKey});
@@ -62,22 +62,22 @@ abstract class $AppRouter extends _i8.RootStackRouter {
         child: const _i4.PaginaCrearCuenta(),
       );
     },
+    RutaAdministracionMarcas.name: (routeData) {
+      return _i8.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i5.PaginaAdministracionMarcas(),
+      );
+    },
     RutaDashboard.name: (routeData) {
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i5.PaginaDashboard(),
+        child: const _i6.PaginaDashboard(),
       );
     },
     RutaKyc.name: (routeData) {
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.PaginaKyc(),
-      );
-    },
-    RutaAdministracionMarcas.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i7.PaginaAdministracionMarcas(),
+        child: const _i7.PaginaKyc(),
       );
     },
   };
@@ -190,7 +190,21 @@ class RutaCrearCuenta extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.PaginaDashboard]
+/// [_i5.PaginaAdministracionMarcas]
+class RutaAdministracionMarcas extends _i8.PageRouteInfo<void> {
+  const RutaAdministracionMarcas({List<_i8.PageRouteInfo>? children})
+      : super(
+          RutaAdministracionMarcas.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RutaAdministracionMarcas';
+
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i6.PaginaDashboard]
 class RutaDashboard extends _i8.PageRouteInfo<void> {
   const RutaDashboard({List<_i8.PageRouteInfo>? children})
       : super(
@@ -204,7 +218,7 @@ class RutaDashboard extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.PaginaKyc]
+/// [_i7.PaginaKyc]
 class RutaKyc extends _i8.PageRouteInfo<void> {
   const RutaKyc({List<_i8.PageRouteInfo>? children})
       : super(
@@ -213,20 +227,6 @@ class RutaKyc extends _i8.PageRouteInfo<void> {
         );
 
   static const String name = 'RutaKyc';
-
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i7.PaginaAdministracionMarcas]
-class RutaAdministracionMarcas extends _i8.PageRouteInfo<void> {
-  const RutaAdministracionMarcas({List<_i8.PageRouteInfo>? children})
-      : super(
-          RutaAdministracionMarcas.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'RutaAdministracionMarcas';
 
   static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
