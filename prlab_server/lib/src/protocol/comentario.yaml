@@ -1,0 +1,8 @@
+class: Comentario
+table: comentarios
+fields:
+  idEntregable: int? 
+  textoComentario: String
+  idAutor: int?
+  ultimaModificacion: DateTime
+  fechaCreacion: DateTime
