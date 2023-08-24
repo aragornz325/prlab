@@ -13,7 +13,6 @@ final PlantillasCorreo plantillasCorreo = PlantillasCorreo();
 
 /// La clase ServicioMailer se utiliza para enviar correos electrónicos.
 class ServicioMailer extends Servicio<OdmAuth> {
-
   /// Instancia de la clase del odm.
   final OdmAuth authRepository = OdmAuth();
 
@@ -33,7 +32,9 @@ class ServicioMailer extends Servicio<OdmAuth> {
     required String email,
     required int tipoInvitacion,
   }) async {
+    logger.info('se enviara email de invitacion a $email');
     try {
+      logger.finer('completando token');
       final JWT jwt = JWT(
         // ignore: always_specify_types
         {
@@ -45,6 +46,7 @@ class ServicioMailer extends Servicio<OdmAuth> {
         },
         issuer: 'prlab',
       );
+      logger.finer('firmando token');
       final String token = jwt.sign(
         SecretKey(config['jwtSecret']),
       );
@@ -56,20 +58,20 @@ class ServicioMailer extends Servicio<OdmAuth> {
 
       final String cuerpoCompletoEmail =
           plantillasCorreo.mailingGeneral(contenido: cuerpoMensajeEmailHtml);
-
+      logger.finer('enviando email');
       await enviarEmail(
         mailDestinatario: email,
         subject: 'registro',
         mailHtml: cuerpoCompletoEmail,
       );
-
+      logger.finer('guardando token en db');
       await authRepository.guardarTokenEnDb(
         session: session,
         token: token,
         email: email,
         tipoInvitacion: tipoInvitacion,
       );
-
+      logger.fine('email enviado con exito');
       return true;
     } on Exception catch (e) {
       throw Exception('$e');

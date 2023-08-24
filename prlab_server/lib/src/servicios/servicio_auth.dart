@@ -30,7 +30,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
     required Session session,
     required String email,
   }) async {
-    logger.info('getValidationCode');
+    logger.info('se obtendra el codigo de validacion para $email');
     return await performOperation(
       () => odm.getValidationCode(
         session: session,
