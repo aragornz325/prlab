@@ -76,21 +76,40 @@ class PRBoton extends StatelessWidget {
                 )
               : null,
         ),
-        child: Center(
-          child: muestraEstadoDeCarga
-              ? const CircularProgressIndicator()
-              : Text(
-                  texto,
-                  style: TextStyle(
-                    fontSize: 16.pf,
-                    fontWeight: FontWeight.w600,
-                    color: esOutlined
-                        ? estaHabilitado
-                            ? colores.primary
-                            : colores.primaryBajaOpacidad
-                        : colores.background,
+        child: Container(
+          width: width.pw,
+          height: 50.sh,
+          decoration: BoxDecoration(
+            color: esOutlined
+                ? colores.background
+                : estaHabilitado && !muestraEstadoDeCarga
+                    ? colores.primary
+                    : colores.primaryBajaOpacidad,
+            borderRadius: BorderRadius.circular(25),
+            border: esOutlined
+                ? Border.all(
+                    color: estaHabilitado
+                        ? colores.primary
+                        : colores.primaryBajaOpacidad,
+                  )
+                : null,
+          ),
+          child: Center(
+            child: muestraEstadoDeCarga
+                ? const CircularProgressIndicator()
+                : Text(
+                    texto,
+                    style: TextStyle(
+                      fontSize: 16.pf,
+                      fontWeight: FontWeight.w600,
+                      color: esOutlined
+                          ? estaHabilitado
+                              ? colores.primary
+                              : colores.primaryBajaOpacidad
+                          : colores.background,
+                    ),
                   ),
-                ),
+          ),
         ),
       ),
     );
