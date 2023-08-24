@@ -19,7 +19,7 @@ import 'package:prlab_flutter/features/crear_cuenta_admin/pagina_crear_cuenta_ad
     as _i4;
 import 'package:prlab_flutter/features/dashboard/pagina_dashboard.dart' as _i5;
 import 'package:prlab_flutter/features/kyc/pagina_kyc.dart' as _i6;
-import 'package:prlab_flutter/features/redaccion_edicion_contenido/pagina_redaccion_edicion_contenido.dart'
+import 'package:prlab_flutter/features/editor_contenido/pagina_editor_contenido.dart'
     as _i7;
 
 abstract class $AppRouter extends _i8.RootStackRouter {
