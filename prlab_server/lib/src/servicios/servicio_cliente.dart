@@ -1,6 +1,6 @@
 import 'package:prlab_server/src/generated/cliente.dart';
 import 'package:prlab_server/src/generated/informacion_de_contacto.dart';
-import 'package:prlab_server/src/odms/odm_usuario.dart';
+import 'package:prlab_server/src/odms/odm_cliente.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/server.dart';
 

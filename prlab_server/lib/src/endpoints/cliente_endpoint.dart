@@ -1,6 +1,6 @@
 import 'package:prlab_server/src/generated/cliente.dart';
 import 'package:prlab_server/src/generated/informacion_de_contacto.dart';
-import 'package:prlab_server/src/servicios/servicio_usuario.dart';
+import 'package:prlab_server/src/servicios/servicio_cliente.dart';
 import 'package:serverpod/serverpod.dart';
 
 class ClienteEndpoint extends Endpoint {
