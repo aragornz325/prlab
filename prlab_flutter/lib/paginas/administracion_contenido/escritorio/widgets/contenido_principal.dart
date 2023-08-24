@@ -5,6 +5,8 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/paginas/administracion_contenido/escritorio/widgets/widgets.dart';
 
+import '../../../../widgets/widgets.dart';
+
 // TODO(mati): hacer documentacion
 class ContenidoPrincipal extends StatelessWidget {
   // TODO(mati): hacer documentacion
@@ -37,7 +39,23 @@ class ContenidoPrincipal extends StatelessWidget {
                 Divider(color: colores.onSecondary),
                 const TextFieldBusquedaFiltrado(),
                 Divider(color: colores.onSecondary),
-                const ListaArticulos(tieneAutor: true),
+                // const ListaArticulos(tieneAutor: true),
+                Grilla(
+                  listaModelos: [
+                    ModeloLista(
+                      lista: [
+                        PRArticulo(
+                            ultimaFecha: DateTime.now(),
+                            nombre: '',
+                            status: '',
+                            tieneAutor: false),
+                      ],
+                      celda: (_) {
+                        return null;
+                      },
+                    )
+                  ],
+                )
               ],
             ),
           ),
