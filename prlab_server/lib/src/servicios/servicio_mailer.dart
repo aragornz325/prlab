@@ -49,7 +49,7 @@ class ServicioMail {
 
       enviarEmail(
           mailDestinatario: email,
-          subject: "registro",
+          subject: "you have been invited to PRLab",
           mailHtml: cuerpoCompletoEmail);
 
       await authRepository.guardarTokenEnDb(
