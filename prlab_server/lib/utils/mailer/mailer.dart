@@ -30,8 +30,7 @@ Future<Map<String, String>> enviarEmail({
     destinatarios.add(mailDestinatario.trim());
   }
 
-  final SmtpServer smtpServer =
-      gmail('nidus.escuelas@gmail.com', 'zhnseceijaxirwgo');
+  final smtpServer = gmail('notifications.prlab@gmail.com', 'lnkynaoedinivymg');
   //final finalccRecipients = ccRecipient ?? 'nidus.escuelas@gmail.com';
   final Message message = Message()
     ..from = const Address('supportprlab@nidus.dev', 'PRLab')

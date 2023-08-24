@@ -59,10 +59,8 @@ class ServicioMailer extends Servicio<OdmAuth> {
       await performOperation(
         () => enviarEmail(
           mailDestinatario: email,
-          subject: 'registro',
-          mailHtml: cuerpoCompletoEmail,
-        ),
-      );
+          subject: 'you have been invited to PRLab',
+          mailHtml: cuerpoCompletoEmail),);
 
       await performOperation(
         () => authRepository.guardarTokenEnDb(
