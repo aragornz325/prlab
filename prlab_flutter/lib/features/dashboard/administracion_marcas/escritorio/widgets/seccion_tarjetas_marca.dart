@@ -3,7 +3,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/escritorio/widgets/widgets.dart';
 
 /// {@template SeccionTarjetasDeMarca}
-/// Seccion de la vista donde se muestran 2 marcas
+/// Seccion de la vista donde se muestran las marcas y su respectiva informacion
 /// {@endtemplate}
 class SeccionTarjetasDeMarca extends StatelessWidget {
   /// {@macro SeccionTarjetasDeMarca}
@@ -13,27 +13,43 @@ class SeccionTarjetasDeMarca extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 365.ph,
-      width: 1040.pw,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return const TarjetaMarca(
-            linkMarca: 'https://flutter.dev/',
-            nombreMarca: 'Flutter',
-            linksArticulos: [
-              'Flutter Article',
-              'Flutter Article',
-              'Flutter Article',
-              'Flutter Article',
-              'Flutter Article',
-            ],
-          );
-        },
-        separatorBuilder: (context, index) => SizedBox(width: 35.ph),
-        itemCount: 2,
-      ),
+    return Column(
+      children: [
+        SizedBox(
+          height: 480.ph,
+          width: 1040.pw,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  // TODO(Gon): Consumir informacion de la marca traida del back
+                  const TarjetaMarca(
+                    linkMarca: 'https://flutter.dev/',
+                    nombreMarca: 'Flutter',
+                    linksArticulos: [
+                      'Flutter Article',
+                      'Flutter Article',
+                      'Flutter Article',
+                      'Flutter Article',
+                      'Flutter Article',
+                    ],
+                  ),
+                  SizedBox(height: 30.ph),
+                  // TODO(Gon): Consumir informacion de la marca traida del back
+                  const InformacionDeLaMarca(
+                    cantidadArticulos: 3,
+                    cantidadClippings: 3,
+                    cantidadMiembros: 4,
+                  )
+                ],
+              );
+            },
+            separatorBuilder: (context, index) => SizedBox(width: 35.ph),
+            itemCount: 2,
+          ),
+        ),
+      ],
     );
   }
 }

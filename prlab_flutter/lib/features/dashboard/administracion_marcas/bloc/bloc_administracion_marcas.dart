@@ -17,16 +17,16 @@ class BlocAdministracionMarcas extends Bloc<BlocAdministracionMarcasEvento,
   /// {@macro BlocAdministracionMarcas}
   BlocAdministracionMarcas()
       : super(const BlocAdministracionMarcasEstadoInicial()) {
-    on<BlocAdministracionMarcasEventoTraerInfo>(_traerInfo);
+    on<BlocAdministracionMarcasEventoInicializar>(_inicializar);
   }
 
-// TODO(Gon): Documentar
-  Future<void> _traerInfo(
-    BlocAdministracionMarcasEventoTraerInfo event,
+  /// Inicializa la pagina trayendo todo lo necesario para el correcto funcionamineto de la misma
+  Future<void> _inicializar(
+    BlocAdministracionMarcasEventoInicializar event,
     Emitter<BlocAdministracionMarcasEstado> emit,
   ) async {
     emit(
-      BlocAdminstracionMarcasEstadoCargando.desde(state),
+      BlocAdministracionMarcasEstadoCargando.desde(state),
     );
     try {} catch (e, st) {
       if (kDebugMode) {

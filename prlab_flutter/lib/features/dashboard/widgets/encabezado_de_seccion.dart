@@ -10,6 +10,7 @@ class EncabezadoDeSeccion extends StatelessWidget {
   const EncabezadoDeSeccion({
     required this.titulo,
     required this.descripcion,
+    required this.icono,
     super.key,
   });
 
@@ -18,6 +19,8 @@ class EncabezadoDeSeccion extends StatelessWidget {
 
   /// Descripcion del encabezado
   final String descripcion;
+
+  final IconData icono;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class EncabezadoDeSeccion extends StatelessWidget {
         Row(
           children: [
             Icon(
-              Icons.beenhere_outlined,
+              icono,
               size: 40.pf,
               color: colores.primary,
             ),

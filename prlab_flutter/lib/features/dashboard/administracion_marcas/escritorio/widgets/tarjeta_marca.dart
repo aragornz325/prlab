@@ -34,7 +34,7 @@ class TarjetaMarca extends StatelessWidget {
 
     return Container(
       width: 485.pw,
-      height: 398.ph,
+      height: 370.ph,
       color: colores.onPrimary,
       child: Column(
         children: [
@@ -104,7 +104,9 @@ class TarjetaMarca extends StatelessWidget {
                 Row(
                   children: [
                     PRBoton.esOutlined(
-                      onTap: () {},
+                      onTap: () {
+                        // TODO(Gon): Agregar funcion 'lista' o popup de feature in progress
+                      },
                       texto: l10n.commonList,
                       estaHabilitado: true,
                       width: 100.pw,
@@ -112,7 +114,9 @@ class TarjetaMarca extends StatelessWidget {
                     ),
                     SizedBox(width: 20.pw),
                     PRBoton(
-                      onTap: () {},
+                      onTap: () {
+                        // TODO(Gon): Agregar funcion 'crear' o popup de feature in progress
+                      },
                       texto: l10n.commonCreate,
                       estaHabilitado: true,
                       width: 100.pw,
@@ -130,7 +134,7 @@ class TarjetaMarca extends StatelessWidget {
             color: Colors.grey,
           ),
           Container(
-            height: 203.ph,
+            height: 205.ph,
             padding: EdgeInsets.symmetric(
               vertical: 20.ph,
               horizontal: 20.pw,

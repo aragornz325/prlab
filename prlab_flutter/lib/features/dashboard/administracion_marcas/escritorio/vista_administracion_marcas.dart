@@ -37,13 +37,12 @@ class VistaEscritorioAdministracionMarcas extends StatelessWidget {
               ),
               SizedBox(height: 40.pw),
               EncabezadoDeSeccion(
+                icono: Icons.beenhere_outlined,
                 titulo: l10n.pageBrandAdministrationTitle,
                 descripcion: l10n.pageBrandAdministrationDescription,
               ),
               SizedBox(height: 20.pw),
               const SeccionTarjetasDeMarca(),
-              SizedBox(height: 30.pw),
-              const SeccionTarjetasDeInformacionDeMarcas(),
               SizedBox(
                 width: 1040.pw,
                 height: 85.ph,

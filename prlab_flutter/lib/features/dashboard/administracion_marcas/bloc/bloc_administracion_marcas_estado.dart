@@ -34,14 +34,14 @@ class BlocAdministracionMarcasEstadoInicial
   const BlocAdministracionMarcasEstadoInicial() : super._();
 }
 
-/// {@template BlocAdminstracionMarcasEstadoCargando}
+/// {@template BlocAdministracionMarcasEstadoCargando}
 /// Estado de cargando de los componentes de la pantalla administracion
 /// de marcas
 /// {@endtemplate}
-class BlocAdminstracionMarcasEstadoCargando
+class BlocAdministracionMarcasEstadoCargando
     extends BlocAdministracionMarcasEstado {
-  /// {@macro BlocAdminstracionMarcasEstadoCargando}
-  BlocAdminstracionMarcasEstadoCargando.desde(
+  /// {@macro BlocAdministracionMarcasEstadoCargando}
+  BlocAdministracionMarcasEstadoCargando.desde(
     super.otro,
   ) : super.desde();
 }

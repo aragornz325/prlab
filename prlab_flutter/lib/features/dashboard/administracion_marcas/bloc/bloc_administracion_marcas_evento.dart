@@ -17,5 +17,5 @@ abstract class BlocAdministracionMarcasEvento extends Equatable {
 
 /// Trae informacion del usuario
 /// {@endtemplate}
-class BlocAdministracionMarcasEventoTraerInfo
+class BlocAdministracionMarcasEventoInicializar
     extends BlocAdministracionMarcasEvento {}

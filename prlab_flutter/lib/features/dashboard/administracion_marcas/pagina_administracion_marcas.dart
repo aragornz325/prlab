@@ -17,12 +17,8 @@ class PaginaAdministracionMarcas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => BlocAdministracionMarcas(),
-        ),
-      ],
+    return BlocProvider(
+      create: (context) => BlocAdministracionMarcas(),
       child: const FullResponsiveScreen(
         mobile: VistaCelularAdministracionMarcas(),
         desktop: VistaEscritorioAdministracionMarcas(),
