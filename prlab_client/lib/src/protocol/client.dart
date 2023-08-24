@@ -8,8 +8,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
-import 'package:prlab_client/src/modelos/mensaje_registro/mensaje_registro.dart'
-    as _i3;
+import 'package:prlab_client/src/protocol/mensaje_registro.dart' as _i3;
 import 'package:serverpod_auth_client/module.dart' as _i4;
 import 'dart:io' as _i5;
 import 'protocol.dart' as _i6;

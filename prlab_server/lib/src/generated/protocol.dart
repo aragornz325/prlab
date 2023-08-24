@@ -22,7 +22,6 @@ import 'organizacion.dart' as _i12;
 import 'proyecto.dart' as _i13;
 import 'publicacion.dart' as _i14;
 import 'tipo_de_organizacion.dart' as _i15;
-import 'package:prlab_client/prlab_client.dart' as _i16;
 export 'articulo.dart';
 export 'cliente.dart';
 export 'comentario.dart';
@@ -954,50 +953,6 @@ class Protocol extends _i1.SerializationManagerServer {
           ? _i15.TipoDeOrganizacion.fromJson(data, this)
           : null) as T;
     }
-    if (t == _i16.Cliente) {
-      return _i16.Cliente.fromJson(data, this) as T;
-    }
-    if (t == _i16.Comentario) {
-      return _i16.Comentario.fromJson(data, this) as T;
-    }
-    if (t == _i16.Contacto) {
-      return _i16.Contacto.fromJson(data, this) as T;
-    }
-    if (t == _i16.MensajeRegistro) {
-      return _i16.MensajeRegistro.fromJson(data, this) as T;
-    }
-    if (t == _i16.Organizacion) {
-      return _i16.Organizacion.fromJson(data, this) as T;
-    }
-    if (t == _i16.Proyecto) {
-      return _i16.Proyecto.fromJson(data, this) as T;
-    }
-    if (t == _i16.Publicacion) {
-      return _i16.Publicacion.fromJson(data, this) as T;
-    }
-    if (t == _i1.getType<_i16.Cliente?>()) {
-      return (data != null ? _i16.Cliente.fromJson(data, this) : null) as T;
-    }
-    if (t == _i1.getType<_i16.Comentario?>()) {
-      return (data != null ? _i16.Comentario.fromJson(data, this) : null) as T;
-    }
-    if (t == _i1.getType<_i16.Contacto?>()) {
-      return (data != null ? _i16.Contacto.fromJson(data, this) : null) as T;
-    }
-    if (t == _i1.getType<_i16.MensajeRegistro?>()) {
-      return (data != null ? _i16.MensajeRegistro.fromJson(data, this) : null)
-          as T;
-    }
-    if (t == _i1.getType<_i16.Organizacion?>()) {
-      return (data != null ? _i16.Organizacion.fromJson(data, this) : null)
-          as T;
-    }
-    if (t == _i1.getType<_i16.Proyecto?>()) {
-      return (data != null ? _i16.Proyecto.fromJson(data, this) : null) as T;
-    }
-    if (t == _i1.getType<_i16.Publicacion?>()) {
-      return (data != null ? _i16.Publicacion.fromJson(data, this) : null) as T;
-    }
     try {
       return _i3.Protocol().deserialize<T>(data, t);
     } catch (_) {}
@@ -1013,27 +968,6 @@ class Protocol extends _i1.SerializationManagerServer {
     className = _i3.Protocol().getClassNameForObject(data);
     if (className != null) {
       return 'serverpod_auth.$className';
-    }
-    if (data is _i16.Cliente) {
-      return 'Cliente';
-    }
-    if (data is _i16.Comentario) {
-      return 'Comentario';
-    }
-    if (data is _i16.Contacto) {
-      return 'Contacto';
-    }
-    if (data is _i16.MensajeRegistro) {
-      return 'MensajeRegistro';
-    }
-    if (data is _i16.Organizacion) {
-      return 'Organizacion';
-    }
-    if (data is _i16.Proyecto) {
-      return 'Proyecto';
-    }
-    if (data is _i16.Publicacion) {
-      return 'Publicacion';
     }
     if (data is _i4.Articulo) {
       return 'Articulo';
@@ -1079,27 +1013,6 @@ class Protocol extends _i1.SerializationManagerServer {
     if (data['className'].startsWith('serverpod_auth.')) {
       data['className'] = data['className'].substring(15);
       return _i3.Protocol().deserializeByClassName(data);
-    }
-    if (data['className'] == 'Cliente') {
-      return deserialize<_i16.Cliente>(data['data']);
-    }
-    if (data['className'] == 'Comentario') {
-      return deserialize<_i16.Comentario>(data['data']);
-    }
-    if (data['className'] == 'Contacto') {
-      return deserialize<_i16.Contacto>(data['data']);
-    }
-    if (data['className'] == 'MensajeRegistro') {
-      return deserialize<_i16.MensajeRegistro>(data['data']);
-    }
-    if (data['className'] == 'Organizacion') {
-      return deserialize<_i16.Organizacion>(data['data']);
-    }
-    if (data['className'] == 'Proyecto') {
-      return deserialize<_i16.Proyecto>(data['data']);
-    }
-    if (data['className'] == 'Publicacion') {
-      return deserialize<_i16.Publicacion>(data['data']);
     }
     if (data['className'] == 'Articulo') {
       return deserialize<_i4.Articulo>(data['data']);

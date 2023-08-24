@@ -20,8 +20,7 @@ import 'organizacion.dart' as _i10;
 import 'proyecto.dart' as _i11;
 import 'publicacion.dart' as _i12;
 import 'tipo_de_organizacion.dart' as _i13;
-import 'package:prlab_client/prlab_client.dart' as _i14;
-import 'package:serverpod_auth_client/module.dart' as _i15;
+import 'package:serverpod_auth_client/module.dart' as _i14;
 export 'articulo.dart';
 export 'cliente.dart';
 export 'comentario.dart';
@@ -133,52 +132,8 @@ class Protocol extends _i1.SerializationManager {
           ? _i13.TipoDeOrganizacion.fromJson(data, this)
           : null) as T;
     }
-    if (t == _i14.Cliente) {
-      return _i14.Cliente.fromJson(data, this) as T;
-    }
-    if (t == _i14.Comentario) {
-      return _i14.Comentario.fromJson(data, this) as T;
-    }
-    if (t == _i14.Contacto) {
-      return _i14.Contacto.fromJson(data, this) as T;
-    }
-    if (t == _i14.MensajeRegistro) {
-      return _i14.MensajeRegistro.fromJson(data, this) as T;
-    }
-    if (t == _i14.Organizacion) {
-      return _i14.Organizacion.fromJson(data, this) as T;
-    }
-    if (t == _i14.Proyecto) {
-      return _i14.Proyecto.fromJson(data, this) as T;
-    }
-    if (t == _i14.Publicacion) {
-      return _i14.Publicacion.fromJson(data, this) as T;
-    }
-    if (t == _i1.getType<_i14.Cliente?>()) {
-      return (data != null ? _i14.Cliente.fromJson(data, this) : null) as T;
-    }
-    if (t == _i1.getType<_i14.Comentario?>()) {
-      return (data != null ? _i14.Comentario.fromJson(data, this) : null) as T;
-    }
-    if (t == _i1.getType<_i14.Contacto?>()) {
-      return (data != null ? _i14.Contacto.fromJson(data, this) : null) as T;
-    }
-    if (t == _i1.getType<_i14.MensajeRegistro?>()) {
-      return (data != null ? _i14.MensajeRegistro.fromJson(data, this) : null)
-          as T;
-    }
-    if (t == _i1.getType<_i14.Organizacion?>()) {
-      return (data != null ? _i14.Organizacion.fromJson(data, this) : null)
-          as T;
-    }
-    if (t == _i1.getType<_i14.Proyecto?>()) {
-      return (data != null ? _i14.Proyecto.fromJson(data, this) : null) as T;
-    }
-    if (t == _i1.getType<_i14.Publicacion?>()) {
-      return (data != null ? _i14.Publicacion.fromJson(data, this) : null) as T;
-    }
     try {
-      return _i15.Protocol().deserialize<T>(data, t);
+      return _i14.Protocol().deserialize<T>(data, t);
     } catch (_) {}
     return super.deserialize<T>(data, t);
   }
@@ -186,30 +141,9 @@ class Protocol extends _i1.SerializationManager {
   @override
   String? getClassNameForObject(Object data) {
     String? className;
-    className = _i15.Protocol().getClassNameForObject(data);
+    className = _i14.Protocol().getClassNameForObject(data);
     if (className != null) {
       return 'serverpod_auth.$className';
-    }
-    if (data is _i14.Cliente) {
-      return 'Cliente';
-    }
-    if (data is _i14.Comentario) {
-      return 'Comentario';
-    }
-    if (data is _i14.Contacto) {
-      return 'Contacto';
-    }
-    if (data is _i14.MensajeRegistro) {
-      return 'MensajeRegistro';
-    }
-    if (data is _i14.Organizacion) {
-      return 'Organizacion';
-    }
-    if (data is _i14.Proyecto) {
-      return 'Proyecto';
-    }
-    if (data is _i14.Publicacion) {
-      return 'Publicacion';
     }
     if (data is _i2.Articulo) {
       return 'Articulo';
@@ -254,28 +188,7 @@ class Protocol extends _i1.SerializationManager {
   dynamic deserializeByClassName(Map<String, dynamic> data) {
     if (data['className'].startsWith('serverpod_auth.')) {
       data['className'] = data['className'].substring(15);
-      return _i15.Protocol().deserializeByClassName(data);
-    }
-    if (data['className'] == 'Cliente') {
-      return deserialize<_i14.Cliente>(data['data']);
-    }
-    if (data['className'] == 'Comentario') {
-      return deserialize<_i14.Comentario>(data['data']);
-    }
-    if (data['className'] == 'Contacto') {
-      return deserialize<_i14.Contacto>(data['data']);
-    }
-    if (data['className'] == 'MensajeRegistro') {
-      return deserialize<_i14.MensajeRegistro>(data['data']);
-    }
-    if (data['className'] == 'Organizacion') {
-      return deserialize<_i14.Organizacion>(data['data']);
-    }
-    if (data['className'] == 'Proyecto') {
-      return deserialize<_i14.Proyecto>(data['data']);
-    }
-    if (data['className'] == 'Publicacion') {
-      return deserialize<_i14.Publicacion>(data['data']);
+      return _i14.Protocol().deserializeByClassName(data);
     }
     if (data['className'] == 'Articulo') {
       return deserialize<_i2.Articulo>(data['data']);

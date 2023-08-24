@@ -10,8 +10,7 @@ import 'package:serverpod/serverpod.dart' as _i1;
 import '../endpoints/auth_endpoint.dart' as _i2;
 import '../endpoints/example_endpoint.dart' as _i3;
 import '../endpoints/mail_endpoint.dart' as _i4;
-import 'package:prlab_client/src/modelos/mensaje_registro/mensaje_registro.dart'
-    as _i5;
+import 'package:prlab_client/src/protocol/mensaje_registro.dart' as _i5;
 import 'package:serverpod_auth_server/module.dart' as _i6;
 
 class Endpoints extends _i1.EndpointDispatch {
