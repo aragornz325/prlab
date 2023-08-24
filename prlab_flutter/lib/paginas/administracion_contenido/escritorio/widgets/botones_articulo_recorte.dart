@@ -3,15 +3,18 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 
 // TODO(mati): hacer documentacion
-class ButtonsArticlesClippings extends StatelessWidget {
+class BotonesArticulosYRecorte extends StatelessWidget {
 // TODO(mati): hacer documentacion
-  const ButtonsArticlesClippings({super.key});
+  const BotonesArticulosYRecorte({super.key});
 
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
+    final l10n = context.l10n;
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -21,7 +24,9 @@ class ButtonsArticlesClippings extends StatelessWidget {
       child: Row(
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              // TODO(anyone): agregarle funcionalidad
+            },
             child: Row(
               children: [
                 Icon(
@@ -31,8 +36,7 @@ class ButtonsArticlesClippings extends StatelessWidget {
                 ),
                 SizedBox(width: 5.pw),
                 Text(
-                  // TODO(mati) hacer l10n
-                  'Articles',
+                  l10n.commonArticle,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 14.pf,
@@ -44,7 +48,9 @@ class ButtonsArticlesClippings extends StatelessWidget {
           ),
           SizedBox(width: 40.pw),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              // TODO(anyone): agregarle funcionalidad
+            },
             child: Row(
               children: [
                 Icon(
@@ -54,8 +60,7 @@ class ButtonsArticlesClippings extends StatelessWidget {
                 ),
                 SizedBox(width: 5.pw),
                 Text(
-                  // TODO(mati) hacer l10n
-                  'Clippings',
+                  l10n.pageContentAdministrationButtonNavegationClippings,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 14.pf,

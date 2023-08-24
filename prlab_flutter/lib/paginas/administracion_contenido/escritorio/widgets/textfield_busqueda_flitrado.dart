@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 
 // TODO(mati): hacer documentacion
 class TextFieldBusquedaFiltrado extends StatelessWidget {
@@ -12,6 +13,8 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
+    final l10n = context.l10n;
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: max(20.ph, 20.sh)),
@@ -35,10 +38,8 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
                 decoration: InputDecoration(
-                  // TODO(mati): hacer l10n
-                  hintText: 'Search',
+                  hintText: l10n.commonSearch,
                   border: InputBorder.none,
-
                   prefixIcon: Icon(
                     Icons.manage_search,
                     color: colores.secondary,
@@ -67,8 +68,7 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
                 ),
                 SizedBox(width: 10.pw),
                 Text(
-                  // TODO(mati): hacer l10n
-                  'All',
+                  l10n.commonAll,
                   style: TextStyle(
                     color: colores.secondary,
                     fontSize: 15.pf,

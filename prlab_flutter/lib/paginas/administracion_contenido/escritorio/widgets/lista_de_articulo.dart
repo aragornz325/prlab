@@ -3,17 +3,24 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/administracion_contenido/escritorio/widgets/widgets.dart';
 
 // TODO(mati): hacer documentacion
-class ListaDeArticulos extends StatelessWidget {
+class ListaArticulos extends StatelessWidget {
 // TODO(mati): hacer documentacion
-  const ListaDeArticulos({super.key});
-  final bool tieneAutor = false;
+  const ListaArticulos({
+    super.key,
+    required this.tieneAutor,
+  });
+  final bool tieneAutor;
+  // TODO(anyone): pasarle la lista de el modelo del Articulo
 
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
+    final l10n = context.l10n;
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -26,10 +33,9 @@ class ListaDeArticulos extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: 500.pw,
+                width: tieneAutor ? 400.pw : 500.pw,
                 child: Text(
-                  // TODO(mati): hacer l10n
-                  'Articles',
+                  l10n.commonArticle,
                   style: TextStyle(
                     color: colores.primary,
                     fontSize: 16.pf,
@@ -38,7 +44,7 @@ class ListaDeArticulos extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: tieneAutor ? 350.pw : 300.pw,
+                width: tieneAutor ? 400.pw : 300.pw,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -52,8 +58,7 @@ class ListaDeArticulos extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          // TODO(mati): hacer l10n
-                          'Status',
+                          l10n.pageContentAdministrationBarInformationStatus,
                           style: TextStyle(
                             color: colores.primary,
                             fontSize: 16.pf,
@@ -63,30 +68,27 @@ class ListaDeArticulos extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      // TODO(mati): hacer l10n
-                      'Last update',
+                      l10n.pageContentAdministrationBarInformationLastUpdate,
                       style: TextStyle(
                         color: colores.primary,
                         fontSize: 16.pf,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    // TODO(mati): sacar si no es mi articulo
                     ...[
                       if (tieneAutor)
                         SizedBox(
-                          width: 70.pw,
+                          width: 100.pw,
                           child: Text(
-                            // TODO(mati): hacer l10n
-                            'Author',
-                            textAlign: TextAlign.center,
+                            l10n.pageContentAdministrationBarInformationAuthor,
+                            textAlign: TextAlign.right,
                             style: TextStyle(
                               color: colores.primary,
                               fontSize: 16.pf,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                        )
+                        ),
                     ]
                   ],
                 ),
@@ -96,11 +98,13 @@ class ListaDeArticulos extends StatelessWidget {
           ),
           Container(
             width: 1000.pw,
-            height: max(200.ph, 200.sh),
-            padding: EdgeInsets.symmetric(vertical: max(10.ph, 10.sh)),
+            height: max(250.ph, 250.sh),
+            padding: EdgeInsets.only(top: max(10.ph, 10.sh)),
             child: ListView.builder(
+              // TODO(anyone): pasarle el tamaño de la lista de los artculos
               itemCount: 10,
               itemBuilder: (context, index) => PRArticulo(
+                // TODO(anyone): remplazar por cada una de las propiedades del articulo
                 nombre: 'Flutter article',
                 status: 'Feedback',
                 ultimaFecha: DateTime.now(),

@@ -15,37 +15,27 @@ class VistaEscritorioAdministracionContenido extends StatelessWidget {
     final colores = context.colores;
 
     return Scaffold(
+      backgroundColor: colores.background,
       body: SingleChildScrollView(
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: max(560.ph, 560.sh),
-              width: 1000.pw,
-              // TODO(mati): cambiar el color
-              color: colores.onPrimary,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const TituloButtonCreateArticle(),
-                    const DescripcionArticle(),
-                    const ButtonsArticlesClippings(),
-                    Divider(color: colores.onSecondary),
-                    const TextFieldBusquedaFiltrado(),
-                    Divider(color: colores.onSecondary),
-                    CualquierPagina(
-                      arts: [
-                        PRArticulo(
-                          ultimaFecha: DateTime.now(),
-                          nombre: 'hola',
-                          status: 'draft',
-                          tieneAutor: true,
-                        ),
-                      ],
-                    ),
-                  ],
+            // TODO(anyone): cambiar por el drawer
+            SizedBox(width: 210.pw, height: 100.hp),
+            SizedBox(width: 30.pw, height: 100.hp),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // TODO(anyone): cambiar por el appbar
+                SizedBox(height: max(100.ph, 100.sh), width: 1000.pw),
+                const ContenidoPrincipal(
+                  descripcionArticulo:
+                      'Lorem ipsum dolor sit amet consectetur. Mattis'
+                      ' dolor sapien pulvinar sed.',
                 ),
-              ),
+                // TODO(anyone): cambiar por el banner de abajo
+                SizedBox(height: max(90.ph, 90.sh), width: 1000.pw),
+              ],
             ),
           ],
         ),
@@ -54,6 +44,8 @@ class VistaEscritorioAdministracionContenido extends StatelessWidget {
   }
 }
 
+// TODO(anyone): hablar con louka/andre si se va a utilizar este codigo
+/*
 class Lista<T> extends StatelessWidget {
   const Lista({
     required this.listita,
@@ -139,3 +131,4 @@ class CualquierPagina extends StatelessWidget {
     );
   }
 }
+*/
