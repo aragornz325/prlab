@@ -39,7 +39,7 @@ class AppRouter extends $AppRouter {
     ),
     AutoRoute(
       page: RutaRedaccionEdicionContenido.page,
-      path: '/content-writing-and-rediting', // TODO(SAM): Checkear naming
+      path: '/edit-content', // TODO(SAM): Checkear naming
     ),
   ];
 }

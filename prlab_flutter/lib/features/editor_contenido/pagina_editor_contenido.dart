@@ -13,24 +13,17 @@ import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart'
 /// el manejo de estado y setea las vistas.
 /// {@endtemplate}
 @RoutePage()
-class PaginaRedaccionEdicionContenido extends StatefulWidget {
+class PaginaRedaccionEdicionContenido extends StatelessWidget {
   /// {@macro PaginaRedaccionEdicionContenido}
   const PaginaRedaccionEdicionContenido({super.key});
 
   @override
-  State<PaginaRedaccionEdicionContenido> createState() =>
-      PaginaRedaccionEdicionContenidoState();
-}
-
-class PaginaRedaccionEdicionContenidoState
-    extends State<PaginaRedaccionEdicionContenido> {
-  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => BlocEditorContenido(),
-      child: const FullResponsiveScreen(
-        mobile: VistaRedaccionEdicionContenidoCelular(),
-        desktop: VistaRedaccionEdicionContenidoEscritorio(),
+      child: FullResponsiveScreen(
+        mobile: VistaEditorContenidoCelular(),
+        desktop: VistaEditorContenidoEscritorio(),
       ),
     );
   }

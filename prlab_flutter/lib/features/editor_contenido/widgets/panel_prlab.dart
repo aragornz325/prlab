@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 
+/// TODO(SAM): Reemplazarlo por el de Gon o el que haga Manu
 class PanelPRLab extends StatelessWidget {
   const PanelPRLab({super.key});
 
