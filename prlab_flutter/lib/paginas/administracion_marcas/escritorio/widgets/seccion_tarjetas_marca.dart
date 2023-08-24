@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/paginas/administracion_marcas/escritorio/widgets/tarjeta_marca.dart';
 
-// TODO(Gon): Documentar
+/// {@template SeccionTarjetasDeMarca}
+/// Seccion de la vista donde se muestran 2 marcas
+/// {@endtemplate}
 class SeccionTarjetasDeMarca extends StatelessWidget {
-// TODO(Gon): Documentar
+  /// {@macro SeccionTarjetasDeMarca}
   const SeccionTarjetasDeMarca({
     super.key,
   });

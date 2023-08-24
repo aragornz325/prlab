@@ -6,10 +6,13 @@ import 'package:prlab_flutter/paginas/administracion_marcas/celular/vista_admini
 import 'package:prlab_flutter/paginas/administracion_marcas/escritorio/vista_administracion_marcas.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
 
-// TODO(Gon): Documentar
+/// {@template VistaEscritorioAdministracionMarcas}
+/// Pagina de administracion de marcas donde el usuario puede ver sus marcas e
+/// informacion de las mismas
+/// {@endtemplate}
 @RoutePage()
 class PaginaAdministracionMarcas extends StatelessWidget {
-// TODO(Gon): Documentar
+  /// {@macro PaginaAdministracionMarcas}
   const PaginaAdministracionMarcas({super.key});
 
   @override

@@ -12,7 +12,8 @@ abstract class BlocAdministracionMarcasEvento extends Equatable {
 }
 
 /// {@template BlocAdministracionMarcasEventoTraerInfo}
-// TODO(Gon): Ver que informacion es necesario para mejorar naming, documentar, etc
+// TODO(Gon): Ver que informacion es necesario para mejorar naming,
+// documentar, etc
 
 /// Trae informacion del usuario
 /// {@endtemplate}

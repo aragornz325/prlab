@@ -5,18 +5,25 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// TODO(Gon): Documentar
+/// {@template TarjetaMarca}
+/// Tarjeta de la marca donde se muestran la informacion de la misma
+/// {@endtemplate}
 class TarjetaMarca extends StatelessWidget {
-// TODO(Gon): Documentar
+  /// {@macro TarjetaMarca}
   const TarjetaMarca({
     required this.linkMarca,
     required this.nombreMarca,
     required this.linksArticulos,
     super.key,
   });
-// TODO(Gon): Documentar
+
+  /// Link a la web de la marca
   final String linkMarca;
+
+  /// Nombre de la marca
   final String nombreMarca;
+
+  /// Links a los articulos de la marca
   final List<String> linksArticulos;
 
   @override
@@ -74,7 +81,7 @@ class TarjetaMarca extends StatelessWidget {
           const Divider(
             thickness: .2,
             height: 1,
-            //TODO(Gon): Agregar al theme
+            // TODO(Gon): Agregar al theme
             color: Colors.grey,
           ),
           Container(
@@ -119,7 +126,7 @@ class TarjetaMarca extends StatelessWidget {
           const Divider(
             thickness: .2,
             height: 1,
-            //TODO(Gon): Agregar al theme
+            // TODO(Gon): Agregar al theme
             color: Colors.grey,
           ),
           Container(
@@ -161,7 +168,7 @@ class TarjetaMarca extends StatelessWidget {
                                 width: 10.pw,
                                 height: 10.ph,
                                 decoration: const BoxDecoration(
-                                  //TODO(Gon): Agregar al theme
+                                  // TODO(Gon): Agregar al theme
                                   color: Colors.grey,
                                   shape: BoxShape.circle,
                                 ),

@@ -1,23 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/administracion_marcas/escritorio/widgets/bloque_de_informacion.dart';
 
-// TODO(Gon): Documentar
+/// {@template InformacionDeLaMarca}
+/// Seccion de los 3 bloques de informacion de la marca
+/// {@endtemplate}
 class InformacionDeLaMarca extends StatelessWidget {
-// TODO(Gon): Documentar
+  /// {@macro InformacionDeLaMarca}
   const InformacionDeLaMarca({
     required this.cantidadArticulos,
     required this.cantidadClippings,
     required this.cantidadMiembros,
     super.key,
   });
-// TODO(Gon): Documentar
+
+  /// Cantidad de articulos de la marca
   final int cantidadArticulos;
+
+  /// Cantidad de clippings de la marca
   final int cantidadClippings;
+
+  /// Cantidad de miembros de la marca
   final int cantidadMiembros;
+
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     final colores = context.colores;
 
     return Container(
@@ -27,14 +38,13 @@ class InformacionDeLaMarca extends StatelessWidget {
       child: Row(
         children: [
           BloqueDeInformacionDeMarca(
-            cantidadArticulos: cantidadArticulos,
             icono: Icons.donut_small_outlined,
-            informacion: Column(
+            cuerpo: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Articles',
+                  l10n.commonArticles,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 10.pf,
@@ -53,15 +63,14 @@ class InformacionDeLaMarca extends StatelessWidget {
             ),
           ),
           BloqueDeInformacionDeMarca(
-            cantidadArticulos: cantidadClippings,
             tieneBordes: true,
             icono: Icons.image_outlined,
-            informacion: Column(
+            cuerpo: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Clippings',
+                  l10n.commonClippings,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 10.pf,
@@ -80,10 +89,8 @@ class InformacionDeLaMarca extends StatelessWidget {
             ),
           ),
           BloqueDeInformacionDeMarca(
-            cantidadArticulos: cantidadClippings,
-            tieneBordes: true,
             icono: Icons.group,
-            informacion: SizedBox(
+            cuerpo: SizedBox(
               height: 30.ph,
               width: 70.pw,
               child: ListView.builder(
@@ -98,7 +105,7 @@ class InformacionDeLaMarca extends StatelessWidget {
                       width: 33.pw,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white),
+                        border: Border.all(color: colores.onPrimary),
                         color: colores.onSecondary,
                       ),
                     ),

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/paginas/administracion_marcas/escritorio/widgets/informacion_de_la_marca.dart';
 
-// TODO(Gon): Documentar
+/// {@template SeccionTarjetasDeInformacionDeMarcas}
+/// Seccion de la vista donde se muestran 2 tarjetas de informacion de marcas
+/// {@endtemplate}
 class SeccionTarjetasDeInformacionDeMarcas extends StatelessWidget {
-// TODO(Gon): Documentar
+  /// {@macro SeccionTarjetasDeInformacionDeMarcas}
   const SeccionTarjetasDeInformacionDeMarcas({
     super.key,
   });

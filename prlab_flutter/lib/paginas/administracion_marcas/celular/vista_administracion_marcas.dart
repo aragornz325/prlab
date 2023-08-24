@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-// TODO(Gon): Documentar
+/// {@template VistaCelularAdministracionMarcas}
+/// Vista del dashboard en la seccion de administracion de marcas
+/// {@endtemplate}
 class VistaCelularAdministracionMarcas extends StatelessWidget {
-// TODO(Gon): Documentar
+  /// {@macro VistaCelularAdministracionMarcas}
   const VistaCelularAdministracionMarcas({super.key});
 
   @override

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/paginas/administracion_marcas/escritorio/widgets/header_de_seccion.dart';
-import 'package:prlab_flutter/paginas/administracion_marcas/escritorio/widgets/seccion_tarjetas_informacion_marcas.dart';
+import 'package:prlab_flutter/paginas/administracion_marcas/escritorio/widgets/seccion_informacion_marcas.dart';
 import 'package:prlab_flutter/paginas/administracion_marcas/escritorio/widgets/seccion_tarjetas_marca.dart';
 
-// TODO(Gon): Documentar
+/// {@template VistaEscritorioAdministracionMarcas}
+/// Vista del dashboard en la seccion de administracion de marcas
+/// {@endtemplate}
 class VistaEscritorioAdministracionMarcas extends StatelessWidget {
-// TODO(Gon): Documentar
+  /// {@macro VistaEscritorioAdministracionMarcas}
   const VistaEscritorioAdministracionMarcas({super.key});
 
   @override

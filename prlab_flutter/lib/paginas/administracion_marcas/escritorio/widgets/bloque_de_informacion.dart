@@ -2,22 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 
-// TODO(Gon): Documentar
+/// {@template BloqueDeInformacionDeMarca}
+/// Bloque donde se muestra una categoria y cantidad de
+/// elementos de esa categoria
+/// {@endtemplate}
 class BloqueDeInformacionDeMarca extends StatelessWidget {
-// TODO(Gon): Documentar
+  /// {@macro BloqueDeInformacionDeMarca}
   const BloqueDeInformacionDeMarca({
-    required this.cantidadArticulos,
     required this.icono,
-    required this.informacion,
+    required this.cuerpo,
     this.tieneBordes = false,
     super.key,
   });
 
-// TODO(Gon): Documentar
-  final int cantidadArticulos;
-  final bool tieneBordes;
+  /// Icono del bloque
   final IconData icono;
-  final Widget informacion;
+
+  /// Se usa para ponerle bordes a la izquierda y derecha del bloque
+  final bool tieneBordes;
+
+  /// Widget con la informacion del bloque
+  final Widget cuerpo;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +49,7 @@ class BloqueDeInformacionDeMarca extends StatelessWidget {
               color: colores.secondary,
             ),
             SizedBox(width: 5.pw),
-            informacion,
+            cuerpo,
           ],
         ),
       ),

@@ -337,5 +337,15 @@
     "commonCreate" : "Crear",
     "@commonCreate": {
         "description": "Text on a button that creates something"
+    },
+
+    "commonArticles" : "Articulos",
+    "@commonArticles": {
+        "description": "A piece of writing on a brand"
+    },
+
+    "commonClippings" : "Recortes",
+    "@commonClippings": {
+        "description": "An article cut"
     }
 }

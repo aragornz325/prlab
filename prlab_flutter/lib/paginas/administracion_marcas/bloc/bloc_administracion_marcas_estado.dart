@@ -72,7 +72,8 @@ class BlocAdministracionMarcasEstadoError
   final MensajesDeErrorDeAdministracionMarcas mensajeDeError;
 }
 
-// TODO(Gon): Verificar si es necesario y que excepciones pueden llegar a ocurrir
+// TODO(Gon): Verificar si es necesario y que excepciones pueden llegar a ocurri
+
 /// Tipos de errores de  administracion de marcas a mostrar
 enum MensajesDeErrorDeAdministracionMarcas {
   userNotFound,

@@ -237,9 +237,19 @@
         "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
     },
 
-     "pageBrandAdministrationRecentlyModifiedText" : "Recently modified",
+    "pageBrandAdministrationRecentlyModifiedText" : "Recently modified",
     "@pageBrandAdministrationRecentlyModifiedText": {
         "description":"Section Header of the recently modified articles"
+    },
+
+    "pageBrandAdministrationTitle" : "Your Brands",
+    "@pageBrandAdministrationTitle": {
+        "description":"Section Title"
+    },
+
+    "pageBrandAdministrationSubtitle" : "View all the articles of this brand, its members and their statistics.",
+    "@pageBrandAdministrationSubtitle": {
+        "description":"Section subtitle"
     },
 
     "commonPRLab": "PR lab",
@@ -335,6 +345,16 @@
     "commonCreate" : "Create",
     "@commonCreate": {
         "description": "Text on a button that creates something"
+    },
+
+    "commonArticles" : "Articles",
+    "@commonArticles": {
+        "description": "A piece of writing on a brand"
+    },
+
+    "commonClippings" : "Clippings",
+    "@commonClippings": {
+        "description": "An article cut"
     }
 
 }
