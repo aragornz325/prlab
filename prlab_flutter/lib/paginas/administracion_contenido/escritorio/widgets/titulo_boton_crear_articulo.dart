@@ -79,7 +79,7 @@ class PopUpMenuCrearArticulo extends StatelessWidget {
           height: max(40.ph, 40.sh),
           child: Text(
             // TODO(mati): hacer l10n
-            'A Single article',
+            'A single article',
             style: TextStyle(
               fontSize: 14.pf,
               color: colores.tertiary,
