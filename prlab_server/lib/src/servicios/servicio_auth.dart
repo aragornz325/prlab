@@ -2,6 +2,7 @@
 // ignore_for_file: unnecessary_await_in_return, avoid_dynamic_calls, overridden_fields
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_server/src/odms/odm_auth.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/serverpod.dart';
@@ -60,8 +61,9 @@ class ServicioAuth extends Servicio<OdmAuth> {
     try {
       final JWT tokenAbierto = JWT.decode(token);
       final String emailToken = tokenAbierto.payload['email'];
-      final String tokenDb =
-          await odm.traerTokenPorEmail(session: session, email: emailToken);
+      final String tokenDb = await performOperation(
+        () => odm.traerTokenPorEmail(session: session, email: emailToken),
+      );
 
       if (tokenDb.isEmpty) {
         throw Exception('Token no valido');
@@ -94,9 +96,11 @@ class ServicioAuth extends Servicio<OdmAuth> {
     required String codigo,
   }) async {
     try {
-      final List<dynamic> validarEnDb = await odm.validarCodigoResetPassword(
-        session: session,
-        codigo: codigo,
+      final List<dynamic> validarEnDb = await performOperation(
+        () => odm.validarCodigoResetPassword(
+          session: session,
+          codigo: codigo,
+        ),
       );
       if (validarEnDb.isEmpty) {
         throw Exception('Codigo no valido');
@@ -124,18 +128,22 @@ class ServicioAuth extends Servicio<OdmAuth> {
   }) async {
     try {
       session.log('chequeando codigo: $codigo');
-      final bool checkearCodigoOTP = await odm.checkearCodigoOTP(
-        session: session,
-        codigo: codigo,
+      final bool checkearCodigoOTP = await performOperation(
+        () => odm.checkearCodigoOTP(
+          session: session,
+          codigo: codigo,
+        ),
       );
 
       if (!checkearCodigoOTP) {
-        throw Exception('el codigo no existe');
+        throw ErrorPrLab.errorElementoNoEncontrado;
       }
 
-      await odm.eliminarOTPResetPassword(
-        session: session,
-        codigo: codigo,
+      await performOperation(
+        () => odm.eliminarOTPResetPassword(
+          session: session,
+          codigo: codigo,
+        ),
       );
       session.log('codigo otp $codigo eliminado');
       return true;
