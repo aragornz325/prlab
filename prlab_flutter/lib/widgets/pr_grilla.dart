@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Grilla extends StatelessWidget {
+class Grilla<T> extends StatelessWidget {
   const Grilla({
-    required this.listaModelos,
+    required this.listaColumnas,
     super.key,
     this.scrollController,
   });
 
-  final List<ModeloLista> listaModelos;
+  final List<ColumnaBase> listaColumnas;
 
   final ScrollController? scrollController;
 
@@ -19,7 +19,7 @@ class Grilla extends StatelessWidget {
         children: [
           Row(
             children: [
-              ...listaModelos.map(
+              ...listaColumnas.map(
                 (modelo) {
                   if (modelo.celdaEncabezadoColumna != null) {
                     return modelo.celdaEncabezadoColumna!(
@@ -41,13 +41,27 @@ class Grilla extends StatelessWidget {
               controller: scrollController,
               child: Row(
                 children: [
-                  ...listaModelos.map(
-                    (modelo) {
+                  ...listaColumnas.map(
+                    (columna) {
                       return SizedBox(
-                        width: modelo.widthDeLaColumna,
+                        width: columna.widthDeLaColumna,
                         child: Column(
                           children: [
-                            ...modelo.lista.map((e) => modelo.celda(e)),
+                            if (columna is Columna<String>)
+                              ...columna.lista.map((e) => columna.celda(e)),
+                            if (columna is Columna<DateTime>)
+                              ...columna.lista.map((e) => columna.celda(e)),
+                            if (columna is Columna<bool>)
+                              ...columna.lista.map((e) => columna.celda(e)),
+                            if (columna is Columna<int>)
+                              ...columna.lista.map((e) => columna.celda(e)),
+                            if (columna is Columna<double>)
+                              ...columna.lista.map((e) => columna.celda(e)),
+                            if (columna is Columna<dynamic>)
+                              ...columna.lista.map((e) => columna.celda(e)),
+                            if (columna is Columna<T>)
+                              ...columna.lista.map((e) => columna.celda(e)),
+                            const SizedBox.shrink(),
                           ],
                         ),
                       );
@@ -63,20 +77,28 @@ class Grilla extends StatelessWidget {
   }
 }
 
-/// Modelo de datos que representa una lista con elementos del tipo [T].
-class ModeloLista<T> {
-  ModeloLista({
-    required this.lista,
-    required this.celda,
-    this.widthDeLaColumna = 200,
+class ColumnaBase {
+  ColumnaBase({
     this.nombreColumna,
+    this.widthDeLaColumna = 200,
     this.celdaEncabezadoColumna,
   });
 
   final String? nombreColumna;
-  final List<T> lista;
-  final Widget Function<T>(T value) celda;
-  final Widget Function(String value)? celdaEncabezadoColumna;
-  // TODO(mati): cambiar de nombre
   final double widthDeLaColumna;
+  final Widget Function(String value)? celdaEncabezadoColumna;
+}
+
+/// Modelo de datos que representa una lista con elementos del tipo [T].
+class Columna<T> extends ColumnaBase {
+  Columna({
+    required this.lista,
+    required this.celda,
+    super.widthDeLaColumna,
+    super.nombreColumna,
+    super.celdaEncabezadoColumna,
+  }) : super();
+
+  final List<T> lista;
+  final Widget Function(T value) celda;
 }
