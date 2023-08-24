@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/auth/login/bloc_temporizador/bloc_temporizador.dart';
 
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/features/auth/login/bloc/bloc_login.dart';
@@ -49,8 +50,15 @@ class _OlvidasteTuPasswordState extends State<OlvidasteTuPassword> {
                     showDialog<void>(
                       context: context,
                       builder: (_) {
-                        return BlocProvider.value(
-                          value: context.read<BlocLogin>(),
+                        return MultiBlocProvider(
+                          providers: [
+                            BlocProvider.value(
+                              value: context.read<BlocLogin>(),
+                            ),
+                            BlocProvider.value(
+                              value: context.read<BlocTemporizador>(),
+                            ),
+                          ],
                           child: PRDialogVerificacionCodigo(
                             password: widget.password,
                             email: state.email,
