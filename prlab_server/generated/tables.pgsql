@@ -221,9 +221,11 @@ CREATE TABLE "clientes" (
   "fechaDeNacimiento" timestamp without time zone NOT NULL,
   "idUsuario" integer,
   "idOrganizacion" integer,
+  "domicilio" text,
+  "telefono" text,
   "contacto" integer,
-  "ultimaModificacion" timestamp without time zone NOT NULL,
-  "fechaCreacion" timestamp without time zone NOT NULL
+  "ultimaModificacion" timestamp without time zone,
+  "fechaCreacion" timestamp without time zone
 );
 
 ALTER TABLE ONLY "clientes"

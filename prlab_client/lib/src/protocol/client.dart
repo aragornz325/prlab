@@ -9,9 +9,10 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
 import 'package:prlab_client/src/protocol/mensaje_registro.dart' as _i3;
-import 'package:serverpod_auth_client/module.dart' as _i4;
-import 'dart:io' as _i5;
-import 'protocol.dart' as _i6;
+import 'package:prlab_client/src/protocol/cliente.dart' as _i4;
+import 'package:serverpod_auth_client/module.dart' as _i5;
+import 'dart:io' as _i6;
+import 'protocol.dart' as _i7;
 
 /// La clase `AuthEndpoint` está ampliando la clase `Endpoint`. por tanto maneja
 /// todas las peticiones relacionadas con el auth del sistema
@@ -145,28 +146,43 @@ class _EndpointMail extends _i1.EndpointRef {
       );
 }
 
+class _EndpointUsuario extends _i1.EndpointRef {
+  _EndpointUsuario(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'usuario';
+
+  _i2.Future<bool> completarKyc(_i4.Cliente datosDelCliente) =>
+      caller.callServerEndpoint<bool>(
+        'usuario',
+        'completarKyc',
+        {'datosDelCliente': datosDelCliente},
+      );
+}
+
 class _Modules {
   _Modules(Client client) {
-    auth = _i4.Caller(client);
+    auth = _i5.Caller(client);
   }
 
-  late final _i4.Caller auth;
+  late final _i5.Caller auth;
 }
 
 class Client extends _i1.ServerpodClient {
   Client(
     String host, {
-    _i5.SecurityContext? context,
+    _i6.SecurityContext? context,
     _i1.AuthenticationKeyManager? authenticationKeyManager,
   }) : super(
           host,
-          _i6.Protocol(),
+          _i7.Protocol(),
           context: context,
           authenticationKeyManager: authenticationKeyManager,
         ) {
     auth = _EndpointAuth(this);
     example = _EndpointExample(this);
     mail = _EndpointMail(this);
+    usuario = _EndpointUsuario(this);
     modules = _Modules(this);
   }
 
@@ -176,6 +192,8 @@ class Client extends _i1.ServerpodClient {
 
   late final _EndpointMail mail;
 
+  late final _EndpointUsuario usuario;
+
   late final _Modules modules;
 
   @override
@@ -183,6 +201,7 @@ class Client extends _i1.ServerpodClient {
         'auth': auth,
         'example': example,
         'mail': mail,
+        'usuario': usuario,
       };
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup =>

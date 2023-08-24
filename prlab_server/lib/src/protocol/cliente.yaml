@@ -6,6 +6,8 @@ fields:
   fechaDeNacimiento: DateTime
   idUsuario: int?
   idOrganizacion: int? parent=organizaciones
+  domicilio: String?
+  telefono: String?
   contacto: int? parent=informacion_de_contactos
-  ultimaModificacion: DateTime
-  fechaCreacion: DateTime
+  ultimaModificacion: DateTime?
+  fechaCreacion: DateTime?

@@ -172,6 +172,18 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'int?',
         ),
         _i2.ColumnDefinition(
+          name: 'domicilio',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'telefono',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
           name: 'contacto',
           columnType: _i2.ColumnType.integer,
           isNullable: true,
@@ -180,14 +192,14 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'ultimaModificacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: false,
-          dartType: 'DateTime',
+          isNullable: true,
+          dartType: 'DateTime?',
         ),
         _i2.ColumnDefinition(
           name: 'fechaCreacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: false,
-          dartType: 'DateTime',
+          isNullable: true,
+          dartType: 'DateTime?',
         ),
       ],
       foreignKeys: [
