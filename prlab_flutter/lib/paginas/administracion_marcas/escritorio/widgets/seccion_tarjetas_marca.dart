@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/paginas/administracion_marcas/escritorio/widgets/tarjeta_marca.dart';
+import 'package:prlab_flutter/paginas/administracion_marcas/escritorio/widgets/widgets.dart';
 
 /// {@template SeccionTarjetasDeMarca}
 /// Seccion de la vista donde se muestran 2 marcas
