@@ -5,7 +5,9 @@ import 'package:prlab_flutter/extensiones/extensiones.dart';
 
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/login/bloc/bloc_login.dart';
+import 'package:prlab_flutter/paginas/login/bloc_temporizador/bloc_temporizador.dart';
 import 'package:prlab_flutter/paginas/login/dialog/pr_dialog_verificacion_codigo.dart';
+import 'package:serverpod_auth_email_flutter/serverpod_auth_email_flutter.dart';
 
 /// {@template OlvidasteTuPassword}
 /// Texto clickeable que se muestra un popup para solicitar un codigo
@@ -53,10 +55,22 @@ class _OlvidasteTuPasswordState extends State<OlvidasteTuPassword> {
                     showDialog<void>(
                       context: context,
                       builder: (context) {
-                        return PRDialogVerificacionCodigo(
-                          password: widget.password,
-                          email: widget.email,
-                          controllerCodigo: widget.controllerCodigo,
+                        return MultiBlocProvider(
+                          providers: [
+                            BlocProvider.value(
+                              value: BlocLogin(
+                                emailAuth: context.read<EmailAuthController>(),
+                              ),
+                            ),
+                            BlocProvider.value(
+                              value: context.read<BlocTemporizador>(),
+                            ),
+                          ],
+                          child: PRDialogVerificacionCodigo(
+                            password: widget.password,
+                            email: widget.email,
+                            controllerCodigo: widget.controllerCodigo,
+                          ),
                         );
                       },
                     );

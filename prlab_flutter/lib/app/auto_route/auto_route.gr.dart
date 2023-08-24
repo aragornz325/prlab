@@ -11,37 +11,59 @@
 import 'package:auto_route/auto_route.dart' as _i8;
 import 'package:flutter/material.dart' as _i9;
 import 'package:prlab_flutter/paginas/administracion_contenido/pagina_administracion_contenido.dart'
-    as _i6;
-import 'package:prlab_flutter/paginas/crear_cuenta_admin/pagina_crear_cuenta_admin.dart'
     as _i1;
-import 'package:prlab_flutter/paginas/dashboard/pagina_dashboard.dart' as _i7;
-import 'package:prlab_flutter/paginas/kyc/pagina_kyc.dart' as _i3;
-import 'package:prlab_flutter/paginas/login/pagina_login.dart' as _i2;
+import 'package:prlab_flutter/paginas/crear_cuenta_admin/pagina_crear_cuenta_admin.dart'
+    as _i2;
+import 'package:prlab_flutter/paginas/dashboard/pagina_dashboard.dart' as _i3;
+import 'package:prlab_flutter/paginas/kyc/pagina_kyc.dart' as _i4;
+import 'package:prlab_flutter/paginas/login/pagina_login.dart' as _i5;
 import 'package:prlab_flutter/paginas/recuperar_password/pagina_recuperar_password.dart'
-    as _i5;
-import 'package:prlab_flutter/paginas/registro/pagina_registro.dart' as _i4;
+    as _i6;
+import 'package:prlab_flutter/paginas/registro/pagina_registro.dart' as _i7;
 
 abstract class $AppRouter extends _i8.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
   final Map<String, _i8.PageFactory> pagesMap = {
+    RutaAdministracionContenido.name: (routeData) {
+      return _i8.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i1.PaginaAdministracionContenido(),
+      );
+    },
     RutaCrearCuenta.name: (routeData) {
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.PaginaCrearCuenta(),
+        child: const _i2.PaginaCrearCuenta(),
       );
     },
-    RutaLogin.name: (routeData) {
+    RutaDashboard.name: (routeData) {
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.PaginaLogin(),
+        child: const _i3.PaginaDashboard(),
       );
     },
     RutaKyc.name: (routeData) {
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.PaginaKyc(),
+        child: const _i4.PaginaKyc(),
+      );
+    },
+    RutaLogin.name: (routeData) {
+      return _i8.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i5.PaginaLogin(),
+      );
+    },
+    RutaRecuperarPassword.name: (routeData) {
+      final args = routeData.argsAs<RutaRecuperarPasswordArgs>();
+      return _i8.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i6.PaginaRecuperarPassword(
+          codigoOtp: args.codigoOtp,
+          key: args.key,
+        ),
       );
     },
     RutaRegistro.name: (routeData) {
@@ -51,39 +73,31 @@ abstract class $AppRouter extends _i8.RootStackRouter {
               RutaRegistroArgs(tokenAuth: pathParams.getString('token')));
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i4.PaginaRegistro(
+        child: _i7.PaginaRegistro(
           tokenAuth: args.tokenAuth,
           key: args.key,
         ),
-      );
-    },
-    RutaRecuperarPassword.name: (routeData) {
-      final args = routeData.argsAs<RutaRecuperarPasswordArgs>();
-      return _i8.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i5.PaginaRecuperarPassword(
-          codigoOtp: args.codigoOtp,
-          key: args.key,
-        ),
-      );
-    },
-    RutaAdministracionContenido.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i6.PaginaAdministracionContenido(),
-      );
-    },
-    RutaDashboard.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i7.PaginaDashboard(),
       );
     },
   };
 }
 
 /// generated route for
-/// [_i1.PaginaCrearCuenta]
+/// [_i1.PaginaAdministracionContenido]
+class RutaAdministracionContenido extends _i8.PageRouteInfo<void> {
+  const RutaAdministracionContenido({List<_i8.PageRouteInfo>? children})
+      : super(
+          RutaAdministracionContenido.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RutaAdministracionContenido';
+
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i2.PaginaCrearCuenta]
 class RutaCrearCuenta extends _i8.PageRouteInfo<void> {
   const RutaCrearCuenta({List<_i8.PageRouteInfo>? children})
       : super(
@@ -97,21 +111,21 @@ class RutaCrearCuenta extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.PaginaLogin]
-class RutaLogin extends _i8.PageRouteInfo<void> {
-  const RutaLogin({List<_i8.PageRouteInfo>? children})
+/// [_i3.PaginaDashboard]
+class RutaDashboard extends _i8.PageRouteInfo<void> {
+  const RutaDashboard({List<_i8.PageRouteInfo>? children})
       : super(
-          RutaLogin.name,
+          RutaDashboard.name,
           initialChildren: children,
         );
 
-  static const String name = 'RutaLogin';
+  static const String name = 'RutaDashboard';
 
   static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i3.PaginaKyc]
+/// [_i4.PaginaKyc]
 class RutaKyc extends _i8.PageRouteInfo<void> {
   const RutaKyc({List<_i8.PageRouteInfo>? children})
       : super(
@@ -125,46 +139,21 @@ class RutaKyc extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.PaginaRegistro]
-class RutaRegistro extends _i8.PageRouteInfo<RutaRegistroArgs> {
-  RutaRegistro({
-    required String tokenAuth,
-    _i9.Key? key,
-    List<_i8.PageRouteInfo>? children,
-  }) : super(
-          RutaRegistro.name,
-          args: RutaRegistroArgs(
-            tokenAuth: tokenAuth,
-            key: key,
-          ),
-          rawPathParams: {'token': tokenAuth},
+/// [_i5.PaginaLogin]
+class RutaLogin extends _i8.PageRouteInfo<void> {
+  const RutaLogin({List<_i8.PageRouteInfo>? children})
+      : super(
+          RutaLogin.name,
           initialChildren: children,
         );
 
-  static const String name = 'RutaRegistro';
+  static const String name = 'RutaLogin';
 
-  static const _i8.PageInfo<RutaRegistroArgs> page =
-      _i8.PageInfo<RutaRegistroArgs>(name);
-}
-
-class RutaRegistroArgs {
-  const RutaRegistroArgs({
-    required this.tokenAuth,
-    this.key,
-  });
-
-  final String tokenAuth;
-
-  final _i9.Key? key;
-
-  @override
-  String toString() {
-    return 'RutaRegistroArgs{tokenAuth: $tokenAuth, key: $key}';
-  }
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i5.PaginaRecuperarPassword]
+/// [_i6.PaginaRecuperarPassword]
 class RutaRecuperarPassword
     extends _i8.PageRouteInfo<RutaRecuperarPasswordArgs> {
   RutaRecuperarPassword({
@@ -203,29 +192,40 @@ class RutaRecuperarPasswordArgs {
 }
 
 /// generated route for
-/// [_i6.PaginaAdministracionContenido]
-class RutaAdministracionContenido extends _i8.PageRouteInfo<void> {
-  const RutaAdministracionContenido({List<_i8.PageRouteInfo>? children})
-      : super(
-          RutaAdministracionContenido.name,
+/// [_i7.PaginaRegistro]
+class RutaRegistro extends _i8.PageRouteInfo<RutaRegistroArgs> {
+  RutaRegistro({
+    required String tokenAuth,
+    _i9.Key? key,
+    List<_i8.PageRouteInfo>? children,
+  }) : super(
+          RutaRegistro.name,
+          args: RutaRegistroArgs(
+            tokenAuth: tokenAuth,
+            key: key,
+          ),
+          rawPathParams: {'token': tokenAuth},
           initialChildren: children,
         );
 
-  static const String name = 'RutaAdministracionContenido';
+  static const String name = 'RutaRegistro';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i8.PageInfo<RutaRegistroArgs> page =
+      _i8.PageInfo<RutaRegistroArgs>(name);
 }
 
-/// generated route for
-/// [_i7.PaginaDashboard]
-class RutaDashboard extends _i8.PageRouteInfo<void> {
-  const RutaDashboard({List<_i8.PageRouteInfo>? children})
-      : super(
-          RutaDashboard.name,
-          initialChildren: children,
-        );
+class RutaRegistroArgs {
+  const RutaRegistroArgs({
+    required this.tokenAuth,
+    this.key,
+  });
 
-  static const String name = 'RutaDashboard';
+  final String tokenAuth;
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  final _i9.Key? key;
+
+  @override
+  String toString() {
+    return 'RutaRegistroArgs{tokenAuth: $tokenAuth, key: $key}';
+  }
 }

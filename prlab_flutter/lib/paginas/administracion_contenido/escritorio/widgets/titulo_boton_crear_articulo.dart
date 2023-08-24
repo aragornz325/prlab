@@ -18,7 +18,6 @@ class TituloBotonCrearArticulo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
-    final l10n = context.l10n;
 
     return Row(
       children: [
@@ -37,110 +36,27 @@ class TituloBotonCrearArticulo extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        Row(
-          children: [
-            SizedBox(
-              width: max(140.pw, 140.sw),
-              child: PopUpMenuVerTareas(
-                colorIcon: Colors.blueAccent,
-              ),
-              // InkWell(
-              //   onTap: () => PopUpMenuVerTareas(colorIcon: Colors.black),
-              //   child: Container(
-              //     height: max(30.ph, 30.sh),
-              //     decoration: BoxDecoration(
-              //       borderRadius: const BorderRadius.horizontal(
-              //         left: Radius.circular(100),
-              //       ),
-              //       color: colores.primary,
-              //     ),
-              //     child: Center(
-              //       child: Text(
-              //         l10n.pageContentAdministrationCreateArticle,
-              //         textAlign: TextAlign.center,
-              //         style: TextStyle(
-              //           fontSize: 15.pf,
-              //           color: colores.onPrimary,
-              //           fontWeight: FontWeight.w500,
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-            ),
-            Container(
-              width: 1.pw,
-              height: max(30.ph, 30.sh),
-              color: colores.primaryBajaOpacidad,
-            ),
-            SizedBox(
-              height: max(30.ph, 30.sh),
-              width: max(40.pw, 40.sw),
-              child: InkWell(
-                onTap: () {
-                  // TODO(anyone): agregarle funcionalidad
-                },
-                child: Container(
-                  height: max(30.ph, 30.sh),
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.horizontal(
-                      right: Radius.circular(100),
-                    ),
-                    color: colores.primary,
-                  ),
-                  child: Center(
-                    child: Icon(
-                      Icons.arrow_drop_down_outlined,
-                      color: colores.onPrimary,
-                      size: 24.pf,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        )
+        const PopUpMenuCrearArticulo()
       ],
     );
   }
 }
 
-// TODO cambiar de nombre y hacer documentacion
-class PopUpMenuVerTareas extends StatelessWidget {
-  const PopUpMenuVerTareas({
-    required this.colorIcon,
+// TODO cambiar de nombre y hacer documentacion y separar en otro widget aparte
+class PopUpMenuCrearArticulo extends StatelessWidget {
+  const PopUpMenuCrearArticulo({
     super.key,
   });
-
-  ///color del icono
-  final Color colorIcon;
 
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
     final l10n = context.l10n;
 
     return PopupMenuButton<int>(
-      child: Container(
-        height: max(30.ph, 30.sh),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.horizontal(
-            left: Radius.circular(100),
-          ),
-          color: colores.primary,
-        ),
-        child: Center(
-          child: Text(
-            l10n.pageContentAdministrationCreateArticle,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 15.pf,
-              color: colores.onPrimary,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-      ),
+      offset: const Offset(-20, 35),
+      color: colores.onPrimary,
       shape: const ContinuousRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(20),
@@ -160,86 +76,96 @@ class PopUpMenuVerTareas extends StatelessWidget {
       itemBuilder: (context) => [
         PopupMenuItem(
           value: 1,
-          height: 30.ph,
-          enabled: false,
+          height: max(40.ph, 40.sh),
           child: Text(
-            'Opciones',
+            // TODO(mati): hacer l10n
+            'A Single article',
             style: TextStyle(
               fontSize: 14.pf,
-              fontWeight: FontWeight.w600,
+              color: colores.tertiary,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),
-        const PopupMenuDivider(),
         PopupMenuItem(
           value: 2,
-          height: 30.ph,
-          child: Row(
-            children: [
-              const Icon(
-                Icons.add_circle_outline,
-                color: Colors.red,
-                size: 20,
-              ),
-              SizedBox(width: 10.pw),
-              Text(
-                'Agregar Tarea',
-                style: TextStyle(
-                  color: Colors.red,
-                  fontSize: 12.pf,
-                ),
-              ),
-            ],
+          height: max(40.ph, 40.sh),
+          child: Text(
+            // TODO(mati): hacer l10n
+            'By brand',
+            style: TextStyle(
+              fontSize: 14.pf,
+              color: colores.tertiary,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
-        const PopupMenuDivider(),
-        if (true)
-          PopupMenuItem(
-            value: 3,
-            height: 30.ph,
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.settings_outlined,
-                  color: Colors.red,
-                  size: 20,
-                ),
-                SizedBox(width: 10.pw),
-                Text(
-                  'Configuracion del proyecto',
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 12.pf,
-                  ),
-                ),
-              ],
+        PopupMenuItem(
+          value: 3,
+          height: max(40.ph, 40.sh),
+          child: Text(
+            // TODO(mati): hacer l10n
+            'Use template',
+            style: TextStyle(
+              fontSize: 14.pf,
+              color: colores.tertiary,
+              fontWeight: FontWeight.w500,
             ),
           ),
-        if (true) const PopupMenuDivider(),
-        if (true)
-          PopupMenuItem(
-            value: 4,
-            height: 30.ph,
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.border_color_outlined,
-                  color: Colors.red,
-                  size: 20,
-                ),
-                SizedBox(width: 10.pw),
-                Text(
-                  'Editar proyecto',
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 12.pf,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        if (true) const PopupMenuDivider(),
+        ),
       ],
+      child: Row(
+        children: [
+          SizedBox(
+            width: max(140.pw, 140.sw),
+            child: Container(
+              height: max(30.ph, 30.sh),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.horizontal(
+                  left: Radius.circular(100),
+                ),
+                color: colores.primary,
+              ),
+              child: Center(
+                child: Text(
+                  l10n.pageContentAdministrationCreateArticle,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 15.pf,
+                    color: colores.onPrimary,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            width: 1.pw,
+            height: max(30.ph, 30.sh),
+            color: colores.primaryBajaOpacidad,
+          ),
+          SizedBox(
+            height: max(30.ph, 30.sh),
+            width: max(40.pw, 40.sw),
+            child: Container(
+              height: max(30.ph, 30.sh),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.horizontal(
+                  right: Radius.circular(100),
+                ),
+                color: colores.primary,
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.arrow_drop_down_outlined,
+                  color: colores.onPrimary,
+                  size: 24.pf,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

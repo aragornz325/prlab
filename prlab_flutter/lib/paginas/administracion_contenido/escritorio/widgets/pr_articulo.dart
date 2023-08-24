@@ -86,7 +86,7 @@ class PRArticulo extends StatelessWidget {
                     if (tieneAutor)
                       Container(
                         width: 100.pw,
-                        padding: EdgeInsets.symmetric(horizontal: 10.pw),
+                        padding: EdgeInsets.symmetric(horizontal: 3.pw),
                         child: Align(
                           alignment: Alignment.centerRight,
                           child: CircleAvatar(
