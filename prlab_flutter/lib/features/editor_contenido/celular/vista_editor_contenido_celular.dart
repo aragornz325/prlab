@@ -41,6 +41,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
 }
 
 class Article {
+  // TODO(SAM): remover luego cuando este el modelo del back
   Article(this.title, this.content);
   final String title;
   final String content;
