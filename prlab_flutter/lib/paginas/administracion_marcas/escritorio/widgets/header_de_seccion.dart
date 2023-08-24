@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/l10n/l10n.dart';
 
-/// {@template HeaderDeSeccion}
-/// Titulo de la seccion del dashboard
+/// {@template EncabezadoDeSeccion}
+/// Encabezado de la seccion del dashboard
 /// {@endtemplate}
-class HeaderDeSeccion extends StatelessWidget {
-  /// {@macro HeaderDeSeccion}
-  const HeaderDeSeccion({
+class EncabezadoDeSeccion extends StatelessWidget {
+  /// {@macro EncabezadoDeSeccion}
+  const EncabezadoDeSeccion({
+    required this.titulo,
+    required this.descripcion,
     super.key,
   });
 
+  /// Titulo del encabezado
+  final String titulo;
+
+  /// Descripcion del encabezado
+  final String descripcion;
+
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
     final colores = context.colores;
 
     return Column(
@@ -30,7 +35,7 @@ class HeaderDeSeccion extends StatelessWidget {
             ),
             SizedBox(width: 5.pw),
             Text(
-              l10n.pageBrandAdministrationTitle,
+              titulo,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 30.pf,
@@ -40,7 +45,7 @@ class HeaderDeSeccion extends StatelessWidget {
           ],
         ),
         Text(
-          l10n.pageBrandAdministrationSubtitle,
+          descripcion,
           style: TextStyle(
             fontWeight: FontWeight.w400,
             fontSize: 15.pf,

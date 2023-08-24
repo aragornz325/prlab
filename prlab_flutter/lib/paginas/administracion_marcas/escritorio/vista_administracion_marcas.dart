@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/administracion_marcas/escritorio/widgets/header_de_seccion.dart';
 import 'package:prlab_flutter/paginas/administracion_marcas/escritorio/widgets/seccion_informacion_marcas.dart';
 import 'package:prlab_flutter/paginas/administracion_marcas/escritorio/widgets/seccion_tarjetas_marca.dart';
@@ -14,6 +15,8 @@ class VistaEscritorioAdministracionMarcas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     final colores = context.colores;
 
     return Scaffold(
@@ -35,7 +38,10 @@ class VistaEscritorioAdministracionMarcas extends StatelessWidget {
                 color: colores.primary.withOpacity(.5),
               ),
               SizedBox(height: 40.pw),
-              const HeaderDeSeccion(),
+              EncabezadoDeSeccion(
+                titulo: l10n.pageBrandAdministrationTitle,
+                descripcion: l10n.pageBrandAdministrationDescription,
+              ),
               SizedBox(height: 20.pw),
               const SeccionTarjetasDeMarca(),
               SizedBox(height: 30.pw),

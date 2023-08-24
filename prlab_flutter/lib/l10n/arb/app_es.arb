@@ -244,6 +244,16 @@
     "@pageBrandAdministrationRecentlyModifiedText": {
         "description":"Section Header of the recently modified articles"
     },
+
+    "pageBrandAdministrationTitle" : "Tus Marcas",
+    "@pageBrandAdministrationTitle": {
+        "description":"Section Title"
+    },
+
+    "pageBrandAdministrationDescription" : "Visualiza todos los artículos de esta marca, sus integrantes y sus estadísticas.",
+    "@pageBrandAdministrationSubtitle": {
+        "description":"Section subtitle"
+    },
     
     "commonPRLab": "PR lab",
     "@commonPRLab": {

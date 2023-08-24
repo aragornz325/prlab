@@ -247,7 +247,7 @@
         "description":"Section Title"
     },
 
-    "pageBrandAdministrationSubtitle" : "View all the articles of this brand, its members and their statistics.",
+    "pageBrandAdministrationDescription" : "View all the articles of this brand, its members and their statistics.",
     "@pageBrandAdministrationSubtitle": {
         "description":"Section subtitle"
     },
