@@ -237,6 +237,26 @@
         "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
     },
     
+    "drawerHome":"Home",
+    "@drawerHome":{
+        "description":"Text to indicate that you will be redirected to home"
+    },
+
+    "drawerProjects":"Projects",
+    "@drawerProjects":{
+        "description":"Text to indicate that you will be redirected to the projects section"
+    },
+
+    "drawerTemplates":"Templates",
+    "@drawerTemplates":{
+        "description":"Text to indicate that you will be redirected to the templates section"
+    },
+
+    "drawerLogOut": "Log Out",
+    "@drawerLogOut":{
+        "description":"Text in the logout item"
+    },
+
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
