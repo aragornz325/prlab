@@ -5,14 +5,11 @@ class Grilla extends StatelessWidget {
     required this.listaModelos,
     super.key,
     this.scrollController,
-    this.width = 200,
   });
 
   final List<ModeloLista> listaModelos;
 
   final ScrollController? scrollController;
-
-  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +28,7 @@ class Grilla extends StatelessWidget {
                   }
 
                   return SizedBox(
-                    width: width,
+                    width: modelo.widthDeLaColumna,
                     height: 50,
                     child: Text(modelo.nombreColumna ?? ''),
                   );
@@ -47,7 +44,7 @@ class Grilla extends StatelessWidget {
                   ...listaModelos.map(
                     (modelo) {
                       return SizedBox(
-                        width: width,
+                        width: modelo.widthDeLaColumna,
                         child: Column(
                           children: [
                             ...modelo.lista.map((e) => modelo.celda(e)),
@@ -71,6 +68,7 @@ class ModeloLista<T> {
   ModeloLista({
     required this.lista,
     required this.celda,
+    this.widthDeLaColumna = 200,
     this.nombreColumna,
     this.celdaEncabezadoColumna,
   });
@@ -79,4 +77,6 @@ class ModeloLista<T> {
   final List<T> lista;
   final Widget Function<T>(T value) celda;
   final Widget Function(String value)? celdaEncabezadoColumna;
+  // TODO(mati): cambiar de nombre
+  final double widthDeLaColumna;
 }

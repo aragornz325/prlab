@@ -9,7 +9,7 @@ import 'package:prlab_flutter/extensiones/extension_tema.dart';
 class PRArticulo extends StatelessWidget {
 // TODO(mati): hacer documentacion
   const PRArticulo({
-    required this.ultimaFecha,
+    required this.fecha,
     required this.nombre,
     required this.status,
     required this.tieneAutor,
@@ -19,7 +19,7 @@ class PRArticulo extends StatelessWidget {
   final String nombre;
   // TODO(anyone): remplazar por el enum que se utilice
   final String status;
-  final DateTime ultimaFecha;
+  final DateTime fecha;
   final bool tieneAutor;
   final String? urlImageAutor;
   @override
@@ -70,9 +70,9 @@ class PRArticulo extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${DateFormat.M().format(ultimaFecha)}'
-                    ' ${DateFormat.MMM().format(ultimaFecha)}'
-                    ' ${DateFormat.y().format(ultimaFecha)}',
+                    '${DateFormat.M().format(fecha)}'
+                    ' ${DateFormat.MMM().format(fecha)}'
+                    ' ${DateFormat.y().format(fecha)}',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.start,

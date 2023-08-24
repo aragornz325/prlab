@@ -107,7 +107,7 @@ class ListaArticulos extends StatelessWidget {
                 // TODO(anyone): remplazar por cada una de las propiedades del articulo
                 nombre: 'Flutter article',
                 status: 'Feedback',
-                ultimaFecha: DateTime.now(),
+                fecha: DateTime.now(),
                 tieneAutor: tieneAutor,
               ),
             ),
