@@ -261,6 +261,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
           color: widget.esSoloLectura
               ? colores.primaryBajaOpacidad
               : colores.primary,
+          fontSize: 15.pf,
         ),
         inputFormatters: widget.inputFormatters,
         decoration: InputDecoration(
@@ -287,6 +288,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
                       : widget.esSoloLectura
                           ? colores.primaryBajaOpacidad
                           : colores.primary,
+                  size: 24.pf,
                 ),
                 Container(
                   height: 31.5.ph,

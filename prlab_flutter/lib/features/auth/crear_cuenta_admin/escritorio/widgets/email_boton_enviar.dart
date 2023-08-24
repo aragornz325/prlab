@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/auth/crear_cuenta_admin/bloc/bloc_crear_cuenta_admin.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/features/crear_cuenta_admin/bloc/bloc_crear_cuenta_admin.dart';
 import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
@@ -87,10 +87,9 @@ class _PrLabEmailYBotonEnviarState extends State<PrLabEmailYBotonEnviar> {
                 },
                 builder: (context, state) {
                   return Center(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 15.pw),
+                    child: SizedBox(
                       height: 40.sh,
-                      width: 785.pw,
+                      width: 782.pw,
                       child: PRTextFormField.email(
                         controller: widget.controller,
                         onChanged: (_) => _onPasarleEmailAlBloc(),
@@ -110,7 +109,7 @@ class _PrLabEmailYBotonEnviarState extends State<PrLabEmailYBotonEnviar> {
                           borderRadius: BorderRadius.circular(25),
                           color: colores.primary,
                         ),
-                        height: 50.sh,
+                        height: 50.ph,
                         width: 782.pw,
                         child: Center(
                           child: SizedBox(
@@ -126,18 +125,15 @@ class _PrLabEmailYBotonEnviarState extends State<PrLabEmailYBotonEnviar> {
                   }
 
                   return Center(
-                    child: SizedBox(
+                    child: PRBoton(
                       width: 782.pw,
-                      child: PRBoton(
-                        width: 782.pw,
-                        onTap: () {
-                          if (!state.esEmailValido) return;
+                      onTap: () {
+                        if (!state.esEmailValido) return;
 
-                          _onEnviarEmail(context);
-                        },
-                        texto: l10n.commonSend,
-                        estaHabilitado: state.esEmailValido,
-                      ),
+                        _onEnviarEmail(context);
+                      },
+                      texto: l10n.commonSend,
+                      estaHabilitado: state.esEmailValido,
                     ),
                   );
                 },

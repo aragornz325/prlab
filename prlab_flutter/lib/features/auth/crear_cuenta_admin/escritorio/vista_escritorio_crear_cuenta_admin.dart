@@ -1,9 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/features/auth/crear_cuenta_admin/escritorio/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/features/crear_cuenta_admin/escritorio/widgets/email_boton_enviar.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template VistaEscritorioCrearCuentaAdmin}
@@ -45,7 +43,7 @@ class _VistaEscritorioCrearCuentaAdminState
             SizedBox(height: 100.sh),
             Center(
               child: PRBoton.esOutlined(
-                width: max(200.pw, 200.sw),
+                width: 196.pw,
                 onTap: () {
                   // TODO(anyone): agregarle funcionalidad para volver atras.
                   // todavía no esta definido que función cumple

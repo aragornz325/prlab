@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/prlab_configuracion/base.dart';
 
 /// {@template SeccionLogoYEslogan}
 /// Seccion que muestra el logo y eslogan de la empresa
@@ -15,7 +15,6 @@ class SeccionLogoYEslogan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     final colores = context.colores;
 
     return SizedBox(
@@ -51,7 +50,7 @@ class SeccionLogoYEslogan extends StatelessWidget {
                 SizedBox(
                   width: 550.pw,
                   child: Text(
-                    l10n.pageLoginLeadingAgency,
+                    PRLabConfiguracion.esloganPRLab,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: colores.onPrimary,
