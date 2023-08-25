@@ -59,8 +59,8 @@ class PRBoton extends StatelessWidget {
     return GestureDetector(
       onTap: estaHabilitado ? onTap : null,
       child: Container(
-        width: width.pw,
-        height: 50.sh,
+        width: width,
+        height: height,
         decoration: BoxDecoration(
           color: esOutlined
               ? colores.background
