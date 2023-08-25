@@ -6,7 +6,7 @@ import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/widgets/drawer/drawer.dart';
 
 /// {@template PRDrawerItem}
-/// Item disponible a utlizar en PRDrawer
+/// Item disponible a utilizar en PRDrawer
 /// {@endtemplate}
 class PRDrawerItem extends StatelessWidget {
   /// {@macro PRDrawerItem}
