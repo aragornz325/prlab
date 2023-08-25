@@ -22,6 +22,8 @@ class ListaArticulos extends StatelessWidget {
     required this.articulos,
   });
 
+  // separar ese componente su propio bloc y envuelve el componente
+  // hacer el init que filtre por un enum de filtros
   // TODO(anyone): pasarle la lista de el modelo del Articulo esto es de ejemplo
   /// Lista de los artículos para mostrar sus propiedades
   final List<PRArticulo> articulos;
