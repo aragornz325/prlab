@@ -10,40 +10,28 @@ class Assets {
   static const String package = 'prlab_flutter';
 
   static const String assets_icons_logo_png = 'assets/icons/logo.png';
-  static const String prlab_flutter$assets_icons_logo_png =
-      'packages/prlab_flutter/assets/icons/logo.png';
+  static const String prlab_flutter$assets_icons_logo_png = 'packages/prlab_flutter/assets/icons/logo.png';
 
-  static const String assets_images_avion_de_papel_png =
-      'assets/images/avion_de_papel.png';
-  static const String prlab_flutter$assets_images_avion_de_papel_png =
-      'packages/prlab_flutter/assets/images/avion_de_papel.png';
+  static const String assets_images_avion_de_papel_png = 'assets/images/avion_de_papel.png';
+  static const String prlab_flutter$assets_images_avion_de_papel_png = 'packages/prlab_flutter/assets/images/avion_de_papel.png';
 
   static const String assets_images_diario_png = 'assets/images/diario.png';
-  static const String prlab_flutter$assets_images_diario_png =
-      'packages/prlab_flutter/assets/images/diario.png';
+  static const String prlab_flutter$assets_images_diario_png = 'packages/prlab_flutter/assets/images/diario.png';
 
-  static const String assets_images_mano_saludando_png =
-      'assets/images/mano_saludando.png';
-  static const String prlab_flutter$assets_images_mano_saludando_png =
-      'packages/prlab_flutter/assets/images/mano_saludando.png';
+  static const String assets_images_mano_saludando_png = 'assets/images/mano_saludando.png';
+  static const String prlab_flutter$assets_images_mano_saludando_png = 'packages/prlab_flutter/assets/images/mano_saludando.png';
 
   static const String assets_images_opacidad_png = 'assets/images/opacidad.png';
-  static const String prlab_flutter$assets_images_opacidad_png =
-      'packages/prlab_flutter/assets/images/opacidad.png';
+  static const String prlab_flutter$assets_images_opacidad_png = 'packages/prlab_flutter/assets/images/opacidad.png';
 
-  static const String assets_images_subrayado_png =
-      'assets/images/subrayado.png';
-  static const String prlab_flutter$assets_images_subrayado_png =
-      'packages/prlab_flutter/assets/images/subrayado.png';
-
-  static const String assets_icons_casa_png = 'assets/icons/casa.png';
+  static const String assets_images_subrayado_png = 'assets/images/subrayado.png';
+  static const String prlab_flutter$assets_images_subrayado_png = 'packages/prlab_flutter/assets/images/subrayado.png';
 
   static const String dev_env = 'dev.env';
   static const String prlab_flutter$dev_env = 'packages/prlab_flutter/dev.env';
 
   static const String prod_env = 'prod.env';
-  static const String prlab_flutter$prod_env =
-      'packages/prlab_flutter/prod.env';
+  static const String prlab_flutter$prod_env = 'packages/prlab_flutter/prod.env';
 
   static const String stg_env = 'stg.env';
   static const String prlab_flutter$stg_env = 'packages/prlab_flutter/stg.env';
