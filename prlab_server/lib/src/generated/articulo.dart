@@ -12,6 +12,7 @@ class Articulo extends _i1.TableRow {
   Articulo({
     int? id,
     required this.titulo,
+    this.contenido,
     this.idProyecto,
     this.idAutor,
     this.idStatus,
@@ -27,6 +28,8 @@ class Articulo extends _i1.TableRow {
       id: serializationManager.deserialize<int?>(jsonSerialization['id']),
       titulo:
           serializationManager.deserialize<String>(jsonSerialization['titulo']),
+      contenido: serializationManager
+          .deserialize<String?>(jsonSerialization['contenido']),
       idProyecto: serializationManager
           .deserialize<int?>(jsonSerialization['idProyecto']),
       idAutor:
@@ -43,6 +46,8 @@ class Articulo extends _i1.TableRow {
   static final t = ArticuloTable();
 
   String titulo;
+
+  String? contenido;
 
   int? idProyecto;
 
@@ -61,6 +66,7 @@ class Articulo extends _i1.TableRow {
     return {
       'id': id,
       'titulo': titulo,
+      'contenido': contenido,
       'idProyecto': idProyecto,
       'idAutor': idAutor,
       'idStatus': idStatus,
@@ -74,6 +80,7 @@ class Articulo extends _i1.TableRow {
     return {
       'id': id,
       'titulo': titulo,
+      'contenido': contenido,
       'idProyecto': idProyecto,
       'idAutor': idAutor,
       'idStatus': idStatus,
@@ -87,6 +94,7 @@ class Articulo extends _i1.TableRow {
     return {
       'id': id,
       'titulo': titulo,
+      'contenido': contenido,
       'idProyecto': idProyecto,
       'idAutor': idAutor,
       'idStatus': idStatus,
@@ -106,6 +114,9 @@ class Articulo extends _i1.TableRow {
         return;
       case 'titulo':
         titulo = value;
+        return;
+      case 'contenido':
+        contenido = value;
         return;
       case 'idProyecto':
         idProyecto = value;
@@ -248,6 +259,8 @@ class ArticuloTable extends _i1.Table {
 
   final titulo = _i1.ColumnString('titulo');
 
+  final contenido = _i1.ColumnString('contenido');
+
   final idProyecto = _i1.ColumnInt('idProyecto');
 
   final idAutor = _i1.ColumnInt('idAutor');
@@ -262,6 +275,7 @@ class ArticuloTable extends _i1.Table {
   List<_i1.Column> get columns => [
         id,
         titulo,
+        contenido,
         idProyecto,
         idAutor,
         idStatus,

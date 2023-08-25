@@ -12,6 +12,7 @@ class Articulo extends _i1.SerializableEntity {
   Articulo({
     this.id,
     required this.titulo,
+    this.contenido,
     this.idProyecto,
     this.idAutor,
     this.idStatus,
@@ -27,6 +28,8 @@ class Articulo extends _i1.SerializableEntity {
       id: serializationManager.deserialize<int?>(jsonSerialization['id']),
       titulo:
           serializationManager.deserialize<String>(jsonSerialization['titulo']),
+      contenido: serializationManager
+          .deserialize<String?>(jsonSerialization['contenido']),
       idProyecto: serializationManager
           .deserialize<int?>(jsonSerialization['idProyecto']),
       idAutor:
@@ -47,6 +50,8 @@ class Articulo extends _i1.SerializableEntity {
 
   String titulo;
 
+  String? contenido;
+
   int? idProyecto;
 
   int? idAutor;
@@ -62,6 +67,7 @@ class Articulo extends _i1.SerializableEntity {
     return {
       'id': id,
       'titulo': titulo,
+      'contenido': contenido,
       'idProyecto': idProyecto,
       'idAutor': idAutor,
       'idStatus': idStatus,

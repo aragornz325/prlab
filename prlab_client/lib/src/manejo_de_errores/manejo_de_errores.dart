@@ -1,16 +1,18 @@
+import 'dart:io';
+
 enum ErrorPrLab implements Exception {
 
-  errorDePeticion(codigoDeEstado: 400, mensaje: 'Error en la petición.'),
-  errorNoAutorizado(codigoDeEstado: 401, mensaje: 'Acceso no autorizado.'),
-  errorAccesoRestringido(codigoDeEstado: 403, mensaje: 'Acceso no permitido.'),
-  errorElementoNoEncontrado(codigoDeEstado: 404, mensaje: 'Elemento no encontrado.'),
-  errorTiempoExcedido(codigoDeEstado: 408, mensaje: 'Tiempo de petición excedido.'),
-  errorDemasiadasPeticiones(codigoDeEstado: 429, mensaje: 'Demasiadas peticiones realizadas.'),
-  errorInternoDelServidor(codigoDeEstado: 500, mensaje: 'Error interno del servidor.'),
-  errorNoImplementado(codigoDeEstado: 501, mensaje: 'No implementado.'),
-  errorDuranteEnlace(codigoDeEstado: 502, mensaje: 'Error durante enlace. Respuesta inválida.'),
-  errorServicioNoDisponible(codigoDeEstado: 503, mensaje: 'Servicio no disponible.'),
-  errorTiempoDeEsperaExcedido(codigoDeEstado: 504, mensaje: 'Tiempo de espera excedido.');
+  errorDePeticion(codigoDeEstado: HttpStatus.badRequest, mensaje: 'Error in request.'),
+  errorNoAutorizado(codigoDeEstado: HttpStatus.unauthorized, mensaje: 'Unauthorized access.'),
+  errorAccesoRestringido(codigoDeEstado: HttpStatus.forbidden, mensaje: 'Access not allowed.'),
+  errorElementoNoEncontrado(codigoDeEstado: HttpStatus.notFound, mensaje: 'Element not found.'),
+  errorTiempoExcedido(codigoDeEstado: HttpStatus.requestTimeout, mensaje: 'Request time exceeded.'),
+  errorDemasiadasPeticiones(codigoDeEstado: HttpStatus.tooManyRequests, mensaje: 'Too many requests.'),
+  errorInternoDelServidor(codigoDeEstado: HttpStatus.internalServerError, mensaje: 'Internal Server Error.'),
+  errorNoImplementado(codigoDeEstado: HttpStatus.notImplemented, mensaje: 'Not implemented.'),
+  errorDuranteEnlace(codigoDeEstado: HttpStatus.badGateway, mensaje: 'Error during gateway. Invalid response.'),
+  errorServicioNoDisponible(codigoDeEstado: HttpStatus.serviceUnavailable, mensaje: 'Service not available.'),
+  errorTiempoDeEsperaExcedido(codigoDeEstado: HttpStatus.gatewayTimeout, mensaje: 'Waiting time exceeded.');
   
   const ErrorPrLab({
     required this.codigoDeEstado,
@@ -19,10 +21,4 @@ enum ErrorPrLab implements Exception {
 
   final int codigoDeEstado;
   final String mensaje;
-
 }
-
-// enum ErrorODM {
-
-
-// }

@@ -189,6 +189,7 @@ ALTER TABLE ONLY "publicaciones"
 CREATE TABLE "articulos" (
   "id" serial,
   "titulo" text NOT NULL,
+  "contenido" text,
   "idProyecto" integer,
   "idAutor" integer,
   "idStatus" integer,

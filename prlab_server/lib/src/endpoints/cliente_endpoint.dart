@@ -6,7 +6,7 @@ import 'package:serverpod/serverpod.dart';
 class ClienteEndpoint extends Endpoint {
 
   /// Instancia del Servicio para Cliente.
-  final ServicioCliente servicioCliente = ServicioCliente();
+  final servicioCliente = ServicioCliente();
 
   /// Guarda los datos personales del cliente insertados en el formulario de
   /// registro.
