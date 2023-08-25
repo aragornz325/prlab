@@ -13,7 +13,7 @@ class ServicioCliente extends Servicio<OdmCliente> {
     required Cliente datosDelCliente,
   }) async {
     try {
-      print('Hola2');
+      logger.info('Completando KYC para ${datosDelCliente.nombre}');
       return await performOperation(
         () => odm.completarKyc(
           session: session,

@@ -59,22 +59,30 @@ class ServicioAuth extends Servicio<OdmAuth> {
     required String token,
   }) async {
     try {
+      logger.info('se validara el token $token');
       final JWT tokenAbierto = JWT.decode(token);
+      
       final String emailToken = tokenAbierto.payload['email'];
+      
+      logger.finer('buscando token en db');
       final String tokenDb = await performOperation(
         () => odm.traerTokenPorEmail(session: session, email: emailToken),
       );
 
       if (tokenDb.isEmpty) {
+        logger.shout('token no encontrado en la db');
         throw Exception('Token no valido');
       }
 
       if (token != tokenDb) {
+        logger.shout('el token no coincide con el de la db');
         throw Exception('Token no valido');
       }
 
+      logger.finer('verificando la firma del token');
       JWT.verify(token, SecretKey('sweetHomeAlabama'));
 
+      logger.fine('token validado con exito');
       return emailToken;
     } on Exception catch (e) {
       throw Exception('$e');
@@ -127,7 +135,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
     required String codigo,
   }) async {
     try {
-      session.log('chequeando codigo: $codigo');
+      logger.info('chequeando codigo: $codigo');
       final bool checkearCodigoOTP = await performOperation(
         () => odm.checkearCodigoOTP(
           session: session,
@@ -136,16 +144,17 @@ class ServicioAuth extends Servicio<OdmAuth> {
       );
 
       if (!checkearCodigoOTP) {
+        logger.shout('codigo no encontrado');
         throw ErrorPrLab.errorElementoNoEncontrado;
       }
-
+      logger.finer('eliminando codigo otp $codigo de la db');
       await performOperation(
         () => odm.eliminarOTPResetPassword(
           session: session,
           codigo: codigo,
         ),
       );
-      session.log('codigo otp $codigo eliminado');
+     logger.fine('codigo otp $codigo eliminado con exito');
       return true;
     } on Exception catch (e) {
       throw Exception('$e');
