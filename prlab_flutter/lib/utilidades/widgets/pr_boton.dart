@@ -67,13 +67,13 @@ class PRBoton extends StatelessWidget {
                 ? colores.background
                 : estaHabilitado && !muestraEstadoDeCarga
                     ? colores.primary
-                    : colores.primaryMediaOpacidad,
+                    : colores.primaryOpacidadSesenta,
             borderRadius: BorderRadius.circular(25),
             border: esOutlined
                 ? Border.all(
                     color: estaHabilitado
                         ? colores.primary
-                        : colores.primaryMediaOpacidad,
+                        : colores.primaryOpacidadSesenta,
                   )
                 : null,
           ),
@@ -88,7 +88,7 @@ class PRBoton extends StatelessWidget {
                       color: esOutlined
                           ? estaHabilitado
                               ? colores.primary
-                              : colores.primaryMediaOpacidad
+                              : colores.primaryOpacidadSesenta
                           : colores.background,
                     ),
                   ),
