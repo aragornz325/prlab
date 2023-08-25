@@ -5,7 +5,6 @@ import 'package:serverpod/server.dart';
 
 /// ODM para manejo de información de Usuario.
 class OdmCliente extends ODM {
-  
   /// Guarda los datos personales del cliente insertados en el formulario de
   /// registro.
   Future<bool> completarKyc({
@@ -13,8 +12,8 @@ class OdmCliente extends ODM {
     required Cliente datosDelCliente,
   }) async {
     try {
-      super.session = session;
       await performOdmOperation(
+        session,
         (Session session) =>
             session.db.transaction((Transaction transaction) async {
           await session.db.query(

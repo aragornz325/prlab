@@ -5,13 +5,14 @@ import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_server/src/odms/odm_auth.dart';
 import 'package:prlab_server/src/servicio.dart';
+import 'package:prlab_server/utils/config/constants.dart';
 import 'package:serverpod/serverpod.dart';
 
 /// La clase AuthService es responsable de manejar la funcionalidad relacionada
 /// con la autenticación.
 class ServicioAuth extends Servicio<OdmAuth> {
   @override
-  final OdmAuth odm = OdmAuth();
+  final odm = OdmAuth();
 
   /// La función `getValidationCode` devuelve un Future que recupera un código
   /// de validación del `AuthRepository` mediante una sesión y un correo
@@ -59,9 +60,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
     required String token,
   }) async {
     try {
-      logger.info('se validara el token $token');
-      final JWT tokenAbierto = JWT.decode(token);
-      
+      final JWT tokenAbierto = performOperationToken(() => JWT.decode(token));
       final String emailToken = tokenAbierto.payload['email'];
       
       logger.finer('buscando token en db');
@@ -79,8 +78,14 @@ class ServicioAuth extends Servicio<OdmAuth> {
         throw Exception('Token no valido');
       }
 
-      logger.finer('verificando la firma del token');
-      JWT.verify(token, SecretKey('sweetHomeAlabama'));
+      performOperationToken(
+        () => JWT.verify(
+          token,
+          SecretKey(
+            ConstantesPrLab.jwtSecret,
+          ),
+        ),
+      );
 
       logger.fine('token validado con exito');
       return emailToken;
@@ -135,7 +140,6 @@ class ServicioAuth extends Servicio<OdmAuth> {
     required String codigo,
   }) async {
     try {
-      logger.info('chequeando codigo: $codigo');
       final bool checkearCodigoOTP = await performOperation(
         () => odm.checkearCodigoOTP(
           session: session,
@@ -154,7 +158,6 @@ class ServicioAuth extends Servicio<OdmAuth> {
           codigo: codigo,
         ),
       );
-     logger.fine('codigo otp $codigo eliminado con exito');
       return true;
     } on Exception catch (e) {
       throw Exception('$e');

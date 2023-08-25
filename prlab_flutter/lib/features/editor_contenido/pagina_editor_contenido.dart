@@ -7,15 +7,15 @@ import 'package:prlab_flutter/features/editor_contenido/escritorio/vista_editor_
 
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
 
-/// {@template PaginaRedaccionEdicionContenido}
+/// {@template PaginaEditorContenido}
 /// La pagina de redaccion y edicion de contenido de articulos de la aplicación.
 /// Contiene las inyecciones de dependencias para
 /// el manejo de estado y setea las vistas.
 /// {@endtemplate}
 @RoutePage()
-class PaginaRedaccionEdicionContenido extends StatelessWidget {
-  /// {@macro PaginaRedaccionEdicionContenido}
-  const PaginaRedaccionEdicionContenido({super.key});
+class PaginaEditorContenido extends StatelessWidget {
+  /// {@macro PaginaEditorContenido}
+  const PaginaEditorContenido({super.key});
 
   @override
   Widget build(BuildContext context) {
