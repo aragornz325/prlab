@@ -27,12 +27,13 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
     final overlay =
         Overlay.of(context).context.findRenderObject()! as RenderBox;
 
-    final double yOffset = -270.0;
     final position = RelativeRect.fromRect(
       Rect.fromPoints(
         button.localToGlobal(Offset.zero, ancestor: overlay),
-        button.localToGlobal(button.size.bottomRight(Offset(0, yOffset)),
-            ancestor: overlay),
+        button.localToGlobal(
+          button.size.bottomRight(Offset(0, -260.0)),
+          ancestor: overlay,
+        ),
       ),
       Offset.zero & overlay.size,
     );

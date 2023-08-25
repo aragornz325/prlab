@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/administracion_contenido/escritorio/widgets/widgets.dart';
+import 'package:prlab_flutter/features/administracion_contenido/escritorio/popup/popup_menu_crear_articulo.dart';
 
 /// {@template TituloBotonCrearArticulo}
 /// Título con un botón para crear un artículo.

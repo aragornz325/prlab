@@ -6,7 +6,8 @@ import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template TextFieldBusquedaFiltrado}
-/// Maneja los estados principales bloc por ahora no hace nada
+/// Dos componentes uno es un textfield/campo de texto y el otro es un dropdown
+/// para filtrar la lista articulos, por estado o fecha
 /// {@endtemplate}
 class TextFieldBusquedaFiltrado extends StatelessWidget {
   /// {@macro TextFieldBusquedaFiltrado}

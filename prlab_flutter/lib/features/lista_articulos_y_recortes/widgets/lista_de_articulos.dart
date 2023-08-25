@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:intl/intl.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
-import 'package:prlab_flutter/features/administracion_contenido/escritorio/widgets/widgets.dart';
+import 'package:prlab_flutter/features/lista_articulos_y_recortes/popup/popup.dart';
+import 'package:prlab_flutter/features/lista_articulos_y_recortes/widgets/pr_articulo.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/widgets/widgets.dart';
 
@@ -71,15 +72,18 @@ class ListaDeArticulos extends StatelessWidget {
                       SizedBox(
                         width: 400.pw,
                         height: max(50.ph, 50.sh),
-                        child: Text(
-                          value,
-                          maxLines: 1,
-                          textAlign: TextAlign.start,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: colores.tertiary,
-                            fontSize: 15.pf,
-                            fontWeight: FontWeight.w500,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            value,
+                            maxLines: 1,
+                            textAlign: TextAlign.start,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: colores.tertiary,
+                              fontSize: 15.pf,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),
@@ -181,9 +185,7 @@ class ListaDeArticulos extends StatelessWidget {
                     height: max(50.ph, 50.sh),
                     child: Center(
                       child: Text(
-                        '${DateFormat.M().format(value)}'
-                        ' ${DateFormat.MMMM().format(value)}'
-                        ' ${DateFormat.y().format(value)}',
+                        DateFormat('d MMM y').format(value),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.start,
@@ -286,16 +288,7 @@ class ListaDeArticulos extends StatelessWidget {
                             color: colores.primary,
                           ),
                         ),
-                        IconButton(
-                          onPressed: () {
-                            // TODO(anyone): agregarle funcionalidad
-                          },
-                          icon: Icon(
-                            Icons.more_vert_outlined,
-                            size: 18.pf,
-                            color: colores.primary,
-                          ),
-                        ),
+                        const PopUpMenuOpcionesArticulo(),
                         SizedBox(width: 10.pw),
                       ],
                     ),

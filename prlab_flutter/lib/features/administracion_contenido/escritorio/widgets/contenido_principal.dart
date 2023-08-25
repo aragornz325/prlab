@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/administracion_contenido/escritorio/widgets/popup_opciones_articulo.dart';
 import 'package:prlab_flutter/features/administracion_contenido/escritorio/widgets/widgets.dart';
 import 'package:prlab_flutter/features/lista_articulos_y_recortes/lista_articulos_y_recortes.dart';
 
@@ -29,46 +28,6 @@ class ContenidoPrincipal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
-
-    // TODO(mati): sacar por la lista del back y hacer una variable arriba para pasarle la lista del modelo del back
-    final listaPrArticuls = [
-      PRArticulo(
-        fecha: DateTime.now(),
-        nombre: 'Flutter article',
-        status: 'Draft',
-        tieneAutor: false,
-      ),
-      PRArticulo(
-        fecha: DateTime.now(),
-        nombre: 'Flutter article',
-        status: 'Draft',
-        tieneAutor: false,
-      ),
-      PRArticulo(
-        fecha: DateTime.now(),
-        nombre: 'Flutter article',
-        status: 'Draft',
-        tieneAutor: false,
-      ),
-      PRArticulo(
-        fecha: DateTime.now(),
-        nombre: 'Flutter article',
-        status: 'Draft',
-        tieneAutor: false,
-      ),
-      PRArticulo(
-        fecha: DateTime.now(),
-        nombre: 'Flutter article',
-        status: 'Draft',
-        tieneAutor: false,
-      ),
-      PRArticulo(
-        fecha: DateTime.now(),
-        nombre: 'Flutter article',
-        status: 'Draft',
-        tieneAutor: false,
-      ),
-    ];
 
     return Container(
       width: 1000.pw,

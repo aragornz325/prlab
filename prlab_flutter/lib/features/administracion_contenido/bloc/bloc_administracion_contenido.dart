@@ -5,7 +5,6 @@ import 'package:meta/meta.dart';
 part 'bloc_administracion_contenido_evento.dart';
 part 'bloc_administracion_contenido_estado.dart';
 
-//TODO(mati): hacer documentacion
 /// {@template BlocAdministracionContenido}
 /// El [Bloc] que puede filtrar de distintas formas los artículos,por nombre
 /// en un textfield/campo de texto o filtrar por fecha y el estado
