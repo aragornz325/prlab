@@ -14,10 +14,11 @@ class Cliente extends _i1.SerializableEntity {
     required this.nombre,
     required this.apellido,
     required this.fechaDeNacimiento,
-    this.idUsuario,
-    this.idOrganizacion,
+    required this.nombreDeOrganizacion,
     this.domicilio,
     this.telefono,
+    this.idUsuario,
+    this.idOrganizacion,
     this.contacto,
     this.ultimaModificacion,
     this.fechaCreacion,
@@ -35,14 +36,16 @@ class Cliente extends _i1.SerializableEntity {
           .deserialize<String>(jsonSerialization['apellido']),
       fechaDeNacimiento: serializationManager
           .deserialize<DateTime>(jsonSerialization['fechaDeNacimiento']),
-      idUsuario: serializationManager
-          .deserialize<int?>(jsonSerialization['idUsuario']),
-      idOrganizacion: serializationManager
-          .deserialize<int?>(jsonSerialization['idOrganizacion']),
+      nombreDeOrganizacion: serializationManager
+          .deserialize<String>(jsonSerialization['nombreDeOrganizacion']),
       domicilio: serializationManager
           .deserialize<String?>(jsonSerialization['domicilio']),
       telefono: serializationManager
           .deserialize<String?>(jsonSerialization['telefono']),
+      idUsuario: serializationManager
+          .deserialize<int?>(jsonSerialization['idUsuario']),
+      idOrganizacion: serializationManager
+          .deserialize<int?>(jsonSerialization['idOrganizacion']),
       contacto:
           serializationManager.deserialize<int?>(jsonSerialization['contacto']),
       ultimaModificacion: serializationManager
@@ -63,13 +66,15 @@ class Cliente extends _i1.SerializableEntity {
 
   DateTime fechaDeNacimiento;
 
-  int? idUsuario;
-
-  int? idOrganizacion;
+  String nombreDeOrganizacion;
 
   String? domicilio;
 
   String? telefono;
+
+  int? idUsuario;
+
+  int? idOrganizacion;
 
   int? contacto;
 
@@ -84,10 +89,11 @@ class Cliente extends _i1.SerializableEntity {
       'nombre': nombre,
       'apellido': apellido,
       'fechaDeNacimiento': fechaDeNacimiento,
-      'idUsuario': idUsuario,
-      'idOrganizacion': idOrganizacion,
+      'nombreDeOrganizacion': nombreDeOrganizacion,
       'domicilio': domicilio,
       'telefono': telefono,
+      'idUsuario': idUsuario,
+      'idOrganizacion': idOrganizacion,
       'contacto': contacto,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,

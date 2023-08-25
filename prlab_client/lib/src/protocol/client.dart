@@ -8,8 +8,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
-import 'package:prlab_client/src/protocol/mensaje_registro.dart' as _i3;
-import 'package:prlab_client/src/protocol/cliente.dart' as _i4;
+import 'package:prlab_client/src/protocol/cliente.dart' as _i3;
+import 'package:prlab_client/src/protocol/mensaje_registro.dart' as _i4;
 import 'package:serverpod_auth_client/module.dart' as _i5;
 import 'dart:io' as _i6;
 import 'protocol.dart' as _i7;
@@ -90,6 +90,23 @@ class _EndpointAuth extends _i1.EndpointRef {
       );
 }
 
+/// Endpoints de la entidad Cliente.
+class _EndpointCliente extends _i1.EndpointRef {
+  _EndpointCliente(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'cliente';
+
+  /// Guarda los datos personales del cliente insertados en el formulario de
+  /// registro.
+  _i2.Future<bool> completarKyc(_i3.Cliente datosDelCliente) =>
+      caller.callServerEndpoint<bool>(
+        'cliente',
+        'completarKyc',
+        {'datosDelCliente': datosDelCliente},
+      );
+}
+
 class _EndpointExample extends _i1.EndpointRef {
   _EndpointExample(_i1.EndpointCaller caller) : super(caller);
 
@@ -98,7 +115,7 @@ class _EndpointExample extends _i1.EndpointRef {
 
   _i2.Future<int> hello(
     String name,
-    _i3.MensajeRegistro log,
+    _i4.MensajeRegistro log,
   ) =>
       caller.callServerEndpoint<int>(
         'example',
@@ -146,20 +163,6 @@ class _EndpointMail extends _i1.EndpointRef {
       );
 }
 
-class _EndpointUsuario extends _i1.EndpointRef {
-  _EndpointUsuario(_i1.EndpointCaller caller) : super(caller);
-
-  @override
-  String get name => 'usuario';
-
-  _i2.Future<bool> completarKyc(_i4.Cliente datosDelCliente) =>
-      caller.callServerEndpoint<bool>(
-        'usuario',
-        'completarKyc',
-        {'datosDelCliente': datosDelCliente},
-      );
-}
-
 class _Modules {
   _Modules(Client client) {
     auth = _i5.Caller(client);
@@ -180,28 +183,28 @@ class Client extends _i1.ServerpodClient {
           authenticationKeyManager: authenticationKeyManager,
         ) {
     auth = _EndpointAuth(this);
+    cliente = _EndpointCliente(this);
     example = _EndpointExample(this);
     mail = _EndpointMail(this);
-    usuario = _EndpointUsuario(this);
     modules = _Modules(this);
   }
 
   late final _EndpointAuth auth;
 
+  late final _EndpointCliente cliente;
+
   late final _EndpointExample example;
 
   late final _EndpointMail mail;
-
-  late final _EndpointUsuario usuario;
 
   late final _Modules modules;
 
   @override
   Map<String, _i1.EndpointRef> get endpointRefLookup => {
         'auth': auth,
+        'cliente': cliente,
         'example': example,
         'mail': mail,
-        'usuario': usuario,
       };
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup =>

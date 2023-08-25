@@ -219,10 +219,11 @@ CREATE TABLE "clientes" (
   "nombre" text NOT NULL,
   "apellido" text NOT NULL,
   "fechaDeNacimiento" timestamp without time zone NOT NULL,
-  "idUsuario" integer,
-  "idOrganizacion" integer,
+  "nombreDeOrganizacion" text NOT NULL,
   "domicilio" text,
   "telefono" text,
+  "idUsuario" integer,
+  "idOrganizacion" integer,
   "contacto" integer,
   "ultimaModificacion" timestamp without time zone,
   "fechaCreacion" timestamp without time zone

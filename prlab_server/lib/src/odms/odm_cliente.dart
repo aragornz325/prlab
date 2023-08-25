@@ -1,12 +1,13 @@
 import 'package:prlab_server/src/generated/cliente.dart';
-import 'package:prlab_server/src/generated/informacion_de_contacto.dart';
 import 'package:prlab_server/src/odm.dart';
 import 'package:serverpod/database.dart';
 import 'package:serverpod/server.dart';
 
 /// ODM para manejo de información de Usuario.
 class OdmCliente extends ODM {
-  /// Metodo para insertar primeros datos del usuario.
+  
+  /// Guarda los datos personales del cliente insertados en el formulario de
+  /// registro.
   Future<bool> completarKyc({
     required Session session,
     required Cliente datosDelCliente,
@@ -14,12 +15,15 @@ class OdmCliente extends ODM {
     try {
       super.session = session;
       await performOdmOperation(
-        (Session session) => session.db.transaction((transaction) async {
+        (Session session) =>
+            session.db.transaction((Transaction transaction) async {
           await session.db.query(
-              'INSERT INTO serverpod_user_info (fullName) VALUES (\"${datosDelCliente.nombre};${datosDelCliente.apellido}\")');
-          await session.db.insert(datosDelCliente
-            ..fechaCreacion = DateTime.now()
-            ..ultimaModificacion = DateTime.now());
+              'UPDATE serverpod_user_info SET "fullName" = \'${datosDelCliente.nombre};${datosDelCliente.apellido}\' WHERE \"id\" = ${datosDelCliente.idUsuario};');
+          await session.db.insert(
+            datosDelCliente
+              ..fechaCreacion = DateTime.now()
+              ..ultimaModificacion = DateTime.now(),
+          );
         }),
       );
       return true;

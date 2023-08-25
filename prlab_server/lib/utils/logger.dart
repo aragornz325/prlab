@@ -3,8 +3,12 @@ import 'dart:io';
 
 import 'package:logging/logging.dart';
 
-void initRootLogger(
-    {bool debugMode = false, bool colores = true, bool timestamp = true}) {
+/// Configuracion inicial del logger.
+void initRootLogger({
+  bool debugMode = false,
+  bool colores = true,
+  bool timestamp = true,
+}) {
   Logger.root.level = Level.ALL;
 
   hierarchicalLoggingEnabled = true;
@@ -12,13 +16,13 @@ void initRootLogger(
   // specify the levels for lower level loggers, if desired
   // Logger('SiteInfoService').level = Level.ALL;
 
-  Logger.root.onRecord.listen((record) {
+  Logger.root.onRecord.listen((LogRecord record) {
     String message;
     String tiempo = timestamp ? '${record.time}:' : '';
     if (colores) {
-      var start = '\x1b[90m';
-      const end = '\x1b[0m';
-      const white = '\x1b[37m';
+      String start = '\x1b[90m';
+      const String end = '\x1b[0m';
+      const String white = '\x1b[37m';
 
       switch (record.level.name) {
         case 'INFO':
