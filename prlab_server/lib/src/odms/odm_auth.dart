@@ -73,7 +73,7 @@ class OdmAuth extends ODM {
         }
 
         await session.db.query(
-          'INSERT INTO invitaciones (email, token, tipo_de_invitacion) VALUES (\'$email\', \'$token\', \'$tipoDeInvitacion\')',
+          'INSERT INTO invitaciones (email, token, "tipoDeInvitacion") VALUES (\'$email\', \'$token\', \'$tipoDeInvitacion\')',
         );
       }),
     );

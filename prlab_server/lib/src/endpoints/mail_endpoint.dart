@@ -27,13 +27,13 @@ class MailEndpoint extends Endpoint {
   Future<bool> envioMailRegistro(
     Session session,
     String email,
-    int tipoInvitacion,
+    int tipoDeInvitacion,
   ) async {
     try {
       return servicioMailer.envioMailRegistro(
         session: session,
         email: email,
-        tipoDeInvitacion: tipoInvitacion,
+        tipoDeInvitacion: tipoDeInvitacion,
       );
     } on Exception catch (e) {
       throw Exception('$e');
