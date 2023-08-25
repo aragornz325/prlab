@@ -56,20 +56,19 @@ class PRBoton extends StatelessWidget {
       onTap: estaHabilitado ? onTap : null,
       child: Container(
         width: width,
-        height: 50.ph,
+        height: 50.sh,
         decoration: BoxDecoration(
           color: esOutlined
               ? colores.background
               : estaHabilitado && !muestraEstadoDeCarga
                   ? colores.primary
-                  : colores.primaryBajaOpacidad,
+                  : colores.primaryOpacidadSesenta,
           borderRadius: BorderRadius.circular(100),
           border: esOutlined
               ? Border.all(
-                  width: 2.pw,
                   color: estaHabilitado
                       ? colores.primary
-                      : colores.primaryBajaOpacidad,
+                      : colores.primaryOpacidadSesenta,
                 )
               : null,
         ),
@@ -84,7 +83,7 @@ class PRBoton extends StatelessWidget {
                     color: esOutlined
                         ? estaHabilitado
                             ? colores.primary
-                            : colores.primaryBajaOpacidad
+                            : colores.primaryOpacidadSesenta
                         : colores.background,
                   ),
                 ),
