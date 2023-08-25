@@ -59,57 +59,38 @@ class PRBoton extends StatelessWidget {
     return GestureDetector(
       onTap: estaHabilitado ? onTap : null,
       child: Container(
-        width: width,
-        height: height,
+        width: width.pw,
+        height: 50.sh,
         decoration: BoxDecoration(
           color: esOutlined
               ? colores.background
               : estaHabilitado && !muestraEstadoDeCarga
                   ? colores.primary
-                  : colores.primaryBajaOpacidad,
+                  : colores.primaryOpacidadSesenta,
           borderRadius: BorderRadius.circular(25),
           border: esOutlined
               ? Border.all(
                   color: estaHabilitado
                       ? colores.primary
-                      : colores.primaryBajaOpacidad,
+                      : colores.primaryOpacidadSesenta,
                 )
               : null,
         ),
-        child: Container(
-          width: width.pw,
-          height: 50.sh,
-          decoration: BoxDecoration(
-            color: esOutlined
-                ? colores.background
-                : estaHabilitado && !muestraEstadoDeCarga
-                    ? colores.primary
-                    : colores.primaryOpacidadSesenta,
-            borderRadius: BorderRadius.circular(25),
-            border: esOutlined
-                ? Border.all(
-                    color: estaHabilitado
-                        ? colores.primary
-                        : colores.primaryOpacidadSesenta,
-                  )
-                : null,
-          ),
-          child: Center(
-            child: muestraEstadoDeCarga
-                ? const CircularProgressIndicator()
-                : Text(
-                    texto,
-                    style: TextStyle(
-                      fontSize: 16.pf,
-                      fontWeight: FontWeight.w600,
-                      color: esOutlined
-                          ? estaHabilitado
-                              ? colores.primary
-                              : colores.primaryOpacidadSesenta
-                          : colores.background,
-                    ),
+        child: Center(
+          child: muestraEstadoDeCarga
+              ? const CircularProgressIndicator()
+              : Text(
+                  texto,
+                  style: TextStyle(
+                    fontSize: 16.pf,
+                    fontWeight: FontWeight.w600,
+                    color: esOutlined
+                        ? estaHabilitado
+                            ? colores.primary
+                            : colores.primaryOpacidadSesenta
+                        : colores.background,
                   ),
-          ),
+                ),
         ),
       ),
     );
