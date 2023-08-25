@@ -288,7 +288,10 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
                       : widget.esSoloLectura
                           ? colores.primaryBajaOpacidad
                           : colores.primary,
-                  size: 24.pf,
+                  size: 25.pf,
+                ),
+                SizedBox(
+                  width: 5.ph,
                 ),
                 Container(
                   height: 31.5.ph,
@@ -348,7 +351,7 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
       width: widget.width,
       controller: widget.controller,
       hintText: widget.hintText,
-      prefixIcon: Icons.lock,
+      prefixIcon: Icons.lock_outline,
       prefixIconColor:
           widget.controller.text.isEmpty ? colores.primary : colores.secondary,
       obscureText: _obscureText,
@@ -357,10 +360,12 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
             ? Icon(
                 Icons.visibility_off_outlined,
                 color: colores.primary,
+                size: 25.pf,
               )
             : Icon(
                 Icons.visibility_outlined,
                 color: colores.primary,
+                size: 25.pf,
               ),
         onPressed: () {
           setState(() {

@@ -10,7 +10,6 @@ class AppRouter extends $AppRouter {
   final List<AutoRoute> routes = [
     AutoRoute(
       page: RutaLogin.page,
-      initial: true,
       path: '/login',
     ),
     AutoRoute(
@@ -28,6 +27,7 @@ class AppRouter extends $AppRouter {
     AutoRoute(
       path: '/kyc-form',
       page: RutaKyc.page,
+      initial: true,
     ),
     AutoRoute(
       path: '/recover-password',

@@ -11,14 +11,14 @@
 import 'package:auto_route/auto_route.dart' as _i7;
 import 'package:flutter/material.dart' as _i8;
 import 'package:prlab_flutter/features/auth/crear_cuenta_admin/pagina_crear_cuenta_admin.dart'
-    as _i6;
+    as _i5;
+import 'package:prlab_flutter/features/auth/kyc/pagina_kyc.dart' as _i6;
 import 'package:prlab_flutter/features/auth/login/pagina_login.dart' as _i1;
 import 'package:prlab_flutter/features/auth/recuperar_password/pagina_recuperar_password.dart'
     as _i2;
 import 'package:prlab_flutter/features/auth/registro/pagina_registro.dart'
     as _i3;
 import 'package:prlab_flutter/features/dashboard/pagina_dashboard.dart' as _i4;
-import 'package:prlab_flutter/features/kyc/pagina_kyc.dart' as _i5;
 
 abstract class $AppRouter extends _i7.RootStackRouter {
   $AppRouter({super.navigatorKey});
@@ -60,16 +60,16 @@ abstract class $AppRouter extends _i7.RootStackRouter {
         child: const _i4.PaginaDashboard(),
       );
     },
-    RutaKyc.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i5.PaginaKyc(),
-      );
-    },
     RutaCrearCuenta.name: (routeData) {
       return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.PaginaCrearCuenta(),
+        child: const _i5.PaginaCrearCuenta(),
+      );
+    },
+    RutaKyc.name: (routeData) {
+      return _i7.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i6.PaginaKyc(),
       );
     },
   };
@@ -182,21 +182,7 @@ class RutaDashboard extends _i7.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.PaginaKyc]
-class RutaKyc extends _i7.PageRouteInfo<void> {
-  const RutaKyc({List<_i7.PageRouteInfo>? children})
-      : super(
-          RutaKyc.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'RutaKyc';
-
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i6.PaginaCrearCuenta]
+/// [_i5.PaginaCrearCuenta]
 class RutaCrearCuenta extends _i7.PageRouteInfo<void> {
   const RutaCrearCuenta({List<_i7.PageRouteInfo>? children})
       : super(
@@ -205,6 +191,20 @@ class RutaCrearCuenta extends _i7.PageRouteInfo<void> {
         );
 
   static const String name = 'RutaCrearCuenta';
+
+  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i6.PaginaKyc]
+class RutaKyc extends _i7.PageRouteInfo<void> {
+  const RutaKyc({List<_i7.PageRouteInfo>? children})
+      : super(
+          RutaKyc.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RutaKyc';
 
   static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
 }

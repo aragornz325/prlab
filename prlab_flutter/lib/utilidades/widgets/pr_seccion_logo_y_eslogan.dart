@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
@@ -38,6 +40,15 @@ class SeccionLogoYEslogan extends StatelessWidget {
               width: 55.5.wp,
             ),
           ),
+          ClipRRect(
+            // Clip it cleanly.
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+              child: Container(
+                alignment: Alignment.center,
+              ),
+            ),
+          ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -71,6 +82,9 @@ class SeccionLogoYEslogan extends StatelessWidget {
                       width: 100.pw,
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: 150.ph,
                 ),
               ],
             ),

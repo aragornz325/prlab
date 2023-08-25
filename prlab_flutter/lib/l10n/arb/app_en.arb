@@ -1,7 +1,7 @@
 {
     "@@locale": "en",
 
-    "pageLoginGreetings": "Hi Again!",
+    "pageLoginGreetings": "Hi again!",
     "@pageLoginGreetings": {
         "description": "Welcomes the user back"
     },
@@ -319,9 +319,9 @@
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph but with an exclamation sign."
     },
 
-    "commonDateHintText" : "00/00/0000",
+    "commonDateHintText" : "Birthdate",
     "@commonDateHintText": {
-        "description": "This text provides a sample date format '00/00/0000' that serves as a visual hint for users when entering dates."
+        "description": "Field on the kyc page"
     },
 
     "commonMinimumCharactersForAPassword" : "At least 12 characters",
