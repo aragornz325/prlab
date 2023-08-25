@@ -5,9 +5,11 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
-// TODO(mati): hacer documentacion
+/// {@template TextFieldBusquedaFiltrado}
+/// Maneja los estados principales bloc por ahora no hace nada
+/// {@endtemplate}
 class TextFieldBusquedaFiltrado extends StatelessWidget {
-// TODO(mati): hacer documentacion
+  /// {@macro TextFieldBusquedaFiltrado}
   const TextFieldBusquedaFiltrado({super.key});
 
   @override

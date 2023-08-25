@@ -5,9 +5,12 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
-// TODO(mati): hacer documentacion
+/// {@template BotonesArticulosYRecorte}
+/// Son dos botones de `artículos` y `recorte` donde se tendría que navegar
+/// entre dos vistas.
+/// {@endtemplate}
 class BotonesArticulosYRecorte extends StatelessWidget {
-// TODO(mati): hacer documentacion
+  /// {@macro BotonesArticulosYRecorte}
   const BotonesArticulosYRecorte({super.key});
 
   @override
@@ -66,10 +69,10 @@ class BotonesArticulosYRecorte extends StatelessWidget {
                     fontSize: 14.pf,
                     color: colores.secondary,
                   ),
-                )
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

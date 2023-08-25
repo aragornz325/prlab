@@ -5,9 +5,14 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/paginas/administracion_contenido/escritorio/widgets/widgets.dart';
 
-// TODO(mati): hacer documentacion
+/// {@template VistaEscritorioAdministracionContenido}
+/// es la vista de administración de contenido con la cual vemos tus artículos
+/// y una lista de los artículos con la cual tenemos informacion sobre su
+/// nombre, estado, ultima fecha actualizada y dos opciones de compartir
+/// y de mas opciones. un boton para crear artículo con ciertas propiedades
+/// {@endtemplate}
 class VistaEscritorioAdministracionContenido extends StatelessWidget {
-// TODO(mati): hacer documentacion
+  /// {@macro VistaEscritorioAdministracionContenido}
   const VistaEscritorioAdministracionContenido({super.key});
 
   @override

@@ -1,22 +1,29 @@
+// ignore_for_file: inference_failure_on_instance_creation
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:intl/intl.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/paginas/administracion_contenido/escritorio/widgets/pr_articulo.dart';
 
 import 'package:prlab_flutter/widgets/widgets.dart';
 
-// TODO(mati): hacer documentacion
+/// {@template ListaArticulos}
+/// Muestra la lista de los artículos con sus atributos.nombre,estado,ultima
+/// fecha actualizada y dos opciones de compartir y de opciones.
+/// {@endtemplate}
 class ListaArticulos extends StatelessWidget {
-// TODO(mati): hacer documentacion
+  /// {@macro ListaArticulos}
   const ListaArticulos({
     super.key,
     required this.articulos,
   });
 
-  // TODO(anyone): pasarle la lista de el modelo del Articulo
+  // TODO(anyone): pasarle la lista de el modelo del Articulo esto es de ejemplo
+  /// Lista de los artículos para mostrar sus propiedades
   final List<PRArticulo> articulos;
 
   @override
@@ -26,10 +33,9 @@ class ListaArticulos extends StatelessWidget {
     final l10n = context.l10n;
 
     return Grilla(
-      listaModelos: [
-        // nose como funciona,pero funciona
+      listaColumnas: [
         // Articulo
-        ModeloLista<String>(
+        Columna(
           widthDeLaColumna: 400.pw,
           lista: articulos.map((e) => e.nombre).toList(),
           nombreColumna: l10n.commonArticle,
@@ -52,7 +58,7 @@ class ListaArticulos extends StatelessWidget {
               ),
             ),
           ),
-          celda: <String>(value) {
+          celda: (value) {
             return Row(
               children: [
                 Container(
@@ -88,7 +94,7 @@ class ListaArticulos extends StatelessWidget {
 
         // TODO(anyone): cambiar por el enum del modelo
         // Status
-        ModeloLista<String>(
+        Columna(
           widthDeLaColumna: 150.pw,
           lista: articulos.map((e) => e.status).toList(),
           nombreColumna: l10n.pageContentAdministrationBarInformationStatus,
@@ -105,7 +111,7 @@ class ListaArticulos extends StatelessWidget {
               ),
             ),
           ),
-          celda: <String>(value) {
+          celda: (value) {
             return SizedBox(
               width: 150.pw,
               height: max(80.ph, 80.sh),
@@ -117,10 +123,9 @@ class ListaArticulos extends StatelessWidget {
                       child: Container(
                         width: 100.pw,
                         height: max(35.ph, 35.sh),
-                        decoration: const BoxDecoration(
-                          // TODO(mati): cambiar color al del theme
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.all(
+                        decoration: BoxDecoration(
+                          color: colores.secondary,
+                          borderRadius: const BorderRadius.all(
                             Radius.circular(100),
                           ),
                         ),
@@ -145,10 +150,9 @@ class ListaArticulos extends StatelessWidget {
             );
           },
         ),
-        // TODO (mati): preguntarle a louka como hacer para paserle un tipo DateTime
 
         // Fecha
-        ModeloLista<DateTime>(
+        Columna(
           widthDeLaColumna: 150.pw,
           lista: articulos.map((e) => e.fecha).toList(),
           nombreColumna: l10n.pageContentAdministrationBarInformationLastUpdate,
@@ -165,7 +169,7 @@ class ListaArticulos extends StatelessWidget {
               ),
             ),
           ),
-          celda: <DateTime>(DateTime value) {
+          celda: (value) {
             return SizedBox(
               width: 150.pw,
               height: max(80.ph, 80.sh),
@@ -176,9 +180,9 @@ class ListaArticulos extends StatelessWidget {
                     height: max(50.ph, 50.sh),
                     child: Center(
                       child: Text(
-                        // TODO(mati): pasarle la fecha al text
-                        '01 Aug 2023',
-                        // DateFormat.yMd().format(value),
+                        '${DateFormat.M().format(value)}'
+                        ' ${DateFormat.MMMM().format(value)}'
+                        ' ${DateFormat.y().format(value)}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.start,
@@ -198,7 +202,7 @@ class ListaArticulos extends StatelessWidget {
         ),
 
         // Autor
-        ModeloLista<String>(
+        Columna(
           widthDeLaColumna: 150.pw,
           lista: articulos.map((e) => e.urlImageAutor.toString()).toList(),
           nombreColumna: l10n.pageContentAdministrationBarInformationAuthor,
@@ -215,7 +219,7 @@ class ListaArticulos extends StatelessWidget {
               ),
             ),
           ),
-          celda: <String>(value) {
+          celda: (value) {
             return SizedBox(
               width: 150.pw,
               height: max(80.ph, 80.sh),
@@ -243,7 +247,7 @@ class ListaArticulos extends StatelessWidget {
         ),
 
         // botones
-        ModeloLista<String>(
+        Columna(
           widthDeLaColumna: 150.pw,
           lista: articulos.map((e) => e.status).toList(),
           nombreColumna: '',
@@ -258,7 +262,7 @@ class ListaArticulos extends StatelessWidget {
               ),
             ),
           ),
-          celda: <String>(value) {
+          celda: (value) {
             return SizedBox(
               width: 150.pw,
               height: max(80.ph, 80.sh),

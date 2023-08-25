@@ -2,11 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 
-// TODO(mati): hacer documentacion
+/// {@template DescripcionArticulo}
+/// Maneja los estados principales bloc por ahora no hace nada
+/// {@endtemplate}
 class DescripcionArticulo extends StatelessWidget {
-  // TODO(mati): hacer documentacion
-  const DescripcionArticulo({required this.descripcionArticulo, super.key});
+  /// {@macro DescripcionArticulo}
+  const DescripcionArticulo({
+    required this.descripcionArticulo,
+    super.key,
+  });
+
+  /// descripcion del artículo
   final String descripcionArticulo;
+
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;

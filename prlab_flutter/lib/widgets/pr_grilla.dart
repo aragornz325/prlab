@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 
+/// {@template Grilla}
+/// Genérica que representa una cuadrícula o tabla
+/// {@Grilla}
 class Grilla<T> extends StatelessWidget {
+  /// {@macro Grilla}
   const Grilla({
     required this.listaColumnas,
     super.key,
     this.scrollController,
   });
 
+  /// Lista de ColumnaBase con la cual le pasamos la lista del tipo de esa
+  /// columna
   final List<ColumnaBase> listaColumnas;
 
+  /// Scroll con la cual se hace scroll entre esa columna.
   final ScrollController? scrollController;
 
   @override
@@ -57,10 +64,6 @@ class Grilla<T> extends StatelessWidget {
                               ...columna.lista.map((e) => columna.celda(e)),
                             if (columna is Columna<double>)
                               ...columna.lista.map((e) => columna.celda(e)),
-                            if (columna is Columna<dynamic>)
-                              ...columna.lista.map((e) => columna.celda(e)),
-                            if (columna is Columna<T>)
-                              ...columna.lista.map((e) => columna.celda(e)),
                             const SizedBox.shrink(),
                           ],
                         ),
@@ -77,7 +80,11 @@ class Grilla<T> extends StatelessWidget {
   }
 }
 
+/// {@template ColumnaBase}
+/// clase base para las columnas que se vallan generando
+/// {@ColumnaBase}
 class ColumnaBase {
+  /// {@macro ColumnaBase}
   ColumnaBase({
     this.nombreColumna,
     this.widthDeLaColumna = 200,
@@ -89,8 +96,11 @@ class ColumnaBase {
   final Widget Function(String value)? celdaEncabezadoColumna;
 }
 
+/// {@template Columna}
 /// Modelo de datos que representa una lista con elementos del tipo [T].
+/// {@Columna}
 class Columna<T> extends ColumnaBase {
+  /// {@macro Columna}
   Columna({
     required this.lista,
     required this.celda,
