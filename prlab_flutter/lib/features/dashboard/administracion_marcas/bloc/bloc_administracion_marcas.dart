@@ -20,7 +20,8 @@ class BlocAdministracionMarcas extends Bloc<BlocAdministracionMarcasEvento,
     on<BlocAdministracionMarcasEventoInicializar>(_inicializar);
   }
 
-  /// Inicializa la pagina trayendo todo lo necesario para el correcto funcionamineto de la misma
+  /// Inicializa la pagina trayendo lo necesario para el correcto funcionamineto
+  /// de la misma
   Future<void> _inicializar(
     BlocAdministracionMarcasEventoInicializar event,
     Emitter<BlocAdministracionMarcasEstado> emit,
