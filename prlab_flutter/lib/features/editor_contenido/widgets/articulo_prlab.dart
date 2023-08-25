@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/theming/base.dart';
 
 /// {@template  ArticuloPRLab}
-/// Elemento de listview.builder que representa un articulo que se puede
-/// presionar para abrirlo y permitir su edicion. Tiene sus factory, permite
-/// la creacion de distintos articulos.
+/// Elemento de la lista que representa un pagina o caracteristica
+///  de los articulos que se puede presionar para abrirlo y permitir su edicion.
+/// Tiene sus factory, permite la creacion de distintos articulos.
 /// [ArticuloPRLab].
 /// {@endtemplate}
 class ArticuloPRLab extends StatelessWidget {
-  /// {@macro ArticuloListView}
+  /// {@macro ArticuloPRLab}
   const ArticuloPRLab({
     required this.titulo,
     required this.contenidoArticulo,
-    required this.contenidoWidget,
+    required this.contenido,
     required this.onTap,
     super.key,
   });
@@ -31,7 +32,7 @@ class ArticuloPRLab extends StatelessWidget {
       titulo: titulo,
       contenidoArticulo: contenidoArticulo,
       onTap: () {}, // TODO(SAM): poner onTap del articulo home.
-      contenidoWidget: Row(
+      contenido: Row(
         children: [
           Center(
             child: SizedBox(
@@ -71,7 +72,7 @@ class ArticuloPRLab extends StatelessWidget {
   final String titulo;
   final String contenidoArticulo;
   final VoidCallback? onTap;
-  final Widget? contenidoWidget;
+  final Widget? contenido;
 
   @override
   Widget build(BuildContext context) {
@@ -92,9 +93,9 @@ class ArticuloPRLab extends StatelessWidget {
             border: Border.all(
               color: colores.primary,
             ),
-            color: colores.primary.withOpacity(.2),
+            color: colores.primaryAltaOpacidad,
           ),
-          child: contenidoWidget,
+          child: contenido,
         ),
       ),
     );

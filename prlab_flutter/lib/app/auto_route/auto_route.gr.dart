@@ -77,7 +77,7 @@ abstract class $AppRouter extends _i8.RootStackRouter {
     RutaRedaccionEdicionContenido.name: (routeData) {
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.PaginaRedaccionEdicionContenido(),
+        child: const _i7.PaginaEditorContenido(),
       );
     },
   };
@@ -218,7 +218,7 @@ class RutaKyc extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.PaginaRedaccionEdicionContenido]
+/// [_i7.PaginaEditorContenido]
 class RutaRedaccionEdicionContenido extends _i8.PageRouteInfo<void> {
   const RutaRedaccionEdicionContenido({List<_i8.PageRouteInfo>? children})
       : super(
