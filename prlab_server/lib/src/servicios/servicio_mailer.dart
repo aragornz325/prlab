@@ -14,7 +14,7 @@ final PlantillasCorreo plantillasCorreo = PlantillasCorreo();
 /// La clase ServicioMailer se utiliza para enviar correos electrónicos.
 class ServicioMailer extends Servicio<OdmAuth> {
   /// Instancia de la clase del odm.
-  final OdmAuth authRepository = OdmAuth();
+  final authRepository = OdmAuth();
 
   /// La función `envioMailRegistro` envía un correo electrónico de registro
   /// con un token a la dirección de correo electrónico especificada, guarda el

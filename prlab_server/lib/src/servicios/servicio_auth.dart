@@ -11,7 +11,7 @@ import 'package:serverpod/serverpod.dart';
 /// con la autenticación.
 class ServicioAuth extends Servicio<OdmAuth> {
   @override
-  final OdmAuth odm = OdmAuth();
+  final odm = OdmAuth();
 
   /// La función `getValidationCode` devuelve un Future que recupera un código
   /// de validación del `AuthRepository` mediante una sesión y un correo
