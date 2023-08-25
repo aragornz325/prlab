@@ -28,4 +28,7 @@ const themeDefaultPRLab = ColorScheme.light(
 
   /// Color utilizado para notificar error.
   error: Color(0xffE00707),
+
+  //TODO(Manu): esto es para el divider de drawer, cambiar todos los onsecondary usados en componentes por outlineVariant
+  outlineVariant: Color(0xffd9d9d9),
 );

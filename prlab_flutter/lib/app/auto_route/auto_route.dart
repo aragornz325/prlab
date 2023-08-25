@@ -38,6 +38,10 @@ class AppRouter extends $AppRouter {
       page: RutaDashboard.page,
     ),
     AutoRoute(
+      page: RutaEditorContenido.page,
+      path: '/edit-content',
+    ),
+    AutoRoute(
       page: RutaAdministracionContenido.page,
       path: '/content-management',
     ),

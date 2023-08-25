@@ -113,7 +113,7 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
           Container(
             width: 1.pw,
             height: max(30.ph, 30.sh),
-            color: colores.primaryBajaOpacidad,
+            color: colores.primaryOpacidadSesenta,
           ),
           SizedBox(
             height: max(30.ph, 30.sh),
