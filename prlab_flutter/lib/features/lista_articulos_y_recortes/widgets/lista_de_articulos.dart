@@ -8,18 +8,17 @@ import 'package:intl/intl.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/features/administracion_contenido/escritorio/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-
 import 'package:prlab_flutter/widgets/widgets.dart';
 
-/// {@template ListaArticulos}
+/// {@template ListaDeArticulos}
 /// Muestra la lista de los artículos con sus atributos.nombre,estado,ultima
 /// fecha actualizada y dos opciones de compartir y de opciones.
 /// {@endtemplate}
-class ListaArticulos extends StatelessWidget {
-  /// {@macro ListaArticulos}
-  const ListaArticulos({
-    super.key,
+class ListaDeArticulos extends StatelessWidget {
+  /// {@macro ListaDeArticulos}
+  const ListaDeArticulos({
     required this.articulos,
+    super.key,
   });
 
   // separar ese componente su propio bloc y envuelve el componente
@@ -73,7 +72,7 @@ class ListaArticulos extends StatelessWidget {
                         width: 400.pw,
                         height: max(50.ph, 50.sh),
                         child: Text(
-                          value.toString(),
+                          value,
                           maxLines: 1,
                           textAlign: TextAlign.start,
                           overflow: TextOverflow.ellipsis,
@@ -133,7 +132,7 @@ class ListaArticulos extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            value.toString(),
+                            value,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(

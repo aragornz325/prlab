@@ -29,7 +29,7 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 5.pw),
             decoration: BoxDecoration(
               color: colores.onPrimary,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
               border: Border.all(color: colores.secondary),
             ),
             child: Center(
@@ -58,7 +58,7 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 5.pw),
             decoration: BoxDecoration(
               color: colores.onPrimary,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
               border: Border.all(color: colores.secondary),
             ),
             child: Row(

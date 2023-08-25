@@ -5,7 +5,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/administracion_contenido/escritorio/widgets/popup_opciones_articulo.dart';
 import 'package:prlab_flutter/features/administracion_contenido/escritorio/widgets/widgets.dart';
-import 'package:prlab_flutter/widgets/widgets.dart';
+import 'package:prlab_flutter/features/lista_articulos_y_recortes/lista_articulos_y_recortes.dart';
 
 /// {@template ContenidoPrincipal}
 /// Contenido principal de la pagina donde muestra t0do el
@@ -78,22 +78,7 @@ class ContenidoPrincipal extends StatelessWidget {
           TituloBotonCrearArticulo(nombreArticulo: tituloArticulo),
           DescripcionArticulo(descripcionArticulo: descripcionArticulo),
           SizedBox(height: max(20.ph, 20.sh)),
-          // TODO(mati) separar este componenete y que tenga su bloc con el envento inicializar con un enum
-          Container(
-            height: max(530.ph, 530.sh),
-            width: 1000.pw,
-            color: colores.onPrimary,
-            child: Column(
-              children: [
-                const BotonesArticulosYRecorte(),
-                Divider(color: colores.onSecondary),
-                const TextFieldBusquedaFiltrado(),
-                Divider(color: colores.onSecondary),
-                const PopUpMenuOpcionesArticulo()
-                // ListaArticulos(articulos: listaPrArticuls),
-              ],
-            ),
-          ),
+          const ListaArticulosYRecortes(),
         ],
       ),
     );
