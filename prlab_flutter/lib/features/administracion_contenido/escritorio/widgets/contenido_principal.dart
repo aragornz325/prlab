@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/administracion_contenido/escritorio/widgets/widgets.dart';
+import 'package:prlab_flutter/widgets/widgets.dart';
 
 /// {@template ContenidoPrincipal}
 /// Contenido principal de la pagina donde muestra t0do el
