@@ -6,7 +6,7 @@ import 'package:serverpod/server.dart';
 /// Servicio para administrar Datos de Cliente.
 class ServicioCliente extends Servicio<OdmCliente> {
   @override
-  final OdmCliente odm = OdmCliente();
+  final odm = OdmCliente();
 
   /// Guarda los datos personales del cliente insertados en el formulario de
   /// registro.
