@@ -10,8 +10,9 @@ import 'package:prlab_flutter/paginas/login/escritorio/widgets/olvidaste_tu_pass
 import 'package:prlab_flutter/paginas/login/escritorio/widgets/texto_bienvenida.dart';
 import 'package:prlab_flutter/paginas/recuperar_password/dialog/dialog.dart';
 import 'package:prlab_flutter/utilidades/utilidades.dart';
-import 'package:prlab_flutter/utilidades/widgets/pr_drawer.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
+
+import '../../../utilidades/widgets/drawer/drawer.dart';
 
 /// Vista de escritorio de la pantalla login donde el usuario
 /// puede iniciar sesion
@@ -78,53 +79,52 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                 color: theme.background,
                 width: 44.5.wp,
                 height: 100.hp,
-                child: PRDrawer(esVersionCelular: false),
-                // Column(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     const TextoBienvenida(),
-                //     SizedBox(
-                //       width: 360.pw,
-                //       height: 40.ph,
-                //       child: PRTextFormField.email(
-                //         context: context,
-                //         controller: controllerEmail,
-                //         onChanged: (_) => _habilitarBotonLogin(),
-                //         hintText: l10n.pageLoginPlaceholderEmail,
-                //       ),
-                //     ),
-                //     SizedBox(height: 10.ph),
-                //     SizedBox(
-                //       width: 360.pw,
-                //       height: 40.ph,
-                //       child: PRTextFormFieldPassword(
-                //         controller: controllerPassword,
-                //         hintText: l10n.pageLoginPlaceholderPassword,
-                //         onChanged: (_) => _habilitarBotonLogin(),
-                //       ),
-                //     ),
-                //     // TODO(Gon): Cuando se manejen errores de login agregar
-                //     // los errores abajo de los textfields
-                //     SizedBox(height: 10.ph),
-                //     OlvidasteTuPassword(
-                //       cargoElMail: ExpresionRegular.emailRegExp.hasMatch(
-                //         controllerEmail.text,
-                //       ),
-                //       email: controllerEmail.text,
-                //       password: controllerPassword.text,
-                //       controllerCodigo: controllerCodigo,
-                //     ),
-                //     SizedBox(
-                //       height: 50.ph,
-                //     ),
-                //     PRBoton(
-                //       estaHabilitado: state.botonHabilitado,
-                //       muestraEstadoDeCarga: state.estaCargandoInicioDeSesion,
-                //       onTap: _onTapBotonIniciarSesion,
-                //       texto: l10n.pageLoginButtonText,
-                //     ),
-                //   ],
-                // ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const TextoBienvenida(),
+                    SizedBox(
+                      width: 360.pw,
+                      height: 40.ph,
+                      child: PRTextFormField.email(
+                        context: context,
+                        controller: controllerEmail,
+                        onChanged: (_) => _habilitarBotonLogin(),
+                        hintText: l10n.pageLoginPlaceholderEmail,
+                      ),
+                    ),
+                    SizedBox(height: 10.ph),
+                    SizedBox(
+                      width: 360.pw,
+                      height: 40.ph,
+                      child: PRTextFormFieldPassword(
+                        controller: controllerPassword,
+                        hintText: l10n.pageLoginPlaceholderPassword,
+                        onChanged: (_) => _habilitarBotonLogin(),
+                      ),
+                    ),
+                    // TODO(Gon): Cuando se manejen errores de login agregar
+                    // los errores abajo de los textfields
+                    SizedBox(height: 10.ph),
+                    OlvidasteTuPassword(
+                      cargoElMail: ExpresionRegular.emailRegExp.hasMatch(
+                        controllerEmail.text,
+                      ),
+                      email: controllerEmail.text,
+                      password: controllerPassword.text,
+                      controllerCodigo: controllerCodigo,
+                    ),
+                    SizedBox(
+                      height: 50.ph,
+                    ),
+                    PRBoton(
+                      estaHabilitado: state.botonHabilitado,
+                      muestraEstadoDeCarga: state.estaCargandoInicioDeSesion,
+                      onTap: _onTapBotonIniciarSesion,
+                      texto: l10n.pageLoginButtonText,
+                    ),
+                  ],
+                ),
               ),
               const SeccionLogoYEslogan(),
             ],
