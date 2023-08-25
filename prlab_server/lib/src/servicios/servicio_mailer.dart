@@ -8,13 +8,13 @@ import 'package:prlab_server/utils/mailer/mailer.dart';
 import 'package:prlab_server/utils/mailer/templates.dart';
 import 'package:serverpod/server.dart';
 
-/// Instancia de la clase con las plantillas para mailing.
-final PlantillasCorreo plantillasCorreo = PlantillasCorreo();
-
 /// La clase ServicioMailer se utiliza para enviar correos electrónicos.
 class ServicioMailer extends Servicio<OdmAuth> {
   /// Instancia de la clase del odm.
   final authRepository = OdmAuth();
+
+  /// Instancia de la clase con las plantillas para mailing.
+  final plantillasCorreo = PlantillasCorreo();
 
   /// La función `envioMailRegistro` envía un correo electrónico de registro
   /// con un token a la dirección de correo electrónico especificada, guarda el
@@ -30,28 +30,35 @@ class ServicioMailer extends Servicio<OdmAuth> {
   Future<bool> envioMailRegistro({
     required Session session,
     required String email,
-    required int tipoInvitacion,
+    required int tipoDeInvitacion,
   }) async {
     try {
-      final JWT jwt = JWT(
-        // ignore: always_specify_types
+      final jwt = JWT(
         {
           'email': email,
           'exp': DateTime.now()
-                  .add(const Duration(days: 30))
+                  .add(
+                    const Duration(
+                      days: ConstantesPrLab.jwtTiempoExpiracionDias,
+                    ),
+                  )
                   .millisecondsSinceEpoch ~/ //30 dias de validez
               1000,
         },
         issuer: 'prlab',
       );
-      final String token = jwt.sign(
-        SecretKey(config['jwtSecret']),
+
+      final String token = performOperationToken(
+        () => jwt.sign(
+          SecretKey(ConstantesPrLab.jwtSecret),
+        ),
       );
 
-      final String? mailURL = config['mail']!['frontendUrl'];
+      final String mailURL =
+          '${ConstantesPrLab.frontendUrl}/#/register/$token';
 
       final String cuerpoMensajeEmailHtml =
-          plantillasCorreo.cuerpoRegistro(enlace: '$mailURL/#/register/$token');
+          plantillasCorreo.cuerpoRegistro(enlace: mailURL);
 
       final String cuerpoCompletoEmail =
           plantillasCorreo.mailingGeneral(contenido: cuerpoMensajeEmailHtml);
@@ -60,14 +67,16 @@ class ServicioMailer extends Servicio<OdmAuth> {
         () => enviarEmail(
           mailDestinatario: email,
           subject: 'you have been invited to PRLab',
-          mailHtml: cuerpoCompletoEmail),);
+          mailHtml: cuerpoCompletoEmail,
+        ),
+      );
 
       await performOperation(
         () => authRepository.guardarTokenEnDb(
           session: session,
           token: token,
           email: email,
-          tipoInvitacion: tipoInvitacion,
+          tipoDeInvitacion: tipoDeInvitacion,
         ),
       );
 

@@ -27,8 +27,8 @@ class OdmAuth extends ODM {
     required Session session,
     required String email,
   }) async {
-    super.session = session;
-    final List<List<dynamic>> result = await performOdmOperation(
+    final result = await performOdmOperation(
+      session,
       (Session session) => session.db.query(
         'SELECT "verificationCode" FROM serverpod_email_create_request WHERE email = \'$email\'',
       ),
@@ -59,31 +59,26 @@ class OdmAuth extends ODM {
     required Session session,
     required String token,
     required String email,
-    required int tipoInvitacion,
+    required int tipoDeInvitacion,
   }) async {
-    try {
-      final int tipoDeInvitacion = tipoInvitacion;
-      super.session = session;
-      await performOdmOperation(
-        (Session session) => session.db.transaction((Transaction txn) async {
-          final List<List<dynamic>> checkearToken = await session.db
-              .query('SELECT token FROM invitaciones WHERE email = \'$email\'');
+    await performOdmOperation(
+      session,
+      (Session session) => session.db.transaction((Transaction txn) async {
+        final checkearToken = await session.db
+            .query('SELECT token FROM invitaciones WHERE email = \'$email\'');
 
-          if (checkearToken.isNotEmpty) {
-            await session.db
-                .query('DELETE FROM invitaciones WHERE email = \'$email\'');
-          }
+        if (checkearToken.isNotEmpty) {
+          await session.db
+              .query('DELETE FROM invitaciones WHERE email = \'$email\'');
+        }
 
-          await session.db.query(
-            'INSERT INTO invitaciones (email, token, tipo_de_invitacion) VALUES (\'$email\', \'$token\', \'$tipoDeInvitacion\')',
-          );
-        }),
-      );
+        await session.db.query(
+          'INSERT INTO invitaciones (email, token, tipo_de_invitacion) VALUES (\'$email\', \'$token\', \'$tipoDeInvitacion\')',
+        );
+      }),
+    );
 
-      return true;
-    } on Exception catch (e) {
-      throw Exception('$e');
-    }
+    return true;
   }
 
   /// La función `traerTokenPorEmail` recupera un token de una tabla de base de
@@ -101,21 +96,17 @@ class OdmAuth extends ODM {
     required Session session,
     required String email,
   }) async {
-    try {
-      super.session = session;
-      final List<List<dynamic>> result = await performOdmOperation(
-        (Session session) => session.db
-            .query('SELECT token FROM invitaciones WHERE email = \'$email\''),
-      );
+    final List<List<dynamic>> result = await performOdmOperation(
+      session,
+      (Session session) => session.db
+          .query('SELECT token FROM invitaciones WHERE email = \'$email\''),
+    );
 
-      if (result.isEmpty) {
-        throw ErrorPrLab.errorElementoNoEncontrado;
-      }
-
-      return result.first.first;
-    } on Exception catch (e) {
-      throw Exception('$e');
+    if (result.isEmpty) {
+      throw ErrorPrLab.errorElementoNoEncontrado;
     }
+
+    return result.first.first;
   }
 
   /// La función `validarCodigoResetPassword` verifica si un código de
@@ -132,22 +123,18 @@ class OdmAuth extends ODM {
     required Session session,
     required String codigo,
   }) async {
-    try {
-      super.session = session;
-      final List<List<dynamic>> result = await performOdmOperation(
-        (Session session) => session.db.query(
-          'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
-        ),
-      );
+    final result = await performOdmOperation(
+      session,
+      (Session session) => session.db.query(
+        'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
+      ),
+    );
 
-      if (result.isEmpty) {
-        throw ErrorPrLab.errorElementoNoEncontrado;
-      }
-
-      return result;
-    } on Exception catch (e) {
-      throw Exception('$e');
+    if (result.isEmpty) {
+      throw ErrorPrLab.errorElementoNoEncontrado;
     }
+
+    return result;
   }
 
   /// La función `eliminarOTPResetPassword` elimina un registro de la tabla
@@ -163,18 +150,13 @@ class OdmAuth extends ODM {
   Future<List<dynamic>> eliminarOTPResetPassword({
     required Session session,
     required String codigo,
-  }) async {
-    try {
-      super.session = session;
-      return await performOdmOperation(
+  }) async =>
+      await performOdmOperation(
+        session,
         (Session session) => session.db.query(
           'DELETE FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
         ),
       );
-    } on Exception catch (e) {
-      throw Exception('$e');
-    }
-  }
 
   /// La función `checkearCodigoOTP` verifica si un código de verificación dado
   /// existe en la base de datos.
@@ -189,22 +171,18 @@ class OdmAuth extends ODM {
     required Session session,
     required String codigo,
   }) async {
-    try {
-      super.session = session;
-      final List<List<dynamic>> codigoEnDb = await performOdmOperation(
-        (Session session) => session.db.query(
-          'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
-        ),
-      );
+    final codigoEnDb = await performOdmOperation(
+      session,
+      (Session session) => session.db.query(
+        'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
+      ),
+    );
 
-      if (codigoEnDb.isEmpty) {
-        session.log('codigo $codigo no encontrado en la db');
-        return false;
-      } else {
-        return true;
-      }
-    } on Exception catch (e) {
-      throw Exception('$e');
+    if (codigoEnDb.isEmpty) {
+      session.log('codigo $codigo no encontrado en la db');
+      return false;
+    } else {
+      return true;
     }
   }
 }

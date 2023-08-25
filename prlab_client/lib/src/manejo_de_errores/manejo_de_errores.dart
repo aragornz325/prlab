@@ -21,8 +21,3 @@ enum ErrorPrLab implements Exception {
   final String mensaje;
 
 }
-
-// enum ErrorODM {
-
-
-// }

@@ -3,64 +3,64 @@ import 'dart:io';
 
 import 'package:logging/logging.dart';
 
-void initRootLogger(
-    {bool debugMode = false, bool colores = true, bool timestamp = true}) {
+void inicializarLogger({
+  bool modoDebugging = false,
+  bool colores = true,
+  bool marcaDeTiempo = true,
+}) {
   Logger.root.level = Level.ALL;
 
   hierarchicalLoggingEnabled = true;
 
-  // specify the levels for lower level loggers, if desired
-  // Logger('SiteInfoService').level = Level.ALL;
-
   Logger.root.onRecord.listen((record) {
-    String message;
-    String tiempo = timestamp ? '${record.time}:' : '';
+    String mensaje;
+    String tiempo = marcaDeTiempo ? '${record.time}:' : '';
     if (colores) {
-      var start = '\x1b[90m';
-      const end = '\x1b[0m';
-      const white = '\x1b[37m';
+      var inicio = '\x1b[90m';
+      const fin = '\x1b[0m';
+      const blanco = '\x1b[37m';
 
       switch (record.level.name) {
         case 'INFO':
-          start = '\x1b[37m';
+          inicio = '\x1b[37m';
           break;
         case 'FINE':
-          start = '\x1B[32m';
+          inicio = '\x1B[32m';
           break;
         case 'FINER':
-          start = '\x1B[34m';
+          inicio = '\x1B[34m';
           break;
         case 'FINEST':
-          start = '\x1B[36m';
+          inicio = '\x1B[36m';
           break;
         case 'SEVERE':
-          start = '\x1b[103m\x1b[31m';
+          inicio = '\x1b[103m\x1b[31m';
           break;
         case 'SHOUT':
-          start = '\x1b[41m\x1b[93m';
+          inicio = '\x1b[41m\x1b[93m';
           break;
       }
 
-      message =
-          '$white$tiempo$end$start [${record.level.name}]: ${record.message} $end';
+      mensaje =
+          '$blanco$tiempo$fin$inicio [${record.level.name}]: ${record.message} $fin';
     } else {
-      message = '$tiempo [${record.level.name}]: ${record.message}';
+      mensaje = '$tiempo [${record.level.name}]: ${record.message}';
     }
     if (record.error != null) {
-      message += '\n${record.error}';
+      mensaje += '\n${record.error}';
       if (record.stackTrace != null) {
-        message += '\n${record.stackTrace}';
+        mensaje += '\n${record.stackTrace}';
       }
     }
-    if (debugMode) {
+    if (modoDebugging) {
       developer.log(
-        message,
+        mensaje,
         name: record.loggerName.padRight(25),
         level: record.level.value,
         time: record.time,
       );
     } else {
-      stdout.writeln(message);
+      stdout.writeln(mensaje);
     }
   });
 }

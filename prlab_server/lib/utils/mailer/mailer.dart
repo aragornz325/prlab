@@ -12,14 +12,6 @@ Future<Map<String, String>> enviarEmail({
   required String subject,
   required String mailHtml,
 }) async {
-  // final smtpServer = SmtpServer(
-  //   config['mailer']['hostSMTPnidus'],
-  //   port: config['mailer']['portSMTPnidus'],
-  //   username: config['mailer']['nidusMail'],
-  //   password: config['mailer']['nidusMailPassword'],
-  //   ssl: true,
-  // );
-
   List<String> destinatarios = [];
   if (mailDestinatario.contains(',')) {
     final List<String> mailSpliteado = mailDestinatario.split(',');
@@ -31,20 +23,12 @@ Future<Map<String, String>> enviarEmail({
   }
 
   final smtpServer = gmail('notifications.prlab@gmail.com', 'lnkynaoedinivymg');
-  //final finalccRecipients = ccRecipient ?? 'nidus.escuelas@gmail.com';
   final Message message = Message()
     ..from = const Address('supportprlab@nidus.dev', 'PRLab')
-    //..recipients.addAll(['no-responder.escuelas@nidus.dev'])
     ..recipients.addAll(destinatarios)
-    // ..bccRecipients.addAll(['${config['mailer']['nidusMail']}'])
     ..subject = subject
     ..html = mailHtml;
 
-  // ..attachments = [
-  //   FileAttachment(File(''))
-  //     ..location = Location.inline
-  //     ..cid = '<myimg@3.141>'
-  // ];
   const Duration duration = Duration(seconds: 30);
 
   bool errorFlag = false;
@@ -63,10 +47,7 @@ Future<Map<String, String>> enviarEmail({
 
   PersistentConnection connection = PersistentConnection(smtpServer);
 
-  // Send the first message
-  //await connection.send(message);
-
-  // close the connection
+  // Closes the connection.
   await connection.close();
 
   if (errorFlag) {

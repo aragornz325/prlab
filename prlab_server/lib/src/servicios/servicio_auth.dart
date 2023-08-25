@@ -5,6 +5,7 @@ import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_server/src/odms/odm_auth.dart';
 import 'package:prlab_server/src/servicio.dart';
+import 'package:prlab_server/utils/config/constants.dart';
 import 'package:serverpod/serverpod.dart';
 
 /// La clase AuthService es responsable de manejar la funcionalidad relacionada
@@ -57,7 +58,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
     required String token,
   }) async {
     try {
-      final JWT tokenAbierto = JWT.decode(token);
+      final JWT tokenAbierto = performOperationToken(() => JWT.decode(token));
       final String emailToken = tokenAbierto.payload['email'];
       final String tokenDb = await performOperation(
         () => odm.traerTokenPorEmail(session: session, email: emailToken),
@@ -71,7 +72,14 @@ class ServicioAuth extends Servicio<OdmAuth> {
         throw Exception('Token no valido');
       }
 
-      JWT.verify(token, SecretKey('sweetHomeAlabama'));
+      performOperationToken(
+        () => JWT.verify(
+          token,
+          SecretKey(
+            ConstantesPrLab.jwtSecret,
+          ),
+        ),
+      );
 
       return emailToken;
     } on Exception catch (e) {
@@ -125,7 +133,6 @@ class ServicioAuth extends Servicio<OdmAuth> {
     required String codigo,
   }) async {
     try {
-      session.log('chequeando codigo: $codigo');
       final bool checkearCodigoOTP = await performOperation(
         () => odm.checkearCodigoOTP(
           session: session,
@@ -143,7 +150,6 @@ class ServicioAuth extends Servicio<OdmAuth> {
           codigo: codigo,
         ),
       );
-      session.log('codigo otp $codigo eliminado');
       return true;
     } on Exception catch (e) {
       throw Exception('$e');

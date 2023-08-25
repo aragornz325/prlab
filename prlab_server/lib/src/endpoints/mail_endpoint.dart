@@ -6,7 +6,7 @@ class MailEndpoint extends Endpoint {
   // @override
   // bool get requireLogin => true;
 
-  /// Instancia de `ServicioMail`.
+  /// Instancia de `ServicioMailer`.
   final servicioMailer = ServicioMailer();
 
   /// La función `envioMailRegistro` envía un correo electrónico de registro
@@ -33,7 +33,7 @@ class MailEndpoint extends Endpoint {
       return servicioMailer.envioMailRegistro(
         session: session,
         email: email,
-        tipoInvitacion: tipoInvitacion,
+        tipoDeInvitacion: tipoInvitacion,
       );
     } on Exception catch (e) {
       throw Exception('$e');
