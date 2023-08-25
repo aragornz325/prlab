@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/features/kyc/widgets/widgets.dart';
+import 'package:prlab_flutter/features/auth/kyc/widgets/widgets.dart';
 
 /// {@template VistaKycCelular}
 /// Vista del kyc en dispositivos mobiles.

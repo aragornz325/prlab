@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/kyc/bloc/bloc_kyc.dart';
-import 'package:prlab_flutter/features/kyc/dialog/pr_dialog_registro_exitoso.dart';
-import 'package:prlab_flutter/features/kyc/widgets/widgets.dart';
+import 'package:prlab_flutter/features/auth/kyc/bloc/bloc_kyc.dart';
+import 'package:prlab_flutter/features/auth/kyc/dialog/dialog.dart';
+import 'package:prlab_flutter/features/auth/kyc/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
