@@ -257,6 +257,7 @@
         "description":"This message corresponds to a situation where the register of the user is a success. This is shown in an alert dialog after pressing button continue."
     },
       "pageRegisterErrorDialogDescription" : "Your account could not be created,\n  contact us ",
+
     "@pageRegisterErrorDialogDescription": {
         "description":"This message corresponds to a situation where the register of the user is an error. This is shown in an alert dialog after pressing sign up."
     },
@@ -264,6 +265,27 @@
     "@pageKYCSuccessDialogButtonText": {
         "description":"This message corresponds to a situation where the registration of the user is successful. This is shown in the button of the alert dialog after pressing continue button in KYC."
     },
+
+    "drawerHome":"Home",
+    "@drawerHome":{
+        "description":"Text to indicate that you will be redirected to home"
+    },
+
+    "drawerProjects":"Projects",
+    "@drawerProjects":{
+        "description":"Text to indicate that you will be redirected to the projects section"
+    },
+
+    "drawerTemplates":"Templates",
+    "@drawerTemplates":{
+        "description":"Text to indicate that you will be redirected to the templates section"
+    },
+
+    "drawerLogOut": "Log Out",
+    "@drawerLogOut":{
+        "description":"Text in the logout item"
+    },
+
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
@@ -339,7 +361,7 @@
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph."
     },
        "commonSuccessWithExclamation" : "Success!",
-    "@commonSuccess": {
+    "@commonSuccessWithExclamation": {
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph but with an exclamation sign."
     },
 
