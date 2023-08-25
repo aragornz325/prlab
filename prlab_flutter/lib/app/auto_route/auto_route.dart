@@ -9,6 +9,7 @@ class AppRouter extends $AppRouter {
   @override
   final List<AutoRoute> routes = [
     AutoRoute(
+      initial: true,
       page: RutaLogin.page,
       path: '/login',
     ),
@@ -37,8 +38,6 @@ class AppRouter extends $AppRouter {
       page: RutaDashboard.page,
     ),
     AutoRoute(
-      // TODO(mati) pasar la ruta inicial en el login
-      initial: true,
       page: RutaAdministracionContenido.page,
       path: '/content-management',
     ),
