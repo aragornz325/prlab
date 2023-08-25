@@ -58,13 +58,13 @@ class ServicioMailer extends Servicio<OdmAuth> {
 
       final String cuerpoCompletoEmail =
           plantillasCorreo.mailingGeneral(contenido: cuerpoMensajeEmailHtml);
-      logger.finer('enviando email');
+
       await enviarEmail(
         mailDestinatario: email,
-        subject: 'registro',
+        subject: 'you have been invited to PRLab',
         mailHtml: cuerpoCompletoEmail,
       );
-      logger.finer('guardando token en db');
+
       await authRepository.guardarTokenEnDb(
         session: session,
         token: token,
