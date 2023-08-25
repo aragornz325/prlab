@@ -263,7 +263,8 @@ class ListaArticulos extends StatelessWidget {
             ),
           ),
           celda: (value) {
-            return SizedBox(
+            return Container(
+              padding: EdgeInsets.only(right: 30.pw),
               width: 150.pw,
               height: max(80.ph, 80.sh),
               child: Column(
