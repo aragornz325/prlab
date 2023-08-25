@@ -12,7 +12,6 @@ final temaPorDefectoPRLab = ThemeData.from(
   useMaterial3: true,
 );
 
-
 // TODO(Manu): Arreglar cuando nico tenga la idea generada.
 // ThemeData? _temaPorDefectoPRLab;
 
