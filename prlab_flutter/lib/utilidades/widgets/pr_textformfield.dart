@@ -259,7 +259,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
         readOnly: widget.esSoloLectura,
         style: TextStyle(
           color: widget.esSoloLectura
-              ? colores.primaryBajaOpacidad
+              ? colores.primaryOpacidadSesenta
               : colores.primary,
         ),
         inputFormatters: widget.inputFormatters,
@@ -285,7 +285,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
                           ? colores.secondaryBajaOpacidad
                           : colores.secondary
                       : widget.esSoloLectura
-                          ? colores.primaryBajaOpacidad
+                          ? colores.primaryOpacidadSesenta
                           : colores.primary,
                 ),
                 Container(
