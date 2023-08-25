@@ -239,15 +239,16 @@
     "@pageRecoverPasswordChangePasswordSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
     },
-       "pageKYCSuccessDialogDescription" : "Felicitaciones! Tu cuenta\n ha sido creada correctamente.\n Inicia sesión para empezar en PRLAB",
+    
+    
+    "pageKYCSuccessDialogDescription" : "Felicitaciones! Tu cuenta\n ha sido creada correctamente.\n Inicia sesión para empezar en PRLAB",
     "@pageKYCSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the register of the user is a success. This is shown in an alert dialog after pressing button continue."
     },
-    "pageRegisterErrorDialogDescription" : "Tu cuenta no pudo ser creada,\n  contáctanos ",
     "@pageRegisterErrorDialogDescription": {
         "description":"This message corresponds to a situation where the register of the user is an error. This is shown in an alert dialog after pressing sign up."
     },
-         "pageKYCSuccessDialogButtonText" : "Ir a Iniciar sesión",
+    "pageKYCSuccessDialogButtonText" : "Ir a Iniciar sesión",
     "@pageKYCSuccessDialogButtonText": {
         "description":"This message corresponds to a situation where the registration of the user is successful. This is shown in the button of the alert dialog after pressing continue button in KYC."
     },
@@ -255,6 +256,27 @@
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
     },
+    "drawerHome":"Inicio",
+    "@drawerHome":{
+        "description":"Text to indicate that you will be redirected to home"
+    },
+
+    "drawerProjects":"Proyectos",
+    "@drawerProjects":{
+        "description":"Text to indicate that you will be redirected to the projects section"
+    },
+
+    "drawerTemplates":"Plantillas",
+    "@drawerTemplates":{
+        "description":"Text to indicate that you will be redirected to the templates section"
+    },
+
+    "drawerLogOut": "Cerrar sesión",
+    "@drawerLogOut":{
+        "description":"Text in the logout item"
+    },
+
+    "pageRegisterErrorDialogDescription" : "Tu cuenta no pudo ser creada,\n  contáctanos ",
     "commonBack": "Atras",
     "@commonBack": {
         "description": "Text back in button of screen create admin account"
@@ -325,7 +347,7 @@
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph."
     },
       "commonSuccessWithExclamation" : "Exitoso!",
-    "@commonSuccess": {
+    "@commonSuccessWithExclamation": {
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph but with an exclamation sign."
     },
 

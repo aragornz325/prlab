@@ -5,7 +5,15 @@ import 'package:prlab_flutter/theming/esquemas_de_color/colores_default_light_pr
 
 extension PRLabColorScheme on ColorScheme {
   /// Este color es utilizable  en botones deshabilitados.
-  Color get primaryBajaOpacidad => themeDefaultPRLab.primary.withOpacity(0.6);
+  Color get primaryOpacidadSesenta =>
+      themeDefaultPRLab.primary.withOpacity(0.6);
+
+  /// Este color es utilizable en los items del drawer cuando son seleccionados
+  Color get primaryOpacidadDiez => themeDefaultPRLab.primary.withOpacity(0.1);
+
+  /// Este color es utilizable en backgrounds de componentes cuando se requiere
+  /// el color primario atenuado.
+  Color get primaryAltaOpacidad => themeDefaultPRLab.primary.withOpacity(0.2);
 
   /// Este color es utilizable en textfields deshabilitados.
   Color get secondaryBajaOpacidad =>
