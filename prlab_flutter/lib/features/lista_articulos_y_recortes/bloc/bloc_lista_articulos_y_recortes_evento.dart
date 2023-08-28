@@ -35,3 +35,19 @@ class BlocListaArticulosYRecortesEventoTraerArticulos
   @override
   const BlocListaArticulosYRecortesEventoTraerArticulos();
 }
+
+/// {@template BlocCrearCuentaAdminEventEnviarEmail}
+/// Seleccionar entre Recortes y Articulos cambia el index seleccionado y
+/// muestra una vista distinta.
+/// {@endtemplate}
+class BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos
+    extends BlocListaArticulosYRecortesEvento {
+  /// {@macro BlocCrearCuentaAdminEventEnviarEmail}
+  @override
+  const BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos({
+    required this.index,
+  });
+
+  /// Index a cambiar para alternar distintas vistas.
+  final int index;
+}

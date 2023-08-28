@@ -5,9 +5,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:intl/intl.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/features/lista_articulos_y_recortes/popup/popup.dart';
-import 'package:prlab_flutter/features/lista_articulos_y_recortes/widgets/pr_articulo.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/widgets/widgets.dart';
 
@@ -22,11 +22,9 @@ class ListaDeArticulos extends StatelessWidget {
     super.key,
   });
 
-  // separar ese componente su propio bloc y envuelve el componente
-  // hacer el init que filtre por un enum de filtros
-  // TODO(anyone): pasarle la lista de el modelo del Articulo esto es de ejemplo
+  // hacer el init que filtre por un enum de filtro
   /// Lista de los artículos para mostrar sus propiedades
-  final List<PRArticulo> articulos;
+  final List<Articulo> articulos;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +37,7 @@ class ListaDeArticulos extends StatelessWidget {
         // Articulo
         Columna(
           widthDeLaColumna: 400.pw,
-          lista: articulos.map((e) => e.nombre).toList(),
+          lista: articulos.map((e) => e.titulo).toList(),
           nombreColumna: l10n.commonArticles,
           celdaEncabezadoColumna: (value) => Padding(
             padding: EdgeInsets.symmetric(
@@ -101,7 +99,8 @@ class ListaDeArticulos extends StatelessWidget {
         // Status
         Columna(
           widthDeLaColumna: 150.pw,
-          lista: articulos.map((e) => e.status).toList(),
+          // TODO(anyone): cambiar por el status de un articulo
+          lista: articulos.map((e) => e.titulo).toList(),
           nombreColumna: l10n.pageContentAdministrationBarInformationStatus,
           celdaEncabezadoColumna: (value) => SizedBox(
             width: 150.pw,
@@ -136,7 +135,8 @@ class ListaDeArticulos extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            value,
+                            //TODO: anyone: cambiar al valor del status
+                            'Draft',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -159,7 +159,7 @@ class ListaDeArticulos extends StatelessWidget {
         // Fecha
         Columna(
           widthDeLaColumna: 150.pw,
-          lista: articulos.map((e) => e.fecha).toList(),
+          lista: articulos.map((e) => e.ultimaModificacion).toList(),
           nombreColumna: l10n.pageContentAdministrationBarInformationLastUpdate,
           celdaEncabezadoColumna: (value) => SizedBox(
             width: 150.pw,
@@ -207,7 +207,7 @@ class ListaDeArticulos extends StatelessWidget {
         // Autor
         Columna(
           widthDeLaColumna: 150.pw,
-          lista: articulos.map((e) => e.urlImageAutor.toString()).toList(),
+          lista: articulos.map((e) => e.contenido.toString()).toList(),
           nombreColumna: l10n.pageContentAdministrationBarInformationAuthor,
           celdaEncabezadoColumna: (value) => SizedBox(
             width: 150.pw,
@@ -252,7 +252,7 @@ class ListaDeArticulos extends StatelessWidget {
         // botones
         Columna(
           widthDeLaColumna: 150.pw,
-          lista: articulos.map((e) => e.status).toList(),
+          lista: articulos.map((e) => e.titulo).toList(),
           nombreColumna: '',
           celdaEncabezadoColumna: (value) => SizedBox(
             width: 150.pw,

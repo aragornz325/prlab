@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
+import 'package:prlab_flutter/features/lista_articulos_y_recortes/bloc/bloc_lista_articulos_y_recortes.dart';
 import 'package:prlab_flutter/features/lista_articulos_y_recortes/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
@@ -25,28 +27,46 @@ class BotonesArticulosYRecorte extends StatelessWidget {
         horizontal: 30.pw,
         vertical: max(20.ph, 20.sh),
       ),
-      child: Row(
-        children: [
-          BotonConIcono(
-            colorIcono: colores.primary,
-            colorTexto: colores.primary,
-            icono: Icons.article_outlined,
-            onTap: () {
-              // TODO(anyone): agregarle funcionalidad
-            },
-            textoBoton: l10n.commonArticles,
-          ),
-          SizedBox(width: 40.pw),
-          BotonConIcono(
-            colorIcono: colores.secondary,
-            colorTexto: colores.secondary,
-            icono: Icons.image_outlined,
-            onTap: () {
-              // TODO(anyone): agregarle funcionalidad
-            },
-            textoBoton: l10n.pageContentAdministrationButtonNavegationClippings,
-          ),
-        ],
+      child: BlocBuilder<BlocListaArticulosYRecortes,
+          BlocListaArticulosYRecortesEstado>(
+        builder: (context, state) {
+          return Row(
+            children: [
+              BotonConIcono(
+                colorIcono:
+                    state.esArticulos ? colores.primary : colores.secondary,
+                colorTexto:
+                    state.esArticulos ? colores.primary : colores.secondary,
+                icono: Icons.article_outlined,
+                onTap: () {
+                  context.read<BlocListaArticulosYRecortes>().add(
+                        const BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos(
+                          index: 0,
+                        ),
+                      );
+                },
+                textoBoton: l10n.commonArticles,
+              ),
+              SizedBox(width: 40.pw),
+              BotonConIcono(
+                colorIcono:
+                    state.esRecortes ? colores.primary : colores.secondary,
+                colorTexto:
+                    state.esRecortes ? colores.primary : colores.secondary,
+                icono: Icons.image_outlined,
+                onTap: () {
+                  context.read<BlocListaArticulosYRecortes>().add(
+                        const BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos(
+                          index: 1,
+                        ),
+                      );
+                },
+                textoBoton:
+                    l10n.pageContentAdministrationButtonNavegationClippings,
+              ),
+            ],
+          );
+        },
       ),
     );
   }
