@@ -1,7 +1,7 @@
 {
     "@@locale": "en",
 
-    "pageLoginGreetings": "Hi Again!",
+    "pageLoginGreetings": "Hi again!",
     "@pageLoginGreetings": {
         "description": "Welcomes the user back"
     },
@@ -11,7 +11,7 @@
         "description": "Log in to the web/app"
     },
 
-    "pageLoginButtonText": "Login",
+    "pageLoginButtonText": "Log In",
     "@pageLoginButtonText": {
         "description": "Log in to the web/app"
     },
@@ -30,11 +30,7 @@
     "@pageLoginTappableText": {
         "description": "Ask you if you forget your password"
     },
-    
-    "pageLoginLeadingAgency": "The leading global PR agency",
-    "@pageLoginLeadingAgency": {
-        "description": "Eslogan on the register/login page "
-    },
+
 
     "pageLoginErrorInvalidCredentials": "Invalid Credentials",
     "@pageLoginErrorInvalidCredentials": {
@@ -66,10 +62,6 @@
         "description": "An unidentified error has occurred while processing your request. Unfortunately, more details are not available at this time. Please report this issue to the support team for assistance."
     },
     
-    "pageCreateAdminAccountSubtitleInternationalPRLabAgency": "International PR Agency",
-    "@pageCreateAdminAccountSubtitleInternationalPRLabAgency": {
-        "description": "Text International PR Agency in subtitle of screen"
-    },
     "pageCreateAdminClientEmail": "Enter the client email",
     "@pageCreateAdminClientEmail": {
         "description": "Text Enter the client email in screen create admin account above of textfield email"
@@ -79,9 +71,9 @@
         "description": "Text The leading global PR agency in screen create admin account above of textfield email"
     },
     
-    "pageCreateAdminAlertdialogTitleEmailSend": "Email send",
+    "pageCreateAdminAlertdialogTitleEmailSend": "Email sent",
     "@pageCreateAdminAlertdialogTitleEmailSend": {
-        "description": "Text in screen create admin account in alertdialog in title, email send"
+        "description": "Text in screen create admin account in alertdialog in title, email sent"
     },
     
     "pageSignUpTitle": "Welcome!",
@@ -390,9 +382,9 @@
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph but with an exclamation sign."
     },
 
-    "commonDateHintText" : "00/00/0000",
+    "commonDateHintText" : "Birthdate",
     "@commonDateHintText": {
-        "description": "This text provides a sample date format '00/00/0000' that serves as a visual hint for users when entering dates."
+        "description": "Refers to a designated area or section on a form, where an user is required to enter their date of birth"
     },
 
     "commonMinimumCharactersForAPassword" : "At least 12 characters",

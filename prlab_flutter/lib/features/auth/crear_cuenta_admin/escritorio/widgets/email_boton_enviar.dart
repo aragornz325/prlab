@@ -87,10 +87,9 @@ class _PrLabEmailYBotonEnviarState extends State<PrLabEmailYBotonEnviar> {
                 },
                 builder: (context, state) {
                   return Center(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 15.pw),
+                    child: SizedBox(
                       height: 40.sh,
-                      width: 785.pw,
+                      width: 782.pw,
                       child: PRTextFormField.email(
                         controller: widget.controller,
                         onChanged: (_) => _onPasarleEmailAlBloc(),
@@ -110,7 +109,7 @@ class _PrLabEmailYBotonEnviarState extends State<PrLabEmailYBotonEnviar> {
                           borderRadius: BorderRadius.circular(25),
                           color: colores.primary,
                         ),
-                        height: 50.sh,
+                        height: 50.ph,
                         width: 782.pw,
                         child: Center(
                           child: SizedBox(
@@ -126,18 +125,15 @@ class _PrLabEmailYBotonEnviarState extends State<PrLabEmailYBotonEnviar> {
                   }
 
                   return Center(
-                    child: SizedBox(
+                    child: PRBoton(
                       width: 782.pw,
-                      child: PRBoton(
-                        width: 782.pw,
-                        onTap: () {
-                          if (!state.esEmailValido) return;
+                      onTap: () {
+                        if (!state.esEmailValido) return;
 
-                          _onEnviarEmail(context);
-                        },
-                        texto: l10n.commonSend,
-                        estaHabilitado: state.esEmailValido,
-                      ),
+                        _onEnviarEmail(context);
+                      },
+                      texto: l10n.commonSend,
+                      estaHabilitado: state.esEmailValido,
                     ),
                   );
                 },

@@ -46,18 +46,21 @@ class CuerpoVistaRegistroPRLab extends StatelessWidget {
                   const Center(
                     child: TituloBienvenidaConImagen(),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(right: 35.pw),
-                    child: SizedBox(
-                      child: Text(
-                        l10n.pageSignUpSubtitle,
-                        style: TextStyle(
-                          color: colores.secondary,
-                          fontSize: 15.pf,
-                          fontWeight: FontWeight.w400,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(width: 30.pw),
+                      SizedBox(
+                        child: Text(
+                          l10n.pageSignUpSubtitle,
+                          style: TextStyle(
+                            color: colores.secondary,
+                            fontSize: 15.pf,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),

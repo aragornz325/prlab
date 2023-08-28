@@ -31,11 +31,6 @@
         "description": "Ask you if you forget your password"
     },
 
-    "pageLoginLeadingAgency": "La agencia de relaciones públicas líder a nivel mundial",
-    "@pageLoginLeadingAgency": {
-        "description": "Eslogan on the register/login page "
-    },
-
     "pageLoginErrorInvalidCredentials": "Credenciales inválidas",
     "@pageLoginErrorInvalidCredentials": {
         "description": " Las credenciales proporcionadas no son válidas para acceder al sistema. Asegúrate de ingresar la combinación correcta de nombre de usuario y contraseña, y vuelve a intentarlo."
@@ -66,10 +61,6 @@
         "description": "Se ha producido un error no identificado mientras se procesaba tu solicitud. Lamentablemente, no se dispone de más detalles en este momento. Por favor, comunica este problema al equipo de soporte para obtener asistencia."
     },
 
-    "pageCreateAdminAccountSubtitleInternationalPRLabAgency": "International PR Agency",
-    "@pageCreateAdminAccountSubtitleInternationalPRLabAgency": {
-        "description": "Text International PR Agency in subtitle of screen"
-    },
     "pageCreateAdminClientEmail": "Ingrese el email del cliente",
     "@pageCreateAdminClientEmail": {
         "description": "Text Enter the client email in screen create admin account above of textfield email"
@@ -81,7 +72,7 @@
     
     "pageCreateAdminAlertdialogTitleEmailSend": "Enviar email",
     "@pageCreateAdminAlertdialogTitleEmailSend": {
-        "description": "Text in screen create admin account in alertdialog in title, email send"
+        "description": "Text in screen create admin account in alertdialog in title, email sent"
     },
     
     
@@ -388,9 +379,9 @@
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph but with an exclamation sign."
     },
 
-    "commonDateHintText" : "00/00/0000",
+    "commonDateHintText" : "Fecha de nacimiento",
     "@commonDateHintText": {
-        "description": "This text provides a sample date format '00/00/0000' that serves as a visual hint for users when entering dates."
+        "description": "Refers to a designated area or section on a form, where an user is required to enter their date of birth"
     },
 
     "commonMinimumCharactersForAPassword" : "Al menos 12 caracteres",

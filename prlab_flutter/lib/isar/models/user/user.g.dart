@@ -14,49 +14,16 @@ extension GetUserIsarCollection on Isar {
   IsarCollection<int, UserIsar> get userIsars => this.collection();
 }
 
-const UserIsarSchema = IsarGeneratedSchema(
-  schema: IsarSchema(
-    name: 'UserIsar',
-    idName: 'id',
-    embedded: false,
-    properties: [
-      IsarPropertySchema(
-        name: 'userName',
-        type: IsarType.string,
-      ),
-      IsarPropertySchema(
-        name: 'fullName',
-        type: IsarType.string,
-      ),
-      IsarPropertySchema(
-        name: 'email',
-        type: IsarType.string,
-      ),
-      IsarPropertySchema(
-        name: 'created',
-        type: IsarType.dateTime,
-      ),
-      IsarPropertySchema(
-        name: 'imageUrl',
-        type: IsarType.string,
-      ),
-      IsarPropertySchema(
-        name: 'scopeNames',
-        type: IsarType.stringList,
-      ),
-      IsarPropertySchema(
-        name: 'blocked',
-        type: IsarType.bool,
-      ),
-    ],
-    indexes: [],
-  ),
+const UserIsarSchema = IsarCollectionSchema(
+  schema:
+      '{"name":"UserIsar","idName":"id","properties":[{"name":"userName","type":"String"},{"name":"fullName","type":"String"},{"name":"email","type":"String"},{"name":"created","type":"DateTime"},{"name":"imageUrl","type":"String"},{"name":"scopeNames","type":"StringList"},{"name":"blocked","type":"Bool"}]}',
   converter: IsarObjectConverter<int, UserIsar>(
     serialize: serializeUserIsar,
     deserialize: deserializeUserIsar,
     deserializeProperty: deserializeUserIsarProp,
   ),
   embeddedSchemas: [],
+  //hash: -3539682733763582449,
 );
 
 @isarProtected
@@ -321,45 +288,6 @@ extension UserIsarQueryUpdate on IsarQuery<UserIsar> {
       _UserIsarQueryUpdateImpl(this, limit: 1);
 
   _UserIsarQueryUpdate get updateAll => _UserIsarQueryUpdateImpl(this);
-}
-
-class _UserIsarQueryBuilderUpdateImpl implements _UserIsarQueryUpdate {
-  const _UserIsarQueryBuilderUpdateImpl(this.query, {this.limit});
-
-  final QueryBuilder<UserIsar, UserIsar, QOperations> query;
-  final int? limit;
-
-  @override
-  int call({
-    Object? userName = ignore,
-    Object? fullName = ignore,
-    Object? email = ignore,
-    Object? created = ignore,
-    Object? imageUrl = ignore,
-    Object? blocked = ignore,
-  }) {
-    final q = query.build();
-    try {
-      return q.updateProperties(limit: limit, {
-        if (userName != ignore) 1: userName as String?,
-        if (fullName != ignore) 2: fullName as String?,
-        if (email != ignore) 3: email as String?,
-        if (created != ignore) 4: created as DateTime?,
-        if (imageUrl != ignore) 5: imageUrl as String?,
-        if (blocked != ignore) 7: blocked as bool?,
-      });
-    } finally {
-      q.close();
-    }
-  }
-}
-
-extension UserIsarQueryBuilderUpdate
-    on QueryBuilder<UserIsar, UserIsar, QOperations> {
-  _UserIsarQueryUpdate get updateFirst =>
-      _UserIsarQueryBuilderUpdateImpl(this, limit: 1);
-
-  _UserIsarQueryUpdate get updateAll => _UserIsarQueryBuilderUpdateImpl(this);
 }
 
 extension UserIsarQueryFilter

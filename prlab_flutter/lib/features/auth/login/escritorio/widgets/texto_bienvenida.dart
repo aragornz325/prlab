@@ -56,6 +56,7 @@ class TextoBienvenida extends StatelessWidget {
                 fontWeight: FontWeight.w400,
               ),
             ),
+            SizedBox(height: 20.ph),
           ],
         ),
         SizedBox(
