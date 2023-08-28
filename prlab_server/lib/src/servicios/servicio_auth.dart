@@ -2,7 +2,6 @@
 // ignore_for_file: unnecessary_await_in_return, avoid_dynamic_calls, overridden_fields
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
-import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_server/src/odms/odm_auth.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:prlab_server/utils/config/constants.dart';
@@ -62,7 +61,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
     try {
       final JWT tokenAbierto = performOperationToken(() => JWT.decode(token));
       final String emailToken = tokenAbierto.payload['email'];
-      
+
       logger.finer('buscando token en db');
       final String tokenDb = await performOperation(
         () => odm.traerTokenPorEmail(session: session, email: emailToken),
@@ -149,7 +148,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
 
       if (!checkearCodigoOTP) {
         logger.shout('codigo no encontrado');
-        throw ErrorPrLab.errorElementoNoEncontrado;
+        throw Exception('Codigo no valido');
       }
       logger.finer('eliminando codigo otp $codigo de la db');
       await performOperation(

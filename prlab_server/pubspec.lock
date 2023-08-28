@@ -585,13 +585,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.6"
-  prlab_client:
-    dependency: "direct main"
-    description:
-      path: "../prlab_client"
-      relative: true
-    source: path
-    version: "0.0.0"
   pub_semver:
     dependency: transitive
     description:
@@ -661,14 +654,6 @@ packages:
     description:
       name: serverpod
       sha256: "0e187a03a7f97205fb415523ae18b96b683dafe52345d8c2248f2dc343a7040a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.1"
-  serverpod_auth_client:
-    dependency: transitive
-    description:
-      name: serverpod_auth_client
-      sha256: "443f32578b1d338e20b1c0afbea39ed24227f94bb86a81bffe9b7c54bfd6ed95"
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
