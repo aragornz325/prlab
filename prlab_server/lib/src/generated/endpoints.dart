@@ -10,7 +10,7 @@ import 'package:serverpod/serverpod.dart' as _i1;
 import '../endpoints/auth_endpoint.dart' as _i2;
 import '../endpoints/cliente_endpoint.dart' as _i3;
 import '../endpoints/mail_endpoint.dart' as _i4;
-import '../endpoints/subida_archivos.dart' as _i5;
+import '../endpoints/archivos_endpoint.dart' as _i5;
 import 'package:prlab_server/src/generated/cliente.dart' as _i6;
 import 'package:serverpod_auth_server/module.dart' as _i7;
 
@@ -36,10 +36,10 @@ class Endpoints extends _i1.EndpointDispatch {
           'mail',
           null,
         ),
-      'subida': _i5.ArchivosEndpoint()
+      'archivos': _i5.ArchivosEndpoint()
         ..initialize(
           server,
-          'subida',
+          'archivos',
           null,
         ),
     };
@@ -176,9 +176,9 @@ class Endpoints extends _i1.EndpointDispatch {
         )
       },
     );
-    connectors['subida'] = _i1.EndpointConnector(
-      name: 'subida',
-      endpoint: endpoints['subida']!,
+    connectors['archivos'] = _i1.EndpointConnector(
+      name: 'archivos',
+      endpoint: endpoints['archivos']!,
       methodConnectors: {
         'subirImagen': _i1.MethodConnector(
           name: 'subirImagen',
@@ -187,15 +187,27 @@ class Endpoints extends _i1.EndpointDispatch {
               name: 'path',
               type: _i1.getType<String>(),
               nullable: false,
-            )
+            ),
+            'fileName': _i1.ParameterDescription(
+              name: 'fileName',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'cloudinaryFolder': _i1.ParameterDescription(
+              name: 'cloudinaryFolder',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
           },
           call: (
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['subida'] as _i5.ArchivosEndpoint).subirImagen(
+              (endpoints['archivos'] as _i5.ArchivosEndpoint).subirImagen(
             session,
-            params['path'],
+            path: params['path'],
+            fileName: params['fileName'],
+            cloudinaryFolder: params['cloudinaryFolder'],
           ),
         ),
         'borrarImagen': _i1.MethodConnector(
@@ -216,7 +228,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['subida'] as _i5.ArchivosEndpoint).borrarImagen(
+              (endpoints['archivos'] as _i5.ArchivosEndpoint).borrarImagen(
             session,
             params['publicId'],
             params['url'],

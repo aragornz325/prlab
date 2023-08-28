@@ -142,24 +142,38 @@ class _EndpointMail extends _i1.EndpointRef {
       );
 }
 
-class _EndpointSubida extends _i1.EndpointRef {
-  _EndpointSubida(_i1.EndpointCaller caller) : super(caller);
+/// Endpoints para manejo de archivos con almacenamiento en la nube.
+class _EndpointArchivos extends _i1.EndpointRef {
+  _EndpointArchivos(_i1.EndpointCaller caller) : super(caller);
 
   @override
-  String get name => 'subida';
+  String get name => 'archivos';
 
-  _i2.Future<void> subirImagen(String path) => caller.callServerEndpoint<void>(
-        'subida',
+  /// Sube una imagen a la nube. Requiere de la ruta del archivo, el nombre y
+  /// la carpeta donde se va a alojar.
+  _i2.Future<String> subirImagen({
+    required String path,
+    required String fileName,
+    required String cloudinaryFolder,
+  }) =>
+      caller.callServerEndpoint<String>(
+        'archivos',
         'subirImagen',
-        {'path': path},
+        {
+          'path': path,
+          'fileName': fileName,
+          'cloudinaryFolder': cloudinaryFolder,
+        },
       );
 
-  _i2.Future<void> borrarImagen(
+  /// Borra una imagen del alojamiento en la nube. Requiere de su public-id
+  /// (<carpeta>/<nombre-del-archivo-sin-extension>) y la url.
+  _i2.Future<bool> borrarImagen(
     String publicId,
     String url,
   ) =>
-      caller.callServerEndpoint<void>(
-        'subida',
+      caller.callServerEndpoint<bool>(
+        'archivos',
         'borrarImagen',
         {
           'publicId': publicId,
@@ -190,7 +204,7 @@ class Client extends _i1.ServerpodClient {
     auth = _EndpointAuth(this);
     cliente = _EndpointCliente(this);
     mail = _EndpointMail(this);
-    subida = _EndpointSubida(this);
+    archivos = _EndpointArchivos(this);
     modules = _Modules(this);
   }
 
@@ -200,7 +214,7 @@ class Client extends _i1.ServerpodClient {
 
   late final _EndpointMail mail;
 
-  late final _EndpointSubida subida;
+  late final _EndpointArchivos archivos;
 
   late final _Modules modules;
 
@@ -209,7 +223,7 @@ class Client extends _i1.ServerpodClient {
         'auth': auth,
         'cliente': cliente,
         'mail': mail,
-        'subida': subida,
+        'archivos': archivos,
       };
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup =>
