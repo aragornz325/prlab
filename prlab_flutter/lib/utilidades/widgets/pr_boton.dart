@@ -13,6 +13,7 @@ class PRBoton extends StatelessWidget {
     required this.texto,
     required this.estaHabilitado,
     this.width = 359,
+    this.height = 50,
     this.esOutlined = false,
     this.muestraEstadoDeCarga = false,
     super.key,
@@ -24,17 +25,20 @@ class PRBoton extends StatelessWidget {
     required String texto,
     required bool estaHabilitado,
     required double width,
+    double height = 50,
   }) {
     return PRBoton(
       onTap: onTap,
       texto: texto,
       estaHabilitado: estaHabilitado,
       esOutlined: true,
-      width: width.pw,
+      width: width,
+      height: height,
     );
   }
 
   final double width;
+  final double height;
   final VoidCallback onTap;
 
   /// Asigna el texto interno en el boton.
@@ -54,45 +58,39 @@ class PRBoton extends StatelessWidget {
 
     return GestureDetector(
       onTap: estaHabilitado ? onTap : null,
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: 50.pw,
-          right: 50.pw,
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          color: esOutlined
+              ? colores.background
+              : estaHabilitado && !muestraEstadoDeCarga
+                  ? colores.primary
+                  : colores.primaryOpacidadSesenta,
+          borderRadius: BorderRadius.circular(25),
+          border: esOutlined
+              ? Border.all(
+                  color: estaHabilitado
+                      ? colores.primary
+                      : colores.primaryOpacidadSesenta,
+                )
+              : null,
         ),
-        child: Container(
-          width: width.pw,
-          height: 50.sh,
-          decoration: BoxDecoration(
-            color: esOutlined
-                ? colores.background
-                : estaHabilitado && !muestraEstadoDeCarga
-                    ? colores.primary
-                    : colores.primaryOpacidadSesenta,
-            borderRadius: BorderRadius.circular(25),
-            border: esOutlined
-                ? Border.all(
-                    color: estaHabilitado
-                        ? colores.primary
-                        : colores.primaryOpacidadSesenta,
-                  )
-                : null,
-          ),
-          child: Center(
-            child: muestraEstadoDeCarga
-                ? const CircularProgressIndicator()
-                : Text(
-                    texto,
-                    style: TextStyle(
-                      fontSize: 16.pf,
-                      fontWeight: FontWeight.w600,
-                      color: esOutlined
-                          ? estaHabilitado
-                              ? colores.primary
-                              : colores.primaryOpacidadSesenta
-                          : colores.background,
-                    ),
+        child: Center(
+          child: muestraEstadoDeCarga
+              ? const CircularProgressIndicator()
+              : Text(
+                  texto,
+                  style: TextStyle(
+                    fontSize: 16.pf,
+                    fontWeight: FontWeight.w600,
+                    color: esOutlined
+                        ? estaHabilitado
+                            ? colores.primary
+                            : colores.primaryOpacidadSesenta
+                        : colores.background,
                   ),
-          ),
+                ),
         ),
       ),
     );
