@@ -42,8 +42,8 @@ class AppRouter extends $AppRouter {
       initial: true,
     ),
     AutoRoute(
-      page: RutaRedaccionEdicionContenido.page,
       path: '/edit-content',
+      page: RutaEditorContenido.page,
     ),
   ];
 }
