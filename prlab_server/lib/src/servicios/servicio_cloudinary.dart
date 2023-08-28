@@ -5,7 +5,6 @@ import 'package:serverpod/serverpod.dart';
 
 /// Servicio para manejo de archivos con almacenamiento en la nube.
 class ServicioCloudinary extends Servicio<OdmCloudinary> {
-
   /// Instancia de ODM.
   @override
   final odmCloudinary = OdmManejoArchivosCloudinary();
@@ -17,15 +16,15 @@ class ServicioCloudinary extends Servicio<OdmCloudinary> {
     required String path,
     required String fileName,
     required String cloudinaryFolder,
-  }) async =>
-      await performOperation(
-        () => odmCloudinary.subirImagen(
+  }) async {
+    logger.info('Subiendo imagen $fileName a la carpeta $cloudinaryFolder');
+    return await performOperation(() => odmCloudinary.subirImagen(
           session,
           path: path,
           fileName: fileName,
           cloudinaryFolder: cloudinaryFolder,
-        ),
-      );
+        ));
+  }
 
   /// Borra una imagen del alojamiento en la nube. Requiere de su public-id
   /// (<carpeta>/<nombre-del-archivo-sin-extension>) y la url.
@@ -33,12 +32,14 @@ class ServicioCloudinary extends Servicio<OdmCloudinary> {
     Session session,
     String publicId,
     String url,
-  ) async =>
-      await performOperation(
-        () => odmCloudinary.borrarImagen(
-          session,
-          publicId,
-          url,
-        ),
-      );
+  ) async {
+    logger.info('Borrando imagen con publicId: $publicId');
+    return await performOperation(
+      () => odmCloudinary.borrarImagen(
+        session,
+        publicId,
+        url,
+      ),
+    );
+  }
 }

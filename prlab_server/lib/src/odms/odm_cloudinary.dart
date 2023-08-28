@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloudinary/cloudinary.dart';
+import 'package:logging/logging.dart';
 import 'package:prlab_server/src/cloudinary.dart';
 import 'package:serverpod/server.dart';
 
@@ -15,26 +16,29 @@ class OdmManejoArchivosCloudinary extends OdmCloudinary {
     required String cloudinaryFolder,
   }) async {
     final file = File(path);
+    try {
+      final response = await performOdmOperation(
+        session,
+        (session) => cloudinary.upload(
+          file: file.path,
+          fileBytes: file.readAsBytesSync(),
+          resourceType: CloudinaryResourceType.image,
+          folder: cloudinaryFolder,
+          fileName: fileName,
+          progressCallback: (count, total) {
+            print('Uploading image from file with progress: $count/$total');
+          },
+        ),
+      );
 
-    final response = await performOdmOperation(
-      session,
-      (session) => cloudinary.upload(
-        file: file.path,
-        fileBytes: file.readAsBytesSync(),
-        resourceType: CloudinaryResourceType.image,
-        folder: cloudinaryFolder,
-        fileName: fileName,
-        progressCallback: (count, total) {
-          print('Uploading image from file with progress: $count/$total');
-        },
-      ),
-    );
+      if (response.isSuccessful) {
+        print('Get your image from with ${response.secureUrl}');
+      }
 
-    if (response.isSuccessful) {
-      print('Get your image from with ${response.secureUrl}');
+      return response.secureUrl!;
+    } catch (e) {
+      throw Exception(e);
     }
-
-    return response.secureUrl!;
   }
 
   /// Borra una imagen del alojamiento en la nube. Requiere de su public-id
@@ -44,20 +48,24 @@ class OdmManejoArchivosCloudinary extends OdmCloudinary {
     String publicId,
     String url,
   ) async {
-    final response = await performOdmOperation(
-      session,
-      (session) => cloudinary.destroy(
-        publicId,
-        url: url,
-        resourceType: CloudinaryResourceType.image,
-        invalidate: false,
-      ),
-    );
+    try {
+      final response = await performOdmOperation(
+        session,
+        (session) => cloudinary.destroy(
+          publicId,
+          url: url,
+          resourceType: CloudinaryResourceType.image,
+          invalidate: false,
+        ),
+      );
 
-    if (response.isSuccessful) {
-      return true;
-    } else {
-      return false;
+      if (response.isSuccessful) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      throw Exception(e);
     }
   }
 }
