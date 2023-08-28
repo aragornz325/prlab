@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_escaping_inner_quotes, lines_longer_than_80_chars
 
-import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_server/src/odm.dart';
 import 'package:serverpod/database.dart';
 import 'package:serverpod/server.dart';
@@ -35,7 +34,7 @@ class OdmAuth extends ODM {
     );
 
     if (result.isEmpty) {
-      throw ErrorPrLab.errorElementoNoEncontrado;
+      throw Exception('Elemento no encontrado');
     }
 
     return result.first.first;
@@ -103,7 +102,7 @@ class OdmAuth extends ODM {
     );
 
     if (result.isEmpty) {
-      throw ErrorPrLab.errorElementoNoEncontrado;
+      throw Exception('Elemento no encontrado');
     }
 
     return result.first.first;
@@ -131,7 +130,7 @@ class OdmAuth extends ODM {
     );
 
     if (result.isEmpty) {
-      throw ErrorPrLab.errorElementoNoEncontrado;
+      throw Exception('Elemento no encontrado');
     }
 
     return result;
@@ -185,5 +184,4 @@ class OdmAuth extends ODM {
       return true;
     }
   }
-
 }

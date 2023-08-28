@@ -13,7 +13,7 @@ import 'package:serverpod_auth_server/module.dart' as auth;
 /// only need to make additions to this file if you add future calls,  are
 /// configuring Relic (Serverpod's web-server), or need custom setup work.
 Future<void> run(List<String> args) async {
-  rewriteConfigYamlProd('production');
+  rewriteConfigYaml(args.last);
   inicializarLogger();
   // Initialize Serverpod and connect it with your generated code.
   final Serverpod pod = Serverpod(

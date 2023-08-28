@@ -2,7 +2,6 @@
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:logging/logging.dart';
-import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_server/src/odm.dart';
 
 /// Clase abstracta para la capa de Servicio.
@@ -22,9 +21,6 @@ abstract class Servicio<T extends ODM> {
         logger.fine('Operacion completada exitosamente');
         return result;
       });
-    } on ErrorPrLab catch (e) {
-      logger.shout(e.mensaje);
-      rethrow;
     } on Exception catch (e, st) {
       logger.severe('Unidentified error: $e \n$st');
       throw UnimplementedError('Unidentified error: $e \n$st');
