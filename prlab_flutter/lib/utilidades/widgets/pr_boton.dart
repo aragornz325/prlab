@@ -12,8 +12,8 @@ class PRBoton extends StatelessWidget {
     required this.onTap,
     required this.texto,
     required this.estaHabilitado,
-    this.width = 359,
-    this.height = 50,
+    this.width,
+    this.height,
     this.esOutlined = false,
     this.muestraEstadoDeCarga = false,
     super.key,
@@ -25,7 +25,7 @@ class PRBoton extends StatelessWidget {
     required String texto,
     required bool estaHabilitado,
     required double width,
-    double height = 50,
+    double? height,
   }) {
     return PRBoton(
       onTap: onTap,
@@ -37,8 +37,13 @@ class PRBoton extends StatelessWidget {
     );
   }
 
-  final double width;
-  final double height;
+  /// Ancho del boton, por defecto 359.pw
+  final double? width;
+
+  /// Altura del boton, por defecto 50.ph
+  final double? height;
+
+  /// Funcion al presionar el boton
   final VoidCallback onTap;
 
   /// Asigna el texto interno en el boton.
@@ -59,8 +64,8 @@ class PRBoton extends StatelessWidget {
     return GestureDetector(
       onTap: estaHabilitado ? onTap : null,
       child: Container(
-        width: width,
-        height: height,
+        width: width ?? 359.pw,
+        height: height ?? 50.ph,
         decoration: BoxDecoration(
           color: esOutlined
               ? colores.background
