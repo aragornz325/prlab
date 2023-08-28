@@ -20,8 +20,9 @@ class Cliente extends _i1.SerializableEntity {
     this.idUsuario,
     this.idOrganizacion,
     this.contacto,
-    this.ultimaModificacion,
-    this.fechaCreacion,
+    this.fechaEliminacion,
+    required this.ultimaModificacion,
+    required this.fechaCreacion,
   });
 
   factory Cliente.fromJson(
@@ -48,10 +49,12 @@ class Cliente extends _i1.SerializableEntity {
           .deserialize<int?>(jsonSerialization['idOrganizacion']),
       contacto:
           serializationManager.deserialize<int?>(jsonSerialization['contacto']),
+      fechaEliminacion: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
       ultimaModificacion: serializationManager
-          .deserialize<DateTime?>(jsonSerialization['ultimaModificacion']),
+          .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
       fechaCreacion: serializationManager
-          .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
+          .deserialize<DateTime>(jsonSerialization['fechaCreacion']),
     );
   }
 
@@ -78,9 +81,11 @@ class Cliente extends _i1.SerializableEntity {
 
   int? contacto;
 
-  DateTime? ultimaModificacion;
+  DateTime? fechaEliminacion;
 
-  DateTime? fechaCreacion;
+  DateTime ultimaModificacion;
+
+  DateTime fechaCreacion;
 
   @override
   Map<String, dynamic> toJson() {
@@ -95,6 +100,7 @@ class Cliente extends _i1.SerializableEntity {
       'idUsuario': idUsuario,
       'idOrganizacion': idOrganizacion,
       'contacto': contacto,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };

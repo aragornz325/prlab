@@ -15,6 +15,7 @@ class Publicacion extends _i1.SerializableEntity {
     this.idProyecto,
     this.idAutor,
     this.idStatus,
+    this.fechaEliminacion,
     required this.ultimaModificacion,
     required this.fechaCreacion,
   });
@@ -33,6 +34,8 @@ class Publicacion extends _i1.SerializableEntity {
           serializationManager.deserialize<int?>(jsonSerialization['idAutor']),
       idStatus:
           serializationManager.deserialize<int?>(jsonSerialization['idStatus']),
+      fechaEliminacion: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
       ultimaModificacion: serializationManager
           .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
       fechaCreacion: serializationManager
@@ -53,6 +56,8 @@ class Publicacion extends _i1.SerializableEntity {
 
   int? idStatus;
 
+  DateTime? fechaEliminacion;
+
   DateTime ultimaModificacion;
 
   DateTime fechaCreacion;
@@ -65,6 +70,7 @@ class Publicacion extends _i1.SerializableEntity {
       'idProyecto': idProyecto,
       'idAutor': idAutor,
       'idStatus': idStatus,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };

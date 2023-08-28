@@ -22,8 +22,9 @@ class InformacionDeContacto extends _i1.SerializableEntity {
     this.domicilioCodigoPostal,
     this.domicilioEstadoProvincia,
     this.domicilioPais,
-    this.ultimaModificacion,
-    this.fechaCreacion,
+    this.fechaEliminacion,
+    required this.ultimaModificacion,
+    required this.fechaCreacion,
   });
 
   factory InformacionDeContacto.fromJson(
@@ -54,10 +55,12 @@ class InformacionDeContacto extends _i1.SerializableEntity {
           .deserialize<String?>(jsonSerialization['domicilioEstadoProvincia']),
       domicilioPais: serializationManager
           .deserialize<String?>(jsonSerialization['domicilioPais']),
+      fechaEliminacion: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
       ultimaModificacion: serializationManager
-          .deserialize<DateTime?>(jsonSerialization['ultimaModificacion']),
+          .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
       fechaCreacion: serializationManager
-          .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
+          .deserialize<DateTime>(jsonSerialization['fechaCreacion']),
     );
   }
 
@@ -88,9 +91,11 @@ class InformacionDeContacto extends _i1.SerializableEntity {
 
   String? domicilioPais;
 
-  DateTime? ultimaModificacion;
+  DateTime? fechaEliminacion;
 
-  DateTime? fechaCreacion;
+  DateTime ultimaModificacion;
+
+  DateTime fechaCreacion;
 
   @override
   Map<String, dynamic> toJson() {
@@ -107,6 +112,7 @@ class InformacionDeContacto extends _i1.SerializableEntity {
       'domicilioCodigoPostal': domicilioCodigoPostal,
       'domicilioEstadoProvincia': domicilioEstadoProvincia,
       'domicilioPais': domicilioPais,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };

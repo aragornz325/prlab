@@ -12,5 +12,6 @@ fields:
   domicilioCodigoPostal: String?
   domicilioEstadoProvincia: String?
   domicilioPais: String?
-  ultimaModificacion: DateTime?
-  fechaCreacion: DateTime?
+  fechaEliminacion: DateTime?
+  ultimaModificacion: DateTime
+  fechaCreacion: DateTime

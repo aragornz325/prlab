@@ -6,5 +6,6 @@ fields:
   idOrganizacion: int? parent=organizaciones
   fechaInicio: DateTime
   fechaFin: DateTime
+  fechaEliminacion: DateTime?
   ultimaModificacion: DateTime
   fechaCreacion: DateTime

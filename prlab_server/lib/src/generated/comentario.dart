@@ -14,6 +14,7 @@ class Comentario extends _i1.TableRow {
     this.idEntregable,
     required this.textoComentario,
     this.idAutor,
+    this.fechaEliminacion,
     required this.ultimaModificacion,
     required this.fechaCreacion,
   }) : super(id);
@@ -30,6 +31,8 @@ class Comentario extends _i1.TableRow {
           .deserialize<String>(jsonSerialization['textoComentario']),
       idAutor:
           serializationManager.deserialize<int?>(jsonSerialization['idAutor']),
+      fechaEliminacion: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
       ultimaModificacion: serializationManager
           .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
       fechaCreacion: serializationManager
@@ -45,6 +48,8 @@ class Comentario extends _i1.TableRow {
 
   int? idAutor;
 
+  DateTime? fechaEliminacion;
+
   DateTime ultimaModificacion;
 
   DateTime fechaCreacion;
@@ -58,6 +63,7 @@ class Comentario extends _i1.TableRow {
       'idEntregable': idEntregable,
       'textoComentario': textoComentario,
       'idAutor': idAutor,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -70,6 +76,7 @@ class Comentario extends _i1.TableRow {
       'idEntregable': idEntregable,
       'textoComentario': textoComentario,
       'idAutor': idAutor,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -82,6 +89,7 @@ class Comentario extends _i1.TableRow {
       'idEntregable': idEntregable,
       'textoComentario': textoComentario,
       'idAutor': idAutor,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -104,6 +112,9 @@ class Comentario extends _i1.TableRow {
         return;
       case 'idAutor':
         idAutor = value;
+        return;
+      case 'fechaEliminacion':
+        fechaEliminacion = value;
         return;
       case 'ultimaModificacion':
         ultimaModificacion = value;
@@ -241,6 +252,8 @@ class ComentarioTable extends _i1.Table {
 
   final idAutor = _i1.ColumnInt('idAutor');
 
+  final fechaEliminacion = _i1.ColumnDateTime('fechaEliminacion');
+
   final ultimaModificacion = _i1.ColumnDateTime('ultimaModificacion');
 
   final fechaCreacion = _i1.ColumnDateTime('fechaCreacion');
@@ -251,6 +264,7 @@ class ComentarioTable extends _i1.Table {
         idEntregable,
         textoComentario,
         idAutor,
+        fechaEliminacion,
         ultimaModificacion,
         fechaCreacion,
       ];

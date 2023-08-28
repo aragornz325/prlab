@@ -16,6 +16,7 @@ class Proyecto extends _i1.TableRow {
     this.idOrganizacion,
     required this.fechaInicio,
     required this.fechaFin,
+    this.fechaEliminacion,
     required this.ultimaModificacion,
     required this.fechaCreacion,
   }) : super(id);
@@ -36,6 +37,8 @@ class Proyecto extends _i1.TableRow {
           .deserialize<DateTime>(jsonSerialization['fechaInicio']),
       fechaFin: serializationManager
           .deserialize<DateTime>(jsonSerialization['fechaFin']),
+      fechaEliminacion: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
       ultimaModificacion: serializationManager
           .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
       fechaCreacion: serializationManager
@@ -55,6 +58,8 @@ class Proyecto extends _i1.TableRow {
 
   DateTime fechaFin;
 
+  DateTime? fechaEliminacion;
+
   DateTime ultimaModificacion;
 
   DateTime fechaCreacion;
@@ -70,6 +75,7 @@ class Proyecto extends _i1.TableRow {
       'idOrganizacion': idOrganizacion,
       'fechaInicio': fechaInicio,
       'fechaFin': fechaFin,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -84,6 +90,7 @@ class Proyecto extends _i1.TableRow {
       'idOrganizacion': idOrganizacion,
       'fechaInicio': fechaInicio,
       'fechaFin': fechaFin,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -98,6 +105,7 @@ class Proyecto extends _i1.TableRow {
       'idOrganizacion': idOrganizacion,
       'fechaInicio': fechaInicio,
       'fechaFin': fechaFin,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -126,6 +134,9 @@ class Proyecto extends _i1.TableRow {
         return;
       case 'fechaFin':
         fechaFin = value;
+        return;
+      case 'fechaEliminacion':
+        fechaEliminacion = value;
         return;
       case 'ultimaModificacion':
         ultimaModificacion = value;
@@ -267,6 +278,8 @@ class ProyectoTable extends _i1.Table {
 
   final fechaFin = _i1.ColumnDateTime('fechaFin');
 
+  final fechaEliminacion = _i1.ColumnDateTime('fechaEliminacion');
+
   final ultimaModificacion = _i1.ColumnDateTime('ultimaModificacion');
 
   final fechaCreacion = _i1.ColumnDateTime('fechaCreacion');
@@ -279,6 +292,7 @@ class ProyectoTable extends _i1.Table {
         idOrganizacion,
         fechaInicio,
         fechaFin,
+        fechaEliminacion,
         ultimaModificacion,
         fechaCreacion,
       ];

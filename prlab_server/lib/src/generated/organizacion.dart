@@ -14,6 +14,7 @@ class Organizacion extends _i1.TableRow {
     required this.nombre,
     this.tipo,
     this.contacto,
+    this.fechaEliminacion,
     required this.ultimaModificacion,
     required this.fechaCreacion,
   }) : super(id);
@@ -29,6 +30,8 @@ class Organizacion extends _i1.TableRow {
       tipo: serializationManager.deserialize<int?>(jsonSerialization['tipo']),
       contacto:
           serializationManager.deserialize<int?>(jsonSerialization['contacto']),
+      fechaEliminacion: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
       ultimaModificacion: serializationManager
           .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
       fechaCreacion: serializationManager
@@ -44,6 +47,8 @@ class Organizacion extends _i1.TableRow {
 
   int? contacto;
 
+  DateTime? fechaEliminacion;
+
   DateTime ultimaModificacion;
 
   DateTime fechaCreacion;
@@ -57,6 +62,7 @@ class Organizacion extends _i1.TableRow {
       'nombre': nombre,
       'tipo': tipo,
       'contacto': contacto,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -69,6 +75,7 @@ class Organizacion extends _i1.TableRow {
       'nombre': nombre,
       'tipo': tipo,
       'contacto': contacto,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -81,6 +88,7 @@ class Organizacion extends _i1.TableRow {
       'nombre': nombre,
       'tipo': tipo,
       'contacto': contacto,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -103,6 +111,9 @@ class Organizacion extends _i1.TableRow {
         return;
       case 'contacto':
         contacto = value;
+        return;
+      case 'fechaEliminacion':
+        fechaEliminacion = value;
         return;
       case 'ultimaModificacion':
         ultimaModificacion = value;
@@ -241,6 +252,8 @@ class OrganizacionTable extends _i1.Table {
 
   final contacto = _i1.ColumnInt('contacto');
 
+  final fechaEliminacion = _i1.ColumnDateTime('fechaEliminacion');
+
   final ultimaModificacion = _i1.ColumnDateTime('ultimaModificacion');
 
   final fechaCreacion = _i1.ColumnDateTime('fechaCreacion');
@@ -251,6 +264,7 @@ class OrganizacionTable extends _i1.Table {
         nombre,
         tipo,
         contacto,
+        fechaEliminacion,
         ultimaModificacion,
         fechaCreacion,
       ];

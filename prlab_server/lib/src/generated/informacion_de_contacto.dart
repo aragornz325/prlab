@@ -22,8 +22,9 @@ class InformacionDeContacto extends _i1.TableRow {
     this.domicilioCodigoPostal,
     this.domicilioEstadoProvincia,
     this.domicilioPais,
-    this.ultimaModificacion,
-    this.fechaCreacion,
+    this.fechaEliminacion,
+    required this.ultimaModificacion,
+    required this.fechaCreacion,
   }) : super(id);
 
   factory InformacionDeContacto.fromJson(
@@ -54,10 +55,12 @@ class InformacionDeContacto extends _i1.TableRow {
           .deserialize<String?>(jsonSerialization['domicilioEstadoProvincia']),
       domicilioPais: serializationManager
           .deserialize<String?>(jsonSerialization['domicilioPais']),
+      fechaEliminacion: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
       ultimaModificacion: serializationManager
-          .deserialize<DateTime?>(jsonSerialization['ultimaModificacion']),
+          .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
       fechaCreacion: serializationManager
-          .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
+          .deserialize<DateTime>(jsonSerialization['fechaCreacion']),
     );
   }
 
@@ -85,9 +88,11 @@ class InformacionDeContacto extends _i1.TableRow {
 
   String? domicilioPais;
 
-  DateTime? ultimaModificacion;
+  DateTime? fechaEliminacion;
 
-  DateTime? fechaCreacion;
+  DateTime ultimaModificacion;
+
+  DateTime fechaCreacion;
 
   @override
   String get tableName => 'informacion_de_contactos';
@@ -106,6 +111,7 @@ class InformacionDeContacto extends _i1.TableRow {
       'domicilioCodigoPostal': domicilioCodigoPostal,
       'domicilioEstadoProvincia': domicilioEstadoProvincia,
       'domicilioPais': domicilioPais,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -126,6 +132,7 @@ class InformacionDeContacto extends _i1.TableRow {
       'domicilioCodigoPostal': domicilioCodigoPostal,
       'domicilioEstadoProvincia': domicilioEstadoProvincia,
       'domicilioPais': domicilioPais,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -146,6 +153,7 @@ class InformacionDeContacto extends _i1.TableRow {
       'domicilioCodigoPostal': domicilioCodigoPostal,
       'domicilioEstadoProvincia': domicilioEstadoProvincia,
       'domicilioPais': domicilioPais,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -192,6 +200,9 @@ class InformacionDeContacto extends _i1.TableRow {
         return;
       case 'domicilioPais':
         domicilioPais = value;
+        return;
+      case 'fechaEliminacion':
+        fechaEliminacion = value;
         return;
       case 'ultimaModificacion':
         ultimaModificacion = value;
@@ -346,6 +357,8 @@ class InformacionDeContactoTable extends _i1.Table {
 
   final domicilioPais = _i1.ColumnString('domicilioPais');
 
+  final fechaEliminacion = _i1.ColumnDateTime('fechaEliminacion');
+
   final ultimaModificacion = _i1.ColumnDateTime('ultimaModificacion');
 
   final fechaCreacion = _i1.ColumnDateTime('fechaCreacion');
@@ -364,6 +377,7 @@ class InformacionDeContactoTable extends _i1.Table {
         domicilioCodigoPostal,
         domicilioEstadoProvincia,
         domicilioPais,
+        fechaEliminacion,
         ultimaModificacion,
         fechaCreacion,
       ];

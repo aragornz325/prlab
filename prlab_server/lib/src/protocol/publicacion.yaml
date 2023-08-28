@@ -5,5 +5,6 @@ fields:
   idProyecto: int? parent=proyectos
   idAutor: int?
   idStatus: int? parent=estados_de_articulos
+  fechaEliminacion: DateTime?
   ultimaModificacion: DateTime
   fechaCreacion: DateTime
