@@ -9,7 +9,10 @@ environment:
 dependencies:
 
   dart_jsonwebtoken: ^2.8.2
+  logging: ^1.2.0
   mailer: ^6.0.1
+  prlab_client:
+    path: ../prlab_client
   serverpod: ^1.1.1
   serverpod_auth_server: ^1.1.1
   yaml_writer: ^1.0.3

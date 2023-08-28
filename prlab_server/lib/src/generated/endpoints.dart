@@ -8,9 +8,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
 import '../endpoints/auth_endpoint.dart' as _i2;
-import '../endpoints/example_endpoint.dart' as _i3;
-import '../endpoints/mail_endpoint.dart' as _i4;
-import 'package:serverpod_auth_server/module.dart' as _i5;
+import '../endpoints/mail_endpoint.dart' as _i3;
+import 'package:serverpod_auth_server/module.dart' as _i4;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -22,13 +21,7 @@ class Endpoints extends _i1.EndpointDispatch {
           'auth',
           null,
         ),
-      'example': _i3.ExampleEndpoint()
-        ..initialize(
-          server,
-          'example',
-          null,
-        ),
-      'mail': _i4.MailEndpoint()
+      'mail': _i3.MailEndpoint()
         ..initialize(
           server,
           'mail',
@@ -114,30 +107,6 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
       },
     );
-    connectors['example'] = _i1.EndpointConnector(
-      name: 'example',
-      endpoint: endpoints['example']!,
-      methodConnectors: {
-        'hello': _i1.MethodConnector(
-          name: 'hello',
-          params: {
-            'name': _i1.ParameterDescription(
-              name: 'name',
-              type: _i1.getType<String>(),
-              nullable: false,
-            )
-          },
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
-              (endpoints['example'] as _i3.ExampleEndpoint).hello(
-            session,
-            params['name'],
-          ),
-        )
-      },
-    );
     connectors['mail'] = _i1.EndpointConnector(
       name: 'mail',
       endpoint: endpoints['mail']!,
@@ -150,8 +119,8 @@ class Endpoints extends _i1.EndpointDispatch {
               type: _i1.getType<String>(),
               nullable: false,
             ),
-            'tipoInvitacion': _i1.ParameterDescription(
-              name: 'tipoInvitacion',
+            'tipoDeInvitacion': _i1.ParameterDescription(
+              name: 'tipoDeInvitacion',
               type: _i1.getType<int>(),
               nullable: false,
             ),
@@ -160,14 +129,14 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['mail'] as _i4.MailEndpoint).envioMailRegistro(
+              (endpoints['mail'] as _i3.MailEndpoint).envioMailRegistro(
             session,
             params['email'],
-            params['tipoInvitacion'],
+            params['tipoDeInvitacion'],
           ),
         )
       },
     );
-    modules['serverpod_auth'] = _i5.Endpoints()..initializeEndpoints(server);
+    modules['serverpod_auth'] = _i4.Endpoints()..initializeEndpoints(server);
   }
 }
