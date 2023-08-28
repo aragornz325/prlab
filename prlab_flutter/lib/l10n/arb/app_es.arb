@@ -105,13 +105,13 @@
     
     "alertDialogSubTitleVerificationCodeSend" : "Ingrese el código de verificación de 8 dígitos enviado a",
     "@alertDialogSubTitleVerificationCodeSend": {
-        "description":"text in subtitle textfield(who was the code sent to), Enter the 8 digit verification code sent to"
+        "description":"text in subtitle textfield(who was the code sent to),Enter the 8 digit verification code sent to"
     },
     
     
-    "alertDialogTextfieldHitTextTextEmailVerificationCode": "Código de verificación de email",
+    "alertDialogTextfieldHitTextTextEmailVerificationCode": "Código de verificación de correo electrónico",
     "@alertDialogTextfieldHitTextTextEmailVerificationCode": {
-        "description":"text in alertdialog in title textfield, Email verification code"
+        "description":"text in alertdialog in title textfield,Email verification code"
     },
     
     "alertDialogTextfieldSuffixGetCode": "Obtener código",
@@ -250,12 +250,35 @@
     "@pageKYCSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the register of the user is a success. This is shown in an alert dialog after pressing button continue."
     },
-    "@pageRegisterErrorDialogDescription": {
-        "description":"This message corresponds to a situation where the register of the user is an error. This is shown in an alert dialog after pressing sign up."
-    },
+    
     "pageKYCSuccessDialogButtonText" : "Ir a Iniciar sesión",
     "@pageKYCSuccessDialogButtonText": {
         "description":"This message corresponds to a situation where the registration of the user is successful. This is shown in the button of the alert dialog after pressing continue button in KYC."
+    },
+    
+    "pageContentAdministrationCreateArticle" : "Crear un articulo",
+    "@pageContentAdministrationCreateArticle": {
+        "description":"This text is in content management view in the button to create a new article"
+    },
+
+    "pageContentAdministrationButtonNavegationClippings" : "Recortes",
+    "@pageContentAdministrationButtonNavegationClippings": {
+        "description":"This text is only used in a navigation button between clippings and article"
+    },
+
+    "pageContentAdministrationBarInformationStatus" : "Estado",
+    "@pageContentAdministrationBarStatus": {
+        "description":"text that shows information or the status of the article.For example: Draft, feedback, finish, etc. in the list of items"
+    },
+    
+    "pageContentAdministrationBarInformationLastUpdate" : "Ultima fecha",
+    "@pageContentAdministrationBarLastUpdate": {
+        "description":"text that shows the last date the article was updated the list of articles"
+    },
+
+    "pageContentAdministrationBarInformationAuthor" : "Autor",
+    "@pageContentAdministrationBarInformationAuthor": {
+        "description":"shows the image of the author or who created this article or their two initials"
     },
     "commonPRLab": "PR lab",
     "@commonPRLab": {
@@ -384,5 +407,21 @@
     "commonClippings" : "Recortes",
     "@commonClippings": {
         "description": "An article cut"
+    },
+
+    "commonArticle": "Artículo",
+    "@commonArticle": {
+        "description": "This text is for articles and is used in a button to navigate between articles and is used to display the name of your articles"
+    },
+
+    "commonSearch": "Buscar",
+    "@commonSearch": {
+        "description": "Text in the search textfield of a particular article on the content management page is now only used on that page"
+    },
+
+    "commonAll": "Todo",
+    "@commonAll": {
+        "description": "Text where a dropdown is used to filter by certain characteristics that an article has in general. Example, status or date."
     }
+
 }

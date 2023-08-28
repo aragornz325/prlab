@@ -1,0 +1,9 @@
+class: Entregable
+table: entregables
+fields:
+  nombre: String
+  idAutor: int?
+  fechaInicio: DateTime
+  fechaFin: DateTime
+  ultimaModificacion: DateTime
+  fechaCreacion: DateTime

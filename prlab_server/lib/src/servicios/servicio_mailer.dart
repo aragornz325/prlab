@@ -32,6 +32,7 @@ class ServicioMailer extends Servicio<OdmAuth> {
     required String email,
     required int tipoDeInvitacion,
   }) async {
+    logger.info('se enviara email de invitacion a $email');
     try {
       final jwt = JWT(
         {
@@ -80,6 +81,13 @@ class ServicioMailer extends Servicio<OdmAuth> {
         ),
       );
 
+      await authRepository.guardarTokenEnDb(
+        session: session,
+        token: token,
+        email: email,
+        tipoDeInvitacion: tipoDeInvitacion,
+      );
+      logger.fine('email enviado con exito');
       return true;
     } on Exception catch (e) {
       throw Exception('$e');

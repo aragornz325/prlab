@@ -9,9 +9,9 @@ class AppRouter extends $AppRouter {
   @override
   final List<AutoRoute> routes = [
     AutoRoute(
+      initial: true,
       page: RutaLogin.page,
       path: '/login',
-      initial: true,
     ),
     AutoRoute(
       page: RutaRegistro.page,
@@ -44,6 +44,10 @@ class AppRouter extends $AppRouter {
     AutoRoute(
       path: '/edit-content',
       page: RutaEditorContenido.page,
+    ),
+    AutoRoute(
+      page: RutaAdministracionContenido.page,
+      path: '/content-management',
     ),
   ];
 }

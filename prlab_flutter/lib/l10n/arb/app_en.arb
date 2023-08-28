@@ -278,6 +278,30 @@
         "description":"Text in the logout item"
     },
 
+    "pageContentAdministrationCreateArticle" : "Create an article",
+    "@pageContentAdministrationCreateArticle": {
+        "description":"This text is in content management view in the button to create a new article"
+    },
+
+    "pageContentAdministrationButtonNavegationClippings" : "Clippings",
+    "@pageContentAdministrationButtonNavegationClippings": {
+        "description":"This text is only used in a navigation button between clippings and article"
+    },
+
+    "pageContentAdministrationBarInformationStatus" : "Status",
+    "@pageContentAdministrationBarStatus": {
+        "description":"text that shows information or the status of the article.For example: Draft, feedback, finish, etc. in the list of items"
+    },
+    
+    "pageContentAdministrationBarInformationLastUpdate" : "Last update",
+    "@pageContentAdministrationBarLastUpdate": {
+        "description":"text that shows the last date the article was updated the list of articles"
+    },
+
+    "pageContentAdministrationBarInformationAuthor" : "Author",
+    "@pageContentAdministrationBarInformationAuthor": {
+        "description":"shows the image of the author or who created this article or their two initials"
+    },
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
@@ -352,7 +376,8 @@
     "@commonSuccess": {
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph."
     },
-       "commonSuccessWithExclamation" : "Success!",
+    
+    "commonSuccessWithExclamation" : "Success!",
     "@commonSuccessWithExclamation": {
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph but with an exclamation sign."
     },
@@ -385,6 +410,16 @@
     "commonClippings" : "Clippings",
     "@commonClippings": {
         "description": "An article cut"
+    },
+
+    "commonSearch": "Search",
+    "@commonSearch": {
+        "description": "Text in the search textfield of a particular article on the content management page is now only used on that page"
+    },
+
+    "commonAll": "All",
+    "@commonAll": {
+        "description": "Text where a dropdown is used to filter by certain characteristics that an article has in general. Example, status or date."
     }
 
 }
