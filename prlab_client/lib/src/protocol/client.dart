@@ -148,11 +148,23 @@ class _EndpointSubida extends _i1.EndpointRef {
   @override
   String get name => 'subida';
 
-  _i2.Future<bool> getUploadDescription(String path) =>
-      caller.callServerEndpoint<bool>(
+  _i2.Future<void> subirImagen(String path) => caller.callServerEndpoint<void>(
         'subida',
-        'getUploadDescription',
+        'subirImagen',
         {'path': path},
+      );
+
+  _i2.Future<void> borrarImagen(
+    String publicId,
+    String url,
+  ) =>
+      caller.callServerEndpoint<void>(
+        'subida',
+        'borrarImagen',
+        {
+          'publicId': publicId,
+          'url': url,
+        },
       );
 }
 

@@ -36,7 +36,7 @@ class Endpoints extends _i1.EndpointDispatch {
           'mail',
           null,
         ),
-      'subida': _i5.SubidaEndpoint()
+      'subida': _i5.ArchivosEndpoint()
         ..initialize(
           server,
           'subida',
@@ -180,8 +180,8 @@ class Endpoints extends _i1.EndpointDispatch {
       name: 'subida',
       endpoint: endpoints['subida']!,
       methodConnectors: {
-        'getUploadDescription': _i1.MethodConnector(
-          name: 'getUploadDescription',
+        'subirImagen': _i1.MethodConnector(
+          name: 'subirImagen',
           params: {
             'path': _i1.ParameterDescription(
               name: 'path',
@@ -193,11 +193,35 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['subida'] as _i5.SubidaEndpoint).getUploadDescription(
+              (endpoints['subida'] as _i5.ArchivosEndpoint).subirImagen(
             session,
             params['path'],
           ),
-        )
+        ),
+        'borrarImagen': _i1.MethodConnector(
+          name: 'borrarImagen',
+          params: {
+            'publicId': _i1.ParameterDescription(
+              name: 'publicId',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'url': _i1.ParameterDescription(
+              name: 'url',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['subida'] as _i5.ArchivosEndpoint).borrarImagen(
+            session,
+            params['publicId'],
+            params['url'],
+          ),
+        ),
       },
     );
     modules['serverpod_auth'] = _i7.Endpoints()..initializeEndpoints(server);
