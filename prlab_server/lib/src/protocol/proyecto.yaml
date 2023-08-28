@@ -1,0 +1,11 @@
+class: Proyecto
+table: proyectos
+fields:
+  nombre: String
+  descripcion: String
+  idOrganizacion: int? parent=organizaciones
+  fechaInicio: DateTime
+  fechaFin: DateTime
+  fechaEliminacion: DateTime?
+  ultimaModificacion: DateTime
+  fechaCreacion: DateTime

@@ -1,0 +1,6 @@
+class: EstadoDeArticulo
+table: estados_de_articulos
+fields:
+  estado: String
+  ultimaModificacion: DateTime
+  fechaCreacion: DateTime

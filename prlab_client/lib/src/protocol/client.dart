@@ -8,9 +8,10 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
-import 'package:serverpod_auth_client/module.dart' as _i3;
-import 'dart:io' as _i4;
-import 'protocol.dart' as _i5;
+import 'package:prlab_client/src/protocol/cliente.dart' as _i3;
+import 'package:serverpod_auth_client/module.dart' as _i4;
+import 'dart:io' as _i5;
+import 'protocol.dart' as _i6;
 
 /// La clase `AuthEndpoint` está ampliando la clase `Endpoint`. por tanto maneja
 /// todas las peticiones relacionadas con el auth del sistema
@@ -88,6 +89,23 @@ class _EndpointAuth extends _i1.EndpointRef {
       );
 }
 
+/// Endpoints de la entidad Cliente.
+class _EndpointCliente extends _i1.EndpointRef {
+  _EndpointCliente(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'cliente';
+
+  /// Guarda los datos personales del cliente insertados en el formulario de
+  /// registro.
+  _i2.Future<bool> completarKyc(_i3.Cliente datosDelCliente) =>
+      caller.callServerEndpoint<bool>(
+        'cliente',
+        'completarKyc',
+        {'datosDelCliente': datosDelCliente},
+      );
+}
+
 /// Clase con endopoint para envio de email de registro.
 class _EndpointMail extends _i1.EndpointRef {
   _EndpointMail(_i1.EndpointCaller caller) : super(caller);
@@ -126,29 +144,32 @@ class _EndpointMail extends _i1.EndpointRef {
 
 class _Modules {
   _Modules(Client client) {
-    auth = _i3.Caller(client);
+    auth = _i4.Caller(client);
   }
 
-  late final _i3.Caller auth;
+  late final _i4.Caller auth;
 }
 
 class Client extends _i1.ServerpodClient {
   Client(
     String host, {
-    _i4.SecurityContext? context,
+    _i5.SecurityContext? context,
     _i1.AuthenticationKeyManager? authenticationKeyManager,
   }) : super(
           host,
-          _i5.Protocol(),
+          _i6.Protocol(),
           context: context,
           authenticationKeyManager: authenticationKeyManager,
         ) {
     auth = _EndpointAuth(this);
+    cliente = _EndpointCliente(this);
     mail = _EndpointMail(this);
     modules = _Modules(this);
   }
 
   late final _EndpointAuth auth;
+
+  late final _EndpointCliente cliente;
 
   late final _EndpointMail mail;
 
@@ -157,6 +178,7 @@ class Client extends _i1.ServerpodClient {
   @override
   Map<String, _i1.EndpointRef> get endpointRefLookup => {
         'auth': auth,
+        'cliente': cliente,
         'mail': mail,
       };
   @override
