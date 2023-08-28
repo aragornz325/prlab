@@ -1,0 +1,17 @@
+class: InformacionDeContacto
+table: informacion_de_contactos
+fields:
+  idUsuario: int?
+  emailPrincipal: String?
+  emailSecundario: String?
+  telefonoPrincipal: String?
+  telefonoSecundario: String?
+  domicilioCalle: String?
+  domicilioNumero: String?
+  domicilioCiudad: String?
+  domicilioCodigoPostal: String?
+  domicilioEstadoProvincia: String?
+  domicilioPais: String?
+  fechaEliminacion: DateTime?
+  ultimaModificacion: DateTime
+  fechaCreacion: DateTime

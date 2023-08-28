@@ -34,7 +34,7 @@ class BotonesArticulosYRecorte extends StatelessWidget {
             onTap: () {
               // TODO(anyone): agregarle funcionalidad
             },
-            textoBoton: l10n.commonArticle,
+            textoBoton: l10n.commonArticles,
           ),
           SizedBox(width: 40.pw),
           BotonConIcono(

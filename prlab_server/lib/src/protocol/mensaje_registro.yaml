@@ -1,0 +1,6 @@
+class: MensajeRegistro
+table: mensaje_registro
+fields:
+  mensaje: String
+  host: String
+  fechaCreacion: DateTime

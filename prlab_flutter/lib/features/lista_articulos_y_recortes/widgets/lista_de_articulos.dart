@@ -40,7 +40,7 @@ class ListaDeArticulos extends StatelessWidget {
         Columna(
           widthDeLaColumna: 400.pw,
           lista: articulos.map((e) => e.nombre).toList(),
-          nombreColumna: l10n.commonArticle,
+          nombreColumna: l10n.commonArticles,
           celdaEncabezadoColumna: (value) => Padding(
             padding: EdgeInsets.symmetric(
               vertical: max(10.ph, 10.sh),

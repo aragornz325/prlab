@@ -1,0 +1,6 @@
+class: TipoDeOrganizacion
+table: tipos_de_organizacion
+fields:
+  tipo: String
+  ultimaModificacion: DateTime
+  fechaCreacion: DateTime
