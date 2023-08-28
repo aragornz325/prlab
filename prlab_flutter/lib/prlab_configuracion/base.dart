@@ -10,5 +10,5 @@ class PRLabConfiguracion {
   /// una contraseña se considere válida.
   static const int minimoDeCaracteresPassword = 12;
   static const String esloganPRLab = 'The leading global PR agency';
-  static const String descipcionPRLab = 'International PR Agency';
+  static const String descripcionPRLab = 'International PR Agency';
 }

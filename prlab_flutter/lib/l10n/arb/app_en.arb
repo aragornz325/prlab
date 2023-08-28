@@ -359,7 +359,7 @@
 
     "commonDateHintText" : "Birthdate",
     "@commonDateHintText": {
-        "description": "Field on the kyc page"
+        "description": "Refers to a designated area or section on a form, where an user is required to enter their date of birth"
     },
 
     "commonMinimumCharactersForAPassword" : "At least 12 characters",

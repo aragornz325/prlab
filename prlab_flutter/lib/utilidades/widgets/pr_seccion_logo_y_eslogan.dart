@@ -41,7 +41,6 @@ class SeccionLogoYEslogan extends StatelessWidget {
             ),
           ),
           ClipRRect(
-            // Clip it cleanly.
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
               child: Container(

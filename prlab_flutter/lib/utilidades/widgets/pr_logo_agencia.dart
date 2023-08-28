@@ -43,7 +43,7 @@ class LogoPrLabAgencia extends StatelessWidget {
                 ),
               ),
               Text(
-                PRLabConfiguracion.descipcionPRLab,
+                PRLabConfiguracion.descripcionPRLab,
                 style: TextStyle(
                   color: colores.tertiary,
                   fontSize: 14.pf,

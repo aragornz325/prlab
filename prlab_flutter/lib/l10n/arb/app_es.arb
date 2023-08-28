@@ -356,9 +356,9 @@
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph but with an exclamation sign."
     },
 
-    "commonDateHintText" : "Birthdate",
+    "commonDateHintText" : "Fecha de nacimiento",
     "@commonDateHintText": {
-        "description": "Field on the kyc page"
+        "description": "Refers to a designated area or section on a form, where an user is required to enter their date of birth"
     },
 
     "commonMinimumCharactersForAPassword" : "Al menos 12 caracteres",
