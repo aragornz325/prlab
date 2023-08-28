@@ -142,6 +142,20 @@ class _EndpointMail extends _i1.EndpointRef {
       );
 }
 
+class _EndpointSubida extends _i1.EndpointRef {
+  _EndpointSubida(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'subida';
+
+  _i2.Future<bool> getUploadDescription(String path) =>
+      caller.callServerEndpoint<bool>(
+        'subida',
+        'getUploadDescription',
+        {'path': path},
+      );
+}
+
 class _Modules {
   _Modules(Client client) {
     auth = _i4.Caller(client);
@@ -164,6 +178,7 @@ class Client extends _i1.ServerpodClient {
     auth = _EndpointAuth(this);
     cliente = _EndpointCliente(this);
     mail = _EndpointMail(this);
+    subida = _EndpointSubida(this);
     modules = _Modules(this);
   }
 
@@ -173,6 +188,8 @@ class Client extends _i1.ServerpodClient {
 
   late final _EndpointMail mail;
 
+  late final _EndpointSubida subida;
+
   late final _Modules modules;
 
   @override
@@ -180,6 +197,7 @@ class Client extends _i1.ServerpodClient {
         'auth': auth,
         'cliente': cliente,
         'mail': mail,
+        'subida': subida,
       };
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup =>

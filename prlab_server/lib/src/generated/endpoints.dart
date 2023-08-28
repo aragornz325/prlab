@@ -10,8 +10,9 @@ import 'package:serverpod/serverpod.dart' as _i1;
 import '../endpoints/auth_endpoint.dart' as _i2;
 import '../endpoints/cliente_endpoint.dart' as _i3;
 import '../endpoints/mail_endpoint.dart' as _i4;
-import 'package:prlab_server/src/generated/cliente.dart' as _i5;
-import 'package:serverpod_auth_server/module.dart' as _i6;
+import '../endpoints/subida_archivos.dart' as _i5;
+import 'package:prlab_server/src/generated/cliente.dart' as _i6;
+import 'package:serverpod_auth_server/module.dart' as _i7;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -33,6 +34,12 @@ class Endpoints extends _i1.EndpointDispatch {
         ..initialize(
           server,
           'mail',
+          null,
+        ),
+      'subida': _i5.SubidaEndpoint()
+        ..initialize(
+          server,
+          'subida',
           null,
         ),
     };
@@ -124,7 +131,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'datosDelCliente': _i1.ParameterDescription(
               name: 'datosDelCliente',
-              type: _i1.getType<_i5.Cliente>(),
+              type: _i1.getType<_i6.Cliente>(),
               nullable: false,
             )
           },
@@ -169,6 +176,30 @@ class Endpoints extends _i1.EndpointDispatch {
         )
       },
     );
-    modules['serverpod_auth'] = _i6.Endpoints()..initializeEndpoints(server);
+    connectors['subida'] = _i1.EndpointConnector(
+      name: 'subida',
+      endpoint: endpoints['subida']!,
+      methodConnectors: {
+        'getUploadDescription': _i1.MethodConnector(
+          name: 'getUploadDescription',
+          params: {
+            'path': _i1.ParameterDescription(
+              name: 'path',
+              type: _i1.getType<String>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['subida'] as _i5.SubidaEndpoint).getUploadDescription(
+            session,
+            params['path'],
+          ),
+        )
+      },
+    );
+    modules['serverpod_auth'] = _i7.Endpoints()..initializeEndpoints(server);
   }
 }
