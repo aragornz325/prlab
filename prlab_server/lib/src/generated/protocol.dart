@@ -85,6 +85,12 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'int?',
         ),
         _i2.ColumnDefinition(
+          name: 'fechaEliminacion',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: true,
+          dartType: 'DateTime?',
+        ),
+        _i2.ColumnDefinition(
           name: 'ultimaModificacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
@@ -202,16 +208,22 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'int?',
         ),
         _i2.ColumnDefinition(
-          name: 'ultimaModificacion',
+          name: 'fechaEliminacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
         _i2.ColumnDefinition(
+          name: 'ultimaModificacion',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: false,
+          dartType: 'DateTime',
+        ),
+        _i2.ColumnDefinition(
           name: 'fechaCreacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: true,
-          dartType: 'DateTime?',
+          isNullable: false,
+          dartType: 'DateTime',
         ),
       ],
       foreignKeys: [
@@ -281,6 +293,12 @@ class Protocol extends _i1.SerializationManagerServer {
           columnType: _i2.ColumnType.integer,
           isNullable: true,
           dartType: 'int?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'fechaEliminacion',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: true,
+          dartType: 'DateTime?',
         ),
         _i2.ColumnDefinition(
           name: 'ultimaModificacion',
@@ -506,16 +524,22 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'String?',
         ),
         _i2.ColumnDefinition(
-          name: 'ultimaModificacion',
+          name: 'fechaEliminacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
         ),
         _i2.ColumnDefinition(
+          name: 'ultimaModificacion',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: false,
+          dartType: 'DateTime',
+        ),
+        _i2.ColumnDefinition(
           name: 'fechaCreacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: true,
-          dartType: 'DateTime?',
+          isNullable: false,
+          dartType: 'DateTime',
         ),
       ],
       foreignKeys: [],
@@ -614,6 +638,12 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'int?',
         ),
         _i2.ColumnDefinition(
+          name: 'fechaEliminacion',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: true,
+          dartType: 'DateTime?',
+        ),
+        _i2.ColumnDefinition(
           name: 'ultimaModificacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
@@ -707,6 +737,12 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'DateTime',
         ),
         _i2.ColumnDefinition(
+          name: 'fechaEliminacion',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: true,
+          dartType: 'DateTime?',
+        ),
+        _i2.ColumnDefinition(
           name: 'ultimaModificacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
           isNullable: false,
@@ -782,6 +818,12 @@ class Protocol extends _i1.SerializationManagerServer {
           columnType: _i2.ColumnType.integer,
           isNullable: true,
           dartType: 'int?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'fechaEliminacion',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: true,
+          dartType: 'DateTime?',
         ),
         _i2.ColumnDefinition(
           name: 'ultimaModificacion',

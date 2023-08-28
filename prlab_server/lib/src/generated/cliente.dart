@@ -20,8 +20,9 @@ class Cliente extends _i1.TableRow {
     this.idUsuario,
     this.idOrganizacion,
     this.contacto,
-    this.ultimaModificacion,
-    this.fechaCreacion,
+    this.fechaEliminacion,
+    required this.ultimaModificacion,
+    required this.fechaCreacion,
   }) : super(id);
 
   factory Cliente.fromJson(
@@ -48,10 +49,12 @@ class Cliente extends _i1.TableRow {
           .deserialize<int?>(jsonSerialization['idOrganizacion']),
       contacto:
           serializationManager.deserialize<int?>(jsonSerialization['contacto']),
+      fechaEliminacion: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
       ultimaModificacion: serializationManager
-          .deserialize<DateTime?>(jsonSerialization['ultimaModificacion']),
+          .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
       fechaCreacion: serializationManager
-          .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
+          .deserialize<DateTime>(jsonSerialization['fechaCreacion']),
     );
   }
 
@@ -75,9 +78,11 @@ class Cliente extends _i1.TableRow {
 
   int? contacto;
 
-  DateTime? ultimaModificacion;
+  DateTime? fechaEliminacion;
 
-  DateTime? fechaCreacion;
+  DateTime ultimaModificacion;
+
+  DateTime fechaCreacion;
 
   @override
   String get tableName => 'clientes';
@@ -94,6 +99,7 @@ class Cliente extends _i1.TableRow {
       'idUsuario': idUsuario,
       'idOrganizacion': idOrganizacion,
       'contacto': contacto,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -112,6 +118,7 @@ class Cliente extends _i1.TableRow {
       'idUsuario': idUsuario,
       'idOrganizacion': idOrganizacion,
       'contacto': contacto,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -130,6 +137,7 @@ class Cliente extends _i1.TableRow {
       'idUsuario': idUsuario,
       'idOrganizacion': idOrganizacion,
       'contacto': contacto,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -170,6 +178,9 @@ class Cliente extends _i1.TableRow {
         return;
       case 'contacto':
         contacto = value;
+        return;
+      case 'fechaEliminacion':
+        fechaEliminacion = value;
         return;
       case 'ultimaModificacion':
         ultimaModificacion = value;
@@ -319,6 +330,8 @@ class ClienteTable extends _i1.Table {
 
   final contacto = _i1.ColumnInt('contacto');
 
+  final fechaEliminacion = _i1.ColumnDateTime('fechaEliminacion');
+
   final ultimaModificacion = _i1.ColumnDateTime('ultimaModificacion');
 
   final fechaCreacion = _i1.ColumnDateTime('fechaCreacion');
@@ -335,6 +348,7 @@ class ClienteTable extends _i1.Table {
         idUsuario,
         idOrganizacion,
         contacto,
+        fechaEliminacion,
         ultimaModificacion,
         fechaCreacion,
       ];

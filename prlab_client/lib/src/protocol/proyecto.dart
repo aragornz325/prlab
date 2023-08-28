@@ -16,6 +16,7 @@ class Proyecto extends _i1.SerializableEntity {
     this.idOrganizacion,
     required this.fechaInicio,
     required this.fechaFin,
+    this.fechaEliminacion,
     required this.ultimaModificacion,
     required this.fechaCreacion,
   });
@@ -36,6 +37,8 @@ class Proyecto extends _i1.SerializableEntity {
           .deserialize<DateTime>(jsonSerialization['fechaInicio']),
       fechaFin: serializationManager
           .deserialize<DateTime>(jsonSerialization['fechaFin']),
+      fechaEliminacion: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
       ultimaModificacion: serializationManager
           .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
       fechaCreacion: serializationManager
@@ -58,6 +61,8 @@ class Proyecto extends _i1.SerializableEntity {
 
   DateTime fechaFin;
 
+  DateTime? fechaEliminacion;
+
   DateTime ultimaModificacion;
 
   DateTime fechaCreacion;
@@ -71,6 +76,7 @@ class Proyecto extends _i1.SerializableEntity {
       'idOrganizacion': idOrganizacion,
       'fechaInicio': fechaInicio,
       'fechaFin': fechaFin,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };

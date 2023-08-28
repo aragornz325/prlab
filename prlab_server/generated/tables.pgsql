@@ -7,6 +7,7 @@ CREATE TABLE "comentarios" (
   "idEntregable" integer,
   "textoComentario" text NOT NULL,
   "idAutor" integer,
+  "fechaEliminacion" timestamp without time zone,
   "ultimaModificacion" timestamp without time zone NOT NULL,
   "fechaCreacion" timestamp without time zone NOT NULL
 );
@@ -65,8 +66,9 @@ CREATE TABLE "informacion_de_contactos" (
   "domicilioCodigoPostal" text,
   "domicilioEstadoProvincia" text,
   "domicilioPais" text,
-  "ultimaModificacion" timestamp without time zone,
-  "fechaCreacion" timestamp without time zone
+  "fechaEliminacion" timestamp without time zone,
+  "ultimaModificacion" timestamp without time zone NOT NULL,
+  "fechaCreacion" timestamp without time zone NOT NULL
 );
 
 ALTER TABLE ONLY "informacion_de_contactos"
@@ -112,6 +114,7 @@ CREATE TABLE "organizaciones" (
   "nombre" text NOT NULL,
   "tipo" integer,
   "contacto" integer,
+  "fechaEliminacion" timestamp without time zone,
   "ultimaModificacion" timestamp without time zone NOT NULL,
   "fechaCreacion" timestamp without time zone NOT NULL
 );
@@ -141,6 +144,7 @@ CREATE TABLE "proyectos" (
   "idOrganizacion" integer,
   "fechaInicio" timestamp without time zone NOT NULL,
   "fechaFin" timestamp without time zone NOT NULL,
+  "fechaEliminacion" timestamp without time zone,
   "ultimaModificacion" timestamp without time zone NOT NULL,
   "fechaCreacion" timestamp without time zone NOT NULL
 );
@@ -164,6 +168,7 @@ CREATE TABLE "publicaciones" (
   "idProyecto" integer,
   "idAutor" integer,
   "idStatus" integer,
+  "fechaEliminacion" timestamp without time zone,
   "ultimaModificacion" timestamp without time zone NOT NULL,
   "fechaCreacion" timestamp without time zone NOT NULL
 );
@@ -193,6 +198,7 @@ CREATE TABLE "articulos" (
   "idProyecto" integer,
   "idAutor" integer,
   "idStatus" integer,
+  "fechaEliminacion" timestamp without time zone,
   "ultimaModificacion" timestamp without time zone NOT NULL,
   "fechaCreacion" timestamp without time zone NOT NULL
 );
@@ -226,8 +232,9 @@ CREATE TABLE "clientes" (
   "idUsuario" integer,
   "idOrganizacion" integer,
   "contacto" integer,
-  "ultimaModificacion" timestamp without time zone,
-  "fechaCreacion" timestamp without time zone
+  "fechaEliminacion" timestamp without time zone,
+  "ultimaModificacion" timestamp without time zone NOT NULL,
+  "fechaCreacion" timestamp without time zone NOT NULL
 );
 
 ALTER TABLE ONLY "clientes"

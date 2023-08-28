@@ -1,7 +1,7 @@
 {
     "@@locale": "en",
 
-    "pageLoginGreetings": "Hi Again!",
+    "pageLoginGreetings": "Hi again!",
     "@pageLoginGreetings": {
         "description": "Welcomes the user back"
     },
@@ -11,7 +11,7 @@
         "description": "Log in to the web/app"
     },
 
-    "pageLoginButtonText": "Login",
+    "pageLoginButtonText": "Log In",
     "@pageLoginButtonText": {
         "description": "Log in to the web/app"
     },
@@ -30,11 +30,7 @@
     "@pageLoginTappableText": {
         "description": "Ask you if you forget your password"
     },
-    
-    "pageLoginLeadingAgency": "The leading global PR agency",
-    "@pageLoginLeadingAgency": {
-        "description": "Eslogan on the register/login page "
-    },
+
 
     "pageLoginErrorInvalidCredentials": "Invalid Credentials",
     "@pageLoginErrorInvalidCredentials": {
@@ -66,10 +62,6 @@
         "description": "An unidentified error has occurred while processing your request. Unfortunately, more details are not available at this time. Please report this issue to the support team for assistance."
     },
     
-    "pageCreateAdminAccountSubtitleInternationalPRLabAgency": "International PR Agency",
-    "@pageCreateAdminAccountSubtitleInternationalPRLabAgency": {
-        "description": "Text International PR Agency in subtitle of screen"
-    },
     "pageCreateAdminClientEmail": "Enter the client email",
     "@pageCreateAdminClientEmail": {
         "description": "Text Enter the client email in screen create admin account above of textfield email"
@@ -79,9 +71,9 @@
         "description": "Text The leading global PR agency in screen create admin account above of textfield email"
     },
     
-    "pageCreateAdminAlertdialogTitleEmailSend": "Email send",
+    "pageCreateAdminAlertdialogTitleEmailSend": "Email sent",
     "@pageCreateAdminAlertdialogTitleEmailSend": {
-        "description": "Text in screen create admin account in alertdialog in title, email send"
+        "description": "Text in screen create admin account in alertdialog in title, email sent"
     },
     
     "pageSignUpTitle": "Welcome!",
@@ -236,9 +228,23 @@
     "@pageRecoverPasswordChangePasswordSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
     },
-    
-    
-    "pageKYCSuccessDialogDescription" : "Congratulations! Your account was\n created successfully.\n Log in to start at PRLAB",
+
+    "pageBrandAdministrationRecentlyModifiedText" : "Recently modified",
+    "@pageBrandAdministrationRecentlyModifiedText": {
+        "description":"Section Header of the recently modified articles"
+    },
+
+    "pageBrandAdministrationTitle" : "Your Brands",
+    "@pageBrandAdministrationTitle": {
+        "description":"Section Title"
+    },
+
+    "pageBrandAdministrationDescription" : "View all the articles of this brand, its members and their statistics.",
+    "@pageBrandAdministrationSubtitle": {
+        "description":"Section subtitle"
+    },
+
+        "pageKYCSuccessDialogDescription" : "Congratulations! Your account was\n created successfully.\n Log in to start at PRLAB",
     "@pageKYCSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the register of the user is a success. This is shown in an alert dialog after pressing button continue."
     },
@@ -272,6 +278,30 @@
         "description":"Text in the logout item"
     },
 
+    "pageContentAdministrationCreateArticle" : "Create an article",
+    "@pageContentAdministrationCreateArticle": {
+        "description":"This text is in content management view in the button to create a new article"
+    },
+
+    "pageContentAdministrationButtonNavegationClippings" : "Clippings",
+    "@pageContentAdministrationButtonNavegationClippings": {
+        "description":"This text is only used in a navigation button between clippings and article"
+    },
+
+    "pageContentAdministrationBarInformationStatus" : "Status",
+    "@pageContentAdministrationBarStatus": {
+        "description":"text that shows information or the status of the article.For example: Draft, feedback, finish, etc. in the list of items"
+    },
+    
+    "pageContentAdministrationBarInformationLastUpdate" : "Last update",
+    "@pageContentAdministrationBarLastUpdate": {
+        "description":"text that shows the last date the article was updated the list of articles"
+    },
+
+    "pageContentAdministrationBarInformationAuthor" : "Author",
+    "@pageContentAdministrationBarInformationAuthor": {
+        "description":"shows the image of the author or who created this article or their two initials"
+    },
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
@@ -346,19 +376,50 @@
     "@commonSuccess": {
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph."
     },
-       "commonSuccessWithExclamation" : "Success!",
+    
+    "commonSuccessWithExclamation" : "Success!",
     "@commonSuccessWithExclamation": {
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph but with an exclamation sign."
     },
 
-    "commonDateHintText" : "00/00/0000",
+    "commonDateHintText" : "Birthdate",
     "@commonDateHintText": {
-        "description": "This text provides a sample date format '00/00/0000' that serves as a visual hint for users when entering dates."
+        "description": "Refers to a designated area or section on a form, where an user is required to enter their date of birth"
     },
 
     "commonMinimumCharactersForAPassword" : "At least 12 characters",
     "@commonMinimumCharactersForAPassword": {
         "description": "This text is shown when the user enter a password too short on the register page"
+    },
+
+    "commonList" : "List",
+    "@commonList": {
+        "description": "Text shown on a list of things"
+    },
+
+    "commonCreate" : "Create",
+    "@commonCreate": {
+        "description": "Text on a button that creates something"
+    },
+
+    "commonArticles" : "Articles",
+    "@commonArticles": {
+        "description": "A piece of writing on a brand"
+    },
+
+    "commonClippings" : "Clippings",
+    "@commonClippings": {
+        "description": "An article cut"
+    },
+
+    "commonSearch": "Search",
+    "@commonSearch": {
+        "description": "Text in the search textfield of a particular article on the content management page is now only used on that page"
+    },
+
+    "commonAll": "All",
+    "@commonAll": {
+        "description": "Text where a dropdown is used to filter by certain characteristics that an article has in general. Example, status or date."
     }
 
 }

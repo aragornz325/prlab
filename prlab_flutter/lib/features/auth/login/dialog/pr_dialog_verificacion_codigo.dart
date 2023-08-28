@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/features/auth/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/features/auth/login/bloc_temporizador/bloc_temporizador.dart';
@@ -31,6 +32,8 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colores = context.colores;
+
     final l10n = context.l10n;
 
     final textoAQuienFueEnviadoEmail =
@@ -64,6 +67,7 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
             style: TextStyle(
               fontSize: 12.pf,
               fontWeight: FontWeight.w400,
+              color: colores.tertiary,
             ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,

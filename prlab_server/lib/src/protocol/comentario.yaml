@@ -4,5 +4,6 @@ fields:
   idEntregable: int? 
   textoComentario: String
   idAutor: int?
+  fechaEliminacion: DateTime?
   ultimaModificacion: DateTime
   fechaCreacion: DateTime

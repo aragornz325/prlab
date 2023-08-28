@@ -138,6 +138,9 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       onTap: _onTapBotonIniciarSesion,
                       texto: l10n.pageLoginButtonText,
                     ),
+                    SizedBox(
+                      height: 120.ph,
+                    ),
                   ],
                 ),
               ),

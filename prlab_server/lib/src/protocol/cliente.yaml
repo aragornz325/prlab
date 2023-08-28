@@ -10,5 +10,6 @@ fields:
   idUsuario: int?
   idOrganizacion: int? parent=organizaciones
   contacto: int? parent=informacion_de_contactos
-  ultimaModificacion: DateTime?
-  fechaCreacion: DateTime?
+  fechaEliminacion: DateTime?
+  ultimaModificacion: DateTime
+  fechaCreacion: DateTime

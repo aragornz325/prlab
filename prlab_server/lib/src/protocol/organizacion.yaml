@@ -4,5 +4,6 @@ fields:
   nombre: String
   tipo: int? parent=tipos_de_organizacion
   contacto: int? parent=informacion_de_contactos
+  fechaEliminacion: DateTime?
   ultimaModificacion: DateTime
   fechaCreacion: DateTime

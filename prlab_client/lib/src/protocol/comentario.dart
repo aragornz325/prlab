@@ -14,6 +14,7 @@ class Comentario extends _i1.SerializableEntity {
     this.idEntregable,
     required this.textoComentario,
     this.idAutor,
+    this.fechaEliminacion,
     required this.ultimaModificacion,
     required this.fechaCreacion,
   });
@@ -30,6 +31,8 @@ class Comentario extends _i1.SerializableEntity {
           .deserialize<String>(jsonSerialization['textoComentario']),
       idAutor:
           serializationManager.deserialize<int?>(jsonSerialization['idAutor']),
+      fechaEliminacion: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
       ultimaModificacion: serializationManager
           .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
       fechaCreacion: serializationManager
@@ -48,6 +51,8 @@ class Comentario extends _i1.SerializableEntity {
 
   int? idAutor;
 
+  DateTime? fechaEliminacion;
+
   DateTime ultimaModificacion;
 
   DateTime fechaCreacion;
@@ -59,6 +64,7 @@ class Comentario extends _i1.SerializableEntity {
       'idEntregable': idEntregable,
       'textoComentario': textoComentario,
       'idAutor': idAutor,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };

@@ -14,6 +14,7 @@ class Organizacion extends _i1.SerializableEntity {
     required this.nombre,
     this.tipo,
     this.contacto,
+    this.fechaEliminacion,
     required this.ultimaModificacion,
     required this.fechaCreacion,
   });
@@ -29,6 +30,8 @@ class Organizacion extends _i1.SerializableEntity {
       tipo: serializationManager.deserialize<int?>(jsonSerialization['tipo']),
       contacto:
           serializationManager.deserialize<int?>(jsonSerialization['contacto']),
+      fechaEliminacion: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
       ultimaModificacion: serializationManager
           .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
       fechaCreacion: serializationManager
@@ -47,6 +50,8 @@ class Organizacion extends _i1.SerializableEntity {
 
   int? contacto;
 
+  DateTime? fechaEliminacion;
+
   DateTime ultimaModificacion;
 
   DateTime fechaCreacion;
@@ -58,6 +63,7 @@ class Organizacion extends _i1.SerializableEntity {
       'nombre': nombre,
       'tipo': tipo,
       'contacto': contacto,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };

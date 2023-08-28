@@ -15,6 +15,7 @@ class Publicacion extends _i1.TableRow {
     this.idProyecto,
     this.idAutor,
     this.idStatus,
+    this.fechaEliminacion,
     required this.ultimaModificacion,
     required this.fechaCreacion,
   }) : super(id);
@@ -33,6 +34,8 @@ class Publicacion extends _i1.TableRow {
           serializationManager.deserialize<int?>(jsonSerialization['idAutor']),
       idStatus:
           serializationManager.deserialize<int?>(jsonSerialization['idStatus']),
+      fechaEliminacion: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
       ultimaModificacion: serializationManager
           .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
       fechaCreacion: serializationManager
@@ -50,6 +53,8 @@ class Publicacion extends _i1.TableRow {
 
   int? idStatus;
 
+  DateTime? fechaEliminacion;
+
   DateTime ultimaModificacion;
 
   DateTime fechaCreacion;
@@ -64,6 +69,7 @@ class Publicacion extends _i1.TableRow {
       'idProyecto': idProyecto,
       'idAutor': idAutor,
       'idStatus': idStatus,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -77,6 +83,7 @@ class Publicacion extends _i1.TableRow {
       'idProyecto': idProyecto,
       'idAutor': idAutor,
       'idStatus': idStatus,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -90,6 +97,7 @@ class Publicacion extends _i1.TableRow {
       'idProyecto': idProyecto,
       'idAutor': idAutor,
       'idStatus': idStatus,
+      'fechaEliminacion': fechaEliminacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaCreacion': fechaCreacion,
     };
@@ -115,6 +123,9 @@ class Publicacion extends _i1.TableRow {
         return;
       case 'idStatus':
         idStatus = value;
+        return;
+      case 'fechaEliminacion':
+        fechaEliminacion = value;
         return;
       case 'ultimaModificacion':
         ultimaModificacion = value;
@@ -255,6 +266,8 @@ class PublicacionTable extends _i1.Table {
 
   final idStatus = _i1.ColumnInt('idStatus');
 
+  final fechaEliminacion = _i1.ColumnDateTime('fechaEliminacion');
+
   final ultimaModificacion = _i1.ColumnDateTime('ultimaModificacion');
 
   final fechaCreacion = _i1.ColumnDateTime('fechaCreacion');
@@ -266,6 +279,7 @@ class PublicacionTable extends _i1.Table {
         idProyecto,
         idAutor,
         idStatus,
+        fechaEliminacion,
         ultimaModificacion,
         fechaCreacion,
       ];

@@ -31,11 +31,6 @@
         "description": "Ask you if you forget your password"
     },
 
-    "pageLoginLeadingAgency": "La agencia de relaciones públicas líder a nivel mundial",
-    "@pageLoginLeadingAgency": {
-        "description": "Eslogan on the register/login page "
-    },
-
     "pageLoginErrorInvalidCredentials": "Credenciales inválidas",
     "@pageLoginErrorInvalidCredentials": {
         "description": " Las credenciales proporcionadas no son válidas para acceder al sistema. Asegúrate de ingresar la combinación correcta de nombre de usuario y contraseña, y vuelve a intentarlo."
@@ -66,10 +61,6 @@
         "description": "Se ha producido un error no identificado mientras se procesaba tu solicitud. Lamentablemente, no se dispone de más detalles en este momento. Por favor, comunica este problema al equipo de soporte para obtener asistencia."
     },
 
-    "pageCreateAdminAccountSubtitleInternationalPRLabAgency": "International PR Agency",
-    "@pageCreateAdminAccountSubtitleInternationalPRLabAgency": {
-        "description": "Text International PR Agency in subtitle of screen"
-    },
     "pageCreateAdminClientEmail": "Ingrese el email del cliente",
     "@pageCreateAdminClientEmail": {
         "description": "Text Enter the client email in screen create admin account above of textfield email"
@@ -81,7 +72,7 @@
     
     "pageCreateAdminAlertdialogTitleEmailSend": "Enviar email",
     "@pageCreateAdminAlertdialogTitleEmailSend": {
-        "description": "Text in screen create admin account in alertdialog in title, email send"
+        "description": "Text in screen create admin account in alertdialog in title, email sent"
     },
     
     
@@ -114,13 +105,13 @@
     
     "alertDialogSubTitleVerificationCodeSend" : "Ingrese el código de verificación de 8 dígitos enviado a",
     "@alertDialogSubTitleVerificationCodeSend": {
-        "description":"text in subtitle textfield(who was the code sent to), Enter the 8 digit verification code sent to"
+        "description":"text in subtitle textfield(who was the code sent to),Enter the 8 digit verification code sent to"
     },
     
     
-    "alertDialogTextfieldHitTextTextEmailVerificationCode": "Código de verificación de email",
+    "alertDialogTextfieldHitTextTextEmailVerificationCode": "Código de verificación de correo electrónico",
     "@alertDialogTextfieldHitTextTextEmailVerificationCode": {
-        "description":"text in alertdialog in title textfield, Email verification code"
+        "description":"text in alertdialog in title textfield,Email verification code"
     },
     
     "alertDialogTextfieldSuffixGetCode": "Obtener código",
@@ -239,18 +230,55 @@
     "@pageRecoverPasswordChangePasswordSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
     },
+
+     "pageBrandAdministrationRecentlyModifiedText" : "Recently modified",
+    "@pageBrandAdministrationRecentlyModifiedText": {
+        "description":"Section Header of the recently modified articles"
+    },
+
+    "pageBrandAdministrationTitle" : "Tus Marcas",
+    "@pageBrandAdministrationTitle": {
+        "description":"Section Title"
+    },
+
+    "pageBrandAdministrationDescription" : "Visualiza todos los artículos de esta marca, sus integrantes y sus estadísticas.",
+    "@pageBrandAdministrationSubtitle": {
+        "description":"Section subtitle"
+    },
     
-    
-    "pageKYCSuccessDialogDescription" : "Felicitaciones! Tu cuenta\n ha sido creada correctamente.\n Inicia sesión para empezar en PRLAB",
+       "pageKYCSuccessDialogDescription" : "Felicitaciones! Tu cuenta\n ha sido creada correctamente.\n Inicia sesión para empezar en PRLAB",
     "@pageKYCSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the register of the user is a success. This is shown in an alert dialog after pressing button continue."
     },
-    "@pageRegisterErrorDialogDescription": {
-        "description":"This message corresponds to a situation where the register of the user is an error. This is shown in an alert dialog after pressing sign up."
-    },
+    
     "pageKYCSuccessDialogButtonText" : "Ir a Iniciar sesión",
     "@pageKYCSuccessDialogButtonText": {
         "description":"This message corresponds to a situation where the registration of the user is successful. This is shown in the button of the alert dialog after pressing continue button in KYC."
+    },
+    
+    "pageContentAdministrationCreateArticle" : "Crear un articulo",
+    "@pageContentAdministrationCreateArticle": {
+        "description":"This text is in content management view in the button to create a new article"
+    },
+
+    "pageContentAdministrationButtonNavegationClippings" : "Recortes",
+    "@pageContentAdministrationButtonNavegationClippings": {
+        "description":"This text is only used in a navigation button between clippings and article"
+    },
+
+    "pageContentAdministrationBarInformationStatus" : "Estado",
+    "@pageContentAdministrationBarStatus": {
+        "description":"text that shows information or the status of the article.For example: Draft, feedback, finish, etc. in the list of items"
+    },
+    
+    "pageContentAdministrationBarInformationLastUpdate" : "Ultima fecha",
+    "@pageContentAdministrationBarLastUpdate": {
+        "description":"text that shows the last date the article was updated the list of articles"
+    },
+
+    "pageContentAdministrationBarInformationAuthor" : "Autor",
+    "@pageContentAdministrationBarInformationAuthor": {
+        "description":"shows the image of the author or who created this article or their two initials"
     },
     "commonPRLab": "PR lab",
     "@commonPRLab": {
@@ -351,13 +379,49 @@
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph but with an exclamation sign."
     },
 
-    "commonDateHintText" : "00/00/0000",
+    "commonDateHintText" : "Fecha de nacimiento",
     "@commonDateHintText": {
-        "description": "This text provides a sample date format '00/00/0000' that serves as a visual hint for users when entering dates."
+        "description": "Refers to a designated area or section on a form, where an user is required to enter their date of birth"
     },
 
     "commonMinimumCharactersForAPassword" : "Al menos 12 caracteres",
     "@commonMinimumCharactersForAPassword": {
         "description": "This text is shown when the user enter a password too short on the register page"
+    },
+
+    "commonList" : "Lista",
+    "@commonList": {
+        "description": "Text shown on a list of things"
+    },
+
+    "commonCreate" : "Crear",
+    "@commonCreate": {
+        "description": "Text on a button that creates something"
+    },
+
+    "commonArticles" : "Articulos",
+    "@commonArticles": {
+        "description": "A piece of writing on a brand"
+    },
+
+    "commonClippings" : "Recortes",
+    "@commonClippings": {
+        "description": "An article cut"
+    },
+
+    "commonArticle": "Artículo",
+    "@commonArticle": {
+        "description": "This text is for articles and is used in a button to navigate between articles and is used to display the name of your articles"
+    },
+
+    "commonSearch": "Buscar",
+    "@commonSearch": {
+        "description": "Text in the search textfield of a particular article on the content management page is now only used on that page"
+    },
+
+    "commonAll": "Todo",
+    "@commonAll": {
+        "description": "Text where a dropdown is used to filter by certain characteristics that an article has in general. Example, status or date."
     }
+
 }

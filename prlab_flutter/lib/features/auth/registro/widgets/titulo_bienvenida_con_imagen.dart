@@ -25,16 +25,17 @@ class TituloBienvenidaConImagen extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            left: 15.pw,
+            left: 35.pw,
             top: 15.ph,
             child: Image.asset(
               Assets.assets_images_avion_de_papel_png,
               fit: BoxFit.cover,
+              width: 210.pw,
             ),
           ),
           Positioned(
             top: 80.ph,
-            left: 40.pw,
+            left: 70.pw,
             child: Center(
               child: Text(
                 l10n.pageSignUpTitle,
