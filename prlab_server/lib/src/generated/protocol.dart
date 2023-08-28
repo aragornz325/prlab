@@ -14,24 +14,20 @@ import 'articulo.dart' as _i4;
 import 'cliente.dart' as _i5;
 import 'comentario.dart' as _i6;
 import 'entregable.dart' as _i7;
-import 'estado_de_articulo.dart' as _i8;
-import 'informacion_de_contacto.dart' as _i9;
-import 'mensaje_registro.dart' as _i10;
-import 'organizacion.dart' as _i11;
-import 'proyecto.dart' as _i12;
-import 'publicacion.dart' as _i13;
-import 'tipo_de_organizacion.dart' as _i14;
+import 'informacion_de_contacto.dart' as _i8;
+import 'mensaje_registro.dart' as _i9;
+import 'organizacion.dart' as _i10;
+import 'proyecto.dart' as _i11;
+import 'publicacion.dart' as _i12;
 export 'articulo.dart';
 export 'cliente.dart';
 export 'comentario.dart';
 export 'entregable.dart';
-export 'estado_de_articulo.dart';
 export 'informacion_de_contacto.dart';
 export 'mensaje_registro.dart';
 export 'organizacion.dart';
 export 'proyecto.dart';
 export 'publicacion.dart';
-export 'tipo_de_organizacion.dart';
 
 class Protocol extends _i1.SerializationManagerServer {
   Protocol._();
@@ -113,17 +109,7 @@ class Protocol extends _i1.SerializationManagerServer {
           onUpdate: null,
           onDelete: _i2.ForeignKeyAction.cascade,
           matchType: null,
-        ),
-        _i2.ForeignKeyDefinition(
-          constraintName: 'articulos_fk_1',
-          columns: ['idStatus'],
-          referenceTable: 'estados_de_articulos',
-          referenceTableSchema: 'public',
-          referenceColumns: ['id'],
-          onUpdate: null,
-          onDelete: _i2.ForeignKeyAction.cascade,
-          matchType: null,
-        ),
+        )
       ],
       indexes: [
         _i2.IndexDefinition(
@@ -398,54 +384,6 @@ class Protocol extends _i1.SerializationManagerServer {
       managed: true,
     ),
     _i2.TableDefinition(
-      name: 'estados_de_articulos',
-      schema: 'public',
-      columns: [
-        _i2.ColumnDefinition(
-          name: 'id',
-          columnType: _i2.ColumnType.integer,
-          isNullable: false,
-          dartType: 'int?',
-          columnDefault: 'nextval(\'estados_de_articulos_id_seq\'::regclass)',
-        ),
-        _i2.ColumnDefinition(
-          name: 'estado',
-          columnType: _i2.ColumnType.text,
-          isNullable: false,
-          dartType: 'String',
-        ),
-        _i2.ColumnDefinition(
-          name: 'ultimaModificacion',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: false,
-          dartType: 'DateTime',
-        ),
-        _i2.ColumnDefinition(
-          name: 'fechaCreacion',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: false,
-          dartType: 'DateTime',
-        ),
-      ],
-      foreignKeys: [],
-      indexes: [
-        _i2.IndexDefinition(
-          indexName: 'estados_de_articulos_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            )
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        )
-      ],
-      managed: true,
-    ),
-    _i2.TableDefinition(
       name: 'informacion_de_contactos',
       schema: 'public',
       columns: [
@@ -659,16 +597,6 @@ class Protocol extends _i1.SerializationManagerServer {
       foreignKeys: [
         _i2.ForeignKeyDefinition(
           constraintName: 'organizaciones_fk_0',
-          columns: ['tipo'],
-          referenceTable: 'tipos_de_organizacion',
-          referenceTableSchema: 'public',
-          referenceColumns: ['id'],
-          onUpdate: null,
-          onDelete: _i2.ForeignKeyAction.cascade,
-          matchType: null,
-        ),
-        _i2.ForeignKeyDefinition(
-          constraintName: 'organizaciones_fk_1',
           columns: ['contacto'],
           referenceTable: 'informacion_de_contactos',
           referenceTableSchema: 'public',
@@ -676,7 +604,7 @@ class Protocol extends _i1.SerializationManagerServer {
           onUpdate: null,
           onDelete: _i2.ForeignKeyAction.cascade,
           matchType: null,
-        ),
+        )
       ],
       indexes: [
         _i2.IndexDefinition(
@@ -848,69 +776,11 @@ class Protocol extends _i1.SerializationManagerServer {
           onUpdate: null,
           onDelete: _i2.ForeignKeyAction.cascade,
           matchType: null,
-        ),
-        _i2.ForeignKeyDefinition(
-          constraintName: 'publicaciones_fk_1',
-          columns: ['idStatus'],
-          referenceTable: 'estados_de_articulos',
-          referenceTableSchema: 'public',
-          referenceColumns: ['id'],
-          onUpdate: null,
-          onDelete: _i2.ForeignKeyAction.cascade,
-          matchType: null,
-        ),
+        )
       ],
       indexes: [
         _i2.IndexDefinition(
           indexName: 'publicaciones_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            )
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        )
-      ],
-      managed: true,
-    ),
-    _i2.TableDefinition(
-      name: 'tipos_de_organizacion',
-      schema: 'public',
-      columns: [
-        _i2.ColumnDefinition(
-          name: 'id',
-          columnType: _i2.ColumnType.integer,
-          isNullable: false,
-          dartType: 'int?',
-          columnDefault: 'nextval(\'tipos_de_organizacion_id_seq\'::regclass)',
-        ),
-        _i2.ColumnDefinition(
-          name: 'tipo',
-          columnType: _i2.ColumnType.text,
-          isNullable: false,
-          dartType: 'String',
-        ),
-        _i2.ColumnDefinition(
-          name: 'ultimaModificacion',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: false,
-          dartType: 'DateTime',
-        ),
-        _i2.ColumnDefinition(
-          name: 'fechaCreacion',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: false,
-          dartType: 'DateTime',
-        ),
-      ],
-      foreignKeys: [],
-      indexes: [
-        _i2.IndexDefinition(
-          indexName: 'tipos_de_organizacion_pkey',
           tableSpace: null,
           elements: [
             _i2.IndexElementDefinition(
@@ -950,26 +820,20 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i7.Entregable) {
       return _i7.Entregable.fromJson(data, this) as T;
     }
-    if (t == _i8.EstadoDeArticulo) {
-      return _i8.EstadoDeArticulo.fromJson(data, this) as T;
+    if (t == _i8.InformacionDeContacto) {
+      return _i8.InformacionDeContacto.fromJson(data, this) as T;
     }
-    if (t == _i9.InformacionDeContacto) {
-      return _i9.InformacionDeContacto.fromJson(data, this) as T;
+    if (t == _i9.MensajeRegistro) {
+      return _i9.MensajeRegistro.fromJson(data, this) as T;
     }
-    if (t == _i10.MensajeRegistro) {
-      return _i10.MensajeRegistro.fromJson(data, this) as T;
+    if (t == _i10.Organizacion) {
+      return _i10.Organizacion.fromJson(data, this) as T;
     }
-    if (t == _i11.Organizacion) {
-      return _i11.Organizacion.fromJson(data, this) as T;
+    if (t == _i11.Proyecto) {
+      return _i11.Proyecto.fromJson(data, this) as T;
     }
-    if (t == _i12.Proyecto) {
-      return _i12.Proyecto.fromJson(data, this) as T;
-    }
-    if (t == _i13.Publicacion) {
-      return _i13.Publicacion.fromJson(data, this) as T;
-    }
-    if (t == _i14.TipoDeOrganizacion) {
-      return _i14.TipoDeOrganizacion.fromJson(data, this) as T;
+    if (t == _i12.Publicacion) {
+      return _i12.Publicacion.fromJson(data, this) as T;
     }
     if (t == _i1.getType<_i4.Articulo?>()) {
       return (data != null ? _i4.Articulo.fromJson(data, this) : null) as T;
@@ -983,33 +847,24 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i1.getType<_i7.Entregable?>()) {
       return (data != null ? _i7.Entregable.fromJson(data, this) : null) as T;
     }
-    if (t == _i1.getType<_i8.EstadoDeArticulo?>()) {
-      return (data != null ? _i8.EstadoDeArticulo.fromJson(data, this) : null)
-          as T;
-    }
-    if (t == _i1.getType<_i9.InformacionDeContacto?>()) {
+    if (t == _i1.getType<_i8.InformacionDeContacto?>()) {
       return (data != null
-          ? _i9.InformacionDeContacto.fromJson(data, this)
+          ? _i8.InformacionDeContacto.fromJson(data, this)
           : null) as T;
     }
-    if (t == _i1.getType<_i10.MensajeRegistro?>()) {
-      return (data != null ? _i10.MensajeRegistro.fromJson(data, this) : null)
+    if (t == _i1.getType<_i9.MensajeRegistro?>()) {
+      return (data != null ? _i9.MensajeRegistro.fromJson(data, this) : null)
           as T;
     }
-    if (t == _i1.getType<_i11.Organizacion?>()) {
-      return (data != null ? _i11.Organizacion.fromJson(data, this) : null)
+    if (t == _i1.getType<_i10.Organizacion?>()) {
+      return (data != null ? _i10.Organizacion.fromJson(data, this) : null)
           as T;
     }
-    if (t == _i1.getType<_i12.Proyecto?>()) {
-      return (data != null ? _i12.Proyecto.fromJson(data, this) : null) as T;
+    if (t == _i1.getType<_i11.Proyecto?>()) {
+      return (data != null ? _i11.Proyecto.fromJson(data, this) : null) as T;
     }
-    if (t == _i1.getType<_i13.Publicacion?>()) {
-      return (data != null ? _i13.Publicacion.fromJson(data, this) : null) as T;
-    }
-    if (t == _i1.getType<_i14.TipoDeOrganizacion?>()) {
-      return (data != null
-          ? _i14.TipoDeOrganizacion.fromJson(data, this)
-          : null) as T;
+    if (t == _i1.getType<_i12.Publicacion?>()) {
+      return (data != null ? _i12.Publicacion.fromJson(data, this) : null) as T;
     }
     try {
       return _i3.Protocol().deserialize<T>(data, t);
@@ -1039,26 +894,20 @@ class Protocol extends _i1.SerializationManagerServer {
     if (data is _i7.Entregable) {
       return 'Entregable';
     }
-    if (data is _i8.EstadoDeArticulo) {
-      return 'EstadoDeArticulo';
-    }
-    if (data is _i9.InformacionDeContacto) {
+    if (data is _i8.InformacionDeContacto) {
       return 'InformacionDeContacto';
     }
-    if (data is _i10.MensajeRegistro) {
+    if (data is _i9.MensajeRegistro) {
       return 'MensajeRegistro';
     }
-    if (data is _i11.Organizacion) {
+    if (data is _i10.Organizacion) {
       return 'Organizacion';
     }
-    if (data is _i12.Proyecto) {
+    if (data is _i11.Proyecto) {
       return 'Proyecto';
     }
-    if (data is _i13.Publicacion) {
+    if (data is _i12.Publicacion) {
       return 'Publicacion';
-    }
-    if (data is _i14.TipoDeOrganizacion) {
-      return 'TipoDeOrganizacion';
     }
     return super.getClassNameForObject(data);
   }
@@ -1081,26 +930,20 @@ class Protocol extends _i1.SerializationManagerServer {
     if (data['className'] == 'Entregable') {
       return deserialize<_i7.Entregable>(data['data']);
     }
-    if (data['className'] == 'EstadoDeArticulo') {
-      return deserialize<_i8.EstadoDeArticulo>(data['data']);
-    }
     if (data['className'] == 'InformacionDeContacto') {
-      return deserialize<_i9.InformacionDeContacto>(data['data']);
+      return deserialize<_i8.InformacionDeContacto>(data['data']);
     }
     if (data['className'] == 'MensajeRegistro') {
-      return deserialize<_i10.MensajeRegistro>(data['data']);
+      return deserialize<_i9.MensajeRegistro>(data['data']);
     }
     if (data['className'] == 'Organizacion') {
-      return deserialize<_i11.Organizacion>(data['data']);
+      return deserialize<_i10.Organizacion>(data['data']);
     }
     if (data['className'] == 'Proyecto') {
-      return deserialize<_i12.Proyecto>(data['data']);
+      return deserialize<_i11.Proyecto>(data['data']);
     }
     if (data['className'] == 'Publicacion') {
-      return deserialize<_i13.Publicacion>(data['data']);
-    }
-    if (data['className'] == 'TipoDeOrganizacion') {
-      return deserialize<_i14.TipoDeOrganizacion>(data['data']);
+      return deserialize<_i12.Publicacion>(data['data']);
     }
     return super.deserializeByClassName(data);
   }
@@ -1128,20 +971,16 @@ class Protocol extends _i1.SerializationManagerServer {
         return _i6.Comentario.t;
       case _i7.Entregable:
         return _i7.Entregable.t;
-      case _i8.EstadoDeArticulo:
-        return _i8.EstadoDeArticulo.t;
-      case _i9.InformacionDeContacto:
-        return _i9.InformacionDeContacto.t;
-      case _i10.MensajeRegistro:
-        return _i10.MensajeRegistro.t;
-      case _i11.Organizacion:
-        return _i11.Organizacion.t;
-      case _i12.Proyecto:
-        return _i12.Proyecto.t;
-      case _i13.Publicacion:
-        return _i13.Publicacion.t;
-      case _i14.TipoDeOrganizacion:
-        return _i14.TipoDeOrganizacion.t;
+      case _i8.InformacionDeContacto:
+        return _i8.InformacionDeContacto.t;
+      case _i9.MensajeRegistro:
+        return _i9.MensajeRegistro.t;
+      case _i10.Organizacion:
+        return _i10.Organizacion.t;
+      case _i11.Proyecto:
+        return _i11.Proyecto.t;
+      case _i12.Publicacion:
+        return _i12.Publicacion.t;
     }
     return null;
   }
