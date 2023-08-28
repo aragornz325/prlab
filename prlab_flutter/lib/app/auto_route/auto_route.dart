@@ -37,5 +37,9 @@ class AppRouter extends $AppRouter {
       path: '/dashboard',
       page: RutaDashboard.page,
     ),
+    AutoRoute(
+      page: RutaEditorContenido.page,
+      path: '/edit-content',
+    ),
   ];
 }

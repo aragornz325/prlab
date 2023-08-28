@@ -8,8 +8,8 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i7;
-import 'package:flutter/material.dart' as _i8;
+import 'package:auto_route/auto_route.dart' as _i8;
+import 'package:flutter/material.dart' as _i9;
 import 'package:prlab_flutter/features/auth/crear_cuenta_admin/pagina_crear_cuenta_admin.dart'
     as _i5;
 import 'package:prlab_flutter/features/auth/kyc/pagina_kyc.dart' as _i6;
@@ -19,21 +19,23 @@ import 'package:prlab_flutter/features/auth/recuperar_password/pagina_recuperar_
 import 'package:prlab_flutter/features/auth/registro/pagina_registro.dart'
     as _i3;
 import 'package:prlab_flutter/features/dashboard/pagina_dashboard.dart' as _i4;
+import 'package:prlab_flutter/features/editor_contenido/pagina_editor_contenido.dart'
+    as _i7;
 
-abstract class $AppRouter extends _i7.RootStackRouter {
+abstract class $AppRouter extends _i8.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i7.PageFactory> pagesMap = {
+  final Map<String, _i8.PageFactory> pagesMap = {
     RutaLogin.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.PaginaLogin(),
       );
     },
     RutaRecuperarPassword.name: (routeData) {
       final args = routeData.argsAs<RutaRecuperarPasswordArgs>();
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i2.PaginaRecuperarPassword(
           codigoOtp: args.codigoOtp,
@@ -46,7 +48,7 @@ abstract class $AppRouter extends _i7.RootStackRouter {
       final args = routeData.argsAs<RutaRegistroArgs>(
           orElse: () =>
               RutaRegistroArgs(tokenAuth: pathParams.getString('token')));
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i3.PaginaRegistro(
           tokenAuth: args.tokenAuth,
@@ -55,21 +57,27 @@ abstract class $AppRouter extends _i7.RootStackRouter {
       );
     },
     RutaDashboard.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i4.PaginaDashboard(),
       );
     },
     RutaCrearCuenta.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i5.PaginaCrearCuenta(),
       );
     },
     RutaKyc.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i6.PaginaKyc(),
+      );
+    },
+    RutaEditorContenido.name: (routeData) {
+      return _i8.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i7.PaginaEditorContenido(),
       );
     },
   };
@@ -77,8 +85,8 @@ abstract class $AppRouter extends _i7.RootStackRouter {
 
 /// generated route for
 /// [_i1.PaginaLogin]
-class RutaLogin extends _i7.PageRouteInfo<void> {
-  const RutaLogin({List<_i7.PageRouteInfo>? children})
+class RutaLogin extends _i8.PageRouteInfo<void> {
+  const RutaLogin({List<_i8.PageRouteInfo>? children})
       : super(
           RutaLogin.name,
           initialChildren: children,
@@ -86,17 +94,17 @@ class RutaLogin extends _i7.PageRouteInfo<void> {
 
   static const String name = 'RutaLogin';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.PaginaRecuperarPassword]
 class RutaRecuperarPassword
-    extends _i7.PageRouteInfo<RutaRecuperarPasswordArgs> {
+    extends _i8.PageRouteInfo<RutaRecuperarPasswordArgs> {
   RutaRecuperarPassword({
     required String codigoOtp,
-    _i8.Key? key,
-    List<_i7.PageRouteInfo>? children,
+    _i9.Key? key,
+    List<_i8.PageRouteInfo>? children,
   }) : super(
           RutaRecuperarPassword.name,
           args: RutaRecuperarPasswordArgs(
@@ -108,8 +116,8 @@ class RutaRecuperarPassword
 
   static const String name = 'RutaRecuperarPassword';
 
-  static const _i7.PageInfo<RutaRecuperarPasswordArgs> page =
-      _i7.PageInfo<RutaRecuperarPasswordArgs>(name);
+  static const _i8.PageInfo<RutaRecuperarPasswordArgs> page =
+      _i8.PageInfo<RutaRecuperarPasswordArgs>(name);
 }
 
 class RutaRecuperarPasswordArgs {
@@ -120,7 +128,7 @@ class RutaRecuperarPasswordArgs {
 
   final String codigoOtp;
 
-  final _i8.Key? key;
+  final _i9.Key? key;
 
   @override
   String toString() {
@@ -130,11 +138,11 @@ class RutaRecuperarPasswordArgs {
 
 /// generated route for
 /// [_i3.PaginaRegistro]
-class RutaRegistro extends _i7.PageRouteInfo<RutaRegistroArgs> {
+class RutaRegistro extends _i8.PageRouteInfo<RutaRegistroArgs> {
   RutaRegistro({
     required String tokenAuth,
-    _i8.Key? key,
-    List<_i7.PageRouteInfo>? children,
+    _i9.Key? key,
+    List<_i8.PageRouteInfo>? children,
   }) : super(
           RutaRegistro.name,
           args: RutaRegistroArgs(
@@ -147,8 +155,8 @@ class RutaRegistro extends _i7.PageRouteInfo<RutaRegistroArgs> {
 
   static const String name = 'RutaRegistro';
 
-  static const _i7.PageInfo<RutaRegistroArgs> page =
-      _i7.PageInfo<RutaRegistroArgs>(name);
+  static const _i8.PageInfo<RutaRegistroArgs> page =
+      _i8.PageInfo<RutaRegistroArgs>(name);
 }
 
 class RutaRegistroArgs {
@@ -159,7 +167,7 @@ class RutaRegistroArgs {
 
   final String tokenAuth;
 
-  final _i8.Key? key;
+  final _i9.Key? key;
 
   @override
   String toString() {
@@ -169,8 +177,8 @@ class RutaRegistroArgs {
 
 /// generated route for
 /// [_i4.PaginaDashboard]
-class RutaDashboard extends _i7.PageRouteInfo<void> {
-  const RutaDashboard({List<_i7.PageRouteInfo>? children})
+class RutaDashboard extends _i8.PageRouteInfo<void> {
+  const RutaDashboard({List<_i8.PageRouteInfo>? children})
       : super(
           RutaDashboard.name,
           initialChildren: children,
@@ -178,13 +186,13 @@ class RutaDashboard extends _i7.PageRouteInfo<void> {
 
   static const String name = 'RutaDashboard';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i5.PaginaCrearCuenta]
-class RutaCrearCuenta extends _i7.PageRouteInfo<void> {
-  const RutaCrearCuenta({List<_i7.PageRouteInfo>? children})
+class RutaCrearCuenta extends _i8.PageRouteInfo<void> {
+  const RutaCrearCuenta({List<_i8.PageRouteInfo>? children})
       : super(
           RutaCrearCuenta.name,
           initialChildren: children,
@@ -192,13 +200,13 @@ class RutaCrearCuenta extends _i7.PageRouteInfo<void> {
 
   static const String name = 'RutaCrearCuenta';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i6.PaginaKyc]
-class RutaKyc extends _i7.PageRouteInfo<void> {
-  const RutaKyc({List<_i7.PageRouteInfo>? children})
+class RutaKyc extends _i8.PageRouteInfo<void> {
+  const RutaKyc({List<_i8.PageRouteInfo>? children})
       : super(
           RutaKyc.name,
           initialChildren: children,
@@ -206,5 +214,19 @@ class RutaKyc extends _i7.PageRouteInfo<void> {
 
   static const String name = 'RutaKyc';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i7.PaginaEditorContenido]
+class RutaEditorContenido extends _i8.PageRouteInfo<void> {
+  const RutaEditorContenido({List<_i8.PageRouteInfo>? children})
+      : super(
+          RutaEditorContenido.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RutaEditorContenido';
+
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
