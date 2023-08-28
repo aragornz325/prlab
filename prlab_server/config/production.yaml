@@ -1,32 +1,25 @@
-
-apiServer:
+apiServer: 
   port: 8080
-  publicHost: api.examplepod.com
-  publicPort: 443
-  publicScheme: https
-
-
-insightsServer:
+  publicHost: 0.0.0.0
+  publicPort: 8080
+  publicScheme: http
+insightsServer: 
   port: 8081
-  publicHost: insights.examplepod.com
-  publicPort: 443
-  publicScheme: https
-
-
-webServer:
+  publicHost: localhost
+  publicPort: 8081
+  publicScheme: http
+webServer: 
   port: 8082
-  publicHost: app.examplepod.com
-  publicPort: 443
-  publicScheme: https
-
-
-database:
-  host: database.private-production.examplepod.com
+  publicHost: localhost
+  publicPort: 8082
+  publicScheme: http
+database: 
+  host: db.vmtlouazkwsgdebqowpw.supabase.co
   port: 5432
-  name: serverpod
+  name: postgres
   user: postgres
-
-redis:
+  password: kDhcP3szJH24THq
+redis: 
   enabled: false
-  host: redis.private-production.examplepod.com
+  host: redis.private-staging.examplepod.com
   port: 6379
