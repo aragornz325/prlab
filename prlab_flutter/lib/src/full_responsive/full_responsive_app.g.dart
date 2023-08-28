@@ -12,6 +12,6 @@ class FullResponsiveApp extends FullResponsiveAppBase {
   @override
   List<FullResponsiveResolution> get resolutions => const [
         FullResponsiveResolution('mobile', 390, 844),
-        FullResponsiveResolution('desktop', 1280, 720),
+        FullResponsiveResolution('desktop', 1280, 832),
       ];
 }

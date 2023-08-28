@@ -10,7 +10,6 @@ class AppRouter extends $AppRouter {
   final List<AutoRoute> routes = [
     AutoRoute(
       page: RutaLogin.page,
-      initial: true,
       path: '/login',
     ),
     AutoRoute(
@@ -38,8 +37,13 @@ class AppRouter extends $AppRouter {
       page: RutaDashboard.page,
     ),
     AutoRoute(
-      page: RutaRedaccionEdicionContenido.page,
+      path: '/brand-administration',
+      page: RutaAdministracionMarcas.page,
+      initial: true,
+    ),
+    AutoRoute(
       path: '/edit-content',
+      page: RutaEditorContenido.page,
     ),
   ];
 }

@@ -3,10 +3,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prlab_flutter/features/crear_cuenta_admin/bloc/bloc_crear_cuenta_admin.dart';
-import 'package:prlab_flutter/features/crear_cuenta_admin/dialog/dialog.dart';
-import 'package:prlab_flutter/features/crear_cuenta_admin/escritorio/vista_escritorio_crear_cuenta_admin.dart';
-import 'package:prlab_flutter/features/crear_cuenta_admin/utilidades/get_error_message_crear_cuenta_admin.dart';
+import 'package:prlab_flutter/features/auth/crear_cuenta_admin/bloc/bloc_crear_cuenta_admin.dart';
+import 'package:prlab_flutter/features/auth/crear_cuenta_admin/dialog/dialog.dart';
+import 'package:prlab_flutter/features/auth/crear_cuenta_admin/escritorio/vista_escritorio_crear_cuenta_admin.dart';
+import 'package:prlab_flutter/features/auth/crear_cuenta_admin/utilidades/get_error_message_crear_cuenta_admin.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
