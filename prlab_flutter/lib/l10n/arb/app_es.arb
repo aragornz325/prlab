@@ -230,9 +230,23 @@
     "@pageRecoverPasswordChangePasswordSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
     },
+
+     "pageBrandAdministrationRecentlyModifiedText" : "Recently modified",
+    "@pageBrandAdministrationRecentlyModifiedText": {
+        "description":"Section Header of the recently modified articles"
+    },
+
+    "pageBrandAdministrationTitle" : "Tus Marcas",
+    "@pageBrandAdministrationTitle": {
+        "description":"Section Title"
+    },
+
+    "pageBrandAdministrationDescription" : "Visualiza todos los artículos de esta marca, sus integrantes y sus estadísticas.",
+    "@pageBrandAdministrationSubtitle": {
+        "description":"Section subtitle"
+    },
     
-    
-    "pageKYCSuccessDialogDescription" : "Felicitaciones! Tu cuenta\n ha sido creada correctamente.\n Inicia sesión para empezar en PRLAB",
+       "pageKYCSuccessDialogDescription" : "Felicitaciones! Tu cuenta\n ha sido creada correctamente.\n Inicia sesión para empezar en PRLAB",
     "@pageKYCSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the register of the user is a success. This is shown in an alert dialog after pressing button continue."
     },
@@ -350,5 +364,25 @@
     "commonMinimumCharactersForAPassword" : "Al menos 12 caracteres",
     "@commonMinimumCharactersForAPassword": {
         "description": "This text is shown when the user enter a password too short on the register page"
+    },
+
+    "commonList" : "Lista",
+    "@commonList": {
+        "description": "Text shown on a list of things"
+    },
+
+    "commonCreate" : "Crear",
+    "@commonCreate": {
+        "description": "Text on a button that creates something"
+    },
+
+    "commonArticles" : "Articulos",
+    "@commonArticles": {
+        "description": "A piece of writing on a brand"
+    },
+
+    "commonClippings" : "Recortes",
+    "@commonClippings": {
+        "description": "An article cut"
     }
 }

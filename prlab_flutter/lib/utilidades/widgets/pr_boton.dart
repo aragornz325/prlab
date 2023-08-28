@@ -13,6 +13,7 @@ class PRBoton extends StatelessWidget {
     required this.texto,
     required this.estaHabilitado,
     this.width = 359,
+    this.height = 50,
     this.esOutlined = false,
     this.muestraEstadoDeCarga = false,
     super.key,
@@ -24,6 +25,7 @@ class PRBoton extends StatelessWidget {
     required String texto,
     required bool estaHabilitado,
     required double width,
+    double height = 50,
   }) {
     return PRBoton(
       onTap: onTap,
@@ -31,10 +33,12 @@ class PRBoton extends StatelessWidget {
       estaHabilitado: estaHabilitado,
       esOutlined: true,
       width: width,
+      height: height,
     );
   }
 
   final double width;
+  final double height;
   final VoidCallback onTap;
 
   /// Asigna el texto interno en el boton.
@@ -56,7 +60,7 @@ class PRBoton extends StatelessWidget {
       onTap: estaHabilitado ? onTap : null,
       child: Container(
         width: width,
-        height: 50.sh,
+        height: height,
         decoration: BoxDecoration(
           color: esOutlined
               ? colores.background

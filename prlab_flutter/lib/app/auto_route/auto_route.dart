@@ -11,6 +11,7 @@ class AppRouter extends $AppRouter {
     AutoRoute(
       page: RutaLogin.page,
       path: '/login',
+      initial: true,
     ),
     AutoRoute(
       page: RutaRegistro.page,
@@ -27,7 +28,6 @@ class AppRouter extends $AppRouter {
     AutoRoute(
       path: '/kyc-form',
       page: RutaKyc.page,
-      initial: true,
     ),
     AutoRoute(
       path: '/recover-password',
@@ -38,8 +38,12 @@ class AppRouter extends $AppRouter {
       page: RutaDashboard.page,
     ),
     AutoRoute(
-      page: RutaEditorContenido.page,
+      path: '/brand-administration',
+      page: RutaAdministracionMarcas.page,
+    ),
+    AutoRoute(
       path: '/edit-content',
+      page: RutaEditorContenido.page,
     ),
   ];
 }
