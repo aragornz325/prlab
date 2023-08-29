@@ -7,6 +7,7 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/widgets/encabezado_de_seccion.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template VistaRedaccionEdicionContenidoCelular}
 /// Vista de editor de contenido de un articulo para celular
@@ -85,9 +86,14 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           PRBoton.esOutlined(
-                            onTap: () {}, // TODO(SAM): Agregar dialog de
-                            // feature en progreso
-
+                            onTap: () {
+                              // TODO(anyone): agregarle funcionalidad feature en progreso
+                              showDialog<void>(
+                                context: context,
+                                builder: (context) =>
+                                    const PRDialogErrorNoDisponible(),
+                              );
+                            },
                             texto: l10n.commonPreview,
                             estaHabilitado: true,
                             width: 100.pw,
@@ -97,8 +103,14 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                             width: 20.pw,
                           ),
                           PRBoton(
-                            onTap: () {}, // TODO(SAM): Agregar dialog de
-                            // feature en progreso
+                            onTap: () {
+                              // TODO(anyone): agregarle funcionalidad feature en progreso
+                              showDialog<void>(
+                                context: context,
+                                builder: (context) =>
+                                    const PRDialogErrorNoDisponible(),
+                              );
+                            },
                             texto: l10n.commonShare,
                             estaHabilitado: true,
                             width: 100.pw,
@@ -158,16 +170,28 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 PRBoton(
-                                  onTap: () {}, // TODO(SAM): Agregar dialog de
-                                  // feature en progreso
+                                  onTap: () {
+                                    // TODO(anyone): agregarle funcionalidad feature en progreso
+                                    showDialog<void>(
+                                      context: context,
+                                      builder: (context) =>
+                                          const PRDialogErrorNoDisponible(),
+                                    );
+                                  },
                                   texto: l10n.commonAddPage,
                                   estaHabilitado: true,
                                   width: 139.pw,
                                   height: 30.ph,
                                 ),
                                 PRBoton(
-                                  onTap: () {}, // TODO(SAM): Agregar dialog de
-                                  // feature en progreso
+                                  onTap: () {
+                                    // TODO(anyone): agregarle funcionalidad feature en progreso
+                                    showDialog<void>(
+                                      context: context,
+                                      builder: (context) =>
+                                          const PRDialogErrorNoDisponible(),
+                                    );
+                                  },
                                   texto: l10n.commonPublish,
                                   estaHabilitado: true,
                                   width: 139.pw,
