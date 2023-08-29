@@ -302,6 +302,30 @@
     "@pageContentAdministrationBarInformationAuthor": {
         "description":"shows the image of the author or who created this article or their two initials"
     },
+      "pageEditContentEditArticleContainerButtonUploadLogo" : "Upload logo",
+    "@pageEditContentEditArticleContainerButtonUploadLogo": {
+        "description":"Text of the button to upload the main logo, when you are creating or editing an article"
+    },
+      "pageEditContentEditArticleContainerButtonUploadLogoSecondary" : "Upload secondary logo",
+    "@pageEditContentEditArticleContainerButtonUploadLogoSecondary": {
+        "description":"Text of the button to upload the secondary logo, when you are creating or editing an article"
+    },
+      "pageEditContentEditArticleContainerHintTitle" : "Enter article title",
+    "@pageEditContentEditArticleContainerHintTitle": {
+        "description":"Hint text of the article title, when you are creating or editing an article"
+    },
+    "pageEditContentEditArticleContainerHintDescription" : "Enter article description",
+    "@pageEditContentEditArticleContainerHintDescription": {
+        "description":"Hint text of the article description, when you are creating or editing an article"
+    },
+      "pageEditContentSubtitle" : "Create an article, share it with your team, edit it, comment on it, and more.",
+    "@pageEditContentSubtitle": {
+        "description":"Subtitle that appears on top of the list of articles and the edit container, when you are creating or editing an article"
+    },
+       "commonAddPage": "Add page",
+    "@commonAddPage": {
+        "description": "Text shown on a button that indicates to add a page"
+    },
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
@@ -338,6 +362,14 @@
     "commonPasswordDoNotMatch": "Password do not match",
     "@commonPasswordDoNotMatch" : {
         "descripcion": "text to indicate that the passwords do not match"
+    },
+    "commonPreview": "Preview",
+    "@commonPreview": {
+        "description": "Text shown on a button that indicates a preview"
+    },
+      "commonShare": "Share",
+    "@commonShare": {
+        "description": "Text shown on a button that indicates to share"
     },
     "commonRecoverPassword" : "Recover Password",
     "@commonRecoverPassword": {
@@ -379,6 +411,10 @@
         "description": "Text in screen create admin account in alertdialog in button, Ok"
     },
 
+ "commonPublish": "Publish",
+    "@commonPublish": {
+        "description": "Text shown on a button that indicates to publish"
+    },
     "commonSuccess" : "Success",
     "@commonSuccess": {
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph."

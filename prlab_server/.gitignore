@@ -9,4 +9,16 @@ build/
 doc/api/
 
 # Passwords file
+
 # config/passwords.yaml
+ # Miscellaneous
+*.class
+*.lock
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/

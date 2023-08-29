@@ -7,6 +7,7 @@ import 'package:prlab_flutter/features/auth/login/bloc_temporizador/bloc_tempori
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/features/auth/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/features/auth/login/dialog/pr_dialog_verificacion_codigo.dart';
+import 'package:prlab_flutter/theming/base.dart';
 
 /// {@template OlvidasteTuPassword}
 /// Texto clickeable que se muestra un popup para solicitar un codigo
@@ -74,13 +75,13 @@ class _OlvidasteTuPasswordState extends State<OlvidasteTuPassword> {
               style: TextStyle(
                 color: widget.cargoElMail
                     ? colores.primary
-                    : colores.primary.withOpacity(.5),
+                    : colores.primaryOpacidadCincuenta,
                 fontSize: 12.pf,
                 fontWeight: FontWeight.w500,
                 decoration: TextDecoration.underline,
                 decorationColor: widget.cargoElMail
                     ? colores.primary
-                    : colores.primary.withOpacity(.5),
+                    : colores.primaryOpacidadCincuenta,
               ),
             ),
           ),
