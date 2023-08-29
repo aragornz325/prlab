@@ -3,6 +3,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/theming/base.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template  ArticuloPRLab}
 /// Elemento de la lista que representa un pagina o característica
@@ -33,6 +34,10 @@ class ArticuloPRLab extends StatelessWidget {
       contenidoArticulo: contenidoArticulo,
       onTap: () {
         // TODO(onyone): poner onTap del articulo home.
+        showDialog<void>(
+          context: context,
+          builder: (context) => const PRDialogErrorNoDisponible(),
+        );
       },
       contenido: Row(
         children: [

@@ -105,6 +105,11 @@ class TarjetaMarca extends StatelessWidget {
                     PRBoton.esOutlined(
                       onTap: () {
                         // TODO(onyone): Agregar funcion 'lista' o popup de feature in progress
+                        showDialog<void>(
+                          context: context,
+                          builder: (context) =>
+                              const PRDialogErrorNoDisponible(),
+                        );
                       },
                       texto: l10n.commonList,
                       estaHabilitado: true,
@@ -115,6 +120,11 @@ class TarjetaMarca extends StatelessWidget {
                     PRBoton(
                       onTap: () {
                         // TODO(onyone): Agregar funcion 'crear' o popup de feature in progress
+                        showDialog<void>(
+                          context: context,
+                          builder: (context) =>
+                              const PRDialogErrorNoDisponible(),
+                        );
                       },
                       texto: l10n.commonCreate,
                       estaHabilitado: true,
@@ -178,6 +188,11 @@ class TarjetaMarca extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {
                                   // TODO(onyone): Agregar funcion al apretar link
+                                  showDialog<void>(
+                                    context: context,
+                                    builder: (context) =>
+                                        const PRDialogErrorNoDisponible(),
+                                  );
                                 },
                                 child: Text(
                                   linksArticulos[index],

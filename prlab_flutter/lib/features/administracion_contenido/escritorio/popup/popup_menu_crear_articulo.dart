@@ -5,6 +5,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template PopUpMenuOpcionesAlCrearArticulo}
 /// Se utiliza para mostrar un menú con diferentes
@@ -33,13 +34,29 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
       ),
       onSelected: (value) {
         switch (value) {
-          // TODO(anyone): cambiar esto a funcion en flecha cuando tenga funcionalidad
+          // TODO(anyone): agregarle funcionalidad
           case 1:
+            showDialog<void>(
+              context: context,
+              builder: (context) => const PRDialogErrorNoDisponible(),
+            );
             break;
           case 2:
+            showDialog<void>(
+              context: context,
+              builder: (context) => const PRDialogErrorNoDisponible(),
+            );
             break;
           case 3:
-            break;
+            showDialog<void>(
+              context: context,
+              builder: (context) => const PRDialogErrorNoDisponible(),
+            );
+          default:
+            showDialog<void>(
+              context: context,
+              builder: (context) => const PRDialogErrorNoDisponible(),
+            );
         }
       },
       itemBuilder: (context) => [

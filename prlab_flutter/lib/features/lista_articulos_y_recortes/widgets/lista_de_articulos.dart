@@ -9,6 +9,7 @@ import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/features/lista_articulos_y_recortes/popup/popup.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 import 'package:prlab_flutter/widgets/widgets.dart';
 
 /// {@template ListaDeArticulos}
@@ -280,6 +281,11 @@ class ListaDeArticulos extends StatelessWidget {
                         IconButton(
                           onPressed: () {
                             // TODO(anyone): agregarle funcionalidad
+                            showDialog<void>(
+                              context: context,
+                              builder: (context) =>
+                                  const PRDialogErrorNoDisponible(),
+                            );
                           },
                           icon: Icon(
                             Icons.share_outlined,

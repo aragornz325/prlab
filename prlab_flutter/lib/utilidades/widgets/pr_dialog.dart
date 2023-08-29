@@ -291,3 +291,34 @@ class PRDialog extends StatelessWidget {
     );
   }
 }
+
+/// {@template PRDialogErrorNoDisponible}
+/// Muestra un mensaje de error en cualquier caso
+/// que la caracteristica solicitada no este desarrollada o disponible.
+/// {@endtemplate}
+class PRDialogErrorNoDisponible extends StatelessWidget {
+  /// {@macro PRDialogErrorNoDisponible}
+
+  const PRDialogErrorNoDisponible({super.key});
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final colores = context.colores;
+
+    return PRDialog.informacion(
+      onTap: () => Navigator.of(context).pop(),
+      context: context,
+      titulo: l10n.commonError,
+      botonText: l10n.commonBack,
+      content: Text(
+        l10n.commonFeatureNotAvailable,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 15.pf,
+          color: colores.secondary,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+    );
+  }
+}

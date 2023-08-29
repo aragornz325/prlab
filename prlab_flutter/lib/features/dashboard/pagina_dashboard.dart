@@ -19,7 +19,7 @@ class PaginaDashboard extends StatelessWidget {
       // Este Scaffold es que debería ser parte del componente de navegación
       // ya que esta seteado con la logica de AutoRoute para manejar las
       // rutas anidadas.
-      body: Expanded(child: AutoRouter()),
+      body: AutoRouter(),
     );
   }
 }

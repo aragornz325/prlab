@@ -7,6 +7,7 @@ import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/lista_articulos_y_recortes/bloc/bloc_lista_articulos_y_recortes.dart';
 import 'package:prlab_flutter/features/lista_articulos_y_recortes/widgets/widgets.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 
 class ListaArticulosYRecortes extends StatelessWidget {
   const ListaArticulosYRecortes({super.key});
@@ -14,6 +15,8 @@ class ListaArticulosYRecortes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
+    final l10n = context.l10n;
 
     return BlocProvider<BlocListaArticulosYRecortes>(
       create: (context) => BlocListaArticulosYRecortes()
@@ -37,8 +40,7 @@ class ListaArticulosYRecortes extends StatelessWidget {
                     height: max(400.ph, 400.sh),
                     child: Center(
                       child: Text(
-                        // TODO(anyone): hacer l10n
-                        'This feature is not available in this version.',
+                        l10n.commonFeatureNotAvailable,
                         style: TextStyle(
                           color: colores.secondary,
                           fontSize: 15.pf,

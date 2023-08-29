@@ -5,6 +5,7 @@ import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 import 'package:prlab_flutter/utilidades/widgets/drawer/drawer.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template PrDrawer}
 /// Item disponible a utlizar en PRDrawer
@@ -20,7 +21,7 @@ class PrDrawer extends StatefulWidget {
 
 class _PrDrawerState extends State<PrDrawer> {
   /// "Index" inicial del drawer
-  DrawerPage enumDrawer = DrawerPage.home;
+  DrawerPage enumDrawer = DrawerPage.ninguno;
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +68,10 @@ class _PrDrawerState extends State<PrDrawer> {
               child: PRDrawerItem(
                 onTap: () {
                   // TODO(Anyone): Funcion de deslogueo
+                  showDialog<void>(
+                    context: context,
+                    builder: (context) => const PRDialogErrorNoDisponible(),
+                  );
                 },
                 icono: Icons.logout_outlined,
                 tituloItem: l10n.drawerLogOut,

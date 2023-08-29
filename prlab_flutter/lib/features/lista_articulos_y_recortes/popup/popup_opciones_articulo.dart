@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template PopUpMenuOpcionesAlCrearArticulo}
 /// Se utiliza para mostrar un menú con diferentes
@@ -49,31 +50,73 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
           height: max(30.ph, 30.sh),
           value: 1,
           child: const Text('Edit'),
+          onTap: () {
+            // TODO(anyone): agregarle funcionalidad
+            showDialog<void>(
+              context: context,
+              builder: (context) => const PRDialogErrorNoDisponible(),
+            );
+          },
         ),
         PopupMenuItem(
           height: max(30.ph, 30.sh),
           value: 2,
           child: const Text('Duplicate'),
+          onTap: () {
+            // TODO(anyone): agregarle funcionalidad
+            showDialog<void>(
+              context: context,
+              builder: (context) => const PRDialogErrorNoDisponible(),
+            );
+          },
         ),
         PopupMenuItem(
           height: max(30.ph, 30.sh),
           value: 3,
           child: const Text('Preview'),
+          onTap: () {
+            // TODO(anyone): agregarle funcionalidad
+            showDialog<void>(
+              context: context,
+              builder: (context) => const PRDialogErrorNoDisponible(),
+            );
+          },
         ),
         PopupMenuItem(
           height: max(30.ph, 30.sh),
           value: 4,
           child: const Text('Share'),
+          onTap: () {
+            // TODO(anyone): agregarle funcionalidad
+            showDialog<void>(
+              context: context,
+              builder: (context) => const PRDialogErrorNoDisponible(),
+            );
+          },
         ),
         PopupMenuItem(
           height: max(30.ph, 30.sh),
           value: 5,
           child: const Text('Send via email'),
+          onTap: () {
+            // TODO(anyone): agregarle funcionalidad
+            showDialog<void>(
+              context: context,
+              builder: (context) => const PRDialogErrorNoDisponible(),
+            );
+          },
         ),
         PopupMenuItem(
           height: max(30.ph, 30.sh),
           value: 6,
           child: const Text('Delete'),
+          onTap: () {
+            // TODO(anyone): agregarle funcionalidad
+            showDialog<void>(
+              context: context,
+              builder: (context) => const PRDialogErrorNoDisponible(),
+            );
+          },
         ),
       ],
     );
