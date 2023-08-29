@@ -10,8 +10,10 @@ import 'package:serverpod/serverpod.dart' as _i1;
 import '../endpoints/auth_endpoint.dart' as _i2;
 import '../endpoints/cliente_endpoint.dart' as _i3;
 import '../endpoints/mail_endpoint.dart' as _i4;
-import 'package:prlab_server/src/generated/cliente.dart' as _i5;
-import 'package:serverpod_auth_server/module.dart' as _i6;
+import '../endpoints/marca_endpoint.dart' as _i5;
+import 'package:prlab_server/src/generated/cliente.dart' as _i6;
+import 'package:prlab_server/src/generated/marca.dart' as _i7;
+import 'package:serverpod_auth_server/module.dart' as _i8;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -33,6 +35,12 @@ class Endpoints extends _i1.EndpointDispatch {
         ..initialize(
           server,
           'mail',
+          null,
+        ),
+      'marca': _i5.MarcaEndpoint()
+        ..initialize(
+          server,
+          'marca',
           null,
         ),
     };
@@ -124,7 +132,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'datosDelCliente': _i1.ParameterDescription(
               name: 'datosDelCliente',
-              type: _i1.getType<_i5.Cliente>(),
+              type: _i1.getType<_i6.Cliente>(),
               nullable: false,
             )
           },
@@ -169,6 +177,93 @@ class Endpoints extends _i1.EndpointDispatch {
         )
       },
     );
-    modules['serverpod_auth'] = _i6.Endpoints()..initializeEndpoints(server);
+    connectors['marca'] = _i1.EndpointConnector(
+      name: 'marca',
+      endpoint: endpoints['marca']!,
+      methodConnectors: {
+        'crearMarca': _i1.MethodConnector(
+          name: 'crearMarca',
+          params: {
+            'payload': _i1.ParameterDescription(
+              name: 'payload',
+              type: _i1.getType<_i7.Marca>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i5.MarcaEndpoint).crearMarca(
+            session,
+            params['payload'],
+          ),
+        ),
+        'editarMarca': _i1.MethodConnector(
+          name: 'editarMarca',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'nombre': _i1.ParameterDescription(
+              name: 'nombre',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'descripcion': _i1.ParameterDescription(
+              name: 'descripcion',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'logo': _i1.ParameterDescription(
+              name: 'logo',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i5.MarcaEndpoint).editarMarca(
+            session,
+            params['id'],
+            params['nombre'],
+            params['descripcion'],
+            params['logo'],
+          ),
+        ),
+        'eliminarMarca': _i1.MethodConnector(
+          name: 'eliminarMarca',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i5.MarcaEndpoint).eliminarMarca(
+            session,
+            params['id'],
+          ),
+        ),
+        'listarMarcas': _i1.MethodConnector(
+          name: 'listarMarcas',
+          params: {},
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i5.MarcaEndpoint).listarMarcas(session),
+        ),
+      },
+    );
+    modules['serverpod_auth'] = _i8.Endpoints()..initializeEndpoints(server);
   }
 }

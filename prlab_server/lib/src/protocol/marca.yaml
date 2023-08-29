@@ -1,0 +1,10 @@
+class: Marca
+table: marca
+fields:
+  nombre: String
+  sitioWeb: String
+  staff: List<int>?
+  fechaCreacion: DateTime?
+  ultimaModificacion: DateTime?
+  fechaEliminacion: DateTime?
+  

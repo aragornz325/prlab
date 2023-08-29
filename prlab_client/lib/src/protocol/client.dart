@@ -9,9 +9,10 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
 import 'package:prlab_client/src/protocol/cliente.dart' as _i3;
-import 'package:serverpod_auth_client/module.dart' as _i4;
-import 'dart:io' as _i5;
-import 'protocol.dart' as _i6;
+import 'package:prlab_client/src/protocol/marca.dart' as _i4;
+import 'package:serverpod_auth_client/module.dart' as _i5;
+import 'dart:io' as _i6;
+import 'protocol.dart' as _i7;
 
 /// La clase `AuthEndpoint` está ampliando la clase `Endpoint`. por tanto maneja
 /// todas las peticiones relacionadas con el auth del sistema
@@ -142,28 +143,73 @@ class _EndpointMail extends _i1.EndpointRef {
       );
 }
 
+class _EndpointMarca extends _i1.EndpointRef {
+  _EndpointMarca(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'marca';
+
+  _i2.Future<bool> crearMarca(_i4.Marca payload) =>
+      caller.callServerEndpoint<bool>(
+        'marca',
+        'crearMarca',
+        {'payload': payload},
+      );
+
+  _i2.Future<bool> editarMarca(
+    int id,
+    String nombre,
+    String descripcion,
+    String logo,
+  ) =>
+      caller.callServerEndpoint<bool>(
+        'marca',
+        'editarMarca',
+        {
+          'id': id,
+          'nombre': nombre,
+          'descripcion': descripcion,
+          'logo': logo,
+        },
+      );
+
+  _i2.Future<bool> eliminarMarca(int id) => caller.callServerEndpoint<bool>(
+        'marca',
+        'eliminarMarca',
+        {'id': id},
+      );
+
+  _i2.Future<List<_i4.Marca>> listarMarcas() =>
+      caller.callServerEndpoint<List<_i4.Marca>>(
+        'marca',
+        'listarMarcas',
+        {},
+      );
+}
+
 class _Modules {
   _Modules(Client client) {
-    auth = _i4.Caller(client);
+    auth = _i5.Caller(client);
   }
 
-  late final _i4.Caller auth;
+  late final _i5.Caller auth;
 }
 
 class Client extends _i1.ServerpodClient {
   Client(
     String host, {
-    _i5.SecurityContext? context,
+    _i6.SecurityContext? context,
     _i1.AuthenticationKeyManager? authenticationKeyManager,
   }) : super(
           host,
-          _i6.Protocol(),
+          _i7.Protocol(),
           context: context,
           authenticationKeyManager: authenticationKeyManager,
         ) {
     auth = _EndpointAuth(this);
     cliente = _EndpointCliente(this);
     mail = _EndpointMail(this);
+    marca = _EndpointMarca(this);
     modules = _Modules(this);
   }
 
@@ -173,6 +219,8 @@ class Client extends _i1.ServerpodClient {
 
   late final _EndpointMail mail;
 
+  late final _EndpointMarca marca;
+
   late final _Modules modules;
 
   @override
@@ -180,6 +228,7 @@ class Client extends _i1.ServerpodClient {
         'auth': auth,
         'cliente': cliente,
         'mail': mail,
+        'marca': marca,
       };
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup =>

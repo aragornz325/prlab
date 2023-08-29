@@ -61,6 +61,24 @@ ALTER TABLE ONLY "informacion_de_contactos"
 
 
 --
+-- Class Marca as table marca
+--
+
+CREATE TABLE "marca" (
+  "id" serial,
+  "nombre" text NOT NULL,
+  "sitioWeb" text NOT NULL,
+  "staff" json,
+  "fechaCreacion" timestamp without time zone,
+  "ultimaModificacion" timestamp without time zone,
+  "fechaEliminacion" timestamp without time zone
+);
+
+ALTER TABLE ONLY "marca"
+  ADD CONSTRAINT marca_pkey PRIMARY KEY (id);
+
+
+--
 -- Class MensajeRegistro as table mensaje_registro
 --
 
