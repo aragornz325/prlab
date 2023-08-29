@@ -275,10 +275,29 @@
     "@pageContentAdministrationBarLastUpdate": {
         "description":"text that shows the last date the article was updated the list of articles"
     },
-
+     "pageEditContentEditArticleContainerButtonUploadLogo" : "Subir logo",
+    "@pageEditContentEditArticleContainerButtonUploadLogo": {
+        "description":"Text of the button to upload the main logo, when you are creating or editing an article"
+    },
+    "pageEditContentEditArticleContainerButtonUploadLogoSecondary" : "Subir logo secundario",
+    "@pageEditContentEditArticleContainerButtonUploadLogoSecondary": {
+        "description":"Text of the button to upload the secondary logo, when you are creating or editing an article"
+    },
+     "pageEditContentEditArticleContainerHintTitle" : "Ingresa título de artículo",
+    "@pageEditContentEditArticleContainerHintTitle": {
+        "description":"Hint text of the article title, when you are creating or editing an article"
+    },
+    "pageEditContentEditArticleContainerHintDescription" : "Ingresa descripción de artículo",
+    "@pageEditContentEditArticleContainerHintDescription": {
+        "description":"Hint text of the article description, when you are creating or editing an article"
+    },
     "pageContentAdministrationBarInformationAuthor" : "Autor",
     "@pageContentAdministrationBarInformationAuthor": {
         "description":"shows the image of the author or who created this article or their two initials"
+    },
+     "pageEditContentSubtitle" : "Crea un artículo, compartilo con tu equipo, editálo, agrega comentarios y más.",
+    "@pageEditContentSubtitle": {
+        "description":"Subtitle that appears on top of the list of articles and the edit container, when you are creating or editing an article"
     },
     
     "pageContentAdministrationPopupASingleArticle": "Un solo articulo",
@@ -300,7 +319,6 @@
     "@pageContentAdministrationTitleYourArticle": {
         "description": "default title in case the article does not have a name,it is used in content management"
     },
-    
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
@@ -428,7 +446,10 @@
     "@commonArticles": {
         "description": "A piece of writing on a brand"
     },
-
+  "commonAddPage": "Agregar página",
+    "@commonAddPage": {
+        "description": "Text shown on a button that indicates to add a page"
+    },
     "commonClippings" : "Recortes",
     "@commonClippings": {
         "description": "An article cut"
@@ -443,7 +464,18 @@
     "@commonSearch": {
         "description": "Text in the search textfield of a particular article on the content management page is now only used on that page"
     },
-
+    "commonPreview": "Vista previa",
+    "@commonPreview": {
+        "description": "Text shown on a button that indicates a preview"
+    },
+      "commonShare": "Compartir",
+    "@commonShare": {
+        "description": "Text shown on a button that indicates to share"
+    },
+     "commonPublish": "Publicar",
+    "@commonPublish": {
+        "description": "Text shown on a button that indicates to publish"
+    },
     "commonAll": "Todo",
     "@commonAll": {
         "description": "Text where a dropdown is used to filter by certain characteristics that an article has in general. Example, status or date."

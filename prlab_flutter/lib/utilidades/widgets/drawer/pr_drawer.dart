@@ -77,7 +77,7 @@ class _PrDrawerState extends State<PrDrawer> {
                 tituloItem: l10n.drawerLogOut,
               ),
             ),
-          )
+          ),
         ],
       ),
     );

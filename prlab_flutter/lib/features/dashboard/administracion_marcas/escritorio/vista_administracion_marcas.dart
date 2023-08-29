@@ -3,6 +3,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/escritorio/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/theming/base.dart';
 
 /// {@template VistaEscritorioAdministracionMarcas}
 /// Vista del dashboard en la seccion de administracion de marcas
@@ -24,7 +25,7 @@ class VistaEscritorioAdministracionMarcas extends StatelessWidget {
           Container(
             width: 210.pw,
             height: 100.hp,
-            color: colores.primary.withOpacity(.5),
+            color: colores.primaryOpacidadCincuenta,
           ),
           SizedBox(width: 30.pw),
           Column(
@@ -33,7 +34,7 @@ class VistaEscritorioAdministracionMarcas extends StatelessWidget {
               Container(
                 width: 1040.pw,
                 height: 100.ph,
-                color: colores.primary.withOpacity(.5),
+                color: colores.primaryOpacidadCincuenta,
               ),
               SizedBox(height: 40.pw),
               EncabezadoDeSeccion(

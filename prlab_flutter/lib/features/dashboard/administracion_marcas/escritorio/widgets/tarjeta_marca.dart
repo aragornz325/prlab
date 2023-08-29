@@ -67,14 +67,14 @@ class TarjetaMarca extends StatelessWidget {
                           decorationColor: colores.primaryContainer,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 Icon(
                   Icons.settings_outlined,
                   color: colores.primary,
                   size: 24.pf,
-                )
+                ),
               ],
             ),
           ),
@@ -130,7 +130,7 @@ class TarjetaMarca extends StatelessWidget {
                       estaHabilitado: true,
                       width: 100.pw,
                       height: 30.ph,
-                    )
+                    ),
                   ],
                 ),
               ],
