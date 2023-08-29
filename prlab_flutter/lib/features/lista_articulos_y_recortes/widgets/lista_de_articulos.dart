@@ -99,8 +99,8 @@ class ListaDeArticulos extends StatelessWidget {
         // Status
         Columna(
           widthDeLaColumna: 150.pw,
-          // TODO(anyone): cambiar por el status de un articulo
-          lista: articulos.map((e) => e.titulo).toList(),
+          // TODO(anyone): cambiar por el status de un articulo y cambiar por el enum
+          lista: articulos.map((e) => e.idStatus).toList(),
           nombreColumna: l10n.pageContentAdministrationBarInformationStatus,
           celdaEncabezadoColumna: (value) => SizedBox(
             width: 150.pw,
@@ -135,8 +135,7 @@ class ListaDeArticulos extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            //TODO: anyone: cambiar al valor del status
-                            'Draft',
+                            value.toString(),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(

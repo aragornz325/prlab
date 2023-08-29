@@ -8,12 +8,13 @@ import 'package:prlab_client/prlab_client.dart';
 part 'bloc_lista_articulos_y_recortes_estados.dart';
 part 'bloc_lista_articulos_y_recortes_evento.dart';
 
-/// {@template BlocAdministracionContenido}
+/// {@template BlocListaArticulosYRecortes}
 /// El [Bloc] que puede filtrar de distintas el filtrado de los artículos y
 /// obtiene la lista de los articulos
 /// {@endtemplate}
 class BlocListaArticulosYRecortes extends Bloc<
     BlocListaArticulosYRecortesEvento, BlocListaArticulosYRecortesEstado> {
+  /// {@macro BlocListaArticulosYRecortes}
   BlocListaArticulosYRecortes()
       : super(const BlocListaArticulosYRecortesEstadoInicial()) {
     on<BlocListaArticulosYRecortesEventoFiltrar>(_onFiltrarListaArticulos);
