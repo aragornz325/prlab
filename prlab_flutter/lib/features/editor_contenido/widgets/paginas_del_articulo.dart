@@ -23,25 +23,23 @@ class PaginasDelArticulo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
-    return Column(
-      children: [
-        Container(
-          color: colores.onPrimary,
-          width: 151.pw,
-          height: 508.ph,
-          child: ListView.builder(
-            itemCount: listaPaginasDeArticulos.articulos.length,
-            itemBuilder: (context, index) {
-              return ArticuloPRLab.home(
-                titulo: listaPaginasDeArticulos.articulos[index].title,
-                context: context,
-                contenidoArticulo:
-                    listaPaginasDeArticulos.articulos[index].content,
-              );
-            },
-          ),
+    return Expanded(
+      child: Container(
+        color: colores.onPrimary,
+        width: 151.pw,
+        height: 508.ph,
+        child: ListView.builder(
+          itemCount: listaPaginasDeArticulos.articulos.length,
+          itemBuilder: (context, index) {
+            return ArticuloPRLab.home(
+              titulo: listaPaginasDeArticulos.articulos[index].title,
+              context: context,
+              contenidoArticulo:
+                  listaPaginasDeArticulos.articulos[index].content,
+            );
+          },
         ),
-      ],
+      ),
     );
   }
 }

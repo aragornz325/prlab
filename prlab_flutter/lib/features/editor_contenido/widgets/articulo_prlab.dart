@@ -21,7 +21,8 @@ class ArticuloPRLab extends StatelessWidget {
   });
 
   /// Articulo factory que tiene el icono de una casa.
-// TODO(SAM): Mejorar doc.
+// TODO(SAM): Mejorar doc cuando se tengan mas detalles de como va a ser este
+// articulo.
   factory ArticuloPRLab.home({
     required String titulo,
     required String contenidoArticulo,
@@ -77,14 +78,14 @@ class ArticuloPRLab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
-    return GestureDetector(
-      onTap: onTap,
-      child: Padding(
-        padding: EdgeInsets.only(
-          top: 20.ph,
-          left: 10.pw,
-          right: 10.pw,
-        ),
+    return Padding(
+      padding: EdgeInsets.only(
+        top: 20.ph,
+        left: 10.pw,
+        right: 10.pw,
+      ),
+      child: InkWell(
+        onTap: onTap,
         child: Container(
           width: 132.pw,
           height: 55.ph,
