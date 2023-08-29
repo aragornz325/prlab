@@ -18,6 +18,8 @@ class PaginaKyc extends StatefulWidget {
     required this.idUsuario,
     super.key,
   });
+
+  /// Id del usuario a modificar la informacion
   final int idUsuario;
 
   @override
