@@ -354,10 +354,17 @@
     "commonInvalidCharacters": "Invalid characters",
     "@commonInvalidCharacters":{
         "description":"Text indicating that invalid characters were used"},
+            
 
     "commonError" : "Error!",
     "@commonError": {
         "description":"text in alertdialog title, Error"
+    },
+
+
+    "commonFeatureNotAvailable":"This feature is not available in this version.",
+    "@commonFeatureNotAvailable":{
+        "descripcion": "Text in pop up to indicate that a feature in progress"
     },
     "commonSomethingWentWrong" : "Something went wrong",
     "@commonWentWrong": {

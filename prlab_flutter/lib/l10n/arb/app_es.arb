@@ -365,6 +365,10 @@
     "@commonError": {
         "description":"text in alertdialog title, Error"
     },
+    "commonFeatureNotAvailable":"Esta característica no está disponible en esta versión.",
+    "@commonFeatureNotAvailable":{
+        "descripcion": "Text in pop up to indicate that a feature in progress"
+    },
     "commonSomethingWentWrong" : "Algo salio mal",
     "@commonSomethingWentWrong": {
         "description":"text in alertdialog sub title, Something went wrong"
