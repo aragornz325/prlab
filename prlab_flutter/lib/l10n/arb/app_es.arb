@@ -280,6 +280,27 @@
     "@pageContentAdministrationBarInformationAuthor": {
         "description":"shows the image of the author or who created this article or their two initials"
     },
+    
+    "pageContentAdministrationPopupASingleArticle": "Un solo articulo",
+    "@pageContentAdministrationAdminPopupASingleArticle": {
+        "description":"text in the popup in the button create an article first options to choose"
+    },
+    
+    "pageContentAdministrationAdminPopupByBrand": "por brand",
+    "@pageContentAdministrationAdminPopupByBrand": {
+        "description":"text in the popup in the button create an article second options to choose"
+    },
+
+    "pageContentAdministrationAdminPopupUseTemplate": "Usar plantilla",
+    "@pageContentAdministrationAdminPopupUseTemplate": {
+        "description":"text in the popup in the button create an article third options to choose"
+    },
+    
+    "pageContentAdministrationTitleYourArticle": "Tus articulos",
+    "@pageContentAdministrationTitleYourArticle": {
+        "description": "default title in case the article does not have a name,it is used in content management"
+    },
+    
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"

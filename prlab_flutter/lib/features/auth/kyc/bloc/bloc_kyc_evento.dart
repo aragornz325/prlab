@@ -8,6 +8,15 @@ part of 'bloc_kyc.dart';
 sealed class BlocKcyEvento {}
 
 /// {@template BlocKycEventoInsertarInformacionDeKyc}
+/// Guarda el id del usuario a manejar para cambiar cierta informacion.
+/// {@endtemplate}
+class BlocKycEventoInsertarAgregarIdUsuario extends BlocKcyEvento {
+  /// {@macro BlocKycEventoInsertarInformacionDeKyc}
+  BlocKycEventoInsertarAgregarIdUsuario({required this.idUsuario});
+  final int idUsuario;
+}
+
+/// {@template BlocKycEventoInsertarInformacionDeKyc}
 /// Inserta los valores que se completaron en el formulario,
 /// guardados dentro del estado dentro de la informacion
 /// del usuario en la base de datos.

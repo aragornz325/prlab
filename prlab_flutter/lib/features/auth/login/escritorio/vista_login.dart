@@ -121,7 +121,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                         onChanged: (_) => _habilitarBotones(),
                       ),
                     ),
-                    // TODO(Gon): Cuando se manejen errores de login agregar
+                    // TODO(anyone): Cuando se manejen errores de login agregar
                     // los errores abajo de los textfields
                     SizedBox(height: 10.ph),
                     OlvidasteTuPassword(

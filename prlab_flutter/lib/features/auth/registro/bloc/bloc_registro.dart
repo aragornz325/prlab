@@ -96,6 +96,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
       emit(
         BlocRegistroEstadoUsuarioRegistradoConExito.desde(
           state,
+          idUsuario: usuario.id,
         ),
       );
     } catch (e, st) {

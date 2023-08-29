@@ -26,7 +26,7 @@ class BlocAdministracionMarcasEstado extends Equatable {
 }
 
 /// {@template BlocAdministracionMarcasEstadoInicial}
-/// Estado inicial de los componentes de la pantalla administracion de marcas
+/// Estado inicial de los componentes de la pantalla administración de marcas
 /// {@endtemplate}
 class BlocAdministracionMarcasEstadoInicial
     extends BlocAdministracionMarcasEstado {
@@ -35,7 +35,7 @@ class BlocAdministracionMarcasEstadoInicial
 }
 
 /// {@template BlocAdministracionMarcasEstadoCargando}
-/// Estado de cargando de los componentes de la pantalla administracion
+/// Estado de cargando de los componentes de la pantalla administración
 /// de marcas
 /// {@endtemplate}
 class BlocAdministracionMarcasEstadoCargando
@@ -47,8 +47,8 @@ class BlocAdministracionMarcasEstadoCargando
 }
 
 /// {@template BlocAdministracionMarcasEstadoExitosoGeneral}
-// TODO(Gon): Documentar
-
+/// Estado exitoso general de los componentes de la pantalla
+/// administración de marcas
 /// {@endtemplate}
 class BlocAdministracionMarcasEstadoExitosoGeneral
     extends BlocAdministracionMarcasEstado {
@@ -58,7 +58,7 @@ class BlocAdministracionMarcasEstadoExitosoGeneral
 }
 
 /// {@template BlocAdministracionMarcasEstadoError}
-/// Estado de error de los componentes de la pantalla administracion de marcas
+/// Estado de error de los componentes de la pantalla administración de marcas
 /// {@endtemplate}
 class BlocAdministracionMarcasEstadoError
     extends BlocAdministracionMarcasEstado {
@@ -72,9 +72,9 @@ class BlocAdministracionMarcasEstadoError
   final MensajesDeErrorDeAdministracionMarcas mensajeDeError;
 }
 
-// TODO(Gon): Verificar si es necesario y que excepciones pueden llegar a ocurri
+// TODO(anyone): Verificar si es necesario y que excepciones pueden llegar a ocurrir
 
-/// Tipos de errores de  administracion de marcas a mostrar
+/// Tipos de errores de  administración de marcas a mostrar
 enum MensajesDeErrorDeAdministracionMarcas {
   userNotFound,
   invalidCredentials,

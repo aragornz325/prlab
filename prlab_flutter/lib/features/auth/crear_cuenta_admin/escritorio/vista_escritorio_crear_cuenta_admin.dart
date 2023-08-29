@@ -46,6 +46,7 @@ class _VistaEscritorioCrearCuentaAdminState
                 width: 196.pw,
                 onTap: () {
                   // TODO(anyone): agregarle funcionalidad para volver atras.
+                  // o popup de esta feature esta disponible en otra version
                   // todavía no esta definido que función cumple
                   // el boton hacia atrás en esta vista
                 },

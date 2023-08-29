@@ -33,7 +33,7 @@ class BlocListaArticulosYRecortes extends Bloc<
   ) async {
     emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
     try {
-      // TODO(mati): sacar por la lista del back y hacer una variable arriba para pasarle la lista del modelo del back
+      // TODO(anyone): sacar por la lista del back y hacer una variable arriba para pasarle la lista del modelo del back
       final listaPrArticulos = [
         Articulo(
           titulo: 'Flutter article',

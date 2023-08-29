@@ -33,7 +33,7 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
       ),
       onSelected: (value) {
         switch (value) {
-          // TODO(mati): cambiar esto a funcion en flecha cuando tenga funcionalidad
+          // TODO(anyone): cambiar esto a funcion en flecha cuando tenga funcionalidad
           case 1:
             break;
           case 2:
@@ -47,8 +47,7 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
           value: 1,
           height: max(40.ph, 40.sh),
           child: Text(
-            // TODO(mati): hacer l10n
-            'A single article',
+            l10n.pageContentAdministrationPopupASingleArticle,
             style: TextStyle(
               fontSize: 14.pf,
               color: colores.tertiary,
@@ -60,8 +59,7 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
           value: 2,
           height: max(40.ph, 40.sh),
           child: Text(
-            // TODO(mati): hacer l10n
-            'By brand',
+            l10n.pageContentAdministrationPopupByBrand,
             style: TextStyle(
               fontSize: 14.pf,
               color: colores.tertiary,
@@ -73,8 +71,7 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
           value: 3,
           height: max(40.ph, 40.sh),
           child: Text(
-            // TODO(mati): hacer l10n
-            'Use template',
+            l10n.pageContentAdministrationPopupUseTemplate,
             style: TextStyle(
               fontSize: 14.pf,
               color: colores.tertiary,

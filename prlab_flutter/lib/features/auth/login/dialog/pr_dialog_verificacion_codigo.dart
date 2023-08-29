@@ -46,6 +46,7 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
     final estadoTemporizador = context.watch<BlocTemporizador>().state;
 
     return PRDialog.solicitudAccion(
+      height: 300,
       context: context,
       estaHabilitado: estadoLogin.codigo.length == 8,
       onTap: () {
@@ -56,11 +57,59 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
       titulo: l10n.commonRecoverPassword,
       content: Column(
         children: [
-          PrLabTextfield(
+          PRTextFormField.verificacionCodigo(
+            width: 360.pw,
             controller: controllerCodigo,
+            context: context,
             solicitoNuevoCodigo:
                 estadoTemporizador is BlocTemporizadorEstadoCorriendo,
             segundosFaltantes: estadoTemporizador.duracionTimer,
+            widgetDeSuffix: BlocBuilder<BlocLogin, BlocLoginEstado>(
+              builder: (context, state) {
+                return InkWell(
+                  onTap:
+                      !(estadoTemporizador is BlocTemporizadorEstadoCorriendo)
+                          ? () {
+                              context.read<BlocLogin>().add(
+                                    BlocLoginEventoEnviarCodigoAlUsuario(
+                                      email: state.email,
+                                    ),
+                                  );
+                              context
+                                  .read<BlocTemporizador>()
+                                  .add(BlocTemporizadorEventoEmpezar());
+                            }
+                          : null,
+                  child: Text(
+                    !(estadoTemporizador is BlocTemporizadorEstadoCorriendo)
+                        ? l10n.alertDialogTextfieldSuffixGetCode
+                        : l10n.alertDialogTextfieldSuffixCodeSend,
+                    style: TextStyle(
+                      decoration: TextDecoration.combine([
+                        if (!(estadoTemporizador
+                            is BlocTemporizadorEstadoCorriendo))
+                          TextDecoration.underline
+                        else
+                          TextDecoration.none,
+                      ]),
+                      color: !(estadoTemporizador
+                              is BlocTemporizadorEstadoCorriendo)
+                          ? colores.primary
+                          : colores.secondary,
+                      fontSize: 12.pf,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                );
+              },
+            ),
+            onChanged: (value) {
+              if (value.isNotEmpty || value != '') {
+                context.read<BlocLogin>().add(
+                      BlocLoginEventoActualizarCodigo(codigo: value),
+                    );
+              }
+            },
           ),
           Text(
             textoAQuienFueEnviadoEmail,

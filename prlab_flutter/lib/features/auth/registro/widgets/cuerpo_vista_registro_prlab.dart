@@ -13,7 +13,7 @@ import 'package:prlab_flutter/features/auth/registro/widgets/titulo_bienvenida_c
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template CuerpoVistaRegistroPRLab}
-/// Cuerpo de la vista de registro que contiene textfields y un boton para
+/// Cuerpo de la vista de registro que contiene textfield y un boton para
 /// registrarse
 /// {@endtemplate}
 
@@ -72,7 +72,7 @@ class CuerpoVistaRegistroPRLab extends StatelessWidget {
             BlocConsumer<BlocRegistro, BlocRegistroEstado>(
               listener: (context, state) {
                 if (state is BlocRegistroEstadoUsuarioRegistradoConExito) {
-                  context.router.replace(const RutaKyc());
+                  context.router.replace(RutaKyc(idUsuario: state.idUsuario));
                 }
                 if (state is BlocRegistroEstadoError) {
                   _showErrorDialog(context);

@@ -81,7 +81,7 @@ class BlocTemporizador
     BlocTemporizadorEventoCortarEjecucion event,
     Emitter<BlocTemporizadorEstado> emit,
   ) async {
-    // TODO(Gon): por ahora no hace nada si termino pero agregarle
+    // TODO(anyone): por ahora no hace nada si termino pero agregarle
     // que vuelva o que le avise que se acabo el tiempo para que
     // reenviar el codigo de verificacion/
     if (_timer.isActive) {

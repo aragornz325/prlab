@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:prlab_client/prlab_client.dart';
+import 'package:prlab_flutter/utilidades/utilidades.dart';
 
 part 'bloc_kyc_estado.dart';
 part 'bloc_kyc_evento.dart';
@@ -12,8 +14,22 @@ part 'bloc_kyc_evento.dart';
 class BlocKyc extends Bloc<BlocKcyEvento, BlocKycEstado> {
   /// {@macro BlocKyc}
   BlocKyc() : super(const BlocKycEstadoInicial()) {
+    on<BlocKycEventoInsertarAgregarIdUsuario>(_onInsertarIdUsuario);
     on<BlocKycEventoInsertarInformacionDeKyc>(_onInsertarInformacionDeKyc);
     on<BlocKycEventoRecolectarInformacionDeKyc>(_onRecolectarInformacionDeKyc);
+  }
+
+  /// Guarda en el estado el id del usuario
+  Future<void> _onInsertarIdUsuario(
+    BlocKycEventoInsertarAgregarIdUsuario event,
+    Emitter<BlocKycEstado> emit,
+  ) async {
+    emit(
+      BlocKycEstadoRecolectandoDatos.desde(
+        state,
+        idUsuario: event.idUsuario,
+      ),
+    );
   }
 
   /// Inserta los datos que el usuario completo en los campos de texto
@@ -25,18 +41,19 @@ class BlocKyc extends Bloc<BlocKcyEvento, BlocKycEstado> {
     emit(BlocKycEstadoCargando.desde(state));
 
     try {
-      // TODO(Andreas): Este codigo es seudo, cuando tengamos el endpoint
-      // descomentar esto y
-      // modificarlo
-
-      /* client.user.insertarKyc(
-      state.nombre,
-      state.apellido,
-      state.fechaDeNacimiento,
-      state.nombreDeCompania,
-      state.localidadDeCompania,
-      state.numeroDeContacto,
-    ); */
+      final cliente = Cliente(
+        idUsuario: state.idUsuario,
+        nombre: state.nombre,
+        apellido: state.apellido,
+        // TODO(anyone): sacar esto y cambiar por el del calendario.
+        fechaDeNacimiento: DateTime.now(),
+        nombreDeOrganizacion: state.nombreDeCompania,
+        domicilio: state.localidad,
+        telefono: state.numeroContacto,
+        fechaCreacion: DateTime.now(),
+        ultimaModificacion: DateTime.now(),
+      );
+      await client.cliente.completarKyc(cliente);
 
       emit(BlocKycEstadoExitoso.desde(state));
     } catch (e) {
