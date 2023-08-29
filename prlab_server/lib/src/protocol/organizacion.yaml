@@ -1,0 +1,9 @@
+class: Organizacion
+table: organizaciones
+fields:
+  nombre: String
+  tipo: int?
+  contacto: int? parent=informacion_de_contactos
+  fechaEliminacion: DateTime?
+  ultimaModificacion: DateTime
+  fechaCreacion: DateTime

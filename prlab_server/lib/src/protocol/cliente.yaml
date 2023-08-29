@@ -1,0 +1,15 @@
+class: Cliente
+table: clientes
+fields:
+  nombre: String
+  apellido: String
+  fechaDeNacimiento: DateTime
+  nombreDeOrganizacion: String
+  domicilio: String?
+  telefono: String?
+  idUsuario: int?
+  idOrganizacion: int? parent=organizaciones
+  contacto: int? parent=informacion_de_contactos
+  fechaEliminacion: DateTime?
+  ultimaModificacion: DateTime
+  fechaCreacion: DateTime

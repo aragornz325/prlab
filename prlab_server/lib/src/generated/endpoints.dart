@@ -8,9 +8,10 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
 import '../endpoints/auth_endpoint.dart' as _i2;
-import '../endpoints/example_endpoint.dart' as _i3;
+import '../endpoints/cliente_endpoint.dart' as _i3;
 import '../endpoints/mail_endpoint.dart' as _i4;
-import 'package:serverpod_auth_server/module.dart' as _i5;
+import 'package:prlab_server/src/generated/cliente.dart' as _i5;
+import 'package:serverpod_auth_server/module.dart' as _i6;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -22,10 +23,10 @@ class Endpoints extends _i1.EndpointDispatch {
           'auth',
           null,
         ),
-      'example': _i3.ExampleEndpoint()
+      'cliente': _i3.ClienteEndpoint()
         ..initialize(
           server,
-          'example',
+          'cliente',
           null,
         ),
       'mail': _i4.MailEndpoint()
@@ -114,16 +115,16 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
       },
     );
-    connectors['example'] = _i1.EndpointConnector(
-      name: 'example',
-      endpoint: endpoints['example']!,
+    connectors['cliente'] = _i1.EndpointConnector(
+      name: 'cliente',
+      endpoint: endpoints['cliente']!,
       methodConnectors: {
-        'hello': _i1.MethodConnector(
-          name: 'hello',
+        'completarKyc': _i1.MethodConnector(
+          name: 'completarKyc',
           params: {
-            'name': _i1.ParameterDescription(
-              name: 'name',
-              type: _i1.getType<String>(),
+            'datosDelCliente': _i1.ParameterDescription(
+              name: 'datosDelCliente',
+              type: _i1.getType<_i5.Cliente>(),
               nullable: false,
             )
           },
@@ -131,9 +132,9 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['example'] as _i3.ExampleEndpoint).hello(
+              (endpoints['cliente'] as _i3.ClienteEndpoint).completarKyc(
             session,
-            params['name'],
+            params['datosDelCliente'],
           ),
         )
       },
@@ -150,8 +151,8 @@ class Endpoints extends _i1.EndpointDispatch {
               type: _i1.getType<String>(),
               nullable: false,
             ),
-            'tipoInvitacion': _i1.ParameterDescription(
-              name: 'tipoInvitacion',
+            'tipoDeInvitacion': _i1.ParameterDescription(
+              name: 'tipoDeInvitacion',
               type: _i1.getType<int>(),
               nullable: false,
             ),
@@ -163,11 +164,11 @@ class Endpoints extends _i1.EndpointDispatch {
               (endpoints['mail'] as _i4.MailEndpoint).envioMailRegistro(
             session,
             params['email'],
-            params['tipoInvitacion'],
+            params['tipoDeInvitacion'],
           ),
         )
       },
     );
-    modules['serverpod_auth'] = _i5.Endpoints()..initializeEndpoints(server);
+    modules['serverpod_auth'] = _i6.Endpoints()..initializeEndpoints(server);
   }
 }

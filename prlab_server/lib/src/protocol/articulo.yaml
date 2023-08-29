@@ -1,0 +1,11 @@
+class: Articulo
+table: articulos
+fields:
+  titulo: String
+  contenido: String?
+  idProyecto: int? parent=proyectos
+  idAutor: int?
+  idStatus: int?
+  fechaEliminacion: DateTime?
+  ultimaModificacion: DateTime
+  fechaCreacion: DateTime

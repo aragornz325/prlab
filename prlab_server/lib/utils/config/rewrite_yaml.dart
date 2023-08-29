@@ -1,9 +1,13 @@
+// ignore_for_file: always_specify_types
+
 import 'dart:io';
 import 'package:yaml_writer/yaml_writer.dart';
 
+/// Funcion que re-escribe el archivo de configuracion YAML. Usado para hacer 
+/// deploys en Railway.
 void rewriteConfigYaml(String mode) {
-  var yamlWriter = YAMLWriter(allowUnquotedStrings: true);
-  var yamlDoc = yamlWriter.write({
+  YAMLWriter yamlWriter = YAMLWriter(allowUnquotedStrings: true);
+  String yamlDoc = yamlWriter.write({
     'apiServer': {
       'port': Platform.environment['PORT'] ?? 8080,
       'publicHost': '0.0.0.0',
@@ -23,11 +27,11 @@ void rewriteConfigYaml(String mode) {
       'publicScheme': 'http',
     },
     'database': {
-      'host': 'db.vtbtqqvsbekddeaeqbdt.supabase.co',
+      'host': mode == "staging" ? 'db.vtbtqqvsbekddeaeqbdt.supabase.co' : 'db.vmtlouazkwsgdebqowpw.supabase.co',
       'port': 5432,
       'name': 'postgres',
       'user': 'postgres',
-      'password': 'VdeopjSVRoiGKrKp'
+      'password': mode == "staging" ? 'VdeopjSVRoiGKrKp' : 'kDhcP3szJH24THq'
     },
     'redis': {
       'enabled': false,
@@ -36,7 +40,7 @@ void rewriteConfigYaml(String mode) {
     }
   });
 
-  File file = File('./config/$mode.yaml');
-  file.createSync();
-  file.writeAsStringSync(yamlDoc);
+  File('./config/$mode.yaml')
+  ..createSync()
+  ..writeAsStringSync(yamlDoc);
 }

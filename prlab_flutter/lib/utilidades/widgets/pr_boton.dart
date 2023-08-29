@@ -12,7 +12,8 @@ class PRBoton extends StatelessWidget {
     required this.onTap,
     required this.texto,
     required this.estaHabilitado,
-    this.width = 359,
+    this.width,
+    this.height,
     this.esOutlined = false,
     this.muestraEstadoDeCarga = false,
     super.key,
@@ -24,17 +25,25 @@ class PRBoton extends StatelessWidget {
     required String texto,
     required bool estaHabilitado,
     required double width,
+    double? height,
   }) {
     return PRBoton(
       onTap: onTap,
       texto: texto,
       estaHabilitado: estaHabilitado,
       esOutlined: true,
-      width: width.pw,
+      width: width,
+      height: height,
     );
   }
 
-  final double width;
+  /// Ancho del boton, por defecto 359.pw
+  final double? width;
+
+  /// Altura del boton, por defecto 50.ph
+  final double? height;
+
+  /// Funcion al presionar el boton
   final VoidCallback onTap;
 
   /// Asigna el texto interno en el boton.
@@ -55,20 +64,20 @@ class PRBoton extends StatelessWidget {
     return GestureDetector(
       onTap: estaHabilitado ? onTap : null,
       child: Container(
-        width: width.pw,
-        height: 50.ph,
+        width: width ?? 359.pw,
+        height: height ?? 50.ph,
         decoration: BoxDecoration(
           color: esOutlined
               ? colores.background
               : estaHabilitado && !muestraEstadoDeCarga
                   ? colores.primary
-                  : colores.primaryBajaOpacidad,
-          borderRadius: BorderRadius.circular(25),
+                  : colores.primaryOpacidadSesenta,
+          borderRadius: BorderRadius.circular(100),
           border: esOutlined
               ? Border.all(
                   color: estaHabilitado
                       ? colores.primary
-                      : colores.primaryBajaOpacidad,
+                      : colores.primaryOpacidadSesenta,
                 )
               : null,
         ),
@@ -83,7 +92,7 @@ class PRBoton extends StatelessWidget {
                     color: esOutlined
                         ? estaHabilitado
                             ? colores.primary
-                            : colores.primaryBajaOpacidad
+                            : colores.primaryOpacidadSesenta
                         : colores.background,
                   ),
                 ),

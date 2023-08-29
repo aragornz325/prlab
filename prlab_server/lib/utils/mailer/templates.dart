@@ -1,8 +1,11 @@
+/// Clase que contiene las diferentes plantillas para mailing.
 class PlantillasCorreo {
-  mailingGeneral({
+
+  /// Plantilla de mailing que contiene elementos esteticos comunes.
+  String mailingGeneral({
     required String contenido,
-  }) {
-    return '''<!DOCTYPE html>
+  }) => '''
+<!DOCTYPE html>
 
 <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
 
@@ -336,12 +339,13 @@ class PlantillasCorreo {
 </body>
 
 </html>''';
-  }
 
-  cuerpoRegistro({
+  /// Cuerpo de mail con mensaje especifico para creacion de cuentas por parte 
+  /// de administrador.
+  String cuerpoRegistro({
     String enlace = 'https://examplebrandprlab.co',
-  }) {
-    return '''<p style="margin: 0;"><span style="color: #363636;">We have received
+  }) => '''
+<p style="margin: 0;"><span style="color: #363636;">We have received
                     your request to create an account. Here is a
                     link where you can create your
                     account.</span><br /><br /><span
@@ -349,10 +353,10 @@ class PlantillasCorreo {
                     style="color: #363636;">Remember that it is
                     valid for 1 month, after that time you must
                     request to create an account again.</span></p>''';
-  }
 
-  cuerpoVerificacion({String codigo = '12345678'}) {
-    return '''<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-1"
+  /// Cuerpo de mail con mensaje especifico para enviar codigos de verificacion.
+  String cuerpoVerificacion({String codigo = '12345678'}) => '''
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-1"
 						role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 						<tbody>
 							<tr>
@@ -464,5 +468,4 @@ class PlantillasCorreo {
 							</tr>
 						</tbody>
 					</table>''';
-  }
 }

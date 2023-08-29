@@ -1,0 +1,10 @@
+class: Publicacion
+table: publicaciones
+fields:
+  titulo: String
+  idProyecto: int? parent=proyectos
+  idAutor: int?
+  idStatus: int?
+  fechaEliminacion: DateTime?
+  ultimaModificacion: DateTime
+  fechaCreacion: DateTime
