@@ -1,4 +1,17 @@
 part of 'bloc_administracion_de_una_marca.dart';
 
-@immutable
-sealed class BlocAdministracionDeUnaMarcaEvent {}
+/// {@template BlocAdministracionDeUnaMarcaEvento}
+/// Clase padre de los eventos de [AdministracionDeUnaMarca]
+/// {@endtemplate}
+abstract class BlocAdministracionDeUnaMarcaEvento extends Equatable {
+  /// {@macro BlocAdministracionDeUnaMarcaEvento}
+  const BlocAdministracionDeUnaMarcaEvento();
+
+  List<Object> get props => [];
+}
+
+/// {@template BlocAdministracionDeUnaMarcaEventoInicializar}
+/// Inicializa la pagina [AdministracionDeUnaMarca]
+/// {@endtemplate}
+class BlocAdministracionDeUnaMarcaEventoInicializar
+    extends BlocAdministracionDeUnaMarcaEvento {}

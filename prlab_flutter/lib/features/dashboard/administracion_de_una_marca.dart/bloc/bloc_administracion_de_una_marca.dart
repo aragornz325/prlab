@@ -1,15 +1,43 @@
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-
+import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 part 'bloc_administracion_de_una_marca_evento.dart';
 part 'bloc_administracion_de_una_marca_estado.dart';
 
-class BlocAdministracionDeUnaMarcaBloc extends Bloc<
-    BlocAdministracionDeUnaMarcaEvent, BlocAdministracionDeUnaMarcaState> {
-  BlocAdministracionDeUnaMarcaBloc()
-      : super(BlocAdministracionDeUnaMarcaInitial()) {
-    on<BlocAdministracionDeUnaMarcaEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+/// {@template BlocAdministracionDeUnaMarca}
+/// Bloc que maneja los estados y lógica de la pagina de [AdministracionDeUnaMarca]
+/// {@endtemplate}
+class BlocAdministracionDeUnaMarca extends Bloc<
+    BlocAdministracionDeUnaMarcaEvento, BlocAdministracionDeUnaMarcaEstado> {
+  /// {@macro BlocAdministracionDeUnaMarca}
+  BlocAdministracionDeUnaMarca()
+      : super(
+          const BlocAdministracionDeUnaMarcaEstadoInicial(),
+        ) {
+    on<BlocAdministracionDeUnaMarcaEventoInicializar>(_inicializar);
+  }
+
+  /// EventHandler de [BlocAdministracionDeUnaMarcaEventoInicializar]
+  Future<void> _inicializar(
+    BlocAdministracionDeUnaMarcaEventoInicializar event,
+    Emitter<BlocAdministracionDeUnaMarcaEstado> emit,
+  ) async {
+    emit(
+      BlocAdministracionDeUnaMarcaEstadoCargando.desde(state),
+    );
+    try {} catch (e, st) {
+      if (kDebugMode) {
+        debugger();
+        print(st);
+      }
+
+      emit(
+        BlocAdministracionDeUnaMarcaEstadoError.desde(
+          state,
+          mensajeDeError: MensajesDeErrorAdministracionDeUnaMarca.internalError,
+        ),
+      );
+    }
   }
 }
