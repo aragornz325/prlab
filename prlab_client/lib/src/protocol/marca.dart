@@ -13,10 +13,10 @@ class Marca extends _i1.SerializableEntity {
     this.id,
     required this.nombre,
     required this.sitioWeb,
-    required this.staff,
-    required this.fechaCreacion,
-    required this.ultimaModificacion,
-    required this.fechaEliminacion,
+    this.staff,
+    this.fechaCreacion,
+    this.ultimaModificacion,
+    this.fechaEliminacion,
   });
 
   factory Marca.fromJson(
@@ -30,13 +30,13 @@ class Marca extends _i1.SerializableEntity {
       sitioWeb: serializationManager
           .deserialize<String>(jsonSerialization['sitioWeb']),
       staff: serializationManager
-          .deserialize<List<int>>(jsonSerialization['staff']),
+          .deserialize<List<int>?>(jsonSerialization['staff']),
       fechaCreacion: serializationManager
-          .deserialize<DateTime>(jsonSerialization['fechaCreacion']),
+          .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
       ultimaModificacion: serializationManager
-          .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
+          .deserialize<DateTime?>(jsonSerialization['ultimaModificacion']),
       fechaEliminacion: serializationManager
-          .deserialize<DateTime>(jsonSerialization['fechaEliminacion']),
+          .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
     );
   }
 
@@ -49,13 +49,13 @@ class Marca extends _i1.SerializableEntity {
 
   String sitioWeb;
 
-  List<int> staff;
+  List<int>? staff;
 
-  DateTime fechaCreacion;
+  DateTime? fechaCreacion;
 
-  DateTime ultimaModificacion;
+  DateTime? ultimaModificacion;
 
-  DateTime fechaEliminacion;
+  DateTime? fechaEliminacion;
 
   @override
   Map<String, dynamic> toJson() {

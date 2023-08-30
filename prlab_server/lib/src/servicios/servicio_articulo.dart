@@ -101,4 +101,20 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
       throw Exception('$e');
     }
   }
+
+  Future<List<Articulo>> listarArticulosPorMarca({
+    required Session session,
+    required int idMarca,
+  }) async {
+    try {
+      return await performOperation(
+        () => odm.listarArticulosPorMarca(
+          session: session,
+          idMarca: idMarca,
+        ),
+      );
+    } on Exception catch (e) {
+      throw Exception('$e');
+    }
+  }
 }

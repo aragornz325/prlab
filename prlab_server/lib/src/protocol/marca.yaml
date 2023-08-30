@@ -3,8 +3,8 @@ table: marcas
 fields:
   nombre: String
   sitioWeb: String
-  staff: List<int>
-  fechaCreacion: DateTime
-  ultimaModificacion: DateTime
-  fechaEliminacion: DateTime
+  staff: List<int>?
+  fechaCreacion: DateTime?
+  ultimaModificacion: DateTime?
+  fechaEliminacion: DateTime?
   

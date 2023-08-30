@@ -544,26 +544,26 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'staff',
           columnType: _i2.ColumnType.json,
-          isNullable: false,
-          dartType: 'List<int>',
+          isNullable: true,
+          dartType: 'List<int>?',
         ),
         _i2.ColumnDefinition(
           name: 'fechaCreacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: false,
-          dartType: 'DateTime',
+          isNullable: true,
+          dartType: 'DateTime?',
         ),
         _i2.ColumnDefinition(
           name: 'ultimaModificacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: false,
-          dartType: 'DateTime',
+          isNullable: true,
+          dartType: 'DateTime?',
         ),
         _i2.ColumnDefinition(
           name: 'fechaEliminacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: false,
-          dartType: 'DateTime',
+          isNullable: true,
+          dartType: 'DateTime?',
         ),
       ],
       foreignKeys: [],
@@ -958,8 +958,10 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i1.getType<_i13.Publicacion?>()) {
       return (data != null ? _i13.Publicacion.fromJson(data, this) : null) as T;
     }
-    if (t == List<int>) {
-      return (data as List).map((e) => deserialize<int>(e)).toList() as dynamic;
+    if (t == _i1.getType<List<int>?>()) {
+      return (data != null
+          ? (data as List).map((e) => deserialize<int>(e)).toList()
+          : null) as dynamic;
     }
     if (t == List<_i14.Articulo>) {
       return (data as List).map((e) => deserialize<_i14.Articulo>(e)).toList()

@@ -120,6 +120,25 @@ class Endpoints extends _i1.EndpointDispatch {
             params['id'],
           ),
         ),
+        'listarArticulosPorMarca': _i1.MethodConnector(
+          name: 'listarArticulosPorMarca',
+          params: {
+            'idMarca': _i1.ParameterDescription(
+              name: 'idMarca',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['articulo'] as _i2.ArticuloEndpoint)
+                  .listarArticulosPorMarca(
+            session,
+            params['idMarca'],
+          ),
+        ),
       },
     );
     connectors['auth'] = _i1.EndpointConnector(

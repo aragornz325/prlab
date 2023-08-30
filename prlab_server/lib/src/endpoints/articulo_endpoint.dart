@@ -90,4 +90,29 @@ class ArticuloEndpoint extends Endpoint {
       rethrow;
     }
   }
+
+  /// La función "listarArticulosPorMarca" es un servicio querecupera una lista 
+  /// de artículos en función de un ID de marca determinado.
+  /// 
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la sesión o conexión
+  /// actual a la base de datos. Se utiliza para ejecutar consultas o realizar operaciones de bases de
+  /// datos.
+  ///   idMarca (int): La identificación de la marca para la que desea enumerar los artículos.
+  /// 
+  /// Returns:
+  ///   Un objeto futuro que se resuelve en una lista de objetos Articulo.
+  Future<List<Articulo>> listarArticulosPorMarca(
+    Session session,
+    int idMarca,
+  ) async {
+    try {
+      return await servicioArticulo.listarArticulosPorMarca(
+        session: session,
+        idMarca: idMarca,
+      );
+    } on Exception catch (e) {
+      rethrow;
+    }
+  }
 }

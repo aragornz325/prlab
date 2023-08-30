@@ -76,6 +76,13 @@ class _EndpointArticulo extends _i1.EndpointRef {
         'eliminarArticulo',
         {'id': id},
       );
+
+  _i2.Future<List<_i3.Articulo>> listarArticulosPorMarca(int idMarca) =>
+      caller.callServerEndpoint<List<_i3.Articulo>>(
+        'articulo',
+        'listarArticulosPorMarca',
+        {'idMarca': idMarca},
+      );
 }
 
 /// La clase `AuthEndpoint` está ampliando la clase `Endpoint`. por tanto maneja

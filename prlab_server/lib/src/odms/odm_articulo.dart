@@ -7,7 +7,7 @@ import 'package:serverpod/server.dart';
 class OdmArticulo extends ODM {
   /// La función `crearArticulo` crea un nuevo artículo insertándolo en una base de datos mediante una
   /// operación ODM.
-  /// 
+  ///
   /// Args:
   ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio.
   ///   payload (Articulo): El parámetro payload es de tipo Articulo, que representa los datos del
@@ -34,7 +34,7 @@ class OdmArticulo extends ODM {
 
   /// La función `listarArticulos` recupera una lista de artículos usando una sesión y una operación
   /// ODM.
-  /// 
+  ///
   /// Args:
   ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio.
   Future<List<Articulo>> listarArticulos({
@@ -50,9 +50,9 @@ class OdmArticulo extends ODM {
 
   /// La función `obtenerArticulo` recupera un artículo por su ID usando una operación ODM y lo
   /// devuelve, o lanza una excepción si no se encuentra el artículo.
-  /// 
+  ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. 
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio.
   ///   id (int): El parámetro "id" es un número entero que representa el identificador único del
   /// artículo que debe recuperarse.
   Future<Articulo> obtenerArticulo({
@@ -72,7 +72,7 @@ class OdmArticulo extends ODM {
   }
 
   /// La función `eliminarArticulo` elimina un artículo de una sesión usando su ID.
-  /// 
+  ///
   /// Args:
   ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio.
   ///   id (int): El parámetro "id" es un número entero que representa el identificador único del
@@ -91,6 +91,30 @@ class OdmArticulo extends ODM {
         ),
       );
       return true;
+    } on Exception catch (e) {
+      throw Exception('$e');
+    }
+  }
+
+  /// La función `listarArticulosPorMarca` recupera una lista de artículos basados en un ID de marca
+  /// determinado.
+  /// 
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio.
+  ///   idMarca (int): El parámetro `idMarca` es un número entero que representa el ID de una marca
+  /// específica.
+ 
+  Future<List<Articulo>> listarArticulosPorMarca({
+    required Session session,
+    required int idMarca,
+  }) async {
+    try {
+      return await performOdmOperation(
+          session,
+          (Session session) => Articulo.find(
+                session,
+                where: (t) => t.idMarca.equals(idMarca),
+              ));
     } on Exception catch (e) {
       throw Exception('$e');
     }
