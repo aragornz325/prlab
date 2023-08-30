@@ -14,7 +14,13 @@ import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart'
 @RoutePage()
 class PaginaKyc extends StatefulWidget {
   /// {@macro PaginaKyc}
-  const PaginaKyc({super.key});
+  const PaginaKyc({
+    required this.idUsuario,
+    super.key,
+  });
+
+  /// Id del usuario a modificar la informacion
+  final int idUsuario;
 
   @override
   State<PaginaKyc> createState() => PaginaKycState();
@@ -24,7 +30,7 @@ class PaginaKycState extends State<PaginaKyc> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BlocKyc(),
+      create: (context) => BlocKyc(idUsuario: widget.idUsuario),
       child: const FullResponsiveScreen(
         mobile: VistaKycCelular(),
         desktop: VistaKycEscritorio(),

@@ -101,9 +101,8 @@ class BlocLoginEstadoCargando extends BlocLoginEstado {
 }
 
 /// {@template BlocLoginEstadoExitosoGeneral}
-// TODO(Gon): Verificar esta docu y naming
-/// Existe este estado para separarlo de los demas estados de exito,
-/// por ejemplo iniciar sesion o recuperar contraseña
+/// Existe este estado para separarlo de los demás estados de éxito,
+/// por ejemplo iniciar sesión o recuperar contraseña
 /// {@endtemplate}
 class BlocLoginEstadoExitosoGeneral extends BlocLoginEstado {
   /// {@macro BlocLoginEstadoExitosoGeneral}

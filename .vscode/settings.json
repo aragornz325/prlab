@@ -68,6 +68,7 @@
         "Dialog",
         "dirección",
         "Divider",
+        "duracion",
         "Editing",
         "ejecutar",
         "electrónico",
@@ -153,6 +154,7 @@
         "scroll",
         "secondary",
         "secreta",
+        "separated",
         "sesión",
         "shape",
         "side",
@@ -173,6 +175,7 @@
         "tipo",
         "toma",
         "traer",
+        "underline",
         "Unimplemented",
         "usando",
         "usuario",
@@ -188,6 +191,7 @@
         "verificación",
         "verificando",
         "Weight",
+        "Well",
         "widgets",
         "width"
     ]

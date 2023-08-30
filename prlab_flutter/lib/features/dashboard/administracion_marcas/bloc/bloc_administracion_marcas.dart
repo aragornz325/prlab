@@ -9,8 +9,8 @@ part 'bloc_administracion_marcas_evento.dart';
 part 'bloc_administracion_marcas_estado.dart';
 
 /// {@template BlocAdministracionMarcas}
-/// Bloc que maneja los estados y logica de la pagina de
-/// administracion de marcas
+/// Bloc que maneja los estados y lógica de la pagina de
+/// administración de marcas
 /// {@endtemplate}
 class BlocAdministracionMarcas extends Bloc<BlocAdministracionMarcasEvento,
     BlocAdministracionMarcasEstado> {
@@ -20,7 +20,7 @@ class BlocAdministracionMarcas extends Bloc<BlocAdministracionMarcasEvento,
     on<BlocAdministracionMarcasEventoInicializar>(_inicializar);
   }
 
-  /// Inicializa la pagina trayendo lo necesario para el correcto funcionamineto
+  /// Inicializa la pagina trayendo lo necesario para el correcto funcionamiento
   /// de la misma
   Future<void> _inicializar(
     BlocAdministracionMarcasEventoInicializar event,

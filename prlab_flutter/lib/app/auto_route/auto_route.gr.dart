@@ -62,9 +62,13 @@ abstract class $AppRouter extends _i10.RootStackRouter {
       );
     },
     RutaKyc.name: (routeData) {
+      final args = routeData.argsAs<RutaKycArgs>();
       return _i10.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.PaginaKyc(),
+        child: _i6.PaginaKyc(
+          idUsuario: args.idUsuario,
+          key: args.key,
+        ),
       );
     },
     RutaLogin.name: (routeData) {
@@ -171,16 +175,40 @@ class RutaEditorContenido extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.PaginaKyc]
-class RutaKyc extends _i10.PageRouteInfo<void> {
-  const RutaKyc({List<_i10.PageRouteInfo>? children})
-      : super(
+class RutaKyc extends _i10.PageRouteInfo<RutaKycArgs> {
+  RutaKyc({
+    required int idUsuario,
+    _i11.Key? key,
+    List<_i10.PageRouteInfo>? children,
+  }) : super(
           RutaKyc.name,
+          args: RutaKycArgs(
+            idUsuario: idUsuario,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'RutaKyc';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i10.PageInfo<RutaKycArgs> page =
+      _i10.PageInfo<RutaKycArgs>(name);
+}
+
+class RutaKycArgs {
+  const RutaKycArgs({
+    required this.idUsuario,
+    this.key,
+  });
+
+  final int idUsuario;
+
+  final _i11.Key? key;
+
+  @override
+  String toString() {
+    return 'RutaKycArgs{idUsuario: $idUsuario, key: $key}';
+  }
 }
 
 /// generated route for

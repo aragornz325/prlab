@@ -70,19 +70,27 @@ class TarjetaMarca extends StatelessWidget {
                     ),
                   ],
                 ),
-                Icon(
-                  Icons.settings_outlined,
-                  color: colores.primary,
-                  size: 24.pf,
+                GestureDetector(
+                  onTap: () {
+                    // TODO(anyone): agregarle funcionalidad
+                    showDialog<void>(
+                      context: context,
+                      builder: (context) => const PRDialogErrorNoDisponible(),
+                    );
+                  },
+                  child: Icon(
+                    Icons.settings_outlined,
+                    color: colores.primary,
+                    size: 24.pf,
+                  ),
                 ),
               ],
             ),
           ),
-          const Divider(
+          Divider(
             thickness: .2,
             height: 1,
-            // TODO(Gon): Agregar al theme
-            color: Colors.grey,
+            color: colores.secondary,
           ),
           Container(
             height: 90.ph,
@@ -105,7 +113,12 @@ class TarjetaMarca extends StatelessWidget {
                   children: [
                     PRBoton.esOutlined(
                       onTap: () {
-                        // TODO(Gon): Agregar funcion 'lista' o popup de feature in progress
+                        // TODO(onyone): Agregar funcion 'lista'
+                        showDialog<void>(
+                          context: context,
+                          builder: (context) =>
+                              const PRDialogErrorNoDisponible(),
+                        );
                       },
                       texto: l10n.commonList,
                       estaHabilitado: true,
@@ -115,7 +128,12 @@ class TarjetaMarca extends StatelessWidget {
                     SizedBox(width: 20.pw),
                     PRBoton(
                       onTap: () {
-                        // TODO(Gon): Agregar funcion 'crear' o popup de feature in progress
+                        // TODO(onyone): Agregar funcion 'crear'
+                        showDialog<void>(
+                          context: context,
+                          builder: (context) =>
+                              const PRDialogErrorNoDisponible(),
+                        );
                       },
                       texto: l10n.commonCreate,
                       estaHabilitado: true,
@@ -127,11 +145,10 @@ class TarjetaMarca extends StatelessWidget {
               ],
             ),
           ),
-          const Divider(
+          Divider(
             thickness: .2,
             height: 1,
-            // TODO(Gon): Agregar al theme
-            color: Colors.grey,
+            color: colores.secondary,
           ),
           Container(
             height: 205.ph,
@@ -171,16 +188,20 @@ class TarjetaMarca extends StatelessWidget {
                               Container(
                                 width: 10.pw,
                                 height: 10.ph,
-                                decoration: const BoxDecoration(
-                                  // TODO(Gon): Agregar al theme
-                                  color: Colors.grey,
+                                decoration: BoxDecoration(
+                                  color: colores.secondary,
                                   shape: BoxShape.circle,
                                 ),
                               ),
                               SizedBox(width: 5.pw),
                               GestureDetector(
                                 onTap: () {
-                                  // TODO(Gon): Agregar funcion al apretar link
+                                  // TODO(onyone): Agregar funcion al apretar link
+                                  showDialog<void>(
+                                    context: context,
+                                    builder: (context) =>
+                                        const PRDialogErrorNoDisponible(),
+                                  );
                                 },
                                 child: Text(
                                   linksArticulos[index],

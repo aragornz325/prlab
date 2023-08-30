@@ -41,12 +41,13 @@ class BlocRecuperarPassword
     emit(BlocRecuperarPasswordEstadoCargando.desde(state));
 
     try {
-      // TODO(anyone):
-      // Ver si este codigo efectivamente funciona!
-      await client.modules.auth.email.resetPassword(
+      final respuesta = await client.modules.auth.email.resetPassword(
         state.codigoOTP,
         state.password,
       );
+      if (!respuesta) {
+        emit(BlocRecuperarPasswordEstadoFallido.desde(state));
+      }
       emit(BlocRecuperarPasswordEstadoExitoso.desde(state));
     } catch (e) {
       emit(BlocRecuperarPasswordEstadoFallido.desde(state));

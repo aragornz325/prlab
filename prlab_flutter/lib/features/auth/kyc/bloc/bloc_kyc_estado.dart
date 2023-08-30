@@ -14,6 +14,7 @@ sealed class BlocKycEstado {
     this.nombreDeCompania = '',
     this.localidad = '',
     this.numeroContacto = '',
+    required this.idUsuario,
   });
 
   // ignore: avoid_unused_constructor_parameters
@@ -25,7 +26,9 @@ sealed class BlocKycEstado {
     String? nombreDeCompania,
     String? localidad,
     String? numeroContacto,
+    int? idUsuario,
   }) : this._(
+          idUsuario: idUsuario ?? otro.idUsuario,
           nombre: nombre ?? otro.nombre,
           apellido: apellido ?? otro.apellido,
           fechaDeNacimiento: fechaDeNacimiento ?? otro.fechaDeNacimiento,
@@ -33,6 +36,8 @@ sealed class BlocKycEstado {
           localidad: localidad ?? otro.localidad,
           numeroContacto: numeroContacto ?? otro.numeroContacto,
         );
+  // Id del usuario
+  final int idUsuario;
 
   // Nombre del usuario.
   final String nombre;
@@ -68,7 +73,10 @@ sealed class BlocKycEstado {
 /// {@endtemplate}
 class BlocKycEstadoInicial extends BlocKycEstado {
   /// {@macro BlocKycEstadoInicial}
-  const BlocKycEstadoInicial() : super._();
+  const BlocKycEstadoInicial(this.idUsuario) : super._(idUsuario: idUsuario);
+
+  /// id del usuario
+  final int idUsuario;
 }
 
 /// {@template BlocKycEstadoCargando}
@@ -95,6 +103,7 @@ class BlocKycEstadoRecolectandoDatos extends BlocKycEstado {
     super.nombreDeCompania,
     super.localidad,
     super.numeroContacto,
+    super.idUsuario,
   }) : super.desde();
 }
 

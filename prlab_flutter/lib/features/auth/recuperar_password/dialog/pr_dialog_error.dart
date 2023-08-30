@@ -16,7 +16,7 @@ class PRDialogError extends StatelessWidget {
 
     return PRDialog.error(
       context: context,
-      // TODO(Andreas):   El handleo de errores todavia no estan seteado,
+      // TODO(anyone):   El handleo de errores todavia no estan seteado,
       // por ende dejo esto por default hasta que se haga
       // un refactor de esto.
       descripcionError: l10n.commonSomethingWentWrong,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/administracion_contenido/escritorio/widgets/widgets.dart';
+import 'package:prlab_flutter/utilidades/widgets/drawer/pr_drawer.dart';
 
 /// {@template VistaEscritorioAdministracionContenido}
 /// es la vista de administración de contenido con la cual vemos tus artículos

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/administracion_contenido/escritorio/popup/popup_menu_crear_articulo.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template TituloBotonCrearArticulo}
 /// Título con un botón para crear un artículo.
@@ -20,6 +21,8 @@ class TituloBotonCrearArticulo extends StatelessWidget {
   Widget build(BuildContext context) {
     final colores = context.colores;
 
+    final l10n = context.l10n;
+
     return Row(
       children: [
         Icon(
@@ -28,8 +31,7 @@ class TituloBotonCrearArticulo extends StatelessWidget {
           color: colores.primary,
         ),
         Text(
-          // TODO(anyone): hacer que reciba el nombre del articulo o hacer l10n
-          nombreArticulo ?? 'Your articles',
+          nombreArticulo ?? l10n.pageContentAdministrationTitleYourArticle,
           style: TextStyle(
             fontSize: 30.pf,
             fontWeight: FontWeight.w600,

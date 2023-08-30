@@ -3,11 +3,12 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/theming/base.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template  ArticuloPRLab}
-/// Elemento de la lista que representa un pagina o caracteristica
-///  de los articulos que se puede presionar para abrirlo y permitir su edicion.
-/// Tiene sus factory, permite la creacion de distintos articulos.
+/// Elemento de la lista que representa un pagina o característica
+///  de los articulos que se puede presionar para abrirlo y permitir su edición.
+/// Tiene sus factory, permite la creación de distintos articulos.
 /// [ArticuloPRLab].
 /// {@endtemplate}
 class ArticuloPRLab extends StatelessWidget {
@@ -20,9 +21,8 @@ class ArticuloPRLab extends StatelessWidget {
     super.key,
   });
 
-  /// Articulo factory que tiene el icono de una casa.
-// TODO(SAM): Mejorar doc cuando se tengan mas detalles de como va a ser este
-// articulo.
+  /// Articulo factory que tiene el icono de una casa.en la lista de los
+  /// articulos.
   factory ArticuloPRLab.home({
     required String titulo,
     required String contenidoArticulo,
@@ -32,7 +32,13 @@ class ArticuloPRLab extends StatelessWidget {
     return ArticuloPRLab(
       titulo: titulo,
       contenidoArticulo: contenidoArticulo,
-      onTap: () {}, // TODO(SAM): poner onTap del articulo home.
+      onTap: () {
+        // TODO(onyone): poner onTap del articulo home.
+        showDialog<void>(
+          context: context,
+          builder: (context) => const PRDialogErrorNoDisponible(),
+        );
+      },
       contenido: Row(
         children: [
           Center(
