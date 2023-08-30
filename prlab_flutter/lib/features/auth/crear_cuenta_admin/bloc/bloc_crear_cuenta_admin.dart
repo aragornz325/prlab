@@ -33,7 +33,7 @@ class BlocCrearCuentaAdmin
       await client.mail.envioMailRegistro(state.email, 1);
 
       emit(
-        BlocCrearCuentaAdminEstadoExitosoEmailEnviado.desde(state),
+        BlocCrearCuentaAdminEstadoExitosoEmailEnviado.desde(state, email: ''),
       );
     } catch (e, st) {
       emit(
