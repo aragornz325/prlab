@@ -36,6 +36,7 @@ class AppRouter extends $AppRouter {
         ),
         AutoRoute(
           page: RutaRegistro.page,
+
           /// Este token proviene del email del cliente que le indica que va
           /// a crearse la cuenta al clickear el link, este token sirve para
           ///  verificarlo en el evento del BLoC.
@@ -72,6 +73,7 @@ class AppRouter extends $AppRouter {
             AutoRoute(
               page: RutaAdministracionContenido.page,
               path: 'content-management',
+              initial: true,
             ),
           ],
         ),
