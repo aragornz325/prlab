@@ -70,7 +70,7 @@
         "description": "Text The leading global PR agency in screen create admin account above of textfield email"
     },
     
-    "pageCreateAdminAlertdialogTitleEmailSend": "Enviar email",
+    "pageCreateAdminAlertdialogTitleEmailSend": "Email enviado",
     "@pageCreateAdminAlertdialogTitleEmailSend": {
         "description": "Text in screen create admin account in alertdialog in title, email sent"
     },
