@@ -101,6 +101,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const TextoBienvenida(),
+                    SizedBox(height: 90.ph),
                     SizedBox(
                       width: 360.pw,
                       height: 40.ph,
@@ -111,7 +112,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                         hintText: l10n.pageLoginPlaceholderEmail,
                       ),
                     ),
-                    SizedBox(height: 10.ph),
+                    SizedBox(height: 40.ph),
                     SizedBox(
                       width: 360.pw,
                       height: 40.ph,
