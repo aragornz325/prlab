@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
@@ -105,7 +107,11 @@ class TarjetaMarca extends StatelessWidget {
                   children: [
                     PRBoton.esOutlined(
                       onTap: () {
-                        // TODO(Gon): Agregar funcion 'lista' o popup de feature in progress
+                        context.router.push(
+                          RutaAdministracionDeUnaMarca(
+                            nombreMarca: nombreMarca,
+                          ),
+                        );
                       },
                       texto: l10n.commonList,
                       estaHabilitado: true,
