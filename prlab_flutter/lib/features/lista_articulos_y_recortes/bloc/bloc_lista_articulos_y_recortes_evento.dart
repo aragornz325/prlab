@@ -12,26 +12,42 @@ abstract class BlocListaArticulosYRecortesEvento extends Equatable {
   List<Object> get props => [];
 }
 
-/// {@template BlocCrearCuentaAdminEventEnviarEmail}
+/// {@template BlocListaArticulosYRecortesEventoFiltrar}
 /// Envia al email una invitación para que se cree una nueva cuenta,
 /// creada por el administrador
 /// {@endtemplate}
 class BlocListaArticulosYRecortesEventoFiltrar
     extends BlocListaArticulosYRecortesEvento {
-  /// {@macro BlocCrearCuentaAdminEventEnviarEmail}
+  /// {@macro BlocListaArticulosYRecortesEventoFiltrar}
   @override
   const BlocListaArticulosYRecortesEventoFiltrar();
 
   // TODO(anyone): agregar el tipo de filtrado sea por un enum u otro tipo
 }
 
-/// {@template BlocCrearCuentaAdminEventEnviarEmail}
+/// {@template BlocListaArticulosYRecortesEventoTraerArticulos}
 /// Envia al email una invitación para que se cree una nueva cuenta,
 /// creada por el administrador
 /// {@endtemplate}
 class BlocListaArticulosYRecortesEventoTraerArticulos
     extends BlocListaArticulosYRecortesEvento {
-  /// {@macro BlocCrearCuentaAdminEventEnviarEmail}
+  /// {@macro BlocListaArticulosYRecortesEventoTraerArticulos}
   @override
   const BlocListaArticulosYRecortesEventoTraerArticulos();
+}
+
+/// {@template BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos}
+/// Seleccionar entre Recortes y Articulos cambia el index seleccionado y
+/// muestra una vista distinta.
+/// {@endtemplate}
+class BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos
+    extends BlocListaArticulosYRecortesEvento {
+  /// {@macro BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos}
+  @override
+  const BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos({
+    required this.index,
+  });
+
+  /// Index a cambiar para alternar distintas vistas.
+  final int index;
 }

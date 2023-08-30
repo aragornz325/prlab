@@ -24,3 +24,22 @@ class PRDialogError extends StatelessWidget {
     );
   }
 }
+
+/// {@template PRDialogErrorNoDisponible}
+/// Muestra un mensaje de error en cualquier caso
+/// que la caracteristica solicitada no este desarrollada o disponible.
+/// {@endtemplate}
+class PRDialogErrorNoDisponible extends StatelessWidget {
+  /// {@macro PRDialogErrorNoDisponible}
+
+  const PRDialogErrorNoDisponible({super.key});
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    return PRDialog.error(
+      context: context,
+      onTap: () => Navigator.of(context).pop(),
+      descripcionError: l10n.commonFeatureNotAvailable,
+    );
+  }
+}

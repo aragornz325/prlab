@@ -65,13 +65,12 @@ class _PrDrawerState extends State<PrDrawer> {
             child: Align(
               alignment: Alignment.centerLeft,
               child: PRDrawerItem(
-                // TODO(Anyone): Funcion de deslogueo
-                onTap: () {},
+                onTap: () {}, // TODO(Anyone): Funcion de deslogueo
                 icono: Icons.logout_outlined,
                 tituloItem: l10n.drawerLogOut,
               ),
             ),
-          )
+          ),
         ],
       ),
     );

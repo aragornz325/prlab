@@ -8,6 +8,10 @@ extension PRLabColorScheme on ColorScheme {
   Color get primaryOpacidadSesenta =>
       themeDefaultPRLab.primary.withOpacity(0.6);
 
+  /// Este color es utilizable en ciertos backgrounds.
+  Color get primaryOpacidadCincuenta =>
+      themeDefaultPRLab.primary.withOpacity(0.5);
+
   /// Este color es utilizable en los items del drawer cuando son seleccionados
   Color get primaryOpacidadDiez => themeDefaultPRLab.primary.withOpacity(0.1);
 

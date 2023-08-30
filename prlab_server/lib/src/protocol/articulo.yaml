@@ -5,7 +5,7 @@ fields:
   contenido: String?
   idProyecto: int? parent=proyectos
   idAutor: int?
-  idStatus: int? parent=estados_de_articulos
+  idStatus: int?
   fechaEliminacion: DateTime?
   ultimaModificacion: DateTime
   fechaCreacion: DateTime

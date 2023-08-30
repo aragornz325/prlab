@@ -10,21 +10,33 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
   @override
   const BlocListaArticulosYRecortesEstado._({
     this.articulos = const [],
+    this.index = 0,
   });
 
   BlocListaArticulosYRecortesEstado.desde(
     BlocListaArticulosYRecortesEstado otro, {
-    List<PRArticulo>? articulos,
+    List<Articulo>? articulos,
+    int? index,
   }) : this._(
           articulos: articulos ?? otro.articulos,
+          index: index ?? otro.index,
         );
 
-  //TODO(anyone): agregar el modelo de los articulos para usar en el bloc
-  final List<PRArticulo> articulos;
+  final List<Articulo> articulos;
+
+  /// Index de la vista seleccionada
+  final int index;
+
+  /// Si es Articulos
+  bool get esArticulos => index == 0;
+
+  /// Si es Recortes
+  bool get esRecortes => index == 1;
 
   @override
   List<Object> get props => [
         articulos,
+        index,
       ];
 }
 
@@ -60,6 +72,7 @@ final class BlocListaArticulosYRecortesEstadoExitoso
   BlocListaArticulosYRecortesEstadoExitoso.desde(
     super.otro, {
     super.articulos,
+    super.index,
   }) : super.desde();
 }
 
