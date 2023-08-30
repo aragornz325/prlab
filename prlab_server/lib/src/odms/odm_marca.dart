@@ -40,6 +40,14 @@ class OdmMarca extends ODM {
     }
   }
 
+  Future<List<dynamic>> listarMarcasDeUsuario(
+    Session session, {
+    required int idUsuario,
+  }) async =>
+      await performOdmOperation(
+        session,
+        (session) => session.db.query('SELECT * FROM marcas WHERE EXISTS (SELECT 1 FROM json_array_elements_text(staff) AS element WHERE CAST(element AS INTEGER) = $idUsuario);'),);
+
   /// La función `eliminarMarca` elimina un registro de la base de datos según
   /// el ID proporcionado.
   /// Args:

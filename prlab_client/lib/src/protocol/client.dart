@@ -253,6 +253,13 @@ class _EndpointMarca extends _i1.EndpointRef {
         'listarMarcas',
         {},
       );
+
+  _i2.Future<List<dynamic>> listarMarcasDeUsuario({required int idUsuario}) =>
+      caller.callServerEndpoint<List<dynamic>>(
+        'marca',
+        'listarMarcasDeUsuario',
+        {'idUsuario': idUsuario},
+      );
 }
 
 class _Modules {
