@@ -46,8 +46,10 @@ class _VistaEscritorioCrearCuentaAdminState
                 width: 196.pw,
                 onTap: () {
                   // TODO(anyone): agregarle funcionalidad para volver atras.
-                  // todavía no esta definido que función cumple
-                  // el boton hacia atrás en esta vista
+                  showDialog<void>(
+                    context: context,
+                    builder: (context) => const PRDialogErrorNoDisponible(),
+                  );
                 },
                 texto: l10n.commonBack,
                 estaHabilitado: true,

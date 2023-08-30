@@ -70,7 +70,7 @@
         "description": "Text The leading global PR agency in screen create admin account above of textfield email"
     },
     
-    "pageCreateAdminAlertdialogTitleEmailSend": "Enviar email",
+    "pageCreateAdminAlertdialogTitleEmailSend": "Email enviado",
     "@pageCreateAdminAlertdialogTitleEmailSend": {
         "description": "Text in screen create admin account in alertdialog in title, email sent"
     },
@@ -299,6 +299,47 @@
     "@pageEditContentSubtitle": {
         "description":"Subtitle that appears on top of the list of articles and the edit container, when you are creating or editing an article"
     },
+    
+    "pageContentAdministrationPopupASingleArticle": "Un solo articulo",
+    "@pageContentAdministrationAdminPopupASingleArticle": {
+        "description":"text in the popup in the button create an article first options to choose"
+    },
+    
+    "pageContentAdministrationAdminPopupByBrand": "Por marca",
+    "@pageContentAdministrationAdminPopupByBrand": {
+        "description":"text in the popup in the button create an article second options to choose"
+    },
+
+    "pageContentAdministrationAdminPopupUseTemplate": "Usar plantilla",
+    "@pageContentAdministrationAdminPopupUseTemplate": {
+        "description":"text in the popup in the button create an article third options to choose"
+    },
+    
+    "pageContentAdministrationTitleYourArticle": "Tus articulos",
+    "@pageContentAdministrationTitleYourArticle": {
+        "description": "default title in case the article does not have a name,it is used in content management"
+    },
+
+    "pageContentAdministrationPopupSendViaMail": "Enviar por email",
+    "@pageContentAdministrationPopupSendViaMail": {
+        "description": "text in the popup Send via email,this edit text is displayed in a content management popup in an article, one of the options to choose from"
+    },
+    
+    "commonEdit": "Editar",
+    "@commonEdit": {
+        "description": "Text shown on a button that indicates to edit,this edit text is displayed in a content management popup one of the options to choose from"
+    },
+
+    "commonDuplicate": "Duplicar",
+    "@commonDuplicate": {
+        "description": "Text shown on a button that indicates to Duplicate,this edit text is displayed in a content management popup one of the options to choose from"
+    },
+
+    "commonDelete": "Eliminar",
+    "@commonDelete": {
+        "description": "Text that indicates to Delete,this edit text is displayed in a content management popup one of the options to choose from"
+    },
+
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"

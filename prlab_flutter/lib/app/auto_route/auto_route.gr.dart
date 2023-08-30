@@ -12,6 +12,8 @@ import 'package:auto_route/auto_route.dart' as _i11;
 import 'package:flutter/material.dart' as _i12;
 import 'package:prlab_flutter/features/administracion_contenido/pagina_administracion_contenido.dart'
     as _i1;
+import 'package:auto_route/auto_route.dart' as _i10;
+import 'package:flutter/material.dart' as _i11;
 import 'package:prlab_flutter/features/auth/crear_cuenta_admin/pagina_crear_cuenta_admin.dart'
     as _i4;
 import 'package:prlab_flutter/features/auth/kyc/pagina_kyc.dart' as _i7;
@@ -226,6 +228,10 @@ class RutaKyc extends _i11.PageRouteInfo<void> {
   const RutaKyc({List<_i11.PageRouteInfo>? children})
       : super(
           RutaKyc.name,
+          args: RutaKycArgs(
+            idUsuario: idUsuario,
+            key: key,
+          ),
           initialChildren: children,
         );
 
