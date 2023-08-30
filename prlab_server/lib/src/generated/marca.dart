@@ -13,10 +13,10 @@ class Marca extends _i1.TableRow {
     int? id,
     required this.nombre,
     required this.sitioWeb,
-    this.staff,
-    this.fechaCreacion,
-    this.ultimaModificacion,
-    this.fechaEliminacion,
+    required this.staff,
+    required this.fechaCreacion,
+    required this.ultimaModificacion,
+    required this.fechaEliminacion,
   }) : super(id);
 
   factory Marca.fromJson(
@@ -30,13 +30,13 @@ class Marca extends _i1.TableRow {
       sitioWeb: serializationManager
           .deserialize<String>(jsonSerialization['sitioWeb']),
       staff: serializationManager
-          .deserialize<List<int>?>(jsonSerialization['staff']),
+          .deserialize<List<int>>(jsonSerialization['staff']),
       fechaCreacion: serializationManager
-          .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
+          .deserialize<DateTime>(jsonSerialization['fechaCreacion']),
       ultimaModificacion: serializationManager
-          .deserialize<DateTime?>(jsonSerialization['ultimaModificacion']),
+          .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
       fechaEliminacion: serializationManager
-          .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
+          .deserialize<DateTime>(jsonSerialization['fechaEliminacion']),
     );
   }
 
@@ -46,16 +46,16 @@ class Marca extends _i1.TableRow {
 
   String sitioWeb;
 
-  List<int>? staff;
+  List<int> staff;
 
-  DateTime? fechaCreacion;
+  DateTime fechaCreacion;
 
-  DateTime? ultimaModificacion;
+  DateTime ultimaModificacion;
 
-  DateTime? fechaEliminacion;
+  DateTime fechaEliminacion;
 
   @override
-  String get tableName => 'marca';
+  String get tableName => 'marcas';
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -239,7 +239,7 @@ class Marca extends _i1.TableRow {
 typedef MarcaExpressionBuilder = _i1.Expression Function(MarcaTable);
 
 class MarcaTable extends _i1.Table {
-  MarcaTable() : super(tableName: 'marca');
+  MarcaTable() : super(tableName: 'marcas');
 
   /// The database id, set if the object has been inserted into the
   /// database or if it has been fetched from the database. Otherwise,

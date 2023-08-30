@@ -8,11 +8,75 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
-import 'package:prlab_client/src/protocol/cliente.dart' as _i3;
-import 'package:prlab_client/src/protocol/marca.dart' as _i4;
-import 'package:serverpod_auth_client/module.dart' as _i5;
-import 'dart:io' as _i6;
-import 'protocol.dart' as _i7;
+import 'package:prlab_client/src/protocol/articulo.dart' as _i3;
+import 'package:prlab_client/src/protocol/cliente.dart' as _i4;
+import 'package:prlab_client/src/protocol/marca.dart' as _i5;
+import 'package:serverpod_auth_client/module.dart' as _i6;
+import 'dart:io' as _i7;
+import 'protocol.dart' as _i8;
+
+class _EndpointArticulo extends _i1.EndpointRef {
+  _EndpointArticulo(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'articulo';
+
+  /// La función `crearArticulo` es que crea un artículo usando una sesión y un
+  /// payload, y devuelve un booleano que indica si la creación fue exitosa.
+  ///
+  /// Args:
+  ///   session (Session): Un objeto de sesión que representa la sesión del
+  /// usuario actual. Puede contener información como el token de autenticación
+  /// del usuario u otros datos relacionados con la sesión.
+  ///   payload (Articulo): El parámetro "payload" es un objeto de tipo
+  /// "Articulo" que contiene los datos necesarios para crear un artículo.
+  _i2.Future<bool> crearArticulo(_i3.Articulo payload) =>
+      caller.callServerEndpoint<bool>(
+        'articulo',
+        'crearArticulo',
+        {'payload': payload},
+      );
+
+  /// La función `listarArticulos` recupera una lista de artículos usando un objeto de sesión y un
+  /// objeto de servicio.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio.
+  _i2.Future<List<_i3.Articulo>> listarArticulos() =>
+      caller.callServerEndpoint<List<_i3.Articulo>>(
+        'articulo',
+        'listarArticulos',
+        {},
+      );
+
+  /// La función `obtenerArticulo` es una función asincrónica de Dart que toma un objeto `Session` y un
+  /// `id` entero como parámetros, y devuelve un `Future` que se resuelve en un objeto `Articulo`.
+  ///
+  /// Args:
+  ///   session (Session): Un objeto de sesión que contiene información sobre la sesión del usuario.
+  ///   id (int): El parámetro "id" es un número entero que representa el identificador único del
+  /// artículo que desea obtener.
+  _i2.Future<_i3.Articulo> obtenerArticulo(int id) =>
+      caller.callServerEndpoint<_i3.Articulo>(
+        'articulo',
+        'obtenerArticulo',
+        {'id': id},
+      );
+
+  /// La función `eliminarArticulo` es una función asincrónica de Dart que intenta eliminar un artículo
+  /// utilizando una sesión e ID proporcionadas, y devuelve un valor booleano que indica si la
+  /// eliminación fue exitosa o no.
+  ///
+  /// Args:
+  ///   session (Session): Un parámetro obligatorio de tipo Sesión.
+  ///   id (int): El parámetro "id" es un número entero que representa el identificador único del
+  /// artículo que debe eliminarse.
+  _i2.Future<bool> eliminarArticulo(int id) => caller.callServerEndpoint<bool>(
+        'articulo',
+        'eliminarArticulo',
+        {'id': id},
+      );
+}
 
 /// La clase `AuthEndpoint` está ampliando la clase `Endpoint`. por tanto maneja
 /// todas las peticiones relacionadas con el auth del sistema
@@ -99,7 +163,7 @@ class _EndpointCliente extends _i1.EndpointRef {
 
   /// Guarda los datos personales del cliente insertados en el formulario de
   /// registro.
-  _i2.Future<bool> completarKyc(_i3.Cliente datosDelCliente) =>
+  _i2.Future<bool> completarKyc(_i4.Cliente datosDelCliente) =>
       caller.callServerEndpoint<bool>(
         'cliente',
         'completarKyc',
@@ -149,38 +213,42 @@ class _EndpointMarca extends _i1.EndpointRef {
   @override
   String get name => 'marca';
 
-  _i2.Future<bool> crearMarca(_i4.Marca payload) =>
+  /// La función `crearMarca` crea una nueva marca llamando al método `crearMarca` del servicio
+  /// `servicioMarca` y devuelve un booleano que indica éxito.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la sesión del usuario
+  /// actual.
+  ///   payload (Marca): El parámetro "payload" es un objeto de tipo "Marca" que contiene los datos
+  /// necesarios para crear una nueva marca..
+  _i2.Future<bool> crearMarca(_i5.Marca payload) =>
       caller.callServerEndpoint<bool>(
         'marca',
         'crearMarca',
         {'payload': payload},
       );
 
-  _i2.Future<bool> editarMarca(
-    int id,
-    String nombre,
-    String descripcion,
-    String logo,
-  ) =>
-      caller.callServerEndpoint<bool>(
-        'marca',
-        'editarMarca',
-        {
-          'id': id,
-          'nombre': nombre,
-          'descripcion': descripcion,
-          'logo': logo,
-        },
-      );
-
+  /// La función `eliminarMarca` es una función que toma un objeto `Session` y un entero `id`
+  /// como parámetros, e intenta eliminar una marca usando el método `servicioMarca.eliminarMarca`.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la sesión del usuario
+  /// actual
+  ///   id (int): La identificación de la marca que debe eliminarse.
   _i2.Future<bool> eliminarMarca(int id) => caller.callServerEndpoint<bool>(
         'marca',
         'eliminarMarca',
         {'id': id},
       );
 
-  _i2.Future<List<_i4.Marca>> listarMarcas() =>
-      caller.callServerEndpoint<List<_i4.Marca>>(
+  /// La función `listarMarcas` recupera una lista de marcas usando un objeto de sesión y un objeto de
+  /// servicio.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro "sesión" es de tipo "Sesión". Se utiliza para pasar la
+  /// información de la sesión al método "listarMarcas".
+  _i2.Future<List<_i5.Marca>> listarMarcas() =>
+      caller.callServerEndpoint<List<_i5.Marca>>(
         'marca',
         'listarMarcas',
         {},
@@ -189,29 +257,32 @@ class _EndpointMarca extends _i1.EndpointRef {
 
 class _Modules {
   _Modules(Client client) {
-    auth = _i5.Caller(client);
+    auth = _i6.Caller(client);
   }
 
-  late final _i5.Caller auth;
+  late final _i6.Caller auth;
 }
 
 class Client extends _i1.ServerpodClient {
   Client(
     String host, {
-    _i6.SecurityContext? context,
+    _i7.SecurityContext? context,
     _i1.AuthenticationKeyManager? authenticationKeyManager,
   }) : super(
           host,
-          _i7.Protocol(),
+          _i8.Protocol(),
           context: context,
           authenticationKeyManager: authenticationKeyManager,
         ) {
+    articulo = _EndpointArticulo(this);
     auth = _EndpointAuth(this);
     cliente = _EndpointCliente(this);
     mail = _EndpointMail(this);
     marca = _EndpointMarca(this);
     modules = _Modules(this);
   }
+
+  late final _EndpointArticulo articulo;
 
   late final _EndpointAuth auth;
 
@@ -225,6 +296,7 @@ class Client extends _i1.ServerpodClient {
 
   @override
   Map<String, _i1.EndpointRef> get endpointRefLookup => {
+        'articulo': articulo,
         'auth': auth,
         'cliente': cliente,
         'mail': mail,

@@ -20,7 +20,8 @@ import 'mensaje_registro.dart' as _i10;
 import 'organizacion.dart' as _i11;
 import 'proyecto.dart' as _i12;
 import 'publicacion.dart' as _i13;
-import 'package:prlab_server/src/generated/marca.dart' as _i14;
+import 'package:prlab_server/src/generated/articulo.dart' as _i14;
+import 'package:prlab_server/src/generated/marca.dart' as _i15;
 export 'articulo.dart';
 export 'cliente.dart';
 export 'comentario.dart';
@@ -72,6 +73,12 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'int?',
         ),
         _i2.ColumnDefinition(
+          name: 'idMarca',
+          columnType: _i2.ColumnType.integer,
+          isNullable: true,
+          dartType: 'int?',
+        ),
+        _i2.ColumnDefinition(
           name: 'idAutor',
           columnType: _i2.ColumnType.integer,
           isNullable: true,
@@ -92,14 +99,14 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'ultimaModificacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: false,
-          dartType: 'DateTime',
+          isNullable: true,
+          dartType: 'DateTime?',
         ),
         _i2.ColumnDefinition(
           name: 'fechaCreacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: false,
-          dartType: 'DateTime',
+          isNullable: true,
+          dartType: 'DateTime?',
         ),
       ],
       foreignKeys: [
@@ -112,7 +119,17 @@ class Protocol extends _i1.SerializationManagerServer {
           onUpdate: null,
           onDelete: _i2.ForeignKeyAction.cascade,
           matchType: null,
-        )
+        ),
+        _i2.ForeignKeyDefinition(
+          constraintName: 'articulos_fk_1',
+          columns: ['idMarca'],
+          referenceTable: 'marcas',
+          referenceTableSchema: 'public',
+          referenceColumns: ['id'],
+          onUpdate: null,
+          onDelete: _i2.ForeignKeyAction.cascade,
+          matchType: null,
+        ),
       ],
       indexes: [
         _i2.IndexDefinition(
@@ -502,7 +519,7 @@ class Protocol extends _i1.SerializationManagerServer {
       managed: true,
     ),
     _i2.TableDefinition(
-      name: 'marca',
+      name: 'marcas',
       schema: 'public',
       columns: [
         _i2.ColumnDefinition(
@@ -510,7 +527,7 @@ class Protocol extends _i1.SerializationManagerServer {
           columnType: _i2.ColumnType.integer,
           isNullable: false,
           dartType: 'int?',
-          columnDefault: 'nextval(\'marca_id_seq\'::regclass)',
+          columnDefault: 'nextval(\'marcas_id_seq\'::regclass)',
         ),
         _i2.ColumnDefinition(
           name: 'nombre',
@@ -527,32 +544,32 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'staff',
           columnType: _i2.ColumnType.json,
-          isNullable: true,
-          dartType: 'List<int>?',
+          isNullable: false,
+          dartType: 'List<int>',
         ),
         _i2.ColumnDefinition(
           name: 'fechaCreacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: true,
-          dartType: 'DateTime?',
+          isNullable: false,
+          dartType: 'DateTime',
         ),
         _i2.ColumnDefinition(
           name: 'ultimaModificacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: true,
-          dartType: 'DateTime?',
+          isNullable: false,
+          dartType: 'DateTime',
         ),
         _i2.ColumnDefinition(
           name: 'fechaEliminacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: true,
-          dartType: 'DateTime?',
+          isNullable: false,
+          dartType: 'DateTime',
         ),
       ],
       foreignKeys: [],
       indexes: [
         _i2.IndexDefinition(
-          indexName: 'marca_pkey',
+          indexName: 'marcas_pkey',
           tableSpace: null,
           elements: [
             _i2.IndexElementDefinition(
@@ -941,13 +958,15 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i1.getType<_i13.Publicacion?>()) {
       return (data != null ? _i13.Publicacion.fromJson(data, this) : null) as T;
     }
-    if (t == _i1.getType<List<int>?>()) {
-      return (data != null
-          ? (data as List).map((e) => deserialize<int>(e)).toList()
-          : null) as dynamic;
+    if (t == List<int>) {
+      return (data as List).map((e) => deserialize<int>(e)).toList() as dynamic;
     }
-    if (t == List<_i14.Marca>) {
-      return (data as List).map((e) => deserialize<_i14.Marca>(e)).toList()
+    if (t == List<_i14.Articulo>) {
+      return (data as List).map((e) => deserialize<_i14.Articulo>(e)).toList()
+          as dynamic;
+    }
+    if (t == List<_i15.Marca>) {
+      return (data as List).map((e) => deserialize<_i15.Marca>(e)).toList()
           as dynamic;
     }
     try {

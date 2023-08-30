@@ -61,21 +61,21 @@ ALTER TABLE ONLY "informacion_de_contactos"
 
 
 --
--- Class Marca as table marca
+-- Class Marca as table marcas
 --
 
-CREATE TABLE "marca" (
+CREATE TABLE "marcas" (
   "id" serial,
   "nombre" text NOT NULL,
   "sitioWeb" text NOT NULL,
-  "staff" json,
-  "fechaCreacion" timestamp without time zone,
-  "ultimaModificacion" timestamp without time zone,
-  "fechaEliminacion" timestamp without time zone
+  "staff" json NOT NULL,
+  "fechaCreacion" timestamp without time zone NOT NULL,
+  "ultimaModificacion" timestamp without time zone NOT NULL,
+  "fechaEliminacion" timestamp without time zone NOT NULL
 );
 
-ALTER TABLE ONLY "marca"
-  ADD CONSTRAINT marca_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY "marcas"
+  ADD CONSTRAINT marcas_pkey PRIMARY KEY (id);
 
 
 --
@@ -184,11 +184,12 @@ CREATE TABLE "articulos" (
   "titulo" text NOT NULL,
   "contenido" text,
   "idProyecto" integer,
+  "idMarca" integer,
   "idAutor" integer,
   "idStatus" integer,
   "fechaEliminacion" timestamp without time zone,
-  "ultimaModificacion" timestamp without time zone NOT NULL,
-  "fechaCreacion" timestamp without time zone NOT NULL
+  "ultimaModificacion" timestamp without time zone,
+  "fechaCreacion" timestamp without time zone
 );
 
 ALTER TABLE ONLY "articulos"
@@ -198,6 +199,11 @@ ALTER TABLE ONLY "articulos"
   ADD CONSTRAINT articulos_fk_0
     FOREIGN KEY("idProyecto")
       REFERENCES proyectos(id)
+        ON DELETE CASCADE;
+ALTER TABLE ONLY "articulos"
+  ADD CONSTRAINT articulos_fk_1
+    FOREIGN KEY("idMarca")
+      REFERENCES marcas(id)
         ON DELETE CASCADE;
 
 --
