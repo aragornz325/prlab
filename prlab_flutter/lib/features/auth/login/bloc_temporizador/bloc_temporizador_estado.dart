@@ -23,7 +23,7 @@ sealed class BlocTemporizadorEstado {
   /// del cronometro, este valor representa el tiempo en segundos.
   final int duracionTimer;
 
-  /// esta corriedo el temporizador :D
+  /// Getter que indica si el cronometro/temporizador esta corriendo
   bool get estaCorriendo => this is BlocTemporizadorEstadoCorriendo;
 }
 
