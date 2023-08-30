@@ -1,8 +1,8 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prlab_flutter/features/administracion_contenido/bloc/bloc_administracion_contenido.dart';
-import 'package:prlab_flutter/features/administracion_contenido/escritorio/vista_escritorio_administracion_contenido.dart';
+import 'package:prlab_flutter/features/dashboard/administracion_contenido/bloc/bloc_administracion_contenido.dart';
+import 'package:prlab_flutter/features/dashboard/administracion_contenido/escritorio/vista_escritorio_administracion_contenido.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
 
 /// {@template PaginaAdministracionContenido}

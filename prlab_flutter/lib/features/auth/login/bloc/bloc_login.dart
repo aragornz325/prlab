@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:prlab_flutter/features/auth/login/bloc_temporizador/bloc_temporizador.dart';
 import 'package:prlab_flutter/prlab_configuracion/base.dart';
 import 'package:prlab_flutter/utilidades/funciones/expresion_regular.dart';
 import 'package:prlab_flutter/utilidades/serverpod_client.dart';

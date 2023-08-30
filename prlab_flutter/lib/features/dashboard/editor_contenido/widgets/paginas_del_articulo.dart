@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/editor_contenido/celular/vista_editor_contenido_celular.dart';
-import 'package:prlab_flutter/features/editor_contenido/widgets/articulo_prlab.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/celular/vista_editor_contenido_celular.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/articulo_prlab.dart';
 
 /// {@template PaginasDelArticulo}
 /// Columna vertical que tiene las distintas paginas del articulo a las que se

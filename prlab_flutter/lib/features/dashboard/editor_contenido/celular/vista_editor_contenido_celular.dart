@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-
-import 'package:prlab_flutter/features/editor_contenido/celular/vista_editor_contenido_celular.dart';
-import 'package:prlab_flutter/features/editor_contenido/widgets/container_edicion_articulo.dart';
-import 'package:prlab_flutter/features/editor_contenido/widgets/paginas_del_articulo.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
-
 import 'package:prlab_flutter/utilidades/widgets/encabezado_de_seccion.dart';
-import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
-/// {@template VistaEditorContenidoEscritorio}
-/// Vista de editor de contenido de un articulo para escritorio
-/// [VistaEditorContenidoEscritorio].
+/// {@template VistaRedaccionEdicionContenidoCelular}
+/// Vista de editor de contenido de un articulo para celular
+/// [VistaEditorContenidoCelular].
 /// {@endtemplate}
-class VistaEditorContenidoEscritorio extends StatelessWidget {
-  /// {@macro VistaEditorContenidoEscritorio}
-  VistaEditorContenidoEscritorio({super.key});
+class VistaEditorContenidoCelular extends StatelessWidget {
+  /// {@macro VistaRedaccionEdicionContenidoCelular}
+  VistaEditorContenidoCelular({super.key});
 
   final listaPaginasDeArticulos = ListaDePaginasDelArticulo([
     // TODO(SAM): eliminar cuando venga del back
@@ -215,4 +210,16 @@ class VistaEditorContenidoEscritorio extends StatelessWidget {
       ),
     );
   }
+}
+
+class Article {
+  // TODO(SAM): remover luego cuando este el modelo del back
+  Article(this.title, this.content);
+  final String title;
+  final String content;
+}
+
+class ListaDePaginasDelArticulo {
+  ListaDePaginasDelArticulo(this.articulos);
+  final List<Article> articulos;
 }

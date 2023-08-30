@@ -7,7 +7,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:intl/intl.dart';
 import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
-import 'package:prlab_flutter/features/lista_articulos_y_recortes/popup/popup.dart';
+import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/popup/popup.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 import 'package:prlab_flutter/widgets/widgets.dart';

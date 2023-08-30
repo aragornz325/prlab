@@ -10,8 +10,6 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i10;
 import 'package:flutter/material.dart' as _i11;
-import 'package:prlab_flutter/features/administracion_contenido/pagina_administracion_contenido.dart'
-    as _i1;
 import 'package:prlab_flutter/features/auth/crear_cuenta_admin/pagina_crear_cuenta_admin.dart'
     as _i3;
 import 'package:prlab_flutter/features/auth/kyc/pagina_kyc.dart' as _i6;
@@ -20,10 +18,12 @@ import 'package:prlab_flutter/features/auth/recuperar_password/pagina_recuperar_
     as _i8;
 import 'package:prlab_flutter/features/auth/registro/pagina_registro.dart'
     as _i9;
+import 'package:prlab_flutter/features/dashboard/administracion_contenido/pagina_administracion_contenido.dart'
+    as _i1;
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/pagina_administracion_marcas.dart'
     as _i2;
 import 'package:prlab_flutter/features/dashboard/pagina_dashboard.dart' as _i4;
-import 'package:prlab_flutter/features/editor_contenido/pagina_editor_contenido.dart'
+import 'package:prlab_flutter/features/dashboard/editor_contenido/pagina_editor_contenido.dart'
     as _i5;
 
 abstract class $AppRouter extends _i10.RootStackRouter {

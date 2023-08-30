@@ -36,7 +36,7 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
       Rect.fromPoints(
         button.localToGlobal(Offset.zero, ancestor: overlay),
         button.localToGlobal(
-          button.size.bottomRight(Offset(0, -260.0)),
+          button.size.bottomRight(const Offset(0, -260)),
           ancestor: overlay,
         ),
       ),

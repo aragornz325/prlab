@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/administracion_contenido/escritorio/popup/popup_menu_crear_articulo.dart';
+import 'package:prlab_flutter/features/dashboard/administracion_contenido/escritorio/popup/popup_menu_crear_articulo.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template TituloBotonCrearArticulo}
