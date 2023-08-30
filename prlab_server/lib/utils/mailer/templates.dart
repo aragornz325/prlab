@@ -314,7 +314,7 @@ class PlantillasCorreo {
 																				style="color: #00b2ff;"><a
 																					href="mailto:support@prlab.com"
 																					rel="noopener"
-																					style="text-decoration: underline; color: #0068a5;"
+																					style="text-decoration: underline; color: #00b2ff;"
 																					target="_blank"
 																					title="support@prlab.com">support@prlab.com</a></span></strong>
 																	</p>
