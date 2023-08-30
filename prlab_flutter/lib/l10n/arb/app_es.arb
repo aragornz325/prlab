@@ -250,6 +250,10 @@
     "@pageKYCSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the register of the user is a success. This is shown in an alert dialog after pressing button continue."
     },
+    "pageRegisterErrorDialogDescription" : "Tu cuenta no pudo ser creada,\n  contáctanos ",
+    "@pageRegisterErrorDialogDescription": {
+        "description":"This message corresponds to a situation where the register of the user is an error. This is shown in an alert dialog after pressing sign up."
+    },
     
     "pageKYCSuccessDialogButtonText" : "Ir a Iniciar sesión",
     "@pageKYCSuccessDialogButtonText": {
@@ -340,31 +344,136 @@
         "description": "Text that indicates to Delete,this edit text is displayed in a content management popup one of the options to choose from"
     },
 
-    "commonPRLab": "PR lab",
-    "@commonPRLab": {
-        "description": "Text PR lab in title of screen"
-    },
+
     "drawerHome":"Inicio",
     "@drawerHome":{
         "description":"Text to indicate that you will be redirected to home"
     },
-
+    
     "drawerProjects":"Proyectos",
     "@drawerProjects":{
         "description":"Text to indicate that you will be redirected to the projects section"
     },
-
+    
     "drawerTemplates":"Plantillas",
     "@drawerTemplates":{
         "description":"Text to indicate that you will be redirected to the templates section"
     },
-
+    
     "drawerLogOut": "Cerrar sesión",
     "@drawerLogOut":{
         "description":"Text in the logout item"
     },
+ 
+    "prAppBarCreateContent":"Crear Contenido",
+    "@prAppBarCreateContent":{
+        "description": "Text of the first item in the app bar used to display a content creation menu"
+    },
 
-    "pageRegisterErrorDialogDescription" : "Tu cuenta no pudo ser creada,\n  contáctanos ",
+    "prAppBarCreateContentCreateArticle":"Crear articule",
+    "@prAppBarCreateContentCreateArticle":{
+        "description":"Text to redirect to the create article menu"
+    },
+
+    "prAppBarCreateContentCreateReport":"Crear reporte",
+    "@prAppBarCreateContentCreateReport":{
+        "description":"Text to redirect to the create report menu"
+    },
+
+    "prAppBarCreateContentYourArticles":"Tus articulos",
+    "@prAppBarCreateContentYourArticles":{
+        "description":"Text to redirect to the your articles menu"
+    },    
+
+    "prAppBarDistributionContent":"Distribucion del Contenido",
+    "@prAppBarDistributionContent":{
+        "description": "Text of the second item in the app bar used to display a content distribution menu"
+    },
+
+    "prAppBarDistributionContentProjects":"Proyectos",
+    "@prAppBarDistributionContentProjects":{
+        "description":"Text to redirect to the projects menu"
+    },
+
+    "prAppBarDistributionContentDashboards":"Tableros",
+    "@prAppBarDistributionContentDashboards":{
+        "description":"Text to redirect to the dashboards menu"
+    },
+
+    "prAppBarCoverageMedia":"Medios de Cobertura",
+    "@prAppBarCoverageMedia":{
+        "description": "Text of the third item in the app bar used to display a coverage media menu"
+    },
+
+    "prAppBarOptionsHelpCenter":"Centro de ayuda",
+    "@prAppBarOptionsHelpCenter":{
+        "description":"Text to redirect to the help center"
+    },
+
+    "prAppBarOptionsContactSupport":"Soporte de contacto",
+    "@prAppBarOptionsContactSupport":{
+        "description":"Text to redirect to the contact support"
+    },
+
+    "prAppBarOptionsPRLabWeb":"PR Lab web",
+    "@prAppBarOptionsPRLabWeb":{
+        "description":"Text to redirect to the PR Lab web"
+    },
+
+    "prAppBarOptionsPRLabNewsroom":"PR Lab redaccion",
+    "@prAppBarOptionsPRLabNewsroom":{
+        "description":"Text to redirect to the PR Lab newsroom"
+    },
+
+    "prAppBarOptionsProductUpdates":"Actualizaciones de producto",
+    "@prAppBarOptionsProductUpdates":{
+        "description":"Text to redirect to the Product updates"
+    },
+
+    "prAppBarSettingsAccountSettigns":"Configuraciones de cuenta",
+    "@prAppBarSettingsAccountSettigns":{
+        "description":"Text to redirect to the account settigns"
+    },
+
+    "prAppBarSettingsPayments":"Pagos",
+    "@prAppBarSettingsPayments":{
+        "description":"Text to redirect to the paymens menu"
+    },
+
+    "prAppBarSettingsUsers":"Usuarios",
+    "@prAppBarSettingsUsers":{
+        "description":"Text to redirect to the Users menu"
+    },
+
+    "prAppBarSettingsEmailSetup":"Configuración de email",
+    "@prAppBarSettingsEmailSetup":{
+        "description":"Text to redirect to the Email setup"
+    },
+
+    "prAppBarSettingsActivityHistory":"Historial de actividad",
+    "@prAppBarSettingsActivityHistory":{
+        "description":"Text to redirect to the Activity history"
+    },
+
+    "prAppBarProfile":"Perfil",
+    "@prAppBarProfile":{
+        "description":"Text to redirect to the Profile menu"
+    },
+
+    "prAppBarProfileChangeAccount":"Cambiar cuenta",
+    "@prAppBarProfileChangeAccount":{
+        "description":"Text to change account"
+    },
+
+    "prAppBarProfileSignOut":"Cerrar sesión",
+    "@prAppBarProfileSignOut":{
+        "description":"Text to sing out"
+    },
+
+    "commonPRLab": "PR lab",
+    "@commonPRLab": {
+        "description": "Text PR lab in title of screen"
+    },
     "commonBack": "Atras",
     "@commonBack": {
         "description": "Text back in button of screen create admin account"

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 /// Esquema de colores a utilizar en el theme light
 const themeDefaultPRLab = ColorScheme.light(
+  surfaceTint: Colors.white,
+
   /// Color principal de la paleta de colores.
   primary: Color(0xFFA12B46),
 
@@ -28,7 +30,4 @@ const themeDefaultPRLab = ColorScheme.light(
 
   /// Color utilizado para notificar error.
   error: Color(0xffE00707),
-
-  //TODO(Manu): esto es para el divider de drawer, cambiar todos los onsecondary usados en componentes por outlineVariant
-  outlineVariant: Color(0xffd9d9d9),
 );
