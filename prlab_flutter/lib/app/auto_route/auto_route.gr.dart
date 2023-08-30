@@ -10,10 +10,6 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i11;
 import 'package:flutter/material.dart' as _i12;
-import 'package:prlab_flutter/features/administracion_contenido/pagina_administracion_contenido.dart'
-    as _i1;
-import 'package:auto_route/auto_route.dart' as _i10;
-import 'package:flutter/material.dart' as _i11;
 import 'package:prlab_flutter/features/auth/crear_cuenta_admin/pagina_crear_cuenta_admin.dart'
     as _i4;
 import 'package:prlab_flutter/features/auth/kyc/pagina_kyc.dart' as _i7;
@@ -22,13 +18,15 @@ import 'package:prlab_flutter/features/auth/recuperar_password/pagina_recuperar_
     as _i9;
 import 'package:prlab_flutter/features/auth/registro/pagina_registro.dart'
     as _i10;
+import 'package:prlab_flutter/features/dashboard/administracion_contenido/pagina_administracion_contenido.dart'
+    as _i1;
 import 'package:prlab_flutter/features/dashboard/administracion_de_una_marca.dart/pagina_administracion_de_una_marca.dart'
     as _i2;
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/pagina_administracion_marcas.dart'
     as _i3;
-import 'package:prlab_flutter/features/dashboard/pagina_dashboard.dart' as _i5;
-import 'package:prlab_flutter/features/editor_contenido/pagina_editor_contenido.dart'
+import 'package:prlab_flutter/features/dashboard/editor_contenido/pagina_editor_contenido.dart'
     as _i6;
+import 'package:prlab_flutter/features/dashboard/pagina_dashboard.dart' as _i5;
 
 abstract class $AppRouter extends _i11.RootStackRouter {
   $AppRouter({super.navigatorKey});
@@ -42,7 +40,10 @@ abstract class $AppRouter extends _i11.RootStackRouter {
       );
     },
     RutaAdministracionDeUnaMarca.name: (routeData) {
-      final args = routeData.argsAs<RutaAdministracionDeUnaMarcaArgs>();
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<RutaAdministracionDeUnaMarcaArgs>(
+          orElse: () => RutaAdministracionDeUnaMarcaArgs(
+              nombreMarca: pathParams.getString('nombreMarca')));
       return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i2.PaginaAdministracionDeUnaMarca(
@@ -76,9 +77,13 @@ abstract class $AppRouter extends _i11.RootStackRouter {
       );
     },
     RutaKyc.name: (routeData) {
+      final args = routeData.argsAs<RutaKycArgs>();
       return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.PaginaKyc(),
+        child: _i7.PaginaKyc(
+          idUsuario: args.idUsuario,
+          key: args.key,
+        ),
       );
     },
     RutaLogin.name: (routeData) {
@@ -141,6 +146,7 @@ class RutaAdministracionDeUnaMarca
             nombreMarca: nombreMarca,
             key: key,
           ),
+          rawPathParams: {'nombreMarca': nombreMarca},
           initialChildren: children,
         );
 
@@ -224,9 +230,12 @@ class RutaEditorContenido extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.PaginaKyc]
-class RutaKyc extends _i11.PageRouteInfo<void> {
-  const RutaKyc({List<_i11.PageRouteInfo>? children})
-      : super(
+class RutaKyc extends _i11.PageRouteInfo<RutaKycArgs> {
+  RutaKyc({
+    required int idUsuario,
+    _i12.Key? key,
+    List<_i11.PageRouteInfo>? children,
+  }) : super(
           RutaKyc.name,
           args: RutaKycArgs(
             idUsuario: idUsuario,
@@ -237,7 +246,24 @@ class RutaKyc extends _i11.PageRouteInfo<void> {
 
   static const String name = 'RutaKyc';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static const _i11.PageInfo<RutaKycArgs> page =
+      _i11.PageInfo<RutaKycArgs>(name);
+}
+
+class RutaKycArgs {
+  const RutaKycArgs({
+    required this.idUsuario,
+    this.key,
+  });
+
+  final int idUsuario;
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return 'RutaKycArgs{idUsuario: $idUsuario, key: $key}';
+  }
 }
 
 /// generated route for

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/encabezado_de_seccion.dart';
-import 'package:prlab_flutter/features/lista_articulos_y_recortes/lista_articulos_y_recortes.dart';
+import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/lista_articulos_y_recortes.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
 
@@ -15,6 +15,8 @@ class VistaEscritorioAdministracionDeUnaMarca extends StatelessWidget {
     required this.nombreMarca,
     super.key,
   });
+
+  /// Nombre de la marca a mostrar en el encabezado
   final String nombreMarca;
   @override
   Widget build(BuildContext context) {
@@ -43,13 +45,14 @@ class VistaEscritorioAdministracionDeUnaMarca extends StatelessWidget {
               SizedBox(height: 40.ph),
               EncabezadoDeSeccion(
                 icono: Icons.article,
-                titulo: '$nombreMarca ${l10n.commonArticles}',
+                titulo: '$nombreMarca ${l10n.commonArticles.toLowerCase()}',
                 descripcion: l10n.pageBrandAdministrationDescription,
               ),
+              SizedBox(height: 5.ph),
               const ListaArticulosYRecortes(),
               SizedBox(
                 width: 1040.pw,
-                height: 84.ph,
+                height: 60.ph,
               ),
             ],
           ),

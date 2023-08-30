@@ -7,16 +7,18 @@ import 'package:prlab_flutter/features/dashboard/administracion_de_una_marca.dar
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
 
 /// {@template PaginaAdministracionDeUnaMarca}
-/// Pagina de administracion de marcas donde el usuario puede ver sus marcas e
-/// informacion de las mismas
+/// Pagina de administracion de una marcas donde el usuario puede los articulos
+/// de sus marcas e informacion de los mismas
 /// {@endtemplate}
 @RoutePage()
 class PaginaAdministracionDeUnaMarca extends StatelessWidget {
   /// {@macro PaginaAdministracionDeUnaMarca}
   const PaginaAdministracionDeUnaMarca({
-    required this.nombreMarca,
+    @PathParam('nombreMarca') required this.nombreMarca,
     super.key,
   });
+
+  /// Nombre de la marca a mostrar en el encabezado
   final String nombreMarca;
   @override
   Widget build(BuildContext context) {
