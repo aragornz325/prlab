@@ -70,10 +70,19 @@ class TarjetaMarca extends StatelessWidget {
                     ),
                   ],
                 ),
-                Icon(
-                  Icons.settings_outlined,
-                  color: colores.primary,
-                  size: 24.pf,
+                GestureDetector(
+                  onTap: () {
+                    // TODO(anyone): agregarle funcionalidad
+                    showDialog<void>(
+                      context: context,
+                      builder: (context) => const PRDialogErrorNoDisponible(),
+                    );
+                  },
+                  child: Icon(
+                    Icons.settings_outlined,
+                    color: colores.primary,
+                    size: 24.pf,
+                  ),
                 ),
               ],
             ),
@@ -104,7 +113,7 @@ class TarjetaMarca extends StatelessWidget {
                   children: [
                     PRBoton.esOutlined(
                       onTap: () {
-                        // TODO(onyone): Agregar funcion 'lista' o popup de feature in progress
+                        // TODO(onyone): Agregar funcion 'lista'
                         showDialog<void>(
                           context: context,
                           builder: (context) =>
@@ -119,7 +128,7 @@ class TarjetaMarca extends StatelessWidget {
                     SizedBox(width: 20.pw),
                     PRBoton(
                       onTap: () {
-                        // TODO(onyone): Agregar funcion 'crear' o popup de feature in progress
+                        // TODO(onyone): Agregar funcion 'crear'
                         showDialog<void>(
                           context: context,
                           builder: (context) =>

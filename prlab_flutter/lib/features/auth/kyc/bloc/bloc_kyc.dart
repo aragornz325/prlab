@@ -13,23 +13,9 @@ part 'bloc_kyc_evento.dart';
 /// {@endtemplate}
 class BlocKyc extends Bloc<BlocKcyEvento, BlocKycEstado> {
   /// {@macro BlocKyc}
-  BlocKyc() : super(const BlocKycEstadoInicial()) {
-    on<BlocKycEventoInsertarAgregarIdUsuario>(_onInsertarIdUsuario);
+  BlocKyc({required int idUsuario}) : super(BlocKycEstadoInicial(idUsuario)) {
     on<BlocKycEventoInsertarInformacionDeKyc>(_onInsertarInformacionDeKyc);
     on<BlocKycEventoRecolectarInformacionDeKyc>(_onRecolectarInformacionDeKyc);
-  }
-
-  /// Guarda en el estado el id del usuario
-  Future<void> _onInsertarIdUsuario(
-    BlocKycEventoInsertarAgregarIdUsuario event,
-    Emitter<BlocKycEstado> emit,
-  ) async {
-    emit(
-      BlocKycEstadoRecolectandoDatos.desde(
-        state,
-        idUsuario: event.idUsuario,
-      ),
-    );
   }
 
   /// Inserta los datos que el usuario completo en los campos de texto

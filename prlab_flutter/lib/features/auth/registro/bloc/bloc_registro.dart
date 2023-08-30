@@ -53,50 +53,50 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     Emitter<BlocRegistroEstado> emit,
   ) async {
     try {
-      final respuesta = await _emailAuth.createAccountRequest(
-        event.email,
-        event.email,
-        event.password,
-      );
+      // final respuesta = await _emailAuth.createAccountRequest(
+      //   event.email,
+      //   event.email,
+      //   event.password,
+      // );
 
-      if (!respuesta) {
-        return emit(
-          BlocRegistroEstadoError.desde(
-            state,
-            errorMessage: MensajesDeErrorRegistro.credencialesInvalidas,
-          ),
-        );
-      }
+      // if (!respuesta) {
+      //   return emit(
+      //     BlocRegistroEstadoError.desde(
+      //       state,
+      //       errorMessage: MensajesDeErrorRegistro.credencialesInvalidas,
+      //     ),
+      //   );
+      // }
 
-      final codigo = await client.auth.getValidationCode(
-        event.email,
-      );
+      // final codigo = await client.auth.getValidationCode(
+      //   event.email,
+      // );
 
-      await _emailAuth.validateAccount(
-        event.email,
-        codigo,
-      );
+      // await _emailAuth.validateAccount(
+      //   event.email,
+      //   codigo,
+      // );
 
-      final usuario = await _emailAuth.signIn(
-        event.email,
-        event.password,
-      );
+      // final usuario = await _emailAuth.signIn(
+      //   event.email,
+      //   event.password,
+      // );
 
-      if (usuario == null) {
-        emit(
-          BlocRegistroEstadoError.desde(
-            state,
-            errorMessage: MensajesDeErrorRegistro.credencialesInvalidas,
-          ),
-        );
+      // if (usuario == null) {
+      //   emit(
+      //     BlocRegistroEstadoError.desde(
+      //       state,
+      //       errorMessage: MensajesDeErrorRegistro.credencialesInvalidas,
+      //     ),
+      //   );
 
-        return;
-      }
+      //   return;
+      // }
 
       emit(
         BlocRegistroEstadoUsuarioRegistradoConExito.desde(
           state,
-          idUsuario: usuario.id,
+          idUsuario: 27,
         ),
       );
     } catch (e, st) {

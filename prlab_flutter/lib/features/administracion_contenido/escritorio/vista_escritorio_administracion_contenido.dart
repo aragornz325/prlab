@@ -27,7 +27,7 @@ class VistaEscritorioAdministracionContenido extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // TODO(anyone): cambiar por el drawer
-            const PrDrawer(),
+            SizedBox(width: 210.pw, height: 100.hp),
             SizedBox(width: 30.pw, height: 100.hp),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

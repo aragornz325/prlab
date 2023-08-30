@@ -8,7 +8,7 @@ class VistaCelularCrearCuentaAdmin extends StatelessWidget {
   /// {@macro VistaCelularCrearCuentaAdmin}
   const VistaCelularCrearCuentaAdmin({super.key});
 
-  // TODO(anyone): Hablar con guille de que agregue esta pagina para celular.
+  // TODO(anyone): Hacer la UI para la vista de celular
   @override
   Widget build(BuildContext context) {
     return const Scaffold();

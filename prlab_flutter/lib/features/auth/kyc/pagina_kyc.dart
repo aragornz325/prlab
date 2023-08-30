@@ -30,10 +30,7 @@ class PaginaKycState extends State<PaginaKyc> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BlocKyc()
-        ..add(
-          BlocKycEventoInsertarAgregarIdUsuario(idUsuario: widget.idUsuario),
-        ),
+      create: (context) => BlocKyc(idUsuario: widget.idUsuario),
       child: const FullResponsiveScreen(
         mobile: VistaKycCelular(),
         desktop: VistaKycEscritorio(),

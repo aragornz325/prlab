@@ -6,10 +6,10 @@ import 'package:prlab_flutter/utilidades/widgets/drawer/drawer.dart';
 enum DrawerPage {
   home,
   projects,
-  ninguno,
+  sinElegir,
   templates;
 
-  bool get nunguno => this == DrawerPage.ninguno;
+  bool get ninguno => this == DrawerPage.sinElegir;
   bool get esHome => this == DrawerPage.home;
   bool get esProjects => this == DrawerPage.projects;
   bool get esTemplates => this == DrawerPage.templates;

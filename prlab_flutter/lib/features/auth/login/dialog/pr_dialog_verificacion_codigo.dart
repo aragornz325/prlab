@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
-import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/features/auth/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/features/auth/login/bloc_temporizador/bloc_temporizador.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/funciones/functions.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
@@ -67,33 +67,30 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
             widgetDeSuffix: BlocBuilder<BlocLogin, BlocLoginEstado>(
               builder: (context, state) {
                 return InkWell(
-                  onTap:
-                      !(estadoTemporizador is BlocTemporizadorEstadoCorriendo)
-                          ? () {
-                              context.read<BlocLogin>().add(
-                                    BlocLoginEventoEnviarCodigoAlUsuario(
-                                      email: state.email,
-                                    ),
-                                  );
-                              context
-                                  .read<BlocTemporizador>()
-                                  .add(BlocTemporizadorEventoEmpezar());
-                            }
-                          : null,
+                  onTap: !estadoTemporizador.estaCorriendo
+                      ? () {
+                          context.read<BlocLogin>().add(
+                                BlocLoginEventoEnviarCodigoAlUsuario(
+                                  email: state.email,
+                                ),
+                              );
+                          context
+                              .read<BlocTemporizador>()
+                              .add(BlocTemporizadorEventoEmpezar());
+                        }
+                      : null,
                   child: Text(
-                    !(estadoTemporizador is BlocTemporizadorEstadoCorriendo)
+                    !estadoTemporizador.estaCorriendo
                         ? l10n.alertDialogTextfieldSuffixGetCode
                         : l10n.alertDialogTextfieldSuffixCodeSend,
                     style: TextStyle(
                       decoration: TextDecoration.combine([
-                        if (!(estadoTemporizador
-                            is BlocTemporizadorEstadoCorriendo))
+                        if (!estadoTemporizador.estaCorriendo)
                           TextDecoration.underline
                         else
                           TextDecoration.none,
                       ]),
-                      color: !(estadoTemporizador
-                              is BlocTemporizadorEstadoCorriendo)
+                      color: !estadoTemporizador.estaCorriendo
                           ? colores.primary
                           : colores.secondary,
                       fontSize: 12.pf,

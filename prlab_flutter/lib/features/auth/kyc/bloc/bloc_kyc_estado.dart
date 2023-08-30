@@ -14,7 +14,7 @@ sealed class BlocKycEstado {
     this.nombreDeCompania = '',
     this.localidad = '',
     this.numeroContacto = '',
-    this.idUsuario = 0,
+    required this.idUsuario,
   });
 
   // ignore: avoid_unused_constructor_parameters
@@ -73,7 +73,10 @@ sealed class BlocKycEstado {
 /// {@endtemplate}
 class BlocKycEstadoInicial extends BlocKycEstado {
   /// {@macro BlocKycEstadoInicial}
-  const BlocKycEstadoInicial() : super._();
+  const BlocKycEstadoInicial(this.idUsuario) : super._(idUsuario: idUsuario);
+
+  /// id del usuario
+  final int idUsuario;
 }
 
 /// {@template BlocKycEstadoCargando}

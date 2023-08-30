@@ -21,7 +21,7 @@ class PrDrawer extends StatefulWidget {
 
 class _PrDrawerState extends State<PrDrawer> {
   /// "Index" inicial del drawer
-  DrawerPage enumDrawer = DrawerPage.ninguno;
+  DrawerPage enumDrawer = DrawerPage.sinElegir;
 
   @override
   Widget build(BuildContext context) {
