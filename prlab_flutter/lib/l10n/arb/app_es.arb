@@ -124,7 +124,7 @@
         "description":"text in alertdialog suffix textfield on button if the verificaction code was sent, Code sent"
     },
     
-    "alertDialogTooltipRequestNewCode":"Puedes solicitar un nuevo\n código en {seconds} segundos.\nEste expirara en {minutes}\n minutos.",
+    "alertDialogTooltipRequestNewCode":"Puedes solicitar un nuevo\n código en {seconds} segundos.\nEste expirará en {minutes}\n minutos.",
     "@alertDialogTooltipRequestNewCode": {
         "description":"part text in alertdialog of textfield on tooltip, You can request a new code in 56 seconds.This will expire in 30 minutes.",
         "placeholders" : {
