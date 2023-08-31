@@ -65,6 +65,7 @@ class AppRouter extends $AppRouter {
             AutoRoute(
               path: 'brands-administration',
               page: RutaAdministracionMarcas.page,
+              initial: true,
             ),
             AutoRoute(
               path: 'brand-administration/:nombreMarca',
@@ -77,7 +78,6 @@ class AppRouter extends $AppRouter {
             AutoRoute(
               page: RutaAdministracionContenido.page,
               path: 'content-management',
-              initial: true,
             ),
           ],
         ),
