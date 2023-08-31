@@ -93,6 +93,8 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                     ),
               ),
               SizedBox(height: 40.sh),
+              // TODO(anyone): cambiar esto a el showpicker del calendario y que
+              //se le pase la fecha seleccionada al bloc
               PRTextFormField.fecha(
                 controller: controllerFechaDeNacimiento,
                 hintText: l10n.commonDateHintText,

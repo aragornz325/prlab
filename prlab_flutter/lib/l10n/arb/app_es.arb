@@ -70,7 +70,7 @@
         "description": "Text The leading global PR agency in screen create admin account above of textfield email"
     },
     
-    "pageCreateAdminAlertdialogTitleEmailSend": "Enviar email",
+    "pageCreateAdminAlertdialogTitleEmailSend": "Email enviado",
     "@pageCreateAdminAlertdialogTitleEmailSend": {
         "description": "Text in screen create admin account in alertdialog in title, email sent"
     },
@@ -250,6 +250,10 @@
     "@pageKYCSuccessDialogDescription": {
         "description":"This message corresponds to a situation where the register of the user is a success. This is shown in an alert dialog after pressing button continue."
     },
+    "pageRegisterErrorDialogDescription" : "Tu cuenta no pudo ser creada,\n  contáctanos ",
+    "@pageRegisterErrorDialogDescription": {
+        "description":"This message corresponds to a situation where the register of the user is an error. This is shown in an alert dialog after pressing sign up."
+    },
     
     "pageKYCSuccessDialogButtonText" : "Ir a Iniciar sesión",
     "@pageKYCSuccessDialogButtonText": {
@@ -275,36 +279,201 @@
     "@pageContentAdministrationBarLastUpdate": {
         "description":"text that shows the last date the article was updated the list of articles"
     },
-
+     "pageEditContentEditArticleContainerButtonUploadLogo" : "Subir logo",
+    "@pageEditContentEditArticleContainerButtonUploadLogo": {
+        "description":"Text of the button to upload the main logo, when you are creating or editing an article"
+    },
+    "pageEditContentEditArticleContainerButtonUploadSecondaryLogo" : "Subir logo secundario",
+    "@pageEditContentEditArticleContainerButtonUploadSecondaryLogo": {
+        "description":"Text of the button to upload the secondary logo, when you are creating or editing an article"
+    },
+     "pageEditContentEditArticleContainerHintTitle" : "Ingresa título de artículo",
+    "@pageEditContentEditArticleContainerHintTitle": {
+        "description":"Hint text of the article title, when you are creating or editing an article"
+    },
+    "pageEditContentEditArticleContainerHintDescription" : "Ingresa descripción de artículo",
+    "@pageEditContentEditArticleContainerHintDescription": {
+        "description":"Hint text of the article description, when you are creating or editing an article"
+    },
     "pageContentAdministrationBarInformationAuthor" : "Autor",
     "@pageContentAdministrationBarInformationAuthor": {
         "description":"shows the image of the author or who created this article or their two initials"
     },
-    "commonPRLab": "PR lab",
-    "@commonPRLab": {
-        "description": "Text PR lab in title of screen"
+     "pageEditContentSubtitle" : "Crea un artículo, compartilo con tu equipo, editálo, agrega comentarios y más.",
+    "@pageEditContentSubtitle": {
+        "description":"Subtitle that appears on top of the list of articles and the edit container, when you are creating or editing an article"
     },
+    
+    "pageContentAdministrationPopupASingleArticle": "Un solo articulo",
+    "@pageContentAdministrationAdminPopupASingleArticle": {
+        "description":"text in the popup in the button create an article first options to choose"
+    },
+    
+    "pageContentAdministrationAdminPopupByBrand": "Por marca",
+    "@pageContentAdministrationAdminPopupByBrand": {
+        "description":"text in the popup in the button create an article second options to choose"
+    },
+
+    "pageContentAdministrationAdminPopupUseTemplate": "Usar plantilla",
+    "@pageContentAdministrationAdminPopupUseTemplate": {
+        "description":"text in the popup in the button create an article third options to choose"
+    },
+    
+    "pageContentAdministrationTitleYourArticle": "Tus articulos",
+    "@pageContentAdministrationTitleYourArticle": {
+        "description": "default title in case the article does not have a name,it is used in content management"
+    },
+
+    "pageContentAdministrationPopupSendViaMail": "Enviar por email",
+    "@pageContentAdministrationPopupSendViaMail": {
+        "description": "text in the popup Send via email,this edit text is displayed in a content management popup in an article, one of the options to choose from"
+    },
+    
+    "commonEdit": "Editar",
+    "@commonEdit": {
+        "description": "Text shown on a button that indicates to edit,this edit text is displayed in a content management popup one of the options to choose from"
+    },
+
+    "commonDuplicate": "Duplicar",
+    "@commonDuplicate": {
+        "description": "Text shown on a button that indicates to Duplicate,this edit text is displayed in a content management popup one of the options to choose from"
+    },
+
+    "commonDelete": "Eliminar",
+    "@commonDelete": {
+        "description": "Text that indicates to Delete,this edit text is displayed in a content management popup one of the options to choose from"
+    },
+
+
     "drawerHome":"Inicio",
     "@drawerHome":{
         "description":"Text to indicate that you will be redirected to home"
     },
-
+    
     "drawerProjects":"Proyectos",
     "@drawerProjects":{
         "description":"Text to indicate that you will be redirected to the projects section"
     },
-
+    
     "drawerTemplates":"Plantillas",
     "@drawerTemplates":{
         "description":"Text to indicate that you will be redirected to the templates section"
     },
-
+    
     "drawerLogOut": "Cerrar sesión",
     "@drawerLogOut":{
         "description":"Text in the logout item"
     },
+ 
+    "prAppBarCreateContent":"Crear Contenido",
+    "@prAppBarCreateContent":{
+        "description": "Text of the first item in the app bar used to display a content creation menu"
+    },
 
-    "pageRegisterErrorDialogDescription" : "Tu cuenta no pudo ser creada,\n  contáctanos ",
+    "prAppBarCreateContentCreateArticle":"Crear articule",
+    "@prAppBarCreateContentCreateArticle":{
+        "description":"Text to redirect to the create article menu"
+    },
+
+    "prAppBarCreateContentCreateReport":"Crear reporte",
+    "@prAppBarCreateContentCreateReport":{
+        "description":"Text to redirect to the create report menu"
+    },
+
+    "prAppBarCreateContentYourArticles":"Tus articulos",
+    "@prAppBarCreateContentYourArticles":{
+        "description":"Text to redirect to the your articles menu"
+    },    
+
+    "prAppBarDistributionContent":"Distribucion del Contenido",
+    "@prAppBarDistributionContent":{
+        "description": "Text of the second item in the app bar used to display a content distribution menu"
+    },
+
+    "prAppBarDistributionContentProjects":"Proyectos",
+    "@prAppBarDistributionContentProjects":{
+        "description":"Text to redirect to the projects menu"
+    },
+
+    "prAppBarDistributionContentDashboards":"Tableros",
+    "@prAppBarDistributionContentDashboards":{
+        "description":"Text to redirect to the dashboards menu"
+    },
+
+    "prAppBarCoverageMedia":"Medios de Cobertura",
+    "@prAppBarCoverageMedia":{
+        "description": "Text of the third item in the app bar used to display a coverage media menu"
+    },
+
+    "prAppBarOptionsHelpCenter":"Centro de ayuda",
+    "@prAppBarOptionsHelpCenter":{
+        "description":"Text to redirect to the help center"
+    },
+
+    "prAppBarOptionsContactSupport":"Soporte de contacto",
+    "@prAppBarOptionsContactSupport":{
+        "description":"Text to redirect to the contact support"
+    },
+
+    "prAppBarOptionsPRLabWeb":"PR Lab web",
+    "@prAppBarOptionsPRLabWeb":{
+        "description":"Text to redirect to the PR Lab web"
+    },
+
+    "prAppBarOptionsPRLabNewsroom":"PR Lab redaccion",
+    "@prAppBarOptionsPRLabNewsroom":{
+        "description":"Text to redirect to the PR Lab newsroom"
+    },
+
+    "prAppBarOptionsProductUpdates":"Actualizaciones de producto",
+    "@prAppBarOptionsProductUpdates":{
+        "description":"Text to redirect to the Product updates"
+    },
+
+    "prAppBarSettingsAccountSettigns":"Configuraciones de cuenta",
+    "@prAppBarSettingsAccountSettigns":{
+        "description":"Text to redirect to the account settigns"
+    },
+
+    "prAppBarSettingsPayments":"Pagos",
+    "@prAppBarSettingsPayments":{
+        "description":"Text to redirect to the paymens menu"
+    },
+
+    "prAppBarSettingsUsers":"Usuarios",
+    "@prAppBarSettingsUsers":{
+        "description":"Text to redirect to the Users menu"
+    },
+
+    "prAppBarSettingsEmailSetup":"Configuración de email",
+    "@prAppBarSettingsEmailSetup":{
+        "description":"Text to redirect to the Email setup"
+    },
+
+    "prAppBarSettingsActivityHistory":"Historial de actividad",
+    "@prAppBarSettingsActivityHistory":{
+        "description":"Text to redirect to the Activity history"
+    },
+
+    "prAppBarProfile":"Perfil",
+    "@prAppBarProfile":{
+        "description":"Text to redirect to the Profile menu"
+    },
+
+    "prAppBarProfileChangeAccount":"Cambiar cuenta",
+    "@prAppBarProfileChangeAccount":{
+        "description":"Text to change account"
+    },
+
+    "prAppBarProfileSignOut":"Cerrar sesión",
+    "@prAppBarProfileSignOut":{
+        "description":"Text to sign out"
+    },
+
+    "commonPRLab": "PR lab",
+    "@commonPRLab": {
+        "description": "Text PR lab in title of screen"
+    },
     "commonBack": "Atras",
     "@commonBack": {
         "description": "Text back in button of screen create admin account"
@@ -365,6 +534,10 @@
     "@commonError": {
         "description":"text in alertdialog title, Error"
     },
+    "commonFeatureNotAvailable":"Esta característica no está disponible en esta versión.",
+    "@commonFeatureNotAvailable":{
+        "descripcion": "Text in pop up to indicate that a feature in progress"
+    },
     "commonSomethingWentWrong" : "Algo salio mal",
     "@commonSomethingWentWrong": {
         "description":"text in alertdialog sub title, Something went wrong"
@@ -403,7 +576,10 @@
     "@commonArticles": {
         "description": "A piece of writing on a brand"
     },
-
+  "commonAddPage": "Agregar página",
+    "@commonAddPage": {
+        "description": "Text shown on a button that indicates to add a page"
+    },
     "commonClippings" : "Recortes",
     "@commonClippings": {
         "description": "An article cut"
@@ -418,7 +594,18 @@
     "@commonSearch": {
         "description": "Text in the search textfield of a particular article on the content management page is now only used on that page"
     },
-
+    "commonPreview": "Vista previa",
+    "@commonPreview": {
+        "description": "Text shown on a button that indicates a preview"
+    },
+      "commonShare": "Compartir",
+    "@commonShare": {
+        "description": "Text shown on a button that indicates to share"
+    },
+     "commonPublish": "Publicar",
+    "@commonPublish": {
+        "description": "Text shown on a button that indicates to publish"
+    },
     "commonAll": "Todo",
     "@commonAll": {
         "description": "Text where a dropdown is used to filter by certain characteristics that an article has in general. Example, status or date."

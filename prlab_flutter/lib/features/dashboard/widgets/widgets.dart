@@ -1,0 +1,1 @@
+export 'lista_articulos_y_recortes/lista_articulos_y_recortes.dart';

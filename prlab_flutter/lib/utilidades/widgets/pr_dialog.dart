@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/auth/login/bloc_temporizador/bloc_temporizador.dart';
-
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
@@ -168,8 +165,7 @@ class PRDialog extends StatelessWidget {
               titulo,
               style: TextStyle(
                 fontSize: 20.pf,
-                // TODO(anyone): Cambiar colors a los del theme
-                color: Colors.black,
+                color: colores.tertiary,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -283,7 +279,6 @@ class PRDialog extends StatelessWidget {
     final colores = context.colores;
 
     return AlertDialog(
-      // TODO(anyone): Cambiar colors a los del theme
       backgroundColor: colores.background,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.sw),
@@ -297,31 +292,33 @@ class PRDialog extends StatelessWidget {
   }
 }
 
-// TODO(anyone): sacar y poner en los refactor de los textfield
-class TextfieldCodigoDeRecuperarPassword extends StatefulWidget {
-  const TextfieldCodigoDeRecuperarPassword({
-    required this.controller,
-    required this.email,
-    super.key,
-  });
-  final TextEditingController controller;
-  final String email;
+/// {@template PRDialogErrorNoDisponible}
+/// Muestra un mensaje de error en cualquier caso
+/// que la caracteristica solicitada no este desarrollada o disponible.
+/// {@endtemplate}
+class PRDialogErrorNoDisponible extends StatelessWidget {
+  /// {@macro PRDialogErrorNoDisponible}
 
-  @override
-  State<TextfieldCodigoDeRecuperarPassword> createState() =>
-      _TextfieldCodigoDeRecuperarPasswordState();
-}
-
-class _TextfieldCodigoDeRecuperarPasswordState
-    extends State<TextfieldCodigoDeRecuperarPassword> {
+  const PRDialogErrorNoDisponible({super.key});
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<BlocTemporizador>().state;
+    final l10n = context.l10n;
+    final colores = context.colores;
 
-    return PrLabTextfield(
-      controller: widget.controller,
-      solicitoNuevoCodigo: state is BlocTemporizadorEstadoCorriendo,
-      segundosFaltantes: state.duracionTimer,
+    return PRDialog.informacion(
+      onTap: () => Navigator.of(context).pop(),
+      context: context,
+      titulo: l10n.commonError,
+      botonText: l10n.commonBack,
+      content: Text(
+        l10n.commonFeatureNotAvailable,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 15.pf,
+          color: colores.secondary,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
     );
   }
 }

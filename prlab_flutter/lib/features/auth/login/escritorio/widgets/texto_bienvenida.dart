@@ -25,39 +25,44 @@ class TextoBienvenida extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Padding(
-          padding: EdgeInsets.only(bottom: 30.ph),
-          child: Image.asset(
-            Assets.assets_images_mano_saludando_png,
-            height: 180.ph,
-            width: 110.pw,
-            fit: BoxFit.contain,
+        Center(
+          child: SizedBox(
+            child: Image.asset(
+              Assets.assets_images_mano_saludando_png,
+              height: 280.ph,
+              width: 110.pw,
+              fit: BoxFit.contain,
+            ),
           ),
         ),
-        Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: 4.pw),
-              child: Text(
-                l10n.pageLoginGreetings,
-                style: TextStyle(
-                  color: colores.tertiary,
-                  fontSize: 40.pf,
-                  fontWeight: FontWeight.w600,
+        SizedBox(
+          height: 200.ph,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 4.pw),
+                child: Text(
+                  l10n.pageLoginGreetings,
+                  style: TextStyle(
+                    color: colores.tertiary,
+                    fontSize: 40.pf,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 10.ph),
-            Text(
-              l10n.pageLoginLogInTo,
-              style: TextStyle(
-                color: colores.secondary,
-                fontSize: 15.pf,
-                fontWeight: FontWeight.w400,
+              SizedBox(height: 10.ph),
+              Text(
+                l10n.pageLoginLogInTo,
+                style: TextStyle(
+                  color: colores.secondary,
+                  fontSize: 15.pf,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-            ),
-            SizedBox(height: 20.ph),
-          ],
+              SizedBox(height: 20.ph),
+            ],
+          ),
         ),
         SizedBox(
           width: 130.pw,

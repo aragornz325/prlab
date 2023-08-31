@@ -3,6 +3,8 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/escritorio/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/widgets/appbar/appbar.dart';
+import 'package:prlab_flutter/utilidades/widgets/drawer/drawer.dart';
 
 /// {@template VistaEscritorioAdministracionMarcas}
 /// Vista del dashboard en la seccion de administracion de marcas
@@ -21,31 +23,24 @@ class VistaEscritorioAdministracionMarcas extends StatelessWidget {
       backgroundColor: colores.background,
       body: Row(
         children: [
-          Container(
-            width: 210.pw,
-            height: 100.hp,
-            color: colores.primary.withOpacity(.5),
-          ),
+          const PrDrawer(),
           SizedBox(width: 30.pw),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: 1040.pw,
-                height: 100.ph,
-                color: colores.primary.withOpacity(.5),
+              PRAppBar(
+                onTap: (value) {},
               ),
-              SizedBox(height: 40.pw),
+              SizedBox(height: 40.ph),
               EncabezadoDeSeccion(
                 icono: Icons.beenhere_outlined,
                 titulo: l10n.pageBrandAdministrationTitle,
                 descripcion: l10n.pageBrandAdministrationDescription,
               ),
-              SizedBox(height: 20.pw),
               const SeccionTarjetasDeMarca(),
               SizedBox(
                 width: 1040.pw,
-                height: 85.ph,
+                height: 84.ph,
               ),
             ],
           ),

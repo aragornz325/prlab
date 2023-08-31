@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
-import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/features/auth/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/features/auth/login/bloc_temporizador/bloc_temporizador.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/funciones/functions.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
@@ -46,6 +46,7 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
     final estadoTemporizador = context.watch<BlocTemporizador>().state;
 
     return PRDialog.solicitudAccion(
+      height: 300,
       context: context,
       estaHabilitado: estadoLogin.codigo.length == 8,
       onTap: () {
@@ -56,11 +57,56 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
       titulo: l10n.commonRecoverPassword,
       content: Column(
         children: [
-          PrLabTextfield(
+          PRTextFormField.verificacionCodigo(
+            width: 360.pw,
             controller: controllerCodigo,
+            context: context,
             solicitoNuevoCodigo:
                 estadoTemporizador is BlocTemporizadorEstadoCorriendo,
             segundosFaltantes: estadoTemporizador.duracionTimer,
+            widgetDeSuffix: BlocBuilder<BlocLogin, BlocLoginEstado>(
+              builder: (context, state) {
+                return InkWell(
+                  onTap: !estadoTemporizador.estaCorriendo
+                      ? () {
+                          context.read<BlocLogin>().add(
+                                BlocLoginEventoEnviarCodigoAlUsuario(
+                                  email: state.email,
+                                ),
+                              );
+                          context
+                              .read<BlocTemporizador>()
+                              .add(BlocTemporizadorEventoEmpezar());
+                        }
+                      : null,
+                  child: Text(
+                    !estadoTemporizador.estaCorriendo
+                        ? l10n.alertDialogTextfieldSuffixGetCode
+                        : l10n.alertDialogTextfieldSuffixCodeSend,
+                    style: TextStyle(
+                      decoration: TextDecoration.combine([
+                        if (!estadoTemporizador.estaCorriendo)
+                          TextDecoration.underline
+                        else
+                          TextDecoration.none,
+                      ]),
+                      color: !estadoTemporizador.estaCorriendo
+                          ? colores.primary
+                          : colores.secondary,
+                      fontSize: 12.pf,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                );
+              },
+            ),
+            onChanged: (value) {
+              if (value.isNotEmpty || value != '') {
+                context.read<BlocLogin>().add(
+                      BlocLoginEventoActualizarCodigo(codigo: value),
+                    );
+              }
+            },
           ),
           Text(
             textoAQuienFueEnviadoEmail,

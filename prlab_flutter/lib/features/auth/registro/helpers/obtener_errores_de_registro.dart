@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro_state.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// Funcion que devuelve el mensaje de error traducido al idioma adecuado.
 String obtenerErroresDeRegistro(

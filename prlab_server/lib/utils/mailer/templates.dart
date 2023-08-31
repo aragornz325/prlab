@@ -1,10 +1,10 @@
 /// Clase que contiene las diferentes plantillas para mailing.
 class PlantillasCorreo {
-
   /// Plantilla de mailing que contiene elementos esteticos comunes.
   String mailingGeneral({
     required String contenido,
-  }) => '''
+  }) =>
+      '''
 <!DOCTYPE html>
 
 <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
@@ -101,30 +101,6 @@ class PlantillasCorreo {
 		<tbody>
 			<tr>
 				<td>
-					<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-1"
-						role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-						<tbody>
-							<tr>
-								<td>
-									<table align="center" border="0" cellpadding="0" cellspacing="0"
-										class="row-content stack" role="presentation"
-										style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000; width: 500px; margin: 0 auto;"
-										width="500">
-										<tbody>
-											<tr>
-												<td class="column column-1"
-													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
-													width="100%">
-													<div class="spacer_block block-1"
-														style="height:80px;line-height:80px;font-size:1px;"> </div>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
 					<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-2"
 						role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 						<tbody>
@@ -154,7 +130,7 @@ class PlantillasCorreo {
 															</td>
 														</tr>
 													</table>
-													<div class="spacer_block block-2"
+<div class="spacer_block block-2"
 														style="height:40px;line-height:40px;font-size:1px;"> </div>
 												</td>
 											</tr>
@@ -213,7 +189,7 @@ class PlantillasCorreo {
 												<td class="column column-1"
 													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
 													width="100%">
-													<div class="spacer_block block-1"
+<div class="spacer_block block-1"
 														style="height:20px;line-height:20px;font-size:1px;"> </div>
 													<table border="0" cellpadding="0" cellspacing="0"
 														class="paragraph_block block-2" role="presentation"
@@ -228,7 +204,7 @@ class PlantillasCorreo {
 															</td>
 														</tr>
 													</table>
-													<div class="spacer_block block-3"
+<div class="spacer_block block-3"
 														style="height:20px;line-height:20px;font-size:1px;"> </div>
 												</td>
 											</tr>
@@ -270,7 +246,7 @@ class PlantillasCorreo {
 															</td>
 														</tr>
 													</table>
-													<div class="spacer_block block-2"
+<div class="spacer_block block-2"
 														style="height:60px;line-height:60px;font-size:1px;"> </div>
 												</td>
 											</tr>
@@ -295,7 +271,7 @@ class PlantillasCorreo {
 												<td class="column column-1"
 													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: middle; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
 													width="100%">
-													<div class="spacer_block block-1"
+                        <div class="spacer_block block-1"
 														style="height:35px;line-height:35px;font-size:1px;"></div>
 													<table border="0" cellpadding="0" cellspacing="0"
 														class="paragraph_block block-2" role="presentation"
@@ -314,7 +290,7 @@ class PlantillasCorreo {
 																				style="color: #00b2ff;"><a
 																					href="mailto:support@prlab.com"
 																					rel="noopener"
-																					style="text-decoration: underline; color: #0068a5;"
+																					style="text-decoration: underline; color: #00b2ff;"
 																					target="_blank"
 																					title="support@prlab.com">support@prlab.com</a></span></strong>
 																	</p>
@@ -322,7 +298,7 @@ class PlantillasCorreo {
 															</td>
 														</tr>
 													</table>
-													<div class="spacer_block block-3"
+<div class="spacer_block block-3"
 														style="height:35px;line-height:35px;font-size:1px;"> </div>
 												</td>
 											</tr>
@@ -340,11 +316,12 @@ class PlantillasCorreo {
 
 </html>''';
 
-  /// Cuerpo de mail con mensaje especifico para creacion de cuentas por parte 
+  /// Cuerpo de mail con mensaje especifico para creacion de cuentas por parte
   /// de administrador.
   String cuerpoRegistro({
     String enlace = 'https://examplebrandprlab.co',
-  }) => '''
+  }) =>
+      '''
 <p style="margin: 0;"><span style="color: #363636;">We have received
                     your request to create an account. Here is a
                     link where you can create your
@@ -356,116 +333,36 @@ class PlantillasCorreo {
 
   /// Cuerpo de mail con mensaje especifico para enviar codigos de verificacion.
   String cuerpoVerificacion({String codigo = '12345678'}) => '''
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-1"
-						role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-						<tbody>
-							<tr>
-								<td>
-									<table align="center" border="0" cellpadding="0" cellspacing="0"
-										class="row-content stack" role="presentation"
-										style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000; width: 500px; margin: 0 auto;"
-										width="500">
-										<tbody>
-											<tr>
-												<td class="column column-1"
-													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
-													width="100%">
-													<table border="0" cellpadding="0" cellspacing="0"
-														class="paragraph_block block-1" role="presentation"
-														style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
-														width="100%">
-														<tr>
-															<td class="pad">
-																<div
-																	style="color:#363636;direction:ltr;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size:15px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:18px;">
-																	<p style="margin: 0;">Copy and paste this
-																		verification code on the web to continue with
-																		the registration process</p>
-																</div>
-															</td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-2"
-						role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-						<tbody>
-							<tr>
-								<td>
-									<table align="center" border="0" cellpadding="0" cellspacing="0"
-										class="row-content stack" role="presentation"
-										style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000; width: 500px; margin: 0 auto;"
-										width="500">
-										<tbody>
-											<tr>
-												<td class="column column-1"
-													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
-													width="100%">
-													<div class="spacer_block block-1"
-														style="height:35px;line-height:35px;font-size:1px;"> </div>
-													<table border="0" cellpadding="0" cellspacing="0"
-														class="paragraph_block block-2" role="presentation"
-														style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
-														width="100%">
-														<tr>
-															<td class="pad">
-																<div
-																	style="color:#a12c46;direction:ltr;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size:32px;font-weight:700;letter-spacing:25px;line-height:120%;text-align:center;mso-line-height-alt:38.4px;">
-																	<p style="margin: 0;">$codigo</p>
-																</div>
-															</td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-3"
-						role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-						<tbody>
-							<tr>
-								<td>
-									<table align="center" border="0" cellpadding="0" cellspacing="0"
-										class="row-content stack" role="presentation"
-										style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000; width: 500px; margin: 0 auto;"
-										width="500">
-										<tbody>
-											<tr>
-												<td class="column column-1"
-													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
-													width="100%">
-													<div class="spacer_block block-1"
-														style="height:35px;line-height:35px;font-size:1px;"> </div>
-													<table border="0" cellpadding="0" cellspacing="0"
-														class="paragraph_block block-2" role="presentation"
-														style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
-														width="100%">
-														<tr>
-															<td class="pad">
-																<div
-																	style="color:#363636;direction:ltr;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size:15px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:18px;">
-																	<p style="margin: 0;">Remember that it is valid for
-																		10 minutes.</p>
-																</div>
-															</td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>''';
+          <p style="
+            font-style: normal;
+            font-weight: 500;
+            color: #363636;
+            font-size: 13px;
+            line-height: 18px;
+            text-align: center;
+            letter-spacing: -0.165px;"
+            >Copy and paste this verification code on the web to continue with the registration process</p>
+        
+            <table style="width: 325px; margin: auto;border-collapse: separate; border-spacing: 10px;">
+                <tr>
+                    <td style="width: 50px; height: 50px; text-align: center; border-radius: 10px;"><span style="
+            font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+                    font-size: 32px;
+            font-weight: bolder;
+            line-height: 18px;
+            letter-spacing: 10px;
+            text-align: center;
+            color: #A12C46;">$codigo</span>
+                    </td>
+                </tr>
+            </table>
+
+            <p style="
+            font-style: normal;
+            font-weight: 500;
+            color: #363636;
+            font-size: 13px;
+            line-height: 18px;
+            text-align: center;
+            letter-spacing: -0.165px;">Remember that it is valid<br> of 10 minutes.</p><br>''';
 }

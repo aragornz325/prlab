@@ -16,6 +16,7 @@ class BlocRegistroEstado extends Equatable {
     this.passwordConfirmada = '',
     this.email = '',
     this.password = '',
+    this.idUsuario = 0,
   });
 
   BlocRegistroEstado.desde(
@@ -24,11 +25,13 @@ class BlocRegistroEstado extends Equatable {
     String? email,
     String? password,
     String? passwordConfirmada,
+    int? idUsuario,
   }) : this._(
           terminosAceptados: terminosAceptados ?? otro.terminosAceptados,
           passwordConfirmada: passwordConfirmada ?? otro.passwordConfirmada,
           email: email ?? otro.email,
           password: password ?? otro.password,
+          idUsuario: idUsuario ?? otro.idUsuario,
         );
 
   final bool terminosAceptados;
@@ -38,6 +41,8 @@ class BlocRegistroEstado extends Equatable {
   final String password;
 
   final String passwordConfirmada;
+
+  final int idUsuario;
 
   bool get isEstadoInicial => this is BlocRegistroEstadoInicial;
 
@@ -81,6 +86,7 @@ class BlocRegistroEstadoExitoso extends BlocRegistroEstado {
     super.terminosAceptados,
     super.email,
     super.password,
+    super.idUsuario,
   }) : super.desde();
 }
 
@@ -88,7 +94,10 @@ class BlocRegistroEstadoExitoso extends BlocRegistroEstado {
 
 class BlocRegistroEstadoUsuarioRegistradoConExito extends BlocRegistroEstado {
   /// {@macro BlocRegistroEstadoUsuarioRegistradoConExito}
-  BlocRegistroEstadoUsuarioRegistradoConExito.desde(super.otro) : super.desde();
+  BlocRegistroEstadoUsuarioRegistradoConExito.desde(
+    super.otro, {
+    super.idUsuario,
+  }) : super.desde();
 }
 
 /// Estado de carga  de los componentes de la pantalla registro, para mostrar un

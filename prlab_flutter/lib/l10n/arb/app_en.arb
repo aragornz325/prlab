@@ -278,6 +278,112 @@
         "description":"Text in the logout item"
     },
 
+
+    "prAppBarCreateContent":"Create Content",
+    "@prAppBarCreateContent":{
+        "description": "Text of the first item in the app bar used to display a content creation menu"
+    },
+    
+    "prAppBarCreateContentCreateArticle":"Create article",
+    "@prAppBarCreateContentCreateArticle":{
+        "description":"Text to redirect to the create article menu"
+    },
+
+    "prAppBarCreateContentCreateReport":"Create report",
+    "@prAppBarCreateContentCreateReport":{
+        "description":"Text to redirect to the create report menu"
+    },
+
+    "prAppBarCreateContentYourArticles":"Your articles",
+    "@prAppBarCreateContentYourArticles":{
+        "description":"Text to redirect to the your articles menu"
+    },
+
+    "prAppBarDistributionContent":"Distribution Content",
+    "@prAppBarDistributionContent":{
+        "description": "Text of the second item in the app bar used to display a content distribution menu"
+    },
+
+    "prAppBarDistributionContentProjects":"Projects",
+    "@prAppBarDistributionContentProjects":{
+        "description":"Text to redirect to the projects menu"
+    },
+
+    "prAppBarDistributionContentDashboards":"Dashboards",
+    "@prAppBarDistributionContentDashboards":{
+        "description":"Text to redirect to the dashboards menu"
+    },
+
+    "prAppBarCoverageMedia":"Coverage Media",
+    "@prAppBarCoverageMedia":{
+        "description": "Text of the third item in the app bar used to display a coverage media menu"
+    },
+
+    "prAppBarOptionsHelpCenter":"Help center",
+    "@prAppBarOptionsHelpCenter":{
+        "description":"Text to redirect to the help center"
+    },
+
+    "prAppBarOptionsContactSupport":"Contact support",
+    "@prAppBarOptionsContactSupport":{
+        "description":"Text to redirect to the contact support"
+    },
+
+    "prAppBarOptionsPRLabWeb":"PR Lab web",
+    "@prAppBarOptionsPRLabWeb":{
+        "description":"Text to redirect to the PR Lab web"
+    },
+
+    "prAppBarOptionsPRLabNewsroom":"PR Lab newsroom",
+    "@prAppBarOptionsPRLabNewsroom":{
+        "description":"Text to redirect to the PR Lab newsroom"
+    },
+
+    "prAppBarOptionsProductUpdates":"Product updates",
+    "@prAppBarOptionsProductUpdates":{
+        "description":"Text to redirect to the Product updates"
+    },
+
+    "prAppBarSettingsAccountSettigns":"Account settigns",
+    "@prAppBarSettingsAccountSettigns":{
+        "description":"Text to redirect to the account settigns"
+    },
+
+    "prAppBarSettingsPayments":"Payments",
+    "@prAppBarSettingsPayments":{
+        "description":"Text to redirect to the paymens menu"
+    },
+
+    "prAppBarSettingsUsers":"Users",
+    "@prAppBarSettingsUsers":{
+        "description":"Text to redirect to the Users menu"
+    },
+
+    "prAppBarSettingsEmailSetup":"Email setup",
+    "@prAppBarSettingsEmailSetup":{
+        "description":"Text to redirect to the Email setup"
+    },
+
+    "prAppBarSettingsActivityHistory":"Activity history",
+    "@prAppBarSettingsActivityHistory":{
+        "description":"Text to redirect to the Activity history"
+    },
+
+    "prAppBarProfile":"Profile",
+    "@prAppBarProfile":{
+        "description":"Text to redirect to the Profile menu"
+    },
+
+    "prAppBarProfileChangeAccount":"Change account",
+    "@prAppBarProfileChangeAccount":{
+        "description":"Text to change account"
+    },
+
+    "prAppBarProfileSignOut":"Sign out",
+    "@prAppBarProfileSignOut":{
+        "description":"Text to sign out"
+    },
+
     "pageContentAdministrationCreateArticle" : "Create an article",
     "@pageContentAdministrationCreateArticle": {
         "description":"This text is in content management view in the button to create a new article"
@@ -302,10 +408,76 @@
     "@pageContentAdministrationBarInformationAuthor": {
         "description":"shows the image of the author or who created this article or their two initials"
     },
+      "pageEditContentEditArticleContainerButtonUploadLogo" : "Upload logo",
+    "@pageEditContentEditArticleContainerButtonUploadLogo": {
+        "description":"Text of the button to upload the main logo, when you are creating or editing an article"
+    },
+      "pageEditContentEditArticleContainerButtonUploadSecondaryLogo" : "Upload secondary logo",
+    "@pageEditContentEditArticleContainerButtonUploadSecondaryLogo": {
+        "description":"Text of the button to upload the secondary logo, when you are creating or editing an article"
+    },
+      "pageEditContentEditArticleContainerHintTitle" : "Enter article title",
+    "@pageEditContentEditArticleContainerHintTitle": {
+        "description":"Hint text of the article title, when you are creating or editing an article"
+    },
+    "pageEditContentEditArticleContainerHintDescription" : "Enter article description",
+    "@pageEditContentEditArticleContainerHintDescription": {
+        "description":"Hint text of the article description, when you are creating or editing an article"
+    },
+      "pageEditContentSubtitle" : "Create an article, share it with your team, edit it, comment on it, and more.",
+    "@pageEditContentSubtitle": {
+        "description":"Subtitle that appears on top of the list of articles and the edit container, when you are creating or editing an article"
+    },
+    "pageContentAdministrationPopupASingleArticle": "A single article",
+    "@pageContentAdministrationAdminPopupASingleArticle": {
+        "description":"text in the popup in the button create an article first options to choose"
+    },
+    
+    "pageContentAdministrationPopupByBrand": "By brand",
+    "@pageContentAdministrationPopupByBrand": {
+        "description":"text in the popup in the button create an article second options to choose"
+    },
+
+    "pageContentAdministrationPopupUseTemplate": "Use template",
+    "@pageContentAdministrationPopupUseTemplate": {
+        "description":"text in the popup in the button create an article third options to choose"
+    },
+    
+    "pageContentAdministrationTitleYourArticle": "Your articles",
+    "@pageContentAdministrationTitleYourArticle": {
+        "description": "default title in case the article does not have a name,it is used in content management"
+    },
+
+    "pageContentAdministrationPopupSendViaMail": "Send via email",
+    "@pageContentAdministrationPopupSendViaMail": {
+        "description": "text in the popup Send via email,this edit text is displayed in a content management popup in an article, one of the options to choose from"
+    },
+    
+    "commonEdit": "Edit",
+    "@commonEdit": {
+        "description": "Text shown on a button that indicates to edit,this edit text is displayed in a content management popup one of the options to choose from"
+    },
+
+    "commonDuplicate": "Duplicate",
+    "@commonDuplicate": {
+        "description": "Text shown on a button that indicates to Duplicate,this edit text is displayed in a content management popup one of the options to choose from"
+    },
+
+    "commonDelete": "Delete",
+    "@commonDelete": {
+        "description": "Text that indicates to Delete,this edit text is displayed in a content management popup one of the options to choose from"
+    },
+
+    "commonAddPage": "Add page",
+    "@commonAddPage": {
+        "description": "Text shown on a button that indicates to add a page"
+    },
+    
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
     },
+
     "commonBack": "Back",
     "@commonBack": {
         "description": "Text back in button of screen create admin account"
@@ -339,6 +511,14 @@
     "@commonPasswordDoNotMatch" : {
         "descripcion": "text to indicate that the passwords do not match"
     },
+    "commonPreview": "Preview",
+    "@commonPreview": {
+        "description": "Text shown on a button that indicates a preview"
+    },
+      "commonShare": "Share",
+    "@commonShare": {
+        "description": "Text shown on a button that indicates to share"
+    },
     "commonRecoverPassword" : "Recover Password",
     "@commonRecoverPassword": {
         "description":"Text in page recover password setted on the top of the page as a title"
@@ -354,10 +534,17 @@
     "commonInvalidCharacters": "Invalid characters",
     "@commonInvalidCharacters":{
         "description":"Text indicating that invalid characters were used"},
+            
 
     "commonError" : "Error!",
     "@commonError": {
         "description":"text in alertdialog title, Error"
+    },
+
+
+    "commonFeatureNotAvailable":"This feature is not available in this version.",
+    "@commonFeatureNotAvailable":{
+        "descripcion": "Text in pop up to indicate that a feature in progress"
     },
     "commonSomethingWentWrong" : "Something went wrong",
     "@commonWentWrong": {
@@ -372,6 +559,10 @@
         "description": "Text in screen create admin account in alertdialog in button, Ok"
     },
 
+ "commonPublish": "Publish",
+    "@commonPublish": {
+        "description": "Text shown on a button that indicates to publish"
+    },
     "commonSuccess" : "Success",
     "@commonSuccess": {
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph."

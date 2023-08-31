@@ -101,6 +101,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const TextoBienvenida(),
+                    SizedBox(height: 90.ph),
                     SizedBox(
                       width: 360.pw,
                       height: 40.ph,
@@ -111,7 +112,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                         hintText: l10n.pageLoginPlaceholderEmail,
                       ),
                     ),
-                    SizedBox(height: 10.ph),
+                    SizedBox(height: 40.ph),
                     SizedBox(
                       width: 360.pw,
                       height: 40.ph,
@@ -121,7 +122,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                         onChanged: (_) => _habilitarBotones(),
                       ),
                     ),
-                    // TODO(Gon): Cuando se manejen errores de login agregar
+                    // TODO(anyone): Cuando se manejen errores de login agregar
                     // los errores abajo de los textfields
                     SizedBox(height: 10.ph),
                     OlvidasteTuPassword(

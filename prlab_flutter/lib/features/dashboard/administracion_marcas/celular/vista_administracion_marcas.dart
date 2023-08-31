@@ -9,7 +9,7 @@ class VistaCelularAdministracionMarcas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO(Gon): Hacer la vista de celular de administracion
+    // TODO(anyone): Hacer la vista de celular de administracion
     // de marcas cuando haya diseño
     return const Placeholder();
   }

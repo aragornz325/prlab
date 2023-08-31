@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
@@ -67,22 +69,30 @@ class TarjetaMarca extends StatelessWidget {
                           decorationColor: colores.primaryContainer,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
-                Icon(
-                  Icons.settings_outlined,
-                  color: colores.primary,
-                  size: 24.pf,
-                )
+                GestureDetector(
+                  onTap: () {
+                    // TODO(anyone): agregarle funcionalidad
+                    showDialog<void>(
+                      context: context,
+                      builder: (context) => const PRDialogErrorNoDisponible(),
+                    );
+                  },
+                  child: Icon(
+                    Icons.settings_outlined,
+                    color: colores.primary,
+                    size: 24.pf,
+                  ),
+                ),
               ],
             ),
           ),
-          const Divider(
+          Divider(
             thickness: .2,
             height: 1,
-            // TODO(Gon): Agregar al theme
-            color: Colors.grey,
+            color: colores.secondary,
           ),
           Container(
             height: 90.ph,
@@ -105,7 +115,11 @@ class TarjetaMarca extends StatelessWidget {
                   children: [
                     PRBoton.esOutlined(
                       onTap: () {
-                        // TODO(Gon): Agregar funcion 'lista' o popup de feature in progress
+                        context.router.push(
+                          RutaAdministracionDeUnaMarca(
+                            nombreMarca: nombreMarca,
+                          ),
+                        );
                       },
                       texto: l10n.commonList,
                       estaHabilitado: true,
@@ -115,23 +129,25 @@ class TarjetaMarca extends StatelessWidget {
                     SizedBox(width: 20.pw),
                     PRBoton(
                       onTap: () {
-                        // TODO(Gon): Agregar funcion 'crear' o popup de feature in progress
+                        // TODO(onyone): Aca deberia crear un articulo y pasar la id a editor-contenido
+                        context.router.push(
+                          const RutaEditorContenido(),
+                        );
                       },
                       texto: l10n.commonCreate,
                       estaHabilitado: true,
                       width: 100.pw,
                       height: 30.ph,
-                    )
+                    ),
                   ],
                 ),
               ],
             ),
           ),
-          const Divider(
+          Divider(
             thickness: .2,
             height: 1,
-            // TODO(Gon): Agregar al theme
-            color: Colors.grey,
+            color: colores.secondary,
           ),
           Container(
             height: 205.ph,
@@ -171,16 +187,18 @@ class TarjetaMarca extends StatelessWidget {
                               Container(
                                 width: 10.pw,
                                 height: 10.ph,
-                                decoration: const BoxDecoration(
-                                  // TODO(Gon): Agregar al theme
-                                  color: Colors.grey,
+                                decoration: BoxDecoration(
+                                  color: colores.secondary,
                                   shape: BoxShape.circle,
                                 ),
                               ),
                               SizedBox(width: 5.pw),
                               GestureDetector(
                                 onTap: () {
-                                  // TODO(Gon): Agregar funcion al apretar link
+                                  // TODO(onyone): Agregar funcion al apretar el articulo
+                                  context.router.push(
+                                    const RutaEditorContenido(),
+                                  );
                                 },
                                 child: Text(
                                   linksArticulos[index],
@@ -197,7 +215,7 @@ class TarjetaMarca extends StatelessWidget {
                           );
                         },
                       ),
-                    )
+                    ),
                   ],
                 ),
               ],

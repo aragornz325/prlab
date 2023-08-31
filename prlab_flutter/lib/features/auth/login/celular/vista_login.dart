@@ -10,7 +10,7 @@ class VistaLoginCelular extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO(Gon): Todavia no esta diseñada la pagina de celular
+    // TODO(anyone): Todavia no esta diseñada la pagina de celular
 
     return const Placeholder();
   }
