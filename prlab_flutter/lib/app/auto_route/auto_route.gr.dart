@@ -22,9 +22,9 @@ import 'package:prlab_flutter/features/dashboard/administracion_contenido/pagina
     as _i1;
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/pagina_administracion_marcas.dart'
     as _i2;
-import 'package:prlab_flutter/features/dashboard/pagina_dashboard.dart' as _i4;
 import 'package:prlab_flutter/features/dashboard/editor_contenido/pagina_editor_contenido.dart'
     as _i5;
+import 'package:prlab_flutter/features/dashboard/pagina_dashboard.dart' as _i4;
 
 abstract class $AppRouter extends _i10.RootStackRouter {
   $AppRouter({super.navigatorKey});

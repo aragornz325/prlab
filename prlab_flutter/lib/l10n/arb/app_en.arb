@@ -278,6 +278,112 @@
         "description":"Text in the logout item"
     },
 
+
+    "prAppBarCreateContent":"Create Content",
+    "@prAppBarCreateContent":{
+        "description": "Text of the first item in the app bar used to display a content creation menu"
+    },
+    
+    "prAppBarCreateContentCreateArticle":"Create article",
+    "@prAppBarCreateContentCreateArticle":{
+        "description":"Text to redirect to the create article menu"
+    },
+
+    "prAppBarCreateContentCreateReport":"Create report",
+    "@prAppBarCreateContentCreateReport":{
+        "description":"Text to redirect to the create report menu"
+    },
+
+    "prAppBarCreateContentYourArticles":"Your articles",
+    "@prAppBarCreateContentYourArticles":{
+        "description":"Text to redirect to the your articles menu"
+    },
+
+    "prAppBarDistributionContent":"Distribution Content",
+    "@prAppBarDistributionContent":{
+        "description": "Text of the second item in the app bar used to display a content distribution menu"
+    },
+
+    "prAppBarDistributionContentProjects":"Projects",
+    "@prAppBarDistributionContentProjects":{
+        "description":"Text to redirect to the projects menu"
+    },
+
+    "prAppBarDistributionContentDashboards":"Dashboards",
+    "@prAppBarDistributionContentDashboards":{
+        "description":"Text to redirect to the dashboards menu"
+    },
+
+    "prAppBarCoverageMedia":"Coverage Media",
+    "@prAppBarCoverageMedia":{
+        "description": "Text of the third item in the app bar used to display a coverage media menu"
+    },
+
+    "prAppBarOptionsHelpCenter":"Help center",
+    "@prAppBarOptionsHelpCenter":{
+        "description":"Text to redirect to the help center"
+    },
+
+    "prAppBarOptionsContactSupport":"Contact support",
+    "@prAppBarOptionsContactSupport":{
+        "description":"Text to redirect to the contact support"
+    },
+
+    "prAppBarOptionsPRLabWeb":"PR Lab web",
+    "@prAppBarOptionsPRLabWeb":{
+        "description":"Text to redirect to the PR Lab web"
+    },
+
+    "prAppBarOptionsPRLabNewsroom":"PR Lab newsroom",
+    "@prAppBarOptionsPRLabNewsroom":{
+        "description":"Text to redirect to the PR Lab newsroom"
+    },
+
+    "prAppBarOptionsProductUpdates":"Product updates",
+    "@prAppBarOptionsProductUpdates":{
+        "description":"Text to redirect to the Product updates"
+    },
+
+    "prAppBarSettingsAccountSettigns":"Account settigns",
+    "@prAppBarSettingsAccountSettigns":{
+        "description":"Text to redirect to the account settigns"
+    },
+
+    "prAppBarSettingsPayments":"Payments",
+    "@prAppBarSettingsPayments":{
+        "description":"Text to redirect to the paymens menu"
+    },
+
+    "prAppBarSettingsUsers":"Users",
+    "@prAppBarSettingsUsers":{
+        "description":"Text to redirect to the Users menu"
+    },
+
+    "prAppBarSettingsEmailSetup":"Email setup",
+    "@prAppBarSettingsEmailSetup":{
+        "description":"Text to redirect to the Email setup"
+    },
+
+    "prAppBarSettingsActivityHistory":"Activity history",
+    "@prAppBarSettingsActivityHistory":{
+        "description":"Text to redirect to the Activity history"
+    },
+
+    "prAppBarProfile":"Profile",
+    "@prAppBarProfile":{
+        "description":"Text to redirect to the Profile menu"
+    },
+
+    "prAppBarProfileChangeAccount":"Change account",
+    "@prAppBarProfileChangeAccount":{
+        "description":"Text to change account"
+    },
+
+    "prAppBarProfileSignOut":"Sing out",
+    "@prAppBarProfileSignOut":{
+        "description":"Text to sing out"
+    },
+
     "pageContentAdministrationCreateArticle" : "Create an article",
     "@pageContentAdministrationCreateArticle": {
         "description":"This text is in content management view in the button to create a new article"
