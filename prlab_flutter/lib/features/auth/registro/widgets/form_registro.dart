@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/features/auth/registro/widgets/terminos_condiciones_prlab.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_textformfield.dart';
 
@@ -75,9 +75,7 @@ class _FormRegistroState extends State<FormRegistro> {
               soloLectura: true,
             ),
           ),
-          SizedBox(
-            height: 20.ph,
-          ),
+          SizedBox(height: 40.ph),
           SizedBox(
             width: 359.pw,
             child: PRTextFormFieldPassword(
@@ -94,9 +92,7 @@ class _FormRegistroState extends State<FormRegistro> {
               },
             ),
           ),
-          SizedBox(
-            height: 20.ph,
-          ),
+          SizedBox(height: 40.ph),
           SizedBox(
             width: 359.pw,
             child: PRTextFormFieldPassword(
@@ -113,7 +109,7 @@ class _FormRegistroState extends State<FormRegistro> {
               },
             ),
           ),
-          SizedBox(height: 20.ph),
+          SizedBox(height: 30.ph),
           const TerminosCondicionesPRLab(),
           SizedBox(height: 40.ph),
           ClipRRect(

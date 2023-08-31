@@ -324,7 +324,17 @@
     "@pageContentAdministrationPopupSendViaMail": {
         "description": "text in the popup Send via email,this edit text is displayed in a content management popup in an article, one of the options to choose from"
     },
-    
+
+    "commonApply": "Aplicar",
+    "@commonApply": {
+        "description": "Text shown on a popup/alertdialog that indicates to Apply a filters,Typically used to filter alert dialogs."
+    },
+
+    "commonAlertDialogFilterByAuthor": "Filtrar por autor",
+    "@commonAlertDialogFilterByAuthor": {
+        "description": "Text in title of alertdialog/popup Filter by author,Typically used to filter in title of alert dialogs."
+    },
+
     "commonEdit": "Editar",
     "@commonEdit": {
         "description": "Text shown on a button that indicates to edit,this edit text is displayed in a content management popup one of the options to choose from"
