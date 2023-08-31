@@ -46,6 +46,7 @@ class PRPopUpMenuRowTitulo extends StatelessWidget {
                   ? Icons.arrow_drop_up_rounded
                   : Icons.arrow_drop_down_rounded,
               color: colores.tertiary,
+              size: 24.pf,
             ),
           ],
         ),

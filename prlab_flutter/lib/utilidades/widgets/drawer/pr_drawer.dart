@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
@@ -12,7 +14,6 @@ import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 /// {@endtemplate}
 class PrDrawer extends StatefulWidget {
   /// {@macro PrDrawer}
-
   const PrDrawer({super.key});
 
   @override
@@ -21,7 +22,7 @@ class PrDrawer extends StatefulWidget {
 
 class _PrDrawerState extends State<PrDrawer> {
   /// "Index" inicial del drawer
-  DrawerPage enumDrawer = DrawerPage.sinElegir;
+  DrawerPage enumDrawer = DrawerPage.home;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +55,16 @@ class _PrDrawerState extends State<PrDrawer> {
               setState(() {
                 enumDrawer = value;
               });
+              switch (value) {
+                case DrawerPage.home:
+                  context.router.push(const RutaAdministracionMarcas());
+                case DrawerPage.projects:
+                case DrawerPage.templates:
+                  showDialog<void>(
+                    context: context,
+                    builder: (context) => const PRDialogErrorNoDisponible(),
+                  );
+              }
             },
           ),
           const Spacer(),

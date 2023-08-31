@@ -26,7 +26,7 @@ class ListaArticulosYRecortes extends StatelessWidget {
           BlocListaArticulosYRecortesEstado>(
         builder: (context, state) {
           return Container(
-            height: max(530.ph, 530.sh),
+            height: max(508.ph, 508.sh),
             width: 1000.pw,
             color: colores.onPrimary,
             child: Column(
