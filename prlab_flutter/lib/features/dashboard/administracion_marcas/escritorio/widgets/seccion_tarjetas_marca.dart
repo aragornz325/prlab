@@ -45,7 +45,7 @@ class SeccionTarjetasDeMarca extends StatelessWidget {
                     cantidadArticulos: 3,
                     cantidadClippings: 3,
                     cantidadMiembros: 4,
-                  )
+                  ),
                 ],
               );
             },

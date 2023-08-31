@@ -104,9 +104,9 @@ class PRAppBarRowIconos extends StatelessWidget {
                               fontSize: 14.pf,
                               color: colores.secondary,
                             ),
-                          )
+                          ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),

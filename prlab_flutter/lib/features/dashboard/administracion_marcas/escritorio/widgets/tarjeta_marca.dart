@@ -129,11 +129,9 @@ class TarjetaMarca extends StatelessWidget {
                     SizedBox(width: 20.pw),
                     PRBoton(
                       onTap: () {
-                        // TODO(onyone): Agregar funcion 'crear'
-                        showDialog<void>(
-                          context: context,
-                          builder: (context) =>
-                              const PRDialogErrorNoDisponible(),
+                        // TODO(onyone): Aca deberia crear un articulo y pasar la id a editor-contenido
+                        context.router.push(
+                          const RutaEditorContenido(),
                         );
                       },
                       texto: l10n.commonCreate,
@@ -197,11 +195,9 @@ class TarjetaMarca extends StatelessWidget {
                               SizedBox(width: 5.pw),
                               GestureDetector(
                                 onTap: () {
-                                  // TODO(onyone): Agregar funcion al apretar link
-                                  showDialog<void>(
-                                    context: context,
-                                    builder: (context) =>
-                                        const PRDialogErrorNoDisponible(),
+                                  // TODO(onyone): Agregar funcion al apretar el articulo
+                                  context.router.push(
+                                    const RutaEditorContenido(),
                                   );
                                 },
                                 child: Text(

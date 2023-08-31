@@ -379,9 +379,9 @@
         "description":"Text to change account"
     },
 
-    "prAppBarProfileSignOut":"Sing out",
+    "prAppBarProfileSignOut":"Sign out",
     "@prAppBarProfileSignOut":{
-        "description":"Text to sing out"
+        "description":"Text to sign out"
     },
 
     "pageContentAdministrationCreateArticle" : "Create an article",
