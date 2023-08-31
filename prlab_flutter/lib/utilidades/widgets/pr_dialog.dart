@@ -24,6 +24,8 @@ enum TipoDialog {
   /// este tipo de dialog/popup se usan para avisarle de algún tipo de error
   /// al usuario.
   error,
+
+  exito,
 }
 
 /// {@template PrLabDialog}
@@ -55,6 +57,8 @@ class PRDialog extends StatelessWidget {
   }) {
     final l10n = context.l10n;
 
+    final colores = context.colores;
+
     return PRDialog(
       height: height,
       width: width,
@@ -72,6 +76,7 @@ class PRDialog extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 20.pf,
                     fontWeight: FontWeight.w600,
+                    color: colores.tertiary,
                   ),
                 ),
                 SizedBox(height: 40.ph),
@@ -251,6 +256,68 @@ class PRDialog extends StatelessWidget {
                 child: PRBoton.esOutlined(
                   onTap: onTap,
                   texto: l10n.commonBack,
+                  estaHabilitado: true,
+                  width: 360.pw,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// `PRDialog.exito` Es un tipo de dialog donde se le avisa al usuario que su
+  /// peticion ha sido exitosa
+  factory PRDialog.exito({
+    required BuildContext context,
+    required VoidCallback onTap,
+    required String descripcion,
+    double height = 285,
+    double width = 455,
+  }) {
+    final l10n = context.l10n;
+
+    final colores = context.colores;
+
+    return PRDialog(
+      height: height,
+      width: width,
+      tipo: TipoDialog.exito,
+      content: SizedBox(
+        width: 360.pw,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(height: 20.ph),
+            Text(
+              l10n.commonSuccess,
+              style: TextStyle(
+                fontSize: 20.pf,
+                color: colores.error,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(height: 30.ph),
+            SizedBox(
+              width: 360.pw,
+              child: Text(
+                descripcion,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15.pf,
+                  color: colores.secondary,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+            SizedBox(height: 30.ph),
+            Center(
+              child: SizedBox(
+                width: 360.pw,
+                child: PRBoton.esOutlined(
+                  onTap: onTap,
+                  texto: l10n.commonContinue,
                   estaHabilitado: true,
                   width: 360.pw,
                 ),

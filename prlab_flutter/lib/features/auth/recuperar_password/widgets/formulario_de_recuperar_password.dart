@@ -76,6 +76,7 @@ class _FormularioDeRecuperarPasswordState
               children: [
                 const EncabezadoDeRecuperarPassword(),
                 PRTextFormFieldPassword(
+                  width: 359.pw,
                   controller: controllerPassword,
                   hintText: l10n.pageRecoverPasswordNewPasswordHintText,
                   onChanged: (_) => context.read<BlocRecuperarPassword>().add(
@@ -84,8 +85,9 @@ class _FormularioDeRecuperarPasswordState
                         ),
                       ),
                 ),
-                SizedBox(height: 40.sh),
+                SizedBox(height: 40.ph),
                 PRTextFormFieldPassword(
+                  width: 359.pw,
                   controller: controllerPasswordRepetida,
                   hintText: l10n.pageRecoverPasswordRepeatPasswordHintText,
                   validator: _validarPasswordRepetida,
@@ -95,7 +97,7 @@ class _FormularioDeRecuperarPasswordState
                         ),
                       ),
                 ),
-                SizedBox(height: 50.sh),
+                SizedBox(height: 50.ph),
                 BlocBuilder<BlocRecuperarPassword, BlocRecuperarPasswordEstado>(
                   builder: (context, state) {
                     return PRBoton(
@@ -105,7 +107,7 @@ class _FormularioDeRecuperarPasswordState
                     );
                   },
                 ),
-                SizedBox(height: 80.sh),
+                SizedBox(height: 270.sh),
               ],
             ),
           ),

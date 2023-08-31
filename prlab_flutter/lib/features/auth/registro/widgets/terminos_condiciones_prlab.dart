@@ -6,6 +6,7 @@ import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro.dart';
 import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro_event.dart';
 import 'package:prlab_flutter/features/auth/registro/bloc/bloc_registro_state.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template TerminosCondicionesPRLab}
 /// Widget custom de terminos y condiciones que tiene un checkbox, permitiendo
@@ -61,6 +62,12 @@ class _TerminosCondicionesPRLabState extends State<TerminosCondicionesPRLab> {
                       ),
               ),
               GestureDetector(
+                onTap: () => showDialog<void>(
+                  context: context,
+                  builder: (context) {
+                    return const PRDialogErrorNoDisponible();
+                  },
+                ),
                 child: Text(
                   l10n.pageSignUpTermsAndConditionsTextLink,
                   style: TextStyle(
