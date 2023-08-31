@@ -7,7 +7,14 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
 
+/// {@template  EditorDeDescripcionDeContenido}
+/// Contiene los elementos para la edición
+/// de la descripción de un [PRArticulo], esta seteado con
+/// el package de appflowy_editor y customizado para que se
+/// asemeje a el tema de la aplicación.
+/// {@endtemplate}
 class EditorDeDescripcionDeContenido extends StatefulWidget {
+  /// {@macro EditorDeDescripcionDeContenido}
   const EditorDeDescripcionDeContenido({
     super.key,
   });
@@ -36,6 +43,9 @@ class _EditorDeDescripcionDeContenidoState
     return SizedBox(
       height: 352.ph,
       child: StreamBuilder<String>(
+        // TODO(Andreas):
+        // Una vez que este el endpoint del back, consumir el json
+        // desde el estado retroalimentado por el evento.
         // stream: Stream.value(bloc.state.descripcionDeArticulo),
         stream: Stream<String>.value(
           jsonEncode(
@@ -98,7 +108,13 @@ class _EditorDeDescripcionDeContenidoState
   }
 }
 
+/// {@template  ContenedorDeDescripcionDeContenido}
+/// Contiene el lienzo de la descripción, aca se edita
+/// la descripción como tal, se puede editar los tamaños
+/// que ocupa el componente en si y manejar el scroll del mismo.
+/// {@endtemplate}
 class ContenedorDeDescripcionDeContenido extends StatelessWidget {
+  /// {@macro  ContenedorDeDescripcionDeContenido}
   const ContenedorDeDescripcionDeContenido({
     required this.editorState,
     required this.scrollController,
