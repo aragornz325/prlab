@@ -18,15 +18,15 @@ class OdmArticulo extends ODM {
     required Articulo payload,
   }) async {
     try {
+      await performOdmOperation(session, (Session session) {
       logger.info('Creando artículo: ${payload.titulo}');
-      await performOdmOperation(
+        return Articulo.insert(
           session,
-          (Session session) => Articulo.insert(
-                session,
-                payload
-                  ..fechaCreacion = DateTime.now()
-                  ..ultimaModificacion = DateTime.now(),
-              ));
+          payload
+            ..fechaCreacion = DateTime.now()
+            ..ultimaModificacion = DateTime.now(),
+        );
+      });
       logger.fine('Artículo ${payload.titulo} creado exitosamente.');
       return true;
     } on Exception catch (e) {
@@ -120,13 +120,13 @@ class OdmArticulo extends ODM {
     required int idMarca,
   }) async {
     try {
+      return await performOdmOperation(session, (Session session) {
       logger.info('buscando los articulos segun marca con id: $idMarca');
-      return await performOdmOperation(
+        return Articulo.find(
           session,
-          (Session session) => Articulo.find(
-                session,
-                where: (t) => t.idMarca.equals(idMarca),
-              ));
+          where: (t) => t.idMarca.equals(idMarca),
+        );
+      });
     } on Exception catch (e) {
       throw Exception('$e');
     }

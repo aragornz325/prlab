@@ -21,8 +21,12 @@ class OdmMarca extends ODM {
     try {
       await performOdmOperation(
         session,
-        (Session session) => Marca.insert(session, payload),
+        (Session session) {
+          logger.info('Creando marca: ${payload.nombre}');
+          return Marca.insert(session, payload);
+        },
       );
+      logger.fine('Marca ${payload.nombre} creada exitosamente.');
       return true;
     } on Exception catch (e) {
       throw Exception('$e');
