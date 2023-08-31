@@ -15,6 +15,7 @@ class BlocEditorContenido
   /// {@macro BlocEditorContenido}
   BlocEditorContenido() : super(const BlocEditorContenidoEstadoInicial()) {
     on<BlocEditorContenidoEventoAgregarImagen>(_onAgregarImagen);
+    on<BlocEditorContenidoActualizarDescripcion>(_onActualizarDescripcion);
   }
 
   /// Permite agregar y guardar las imagenes de ambos logos en la vista
@@ -25,7 +26,7 @@ class BlocEditorContenido
     Emitter<BlocEditorContenidoEstado> emit,
   ) {
     emit(
-      BlocEditorContenidoEstadoExitoso.desde(
+      BlocEditorContenidoEstadoRecolectandoDatos.desde(
         state,
         logoElegidoCelular:
             event.logoElegidoCelular ?? state.logoElegidoCelular,
@@ -34,6 +35,18 @@ class BlocEditorContenido
             state.logoSecundarioElegidoCelular,
         logoSecundarioElegidoWeb:
             event.logoSecundarioElegidoWeb ?? state.logoSecundarioElegidoWeb,
+      ),
+    );
+  }
+
+  void _onActualizarDescripcion(
+    BlocEditorContenidoActualizarDescripcion event,
+    Emitter<BlocEditorContenidoEstado> emit,
+  ) {
+    emit(
+      BlocEditorContenidoEstadoActualizandoDescripcion.desde(
+        state,
+        descripcionDeArticulo: event.descripcionDeArticulo,
       ),
     );
   }

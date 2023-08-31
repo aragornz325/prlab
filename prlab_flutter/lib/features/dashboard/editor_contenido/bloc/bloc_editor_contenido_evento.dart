@@ -24,3 +24,16 @@ class BlocEditorContenidoEventoAgregarImagen extends BlocEditorContenidoEvento {
   final File? logoSecundarioElegidoCelular;
   final Uint8List? logoSecundarioElegidoWeb;
 }
+
+/// {@template BlocEditorContenidoActualizarDescripcion}
+/// Actualiza el contenido dentro de la descripción de un
+/// articulo a medida que se vayan ejecutando cambios dentro
+/// del mismo
+/// {@endtemplate}
+class BlocEditorContenidoActualizarDescripcion
+    extends BlocEditorContenidoEvento {
+  ///{@macro BlocEditorContenidoActualizarDescripcion}
+  BlocEditorContenidoActualizarDescripcion(this.descripcionDeArticulo);
+
+  final String descripcionDeArticulo;
+}
