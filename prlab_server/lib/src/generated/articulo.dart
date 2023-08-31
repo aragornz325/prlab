@@ -14,11 +14,12 @@ class Articulo extends _i1.TableRow {
     required this.titulo,
     this.contenido,
     this.idProyecto,
+    this.idMarca,
     this.idAutor,
     this.idStatus,
     this.fechaEliminacion,
-    required this.ultimaModificacion,
-    required this.fechaCreacion,
+    this.ultimaModificacion,
+    this.fechaCreacion,
   }) : super(id);
 
   factory Articulo.fromJson(
@@ -33,6 +34,8 @@ class Articulo extends _i1.TableRow {
           .deserialize<String?>(jsonSerialization['contenido']),
       idProyecto: serializationManager
           .deserialize<int?>(jsonSerialization['idProyecto']),
+      idMarca:
+          serializationManager.deserialize<int?>(jsonSerialization['idMarca']),
       idAutor:
           serializationManager.deserialize<int?>(jsonSerialization['idAutor']),
       idStatus:
@@ -40,9 +43,9 @@ class Articulo extends _i1.TableRow {
       fechaEliminacion: serializationManager
           .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
       ultimaModificacion: serializationManager
-          .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
+          .deserialize<DateTime?>(jsonSerialization['ultimaModificacion']),
       fechaCreacion: serializationManager
-          .deserialize<DateTime>(jsonSerialization['fechaCreacion']),
+          .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
     );
   }
 
@@ -54,15 +57,17 @@ class Articulo extends _i1.TableRow {
 
   int? idProyecto;
 
+  int? idMarca;
+
   int? idAutor;
 
   int? idStatus;
 
   DateTime? fechaEliminacion;
 
-  DateTime ultimaModificacion;
+  DateTime? ultimaModificacion;
 
-  DateTime fechaCreacion;
+  DateTime? fechaCreacion;
 
   @override
   String get tableName => 'articulos';
@@ -73,6 +78,7 @@ class Articulo extends _i1.TableRow {
       'titulo': titulo,
       'contenido': contenido,
       'idProyecto': idProyecto,
+      'idMarca': idMarca,
       'idAutor': idAutor,
       'idStatus': idStatus,
       'fechaEliminacion': fechaEliminacion,
@@ -88,6 +94,7 @@ class Articulo extends _i1.TableRow {
       'titulo': titulo,
       'contenido': contenido,
       'idProyecto': idProyecto,
+      'idMarca': idMarca,
       'idAutor': idAutor,
       'idStatus': idStatus,
       'fechaEliminacion': fechaEliminacion,
@@ -103,6 +110,7 @@ class Articulo extends _i1.TableRow {
       'titulo': titulo,
       'contenido': contenido,
       'idProyecto': idProyecto,
+      'idMarca': idMarca,
       'idAutor': idAutor,
       'idStatus': idStatus,
       'fechaEliminacion': fechaEliminacion,
@@ -128,6 +136,9 @@ class Articulo extends _i1.TableRow {
         return;
       case 'idProyecto':
         idProyecto = value;
+        return;
+      case 'idMarca':
+        idMarca = value;
         return;
       case 'idAutor':
         idAutor = value;
@@ -274,6 +285,8 @@ class ArticuloTable extends _i1.Table {
 
   final idProyecto = _i1.ColumnInt('idProyecto');
 
+  final idMarca = _i1.ColumnInt('idMarca');
+
   final idAutor = _i1.ColumnInt('idAutor');
 
   final idStatus = _i1.ColumnInt('idStatus');
@@ -290,6 +303,7 @@ class ArticuloTable extends _i1.Table {
         titulo,
         contenido,
         idProyecto,
+        idMarca,
         idAutor,
         idStatus,
         fechaEliminacion,

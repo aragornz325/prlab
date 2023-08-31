@@ -8,13 +8,13 @@ part of 'bloc_kyc.dart';
 sealed class BlocKycEstado {
   /// {@macro BlocKycEstado}
   const BlocKycEstado._({
+    required this.idUsuario,
     this.nombre = '',
     this.apellido = '',
     this.fechaDeNacimiento = '',
     this.nombreDeCompania = '',
     this.localidad = '',
     this.numeroContacto = '',
-    required this.idUsuario,
   });
 
   // ignore: avoid_unused_constructor_parameters

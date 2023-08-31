@@ -482,7 +482,7 @@
 
     "prAppBarProfileSignOut":"Cerrar sesión",
     "@prAppBarProfileSignOut":{
-        "description":"Text to sing out"
+        "description":"Text to sign out"
     },
 
     "commonPRLab": "PR lab",
