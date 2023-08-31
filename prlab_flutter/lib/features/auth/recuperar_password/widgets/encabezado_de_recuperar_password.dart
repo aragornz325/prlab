@@ -42,7 +42,7 @@ class EncabezadoDeRecuperarPassword extends StatelessWidget {
             fontWeight: FontWeight.w400,
           ),
         ),
-        SizedBox(height: 50.ph),
+        SizedBox(height: 80.ph),
       ],
     );
   }

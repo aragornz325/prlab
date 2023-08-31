@@ -46,7 +46,8 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
     final estadoTemporizador = context.watch<BlocTemporizador>().state;
 
     return PRDialog.solicitudAccion(
-      height: 300,
+      width: 260.pw,
+      height: 260.ph,
       context: context,
       estaHabilitado: estadoLogin.codigo.length == 8,
       onTap: () {
@@ -108,15 +109,21 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
               }
             },
           ),
-          Text(
-            textoAQuienFueEnviadoEmail,
-            style: TextStyle(
-              fontSize: 12.pf,
-              fontWeight: FontWeight.w400,
-              color: colores.tertiary,
+          SizedBox(
+            height: 5.ph,
+          ),
+          SizedBox(
+            width: 360.pw,
+            child: Text(
+              textoAQuienFueEnviadoEmail,
+              style: TextStyle(
+                fontSize: 12.pf,
+                fontWeight: FontWeight.w400,
+                color: colores.tertiary,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),
