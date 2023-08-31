@@ -5,10 +5,10 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/auth/login/bloc/bloc_login.dart';
-import 'package:prlab_flutter/features/auth/login/escritorio/widgets/olvidaste_tu_password.dart';
-import 'package:prlab_flutter/features/auth/login/escritorio/widgets/texto_bienvenida.dart';
 import 'package:prlab_flutter/features/auth/recuperar_password/dialog/dialog.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/theming/base.dart';
+import 'package:prlab_flutter/utilidades/widgets/dropdowns_package.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// Vista de escritorio de la pantalla login donde el usuario
@@ -89,58 +89,110 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
             ),
           );
         }
-
         return Scaffold(
+          backgroundColor: Colors.black,
           body: Row(
             children: [
               Container(
-                color: theme.background,
+                color: Colors.black,
                 width: 44.5.wp,
                 height: 100.hp,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const TextoBienvenida(),
-                    SizedBox(
-                      width: 360.pw,
-                      height: 40.ph,
-                      child: PRTextFormField.email(
-                        context: context,
-                        controller: controllerEmail,
-                        onChanged: (_) => _habilitarBotones(),
-                        hintText: l10n.pageLoginPlaceholderEmail,
+                    MultiSelectDropdown(
+                      dropdownButtonDecoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
+                        color: theme.background,
                       ),
+                      iconsColor: theme.primary,
+                      selectedItemColor: theme.primaryOpacidadDiez,
+                      width: 215.pw,
+                      itemhaveIcons: true,
+                      itemsIconList: const [
+                        Icons.menu,
+                        Icons.person_outline,
+                        Icons.checklist_rtl,
+                        Icons.calendar_month_outlined,
+                      ],
+                      list: const [
+                        {'id': 'all', 'label': 'All'},
+                        {'id': 'author', 'label': 'Author'},
+                        {'id': 'status', 'label': 'Status'},
+                        {'id': 'dates', 'label': 'Dates'},
+                      ],
+                      initiallySelected: const [
+                        {'id': 'all', 'label': 'All'},
+                      ],
+                      onChange: (newList) {},
+                      oneMinimumSelected: true,
                     ),
-                    SizedBox(height: 10.ph),
-                    SizedBox(
-                      width: 360.pw,
-                      height: 40.ph,
-                      child: PRTextFormFieldPassword(
-                        controller: controllerPassword,
-                        hintText: l10n.pageLoginPlaceholderPassword,
-                        onChanged: (_) => _habilitarBotones(),
+                    MultiSelectDropdown(
+                      dropdownButtonDecoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
+                        color: theme.background,
                       ),
+                      selectedItemColor: theme.primaryOpacidadDiez,
+                      width: 215.pw,
+                      hasAvatar: true,
+                      list: const [
+                        {'id': 'dog', 'label': 'Dog'},
+                        {'id': 'cat', 'label': 'Cat'},
+                        {'id': 'mouse', 'label': 'Mouse'},
+                        {'id': 'rabbit', 'label': 'Rabbit'},
+                      ],
+                      initiallySelected: const [
+                        {'id': 'mouse', 'label': 'Mouse'},
+                      ],
+                      onChange: (newList) {},
+                      whenEmpty: 'Choose from the list',
+                      // TODO(Gon): Definir que pasa con los iconos cuando seleccionas varios
+                      multiSelect: true,
+                      oneMinimumSelected: true,
                     ),
-                    // TODO(anyone): Cuando se manejen errores de login agregar
-                    // los errores abajo de los textfields
-                    SizedBox(height: 10.ph),
-                    OlvidasteTuPassword(
-                      cargoElMail: state.botonOlvidePasswordHabilitado,
-                      password: controllerPassword.text,
-                      controllerCodigo: controllerCodigo,
-                    ),
-                    SizedBox(
-                      height: 50.ph,
-                    ),
-                    PRBoton(
-                      estaHabilitado: state.botonLoginHabilitado,
-                      muestraEstadoDeCarga: state.estaCargandoInicioDeSesion,
-                      onTap: _onTapBotonIniciarSesion,
-                      texto: l10n.pageLoginButtonText,
-                    ),
-                    SizedBox(
-                      height: 120.ph,
-                    ),
+                    // const TextoBienvenida(),
+                    // SizedBox(
+                    //   width: 360.pw,
+                    //   height: 40.ph,
+                    //   child: PRTextFormField.email(
+                    //     context: context,
+                    //     controller: controllerEmail,
+                    //     onChanged: (_) => _habilitarBotones(),
+                    //     hintText: l10n.pageLoginPlaceholderEmail,
+                    //   ),
+                    // ),
+                    // SizedBox(height: 10.ph),
+                    // SizedBox(
+                    //   width: 360.pw,
+                    //   height: 40.ph,
+                    //   child: PRTextFormFieldPassword(
+                    //     controller: controllerPassword,
+                    //     hintText: l10n.pageLoginPlaceholderPassword,
+                    //     onChanged: (_) => _habilitarBotones(),
+                    //   ),
+                    // ),
+                    // // TODO(anyone): Cuando se manejen errores de login agregar
+                    // // los errores abajo de los textfields
+                    // SizedBox(height: 10.ph),
+                    // OlvidasteTuPassword(
+                    //   cargoElMail: state.botonOlvidePasswordHabilitado,
+                    //   password: controllerPassword.text,
+                    //   controllerCodigo: controllerCodigo,
+                    // ),
+                    // SizedBox(
+                    //   height: 50.ph,
+                    // ),
+                    // PRBoton(
+                    //   estaHabilitado: state.botonLoginHabilitado,
+                    //   muestraEstadoDeCarga: state.estaCargandoInicioDeSesion,
+                    //   onTap: _onTapBotonIniciarSesion,
+                    //   texto: l10n.pageLoginButtonText,
+                    // ),
+                    // SizedBox(
+                    //   height: 120.ph,
+                    // ),
                   ],
                 ),
               ),
