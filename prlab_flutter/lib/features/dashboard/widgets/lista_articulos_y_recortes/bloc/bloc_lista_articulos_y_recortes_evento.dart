@@ -33,7 +33,11 @@ class BlocListaArticulosYRecortesEventoTraerArticulos
     extends BlocListaArticulosYRecortesEvento {
   /// {@macro BlocListaArticulosYRecortesEventoTraerArticulos}
   @override
-  const BlocListaArticulosYRecortesEventoTraerArticulos();
+  const BlocListaArticulosYRecortesEventoTraerArticulos({
+    this.marca,
+  });
+
+  final Marca? marca;
 }
 
 /// {@template BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos}

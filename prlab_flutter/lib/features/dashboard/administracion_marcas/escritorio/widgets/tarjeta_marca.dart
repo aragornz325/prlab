@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
@@ -13,20 +14,11 @@ import 'package:url_launcher/url_launcher.dart';
 class TarjetaMarca extends StatelessWidget {
   /// {@macro TarjetaMarca}
   const TarjetaMarca({
-    required this.linkMarca,
-    required this.nombreMarca,
-    required this.linksArticulos,
+    required this.marca,
     super.key,
   });
 
-  /// Link a la web de la marca
-  final String linkMarca;
-
-  /// Nombre de la marca
-  final String nombreMarca;
-
-  /// Links a los articulos de la marca
-  final List<String> linksArticulos;
+  final Marca marca;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +28,7 @@ class TarjetaMarca extends StatelessWidget {
 
     return Container(
       width: 485.pw,
-      height: 370.ph,
+      height: 398.ph,
       color: colores.onPrimary,
       child: Column(
         children: [
@@ -58,9 +50,9 @@ class TarjetaMarca extends StatelessWidget {
                     ),
                     SizedBox(width: 5.pw),
                     GestureDetector(
-                      onTap: () => launchUrl(Uri.parse(linkMarca)),
+                      onTap: () => launchUrl(Uri.parse(marca.sitioWeb)),
                       child: Text(
-                        linkMarca,
+                        marca.sitioWeb,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 14.pf,
@@ -104,7 +96,7 @@ class TarjetaMarca extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  nombreMarca,
+                  marca.nombre,
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 25.pf,
@@ -117,7 +109,7 @@ class TarjetaMarca extends StatelessWidget {
                       onTap: () {
                         context.router.push(
                           RutaAdministracionDeUnaMarca(
-                            nombreMarca: nombreMarca,
+                            idMarca: marca.id ?? 0,
                           ),
                         );
                       },
@@ -180,7 +172,9 @@ class TarjetaMarca extends StatelessWidget {
                             height: 10.ph,
                           );
                         },
-                        itemCount: linksArticulos.length,
+                        // TODO(Gon):
+                        // Consumir de la lista de articulos que trae el back.
+                        itemCount: ['NOTHING'].length,
                         itemBuilder: (context, index) {
                           return Row(
                             children: [
@@ -195,13 +189,14 @@ class TarjetaMarca extends StatelessWidget {
                               SizedBox(width: 5.pw),
                               GestureDetector(
                                 onTap: () {
-                                  // TODO(onyone): Agregar funcion al apretar el articulo
                                   context.router.push(
                                     const RutaEditorContenido(),
                                   );
                                 },
                                 child: Text(
-                                  linksArticulos[index],
+                                  // TODO(Gon):
+                                  // Consumir de la lista de articulos que trae el back.
+                                  ['NOTHING'][index],
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14.pf,

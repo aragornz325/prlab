@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/escritorio/widgets/widgets.dart';
 
@@ -16,41 +17,36 @@ class SeccionTarjetasDeMarca extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 480.ph,
+          height: 510.ph,
           width: 1040.pw,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  // TODO(Gon): Consumir informacion de la marca traida del back
-                  const TarjetaMarca(
-                    linkMarca: 'https://flutter.dev/',
-                    nombreMarca: 'Flutter',
-                    linksArticulos: [
-                      'Flutter Article',
-                      'Flutter Article',
-                      'Flutter Article',
-                      'Flutter Article',
-                      'Flutter Article',
-                      'Flutter Article',
-                      'Flutter Article',
-                      'Flutter Article',
-                      'Flutter Article',
+          child: BlocBuilder<BlocAdministracionMarcas,
+              BlocAdministracionMarcasEstado>(
+            builder: (context, state) {
+              return ListView.separated(
+                itemCount: state.marcas.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      TarjetaMarca(
+                        marca: state.marcas[index],
+                      ),
+                      SizedBox(height: 30.ph),
+                      // TODO(Gon):
+                      // Consumir informacion de la marca traida del back
+                      // cuando se agreguen los articulos al modelo
+                      InformacionDeLaMarca(
+                        cantidadArticulos: 3,
+                        cantidadClippings: 3,
+                        cantidadMiembros:
+                            state.marcas[index].staff?.length ?? 0,
+                      ),
                     ],
-                  ),
-                  SizedBox(height: 30.ph),
-                  // TODO(Gon): Consumir informacion de la marca traida del back
-                  const InformacionDeLaMarca(
-                    cantidadArticulos: 3,
-                    cantidadClippings: 3,
-                    cantidadMiembros: 4,
-                  ),
-                ],
+                  );
+                },
+                separatorBuilder: (context, index) => SizedBox(width: 35.ph),
               );
             },
-            separatorBuilder: (context, index) => SizedBox(width: 35.ph),
-            itemCount: 4,
           ),
         ),
       ],

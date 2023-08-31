@@ -7,6 +7,19 @@ part of 'bloc_editor_contenido.dart';
 @immutable
 sealed class BlocEditorContenidoEvento {}
 
+/// {@template BlocEditorContenidoEventoInicializar}
+/// Inicializa los modelos principales de esta pantalla.
+///
+/// Se encarga principalmente de traer los datos del
+/// artículo que va a ser editado.
+/// {@endtemplate}
+class BlocEditorContenidoEventoInicializar extends BlocEditorContenidoEvento {
+  /// {@macro BlocEditorContenidoEventoInicializar}
+  BlocEditorContenidoEventoInicializar(this.idArticulo);
+
+  final int idArticulo;
+}
+
 /// {@template BlocEditorContenidoEventoAgregarImagen}
 /// Agrega las imagenes, logos al estado para luego mostrarlos en la UI.
 /// {@endtemplate}

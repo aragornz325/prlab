@@ -6,21 +6,30 @@ part of 'bloc_administracion_de_una_marca.dart';
 class BlocAdministracionDeUnaMarcaEstado extends Equatable {
   /// {@macro BlocAdministracionDeUnaMarcaEstado}
   const BlocAdministracionDeUnaMarcaEstado._({
-    this.ejemplo = false,
+    required this.idMarca,
+    this.marca,
   });
 
   BlocAdministracionDeUnaMarcaEstado.desde(
     BlocAdministracionDeUnaMarcaEstado otro, {
-    bool? ejemplo,
+    int? idMarca,
+    Marca? marca,
   }) : this._(
-          ejemplo: ejemplo ?? otro.ejemplo,
+          idMarca: idMarca ?? otro.idMarca,
+          marca: marca ?? otro.marca,
         );
 
-  /// AdministracionDeUnaMarca
-  final bool ejemplo;
+  /// Identificador unico de una marca.
+  final int idMarca;
 
-  List<Object> get props => [
-        ejemplo,
+  /// La marca que va a estar siendo visualizada
+  /// en la pafina de adminitracion de marca.
+  final Marca? marca;
+
+  @override
+  List<Object?> get props => [
+        idMarca,
+        marca,
       ];
 }
 
@@ -30,7 +39,8 @@ class BlocAdministracionDeUnaMarcaEstado extends Equatable {
 class BlocAdministracionDeUnaMarcaEstadoInicial
     extends BlocAdministracionDeUnaMarcaEstado {
   /// {@macro BlocAdministracionMarcasEstadoInicial}
-  const BlocAdministracionDeUnaMarcaEstadoInicial() : super._();
+  const BlocAdministracionDeUnaMarcaEstadoInicial(int idMarca)
+      : super._(idMarca: idMarca);
 }
 
 /// {@template BlocAdministracionMarcasEstadoCargando}
@@ -50,8 +60,10 @@ class BlocAdministracionDeUnaMarcaEstadoCargando
 class BlocAdministracionDeUnaMarcaEstadoExitosoGeneral
     extends BlocAdministracionDeUnaMarcaEstado {
   /// {@macro BlocAdministracionMarcasEstadoExitosoGeneral}
-  BlocAdministracionDeUnaMarcaEstadoExitosoGeneral.desde(super.otro)
-      : super.desde();
+  BlocAdministracionDeUnaMarcaEstadoExitosoGeneral.desde(
+    super.otro, {
+    required super.marca,
+  }) : super.desde();
 }
 
 /// {@template BlocAdministracionMarcasEstadoError}

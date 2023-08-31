@@ -1,9 +1,12 @@
 import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-part 'bloc_administracion_de_una_marca_evento.dart';
+import 'package:prlab_client/prlab_client.dart';
+
 part 'bloc_administracion_de_una_marca_estado.dart';
+part 'bloc_administracion_de_una_marca_evento.dart';
 
 /// {@template BlocAdministracionDeUnaMarca}
 /// Bloc que maneja los estados y lógica de la pagina de [AdministracionDeUnaMarca]
@@ -11,15 +14,15 @@ part 'bloc_administracion_de_una_marca_estado.dart';
 class BlocAdministracionDeUnaMarca extends Bloc<
     BlocAdministracionDeUnaMarcaEvento, BlocAdministracionDeUnaMarcaEstado> {
   /// {@macro BlocAdministracionDeUnaMarca}
-  BlocAdministracionDeUnaMarca()
+  BlocAdministracionDeUnaMarca(int marcaId)
       : super(
-          const BlocAdministracionDeUnaMarcaEstadoInicial(),
+          BlocAdministracionDeUnaMarcaEstadoInicial(marcaId),
         ) {
-    on<BlocAdministracionDeUnaMarcaEventoInicializar>(_inicializar);
+    on<BlocAdministracionDeUnaMarcaEventoInicializar>(_onInicializar);
   }
 
   /// EventHandler de [BlocAdministracionDeUnaMarcaEventoInicializar]
-  Future<void> _inicializar(
+  Future<void> _onInicializar(
     BlocAdministracionDeUnaMarcaEventoInicializar event,
     Emitter<BlocAdministracionDeUnaMarcaEstado> emit,
   ) async {
@@ -27,8 +30,30 @@ class BlocAdministracionDeUnaMarca extends Bloc<
       BlocAdministracionDeUnaMarcaEstadoCargando.desde(state),
     );
     try {
-      // TODO(Gon): Inicializar la pag todavia no se si tiene
-      // que traer una lista de la pag anterior o pedirla al back
+      // TODO(anyone):
+      // Este endpoint no existe
+      /* 
+      final respuesta = await client.marca.obtenerMarcaPorId(
+         state.marcaId,
+        );
+       */
+
+      final marca = Marca(
+        id: 1,
+        nombre: 'Flutter',
+        sitioWeb: 'flutter.com',
+        staff: [1],
+        fechaCreacion: DateTime.now(),
+        ultimaModificacion: DateTime.now(),
+        fechaEliminacion: DateTime.now(),
+      );
+
+      emit(
+        BlocAdministracionDeUnaMarcaEstadoExitosoGeneral.desde(
+          state,
+          marca: marca,
+        ),
+      );
     } catch (e, st) {
       if (kDebugMode) {
         debugger();

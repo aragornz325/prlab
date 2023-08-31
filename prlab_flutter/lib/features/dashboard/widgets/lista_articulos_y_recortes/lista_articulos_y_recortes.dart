@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/bloc/bloc_lista_articulos_y_recortes.dart';
@@ -10,7 +11,12 @@ import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recor
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 class ListaArticulosYRecortes extends StatelessWidget {
-  const ListaArticulosYRecortes({super.key});
+  const ListaArticulosYRecortes({
+    super.key,
+    this.marca,
+  });
+
+  final Marca? marca;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +26,7 @@ class ListaArticulosYRecortes extends StatelessWidget {
 
     return BlocProvider<BlocListaArticulosYRecortes>(
       create: (context) => BlocListaArticulosYRecortes()
-        ..add(const BlocListaArticulosYRecortesEventoTraerArticulos())
+        ..add(BlocListaArticulosYRecortesEventoTraerArticulos(marca: marca))
         ..add(const BlocListaArticulosYRecortesEventoFiltrar()),
       child: BlocBuilder<BlocListaArticulosYRecortes,
           BlocListaArticulosYRecortesEstado>(

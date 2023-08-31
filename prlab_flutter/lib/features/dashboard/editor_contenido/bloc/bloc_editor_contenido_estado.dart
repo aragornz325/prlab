@@ -12,6 +12,7 @@ sealed class BlocEditorContenidoEstado {
     this.logoSecundarioElegidoCelular,
     this.logoSecundarioElegidoWeb,
     this.descripcionDeArticulo = '',
+    this.articulo,
   });
 
   BlocEditorContenidoEstado.desde(
@@ -21,6 +22,7 @@ sealed class BlocEditorContenidoEstado {
     File? logoSecundarioElegidoCelular,
     Uint8List? logoSecundarioElegidoWeb,
     String? descripcionDeArticulo,
+    Articulo? articulo,
   }) : this._(
           logoElegidoCelular: logoElegidoCelular ?? otro.logoElegidoCelular,
           logoElegidoWeb: logoElegidoWeb ?? otro.logoElegidoWeb,
@@ -30,6 +32,7 @@ sealed class BlocEditorContenidoEstado {
               logoSecundarioElegidoWeb ?? otro.logoSecundarioElegidoWeb,
           descripcionDeArticulo:
               descripcionDeArticulo ?? otro.descripcionDeArticulo,
+          articulo: articulo ?? otro.articulo,
         );
 
   final File? logoElegidoCelular;
@@ -42,6 +45,9 @@ sealed class BlocEditorContenidoEstado {
   /// y más, el string contiene el tipo de archivo `html` donde estan
   /// descriptas todas esas especificaciones.
   final String descripcionDeArticulo;
+
+  /// El articulo a ser editado en la página actual.
+  final Articulo? articulo;
 }
 
 /// {@template BlocEditorContenidoEstadoInicial}
@@ -83,7 +89,12 @@ class BlocEditorContenidoEstadoRecolectandoDatos
 /// {@endtemplate}
 class BlocEditorContenidoEstadoExitoso extends BlocEditorContenidoEstado {
   /// {@macro BlocEditorContenidoEstadoExitoso}
-  BlocEditorContenidoEstadoExitoso.desde(super.otro) : super.desde();
+  BlocEditorContenidoEstadoExitoso.desde(
+    super.otro, {
+    required Articulo articulo,
+  }) : super.desde(
+          articulo: articulo,
+        );
 }
 
 /// {@template BlocEditorContenidoEstadoFallido}

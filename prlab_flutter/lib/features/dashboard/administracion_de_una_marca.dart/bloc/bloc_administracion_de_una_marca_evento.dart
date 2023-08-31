@@ -7,6 +7,7 @@ abstract class BlocAdministracionDeUnaMarcaEvento extends Equatable {
   /// {@macro BlocAdministracionDeUnaMarcaEvento}
   const BlocAdministracionDeUnaMarcaEvento();
 
+  @override
   List<Object> get props => [];
 }
 

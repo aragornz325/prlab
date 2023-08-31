@@ -33,103 +33,45 @@ class BlocListaArticulosYRecortes extends Bloc<
   ) async {
     emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
     try {
-      // TODO(anyone): sacar por la lista del back y hacer una variable arriba para pasarle la lista del modelo del back
-      final listaPrArticulos = [
+      // TODO(anyone):
+      // Este endpoint no funciona
+      /* 
+      final respuesta = await client.articulo.listarArticulosPorMarca(
+         state.marcaId,
+        );
+      */
+
+      final articulos = [
         Articulo(
-          titulo: 'Flutter article',
-          fechaCreacion: DateTime.now(),
-          ultimaModificacion: DateTime.now(),
-          contenido: 'contenido?',
+          id: 0,
+          titulo: 'Primer Art',
+          contenido: 'Nada',
+          idProyecto: 1,
+          idMarca: 0,
+          idAutor: 0,
+          idStatus: 0,
           fechaEliminacion: DateTime.now(),
-          id: 2,
-          idAutor: 2,
+          ultimaModificacion: DateTime.now(),
+          fechaCreacion: DateTime.now(),
+        ),
+        Articulo(
+          id: 1,
+          titulo: 'Segundo Art',
+          contenido: 'Nada x2',
           idProyecto: 2,
-          idStatus: 2,
-        ),
-        Articulo(
-          titulo: 'Flutter article',
-          fechaCreacion: DateTime.now(),
-          ultimaModificacion: DateTime.now(),
-          contenido: 'contenido?',
+          idMarca: 0,
+          idAutor: 1,
+          idStatus: 1,
           fechaEliminacion: DateTime.now(),
-          id: 3,
-          idAutor: 3,
-          idProyecto: 3,
-          idStatus: 3,
-        ),
-        Articulo(
-          titulo: 'Flutter article',
-          fechaCreacion: DateTime.now(),
           ultimaModificacion: DateTime.now(),
-          contenido: 'contenido?',
-          fechaEliminacion: DateTime.now(),
-          id: 4,
-          idAutor: 4,
-          idProyecto: 4,
-          idStatus: 4,
-        ),
-        Articulo(
-          titulo: 'Flutter article',
           fechaCreacion: DateTime.now(),
-          ultimaModificacion: DateTime.now(),
-          contenido: 'contenido?',
-          fechaEliminacion: DateTime.now(),
-          id: 5,
-          idAutor: 5,
-          idProyecto: 5,
-          idStatus: 5,
-        ),
-        Articulo(
-          titulo: 'Flutter article',
-          fechaCreacion: DateTime.now(),
-          ultimaModificacion: DateTime.now(),
-          contenido: 'contenido?',
-          fechaEliminacion: DateTime.now(),
-          id: 6,
-          idAutor: 6,
-          idProyecto: 6,
-          idStatus: 6,
-        ),
-        Articulo(
-          titulo: 'Flutter article',
-          fechaCreacion: DateTime.now(),
-          ultimaModificacion: DateTime.now(),
-          contenido: 'contenido?',
-          fechaEliminacion: DateTime.now(),
-          id: 7,
-          idAutor: 7,
-          idProyecto: 7,
-          idStatus: 7,
-        ),
-        Articulo(
-          titulo: 'Flutter article',
-          fechaCreacion: DateTime.now(),
-          ultimaModificacion: DateTime.now(),
-          contenido: 'contenido?',
-          fechaEliminacion: DateTime.now(),
-          id: 8,
-          idAutor: 8,
-          idProyecto: 8,
-          idStatus: 8,
-        ),
-        Articulo(
-          titulo: 'Flutter article',
-          fechaCreacion: DateTime.now(),
-          ultimaModificacion: DateTime.now(),
-          contenido: 'contenido?',
-          fechaEliminacion: DateTime.now(),
-          id: 9,
-          idAutor: 9,
-          idProyecto: 9,
-          idStatus: 9,
         ),
       ];
 
-      // TODO(anyone): hacer el evento del back la lista de esos articulos
       emit(
         BlocListaArticulosYRecortesEstadoExitoso.desde(
           state,
-          articulos: listaPrArticulos,
+          articulos: articulos,
         ),
       );
     } catch (e, st) {
