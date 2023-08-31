@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/encabezado_de_seccion.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/lista_articulos_y_recortes.dart';
@@ -35,7 +37,13 @@ class VistaEscritorioAdministracionDeUnaMarca extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               PRAppBar(
-                onTap: (value) {},
+                onTap: (value) {
+                  if (value == MenuDeOpciones.yourArticles) {
+                    context.router.push(
+                      const RutaAdministracionContenido(),
+                    );
+                  }
+                },
               ),
               SizedBox(height: 40.ph),
               EncabezadoDeSeccion(
