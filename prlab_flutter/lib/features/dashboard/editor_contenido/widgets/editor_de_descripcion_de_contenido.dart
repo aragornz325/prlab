@@ -97,7 +97,7 @@ class _EditorDeDescripcionDeContenidoState
               backgroundColor: colores.onSecondary,
               toolbarActiveColor: colores.primary,
             ),
-            child: ContenedorDeDescripcionDeContenido(
+            child: _ContenedorDeDescripcionDeContenido(
               editorState: editorState,
               scrollController: scrollController,
             ),
@@ -113,12 +113,11 @@ class _EditorDeDescripcionDeContenidoState
 /// la descripción como tal, se puede editar los tamaños
 /// que ocupa el componente en si y manejar el scroll del mismo.
 /// {@endtemplate}
-class ContenedorDeDescripcionDeContenido extends StatelessWidget {
+class _ContenedorDeDescripcionDeContenido extends StatelessWidget {
   /// {@macro  ContenedorDeDescripcionDeContenido}
-  const ContenedorDeDescripcionDeContenido({
+  const _ContenedorDeDescripcionDeContenido({
     required this.editorState,
     required this.scrollController,
-    super.key,
   });
 
   final EditorState editorState;

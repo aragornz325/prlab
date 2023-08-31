@@ -39,6 +39,8 @@ class BlocEditorContenido
     );
   }
 
+  /// Refresca la descripción del artículo que se esta
+  /// editando dentro del estado de [BlocEditorContenidoEstado].
   void _onActualizarDescripcion(
     BlocEditorContenidoActualizarDescripcion event,
     Emitter<BlocEditorContenidoEstado> emit,
