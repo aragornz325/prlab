@@ -131,7 +131,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                       SizedBox(
                         width: 10.pw,
                       ),
-                      const ContainerEdicionArticulo(),
+                      ContainerEdicionArticulo(),
                     ],
                   ),
                 ),
