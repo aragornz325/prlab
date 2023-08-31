@@ -339,6 +339,11 @@
         "description": "Text in title of alertdialog/popup Filter by author,Typically used to filter in title of alert dialogs."
     },
 
+    "commonAlertDialogFilterByStatus": "Filtrar por estado",
+    "@commonAlertDialogFilterByStatus": {
+        "description": "Text in title of alertdialog/popup Filter by Status,Typically used to filter in title of alert dialogs."
+    },
+
     "commonEdit": "Editar",
     "@commonEdit": {
         "description": "Text shown on a button that indicates to edit,this edit text is displayed in a content management popup one of the options to choose from"

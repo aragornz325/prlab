@@ -19,7 +19,7 @@ class PrDialogFiltrarPorAutor extends StatelessWidget {
       },
       titulo: l10n.commonAlertDialogFilterByAuthor,
       botonText: l10n.commonApply,
-      // TODO(anyone): cambiar esto por los dropdown de PrLab
+      // TODO(anyone): cambiar esto por los dropdown de PrLab lo estaba trabajando gon
       content: SizedBox(
         width: 300.pw,
         child: DropdownButton(

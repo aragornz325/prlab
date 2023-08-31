@@ -24,6 +24,9 @@ class BlocListaArticulosYRecortes extends Bloc<
     on<BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos>(
       _onCambiarListaArticulosORecorte,
     );
+    on<BlocListaArticulosYRecortesEventoFiltradoPorEstado>(
+      _onFiltradoPorEstado,
+    );
   }
 
   /// Trae la lista de los articulos
@@ -199,5 +202,22 @@ class BlocListaArticulosYRecortes extends Bloc<
         throw UnimplementedError('Implementa un error para esto: $e $st');
       }
     }
+  }
+
+  /// Cambia los valores del estado del bloc y el tipo de filtrado por
+  /// Estado/Status para filtrar por ciertos valores definidos en el popup de
+  /// filtrado.
+  Future<void> _onFiltradoPorEstado(
+    BlocListaArticulosYRecortesEventoFiltradoPorEstado event,
+    Emitter<BlocListaArticulosYRecortesEstado> emit,
+  ) async {
+    emit(
+      BlocListaArticulosYRecortesEstadoExitoso.desde(
+        state,
+        borrador: event.borrador,
+        comentario: event.comentario,
+        completo: event.completo,
+      ),
+    );
   }
 }
