@@ -8,80 +8,95 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i10;
-import 'package:flutter/material.dart' as _i11;
+import 'package:auto_route/auto_route.dart' as _i11;
+import 'package:flutter/material.dart' as _i12;
 import 'package:prlab_flutter/features/auth/crear_cuenta_admin/pagina_crear_cuenta_admin.dart'
-    as _i3;
-import 'package:prlab_flutter/features/auth/kyc/pagina_kyc.dart' as _i6;
-import 'package:prlab_flutter/features/auth/login/pagina_login.dart' as _i7;
+    as _i4;
+import 'package:prlab_flutter/features/auth/kyc/pagina_kyc.dart' as _i7;
+import 'package:prlab_flutter/features/auth/login/pagina_login.dart' as _i8;
 import 'package:prlab_flutter/features/auth/recuperar_password/pagina_recuperar_password.dart'
-    as _i8;
-import 'package:prlab_flutter/features/auth/registro/pagina_registro.dart'
     as _i9;
+import 'package:prlab_flutter/features/auth/registro/pagina_registro.dart'
+    as _i10;
 import 'package:prlab_flutter/features/dashboard/administracion_contenido/pagina_administracion_contenido.dart'
     as _i1;
-import 'package:prlab_flutter/features/dashboard/administracion_marcas/pagina_administracion_marcas.dart'
+import 'package:prlab_flutter/features/dashboard/administracion_de_una_marca.dart/pagina_administracion_de_una_marca.dart'
     as _i2;
+import 'package:prlab_flutter/features/dashboard/administracion_marcas/pagina_administracion_marcas.dart'
+    as _i3;
 import 'package:prlab_flutter/features/dashboard/editor_contenido/pagina_editor_contenido.dart'
-    as _i5;
-import 'package:prlab_flutter/features/dashboard/pagina_dashboard.dart' as _i4;
+    as _i6;
+import 'package:prlab_flutter/features/dashboard/pagina_dashboard.dart' as _i5;
 
-abstract class $AppRouter extends _i10.RootStackRouter {
+abstract class $AppRouter extends _i11.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i10.PageFactory> pagesMap = {
+  final Map<String, _i11.PageFactory> pagesMap = {
     RutaAdministracionContenido.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.PaginaAdministracionContenido(),
       );
     },
-    RutaAdministracionMarcas.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+    RutaAdministracionDeUnaMarca.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<RutaAdministracionDeUnaMarcaArgs>(
+          orElse: () => RutaAdministracionDeUnaMarcaArgs(
+              nombreMarca: pathParams.getString('nombreMarca')));
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.PaginaAdministracionMarcas(),
+        child: _i2.PaginaAdministracionDeUnaMarca(
+          nombreMarca: args.nombreMarca,
+          key: args.key,
+        ),
+      );
+    },
+    RutaAdministracionMarcas.name: (routeData) {
+      return _i11.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.PaginaAdministracionMarcas(),
       );
     },
     RutaCrearCuenta.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.PaginaCrearCuenta(),
+        child: const _i4.PaginaCrearCuenta(),
       );
     },
     RutaDashboard.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.PaginaDashboard(),
+        child: const _i5.PaginaDashboard(),
       );
     },
     RutaEditorContenido.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i5.PaginaEditorContenido(),
+        child: const _i6.PaginaEditorContenido(),
       );
     },
     RutaKyc.name: (routeData) {
       final args = routeData.argsAs<RutaKycArgs>();
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i6.PaginaKyc(
+        child: _i7.PaginaKyc(
           idUsuario: args.idUsuario,
           key: args.key,
         ),
       );
     },
     RutaLogin.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.PaginaLogin(),
+        child: const _i8.PaginaLogin(),
       );
     },
     RutaRecuperarPassword.name: (routeData) {
       final args = routeData.argsAs<RutaRecuperarPasswordArgs>();
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i8.PaginaRecuperarPassword(
+        child: _i9.PaginaRecuperarPassword(
           codigoOtp: args.codigoOtp,
           key: args.key,
         ),
@@ -92,9 +107,9 @@ abstract class $AppRouter extends _i10.RootStackRouter {
       final args = routeData.argsAs<RutaRegistroArgs>(
           orElse: () =>
               RutaRegistroArgs(tokenAuth: pathParams.getString('token')));
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i9.PaginaRegistro(
+        child: _i10.PaginaRegistro(
           tokenAuth: args.tokenAuth,
           key: args.key,
         ),
@@ -105,8 +120,8 @@ abstract class $AppRouter extends _i10.RootStackRouter {
 
 /// generated route for
 /// [_i1.PaginaAdministracionContenido]
-class RutaAdministracionContenido extends _i10.PageRouteInfo<void> {
-  const RutaAdministracionContenido({List<_i10.PageRouteInfo>? children})
+class RutaAdministracionContenido extends _i11.PageRouteInfo<void> {
+  const RutaAdministracionContenido({List<_i11.PageRouteInfo>? children})
       : super(
           RutaAdministracionContenido.name,
           initialChildren: children,
@@ -114,13 +129,53 @@ class RutaAdministracionContenido extends _i10.PageRouteInfo<void> {
 
   static const String name = 'RutaAdministracionContenido';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i2.PaginaAdministracionMarcas]
-class RutaAdministracionMarcas extends _i10.PageRouteInfo<void> {
-  const RutaAdministracionMarcas({List<_i10.PageRouteInfo>? children})
+/// [_i2.PaginaAdministracionDeUnaMarca]
+class RutaAdministracionDeUnaMarca
+    extends _i11.PageRouteInfo<RutaAdministracionDeUnaMarcaArgs> {
+  RutaAdministracionDeUnaMarca({
+    required String nombreMarca,
+    _i12.Key? key,
+    List<_i11.PageRouteInfo>? children,
+  }) : super(
+          RutaAdministracionDeUnaMarca.name,
+          args: RutaAdministracionDeUnaMarcaArgs(
+            nombreMarca: nombreMarca,
+            key: key,
+          ),
+          rawPathParams: {'nombreMarca': nombreMarca},
+          initialChildren: children,
+        );
+
+  static const String name = 'RutaAdministracionDeUnaMarca';
+
+  static const _i11.PageInfo<RutaAdministracionDeUnaMarcaArgs> page =
+      _i11.PageInfo<RutaAdministracionDeUnaMarcaArgs>(name);
+}
+
+class RutaAdministracionDeUnaMarcaArgs {
+  const RutaAdministracionDeUnaMarcaArgs({
+    required this.nombreMarca,
+    this.key,
+  });
+
+  final String nombreMarca;
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return 'RutaAdministracionDeUnaMarcaArgs{nombreMarca: $nombreMarca, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i3.PaginaAdministracionMarcas]
+class RutaAdministracionMarcas extends _i11.PageRouteInfo<void> {
+  const RutaAdministracionMarcas({List<_i11.PageRouteInfo>? children})
       : super(
           RutaAdministracionMarcas.name,
           initialChildren: children,
@@ -128,13 +183,13 @@ class RutaAdministracionMarcas extends _i10.PageRouteInfo<void> {
 
   static const String name = 'RutaAdministracionMarcas';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i3.PaginaCrearCuenta]
-class RutaCrearCuenta extends _i10.PageRouteInfo<void> {
-  const RutaCrearCuenta({List<_i10.PageRouteInfo>? children})
+/// [_i4.PaginaCrearCuenta]
+class RutaCrearCuenta extends _i11.PageRouteInfo<void> {
+  const RutaCrearCuenta({List<_i11.PageRouteInfo>? children})
       : super(
           RutaCrearCuenta.name,
           initialChildren: children,
@@ -142,13 +197,13 @@ class RutaCrearCuenta extends _i10.PageRouteInfo<void> {
 
   static const String name = 'RutaCrearCuenta';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i4.PaginaDashboard]
-class RutaDashboard extends _i10.PageRouteInfo<void> {
-  const RutaDashboard({List<_i10.PageRouteInfo>? children})
+/// [_i5.PaginaDashboard]
+class RutaDashboard extends _i11.PageRouteInfo<void> {
+  const RutaDashboard({List<_i11.PageRouteInfo>? children})
       : super(
           RutaDashboard.name,
           initialChildren: children,
@@ -156,13 +211,13 @@ class RutaDashboard extends _i10.PageRouteInfo<void> {
 
   static const String name = 'RutaDashboard';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i5.PaginaEditorContenido]
-class RutaEditorContenido extends _i10.PageRouteInfo<void> {
-  const RutaEditorContenido({List<_i10.PageRouteInfo>? children})
+/// [_i6.PaginaEditorContenido]
+class RutaEditorContenido extends _i11.PageRouteInfo<void> {
+  const RutaEditorContenido({List<_i11.PageRouteInfo>? children})
       : super(
           RutaEditorContenido.name,
           initialChildren: children,
@@ -170,16 +225,16 @@ class RutaEditorContenido extends _i10.PageRouteInfo<void> {
 
   static const String name = 'RutaEditorContenido';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i6.PaginaKyc]
-class RutaKyc extends _i10.PageRouteInfo<RutaKycArgs> {
+/// [_i7.PaginaKyc]
+class RutaKyc extends _i11.PageRouteInfo<RutaKycArgs> {
   RutaKyc({
     required int idUsuario,
-    _i11.Key? key,
-    List<_i10.PageRouteInfo>? children,
+    _i12.Key? key,
+    List<_i11.PageRouteInfo>? children,
   }) : super(
           RutaKyc.name,
           args: RutaKycArgs(
@@ -191,8 +246,8 @@ class RutaKyc extends _i10.PageRouteInfo<RutaKycArgs> {
 
   static const String name = 'RutaKyc';
 
-  static const _i10.PageInfo<RutaKycArgs> page =
-      _i10.PageInfo<RutaKycArgs>(name);
+  static const _i11.PageInfo<RutaKycArgs> page =
+      _i11.PageInfo<RutaKycArgs>(name);
 }
 
 class RutaKycArgs {
@@ -203,7 +258,7 @@ class RutaKycArgs {
 
   final int idUsuario;
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
@@ -212,9 +267,9 @@ class RutaKycArgs {
 }
 
 /// generated route for
-/// [_i7.PaginaLogin]
-class RutaLogin extends _i10.PageRouteInfo<void> {
-  const RutaLogin({List<_i10.PageRouteInfo>? children})
+/// [_i8.PaginaLogin]
+class RutaLogin extends _i11.PageRouteInfo<void> {
+  const RutaLogin({List<_i11.PageRouteInfo>? children})
       : super(
           RutaLogin.name,
           initialChildren: children,
@@ -222,17 +277,17 @@ class RutaLogin extends _i10.PageRouteInfo<void> {
 
   static const String name = 'RutaLogin';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i8.PaginaRecuperarPassword]
+/// [_i9.PaginaRecuperarPassword]
 class RutaRecuperarPassword
-    extends _i10.PageRouteInfo<RutaRecuperarPasswordArgs> {
+    extends _i11.PageRouteInfo<RutaRecuperarPasswordArgs> {
   RutaRecuperarPassword({
     required String codigoOtp,
-    _i11.Key? key,
-    List<_i10.PageRouteInfo>? children,
+    _i12.Key? key,
+    List<_i11.PageRouteInfo>? children,
   }) : super(
           RutaRecuperarPassword.name,
           args: RutaRecuperarPasswordArgs(
@@ -244,8 +299,8 @@ class RutaRecuperarPassword
 
   static const String name = 'RutaRecuperarPassword';
 
-  static const _i10.PageInfo<RutaRecuperarPasswordArgs> page =
-      _i10.PageInfo<RutaRecuperarPasswordArgs>(name);
+  static const _i11.PageInfo<RutaRecuperarPasswordArgs> page =
+      _i11.PageInfo<RutaRecuperarPasswordArgs>(name);
 }
 
 class RutaRecuperarPasswordArgs {
@@ -256,7 +311,7 @@ class RutaRecuperarPasswordArgs {
 
   final String codigoOtp;
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
@@ -265,12 +320,12 @@ class RutaRecuperarPasswordArgs {
 }
 
 /// generated route for
-/// [_i9.PaginaRegistro]
-class RutaRegistro extends _i10.PageRouteInfo<RutaRegistroArgs> {
+/// [_i10.PaginaRegistro]
+class RutaRegistro extends _i11.PageRouteInfo<RutaRegistroArgs> {
   RutaRegistro({
     required String tokenAuth,
-    _i11.Key? key,
-    List<_i10.PageRouteInfo>? children,
+    _i12.Key? key,
+    List<_i11.PageRouteInfo>? children,
   }) : super(
           RutaRegistro.name,
           args: RutaRegistroArgs(
@@ -283,8 +338,8 @@ class RutaRegistro extends _i10.PageRouteInfo<RutaRegistroArgs> {
 
   static const String name = 'RutaRegistro';
 
-  static const _i10.PageInfo<RutaRegistroArgs> page =
-      _i10.PageInfo<RutaRegistroArgs>(name);
+  static const _i11.PageInfo<RutaRegistroArgs> page =
+      _i11.PageInfo<RutaRegistroArgs>(name);
 }
 
 class RutaRegistroArgs {
@@ -295,7 +350,7 @@ class RutaRegistroArgs {
 
   final String tokenAuth;
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {

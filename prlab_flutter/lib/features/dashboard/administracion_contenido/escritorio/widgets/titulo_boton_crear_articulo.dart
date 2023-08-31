@@ -30,6 +30,9 @@ class TituloBotonCrearArticulo extends StatelessWidget {
           size: 40.pf,
           color: colores.primary,
         ),
+        SizedBox(
+          width: 10.pw,
+        ),
         Text(
           nombreArticulo ?? l10n.pageContentAdministrationTitleYourArticle,
           style: TextStyle(
