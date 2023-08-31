@@ -24,3 +24,20 @@ class BlocEditorContenidoEventoAgregarImagen extends BlocEditorContenidoEvento {
   final File? logoSecundarioElegidoCelular;
   final Uint8List? logoSecundarioElegidoWeb;
 }
+
+/// {@template BlocEditorContenidoActualizarDescripcion}
+/// Actualiza el contenido dentro de la descripción de un
+/// articulo a medida que se vayan ejecutando cambios dentro
+/// del mismo
+/// {@endtemplate}
+class BlocEditorContenidoActualizarDescripcion
+    extends BlocEditorContenidoEvento {
+  ///{@macro BlocEditorContenidoActualizarDescripcion}
+  BlocEditorContenidoActualizarDescripcion(this.descripcionDeArticulo);
+
+  /// El core de el artículo, acá se encuentra toda la información
+  /// central del mismo, se pueden subir imagenes, customizar la letra
+  /// y más, el string contiene el tipo de archivo `html` donde estan
+  /// descriptas todas esas especificaciones.
+  final String descripcionDeArticulo;
+}
