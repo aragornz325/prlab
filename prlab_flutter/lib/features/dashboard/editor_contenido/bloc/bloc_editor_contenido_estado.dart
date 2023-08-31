@@ -36,6 +36,11 @@ sealed class BlocEditorContenidoEstado {
   final Uint8List? logoElegidoWeb;
   final File? logoSecundarioElegidoCelular;
   final Uint8List? logoSecundarioElegidoWeb;
+
+  /// El core de el artículo, acá se encuentra toda la información
+  /// central del mismo, se pueden subir imagenes, customizar la letra
+  /// y más, el string contiene el tipo de archivo `html` donde estan
+  /// descriptas todas esas especificaciones.
   final String descripcionDeArticulo;
 }
 
