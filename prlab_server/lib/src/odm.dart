@@ -1,3 +1,4 @@
+import 'package:logging/logging.dart';
 import 'package:serverpod/serverpod.dart';
 
 /// Tipo de funcion que ejecuta el metodo performOdmOperation.
@@ -10,6 +11,7 @@ abstract class ODM {
   /// Sesion (clase de Serverpod).
   late Session? session;
 
+  final logger = Logger('ODM');
   /// Metodo para ejecutar las operaciones de los ODM y manejar errores.
   Future<T> performOdmOperation<T>(
     Session session,

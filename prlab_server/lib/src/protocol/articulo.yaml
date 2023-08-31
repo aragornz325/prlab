@@ -4,8 +4,9 @@ fields:
   titulo: String
   contenido: String?
   idProyecto: int? parent=proyectos
+  idMarca: int? parent=marcas
   idAutor: int?
   idStatus: int?
   fechaEliminacion: DateTime?
-  ultimaModificacion: DateTime
-  fechaCreacion: DateTime
+  ultimaModificacion: DateTime?
+  fechaCreacion: DateTime?
