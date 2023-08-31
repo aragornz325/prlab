@@ -5,9 +5,9 @@ const double tileHeight = 50;
 const double selectAllButtonHeight = 40;
 const double searchOptionHeight = 40;
 
-class MultiSelectDropdown extends StatefulWidget {
+class PRDropdown extends StatefulWidget {
   /// Mutiple selection dropdown for List of Maps.
-  const MultiSelectDropdown({
+  const PRDropdown({
     required this.list,
     required this.initiallySelected,
     required this.onChange,
@@ -39,7 +39,7 @@ class MultiSelectDropdown extends StatefulWidget {
   }) : isSimpleList = false;
 
   /// Mutiple selection dropdown for simple List.
-  const MultiSelectDropdown.simpleList({
+  const PRDropdown.simpleList({
     required this.list,
     required this.initiallySelected,
     required this.onChange,
@@ -159,10 +159,10 @@ class MultiSelectDropdown extends StatefulWidget {
   final bool oneMinimumSelected;
 
   @override
-  State<MultiSelectDropdown> createState() => _MultiSelectDropdownState();
+  State<PRDropdown> createState() => _PRDropdownState();
 }
 
-class _MultiSelectDropdownState extends State<MultiSelectDropdown> {
+class _PRDropdownState extends State<PRDropdown> {
   late List<dynamic> selected = [...widget.initiallySelected];
   late final Decoration boxDecoration;
   List<dynamic> filteredOptions = [];
@@ -174,7 +174,7 @@ class _MultiSelectDropdownState extends State<MultiSelectDropdown> {
     if (widget.isSimpleList) {
       return selected.contains(data);
     } else {
-      for (final obj in selected as List<dynamic>) {
+      for (final obj in selected) {
         if (obj[widget.id] == data) {
           return true;
         }
@@ -183,7 +183,7 @@ class _MultiSelectDropdownState extends State<MultiSelectDropdown> {
     }
   }
 
-  void handleOnChange(bool newValue, dynamic data) {
+  void handleOnChange({required bool newValue, required dynamic data}) {
     if (newValue) {
       setState(() {
         selected.add(data);
@@ -194,7 +194,7 @@ class _MultiSelectDropdownState extends State<MultiSelectDropdown> {
           selected.remove(data);
         });
       } else {
-        int itemIndex = selected.indexWhere(
+        final itemIndex = selected.indexWhere(
           (obj) => obj[widget.id] == data[widget.id],
         );
         if (itemIndex == -1) {
@@ -234,15 +234,12 @@ class _MultiSelectDropdownState extends State<MultiSelectDropdown> {
             },
             value: isSelected(data),
             onChanged: (bool newValue) {
-              handleOnChange(newValue, data);
+              handleOnChange(newValue: newValue, data: data);
             },
             title: '$data',
             checkboxFillColor: widget.checkboxFillColor,
             splashColor: widget.splashColor,
             textStyle: widget.listTextStyle,
-          ),
-          const Divider(
-            height: 1,
           ),
         ],
       );
@@ -265,15 +262,12 @@ class _MultiSelectDropdownState extends State<MultiSelectDropdown> {
             },
             value: isSelected(data[widget.id]),
             onChanged: (bool newValue) {
-              handleOnChange(newValue, data);
+              handleOnChange(newValue: newValue, data: data);
             },
             title: '${data[widget.label]}',
             checkboxFillColor: widget.checkboxFillColor,
             splashColor: widget.splashColor,
             textStyle: widget.listTextStyle,
-          ),
-          const Divider(
-            height: 1,
           ),
         ],
       );
@@ -349,7 +343,7 @@ class _MultiSelectDropdownState extends State<MultiSelectDropdown> {
         alignment: Alignment.centerLeft,
         padding: const EdgeInsets.symmetric(horizontal: 18),
         decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.zero),
+          borderRadius: BorderRadius.zero,
           border: Border(
             bottom: BorderSide(color: Colors.grey),
           ),
@@ -450,13 +444,13 @@ class _MultiSelectDropdownState extends State<MultiSelectDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    final String textToShow = buildText();
-    final IconData? selectedIcon = getSelectedIcon();
-    double modalHeight = getModalHeight();
+    final textToShow = buildText();
+    final selectedIcon = getSelectedIcon();
+    final modalHeight = getModalHeight();
 
     return LayoutBuilder(
       builder: (ctx, boxConstraints) {
-        double modalWidth = getWidth(boxConstraints);
+        final modalWidth = getWidth(boxConstraints);
 
         return ConstrainedBox(
           constraints: BoxConstraints.expand(
@@ -579,7 +573,7 @@ class _CustomTile extends StatelessWidget {
   final bool alwaysSelected;
   final int index;
   final List<IconData>? itemsIconList;
-  final List selectedList;
+  final List<dynamic> selectedList;
 
   void handleOnChange() {
     if (value) {

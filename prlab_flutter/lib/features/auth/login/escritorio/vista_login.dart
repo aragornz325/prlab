@@ -100,7 +100,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    MultiSelectDropdown(
+                    PRDropdown(
                       dropdownButtonDecoration: BoxDecoration(
                         borderRadius:
                             const BorderRadius.all(Radius.circular(5)),
@@ -128,7 +128,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       onChange: (newList) {},
                       oneMinimumSelected: true,
                     ),
-                    MultiSelectDropdown(
+                    PRDropdown(
                       dropdownButtonDecoration: BoxDecoration(
                         borderRadius:
                             const BorderRadius.all(Radius.circular(5)),
