@@ -39,7 +39,7 @@ class PRAppBarRowTitulosConIconos extends StatelessWidget {
           onTap: onTap,
           // TODO(Manu): en diseño no tiene items pero le paso otro para evitar error
           enumItemsMenu: MenuDeOpciones.crearContenido,
-        )
+        ),
       ],
     );
   }
