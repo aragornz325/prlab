@@ -4,7 +4,8 @@ import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/celular/vista_editor_contenido_celular.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/theming/base.dart';
+import 'package:prlab_flutter/utilidades/widgets/appbar/appbar.dart';
+import 'package:prlab_flutter/utilidades/widgets/drawer/drawer.dart';
 import 'package:prlab_flutter/utilidades/widgets/encabezado_de_seccion.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
@@ -55,19 +56,13 @@ class VistaEditorContenidoEscritorio extends StatelessWidget {
       body: SingleChildScrollView(
         child: Row(
           children: [
-            Container(
-              width: 210.pw,
-              height: 100.hp,
-              color: colores.primaryOpacidadCincuenta,
-            ),
+            const PrDrawer(),
             SizedBox(width: 30.pw),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 1040.pw,
-                  height: 100.ph,
-                  color: colores.primaryOpacidadCincuenta,
+                PRAppBar(
+                  onTap: (MenuDeOpciones value) {},
                 ),
                 SizedBox(height: 40.ph),
                 Row(

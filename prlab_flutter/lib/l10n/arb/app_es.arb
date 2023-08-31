@@ -283,8 +283,8 @@
     "@pageEditContentEditArticleContainerButtonUploadLogo": {
         "description":"Text of the button to upload the main logo, when you are creating or editing an article"
     },
-    "pageEditContentEditArticleContainerButtonUploadLogoSecondary" : "Subir logo secundario",
-    "@pageEditContentEditArticleContainerButtonUploadLogoSecondary": {
+    "pageEditContentEditArticleContainerButtonUploadSecondaryLogo" : "Subir logo secundario",
+    "@pageEditContentEditArticleContainerButtonUploadSecondaryLogo": {
         "description":"Text of the button to upload the secondary logo, when you are creating or editing an article"
     },
      "pageEditContentEditArticleContainerHintTitle" : "Ingresa título de artículo",

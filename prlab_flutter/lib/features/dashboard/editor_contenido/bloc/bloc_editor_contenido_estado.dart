@@ -6,9 +6,32 @@ part of 'bloc_editor_contenido.dart';
 @immutable
 sealed class BlocEditorContenidoEstado {
   /// {@macro BlocEditorContenidoEstado}
-  const BlocEditorContenidoEstado._();
+  const BlocEditorContenidoEstado._({
+    this.logoElegidoCelular,
+    this.logoElegidoWeb,
+    this.logoSecundarioElegidoCelular,
+    this.logoSecundarioElegidoWeb,
+  });
 
-  const BlocEditorContenidoEstado.desde() : this._();
+  BlocEditorContenidoEstado.desde(
+    BlocEditorContenidoEstado otro, {
+    File? logoElegidoCelular,
+    Uint8List? logoElegidoWeb,
+    File? logoSecundarioElegidoCelular,
+    Uint8List? logoSecundarioElegidoWeb,
+  }) : this._(
+          logoElegidoCelular: logoElegidoCelular ?? otro.logoElegidoCelular,
+          logoElegidoWeb: logoElegidoWeb ?? otro.logoElegidoWeb,
+          logoSecundarioElegidoCelular:
+              logoSecundarioElegidoCelular ?? otro.logoSecundarioElegidoCelular,
+          logoSecundarioElegidoWeb:
+              logoSecundarioElegidoWeb ?? otro.logoSecundarioElegidoWeb,
+        );
+
+  final File? logoElegidoCelular;
+  final Uint8List? logoElegidoWeb;
+  final File? logoSecundarioElegidoCelular;
+  final Uint8List? logoSecundarioElegidoWeb;
 }
 
 /// {@template BlocEditorContenidoEstadoInicial}
@@ -24,7 +47,13 @@ class BlocEditorContenidoEstadoInicial extends BlocEditorContenidoEstado {
 /// {@endtemplate}
 class BlocEditorContenidoEstadoCargando extends BlocEditorContenidoEstado {
   /// {@macro BlocEditorContenidoEstadoCargando}
-  const BlocEditorContenidoEstadoCargando.desde() : super.desde();
+  BlocEditorContenidoEstadoCargando.desde(
+    super.otro, {
+    super.logoElegidoCelular,
+    super.logoElegidoWeb,
+    super.logoSecundarioElegidoCelular,
+    super.logoSecundarioElegidoWeb,
+  }) : super.desde();
 }
 
 /// {@template BlocEditorContenidoEstadoRecolectandoDatos}
@@ -36,7 +65,13 @@ class BlocEditorContenidoEstadoCargando extends BlocEditorContenidoEstado {
 class BlocEditorContenidoEstadoRecolectandoDatos
     extends BlocEditorContenidoEstado {
   /// {@macro BlocEditorContenidoEstadoRecolectandoDatos}
-  const BlocEditorContenidoEstadoRecolectandoDatos.desde() : super.desde();
+  BlocEditorContenidoEstadoRecolectandoDatos.desde(
+    super.otro, {
+    super.logoElegidoCelular,
+    super.logoElegidoWeb,
+    super.logoSecundarioElegidoCelular,
+    super.logoSecundarioElegidoWeb,
+  }) : super.desde();
 }
 
 /// {@template BlocEditorContenidoEstadoExitoso}
@@ -44,7 +79,13 @@ class BlocEditorContenidoEstadoRecolectandoDatos
 /// {@endtemplate}
 class BlocEditorContenidoEstadoExitoso extends BlocEditorContenidoEstado {
   /// {@macro BlocEditorContenidoEstadoExitoso}
-  const BlocEditorContenidoEstadoExitoso.desde() : super.desde();
+  BlocEditorContenidoEstadoExitoso.desde(
+    super.otro, {
+    super.logoElegidoCelular,
+    super.logoElegidoWeb,
+    super.logoSecundarioElegidoCelular,
+    super.logoSecundarioElegidoWeb,
+  }) : super.desde();
 }
 
 /// {@template BlocEditorContenidoEstadoFallido}
@@ -52,5 +93,11 @@ class BlocEditorContenidoEstadoExitoso extends BlocEditorContenidoEstado {
 /// {@endtemplate}
 class BlocEditorContenidoEstadoFallido extends BlocEditorContenidoEstado {
   /// {@macro BlocEditorContenidoEstadoFallido}
-  const BlocEditorContenidoEstadoFallido.desde() : super.desde();
+  BlocEditorContenidoEstadoFallido.desde(
+    super.otro, {
+    super.logoElegidoCelular,
+    super.logoElegidoWeb,
+    super.logoSecundarioElegidoCelular,
+    super.logoSecundarioElegidoWeb,
+  }) : super.desde();
 }
