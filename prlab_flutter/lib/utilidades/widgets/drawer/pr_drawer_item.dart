@@ -56,7 +56,7 @@ class PRDrawerItem extends StatelessWidget {
               Text(
                 tituloItem,
                 style: TextStyle(color: colores.primary, fontSize: 16.pf),
-              )
+              ),
             ],
           ),
         ),

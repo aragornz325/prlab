@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/upload_logo_pr.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template ContainerEdicionArticulo}
@@ -69,39 +69,7 @@ class ContainerEdicionArticulo extends StatelessWidget {
           const Divider(
             height: 0,
           ),
-          SizedBox(
-            height: 352.ph,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 25.pw,
-                vertical: 15.ph,
-              ),
-              child: TextField(
-                maxLines: 20,
-                // TODO(SAM): Carryover diseño: caracteres / palabras  usandose titulo y descripcion.
-                style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 15.pf,
-                  color: colores.secondary,
-                ),
-                decoration: InputDecoration(
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                  ),
-                  hintText:
-                      l10n.pageEditContentEditArticleContainerHintDescription,
-                  hintStyle: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 15.pf,
-                    color: colores.secondary,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          const EditorDeDescripcionDeContenido(),
         ],
       ),
     );

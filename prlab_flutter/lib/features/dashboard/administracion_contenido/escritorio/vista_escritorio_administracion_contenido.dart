@@ -25,14 +25,9 @@ class VistaEscritorioAdministracionContenido extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // TODO(anyone): cambiar por el drawer
-            SizedBox(width: 210.pw, height: 100.hp),
-            SizedBox(width: 30.pw, height: 100.hp),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // TODO(anyone): cambiar por el appbar
-                SizedBox(height: max(100.ph, 100.sh), width: 1000.pw),
                 const ContenidoPrincipal(
                   descripcionArticulo:
                       'Lorem ipsum dolor sit amet consectetur. Mattis'
