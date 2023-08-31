@@ -122,7 +122,7 @@
         "description":"text in alertdialog suffix textfield on button if the verificaction code was sent, Code sent"
     },
         
-    "alertDialogTooltipRequestNewCode":"You can request a new code in {seconds} seconds.This will expire in {minutes} minutes.",
+    "alertDialogTooltipRequestNewCode":"You can request a new\ncode in {seconds} seconds.\nThis will expire in {minutes}\n minutes.",
     "@alertDialogTooltipRequestNewCode": {
         "description":"part text in alertdialog of textfield on tooltip, You can request a new code in 56 seconds.This will expire in 30 minutes.",
         "placeholders" : {
@@ -203,6 +203,16 @@
     "@pageRecoverPasswordRepeatPasswordHintText": {
         "description":"Text in page recover password setted on the reseat password text field hint text"
     },
+
+    "pageRecoverPasswordChangePasswordSuccessDialogDescription" : "Your password has been successfully changed.",
+    "@pageRecoverPasswordChangePasswordSuccessDialogDescription": {
+        "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
+    },
+
+    "pageRecoverPasswordSuccessDialogButtonText" : "Go to LOGIN",
+    "@pageRecoverPasswordSuccessDialogButtonText": {
+        "description":"Text that is shown on the success dialog button"
+    },
     
     "pageLoginInsertedCodeSuccessfullyDialogDescription" : "Your code has been entered correctly, continue to recover your account.",
     "@pageLoginInsertedCodeSuccessfullyDialogDescription": {
@@ -222,11 +232,6 @@
     "pageLoginInsertedCodeFailDialogDescription" : "The code you entered is incorrect, please try again",
     "@pageLoginInsertedCodeFailDialogDescription": {
         "description":"Pertains to a scenario in which a user attempts to enter a code, such as a password or verification code, but the input is found to be incorrect. The user is then advised to make another attempt in order to rectify the error."
-    },
-
-    "pageRecoverPasswordChangePasswordSuccessDialogDescription" : "Your password has been successfully changed.",
-    "@pageRecoverPasswordChangePasswordSuccessDialogDescription": {
-        "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
     },
 
     "pageBrandAdministrationRecentlyModifiedText" : "Recently modified",

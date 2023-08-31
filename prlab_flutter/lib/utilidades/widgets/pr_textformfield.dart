@@ -129,11 +129,12 @@ class PRTextFormField extends StatefulWidget {
                         fontWeight: FontWeight.w400,
                         color: colores.background,
                       ),
+                      margin: EdgeInsets.only(right: 120.pw),
                       message: tooltipMessage,
                       child: Icon(
                         Icons.info,
                         color: colores.tertiary,
-                        size: 12.5,
+                        size: 12.5.pf,
                       ),
                     ),
                 ],

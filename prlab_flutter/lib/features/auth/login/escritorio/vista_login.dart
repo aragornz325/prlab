@@ -69,11 +69,19 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
 
         if (state is BlocLoginEstadoExitosoAlValidarOTP) {
           Navigator.pop(context);
-          Future.delayed(const Duration(milliseconds: 180), () {
-            context.pushRoute(
-              RutaRecuperarPassword(codigoOtp: state.codigo),
-            );
-          });
+          showDialog<void>(
+            context: context,
+            builder: (context) => PRDialog.exito(
+              context: context,
+              onTap: () {
+                context.pushRoute(
+                  RutaRecuperarPassword(codigoOtp: state.codigo),
+                );
+              },
+              descripcion:
+                  l10n.pageLoginInsertedCodeSuccessfullyDialogDescription,
+            ),
+          );
         }
 
         if (state is BlocLoginEstadoExitosoIniciarSesion) {
