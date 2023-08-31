@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/upload_logo_pr.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template ContainerEdicionArticulo}
@@ -24,69 +25,10 @@ class ContainerEdicionArticulo extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Column(
+          const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 65.ph,
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 30.pw,
-                        vertical: 20.ph,
-                      ),
-                      child: InkWell(
-                        onTap: () {}, // TODO(SAM): Agregar imagePicker
-
-                        child: Center(
-                          child: Row(
-                            children: [
-                              Icon(
-                                size: 24.pf,
-                                Icons.file_upload_outlined,
-                              ),
-                              Text(
-                                l10n.pageEditContentEditArticleContainerButtonUploadLogo,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15.pf,
-                                  color: colores.tertiary,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 30.pw,
-                        vertical: 20.ph,
-                      ),
-                      child: InkWell(
-                        onTap: () {}, // TODO(SAM): Agregar imagepicker
-                        child: Row(
-                          children: [
-                            Icon(
-                              size: 24.pf,
-                              Icons.file_upload_outlined,
-                            ),
-                            Text(
-                              l10n.pageEditContentEditArticleContainerButtonUploadLogoSecondary,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.pf,
-                                color: colores.tertiary,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              UploadLogoPR(),
             ],
           ),
           const Divider(
