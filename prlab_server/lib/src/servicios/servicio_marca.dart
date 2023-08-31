@@ -86,7 +86,12 @@ class ServicioMarca extends Servicio<OdmMarca> {
     required int id,
   }) async {
     try {
-      logger.info('Eliminando Marca $id');
+      logger.info('se va a eliminar la marca con id $id');
+      logger.finer('verificando que la marca exista');
+      await performOperation(
+        () => odm.obtenerMarca(session: session, id: id),
+      );
+      logger.finer('eliminando marca');
       return await performOperation(
         () => odm.eliminarMarca(
           session: session,

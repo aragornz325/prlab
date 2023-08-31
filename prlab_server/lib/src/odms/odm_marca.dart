@@ -20,7 +20,9 @@ class OdmMarca extends ODM {
   }) async {
     try {
       await performOdmOperation(
-          session, (Session session) => Marca.insert(session, payload));
+        session,
+        (Session session) => Marca.insert(session, payload),
+      );
       return true;
     } on Exception catch (e) {
       throw Exception('$e');
@@ -34,7 +36,9 @@ class OdmMarca extends ODM {
   }) async {
     try {
       return await performOdmOperation(
-          session, (Session session) => Marca.find(session));
+        session,
+        (Session session) => Marca.find(session),
+      );
     } on Exception catch (e) {
       throw Exception('$e');
     }
@@ -46,7 +50,9 @@ class OdmMarca extends ODM {
   }) async =>
       await performOdmOperation(
         session,
-        (session) => session.db.query('SELECT * FROM marcas WHERE EXISTS (SELECT 1 FROM json_array_elements_text(staff) AS element WHERE CAST(element AS INTEGER) = $idUsuario);'),);
+        (session) => session.db.query(
+            'SELECT * FROM marcas WHERE EXISTS (SELECT 1 FROM json_array_elements_text(staff) AS element WHERE CAST(element AS INTEGER) = $idUsuario);'),
+      );
 
   /// La función `eliminarMarca` elimina un registro de la base de datos según
   /// el ID proporcionado.
@@ -61,7 +67,6 @@ class OdmMarca extends ODM {
     required int id,
   }) async {
     try {
-      await obtenerMarca(session: session, id: id);
       await performOdmOperation(
         session,
         (Session session) => Marca.delete(

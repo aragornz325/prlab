@@ -18,6 +18,7 @@ class OdmArticulo extends ODM {
     required Articulo payload,
   }) async {
     try {
+      logger.info('Creando artículo: ${payload.titulo}');
       await performOdmOperation(
           session,
           (Session session) => Articulo.insert(
@@ -26,6 +27,7 @@ class OdmArticulo extends ODM {
                   ..fechaCreacion = DateTime.now()
                   ..ultimaModificacion = DateTime.now(),
               ));
+      logger.fine('Artículo ${payload.titulo} creado exitosamente.');
       return true;
     } on Exception catch (e) {
       throw Exception('$e');
@@ -41,8 +43,11 @@ class OdmArticulo extends ODM {
     required Session session,
   }) async {
     try {
+      logger.info('Listando artículos');
       return await performOdmOperation(
-          session, (Session session) => Articulo.find(session));
+        session,
+        (Session session) => Articulo.find(session),
+      );
     } on Exception catch (e) {
       throw Exception('$e');
     }
@@ -60,11 +65,16 @@ class OdmArticulo extends ODM {
     required int id,
   }) async {
     try {
+      logger.info('Obteniendo artículo con id: $id');
       final articulo = await performOdmOperation(
-          session, (Session session) => Articulo.findById(session, id));
+        session,
+        (Session session) => Articulo.findById(session, id),
+      );
       if (articulo == null) {
+        logger.shout('no se encontro el articulo con id: $id');
         throw Exception('No se encontró el artículo con el id: $id');
       }
+      logger.fine('Articulo con id: $id encontrado');
       return articulo;
     } on Exception catch (e) {
       throw Exception('$e');
@@ -82,7 +92,7 @@ class OdmArticulo extends ODM {
     required int id,
   }) async {
     try {
-      await obtenerArticulo(session: session, id: id);
+      logger.info('se va a eliminar el articulo con id: $id');
       await performOdmOperation(
         session,
         (Session session) => Articulo.delete(
@@ -90,6 +100,7 @@ class OdmArticulo extends ODM {
           where: (t) => t.id.equals(id),
         ),
       );
+      logger.fine('se elimino el articulo con id: $id');
       return true;
     } on Exception catch (e) {
       throw Exception('$e');
@@ -98,17 +109,18 @@ class OdmArticulo extends ODM {
 
   /// La función `listarArticulosPorMarca` recupera una lista de artículos basados en un ID de marca
   /// determinado.
-  /// 
+  ///
   /// Args:
   ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio.
   ///   idMarca (int): El parámetro `idMarca` es un número entero que representa el ID de una marca
   /// específica.
- 
+
   Future<List<Articulo>> listarArticulosPorMarca({
     required Session session,
     required int idMarca,
   }) async {
     try {
+      logger.info('buscando los articulos segun marca con id: $idMarca');
       return await performOdmOperation(
           session,
           (Session session) => Articulo.find(
