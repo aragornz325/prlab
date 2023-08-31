@@ -91,11 +91,16 @@ class OdmMarca extends ODM {
     try {
       final marca = await performOdmOperation(
         session,
-        (Session session) => Marca.findById(session, id),
+        (Session session) {
+          logger.info('Buscando marca con id: $id');
+          return Marca.findById(session, id);
+        },
       );
       if (marca == null) {
+        logger.shout('No se encontró la marca con id: $id');
         throw Exception('No se encontró la marca con el id: $id');
       }
+      logger.fine('Marca con id: $id encontrada');
       return marca;
     } on Exception catch (e) {
       throw Exception('$e');
