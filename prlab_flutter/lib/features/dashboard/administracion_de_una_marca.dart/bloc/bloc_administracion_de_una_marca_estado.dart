@@ -71,10 +71,6 @@ class BlocAdministracionDeUnaMarcaEstadoError
 
 /// Tipos de errores de [AdministracionDeUnaMarca] en caso de que sean necesarios
 enum MensajesDeErrorAdministracionDeUnaMarca {
-  userNotFound,
-  invalidCredentials,
-  userCreationDenied,
-  internalError,
-  tooManyFailedAttempts,
-  unknown;
+  unknown,
+  //TODO(Gon): Manejar errores de [AdministracionDeUnaMarca]
 }

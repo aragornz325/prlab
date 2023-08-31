@@ -26,7 +26,10 @@ class BlocAdministracionDeUnaMarca extends Bloc<
     emit(
       BlocAdministracionDeUnaMarcaEstadoCargando.desde(state),
     );
-    try {} catch (e, st) {
+    try {
+      // TODO(Gon): Inicializar la pag todavia no se si tiene
+      // que traer una lista de la pag anterior o pedirla al back
+    } catch (e, st) {
       if (kDebugMode) {
         debugger();
         print(st);
@@ -35,7 +38,7 @@ class BlocAdministracionDeUnaMarca extends Bloc<
       emit(
         BlocAdministracionDeUnaMarcaEstadoError.desde(
           state,
-          mensajeDeError: MensajesDeErrorAdministracionDeUnaMarca.internalError,
+          mensajeDeError: MensajesDeErrorAdministracionDeUnaMarca.unknown,
         ),
       );
     }
