@@ -91,6 +91,9 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
   }) async {
     try {
       await performOperation(
+        () => odm.obtenerArticulo(session: session, id: id),
+      );
+      await performOperation(
         () => odm.eliminarArticulo(
           session: session,
           id: id,
