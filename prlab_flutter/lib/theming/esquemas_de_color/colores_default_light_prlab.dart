@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 /// Esquema de colores a utilizar en el theme light
 const themeDefaultPRLab = ColorScheme.light(
+  surfaceTint: Colors.white,
+
   /// Color principal de la paleta de colores.
   //! se usa para el focus del textfield
   primary: Color(0xFFA12B46),
