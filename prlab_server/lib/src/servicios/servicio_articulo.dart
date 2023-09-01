@@ -140,24 +140,31 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     required Articulo articulo,
   }) async {
     try {
-
-      await performOperation(
-        () => odm.obtenerArticulo(
-          session: session,
-          id: articulo.id!,
-        ),
+      logger.info('se va a actualizar el articulo con id: ${articulo.id}');
+      final articuloFinal = await performOperation(
+        () {
+          return odm.obtenerArticulo(
+            session: session,
+            id: articulo.id!,
+          );
+        },
       );
+      logger.finer('articulo ${articulo.id} recuperado de la db');
 
-    
+      //se compara con el registro de la db, si el valor es null se deja el valor anterior
+      //si el valor es distinto de null se actualiza el valor en el registro de la db
 
-
-
+      articulo.toJson().forEach((key, value) {
+        if (value != null) {
+          articuloFinal.setColumn(key, value);
+        }
+      });
+      logger.finer('articulo ${articulo.id} actualizado');
       await performOperation(
         () {
-          logger.info('se va a actualizar el articulo con id: ${articulo.id}');
           return odm.actualizarArticulo(
             session: session,
-            articulo: articulo,
+            articulo: articuloFinal,
           );
         },
       );

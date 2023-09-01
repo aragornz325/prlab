@@ -139,6 +139,25 @@ class Endpoints extends _i1.EndpointDispatch {
             params['idMarca'],
           ),
         ),
+        'actualizarArticulo': _i1.MethodConnector(
+          name: 'actualizarArticulo',
+          params: {
+            'articulo': _i1.ParameterDescription(
+              name: 'articulo',
+              type: _i1.getType<_i7.Articulo>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['articulo'] as _i2.ArticuloEndpoint)
+                  .actualizarArticulo(
+            session,
+            articulo: params['articulo'],
+          ),
+        ),
       },
     );
     connectors['auth'] = _i1.EndpointConnector(
