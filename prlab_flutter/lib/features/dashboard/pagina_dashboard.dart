@@ -26,7 +26,7 @@ class PaginaDashboard extends StatelessWidget {
             onTap: (menuDeOpciones) {
               // TODO(Anyone): Agregar rutas y cuando esten todas pasar a switch
               if (menuDeOpciones case MenuDeOpciones.yourArticles) {
-                context.router.push(const RutaDashboard());
+                context.router.push(const RutaAdministracionContenido());
               } else if (menuDeOpciones case MenuDeOpciones.createArticle) {
                 context.router.push(const RutaEditorContenido());
               } else {

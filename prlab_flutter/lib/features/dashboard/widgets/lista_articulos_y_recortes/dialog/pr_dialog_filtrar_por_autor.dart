@@ -3,9 +3,11 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
-// TODO(mati): hacer documentacion
+/// {@template PrDialogFiltrarPorStatus}
+/// Dialog para filtrar por autor de ciertos articulos
+/// {@endtemplate}
 class PrDialogFiltrarPorAutor extends StatelessWidget {
-// TODO(mati): hacer documentacion
+  /// {@macro PrDialogFiltrarPorStatus}
   const PrDialogFiltrarPorAutor({super.key});
 
   @override
@@ -16,6 +18,10 @@ class PrDialogFiltrarPorAutor extends StatelessWidget {
       context: context,
       onTap: () {
         // TODO(anyone): agregarle funcionalidad.
+        showDialog<void>(
+          context: context,
+          builder: (context) => const PRDialogErrorNoDisponible(),
+        );
       },
       titulo: l10n.commonAlertDialogFilterByAuthor,
       botonText: l10n.commonApply,
@@ -37,7 +43,8 @@ class PrDialogFiltrarPorAutor extends StatelessWidget {
               child: Text('hola'),
             ),
           ],
-          onChanged: (value) {},
+          onChanged:
+              (value) {}, 
         ),
       ),
     );

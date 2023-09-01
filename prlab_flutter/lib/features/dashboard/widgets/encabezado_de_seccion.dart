@@ -54,7 +54,7 @@ class EncabezadoDeSeccion extends StatelessWidget {
             fontSize: 15.pf,
             color: colores.secondary,
           ),
-        ),
+        )
       ],
     );
   }

@@ -195,7 +195,6 @@ class TarjetaMarca extends StatelessWidget {
                               SizedBox(width: 5.pw),
                               GestureDetector(
                                 onTap: () {
-                                  // TODO(onyone): Agregar funcion al apretar el articulo
                                   context.router.push(
                                     const RutaEditorContenido(),
                                   );
