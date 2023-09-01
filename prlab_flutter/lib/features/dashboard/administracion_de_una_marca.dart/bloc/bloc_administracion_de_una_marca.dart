@@ -9,7 +9,8 @@ part 'bloc_administracion_de_una_marca_estado.dart';
 part 'bloc_administracion_de_una_marca_evento.dart';
 
 /// {@template BlocAdministracionDeUnaMarca}
-/// Bloc que maneja los estados y lógica de la pagina de [AdministracionDeUnaMarca]
+/// Bloc que maneja los estados y lógica de la pagina de
+/// 'AdministracionDeUnaMarca'
 /// {@endtemplate}
 class BlocAdministracionDeUnaMarca extends Bloc<
     BlocAdministracionDeUnaMarcaEvento, BlocAdministracionDeUnaMarcaEstado> {

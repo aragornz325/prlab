@@ -72,7 +72,7 @@ class AppRouter extends $AppRouter {
               page: RutaAdministracionDeUnaMarca.page,
             ),
             AutoRoute(
-              path: 'edit-content',
+              path: 'edit-content/:id',
               page: RutaEditorContenido.page,
             ),
             AutoRoute(

@@ -1,7 +1,7 @@
 part of 'bloc_administracion_de_una_marca.dart';
 
 /// {@template BlocAdministracionDeUnaMarcaEvento}
-/// Clase padre de los eventos de [AdministracionDeUnaMarca]
+/// Clase padre de los eventos de 'AdministracionDeUnaMarca'
 /// {@endtemplate}
 abstract class BlocAdministracionDeUnaMarcaEvento extends Equatable {
   /// {@macro BlocAdministracionDeUnaMarcaEvento}
@@ -12,7 +12,7 @@ abstract class BlocAdministracionDeUnaMarcaEvento extends Equatable {
 }
 
 /// {@template BlocAdministracionDeUnaMarcaEventoInicializar}
-/// Inicializa la pagina [AdministracionDeUnaMarca]
+/// Inicializa la pagina 'AdministracionDeUnaMarca'
 /// {@endtemplate}
 class BlocAdministracionDeUnaMarcaEventoInicializar
     extends BlocAdministracionDeUnaMarcaEvento {}

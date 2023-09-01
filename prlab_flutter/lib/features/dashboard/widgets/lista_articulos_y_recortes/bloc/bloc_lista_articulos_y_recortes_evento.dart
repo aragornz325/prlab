@@ -22,7 +22,8 @@ class BlocListaArticulosYRecortesEventoFiltrar
   @override
   const BlocListaArticulosYRecortesEventoFiltrar();
 
-  // TODO(anyone): agregar el tipo de filtrado sea por un enum u otro tipo
+  // TODO(anyone): agregar el tipo de filtrado sea por
+  // un enum u otro tipo
 }
 
 /// {@template BlocListaArticulosYRecortesEventoTraerArticulos}
@@ -40,15 +41,15 @@ class BlocListaArticulosYRecortesEventoTraerArticulos
   final Marca? marca;
 }
 
-/// {@template BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos}
+/// {@template BlocListaArticulosYRecortesEventoSeleccion}
 /// Seleccionar entre Recortes y Articulos cambia el index seleccionado y
 /// muestra una vista distinta.
 /// {@endtemplate}
-class BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos
+class BlocListaArticulosYRecortesEventoSeleccion
     extends BlocListaArticulosYRecortesEvento {
-  /// {@macro BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos}
+  /// {@macro BlocListaArticulosYRecortesEventoSeleccion}
   @override
-  const BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos({
+  const BlocListaArticulosYRecortesEventoSeleccion({
     required this.index,
   });
 

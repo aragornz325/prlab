@@ -46,7 +46,9 @@ class PRDrawerItem extends StatelessWidget {
             children: [
               if (estaSeleccionado) const DrawerIndicadorItemSeleccionado(),
               Padding(
-                padding: EdgeInsets.only(left: estaSeleccionado ? 0.pw : 30.pw),
+                padding: EdgeInsets.only(
+                  left: estaSeleccionado ? 0.pw : 30.pw,
+                ),
                 child: Icon(
                   icono,
                   color: colores.primary,
@@ -55,7 +57,10 @@ class PRDrawerItem extends StatelessWidget {
               SizedBox(width: 5.pw),
               Text(
                 tituloItem,
-                style: TextStyle(color: colores.primary, fontSize: 16.pf),
+                style: TextStyle(
+                  color: colores.primary,
+                  fontSize: 16.pf,
+                ),
               ),
             ],
           ),

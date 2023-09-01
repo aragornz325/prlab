@@ -34,7 +34,7 @@ class BlocAdministracionDeUnaMarcaEstado extends Equatable {
 }
 
 /// {@template BlocAdministracionMarcasEstadoInicial}
-/// Estado inicial de los componentes de la pantalla [AdministracionDeUnaMarca]
+/// Estado inicial de los componentes de la pantalla 'AdministracionDeUnaMarca'
 /// {@endtemplate}
 class BlocAdministracionDeUnaMarcaEstadoInicial
     extends BlocAdministracionDeUnaMarcaEstado {
@@ -44,7 +44,8 @@ class BlocAdministracionDeUnaMarcaEstadoInicial
 }
 
 /// {@template BlocAdministracionMarcasEstadoCargando}
-/// Estado de cargando de los componentes de la pantalla [AdministracionDeUnaMarca]
+/// Estado de cargando de los componentes de la pantalla
+/// 'AdministracionDeUnaMarca'
 /// {@endtemplate}
 class BlocAdministracionDeUnaMarcaEstadoCargando
     extends BlocAdministracionDeUnaMarcaEstado {
@@ -55,7 +56,8 @@ class BlocAdministracionDeUnaMarcaEstadoCargando
 }
 
 /// {@template BlocAdministracionMarcasEstadoExitosoGeneral}
-/// Estado exitoso general de los componentes de la pantalla [AdministracionDeUnaMarca]
+/// Estado exitoso general de los componentes de la pantalla
+/// 'AdministracionDeUnaMarca'
 /// {@endtemplate}
 class BlocAdministracionDeUnaMarcaEstadoExitosoGeneral
     extends BlocAdministracionDeUnaMarcaEstado {
@@ -67,7 +69,7 @@ class BlocAdministracionDeUnaMarcaEstadoExitosoGeneral
 }
 
 /// {@template BlocAdministracionMarcasEstadoError}
-/// Estado de error de los componentes de la pantalla [AdministracionDeUnaMarca]
+/// Estado de error de los componentes de la pantalla 'AdministracionDeUnaMarca'
 /// {@endtemplate}
 class BlocAdministracionDeUnaMarcaEstadoError
     extends BlocAdministracionDeUnaMarcaEstado {
@@ -81,8 +83,9 @@ class BlocAdministracionDeUnaMarcaEstadoError
   final MensajesDeErrorAdministracionDeUnaMarca mensajeDeError;
 }
 
-/// Tipos de errores de [AdministracionDeUnaMarca] en caso de que sean necesarios
+/// Tipos de errores de 'AdministracionDeUnaMarca' en caso de que sean
+/// necesarios
 enum MensajesDeErrorAdministracionDeUnaMarca {
   unknown,
-  //TODO(Gon): Manejar errores de [AdministracionDeUnaMarca]
+  // TODO(Gon): Manejar errores de [AdministracionDeUnaMarca]
 }

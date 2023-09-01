@@ -3,7 +3,7 @@
 import 'dart:io';
 import 'package:yaml_writer/yaml_writer.dart';
 
-/// Funcion que re-escribe el archivo de configuracion YAML. Usado para hacer 
+/// Funcion que re-escribe el archivo de configuracion YAML. Usado para hacer
 /// deploys en Railway.
 void rewriteConfigYaml(String mode) {
   YAMLWriter yamlWriter = YAMLWriter(allowUnquotedStrings: true);
@@ -27,20 +27,22 @@ void rewriteConfigYaml(String mode) {
       'publicScheme': 'http',
     },
     'database': {
-      'host': mode == "staging" ? 'db.vtbtqqvsbekddeaeqbdt.supabase.co' : 'db.vmtlouazkwsgdebqowpw.supabase.co',
+      'host': mode == 'staging'
+          ? 'db.vtbtqqvsbekddeaeqbdt.supabase.co'
+          : 'db.vmtlouazkwsgdebqowpw.supabase.co',
       'port': 5432,
       'name': 'postgres',
       'user': 'postgres',
-      'password': mode == "staging" ? 'VdeopjSVRoiGKrKp' : 'kDhcP3szJH24THq'
+      'password': mode == 'staging' ? 'VdeopjSVRoiGKrKp' : 'kDhcP3szJH24THq',
     },
     'redis': {
       'enabled': false,
       'host': 'redis.private-staging.examplepod.com',
       'port': 6379,
-    }
+    },
   });
 
   File('./config/$mode.yaml')
-  ..createSync()
-  ..writeAsStringSync(yamlDoc);
+    ..createSync()
+    ..writeAsStringSync(yamlDoc);
 }

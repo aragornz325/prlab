@@ -73,7 +73,8 @@ class BlocAdministracionMarcasEstadoError
   final MensajesDeErrorDeAdministracionMarcas mensajeDeError;
 }
 
-// TODO(anyone): Verificar si es necesario y que excepciones pueden llegar a ocurrir
+// TODO(anyone): Verificar si es necesario y que excepciones pueden
+// llegar a ocurrir
 
 /// Tipos de errores de  administración de marcas a mostrar
 enum MensajesDeErrorDeAdministracionMarcas {

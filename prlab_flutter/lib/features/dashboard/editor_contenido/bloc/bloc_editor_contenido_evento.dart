@@ -31,11 +31,25 @@ class BlocEditorContenidoEventoAgregarImagen extends BlocEditorContenidoEvento {
     this.logoSecundarioElegidoCelular,
     this.logoSecundarioElegidoWeb,
   });
-
+// TODO(SAM): Agregar docu
   final File? logoElegidoCelular;
   final Uint8List? logoElegidoWeb;
   final File? logoSecundarioElegidoCelular;
   final Uint8List? logoSecundarioElegidoWeb;
+}
+
+/// {@template BlocEditorContenidoEventoObtenerArticulo}
+/// Obtiene el articulo a partir de un ID, para poder continuar con su edicion
+/// o creacion.
+/// {@endtemplate}
+class BlocEditorContenidoEventoObtenerArticulo
+    extends BlocEditorContenidoEvento {
+  /// {@macro BlocEditorContenidoEventoObtenerArticulo}
+  BlocEditorContenidoEventoObtenerArticulo({
+    required this.idArticulo,
+  });
+
+  final int idArticulo;
 }
 
 /// {@template BlocEditorContenidoActualizarDescripcion}
