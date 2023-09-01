@@ -62,20 +62,9 @@ class ServicioMarca extends Servicio<OdmMarca> {
   }
 
   Future<Marca> obtenerMarcaPorId(Session session, int idMarca) async {
-    return await performOperation(() => odm.obtenerMarcaPorId(session, idMarca));
+    return await performOperation(
+        () => odm.obtenerMarcaPorId(session, idMarca));
   }
-
-  // Future<List<dynamic>> listarMarcasDeUsuario(
-  //   Session session, {
-  //   required int idUsuario,
-  // }) async {
-  //   return await performOperation(
-  //     () => odm.listarMarcasDeUsuario(
-  //       session,
-  //       idUsuario: idUsuario,
-  //     ),
-  //   );
-  // }
 
   /// La función `eliminarMarca` se utiliza para eliminar una marca por su ID.
   ///
@@ -105,5 +94,33 @@ class ServicioMarca extends Servicio<OdmMarca> {
     } on Exception catch (e) {
       rethrow;
     }
+  }
+
+  Future<List<List<dynamic>>> asignarUsuarioAMarca(
+    Session session, {
+    required int idMarca,
+    required int idUsuario,
+    required int idRol,
+  }) async {
+    return await performOperation(
+      () => odm.asignarUsuarioAMarca(
+        session,
+        idMarca: idMarca,
+        idUsuario: idUsuario,
+        idRol: idRol,
+      ),
+    );
+  }
+
+  Future<List<Marca>> listarMarcasPorUsuario(
+    Session session, {
+    required int idUsuario,
+  }) async {
+    return await performOperation(
+      () => odm.listarMarcasPorUsuario(
+        session,
+        idUsuario: idUsuario,
+      ),
+    );
   }
 }

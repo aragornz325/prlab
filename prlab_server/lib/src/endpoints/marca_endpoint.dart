@@ -57,7 +57,6 @@ class MarcaEndpoint extends Endpoint {
   /// Args:
   ///   session (Session): El parámetro "sesión" es de tipo "Sesión". Se utiliza para pasar la
   /// información de la sesión al método "listarMarcas".
-
   Future<List<Marca>> listarMarcas(
     Session session,
   ) async {
@@ -74,13 +73,27 @@ class MarcaEndpoint extends Endpoint {
     return await servicioMarca.obtenerMarcaPorId(session, idMarca);
   }
 
-  // Future<List<dynamic>> listarMarcasDeUsuario(
-  //   Session session, {
-  //   required int idUsuario,
-  // }) async {
-  //   return await servicioMarca.listarMarcasDeUsuario(
-  //     session,
-  //     idUsuario: idUsuario,
-  //   );
-  // }
+  Future<List<List<dynamic>>> asignarUsuarioAMarca(
+    Session session, {
+    required int idMarca,
+    required int idUsuario,
+    required int idRol,
+  }) async {
+    return await servicioMarca.asignarUsuarioAMarca(
+      session,
+      idMarca: idMarca,
+      idUsuario: idUsuario,
+      idRol: idRol,
+    );
+  }
+
+  Future<List<Marca>> listarMarcasPorUsuario(
+    Session session, {
+    required int idUsuario,
+  }) async {
+    return servicioMarca.listarMarcasPorUsuario(
+      session,
+      idUsuario: idUsuario,
+    );
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:prlab_server/src/generated/protocol.dart';
+import 'package:prlab_server/utils/serialization.dart';
 import 'package:serverpod/server.dart';
 
 import '../odm.dart';
@@ -59,23 +60,6 @@ class OdmMarca extends ODM {
     return response;
   }
 
-  // Future<List<dynamic>> listarMarcasDeUsuario(
-  //   Session session, {
-  //   required int idUsuario,
-  // }) async {
-  //     final modeloMarca = Marca(nombre: '', sitioWeb: '').allToJson();
-  //     final query = await performOdmOperation(
-  //       session,
-  //       (session) => session.db.query(
-  //           'SELECT * FROM marcas WHERE EXISTS (SELECT 1 FROM json_array_elements_text(staff) AS element WHERE CAST(element AS INTEGER) = $idUsuario);'),
-  //     );
-  //     final serializedList = query.map((e) {
-  //       var tempModeloMarca = modeloMarca;
-  //       var keysModelo = tempModeloMarca.keys.toList();
-  //       keysModelo.forEach((element) { })
-  //     });
-  //     }
-
   /// La función `eliminarMarca` elimina un registro de la base de datos según
   /// el ID proporcionado.
   /// Args:
@@ -123,5 +107,52 @@ class OdmMarca extends ODM {
     } on Exception catch (e) {
       throw Exception('$e');
     }
+  }
+
+  Future<List<List<dynamic>>> asignarUsuarioAMarca(
+    Session session, {
+    required int idMarca,
+    required int idUsuario,
+    required int idRol,
+  }) async {
+    return await performOdmOperation(
+      session,
+      (session) => session.db.query('''
+      INSERT INTO "marcas_staff" ("idMarca", "idStaff", "idRol") 
+      VALUES ($idMarca, $idUsuario, $idRol);
+      '''),
+    );
+  }
+
+  Future<List<Marca>> listarMarcasPorUsuario(
+    Session session, {
+    required int idUsuario,
+  }) async {
+    final queryListaDeMarcas = await performOdmOperation(
+      session,
+      (session) => session.db
+          .query(
+            'SELECT "idMarca" FROM marcas_staff WHERE "idStaff" = $idUsuario;',
+          )
+          .then(
+            (value) => value.map((e) => e.first).toList(),
+          ),
+    );
+
+    if (queryListaDeMarcas.isEmpty) {
+      return [];
+    }
+
+    return await rawQueryOperation(
+      session,
+      entidad: Marca(nombre: '', sitioWeb: ''),
+      funcionRawQuery: (session) => session.db.query(
+        'SELECT * FROM marcas WHERE "id" IN (${queryListaDeMarcas.join(',')});',
+      ),
+    ).then((value) => value
+        .map(
+          (e) => Marca.fromJson(e, AdministradorSerializacion())..staffApi = [],
+        )
+        .toList());
   }
 }

@@ -278,6 +278,29 @@ class _EndpointMarca extends _i1.EndpointRef {
         'obtenerMarcaPorId',
         {'idMarca': idMarca},
       );
+
+  _i2.Future<List<List<dynamic>>> asignarUsuarioAMarca({
+    required int idMarca,
+    required int idUsuario,
+    required int idRol,
+  }) =>
+      caller.callServerEndpoint<List<List<dynamic>>>(
+        'marca',
+        'asignarUsuarioAMarca',
+        {
+          'idMarca': idMarca,
+          'idUsuario': idUsuario,
+          'idRol': idRol,
+        },
+      );
+
+  _i2.Future<List<_i5.Marca>> listarMarcasPorUsuario(
+          {required int idUsuario}) =>
+      caller.callServerEndpoint<List<_i5.Marca>>(
+        'marca',
+        'listarMarcasPorUsuario',
+        {'idUsuario': idUsuario},
+      );
 }
 
 class _Modules {
