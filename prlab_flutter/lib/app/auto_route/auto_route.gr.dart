@@ -71,9 +71,16 @@ abstract class $AppRouter extends _i11.RootStackRouter {
       );
     },
     RutaEditorContenido.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<RutaEditorContenidoArgs>(
+          orElse: () =>
+              RutaEditorContenidoArgs(articuloId: pathParams.getInt('id')));
       return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.PaginaEditorContenido(),
+        child: _i6.PaginaEditorContenido(
+          articuloId: args.articuloId,
+          key: args.key,
+        ),
       );
     },
     RutaKyc.name: (routeData) {
@@ -216,16 +223,41 @@ class RutaDashboard extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.PaginaEditorContenido]
-class RutaEditorContenido extends _i11.PageRouteInfo<void> {
-  const RutaEditorContenido({List<_i11.PageRouteInfo>? children})
-      : super(
+class RutaEditorContenido extends _i11.PageRouteInfo<RutaEditorContenidoArgs> {
+  RutaEditorContenido({
+    required int articuloId,
+    _i12.Key? key,
+    List<_i11.PageRouteInfo>? children,
+  }) : super(
           RutaEditorContenido.name,
+          args: RutaEditorContenidoArgs(
+            articuloId: articuloId,
+            key: key,
+          ),
+          rawPathParams: {'id': articuloId},
           initialChildren: children,
         );
 
   static const String name = 'RutaEditorContenido';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static const _i11.PageInfo<RutaEditorContenidoArgs> page =
+      _i11.PageInfo<RutaEditorContenidoArgs>(name);
+}
+
+class RutaEditorContenidoArgs {
+  const RutaEditorContenidoArgs({
+    required this.articuloId,
+    this.key,
+  });
+
+  final int articuloId;
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return 'RutaEditorContenidoArgs{articuloId: $articuloId, key: $key}';
+  }
 }
 
 /// generated route for

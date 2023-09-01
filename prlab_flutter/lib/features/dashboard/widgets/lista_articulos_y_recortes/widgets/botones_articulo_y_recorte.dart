@@ -40,7 +40,7 @@ class BotonesArticulosYRecorte extends StatelessWidget {
                 icono: Icons.article_outlined,
                 onTap: () {
                   context.read<BlocListaArticulosYRecortes>().add(
-                        const BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos(
+                        const BlocListaArticulosYRecortesEventoSeleccion(
                           index: 0,
                         ),
                       );
@@ -56,7 +56,7 @@ class BotonesArticulosYRecorte extends StatelessWidget {
                 icono: Icons.image_outlined,
                 onTap: () {
                   context.read<BlocListaArticulosYRecortes>().add(
-                        const BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos(
+                        const BlocListaArticulosYRecortesEventoSeleccion(
                           index: 1,
                         ),
                       );

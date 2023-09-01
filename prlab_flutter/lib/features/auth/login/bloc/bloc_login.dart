@@ -52,7 +52,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
       if (userInfo == null) {
         return emit(
           // TODO(anyone): Preguntar al back que devuelve para handlear
-          //los errores
+          // los errores
           BlocLoginEstadoErrorAlIniciarSesion.desde(
             state,
             mensajeDeError: MensajesDeErrorDelLogin.unknown,

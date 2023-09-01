@@ -28,7 +28,10 @@ class PaginaDashboard extends StatelessWidget {
               if (menuDeOpciones case MenuDeOpciones.yourArticles) {
                 context.router.push(const RutaDashboard());
               } else if (menuDeOpciones case MenuDeOpciones.createArticle) {
-                context.router.push(const RutaEditorContenido());
+                context.router.push(
+                  RutaEditorContenido(articuloId: 0),
+                );
+                // TODO(anyone): pasar el id correcto
               } else {
                 showDialog<void>(
                   context: context,

@@ -37,15 +37,15 @@ class BlocListaArticulosYRecortesEventoTraerArticulos
   const BlocListaArticulosYRecortesEventoTraerArticulos();
 }
 
-/// {@template BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos}
+/// {@template BlocListaArticulosYRecortesEventoSeleccion}
 /// Seleccionar entre Recortes y Articulos cambia el index seleccionado y
 /// muestra una vista distinta.
 /// {@endtemplate}
-class BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos
+class BlocListaArticulosYRecortesEventoSeleccion
     extends BlocListaArticulosYRecortesEvento {
-  /// {@macro BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos}
+  /// {@macro BlocListaArticulosYRecortesEventoSeleccion}
   @override
-  const BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos({
+  const BlocListaArticulosYRecortesEventoSeleccion({
     required this.index,
   });
 

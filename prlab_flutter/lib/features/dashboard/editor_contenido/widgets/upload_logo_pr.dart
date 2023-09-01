@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -33,9 +35,8 @@ class UploadLogoPR extends StatelessWidget {
             ),
             child: BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
               builder: (context, state) {
-                if (state is BlocEditorContenidoEstadoExitoso &&
-                    (state.logoElegidoWeb != null ||
-                        state.logoElegidoCelular != null)) {
+                if (state.logoElegidoWeb != null ||
+                    state.logoElegidoCelular != null) {
                   return InkWell(
                     // TODO(SAM): Carry over/Agregar hoover para poder borrar.
                     onTap: () => _elegirImagenLogo(
@@ -99,11 +100,10 @@ class UploadLogoPR extends StatelessWidget {
             padding: EdgeInsets.only(left: 30.pw),
             child: BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
               builder: (context, state) {
-                if (state is BlocEditorContenidoEstadoExitoso &&
-                    (state.logoSecundarioElegidoWeb != null ||
-                        state.logoSecundarioElegidoCelular != null)) {
+                if (state.logoSecundarioElegidoWeb != null ||
+                    state.logoSecundarioElegidoCelular != null) {
                   return InkWell(
-                    // TODO(anyone): Agregar hoover para poder borrar.
+                    // TODO(SAM): Agregar hoover para poder borrar.
                     onTap: () => _elegirImagenLogo(
                       false,
                       context,
@@ -132,7 +132,7 @@ class UploadLogoPR extends StatelessWidget {
                   );
                 }
                 return InkWell(
-                  // TODO(anyone): Agregar hoover para poder borrar.
+                  // TODO(SAM): Agregar hoover para poder borrar.
                   onTap: () => _elegirImagenLogo(
                     false,
                     context,

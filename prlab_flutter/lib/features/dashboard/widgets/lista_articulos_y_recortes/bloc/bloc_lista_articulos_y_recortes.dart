@@ -21,7 +21,7 @@ class BlocListaArticulosYRecortes extends Bloc<
     on<BlocListaArticulosYRecortesEventoTraerArticulos>(
       _onTraerListaDeArticulos,
     );
-    on<BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos>(
+    on<BlocListaArticulosYRecortesEventoSeleccion>(
       _onCambiarListaArticulosORecorte,
     );
   }
@@ -177,7 +177,7 @@ class BlocListaArticulosYRecortes extends Bloc<
   /// Cambia el index seleccionado para que muestre distintas vista entre
   /// recortes y lista de artículos
   Future<void> _onCambiarListaArticulosORecorte(
-    BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos event,
+    BlocListaArticulosYRecortesEventoSeleccion event,
     Emitter<BlocListaArticulosYRecortesEstado> emit,
   ) async {
     try {
