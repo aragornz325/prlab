@@ -13,7 +13,6 @@ class Marca extends _i1.TableRow {
     int? id,
     required this.nombre,
     required this.sitioWeb,
-    this.staff,
     this.fechaCreacion,
     this.ultimaModificacion,
     this.fechaEliminacion,
@@ -29,8 +28,6 @@ class Marca extends _i1.TableRow {
           serializationManager.deserialize<String>(jsonSerialization['nombre']),
       sitioWeb: serializationManager
           .deserialize<String>(jsonSerialization['sitioWeb']),
-      staff: serializationManager
-          .deserialize<List<int>?>(jsonSerialization['staff']),
       fechaCreacion: serializationManager
           .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
       ultimaModificacion: serializationManager
@@ -46,8 +43,6 @@ class Marca extends _i1.TableRow {
 
   String sitioWeb;
 
-  List<int>? staff;
-
   DateTime? fechaCreacion;
 
   DateTime? ultimaModificacion;
@@ -62,7 +57,6 @@ class Marca extends _i1.TableRow {
       'id': id,
       'nombre': nombre,
       'sitioWeb': sitioWeb,
-      'staff': staff,
       'fechaCreacion': fechaCreacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaEliminacion': fechaEliminacion,
@@ -75,7 +69,6 @@ class Marca extends _i1.TableRow {
       'id': id,
       'nombre': nombre,
       'sitioWeb': sitioWeb,
-      'staff': staff,
       'fechaCreacion': fechaCreacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaEliminacion': fechaEliminacion,
@@ -88,7 +81,6 @@ class Marca extends _i1.TableRow {
       'id': id,
       'nombre': nombre,
       'sitioWeb': sitioWeb,
-      'staff': staff,
       'fechaCreacion': fechaCreacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaEliminacion': fechaEliminacion,
@@ -109,9 +101,6 @@ class Marca extends _i1.TableRow {
         return;
       case 'sitioWeb':
         sitioWeb = value;
-        return;
-      case 'staff':
-        staff = value;
         return;
       case 'fechaCreacion':
         fechaCreacion = value;
@@ -250,8 +239,6 @@ class MarcaTable extends _i1.Table {
 
   final sitioWeb = _i1.ColumnString('sitioWeb');
 
-  final staff = _i1.ColumnSerializable('staff');
-
   final fechaCreacion = _i1.ColumnDateTime('fechaCreacion');
 
   final ultimaModificacion = _i1.ColumnDateTime('ultimaModificacion');
@@ -263,7 +250,6 @@ class MarcaTable extends _i1.Table {
         id,
         nombre,
         sitioWeb,
-        staff,
         fechaCreacion,
         ultimaModificacion,
         fechaEliminacion,

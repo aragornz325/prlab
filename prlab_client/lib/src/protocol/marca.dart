@@ -13,7 +13,6 @@ class Marca extends _i1.SerializableEntity {
     this.id,
     required this.nombre,
     required this.sitioWeb,
-    this.staff,
     this.fechaCreacion,
     this.ultimaModificacion,
     this.fechaEliminacion,
@@ -29,8 +28,6 @@ class Marca extends _i1.SerializableEntity {
           serializationManager.deserialize<String>(jsonSerialization['nombre']),
       sitioWeb: serializationManager
           .deserialize<String>(jsonSerialization['sitioWeb']),
-      staff: serializationManager
-          .deserialize<List<int>?>(jsonSerialization['staff']),
       fechaCreacion: serializationManager
           .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
       ultimaModificacion: serializationManager
@@ -49,8 +46,6 @@ class Marca extends _i1.SerializableEntity {
 
   String sitioWeb;
 
-  List<int>? staff;
-
   DateTime? fechaCreacion;
 
   DateTime? ultimaModificacion;
@@ -63,7 +58,6 @@ class Marca extends _i1.SerializableEntity {
       'id': id,
       'nombre': nombre,
       'sitioWeb': sitioWeb,
-      'staff': staff,
       'fechaCreacion': fechaCreacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaEliminacion': fechaEliminacion,
