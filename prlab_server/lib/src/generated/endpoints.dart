@@ -325,21 +325,13 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
         'listarMarcasDeUsuario': _i1.MethodConnector(
           name: 'listarMarcasDeUsuario',
-          params: {
-            'idUsuario': _i1.ParameterDescription(
-              name: 'idUsuario',
-              type: _i1.getType<int>(),
-              nullable: false,
-            )
-          },
+          params: {},
           call: (
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['marca'] as _i6.MarcaEndpoint).listarMarcasDeUsuario(
-            session,
-            idUsuario: params['idUsuario'],
-          ),
+              (endpoints['marca'] as _i6.MarcaEndpoint)
+                  .listarMarcasDeUsuario(session),
         ),
       },
     );

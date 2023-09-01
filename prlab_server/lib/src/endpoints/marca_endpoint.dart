@@ -71,12 +71,10 @@ class MarcaEndpoint extends Endpoint {
   }
 
   Future<List<dynamic>> listarMarcasDeUsuario(
-    Session session, {
-    required int idUsuario,
-  }) async {
+    Session session) async {
     return await servicioMarca.listarMarcasDeUsuario(
       session,
-      idUsuario: idUsuario,
+      idUsuario: await session.auth.authenticatedUserId ?? 0,
     );
   }
 }

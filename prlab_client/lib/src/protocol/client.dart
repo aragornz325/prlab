@@ -77,6 +77,17 @@ class _EndpointArticulo extends _i1.EndpointRef {
         {'id': id},
       );
 
+  /// La función "listarArticulosPorMarca" es un servicio querecupera una lista
+  /// de artículos en función de un ID de marca determinado.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la sesión o conexión
+  /// actual a la base de datos. Se utiliza para ejecutar consultas o realizar operaciones de bases de
+  /// datos.
+  ///   idMarca (int): La identificación de la marca para la que desea enumerar los artículos.
+  ///
+  /// Returns:
+  ///   Un objeto futuro que se resuelve en una lista de objetos Articulo.
   _i2.Future<List<_i3.Articulo>> listarArticulosPorMarca(int idMarca) =>
       caller.callServerEndpoint<List<_i3.Articulo>>(
         'articulo',
@@ -261,11 +272,11 @@ class _EndpointMarca extends _i1.EndpointRef {
         {},
       );
 
-  _i2.Future<List<dynamic>> listarMarcasDeUsuario({required int idUsuario}) =>
+  _i2.Future<List<dynamic>> listarMarcasDeUsuario() =>
       caller.callServerEndpoint<List<dynamic>>(
         'marca',
         'listarMarcasDeUsuario',
-        {'idUsuario': idUsuario},
+        {},
       );
 }
 
