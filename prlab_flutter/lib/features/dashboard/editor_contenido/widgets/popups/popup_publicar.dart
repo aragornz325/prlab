@@ -4,17 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
-/// {@template PopUpMenuOpcionesAlCrearArticulo}
+/// {@template PopUpMenuOpcionesPublicar}
 /// Se utiliza para mostrar un menú con diferentes
-/// opciones cuando el usuario lo toca y esas opciones son para crear un nuevo
-/// artículo como un solo articulo,por marca o por usar una plantilla
+/// opciones cuando el usuario lo toca y esas opciones son descargar, modificar
+/// las settings de las password o enviar via email.
 /// {@endtemplate}
-class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
-  /// {@macro PopUpMenuOpcionesAlCrearArticulo}
-  const PopUpMenuOpcionesAlCrearArticulo({
+class PopUpMenuOpcionesPublicar extends StatelessWidget {
+  /// {@macro PopUpMenuOpcionesPublicar}
+  const PopUpMenuOpcionesPublicar({
     super.key,
   });
 
@@ -25,7 +24,7 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
     final l10n = context.l10n;
 
     return PopupMenuButton<int>(
-      offset: const Offset(-20, 35),
+      offset: const Offset(7, -165),
       color: colores.onPrimary,
       shape: const ContinuousRectangleBorder(
         borderRadius: BorderRadius.all(
@@ -62,7 +61,7 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
           value: 1,
           height: max(40.ph, 40.sh),
           child: Text(
-            l10n.pageContentAdministrationPopupASingleArticle,
+            l10n.pageEditContentPopupDownload,
             style: TextStyle(
               fontSize: 14.pf,
               color: colores.tertiary,
@@ -74,7 +73,7 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
           value: 2,
           height: max(40.ph, 40.sh),
           child: Text(
-            l10n.pageContentAdministrationPopupByBrand,
+            l10n.pageEditContentPopupPasswordSetting,
             style: TextStyle(
               fontSize: 14.pf,
               color: colores.tertiary,
@@ -86,7 +85,7 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
           value: 3,
           height: max(40.ph, 40.sh),
           child: Text(
-            l10n.pageContentAdministrationPopupUseTemplate,
+            l10n.pageEditContentPopupSendEmail,
             style: TextStyle(
               fontSize: 14.pf,
               color: colores.tertiary,
@@ -95,14 +94,18 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
           ),
         ),
       ],
-
-      // boton crear artículo
       child: Row(
         children: [
           SizedBox(
-            width: max(140.pw, 140.sw),
+            width: max(
+              96.pw,
+              96.sw,
+            ),
             child: Container(
-              height: max(30.ph, 30.sh),
+              height: max(
+                30.ph,
+                30.sh,
+              ),
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.horizontal(
                   left: Radius.circular(100),
@@ -111,7 +114,7 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  l10n.pageContentAdministrationCreateArticle,
+                  l10n.commonPublish,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15.pf,
@@ -125,11 +128,15 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
           Container(
             width: 1.pw,
             height: max(30.ph, 30.sh),
-            color: colores.primaryOpacidadSesenta,
+            color:
+                colores.tertiaryContainer, // TODO(anyone): sacar linea blanca
           ),
           SizedBox(
             height: max(30.ph, 30.sh),
-            width: max(40.pw, 40.sw),
+            width: max(
+              42.pw,
+              42.sw,
+            ),
             child: Container(
               height: max(30.ph, 30.sh),
               decoration: BoxDecoration(

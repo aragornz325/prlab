@@ -439,6 +439,34 @@
     "@pageEditContentSubtitle": {
         "description":"Subtitle that appears on top of the list of articles and the edit container, when you are creating or editing an article"
     },
+          "pageEditContentArticleTitleHomePage" : "Home page",
+    "@pageEditContentArticleTitleHomePage": {
+        "description":"Title of the article when its displayed in the vertical list and it leads you to the home page of the article."
+    },
+               "pageEditContentPopupDownload" : "Download",
+    "@pageEditContentPopupDownload": {
+        "description":"Text of one of the popup button items to allow the user to download the article."
+    },
+             "pageEditContentPopupPasswordSetting" : "Password settings",
+    "@pageEditContentPopupPasswordSetting": {
+        "description":"Text of the popup button to allow the user set the password settings."
+    },
+                 "pageEditContentPopupSendEmail" : "Send via email",
+    "@pageEditContentPopupSendEmail": {
+        "description":"Text of the popup button to allow the user to send via email."
+    },
+              "pageEditContentArticleTitleMetricsPage" : "Metrics page",
+    "@pageEditContentArticleTitleMetricsPage": {
+        "description":"Title of the article when its displayed in the vertical list and it leads you to the metrics page of the article."
+    },
+              "pageEditContentArticleTitleCoveragePage" : "Coverage page",
+    "@pageEditContentArticleTitleCoveragePage": {
+        "description":"Title of the article when its displayed in the vertical list and it leads you to the coverage page of the article."
+    },
+                  "pageEditContentArticleTitlePerformancePage" : "Performance page",
+    "@pageEditContentArticleTitlePerformancePage": {
+        "description":"Text that indicates that it is a performance page."
+    },
     "pageContentAdministrationPopupASingleArticle": "A single article",
     "@pageContentAdministrationAdminPopupASingleArticle": {
         "description":"text in the popup in the button create an article first options to choose"
