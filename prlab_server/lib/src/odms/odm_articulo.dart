@@ -48,7 +48,7 @@ class OdmArticulo extends ODM {
       logger.info('Listando artículos');
       return await performOdmOperation(
         session,
-        Articulo.find,
+        (Session session) => Articulo.find(session),
       );
     } on Exception catch (e) {
       throw Exception('$e');

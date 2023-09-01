@@ -40,7 +40,7 @@ class OdmMarca extends ODM {
     try {
       return await performOdmOperation(
         session,
-        Marca.find,
+        (Session session) => Marca.find(session),
       );
     } on Exception catch (e) {
       throw Exception('$e');
