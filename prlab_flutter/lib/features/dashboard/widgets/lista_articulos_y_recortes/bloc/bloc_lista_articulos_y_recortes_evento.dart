@@ -35,10 +35,10 @@ class BlocListaArticulosYRecortesEventoTraerArticulos
   /// {@macro BlocListaArticulosYRecortesEventoTraerArticulos}
   @override
   const BlocListaArticulosYRecortesEventoTraerArticulos({
-    this.marca,
+    this.idMarca,
   });
 
-  final Marca? marca;
+  final int? idMarca;
 }
 
 /// {@template BlocListaArticulosYRecortesEventoSeleccion}

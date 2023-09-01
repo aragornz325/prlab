@@ -10,26 +10,11 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 /// {@template VistaEscritorioAdministracionDeUnaMarca}
 /// Vista del dashboard en la seccion de administracion de una marca
 /// {@endtemplate}
-class VistaEscritorioAdministracionDeUnaMarca extends StatefulWidget {
+class VistaEscritorioAdministracionDeUnaMarca extends StatelessWidget {
   /// {@macro VistaEscritorioAdministracionDeUnaMarca}
   const VistaEscritorioAdministracionDeUnaMarca({
     super.key,
   });
-
-  @override
-  State<VistaEscritorioAdministracionDeUnaMarca> createState() =>
-      _VistaEscritorioAdministracionDeUnaMarcaState();
-}
-
-class _VistaEscritorioAdministracionDeUnaMarcaState
-    extends State<VistaEscritorioAdministracionDeUnaMarca> {
-  @override
-  void initState() {
-    context
-        .read<BlocAdministracionDeUnaMarca>()
-        .add(BlocAdministracionDeUnaMarcaEventoInicializar());
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +31,14 @@ class _VistaEscritorioAdministracionDeUnaMarcaState
           BlocBuilder<BlocAdministracionDeUnaMarca,
               BlocAdministracionDeUnaMarcaEstado>(
             builder: (context, state) {
+              if (state is BlocAdministracionDeUnaMarcaEstadoCargando) {
+                return EncabezadoDeSeccion(
+                  icono: Icons.article,
+                  titulo: '',
+                  descripcion: l10n.pageBrandAdministrationDescription,
+                );
+              }
+
               final titulo =
                   '${state.marca?.nombre} ${l10n.commonArticles.toLowerCase()}';
 
@@ -57,7 +50,9 @@ class _VistaEscritorioAdministracionDeUnaMarcaState
             },
           ),
           SizedBox(height: 5.ph),
-          const ListaArticulosYRecortes(),
+          ListaArticulosYRecortes(
+            idMarca: context.read<BlocAdministracionDeUnaMarca>().state.idMarca,
+          ),
         ],
       ),
     );

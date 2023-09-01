@@ -19,6 +19,8 @@ class BlocAdministracionMarcas extends Bloc<BlocAdministracionMarcasEvento,
   BlocAdministracionMarcas()
       : super(const BlocAdministracionMarcasEstadoInicial()) {
     on<BlocAdministracionMarcasEventoInicializar>(_onInicializar);
+
+    add(BlocAdministracionMarcasEventoInicializar());
   }
 
   /// Inicializa la pagina trayendo lo necesario para el correcto funcionamiento
@@ -36,18 +38,14 @@ class BlocAdministracionMarcas extends Bloc<BlocAdministracionMarcasEvento,
       // Este endpoint no funciona, y el user id deberia
       // pasarse desde el session desde el back, no pasarlo, pedir cambiar eso
       // en el endpoint.
-
-      /*
-      final respuesta = await client.marca.listarMarcasDeUsuario(
-        idUsuario: sessionManager.signedInUser?.id ?? 0,
-      );
-      */
+/*
+      final respuesta = await client.marca.listarMarcasDeUsuario();
+*/
       final marcas = [
         Marca(
           id: 1,
           nombre: 'Flutter',
           sitioWeb: 'flutter.com',
-          staff: [1],
           fechaCreacion: DateTime.now(),
           ultimaModificacion: DateTime.now(),
           fechaEliminacion: DateTime.now(),
@@ -56,7 +54,6 @@ class BlocAdministracionMarcas extends Bloc<BlocAdministracionMarcasEvento,
           id: 2,
           nombre: 'Vanz',
           sitioWeb: 'vanz.com',
-          staff: [1],
           fechaCreacion: DateTime.now(),
           ultimaModificacion: DateTime.now(),
           fechaEliminacion: DateTime.now(),

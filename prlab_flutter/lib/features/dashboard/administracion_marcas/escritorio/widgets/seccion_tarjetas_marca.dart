@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/features/dashboard/administracion_marcas/bloc/bloc_administracion_marcas.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/escritorio/widgets/widgets.dart';
 
 /// {@template SeccionTarjetasDeMarca}
@@ -35,11 +36,10 @@ class SeccionTarjetasDeMarca extends StatelessWidget {
                       // TODO(Gon):
                       // Consumir informacion de la marca traida del back
                       // cuando se agreguen los articulos al modelo
-                      InformacionDeLaMarca(
+                      const InformacionDeLaMarca(
                         cantidadArticulos: 3,
                         cantidadClippings: 3,
-                        cantidadMiembros:
-                            state.marcas[index].staff?.length ?? 0,
+                        cantidadMiembros: 3,
                       ),
                     ],
                   );

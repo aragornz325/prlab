@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:prlab_client/prlab_client.dart';
+import 'package:prlab_flutter/utilidades/utilidades.dart';
 
 part 'bloc_lista_articulos_y_recortes_estados.dart';
 part 'bloc_lista_articulos_y_recortes_evento.dart';
@@ -32,41 +33,19 @@ class BlocListaArticulosYRecortes extends Bloc<
     Emitter<BlocListaArticulosYRecortesEstado> emit,
   ) async {
     emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
-    try {
-      // TODO(anyone):
-      // Este endpoint no funciona
-      /* 
-      final respuesta = await client.articulo.listarArticulosPorMarca(
-         state.marcaId,
-        );
-      */
 
-      final articulos = [
-        Articulo(
-          id: 0,
-          titulo: 'Primer Art',
-          contenido: 'Nada',
-          idProyecto: 1,
-          idMarca: 0,
-          idAutor: 0,
-          idStatus: 0,
-          fechaEliminacion: DateTime.now(),
-          ultimaModificacion: DateTime.now(),
-          fechaCreacion: DateTime.now(),
-        ),
-        Articulo(
-          id: 1,
-          titulo: 'Segundo Art',
-          contenido: 'Nada x2',
-          idProyecto: 2,
-          idMarca: 0,
-          idAutor: 1,
-          idStatus: 1,
-          fechaEliminacion: DateTime.now(),
-          ultimaModificacion: DateTime.now(),
-          fechaCreacion: DateTime.now(),
-        ),
-      ];
+    var articulos = <Articulo>[];
+
+    try {
+      final idMarca = event.idMarca;
+
+      if (idMarca != null) {
+        articulos = await client.articulo.listarArticulosPorMarca(
+          idMarca,
+        );
+      } else {
+        articulos = await client.articulo.listarArticulos();
+      }
 
       emit(
         BlocListaArticulosYRecortesEstadoExitoso.desde(

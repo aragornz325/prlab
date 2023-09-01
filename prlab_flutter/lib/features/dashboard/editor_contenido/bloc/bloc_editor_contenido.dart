@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/bloc/bloc_administracion_marcas.dart';
+import 'package:prlab_flutter/utilidades/utilidades.dart';
 
 part 'bloc_editor_contenido_estado.dart';
 part 'bloc_editor_contenido_evento.dart';
@@ -28,33 +29,25 @@ class BlocEditorContenido
     BlocEditorContenidoEventoInicializar event,
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
-    // TODO(anyone):
-    // Este endpoint no funciona
-    /*
-       final respuesta = await client.articulo.obtenerArticulo(
-      event.articuloId,
-    );
-      */
+    try {
+      final respuesta = await client.articulo.obtenerArticulo(
+        event.idArticulo,
+      );
 
-    final articulo = Articulo(
-      id: 0,
-      titulo: 'Primer Art',
-      contenido: 'Nada',
-      idProyecto: 1,
-      idMarca: 0,
-      idAutor: 0,
-      idStatus: 0,
-      fechaEliminacion: DateTime.now(),
-      ultimaModificacion: DateTime.now(),
-      fechaCreacion: DateTime.now(),
-    );
-
-    emit(
-      BlocEditorContenidoEstadoExitoso.desde(
-        state,
-        articulo: articulo,
-      ),
-    );
+      emit(
+        BlocEditorContenidoEstadoExitoso.desde(
+          state,
+          articulo: respuesta,
+        ),
+      );
+    } catch (e) {
+      emit(
+        BlocEditorContenidoEstadoError.desde(
+          state,
+          mensajeDeError: MensajesDeErrorDeAdministracionMarcas.internalError,
+        ),
+      );
+    }
   }
 
   /// Permite agregar y guardar las imagenes de ambos logos en la vista

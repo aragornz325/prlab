@@ -107,9 +107,12 @@ class TarjetaMarca extends StatelessWidget {
                   children: [
                     PRBoton.esOutlined(
                       onTap: () {
+                        final idMarca = marca.id;
+                        if (idMarca == null) return;
+
                         context.router.push(
                           RutaAdministracionDeUnaMarca(
-                            idMarca: marca.id ?? 0,
+                            idMarca: idMarca,
                           ),
                         );
                       },
