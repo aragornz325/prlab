@@ -70,6 +70,8 @@ class MarcaEndpoint extends Endpoint {
     }
   }
 
+
+
   Future<List<dynamic>> listarMarcasDeUsuario(
     Session session, {
     required int idUsuario,
