@@ -17,7 +17,9 @@ class PrDialogRegistroExitoso extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     final colores = context.colores;
+
     return PRDialog.informacion(
       context: context,
       onTap: () => context.router.replace(
