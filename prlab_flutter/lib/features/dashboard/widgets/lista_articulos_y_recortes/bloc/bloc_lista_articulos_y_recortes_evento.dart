@@ -22,7 +22,8 @@ class BlocListaArticulosYRecortesEventoFiltrar
   @override
   const BlocListaArticulosYRecortesEventoFiltrar();
 
-  // TODO(anyone): agregar el tipo de filtrado sea por un enum u otro tipo
+  // TODO(anyone): agregar el tipo de filtrado sea por
+  // un enum u otro tipo
 }
 
 /// {@template BlocListaArticulosYRecortesEventoTraerArticulos}

@@ -129,7 +129,8 @@ class TarjetaMarca extends StatelessWidget {
                     SizedBox(width: 20.pw),
                     PRBoton(
                       onTap: () {
-                        // TODO(onyone): Aca deberia crear un articulo y pasar la id a editor-contenido
+                        // TODO(onyone): Aca deberia crear un articulo y pasar
+                        // la id a editor-contenido
                         context.router.push(
                           const RutaEditorContenido(),
                         );
@@ -195,7 +196,8 @@ class TarjetaMarca extends StatelessWidget {
                               SizedBox(width: 5.pw),
                               GestureDetector(
                                 onTap: () {
-                                  // TODO(onyone): Agregar funcion al apretar el articulo
+                                  // TODO(onyone): Agregar funcion al apretar
+                                  // el articulo
                                   context.router.push(
                                     const RutaEditorContenido(),
                                   );

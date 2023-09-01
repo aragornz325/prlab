@@ -38,6 +38,7 @@ const themeDefaultPRLab = ColorScheme.light(
   //! se utiliza para el hover de los textfield
   onSurface: Color(0xFFA12B46),
 
-  //TODO(Manu): esto es para el divider de drawer, cambiar todos los onsecondary usados en componentes por outlineVariant
+  // TODO(Manu): esto es para el divider de drawer, cambiar todos
+  // los onsecondary usados en componentes por outlineVariant
   outlineVariant: Color(0xffd9d9d9),
 );

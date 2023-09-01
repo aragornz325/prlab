@@ -74,8 +74,9 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                   children: [
                     EncabezadoDeSeccion(
                       icono: Icons.add,
-                      titulo:
-                          'Flutter article', // TODO(SAM): probablemente sea el titulo del articulo, deberia definirlo Guille
+                      // TODO(SAM): probablemente sea el titulo del articulo,
+                      // deberia definirlo Guille
+                      titulo: 'Flutter article',
                       descripcion: l10n.pageEditContentSubtitle,
                     ),
                     SizedBox(
@@ -85,7 +86,8 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                         children: [
                           PRBoton.esOutlined(
                             onTap: () {
-                              // TODO(anyone): agregarle funcionalidad feature en progreso
+                              // TODO(anyone): agregarle funcionalidad feature
+                              // en progreso
                               showDialog<void>(
                                 context: context,
                                 builder: (context) =>
@@ -102,7 +104,8 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                           ),
                           PRBoton(
                             onTap: () {
-                              // TODO(anyone): agregarle funcionalidad feature en progreso
+                              // TODO(anyone): agregarle funcionalidad feature
+                              // en progreso
                               showDialog<void>(
                                 context: context,
                                 builder: (context) =>
@@ -131,7 +134,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                       SizedBox(
                         width: 10.pw,
                       ),
-                      ContainerEdicionArticulo(),
+                      const ContainerEdicionArticulo(),
                     ],
                   ),
                 ),
@@ -146,7 +149,8 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                         SizedBox(
                           child: Text(
                             'Showing page 1 of 1 <      >',
-                            // TODO(SAM): cambiar luego por widget correspondiente
+                            // TODO(SAM): cambiar luego por widget
+                            // correspondiente
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 15.pf,
@@ -169,7 +173,8 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                               children: [
                                 PRBoton(
                                   onTap: () {
-                                    // TODO(anyone): agregarle funcionalidad feature en progreso
+                                    // TODO(anyone): agregarle funcionalidad
+                                    // feature en progreso
                                     showDialog<void>(
                                       context: context,
                                       builder: (context) =>
@@ -183,7 +188,8 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                                 ),
                                 PRBoton(
                                   onTap: () {
-                                    // TODO(anyone): agregarle funcionalidad feature en progreso
+                                    // TODO(anyone): agregarle funcionalidad
+                                    // feature en progreso
                                     showDialog<void>(
                                       context: context,
                                       builder: (context) =>

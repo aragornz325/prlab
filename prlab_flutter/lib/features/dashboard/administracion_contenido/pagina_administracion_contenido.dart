@@ -20,7 +20,6 @@ class PaginaAdministracionContenido extends StatelessWidget {
       create: (context) => BlocAdministracionContenido(),
       child: const FullResponsiveScreen(
         desktop: VistaEscritorioAdministracionContenido(),
-        // TODO(anyone): hacer la vista mobile
         mobile: VistaEscritorioAdministracionContenido(),
       ),
     );
