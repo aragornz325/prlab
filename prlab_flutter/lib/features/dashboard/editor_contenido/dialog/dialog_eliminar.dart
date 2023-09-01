@@ -6,7 +6,11 @@ import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
+/// {@template PaginaEditorContenido}
+/// Dialog de preguntar al usuario si quiere eliminar el articulo escrito
+/// {@endtemplate}
 class PrDialogEliminar extends StatelessWidget {
+  /// {@macro PaginaEditorContenido}
   const PrDialogEliminar({super.key});
 
   @override
