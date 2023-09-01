@@ -11,6 +11,7 @@ sealed class BlocEditorContenidoEstado {
     this.logoElegidoWeb,
     this.logoSecundarioElegidoCelular,
     this.logoSecundarioElegidoWeb,
+    this.descripcionDeArticulo = '',
   });
 
   BlocEditorContenidoEstado.desde(
@@ -19,6 +20,7 @@ sealed class BlocEditorContenidoEstado {
     Uint8List? logoElegidoWeb,
     File? logoSecundarioElegidoCelular,
     Uint8List? logoSecundarioElegidoWeb,
+    String? descripcionDeArticulo,
   }) : this._(
           logoElegidoCelular: logoElegidoCelular ?? otro.logoElegidoCelular,
           logoElegidoWeb: logoElegidoWeb ?? otro.logoElegidoWeb,
@@ -26,12 +28,20 @@ sealed class BlocEditorContenidoEstado {
               logoSecundarioElegidoCelular ?? otro.logoSecundarioElegidoCelular,
           logoSecundarioElegidoWeb:
               logoSecundarioElegidoWeb ?? otro.logoSecundarioElegidoWeb,
+          descripcionDeArticulo:
+              descripcionDeArticulo ?? otro.descripcionDeArticulo,
         );
 
   final File? logoElegidoCelular;
   final Uint8List? logoElegidoWeb;
   final File? logoSecundarioElegidoCelular;
   final Uint8List? logoSecundarioElegidoWeb;
+
+  /// El core de el artículo, acá se encuentra toda la información
+  /// central del mismo, se pueden subir imagenes, customizar la letra
+  /// y más, el string contiene el tipo de archivo `html` donde estan
+  /// descriptas todas esas especificaciones.
+  final String descripcionDeArticulo;
 }
 
 /// {@template BlocEditorContenidoEstadoInicial}
@@ -47,13 +57,7 @@ class BlocEditorContenidoEstadoInicial extends BlocEditorContenidoEstado {
 /// {@endtemplate}
 class BlocEditorContenidoEstadoCargando extends BlocEditorContenidoEstado {
   /// {@macro BlocEditorContenidoEstadoCargando}
-  BlocEditorContenidoEstadoCargando.desde(
-    super.otro, {
-    super.logoElegidoCelular,
-    super.logoElegidoWeb,
-    super.logoSecundarioElegidoCelular,
-    super.logoSecundarioElegidoWeb,
-  }) : super.desde();
+  BlocEditorContenidoEstadoCargando.desde(super.otro) : super.desde();
 }
 
 /// {@template BlocEditorContenidoEstadoRecolectandoDatos}
@@ -79,13 +83,7 @@ class BlocEditorContenidoEstadoRecolectandoDatos
 /// {@endtemplate}
 class BlocEditorContenidoEstadoExitoso extends BlocEditorContenidoEstado {
   /// {@macro BlocEditorContenidoEstadoExitoso}
-  BlocEditorContenidoEstadoExitoso.desde(
-    super.otro, {
-    super.logoElegidoCelular,
-    super.logoElegidoWeb,
-    super.logoSecundarioElegidoCelular,
-    super.logoSecundarioElegidoWeb,
-  }) : super.desde();
+  BlocEditorContenidoEstadoExitoso.desde(super.otro) : super.desde();
 }
 
 /// {@template BlocEditorContenidoEstadoFallido}
@@ -93,11 +91,20 @@ class BlocEditorContenidoEstadoExitoso extends BlocEditorContenidoEstado {
 /// {@endtemplate}
 class BlocEditorContenidoEstadoFallido extends BlocEditorContenidoEstado {
   /// {@macro BlocEditorContenidoEstadoFallido}
-  BlocEditorContenidoEstadoFallido.desde(
+  BlocEditorContenidoEstadoFallido.desde(super.otro) : super.desde();
+}
+
+/// {@template BlocEditorContenidoEstadoActualizandoDescripcion}
+/// El editor de contenido se encuentra en este estado cuando se
+/// va editando la descripcion de dicho contenido, guardamos todos
+/// esos cambios dentro del estado para posteriormente subir los
+/// cambios a la db.
+/// {@endtemplate}
+class BlocEditorContenidoEstadoActualizandoDescripcion
+    extends BlocEditorContenidoEstado {
+  /// {@macro BlocEditorContenidoEstadoActualizandoDescripcion}
+  BlocEditorContenidoEstadoActualizandoDescripcion.desde(
     super.otro, {
-    super.logoElegidoCelular,
-    super.logoElegidoWeb,
-    super.logoSecundarioElegidoCelular,
-    super.logoSecundarioElegidoWeb,
-  }) : super.desde();
+    required String descripcionDeArticulo,
+  }) : super.desde(descripcionDeArticulo: descripcionDeArticulo);
 }

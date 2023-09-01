@@ -27,7 +27,7 @@ class PRAppBarRowIconos extends StatelessWidget {
             icon: Icon(
               Icons.more_vert,
               color: colores.primary,
-              size: 30,
+              size: 30.pf,
             ),
             itemBuilder: (BuildContext context) {
               return MenuDeOpciones.opciones.map((enumOpciones) {
@@ -52,7 +52,7 @@ class PRAppBarRowIconos extends StatelessWidget {
             icon: Icon(
               Icons.settings_outlined,
               color: colores.primary,
-              size: 30,
+              size: 30.pf,
             ),
             itemBuilder: (BuildContext context) {
               return MenuDeOpciones.configuraciones.map((enumConfiguraciones) {
@@ -83,7 +83,7 @@ class PRAppBarRowIconos extends StatelessWidget {
                       Icon(
                         Icons.apartment,
                         color: colores.primary,
-                        size: 24,
+                        size: 24.pf,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,9 +104,9 @@ class PRAppBarRowIconos extends StatelessWidget {
                               fontSize: 14.pf,
                               color: colores.secondary,
                             ),
-                          )
+                          ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -132,7 +132,7 @@ class PRAppBarRowIconos extends StatelessWidget {
               maxRadius: 20.pw,
               backgroundColor: colores.onSecondary,
             ),
-          )
+          ),
         ],
       ),
     );

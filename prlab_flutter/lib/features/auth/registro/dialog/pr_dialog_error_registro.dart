@@ -17,7 +17,7 @@ class PrDialogErrorRegistro extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final colores = context.colores;
-    // TODO(anyone) : TODO(Anyone): Se uso el informacion en vez del .error
+    // TODO(anyone): Se uso el informacion en vez del .error
     // modificar el .error para que cumpla los requerimientos necesarios para
     // usarlo
     return PRDialog.informacion(

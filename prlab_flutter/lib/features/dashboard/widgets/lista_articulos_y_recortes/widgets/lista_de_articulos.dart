@@ -185,7 +185,7 @@ class ListaDeArticulos extends StatelessWidget {
                     height: max(50.ph, 50.sh),
                     child: Center(
                       child: Text(
-                        DateFormat('d MMM y').format(value),
+                        DateFormat('d MMM y').format(value!),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.start,

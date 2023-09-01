@@ -19,6 +19,7 @@ class PRAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
     return Container(
       width: 1040.pw,
       height: 100.ph,

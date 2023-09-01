@@ -124,7 +124,7 @@
         "description":"text in alertdialog suffix textfield on button if the verificaction code was sent, Code sent"
     },
     
-    "alertDialogTooltipRequestNewCode":"Puedes solicitar un nuevo código en {seconds} segundos.Este expirara en {minutes} minutos.",
+    "alertDialogTooltipRequestNewCode":"Puedes solicitar un nuevo\n código en {seconds} segundos.\nEste expirará en {minutes}\n minutos.",
     "@alertDialogTooltipRequestNewCode": {
         "description":"part text in alertdialog of textfield on tooltip, You can request a new code in 56 seconds.This will expire in 30 minutes.",
         "placeholders" : {
@@ -206,6 +206,16 @@
         "description":"Text in page recover password setted on the reseat password text field hint text"
     },
 
+    "pageRecoverPasswordChangePasswordSuccessDialogDescription" : "Tu contraseña ha sido cambiada exitosamente.",
+    "@pageRecoverPasswordChangePasswordSuccessDialogDescription": {
+        "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
+    },
+
+    "pageRecoverPasswordSuccessDialogButtonText" : "Ir a inicio de sesión",
+    "@pageRecoverPasswordSuccessDialogButtonText": {
+        "description":"Text that is shown on the success dialog button"
+    },
+    
     "pageLoginInsertedCodeSuccessfullyDialogDescription" : "Tu código ha sido ingresado correctamente, continúa para recuperar tu cuenta.",
     "@pageLoginInsertedCodeSuccessfullyDialogDescription": {
         "description":"Indicates that the password recovery was successful once the process ends"
@@ -224,11 +234,6 @@
     "pageLoginInsertedCodeFailDialogDescription" : "El código que ingresaste es incorrecto, por favor inténtalo nuevamente.",
     "@pageLoginInsertedCodeFailDialogDescription": {
         "description":"Pertains to a scenario in which a user attempts to enter a code, such as a password or verification code, but the input is found to be incorrect. The user is then advised to make another attempt in order to rectify the error."
-    },
-
-    "pageRecoverPasswordChangePasswordSuccessDialogDescription" : "Tu contraseña ha sido cambiada exitosamente.",
-    "@pageRecoverPasswordChangePasswordSuccessDialogDescription": {
-        "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
     },
 
      "pageBrandAdministrationRecentlyModifiedText" : "Recently modified",
@@ -467,7 +472,7 @@
 
     "prAppBarProfileSignOut":"Cerrar sesión",
     "@prAppBarProfileSignOut":{
-        "description":"Text to sing out"
+        "description":"Text to sign out"
     },
 
     "commonPRLab": "PR lab",
@@ -547,7 +552,7 @@
     "@commonSuccess": {
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph."
     },
-      "commonSuccessWithExclamation" : "Exitoso!",
+      "commonSuccessWithExclamation" : "Exito!",
     "@commonSuccessWithExclamation": {
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph but with an exclamation sign."
     },

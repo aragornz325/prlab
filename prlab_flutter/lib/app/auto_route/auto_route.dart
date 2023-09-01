@@ -63,8 +63,13 @@ class AppRouter extends $AppRouter {
           guards: [authGuard],
           children: [
             AutoRoute(
-              path: 'brand-administration',
+              path: 'brands-administration',
               page: RutaAdministracionMarcas.page,
+              initial: true,
+            ),
+            AutoRoute(
+              path: 'brand-administration/:nombreMarca',
+              page: RutaAdministracionDeUnaMarca.page,
             ),
             AutoRoute(
               path: 'edit-content',
@@ -73,7 +78,6 @@ class AppRouter extends $AppRouter {
             AutoRoute(
               page: RutaAdministracionContenido.page,
               path: 'content-management',
-              initial: true,
             ),
           ],
         ),

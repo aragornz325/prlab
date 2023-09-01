@@ -5,6 +5,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/auth/login/bloc/bloc_login.dart';
+import 'package:prlab_flutter/features/auth/login/escritorio/widgets/texto_bienvenida.dart';
 import 'package:prlab_flutter/features/auth/recuperar_password/dialog/dialog.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
@@ -69,11 +70,19 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
 
         if (state is BlocLoginEstadoExitosoAlValidarOTP) {
           Navigator.pop(context);
-          Future.delayed(const Duration(milliseconds: 180), () {
-            context.pushRoute(
-              RutaRecuperarPassword(codigoOtp: state.codigo),
-            );
-          });
+          showDialog<void>(
+            context: context,
+            builder: (context) => PRDialog.exito(
+              context: context,
+              onTap: () {
+                context.pushRoute(
+                  RutaRecuperarPassword(codigoOtp: state.codigo),
+                );
+              },
+              descripcion:
+                  l10n.pageLoginInsertedCodeSuccessfullyDialogDescription,
+            ),
+          );
         }
 
         if (state is BlocLoginEstadoExitosoIniciarSesion) {
@@ -153,6 +162,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       oneMinimumSelected: true,
                     ),
                     // const TextoBienvenida(),
+                    // SizedBox(height: 90.ph),
                     // SizedBox(
                     //   width: 360.pw,
                     //   height: 40.ph,
@@ -163,7 +173,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     //     hintText: l10n.pageLoginPlaceholderEmail,
                     //   ),
                     // ),
-                    // SizedBox(height: 10.ph),
+                    // SizedBox(height: 40.ph),
                     // SizedBox(
                     //   width: 360.pw,
                     //   height: 40.ph,
@@ -172,26 +182,6 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     //     hintText: l10n.pageLoginPlaceholderPassword,
                     //     onChanged: (_) => _habilitarBotones(),
                     //   ),
-                    // ),
-                    // // TODO(anyone): Cuando se manejen errores de login agregar
-                    // // los errores abajo de los textfields
-                    // SizedBox(height: 10.ph),
-                    // OlvidasteTuPassword(
-                    //   cargoElMail: state.botonOlvidePasswordHabilitado,
-                    //   password: controllerPassword.text,
-                    //   controllerCodigo: controllerCodigo,
-                    // ),
-                    // SizedBox(
-                    //   height: 50.ph,
-                    // ),
-                    // PRBoton(
-                    //   estaHabilitado: state.botonLoginHabilitado,
-                    //   muestraEstadoDeCarga: state.estaCargandoInicioDeSesion,
-                    //   onTap: _onTapBotonIniciarSesion,
-                    //   texto: l10n.pageLoginButtonText,
-                    // ),
-                    // SizedBox(
-                    //   height: 120.ph,
                     // ),
                   ],
                 ),
