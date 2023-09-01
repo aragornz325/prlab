@@ -43,7 +43,8 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 PRLabCheckbox(
-                  isChecked: state.borrador,
+                  // TODO(anyone): pasar todo esto a un enum para manejar mejor los distintos estados
+                  estaMarcado: state.borrador,
                   onChanged: (value) {
                     context.read<BlocListaArticulosYRecortes>().add(
                           BlocListaArticulosYRecortesEventoFiltradoPorEstado(
@@ -51,9 +52,9 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                           ),
                         );
                   },
-                  borderColor: colores.secondary,
-                  checkedColor: colores.secondary,
-                  uncheckedColor: colores.surfaceTint,
+                  colorBorde: colores.secondary,
+                  colorMarcado: colores.secondary,
+                  colorDesmarcado: colores.surfaceTint,
                 ),
                 SizedBox(width: 5.pw),
                 Text(
@@ -67,7 +68,8 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                 ),
                 SizedBox(width: 20.pw),
                 PRLabCheckbox(
-                  isChecked: state.comentario,
+                  // TODO(anyone): pasar todo esto a un enum para manejar mejor los distintos estados
+                  estaMarcado: state.comentario,
                   onChanged: (value) {
                     context.read<BlocListaArticulosYRecortes>().add(
                           BlocListaArticulosYRecortesEventoFiltradoPorEstado(
@@ -75,9 +77,9 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                           ),
                         );
                   },
-                  borderColor: colores.onTertiary,
-                  checkedColor: colores.onTertiary,
-                  uncheckedColor: colores.surfaceTint,
+                  colorBorde: colores.onTertiary,
+                  colorMarcado: colores.onTertiary,
+                  colorDesmarcado: colores.surfaceTint,
                 ),
                 SizedBox(width: 5.pw),
                 Text(
@@ -91,7 +93,8 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                 ),
                 SizedBox(width: 20.pw),
                 PRLabCheckbox(
-                  isChecked: state.completo,
+                  // TODO(anyone): pasar todo esto a un enum para manejar mejor los distintos estados
+                  estaMarcado: state.completo,
                   onChanged: (value) {
                     context.read<BlocListaArticulosYRecortes>().add(
                           BlocListaArticulosYRecortesEventoFiltradoPorEstado(
@@ -99,9 +102,9 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                           ),
                         );
                   },
-                  borderColor: colores.onTertiaryContainer,
-                  checkedColor: colores.onTertiaryContainer,
-                  uncheckedColor: colores.surfaceTint,
+                  colorBorde: colores.onTertiaryContainer,
+                  colorMarcado: colores.onTertiaryContainer,
+                  colorDesmarcado: colores.surfaceTint,
                 ),
                 SizedBox(width: 5.pw),
                 Text(
@@ -128,28 +131,28 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
 class PRLabCheckbox extends StatefulWidget {
   /// {@macro CustomCheckbox}
   const PRLabCheckbox({
-    required this.isChecked,
+    required this.estaMarcado,
     required this.onChanged,
-    required this.borderColor,
-    required this.checkedColor,
-    required this.uncheckedColor,
+    required this.colorBorde,
+    required this.colorMarcado,
+    required this.colorDesmarcado,
     super.key,
   });
 
   /// Verifica si esta seleccionado
-  final bool isChecked;
+  final bool estaMarcado;
 
   /// Es el cambio en el check box Cambia el valor pasado entre true o false
   final ValueChanged<bool> onChanged;
 
   /// color del border
-  final Color borderColor;
+  final Color colorBorde;
 
   /// color al estar seleccionado
-  final Color checkedColor;
+  final Color colorMarcado;
 
   /// color del border cuando esta no seleccionado
-  final Color uncheckedColor;
+  final Color colorDesmarcado;
 
   @override
   _PRLabCheckboxState createState() => _PRLabCheckboxState();
@@ -161,7 +164,7 @@ class _PRLabCheckboxState extends State<PRLabCheckbox> {
   @override
   void initState() {
     super.initState();
-    _isChecked = widget.isChecked;
+    _isChecked = widget.estaMarcado;
   }
 
   @override
@@ -171,7 +174,6 @@ class _PRLabCheckboxState extends State<PRLabCheckbox> {
     return InkWell(
       onTap: () {
         setState(() {
-          //no quiero hacer un bloc para esto :D
           _isChecked = !_isChecked;
           widget.onChanged(_isChecked);
         });
@@ -180,8 +182,8 @@ class _PRLabCheckboxState extends State<PRLabCheckbox> {
         width: 24,
         height: 24,
         decoration: BoxDecoration(
-          border: Border.all(color: widget.borderColor, width: 2),
-          color: _isChecked ? widget.checkedColor : widget.uncheckedColor,
+          border: Border.all(color: widget.colorBorde, width: 2),
+          color: _isChecked ? widget.colorMarcado : widget.colorDesmarcado,
           borderRadius: BorderRadius.circular(2.5),
         ),
         child: _isChecked

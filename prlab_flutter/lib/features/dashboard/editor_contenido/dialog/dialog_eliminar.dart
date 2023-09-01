@@ -28,7 +28,6 @@ class PrDialogEliminar extends StatelessWidget {
           SizedBox(
             height: max(100.ph, 100.sh),
             child: Text(
-              // TODO(anyone): hacer l10n
               l10n.commonDialogDescriptionDelete,
               textAlign: TextAlign.center,
               style: TextStyle(

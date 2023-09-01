@@ -36,6 +36,7 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
   /// Index de la vista seleccionada
   final int index;
 
+  // TODO(anyone): pasar todo esto a un enum para manejar mejor los distintos estados
   /// Estado de borrador para los filtrados
   final bool borrador;
 
@@ -111,7 +112,6 @@ final class BlocListaArticulosYRecortesEstadoFallido
     super.otro, {
     required this.errorMessage,
   }) : super.desde();
-
   /// Mensaje que se va a mostrar en caso de que sea error
   /// o de que algo haya salido mal.
   final String errorMessage;
