@@ -19,7 +19,7 @@ class OdmArticulo extends ODM {
   }) async {
     try {
       await performOdmOperation(session, (Session session) {
-      logger.info('Creando artículo: ${payload.titulo}');
+        logger.info('Creando artículo: ${payload.titulo}');
         return Articulo.insert(
           session,
           payload
@@ -121,12 +121,41 @@ class OdmArticulo extends ODM {
   }) async {
     try {
       return await performOdmOperation(session, (Session session) {
-      logger.info('buscando los articulos segun marca con id: $idMarca');
+        logger.info('buscando los articulos segun marca con id: $idMarca');
         return Articulo.find(
           session,
           where: (t) => t.idMarca.equals(idMarca),
         );
       });
+    } on Exception catch (e) {
+      throw Exception('$e');
+    }
+  }
+
+  /// La función `actualizarArticulo` actualiza un artículo con la sesión proporcionada y el objeto de
+  /// artículo, y devuelve un booleano que indica si la actualización fue exitosa o no.
+  /// 
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. 
+  ///   articulo (Articulo): El parámetro "articulo" es un objeto de tipo "Articulo" que representa un
+  /// artículo. Es necesario para la función y contiene la información del artículo que necesita ser
+  /// actualizado.
+
+  Future<bool> actualizarArticulo({
+    required Session session,
+    required Articulo articulo,
+  }) async {
+    try {
+      logger.info('se va a actualizar un articulo en la BD');
+      await performOdmOperation(
+        session,
+        (Session session) => Articulo.update(
+          session,
+          articulo,
+        ),
+      );
+      logger.finest('articulo actualizado en la BD');
+      return true;
     } on Exception catch (e) {
       throw Exception('$e');
     }

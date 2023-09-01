@@ -105,6 +105,13 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     }
   }
 
+  /// La función `listarArticulosPorMarca` recupera una lista de artículos por marca usando una sesión y
+  /// un ID de marca.
+  ///
+  /// Args:
+  ///   session (Session): Un parámetro obligatorio de tipo Sesión.
+  ///   idMarca (int): La identificación de la marca para la que desea enumerar los artículos.
+
   Future<List<Articulo>> listarArticulosPorMarca({
     required Session session,
     required int idMarca,
@@ -116,6 +123,46 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
           idMarca: idMarca,
         ),
       );
+    } on Exception catch (e) {
+      throw Exception('$e');
+    }
+  }
+
+  /// La función `actualizarArticulo` actualiza un artículo en una sesión y devuelve un booleano que
+  /// indica si la operación fue exitosa.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio.
+  ///   articulo (Articulo): El parámetro "articulo" es de tipo Articulo y es obligatorio.
+
+  Future<bool> actualizarArticulo({
+    required Session session,
+    required Articulo articulo,
+  }) async {
+    try {
+
+      await performOperation(
+        () => odm.obtenerArticulo(
+          session: session,
+          id: articulo.id!,
+        ),
+      );
+
+    
+
+
+
+      await performOperation(
+        () {
+          logger.info('se va a actualizar el articulo con id: ${articulo.id}');
+          return odm.actualizarArticulo(
+            session: session,
+            articulo: articulo,
+          );
+        },
+      );
+      logger.fine('se actualizo el articulo con id: ${articulo.id}');
+      return true;
     } on Exception catch (e) {
       throw Exception('$e');
     }
