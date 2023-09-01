@@ -11,6 +11,7 @@ import 'package:prlab_flutter/features/dashboard/administracion_contenido/escrit
 /// nombre, estado, ultima fecha actualizada y dos opciones de compartir
 /// y de mas opciones. un boton para crear artículo con ciertas propiedades
 /// {@endtemplate}
+// TODO(anyone): hacer la vista mobile
 class VistaEscritorioAdministracionContenido extends StatelessWidget {
   /// {@macro VistaEscritorioAdministracionContenido}
   const VistaEscritorioAdministracionContenido({super.key});
@@ -33,7 +34,7 @@ class VistaEscritorioAdministracionContenido extends StatelessWidget {
                       'Lorem ipsum dolor sit amet consectetur. Mattis'
                       ' dolor sapien pulvinar sed.',
                 ),
-                // TODO(anyone): cambiar por el banner de abajo
+                // TODO(anyone): cambiar por el footer con el paginado
                 SizedBox(height: max(90.ph, 90.sh), width: 1000.pw),
               ],
             ),

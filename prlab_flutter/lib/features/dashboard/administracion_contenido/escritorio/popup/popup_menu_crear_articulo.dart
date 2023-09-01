@@ -40,13 +40,11 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
               context: context,
               builder: (context) => const PRDialogErrorNoDisponible(),
             );
-            break;
           case 2:
             showDialog<void>(
               context: context,
               builder: (context) => const PRDialogErrorNoDisponible(),
             );
-            break;
           case 3:
             showDialog<void>(
               context: context,

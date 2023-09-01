@@ -61,17 +61,28 @@ class ServicioMarca extends Servicio<OdmMarca> {
     }
   }
 
+  /// La función `listarMarcasDeUsuario` recupera una lista de marcas asociadas
+  /// a un usuario.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y se utiliza
+  ///  para mantener la conexión a la base de datos durante toda la operación.
+  /// Es necesario para realizar operaciones de bases de datos.
+  ///   idUsuario (int): El parámetro `idUsuario` es un número entero que
+  /// representa el ID del usuario del cual queremos listar las marcas.
+  ///
+  /// Returns:
+  ///   un `Futuro` que se resuelve en una `Lista<dinámica>`.
   Future<List<dynamic>> listarMarcasDeUsuario(
     Session session, {
     required int idUsuario,
-  }) async {
-    return await performOperation(
-      () => odm.listarMarcasDeUsuario(
-        session,
-        idUsuario: idUsuario,
-      ),
-    );
-  }
+  }) async =>
+      performOperation(
+        () => odm.listarMarcasDeUsuario(
+          session,
+          idUsuario: idUsuario,
+        ),
+      );
 
   /// La función `eliminarMarca` se utiliza para eliminar una marca por su ID.
   ///
@@ -86,8 +97,9 @@ class ServicioMarca extends Servicio<OdmMarca> {
     required int id,
   }) async {
     try {
-      logger.info('se va a eliminar la marca con id $id');
-      logger.finer('verificando que la marca exista');
+      logger
+        ..info('se va a eliminar la marca con id $id')
+        ..finer('verificando que la marca exista');
       await performOperation(
         () => odm.obtenerMarca(session: session, id: id),
       );

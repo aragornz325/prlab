@@ -40,7 +40,6 @@ class ExampleView extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 20.pf,
                         color: color.computeLuminance() > 0.5
-                            // TODO(anyone): Cambiar colors a los del theme
                             ? Colors.black
                             : Colors.white)),
               ),
@@ -54,7 +53,6 @@ class ExampleView extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 20.sf,
                         color: color.computeLuminance() > 0.5
-                            // TODO(anyone): Cambiar colors a los del theme
                             ? Colors.black
                             : Colors.white)),
               ),
@@ -69,7 +67,6 @@ class ExampleView extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 20.sf,
                         color: color.computeLuminance() > 0.5
-                            // TODO(anyone): Cambiar colors a los del theme
                             ? Colors.black
                             : Colors.white)),
               ),

@@ -16,9 +16,8 @@ class PaginasDelArticulo extends StatelessWidget {
     super.key,
   });
 
-  final ListaDePaginasDelArticulo
-      listaPaginasDeArticulos; // Todo(Sam): Cambiar por la lista de articulos
-  // del back
+  // TODO(Sam): Cambiar por la lista de articulos del back
+  final ListaDePaginasDelArticulo listaPaginasDeArticulos;
 
   @override
   Widget build(BuildContext context) {

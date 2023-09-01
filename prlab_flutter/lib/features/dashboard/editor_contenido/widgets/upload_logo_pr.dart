@@ -103,7 +103,7 @@ class UploadLogoPR extends StatelessWidget {
                     (state.logoSecundarioElegidoWeb != null ||
                         state.logoSecundarioElegidoCelular != null)) {
                   return InkWell(
-                    // TODO: Agregar hoover para poder borrar.
+                    // TODO(anyone): Agregar hoover para poder borrar.
                     onTap: () => _elegirImagenLogo(
                       false,
                       context,
@@ -132,7 +132,7 @@ class UploadLogoPR extends StatelessWidget {
                   );
                 }
                 return InkWell(
-                  // TODO: Agregar hoover para poder borrar.
+                  // TODO(anyone): Agregar hoover para poder borrar.
                   onTap: () => _elegirImagenLogo(
                     false,
                     context,
@@ -216,7 +216,7 @@ class UploadLogoPR extends StatelessWidget {
         //Alert dialog, no se pickeo una imagen
       }
     } else {
-      //  TODO(SAM): Alert dialog, algo salio mal
+      // TODO(SAM): Alert dialog, algo salio mal
     }
   }
 }
