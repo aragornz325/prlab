@@ -116,6 +116,13 @@ class ArticuloEndpoint extends Endpoint {
     }
   }
 
+  /// La función `actualizarArticulo` actualiza un artículo usando el servicio `servicioArticulo` y
+  /// devuelve un booleano indicando si la actualización fue exitosa.
+  ///
+  /// Args:
+  ///   session (Session): Un objeto de sesión que representa la sesión del usuario actual.
+  ///   articulo (Articulo): El parámetro "articulo" es de tipo "Articulo" y es obligatorio.
+
   Future<bool> actualizarArticulo(
     Session session, {
     required Articulo articulo,
