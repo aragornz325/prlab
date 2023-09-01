@@ -14,13 +14,21 @@ import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart'
 @RoutePage()
 class PaginaEditorContenido extends StatelessWidget {
   /// {@macro PaginaEditorContenido}
-  const PaginaEditorContenido({super.key});
-
+  const PaginaEditorContenido({
+    @PathParam('id') required this.articuloId,
+    super.key,
+  });
+  final int articuloId;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BlocEditorContenido(),
-      child: FullResponsiveScreen(
+      create: (context) => BlocEditorContenido()
+        ..add(
+          BlocEditorContenidoEventoObtenerArticulo(
+            idArticulo: articuloId,
+          ),
+        ),
+      child: const FullResponsiveScreen(
         mobile: VistaEditorContenidoCelular(),
         desktop: VistaEditorContenidoEscritorio(),
       ),

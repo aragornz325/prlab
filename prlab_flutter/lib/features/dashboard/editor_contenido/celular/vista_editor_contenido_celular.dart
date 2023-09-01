@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popups.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/widgets/encabezado_de_seccion.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
@@ -13,38 +15,7 @@ import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 /// {@endtemplate}
 class VistaEditorContenidoCelular extends StatelessWidget {
   /// {@macro VistaRedaccionEdicionContenidoCelular}
-  VistaEditorContenidoCelular({super.key});
-
-  final listaPaginasDeArticulos = ListaDePaginasDelArticulo([
-    // TODO(SAM): eliminar cuando venga del back
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-  ]);
+  const VistaEditorContenidoCelular({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,42 +23,41 @@ class VistaEditorContenidoCelular extends StatelessWidget {
     final l10n = context.l10n;
     return Scaffold(
       body: SingleChildScrollView(
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 210.pw,
-              height: 100.hp,
-              color: colores.primaryOpacidadCincuenta,
-            ),
-            SizedBox(width: 30.pw),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 1040.pw,
-                  height: 100.ph,
-                  color: colores.primaryOpacidadCincuenta,
-                ),
                 SizedBox(height: 40.ph),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    EncabezadoDeSeccion(
-                      icono: Icons.add,
-                      // TODO(SAM): probablemente sea el titulo del articulo,
-                      // deberia definirlo Guille
-                      titulo: 'Flutter article',
-                      descripcion: l10n.pageEditContentSubtitle,
-                    ),
-                    SizedBox(
-                      width: 500.pw,
-                      child: Row(
+                SizedBox(
+                  width: 1000.pw,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      BlocBuilder<BlocEditorContenido,
+                          BlocEditorContenidoEstado>(
+                        builder: (context, state) {
+                          if (state is BlocEditorContenidoEstadoCargando) {
+                            return const CircularProgressIndicator();
+                          } else if (state.articulo != null) {
+                            return EncabezadoDeSeccion(
+                              icono: Icons.add,
+                              titulo: state.articulo!.titulo,
+                              descripcion: l10n.pageEditContentSubtitle,
+                            );
+                          } else {
+                            return const SizedBox.shrink();
+                          }
+                        },
+                      ),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           PRBoton.esOutlined(
+                            fontSize: 15.pf,
+                            fontWeight: FontWeight.w500,
                             onTap: () {
-                              // TODO(anyone): agregarle funcionalidad feature
-                              // en progreso
                               showDialog<void>(
                                 context: context,
                                 builder: (context) =>
@@ -103,9 +73,9 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                             width: 20.pw,
                           ),
                           PRBoton(
+                            fontSize: 15.pf,
+                            fontWeight: FontWeight.w500,
                             onTap: () {
-                              // TODO(anyone): agregarle funcionalidad feature
-                              // en progreso
                               showDialog<void>(
                                 context: context,
                                 builder: (context) =>
@@ -119,24 +89,35 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20.ph),
-                SizedBox(
-                  width: 1000.pw,
-                  height: 508.ph,
-                  child: Row(
-                    children: [
-                      PaginasDelArticulo(
-                        listaPaginasDeArticulos: listaPaginasDeArticulos,
-                      ),
-                      SizedBox(
-                        width: 10.pw,
-                      ),
-                      const ContainerEdicionArticulo(),
                     ],
                   ),
+                ),
+                SizedBox(height: 20.ph),
+                BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
+                  builder: (context, state) {
+                    if (state is BlocEditorContenidoEstadoCargando) {
+                      return const CircularProgressIndicator();
+                    } else if (state.articulo != null) {
+                      return SizedBox(
+                        width: 1000.pw,
+                        height: 508.ph,
+                        child: Row(
+                          children: [
+                            PaginasDelArticulo(
+                              listaSeccionesDeArticulos:
+                                  state.listaSeccionesArticulo,
+                            ),
+                            SizedBox(
+                              width: 10.pw,
+                            ),
+                            const ContainerEdicionArticulo(),
+                          ],
+                        ),
+                      );
+                    } else {
+                      return const SizedBox.shrink();
+                    }
+                  },
                 ),
                 SizedBox(
                   width: 1040.pw,
@@ -168,39 +149,11 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                           child: SizedBox(
                             height: 40.ph,
                             width: 800.pw,
-                            child: Row(
+                            child: const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                PRBoton(
-                                  onTap: () {
-                                    // TODO(anyone): agregarle funcionalidad
-                                    // feature en progreso
-                                    showDialog<void>(
-                                      context: context,
-                                      builder: (context) =>
-                                          const PRDialogErrorNoDisponible(),
-                                    );
-                                  },
-                                  texto: l10n.commonAddPage,
-                                  estaHabilitado: true,
-                                  width: 139.pw,
-                                  height: 30.ph,
-                                ),
-                                PRBoton(
-                                  onTap: () {
-                                    // TODO(anyone): agregarle funcionalidad
-                                    // feature en progreso
-                                    showDialog<void>(
-                                      context: context,
-                                      builder: (context) =>
-                                          const PRDialogErrorNoDisponible(),
-                                    );
-                                  },
-                                  texto: l10n.commonPublish,
-                                  estaHabilitado: true,
-                                  width: 139.pw,
-                                  height: 30.ph,
-                                ),
+                                PopUpMenuAgregarPagina(),
+                                PopUpMenuOpcionesPublicar(),
                               ],
                             ),
                           ),
@@ -216,16 +169,4 @@ class VistaEditorContenidoCelular extends StatelessWidget {
       ),
     );
   }
-}
-
-class Article {
-  // TODO(SAM): remover luego cuando este el modelo del back
-  Article(this.title, this.content);
-  final String title;
-  final String content;
-}
-
-class ListaDePaginasDelArticulo {
-  ListaDePaginasDelArticulo(this.articulos);
-  final List<Article> articulos;
 }
