@@ -127,10 +127,6 @@ class Protocol extends _i1.SerializationManager {
       return (data as List).map((e) => deserialize<_i13.Marca>(e)).toList()
           as dynamic;
     }
-    if (t == List<dynamic>) {
-      return (data as List).map((e) => deserialize<dynamic>(e)).toList()
-          as dynamic;
-    }
     try {
       return _i14.Protocol().deserialize<T>(data, t);
     } catch (_) {}

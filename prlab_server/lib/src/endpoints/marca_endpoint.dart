@@ -70,13 +70,17 @@ class MarcaEndpoint extends Endpoint {
     }
   }
 
-  Future<List<dynamic>> listarMarcasDeUsuario(
-    Session session, {
-    required int idUsuario,
-  }) async {
-    return await servicioMarca.listarMarcasDeUsuario(
-      session,
-      idUsuario: idUsuario,
-    );
+  Future<Marca> obtenerMarcaPorId(Session session, int idMarca) async {
+    return await servicioMarca.obtenerMarcaPorId(session, idMarca);
   }
+
+  // Future<List<dynamic>> listarMarcasDeUsuario(
+  //   Session session, {
+  //   required int idUsuario,
+  // }) async {
+  //   return await servicioMarca.listarMarcasDeUsuario(
+  //     session,
+  //     idUsuario: idUsuario,
+  //   );
+  // }
 }
