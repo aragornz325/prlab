@@ -105,6 +105,13 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     }
   }
 
+  /// La función `listarArticulosPorMarca` recupera una lista de artículos por marca usando una sesión y
+  /// un ID de marca.
+  ///
+  /// Args:
+  ///   session (Session): Un parámetro obligatorio de tipo Sesión.
+  ///   idMarca (int): La identificación de la marca para la que desea enumerar los artículos.
+
   Future<List<Articulo>> listarArticulosPorMarca({
     required Session session,
     required int idMarca,
@@ -116,6 +123,53 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
           idMarca: idMarca,
         ),
       );
+    } on Exception catch (e) {
+      throw Exception('$e');
+    }
+  }
+
+  /// La función `actualizarArticulo` actualiza un artículo en una sesión y devuelve un booleano que
+  /// indica si la operación fue exitosa.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio.
+  ///   articulo (Articulo): El parámetro "articulo" es de tipo Articulo y es obligatorio.
+
+  Future<bool> actualizarArticulo({
+    required Session session,
+    required Articulo articulo,
+  }) async {
+    try {
+      logger.info('se va a actualizar el articulo con id: ${articulo.id}');
+      final articuloFinal = await performOperation(
+        () {
+          return odm.obtenerArticulo(
+            session: session,
+            id: articulo.id!,
+          );
+        },
+      );
+      logger.finer('articulo ${articulo.id} recuperado de la db');
+
+      //se compara con el registro de la db, si el valor es null se deja el valor anterior
+      //si el valor es distinto de null se actualiza el valor en el registro de la db
+
+      articulo.toJson().forEach((key, value) {
+        if (value != null) {
+          articuloFinal.setColumn(key, value);
+        }
+      });
+      logger.finer('articulo ${articulo.id} actualizado');
+      await performOperation(
+        () {
+          return odm.actualizarArticulo(
+            session: session,
+            articulo: articuloFinal,
+          );
+        },
+      );
+      logger.fine('se actualizo el articulo con id: ${articulo.id}');
+      return true;
     } on Exception catch (e) {
       throw Exception('$e');
     }

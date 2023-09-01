@@ -94,6 +94,13 @@ class _EndpointArticulo extends _i1.EndpointRef {
         'listarArticulosPorMarca',
         {'idMarca': idMarca},
       );
+
+  _i2.Future<bool> actualizarArticulo({required _i3.Articulo articulo}) =>
+      caller.callServerEndpoint<bool>(
+        'articulo',
+        'actualizarArticulo',
+        {'articulo': articulo},
+      );
 }
 
 /// La clase `AuthEndpoint` está ampliando la clase `Endpoint`. por tanto maneja
