@@ -272,11 +272,11 @@ class _EndpointMarca extends _i1.EndpointRef {
         {},
       );
 
-  _i2.Future<List<dynamic>> listarMarcasDeUsuario() =>
-      caller.callServerEndpoint<List<dynamic>>(
+  _i2.Future<_i5.Marca> obtenerMarcaPorId(int idMarca) =>
+      caller.callServerEndpoint<_i5.Marca>(
         'marca',
-        'listarMarcasDeUsuario',
-        {},
+        'obtenerMarcaPorId',
+        {'idMarca': idMarca},
       );
 }
 
