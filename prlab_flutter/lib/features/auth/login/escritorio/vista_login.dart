@@ -8,6 +8,7 @@ import 'package:prlab_flutter/features/auth/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/features/auth/login/escritorio/widgets/olvidaste_tu_password.dart';
 import 'package:prlab_flutter/features/auth/login/escritorio/widgets/texto_bienvenida.dart';
 import 'package:prlab_flutter/features/auth/recuperar_password/dialog/dialog.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/dialog/dialog_eliminar.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
@@ -141,7 +142,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     SizedBox(
                       height: 50.ph,
                     ),
-                    PRBoton(
+                   PRBoton(
                       estaHabilitado: state.botonLoginHabilitado,
                       muestraEstadoDeCarga: state.estaCargandoInicioDeSesion,
                       onTap: _onTapBotonIniciarSesion,
