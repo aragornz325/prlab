@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
+import 'package:prlab_flutter/features/dashboard/bloc/bloc_dashboard.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -126,9 +128,9 @@ class TarjetaMarca extends StatelessWidget {
                     SizedBox(width: 20.pw),
                     PRBoton(
                       onTap: () {
-                        context.router.push(
-                          RutaEditorContenido(idArticulo: 0),
-                        ); // TODO(anyone): pasar el id correcto
+                        context
+                            .read<BlocDashboard>()
+                            .add(BlocDashboardCrearArticulo());
                       },
                       texto: l10n.commonCreate,
                       estaHabilitado: true,
