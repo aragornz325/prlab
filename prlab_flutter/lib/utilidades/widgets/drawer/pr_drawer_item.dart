@@ -40,7 +40,7 @@ class PRDrawerItem extends StatelessWidget {
           decoration: BoxDecoration(
             color: estaSeleccionado
                 ? colores.primaryOpacidadDiez
-                : colores.onPrimary,
+                : colores.surfaceTint,
           ),
           child: Row(
             children: [

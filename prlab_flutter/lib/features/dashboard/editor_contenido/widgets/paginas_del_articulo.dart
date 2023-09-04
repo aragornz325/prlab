@@ -25,7 +25,7 @@ class PaginasDelArticulo extends StatelessWidget {
     final colores = context.colores;
     return Expanded(
       child: Container(
-        color: colores.onPrimary,
+        color: colores.surfaceTint,
         width: 151.pw,
         height: 508.ph,
         child: ListView.builder(

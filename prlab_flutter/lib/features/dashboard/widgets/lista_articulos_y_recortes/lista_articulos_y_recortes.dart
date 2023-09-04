@@ -28,11 +28,11 @@ class ListaArticulosYRecortes extends StatelessWidget {
           return Container(
             height: max(508.ph, 508.sh),
             width: 1000.pw,
-            color: colores.onPrimary,
+            color: colores.surfaceTint,
             child: Column(
               children: [
                 const BotonesArticulosYRecorte(),
-                Divider(color: colores.onSecondary),
+                Divider(color: colores.outlineVariant),
 
                 // si el index es 1 o recortes
                 if (state.index == 1)
@@ -53,7 +53,7 @@ class ListaArticulosYRecortes extends StatelessWidget {
                   Column(
                     children: [
                       const TextFieldBusquedaFiltrado(),
-                      Divider(color: colores.onSecondary),
+                      Divider(color: colores.outlineVariant),
                     ],
                   ),
 

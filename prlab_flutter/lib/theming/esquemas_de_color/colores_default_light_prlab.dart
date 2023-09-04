@@ -4,15 +4,12 @@ import 'package:flutter/material.dart';
 
 /// Esquema de colores a utilizar en el theme light
 const themeDefaultPRLab = ColorScheme.light(
+  /// Color que es utilizado para los fondos de popup etc
   surfaceTint: Colors.white,
 
   /// Color principal de la paleta de colores.
   //! se usa para el focus del textfield
   primary: Color(0xFFA12B46),
-
-  /// Color que va a tomar por ejemplo los textos de los ElevatedButton
-  // ignore: avoid_redundant_argument_values
-  onPrimary: Colors.white,
 
   /// Color a utilizarse en textos con link vinculado.
   primaryContainer: Color(0xFF0094E7),
@@ -22,9 +19,6 @@ const themeDefaultPRLab = ColorScheme.light(
 
   /// Color a utilizarse en subtitulos y textos.
   secondary: Color(0xff707070),
-
-  /// Color utilizado en divider de TextFormField y readOnly.
-  onSecondary: Color(0xffd9d9d9),
 
   /// Color utilizado en titulos y ToolTip
   tertiary: Color(0xff363636),
@@ -38,6 +32,6 @@ const themeDefaultPRLab = ColorScheme.light(
   //! se utiliza para el hover de los textfield
   onSurface: Color(0xFFA12B46),
 
-  //TODO(Manu): esto es para el divider de drawer, cambiar todos los onsecondary usados en componentes por outlineVariant
+  /// Color utilizado en divider de TextFormField y readOnly.
   outlineVariant: Color(0xffd9d9d9),
 );

@@ -94,7 +94,7 @@ class _EditorDeDescripcionDeContenidoState
             editorState: editorState,
             scrollController: scrollController,
             style: FloatingToolbarStyle(
-              backgroundColor: colores.onSecondary,
+              backgroundColor: colores.outlineVariant,
               toolbarActiveColor: colores.primary,
             ),
             child: _ContenedorDeDescripcionDeContenido(
