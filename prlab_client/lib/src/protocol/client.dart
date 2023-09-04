@@ -326,6 +326,8 @@ class _EndpointMarca extends _i1.EndpointRef {
         },
       );
 
+  /// Da de baja la relacion entre el usuario y la marca
+  /// en la tabla intermedia.
   _i2.Future<List<List<dynamic>>> desvincularUsuarioDeMarca({
     required int idMarca,
     required int idUsuario,

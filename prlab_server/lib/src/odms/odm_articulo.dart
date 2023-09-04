@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/odm.dart';
+import 'package:prlab_server/utils/manejo_de_errores/manejo_de_errores.dart';
 import 'package:serverpod/server.dart';
 
 class OdmArticulo extends ODM {
@@ -19,7 +20,8 @@ class OdmArticulo extends ODM {
     required Articulo articulo,
   }) async {
     try {
-      final response = await performOdmOperation(session, (Session session) async {
+      final response =
+          await performOdmOperation(session, (Session session) async {
         logger.info('Creando artículo: ${articulo.titulo}');
         await Articulo.insert(
           session,
@@ -71,25 +73,21 @@ class OdmArticulo extends ODM {
   ///   obligatorio.
   ///   id (int): El parámetro "id" es un número entero que representa el
   ///   identificador único del artículo que debe recuperarse.
-  Future<Articulo> obtenerArticulo({
+  Future<Articulo> obtenerArticuloPorId({
     required Session session,
     required int id,
   }) async {
-    try {
-      logger.info('Obteniendo artículo con id: $id');
-      final articulo = await performOdmOperation(
-        session,
-        (Session session) => Articulo.findById(session, id),
-      );
-      if (articulo == null) {
-        logger.shout('No se encontro el articulo con id: $id');
-        throw Exception('No se encontró el artículo con el id: $id');
-      }
-      logger.fine('Articulo con id: $id encontrado');
-      return articulo;
-    } on Exception catch (e) {
-      throw Exception('$e');
+    logger.info('Obteniendo artículo con id: $id');
+    final articulo = await performOdmOperation(
+      session,
+      (Session session) => Articulo.findById(session, id),
+    );
+    if (articulo == null) {
+      const error = ErrorPrLab.errorElementoNoEncontrado;
+      throw ExceptionPrLab(mensaje: error.mensaje, errorType: error);
     }
+    logger.fine('Articulo con id: $id encontrado');
+    return articulo;
   }
 
   /// La función `eliminarArticulo` elimina un artículo de una sesión usando su
@@ -160,7 +158,8 @@ class OdmArticulo extends ODM {
     required Articulo articulo,
   }) async {
     try {
-      logger.info('Se va a actualizar el articulo en la BD con id ${articulo.id}...');
+      logger.info(
+          'Se va a actualizar el articulo en la BD con id ${articulo.id}...');
       await performOdmOperation(
         session,
         (Session session) => Articulo.update(

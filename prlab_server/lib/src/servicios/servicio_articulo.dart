@@ -66,7 +66,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
   }) async {
     try {
       return await performOperation(
-        () => odm.obtenerArticulo(
+        () => odm.obtenerArticuloPorId(
           session: session,
           id: id,
         ),
@@ -92,7 +92,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
   }) async {
     try {
       await performOperation(
-        () => odm.obtenerArticulo(session: session, id: id),
+        () => odm.obtenerArticuloPorId(session: session, id: id),
       );
       await performOperation(
         () => odm.eliminarArticulo(
@@ -149,7 +149,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
 
       final articuloFinal = await performOperation(
         () {
-          return odm.obtenerArticulo(
+          return odm.obtenerArticuloPorId(
             session: session,
             id: articulo.id!,
           );

@@ -1,5 +1,6 @@
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/odm.dart';
+import 'package:prlab_server/utils/manejo_de_errores/manejo_de_errores.dart';
 import 'package:prlab_server/utils/serialization.dart';
 import 'package:serverpod/server.dart';
 
@@ -93,8 +94,8 @@ class OdmMarca extends ODM {
         },
       );
       if (marca == null) {
-        logger.shout('No se encontró la marca con id: $id');
-        throw Exception('No se encontró la marca con el id: $id');
+        const error = ErrorPrLab.errorElementoNoEncontrado;
+        throw ExceptionPrLab(mensaje: error.mensaje, errorType: error);
       }
       logger.fine('Marca con id: $id encontrada');
       return marca;
