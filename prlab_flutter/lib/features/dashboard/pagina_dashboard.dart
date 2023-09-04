@@ -15,7 +15,9 @@ import 'package:prlab_flutter/utilidades/widgets/wrapper_navegacion/pr_wrapper_n
 @RoutePage()
 class PaginaDashboard extends StatelessWidget {
   /// {@macro PaginaDashboard}
-  const PaginaDashboard({super.key});
+  const PaginaDashboard({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

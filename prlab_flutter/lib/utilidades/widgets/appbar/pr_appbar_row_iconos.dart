@@ -130,7 +130,7 @@ class PRAppBarRowIconos extends StatelessWidget {
             ),
             child: CircleAvatar(
               maxRadius: 20.pw,
-              backgroundColor: colores.onSecondary,
+              backgroundColor: colores.outlineVariant,
             ),
           ),
         ],

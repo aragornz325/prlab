@@ -24,7 +24,7 @@ class PRPopUpMenuRowTitulo extends StatelessWidget {
   Widget build(BuildContext context) {
     final colores = context.colores;
     return Container(
-      decoration: BoxDecoration(color: colores.onPrimary),
+      decoration: BoxDecoration(color: colores.surfaceTint),
       height: 30.ph,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5.pw),

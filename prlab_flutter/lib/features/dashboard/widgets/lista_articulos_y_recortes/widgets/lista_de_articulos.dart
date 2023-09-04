@@ -86,7 +86,7 @@ class ListaDeArticulos extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Divider(color: colores.onSecondary),
+                      Divider(color: colores.outlineVariant),
                     ],
                   ),
                 ),
@@ -140,7 +140,7 @@ class ListaDeArticulos extends StatelessWidget {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              color: colores.onPrimary,
+                              color: colores.surfaceTint,
                               fontSize: 15.pf,
                               fontWeight: FontWeight.w500,
                             ),
@@ -149,7 +149,7 @@ class ListaDeArticulos extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Divider(color: colores.onSecondary),
+                  Divider(color: colores.outlineVariant),
                 ],
               ),
             );
@@ -197,7 +197,7 @@ class ListaDeArticulos extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Divider(color: colores.onSecondary),
+                  Divider(color: colores.outlineVariant),
                 ],
               ),
             );
@@ -234,15 +234,15 @@ class ListaDeArticulos extends StatelessWidget {
                     child: Center(
                       child: CircleAvatar(
                         radius: 15.pf,
-                        backgroundColor: colores.onSecondary,
+                        backgroundColor: colores.outlineVariant,
                         child: CircleAvatar(
                           radius: 15.pf,
-                          backgroundColor: colores.onSecondary,
+                          backgroundColor: colores.outlineVariant,
                         ),
                       ),
                     ),
                   ),
-                  Divider(color: colores.onSecondary),
+                  Divider(color: colores.outlineVariant),
                 ],
               ),
             );
@@ -298,7 +298,7 @@ class ListaDeArticulos extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Divider(color: colores.onSecondary),
+                  Divider(color: colores.outlineVariant),
                 ],
               ),
             );

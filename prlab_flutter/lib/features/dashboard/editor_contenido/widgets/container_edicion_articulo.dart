@@ -23,7 +23,7 @@ class ContainerEdicionArticulo extends StatelessWidget {
     return Container(
       width: 839.pw,
       height: 508.ph,
-      color: colores.onPrimary,
+      color: colores.surfaceTint,
       child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

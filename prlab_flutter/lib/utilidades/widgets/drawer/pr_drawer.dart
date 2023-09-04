@@ -31,7 +31,7 @@ class _PrDrawerState extends State<PrDrawer> {
     return Container(
       height: 832.ph,
       width: 210.pw,
-      decoration: BoxDecoration(color: colores.onPrimary),
+      decoration: BoxDecoration(color: colores.surfaceTint),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -47,7 +47,7 @@ class _PrDrawerState extends State<PrDrawer> {
           ),
           Container(
             height: 1.ph,
-            decoration: BoxDecoration(color: colores.onSecondary),
+            decoration: BoxDecoration(color: colores.outlineVariant),
           ),
           PRDrawerListaItems(
             enumDrawer: enumDrawer,
@@ -70,7 +70,7 @@ class _PrDrawerState extends State<PrDrawer> {
           const Spacer(),
           Container(
             height: 1.ph,
-            decoration: BoxDecoration(color: colores.onSecondary),
+            decoration: BoxDecoration(color: colores.outlineVariant),
           ),
           SizedBox(
             height: 84.ph,
