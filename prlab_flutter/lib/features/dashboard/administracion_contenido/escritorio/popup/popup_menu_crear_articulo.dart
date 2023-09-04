@@ -45,12 +45,15 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
               context: context,
               builder: (context) => const PRDialogErrorNoDisponible(),
             );
-          case 3:
+          case 3: // TODO(Anyone): mala practica usar switch,
+            //usar enum extensible
             showDialog<void>(
               context: context,
               builder: (context) => const PRDialogErrorNoDisponible(),
             );
-          default:
+          default: // No es la idea que se use, se deberian handlear
+            // todos los casos, el linter se da cuenta
+            // si se checkeo todo lo del enum (by Nico)
             showDialog<void>(
               context: context,
               builder: (context) => const PRDialogErrorNoDisponible(),
