@@ -7,6 +7,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
+import 'protocol.dart' as _i2;
 
 class Marca extends _i1.TableRow {
   Marca({
@@ -28,6 +29,8 @@ class Marca extends _i1.TableRow {
           serializationManager.deserialize<String>(jsonSerialization['nombre']),
       sitioWeb: serializationManager
           .deserialize<String>(jsonSerialization['sitioWeb']),
+      staff: serializationManager
+          .deserialize<List<int>?>(jsonSerialization['staff']),
       fechaCreacion: serializationManager
           .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
       ultimaModificacion: serializationManager
@@ -42,6 +45,8 @@ class Marca extends _i1.TableRow {
   String nombre;
 
   String sitioWeb;
+
+  List<int>? staff;
 
   DateTime? fechaCreacion;
 

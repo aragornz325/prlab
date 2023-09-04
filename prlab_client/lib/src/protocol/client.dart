@@ -30,18 +30,19 @@ class _EndpointArticulo extends _i1.EndpointRef {
   /// del usuario u otros datos relacionados con la sesión.
   ///   payload (Articulo): El parámetro "payload" es un objeto de tipo
   /// "Articulo" que contiene los datos necesarios para crear un artículo.
-  _i2.Future<bool> crearArticulo(_i3.Articulo payload) =>
-      caller.callServerEndpoint<bool>(
+  _i2.Future<int> crearArticulo(_i3.Articulo articulo) =>
+      caller.callServerEndpoint<int>(
         'articulo',
         'crearArticulo',
-        {'payload': payload},
+        {'articulo': articulo},
       );
 
-  /// La función `listarArticulos` recupera una lista de artículos usando un objeto de sesión y un
-  /// objeto de servicio.
+  /// La función `listarArticulos` recupera una lista de artículos usando un
+  /// objeto de sesión y un objeto de servicio.
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio.
+  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es
+  ///   obligatorio.
   _i2.Future<List<_i3.Articulo>> listarArticulos() =>
       caller.callServerEndpoint<List<_i3.Articulo>>(
         'articulo',
@@ -49,13 +50,14 @@ class _EndpointArticulo extends _i1.EndpointRef {
         {},
       );
 
-  /// La función `obtenerArticulo` es una función asincrónica de Dart que toma un objeto `Session` y un
-  /// `id` entero como parámetros, y devuelve un `Future` que se resuelve en un objeto `Articulo`.
+  /// La función `obtenerArticulo` es una función asincrónica de Dart que toma
+  /// un objeto `Session` y un `id` entero como parámetros, y devuelve un
+  ///  `Future` que se resuelve en un objeto `Articulo`.
   ///
   /// Args:
-  ///   session (Session): Un objeto de sesión que contiene información sobre la sesión del usuario.
-  ///   id (int): El parámetro "id" es un número entero que representa el identificador único del
-  /// artículo que desea obtener.
+  ///   session (Session): Un objeto de sesión que contiene información sobre
+  ///   la sesión del usuario.id (int): El parámetro "id" es un número entero
+  ///   que representa el identificador único del artículo que desea obtener.
   _i2.Future<_i3.Articulo> obtenerArticulo(int id) =>
       caller.callServerEndpoint<_i3.Articulo>(
         'articulo',
@@ -63,14 +65,15 @@ class _EndpointArticulo extends _i1.EndpointRef {
         {'id': id},
       );
 
-  /// La función `eliminarArticulo` es una función asincrónica de Dart que intenta eliminar un artículo
-  /// utilizando una sesión e ID proporcionadas, y devuelve un valor booleano que indica si la
-  /// eliminación fue exitosa o no.
+  /// La función `eliminarArticulo` es una función asincrónica de Dart que
+  /// intenta eliminar un artículoutilizando una sesión e ID proporcionadas,
+  ///  y devuelve un valor booleano que indica si la eliminación fue exitosa
+  ///  o no.
   ///
   /// Args:
   ///   session (Session): Un parámetro obligatorio de tipo Sesión.
-  ///   id (int): El parámetro "id" es un número entero que representa el identificador único del
-  /// artículo que debe eliminarse.
+  ///   id (int): El parámetro "id" es un número entero que representa el
+  ///   identificador único del artículo que debe eliminarse.
   _i2.Future<bool> eliminarArticulo(int id) => caller.callServerEndpoint<bool>(
         'articulo',
         'eliminarArticulo',
@@ -81,10 +84,11 @@ class _EndpointArticulo extends _i1.EndpointRef {
   /// de artículos en función de un ID de marca determinado.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la sesión o conexión
-  /// actual a la base de datos. Se utiliza para ejecutar consultas o realizar operaciones de bases de
-  /// datos.
-  ///   idMarca (int): La identificación de la marca para la que desea enumerar los artículos.
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa
+  ///   la sesión o conexión actual a la base de datos. Se utiliza para ejecutar
+  ///   consultas o realizar operaciones de bases de datos.
+  ///   idMarca (int): La identificación de la marca para la que desea enumerar
+  ///   los artículos.
   ///
   /// Returns:
   ///   Un objeto futuro que se resuelve en una lista de objetos Articulo.
@@ -93,6 +97,19 @@ class _EndpointArticulo extends _i1.EndpointRef {
         'articulo',
         'listarArticulosPorMarca',
         {'idMarca': idMarca},
+      );
+
+  /// La función `actualizarArticulo` actualiza un artículo usando el servicio `servicioArticulo` y
+  /// devuelve un booleano indicando si la actualización fue exitosa.
+  ///
+  /// Args:
+  ///   session (Session): Un objeto de sesión que representa la sesión del usuario actual.
+  ///   articulo (Articulo): El parámetro "articulo" es de tipo "Articulo" y es obligatorio.
+  _i2.Future<bool> actualizarArticulo({required _i3.Articulo articulo}) =>
+      caller.callServerEndpoint<bool>(
+        'articulo',
+        'actualizarArticulo',
+        {'articulo': articulo},
       );
 }
 
@@ -231,14 +248,16 @@ class _EndpointMarca extends _i1.EndpointRef {
   @override
   String get name => 'marca';
 
-  /// La función `crearMarca` crea una nueva marca llamando al método `crearMarca` del servicio
-  /// `servicioMarca` y devuelve un booleano que indica éxito.
+  /// La función `crearMarca` crea una nueva marca llamando al método
+  /// `crearMarca` del servicio`servicioMarca` y devuelve un booleano
+  /// que indica éxito.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la sesión del usuario
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa
+  ///   la sesión del usuario
   /// actual.
-  ///   payload (Marca): El parámetro "payload" es un objeto de tipo "Marca" que contiene los datos
-  /// necesarios para crear una nueva marca..
+  ///   payload (Marca): El parámetro "payload" es un objeto de tipo "Marca" que
+  ///   contiene los datos necesarios para crear una nueva marca..
   _i2.Future<bool> crearMarca(_i5.Marca payload) =>
       caller.callServerEndpoint<bool>(
         'marca',
@@ -246,11 +265,13 @@ class _EndpointMarca extends _i1.EndpointRef {
         {'payload': payload},
       );
 
-  /// La función `eliminarMarca` es una función que toma un objeto `Session` y un entero `id`
-  /// como parámetros, e intenta eliminar una marca usando el método `servicioMarca.eliminarMarca`.
+  /// La función `eliminarMarca` es una función que toma un objeto `Session` y
+  /// un entero `id` como parámetros, e intenta eliminar una marca usando el
+  /// método `servicioMarca.eliminarMarca`.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la sesión del usuario
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa
+  ///   la sesión del usuario
   /// actual
   ///   id (int): La identificación de la marca que debe eliminarse.
   _i2.Future<bool> eliminarMarca(int id) => caller.callServerEndpoint<bool>(
@@ -259,12 +280,12 @@ class _EndpointMarca extends _i1.EndpointRef {
         {'id': id},
       );
 
-  /// La función `listarMarcas` recupera una lista de marcas usando un objeto de sesión y un objeto de
-  /// servicio.
+  /// La función `listarMarcas` recupera una lista de marcas usando un objeto
+  /// de sesión y un objeto de servicio.
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión". Se utiliza para pasar la
-  /// información de la sesión al método "listarMarcas".
+  ///   session (Session): El parámetro "sesión" es de tipo "Sesión". Se utiliza
+  ///   para pasar la información de la sesión al método "listarMarcas".
   _i2.Future<List<_i5.Marca>> listarMarcas() =>
       caller.callServerEndpoint<List<_i5.Marca>>(
         'marca',
@@ -272,10 +293,45 @@ class _EndpointMarca extends _i1.EndpointRef {
         {},
       );
 
+  /// Obtiene el registro de una marca por su id.
   _i2.Future<_i5.Marca> obtenerMarcaPorId(int idMarca) =>
       caller.callServerEndpoint<_i5.Marca>(
         'marca',
         'obtenerMarcaPorId',
+        {'idMarca': idMarca},
+      );
+
+  /// Crea la relación entre una marca y un usuario.
+  _i2.Future<List<List<dynamic>>> asignarUsuarioAMarca({
+    required int idMarca,
+    required int idUsuario,
+    required int idRol,
+  }) =>
+      caller.callServerEndpoint<List<List<dynamic>>>(
+        'marca',
+        'asignarUsuarioAMarca',
+        {
+          'idMarca': idMarca,
+          'idUsuario': idUsuario,
+          'idRol': idRol,
+        },
+      );
+
+  /// Obtiene las marcas a las que se encuentra asignado un usuario.
+  _i2.Future<List<_i5.Marca>> listarMarcasPorUsuario(
+          {required int idUsuario}) =>
+      caller.callServerEndpoint<List<_i5.Marca>>(
+        'marca',
+        'listarMarcasPorUsuario',
+        {'idUsuario': idUsuario},
+      );
+
+  /// Obtiene los usuarios asignados a una marca.
+  _i2.Future<List<_i4.Cliente>> listarUsuariosPorMarca(
+          {required int idMarca}) =>
+      caller.callServerEndpoint<List<_i4.Cliente>>(
+        'marca',
+        'listarUsuariosPorMarca',
         {'idMarca': idMarca},
       );
 }

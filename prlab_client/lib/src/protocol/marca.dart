@@ -7,6 +7,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
+import 'protocol.dart' as _i2;
 
 class Marca extends _i1.SerializableEntity {
   Marca({
@@ -28,6 +29,8 @@ class Marca extends _i1.SerializableEntity {
           serializationManager.deserialize<String>(jsonSerialization['nombre']),
       sitioWeb: serializationManager
           .deserialize<String>(jsonSerialization['sitioWeb']),
+      staff: serializationManager
+          .deserialize<List<_i2.Cliente>?>(jsonSerialization['staff']),
       fechaCreacion: serializationManager
           .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
       ultimaModificacion: serializationManager
@@ -45,6 +48,8 @@ class Marca extends _i1.SerializableEntity {
   String nombre;
 
   String sitioWeb;
+
+  List<_i2.Cliente>? staff;
 
   DateTime? fechaCreacion;
 

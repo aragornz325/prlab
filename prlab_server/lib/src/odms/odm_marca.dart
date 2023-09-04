@@ -1,5 +1,6 @@
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/odm.dart';
+import 'package:prlab_server/utils/serialization.dart';
 import 'package:serverpod/server.dart';
 
 /// La clase `OdmMarca` es una clase Dart que proporciona funciones para crear
@@ -47,37 +48,6 @@ class OdmMarca extends ODM {
     }
   }
 
-  Future<Marca> obtenerMarcaPorId(Session session, int idMarca) async {
-    final response = await performOdmOperation(
-      session,
-      (session) => Marca.findById(session, idMarca),
-    );
-    if (response == null) {
-      throw Exception('Marca no encontrada!');
-    }
-    return response;
-  }
-
-  /// La función `listarMarcasDeUsuario` recupera una lista de marcas asociadas
-  ///  con un ID de usuario específico de una base de datos mediante una
-  /// operación ODM.
-  ///
-  /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión, que
-  ///   representa una sesión de base de datos.
-  ///   idUsuario (int): La identificación del usuario para el cual queremos
-  ///   enumerar las marcas.
-  Future<List<dynamic>> listarMarcasDeUsuario(
-    Session session, {
-    required int idUsuario,
-  }) async =>
-      performOdmOperation(
-        session,
-        (session) => session.db.query(
-          'SELECT * FROM marcas WHERE EXISTS (SELECT 1 FROM json_array_elements_text(staff) AS element WHERE CAST(element AS INTEGER) = $idUsuario);',
-        ),
-      );
-
   /// La función `eliminarMarca` elimina un registro de la base de datos según
   /// el ID proporcionado.
   /// Args:
@@ -104,19 +74,8 @@ class OdmMarca extends ODM {
     }
   }
 
-  /// La función `obtenerMarca` recupera una marca por su ID usando una
-  ///  operación ODM y la devuelve, o lanza una excepción si no se encuentra la
-  ///  marca.
-  ///
-  /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es
-  ///   obligatorio. Representa la sesión o conexión actual a la base de datos.
-  ///   id (int): El parámetro `id` es un número entero que representa el
-  ///   identificador único de la marca que queremos recuperar.
-  ///
-  /// Returns:
-  ///   La función `obtenerMarca` devuelve un `Futuro<Marca>`.
-  Future<Marca> obtenerMarca({
+  /// Obtiene el registro de una marca por su id.
+  Future<Marca> obtenerMarcaPorId({
     required Session session,
     required int id,
   }) async {
@@ -137,5 +96,115 @@ class OdmMarca extends ODM {
     } on Exception catch (e) {
       throw Exception('$e');
     }
+  }
+
+  /// Crea la relación entre una marca y un usuario.
+  Future<List<List<dynamic>>> asignarUsuarioAMarca(
+    Session session, {
+    required int idMarca,
+    required int idUsuario,
+    required int idRol,
+  }) async {
+    return await performOdmOperation(
+      session,
+      (session) => session.db.query('''
+      INSERT INTO "marcas_staff" ("idMarca", "idStaff", "idRol") 
+      VALUES ($idMarca, $idUsuario, $idRol);
+      '''),
+    );
+  }
+
+  /// Obtiene las marcas a las que se encuentra asignado un usuario.
+  Future<List<Marca>> listarMarcasPorUsuario(
+    Session session, {
+    required int idUsuario,
+  }) async {
+    final queryListaDeIdMarcas = await performOdmOperation(
+      session,
+      (session) async {
+        final query = await session.db.query(
+          'SELECT "idMarca" FROM marcas_staff WHERE "idStaff" = $idUsuario;',
+        );
+        final listaIds = query.map((e) => e.first as int).toList();
+        return listaIds;
+      },
+    );
+
+    if (queryListaDeIdMarcas.isEmpty) {
+      return [];
+    }
+
+    final responseMaps = await rawQueryOperation(
+      session,
+      '''
+      SELECT "id", "nombre", "sitioWeb", "fechaCreacion", "ultimaModificacion", "fechaEliminacion" FROM marcas 
+      WHERE "id" IN (${queryListaDeIdMarcas.join(',')});
+      ''',
+      keysMapaModeloDb:
+          Marca(nombre: '', sitioWeb: '').toJsonForDatabase().keys,
+    );
+
+    final listasUsuarios = {};
+
+    for (final marca in queryListaDeIdMarcas) {
+      final listaUsuarios = await listarUsuariosPorMarca(
+        session,
+        idMarca: marca,
+      );
+      listasUsuarios[marca] = listaUsuarios;
+    }
+
+    final responseSerializado = responseMaps
+        .map(
+          (e) => Marca.fromJson(e, AdministradorSerializacion())
+            ..staff = listasUsuarios[e['id']],
+        )
+        .toList();
+    return responseSerializado;
+  }
+
+  /// Obtiene los usuarios asignados a una marca.
+  Future<List<Cliente>> listarUsuariosPorMarca(
+    Session session, {
+    required int idMarca,
+  }) async {
+    final queryListaDeIdUsuarios = await performOdmOperation(
+      session,
+      (session) async {
+        final query = await session.db.query(
+          'SELECT "idStaff" FROM marcas_staff WHERE "idMarca" = $idMarca;',
+        );
+        final listaIds = query.map((e) => e.first as int).toList();
+        return listaIds;
+      },
+    );
+
+    if (queryListaDeIdUsuarios.isEmpty) {
+      return [];
+    }
+
+    final responseMaps = await rawQueryOperation(
+      session,
+      '''
+          SELECT "id", "nombre", "apellido", "fechaDeNacimiento", "nombreDeOrganizacion", "domicilio", "telefono", "idUsuario", "idOrganizacion", "contacto", "fechaEliminacion", "ultimaModificacion", "fechaCreacion" FROM "clientes" 
+          WHERE "idUsuario" IN (${queryListaDeIdUsuarios.join(',')});
+        ''',
+      keysMapaModeloDb: Cliente(
+        nombre: 'nombre',
+        apellido: 'apellido',
+        fechaDeNacimiento: DateTime.now(),
+        nombreDeOrganizacion: 'nombreDeOrganizacion',
+        ultimaModificacion: DateTime.now(),
+        fechaCreacion: DateTime.now(),
+      ).toJsonForDatabase().keys,
+    );
+
+    final responseSerializado = responseMaps
+        .map(
+          (e) => Cliente.fromJson(e, AdministradorSerializacion()),
+        )
+        .toList();
+
+    return responseSerializado;
   }
 }
