@@ -165,7 +165,7 @@ class OdmArticulo extends ODM {
         session,
         (Session session) => Articulo.update(
           session,
-          articulo,
+          articulo..ultimaModificacion = DateTime.now(),
         ),
       );
       logger.finest('Articulo ${articulo.id} actualizado en la BD');

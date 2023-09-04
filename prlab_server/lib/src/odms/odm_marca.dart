@@ -23,7 +23,12 @@ class OdmMarca extends ODM {
         session,
         (Session session) {
           logger.info('Creando marca: ${payload.nombre}');
-          return Marca.insert(session, payload);
+          return Marca.insert(
+            session,
+            payload
+              ..fechaCreacion = DateTime.now()
+              ..ultimaModificacion = DateTime.now(),
+          );
         },
       );
       logger.fine('Marca ${payload.nombre} creada exitosamente.');
@@ -98,6 +103,16 @@ class OdmMarca extends ODM {
     }
   }
 
+  Future<bool> actualizarMarca(Session session, {required Marca marca}) async {
+    return await performOdmOperation(
+      session,
+      (session) => Marca.update(
+        session,
+        marca..ultimaModificacion = DateTime.now(),
+      ),
+    );
+  }
+
   /// Crea la relación entre una marca y un usuario.
   Future<List<List<dynamic>>> asignarUsuarioAMarca(
     Session session, {
@@ -151,5 +166,4 @@ class OdmMarca extends ODM {
         .toList();
     return responseSerializado;
   }
-
 }
