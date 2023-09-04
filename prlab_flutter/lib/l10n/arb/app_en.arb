@@ -491,6 +491,15 @@
     "@pageContentAdministrationPopupSendViaMail": {
         "description": "text in the popup Send via email,this edit text is displayed in a content management popup in an article, one of the options to choose from"
     },
+       "drawerAlertDialogLogoutBack": "Log out",
+    "@drawerAlertDialogLogoutBack": {
+        "description": "Title text shown on the button of the alert dialog logout in the drawer"
+    },
+          "drawerAlertDialogLogoutContentWarning": "Are you sure you want to log out? You \n will need to log in next time.",
+    "@drawerAlertDialogLogoutContentWarning": {
+        "description": "Content text shown in the center of the alert dialog logout in the drawer, that warns the user that if he presses continue he will be logged out."
+    },
+
     
     "commonApply": "Apply",
     "@commonApply": {
@@ -511,6 +520,7 @@
     "@commonEdit": {
         "description": "Text shown on a button that indicates to edit,this edit text is displayed in a content management popup one of the options to choose from"
     },
+    
 
     "commonDuplicate": "Duplicate",
     "@commonDuplicate": {

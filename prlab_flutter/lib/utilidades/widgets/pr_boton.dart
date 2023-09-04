@@ -18,6 +18,7 @@ class PRBoton extends StatelessWidget {
     this.esOutlined = false,
     this.muestraEstadoDeCarga = false,
     this.fontWeight,
+    this.borderWidth,
     super.key,
   });
 
@@ -27,6 +28,7 @@ class PRBoton extends StatelessWidget {
     required String texto,
     required bool estaHabilitado,
     required double width,
+    double? borderWidth,
     double? height,
     double? fontSize,
     FontWeight? fontWeight,
@@ -40,6 +42,7 @@ class PRBoton extends StatelessWidget {
       height: height,
       fontSize: fontSize,
       fontWeight: fontWeight,
+      borderWidth: borderWidth,
     );
   }
 
@@ -64,6 +67,9 @@ class PRBoton extends StatelessWidget {
   /// Tamaño de la letra.
   final double? fontSize;
 
+  /// Grosor del borde del boton.
+  final double? borderWidth;
+
   /// El espesor de la letra
   final FontWeight? fontWeight;
 
@@ -87,6 +93,7 @@ class PRBoton extends StatelessWidget {
           borderRadius: BorderRadius.circular(100),
           border: esOutlined
               ? Border.all(
+                  width: borderWidth?.pw ?? 1.pw,
                   color: estaHabilitado
                       ? colores.primary
                       : colores.primaryOpacidadSesenta,

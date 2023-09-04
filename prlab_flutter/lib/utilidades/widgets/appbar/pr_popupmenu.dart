@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/utilidades/widgets/appbar/appbar.dart';
 
 /// {@template PRPopUpMenu}
@@ -25,10 +26,14 @@ class PRPopUpMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colores = context.colores;
     return PopupMenuButton<MenuDeOpciones>(
       itemBuilder: (BuildContext context) {
         return enumItemsMenu.map((MenuDeOpciones enumItemsMenu) {
           return PopupMenuItem<MenuDeOpciones>(
+            labelTextStyle: MaterialStatePropertyAll(
+              TextStyle(color: colores.tertiary),
+            ),
             onTap: () => onTap(enumItemsMenu),
             value: enumItemsMenu,
             child: Text(

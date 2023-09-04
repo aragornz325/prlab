@@ -30,6 +30,7 @@ class VistaEscritorioAdministracionMarcas extends StatelessWidget {
           SizedBox(height: 20.pw),
           const SeccionTarjetasDeMarca(),
         ],
+        // TODO(GON): Agregar imagen de Nothing to see cuando da error
       ),
     );
   }

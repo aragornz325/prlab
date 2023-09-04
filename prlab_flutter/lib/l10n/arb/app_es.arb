@@ -377,7 +377,14 @@
     "@commonAlertDialogFilterByStatus": {
         "description": "Text in title of alertdialog/popup Filter by Status,Typically used to filter in title of alert dialogs."
     },
-
+       "drawerAlertDialogLogoutBack": "Cerrar sesión",
+    "@drawerAlertDialogLogoutBack": {
+        "description": "Title text shown on the button of the alert dialog logout in the drawer"
+    },
+         "drawerAlertDialogLogoutContentWarning": "¿Estás seguro que quieres cerrar sesión? Deberás iniciar sesión nuevamente la próxima vez.",
+    "@drawerAlertDialogLogoutContentWarning": {
+        "description": "Content text shown in the center of the alert dialog logout in the drawer, that warns the user that if he presses continue he will be logged out."
+    },
     "commonEdit": "Editar",
     "@commonEdit": {
         "description": "Text shown on a button that indicates to edit,this edit text is displayed in a content management popup one of the options to choose from"
@@ -523,7 +530,7 @@
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
     },
-    "commonBack": "Atras",
+    "commonBack": "Atrás",
     "@commonBack": {
         "description": "Text back in button of screen create admin account"
     },

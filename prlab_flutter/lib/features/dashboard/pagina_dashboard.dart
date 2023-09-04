@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/features/dashboard/bloc/bloc_dashboard.dart';
 import 'package:prlab_flutter/utilidades/widgets/appbar/appbar.dart';
+import 'package:prlab_flutter/utilidades/widgets/drawer/bloc/bloc_drawer.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 import 'package:prlab_flutter/utilidades/widgets/wrapper_navegacion/pr_wrapper_navegacion.dart';
 
@@ -22,8 +23,15 @@ class PaginaDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AutoRouter.of(context);
-    return BlocProvider<BlocDashboard>(
-      create: (context) => BlocDashboard(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<BlocDrawer>(
+          create: (context) => BlocDrawer(),
+        ),
+        BlocProvider<BlocDashboard>(
+          create: (context) => BlocDashboard(),
+        ),
+      ],
       child: BlocListener<BlocDashboard, BlocDashboardEstado>(
         listener: (context, state) {
           if (state is BlocDashboardExitoso) {
