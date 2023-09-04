@@ -179,8 +179,8 @@ class _PRLabCheckboxState extends State<PRLabCheckbox> {
         });
       },
       child: Container(
-        width: 24,
-        height: 24,
+        width: 20.pw,
+        height: 20.pw,
         decoration: BoxDecoration(
           border: Border.all(color: widget.colorBorde, width: 2),
           color: _isChecked ? widget.colorMarcado : widget.colorDesmarcado,
@@ -188,8 +188,8 @@ class _PRLabCheckboxState extends State<PRLabCheckbox> {
         ),
         child: _isChecked
             ? Icon(
-                Icons.check,
-                size: 18,
+                Icons.check_outlined,
+                size: 15.pw,
                 color: colores.surfaceTint,
               )
             : null,

@@ -20,13 +20,13 @@ class PrDialogEliminar extends StatelessWidget {
     final colores = context.colores;
 
     return PRDialog.delete(
-      height: max(350.ph, 350.sh),
+      height: max(300.ph, 300.sh),
       context: context,
       titulo: l10n.commonDelete,
       content: Column(
         children: [
           SizedBox(
-            height: max(100.ph, 100.sh),
+            height: max(80.ph, 80.sh),
             child: Text(
               l10n.commonDialogDescriptionDelete,
               textAlign: TextAlign.center,
