@@ -14,14 +14,14 @@ class ArticuloEndpoint extends Endpoint {
   /// del usuario u otros datos relacionados con la sesión.
   ///   payload (Articulo): El parámetro "payload" es un objeto de tipo
   /// "Articulo" que contiene los datos necesarios para crear un artículo.
-  Future<bool> crearArticulo(
+  Future<int> crearArticulo(
     Session session,
-    Articulo payload,
+    Articulo articulo,
   ) async {
     try {
       return await servicioArticulo.crearArticulo(
         session: session,
-        payload: payload,
+        articulo: articulo,
       );
     } on Exception catch (e) {
       rethrow;

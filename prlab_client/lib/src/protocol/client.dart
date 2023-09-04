@@ -30,11 +30,11 @@ class _EndpointArticulo extends _i1.EndpointRef {
   /// del usuario u otros datos relacionados con la sesión.
   ///   payload (Articulo): El parámetro "payload" es un objeto de tipo
   /// "Articulo" que contiene los datos necesarios para crear un artículo.
-  _i2.Future<bool> crearArticulo(_i3.Articulo payload) =>
-      caller.callServerEndpoint<bool>(
+  _i2.Future<int> crearArticulo(_i3.Articulo articulo) =>
+      caller.callServerEndpoint<int>(
         'articulo',
         'crearArticulo',
-        {'payload': payload},
+        {'articulo': articulo},
       );
 
   /// La función `listarArticulos` recupera una lista de artículos usando un

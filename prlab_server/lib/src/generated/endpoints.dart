@@ -59,8 +59,8 @@ class Endpoints extends _i1.EndpointDispatch {
         'crearArticulo': _i1.MethodConnector(
           name: 'crearArticulo',
           params: {
-            'payload': _i1.ParameterDescription(
-              name: 'payload',
+            'articulo': _i1.ParameterDescription(
+              name: 'articulo',
               type: _i1.getType<_i7.Articulo>(),
               nullable: false,
             )
@@ -71,7 +71,7 @@ class Endpoints extends _i1.EndpointDispatch {
           ) async =>
               (endpoints['articulo'] as _i2.ArticuloEndpoint).crearArticulo(
             session,
-            params['payload'],
+            params['articulo'],
           ),
         ),
         'listarArticulos': _i1.MethodConnector(

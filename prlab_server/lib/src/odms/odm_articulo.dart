@@ -14,22 +14,29 @@ class OdmArticulo extends ODM {
   ///   payload (Articulo): El parámetro payload es de tipo Articulo, que
   ///   representa los datos del artículo que se debe crear.
 
-  Future<bool> crearArticulo({
+  Future<int> crearArticulo({
     required Session session,
-    required Articulo payload,
+    required Articulo articulo,
   }) async {
     try {
-      await performOdmOperation(session, (Session session) {
-        logger.info('Creando artículo: ${payload.titulo}');
-        return Articulo.insert(
+      final response = await performOdmOperation(session, (Session session) async {
+        logger.info('Creando artículo: ${articulo.titulo}');
+        await Articulo.insert(
           session,
-          payload
+          articulo
+            ..idAutor = await session.auth.authenticatedUserId ?? 0
             ..fechaCreacion = DateTime.now()
             ..ultimaModificacion = DateTime.now(),
         );
+        return await Articulo.findSingleRow(
+          session,
+          where: (t) => t.idAutor.equals(articulo.idAutor),
+          orderBy: ArticuloTable().fechaCreacion,
+          orderDescending: true,
+        ) as Articulo;
       });
-      logger.fine('Artículo ${payload.titulo} creado exitosamente.');
-      return true;
+      logger.fine('Artículo ${articulo.titulo} creado exitosamente.');
+      return response.id!;
     } on Exception catch (e) {
       throw Exception('$e');
     }
@@ -141,9 +148,9 @@ class OdmArticulo extends ODM {
 
   /// La función `actualizarArticulo` actualiza un artículo con la sesión proporcionada y el objeto de
   /// artículo, y devuelve un booleano que indica si la actualización fue exitosa o no.
-  /// 
+  ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. 
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio.
   ///   articulo (Articulo): El parámetro "articulo" es un objeto de tipo "Articulo" que representa un
   /// artículo. Es necesario para la función y contiene la información del artículo que necesita ser
   /// actualizado.

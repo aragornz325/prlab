@@ -16,18 +16,17 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
   /// autenticación o seguimiento. payload (Articulo): El parámetro "payload" es
   /// un objeto de tipo "Articulo" que contiene los datos necesarios para crear
   /// un artículo.
-  Future crearArticulo({
+  Future<int> crearArticulo({
     required Session session,
-    required Articulo payload,
+    required Articulo articulo,
   }) async {
     try {
-      await performOperation(
+      return await performOperation(
         () => odm.crearArticulo(
           session: session,
-          payload: payload,
+          articulo: articulo,
         ),
       );
-      return true;
     } on Exception catch (e) {
       throw Exception('$e');
     }
