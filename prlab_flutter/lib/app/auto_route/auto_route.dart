@@ -79,6 +79,10 @@ class AppRouter extends $AppRouter {
               page: RutaAdministracionContenido.page,
               path: 'content-management',
             ),
+            AutoRoute(
+              page: RutaDbMediosDeComunicacion.page,
+              path: 'media-database',
+            ),
           ],
         ),
       ];

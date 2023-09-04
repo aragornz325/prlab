@@ -492,6 +492,16 @@
         "description": "text in the popup Send via email,this edit text is displayed in a content management popup in an article, one of the options to choose from"
     },
     
+    "pageMediaDatabaseTitle": "Find media database",
+    "@pageMediaDatabaseTitle": {
+        "description": "Title found at the top of the page, refers to the search through the media database"
+    },
+
+    "pageMediaDatabaseDescription": "Access the Media Database with over a million contacts to --- relevant journalists.",
+    "@pageMediaDatabaseDescription": {
+        "description": "This subtitle mentions accessing a media database with over a million contacts for connecting with relevant journalists."
+    },
+    
     "commonApply": "Apply",
     "@commonApply": {
         "description": "Text shown on a popup/alertdialog that indicates to Apply a filters,Typically used to filter alert dialogs."
