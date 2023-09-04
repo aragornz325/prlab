@@ -120,18 +120,22 @@ class TarjetaMarca extends StatelessWidget {
                       estaHabilitado: true,
                       width: 100.pw,
                       height: 30.ph,
+                      fontSize: 15.pf,
+                      fontWeight: FontWeight.w500,
                     ),
                     SizedBox(width: 20.pw),
                     PRBoton(
                       onTap: () {
                         context.router.push(
-                          RutaEditorContenido(articuloId: 0),
+                          RutaEditorContenido(idArticulo: 0),
                         ); // TODO(anyone): pasar el id correcto
                       },
                       texto: l10n.commonCreate,
                       estaHabilitado: true,
                       width: 100.pw,
                       height: 30.ph,
+                      fontSize: 15.pf,
+                      fontWeight: FontWeight.w500,
                     ),
                   ],
                 ),
@@ -192,7 +196,7 @@ class TarjetaMarca extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {
                                   context.router.push(
-                                    RutaEditorContenido(articuloId: 0),
+                                    RutaEditorContenido(idArticulo: 0),
                                     // TODO(anyone): pasar el id correcto
                                   );
                                 },

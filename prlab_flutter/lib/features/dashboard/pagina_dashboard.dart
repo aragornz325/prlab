@@ -29,7 +29,7 @@ class PaginaDashboard extends StatelessWidget {
                 context.router.push(const RutaAdministracionContenido());
               } else if (menuDeOpciones case MenuDeOpciones.createArticle) {
                 context.router.push(
-                  RutaEditorContenido(articuloId: 0),
+                  RutaEditorContenido(idArticulo: 0),
                 );
                 // TODO(anyone): pasar el id correcto
               } else {
