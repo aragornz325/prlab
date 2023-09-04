@@ -11,21 +11,40 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
   const BlocListaArticulosYRecortesEstado._({
     this.articulos = const [],
     this.index = 0,
+    this.borrador = false,
+    this.comentario = false,
+    this.completo = false,
   });
 
   BlocListaArticulosYRecortesEstado.desde(
     BlocListaArticulosYRecortesEstado otro, {
     List<Articulo>? articulos,
     int? index,
+    bool? borrador,
+    bool? comentario,
+    bool? completo,
   }) : this._(
           articulos: articulos ?? otro.articulos,
           index: index ?? otro.index,
+          borrador: borrador ?? otro.borrador,
+          comentario: comentario ?? otro.comentario,
+          completo: completo ?? otro.completo,
         );
 
   final List<Articulo> articulos;
 
   /// Index de la vista seleccionada
   final int index;
+
+  // TODO(anyone): pasar todo esto a un enum para manejar mejor los distintos estados
+  /// Estado de borrador para los filtrados
+  final bool borrador;
+
+  /// Estado de comentario para los filtrados
+  final bool comentario;
+
+  /// Estado de completo para los filtrados
+  final bool completo;
 
   /// Si es Articulos
   bool get esArticulos => index == 0;
@@ -37,6 +56,9 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
   List<Object> get props => [
         articulos,
         index,
+        borrador,
+        comentario,
+        completo,
       ];
 }
 
@@ -73,6 +95,9 @@ final class BlocListaArticulosYRecortesEstadoExitoso
     super.otro, {
     super.articulos,
     super.index,
+    super.borrador,
+    super.comentario,
+    super.completo,
   }) : super.desde();
 }
 
@@ -87,7 +112,6 @@ final class BlocListaArticulosYRecortesEstadoFallido
     super.otro, {
     required this.errorMessage,
   }) : super.desde();
-
   /// Mensaje que se va a mostrar en caso de que sea error
   /// o de que algo haya salido mal.
   final String errorMessage;

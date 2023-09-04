@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -259,8 +261,8 @@ class PRDialog extends StatelessWidget {
     );
   }
 
-  /// `PRDialog.exito` Es un tipo de dialog donde se le avisa al usuario que su
-  /// peticion ha sido exitosa
+  /// `PRDialog.éxito` Es un tipo de dialog donde se le avisa al usuario que su
+  /// petición ha sido exitosa
   factory PRDialog.exito({
     required BuildContext context,
     required VoidCallback onTap,
@@ -317,6 +319,70 @@ class PRDialog extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  /// `PRDialog.delete` es un tipo de dialog de solicitar al usuario que
+  ///  realicé una Accion en este caso eliminar algo.
+  factory PRDialog.delete({
+    required String titulo,
+    required String tituloBotonPrimario,
+    required String tituloBotonSecundario,
+    required Widget content,
+    required BuildContext context,
+    required VoidCallback onTapBotonPrimario,
+    required VoidCallback onTapBotonSecundario,
+    double height = 285,
+    double width = 455,
+    bool estaHabilitado = true,
+  }) {
+    final colores = context.colores;
+
+    return PRDialog(
+      height: height,
+      width: width,
+      tipo: TipoDialog.solicitudAccion,
+      content: Column(
+        children: [
+          SizedBox(
+            width: 360.pw,
+            child: Column(
+              children: [
+                SizedBox(height: 40.ph),
+                Text(
+                  titulo,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20.pf,
+                    fontWeight: FontWeight.w600,
+                    color: colores.tertiary,
+                  ),
+                ),
+                SizedBox(height: 40.ph),
+                content,
+                SizedBox(height: 40.ph),
+                Row(
+                  children: [
+                    PRBoton.esOutlined(
+                      width: 170.pw,
+                      estaHabilitado: estaHabilitado,
+                      onTap: onTapBotonPrimario,
+                      texto: tituloBotonPrimario,
+                    ),
+                    SizedBox(width: max(20.pw, 20.sw)),
+                    PRBoton.esOutlined(
+                      width: 170.pw,
+                      estaHabilitado: estaHabilitado,
+                      onTap: onTapBotonSecundario,
+                      texto: tituloBotonSecundario,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -143,7 +143,7 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
               ),
               child: Center(
                 child: Icon(
-                  Icons.arrow_drop_down_outlined,
+                  Icons.arrow_drop_down_rounded,
                   color: colores.onPrimary,
                   size: 24.pf,
                 ),
