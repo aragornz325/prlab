@@ -140,7 +140,6 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
   /// Args:
   ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio.
   ///   articulo (Articulo): El parámetro "articulo" es de tipo Articulo y es obligatorio.
-
   Future<bool> actualizarArticulo({
     required Session session,
     required Articulo articulo,
@@ -157,7 +156,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
         },
       );
 
-      logger.finer('Articulo ${articulo.id} recuperado de la db');
+      logger.finest('Articulo ${articulo.id} recuperado de la db');
 
       //se compara con el registro de la db, si el valor es null se deja el valor anterior
       //si el valor es distinto de null se actualiza el valor en el registro de la db
@@ -167,7 +166,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
           articuloFinal.setColumn(key, value);
         }
       });
-      logger.finer('Articulo ${articulo.id} actualizado');
+      logger.finest('Articulo ${articulo.id} actualizado');
       await performOperation(
         () {
           return odm.actualizarArticulo(
@@ -176,7 +175,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
           );
         },
       );
-      logger.finer('Se actualizo el articulo con id: ${articulo.id}');
+      logger.finest('Se actualizo el articulo con id: ${articulo.id}');
       return true;
     } on Exception catch (e) {
       throw Exception('$e');

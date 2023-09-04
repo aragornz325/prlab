@@ -16,9 +16,9 @@ abstract class Servicio<T extends ODM> {
   /// Metodo para ejecutar las operaciones y manejar errores.
   Future<T> performOperation<T>(Future<T> Function() operation) async {
     try {
-      logger.fine('Executing $operation...');
+      logger.info('Executing $operation...');
       return operation().then((result) {
-        logger.fine('Operacion completada exitosamente');
+        logger.finer('Operacion completada exitosamente');
         return result;
       });
     } on Exception catch (e, st) {
@@ -31,7 +31,7 @@ abstract class Servicio<T extends ODM> {
   /// manejar sus errores.
   T performOperationToken<T>(T Function() operation) {
     try {
-      logger.fine('Verifying token...');
+      logger.info('Verifying token...');
       return operation();
     } on JWTException catch (e) {
       logger.shout('$e');

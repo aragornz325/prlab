@@ -1,4 +1,3 @@
-import 'package:prlab_server/src/generated/cliente.dart';
 import 'package:prlab_server/src/generated/marca.dart';
 import 'package:prlab_server/src/odms/odm_articulo.dart';
 import 'package:prlab_server/src/odms/odm_cliente.dart';
@@ -101,12 +100,12 @@ class ServicioMarca extends Servicio<OdmMarca> {
   }) async {
     try {
       logger
-        ..info('se va a eliminar la marca con id $id')
-        ..finer('verificando que la marca exista');
+        ..info('Se va a eliminar la marca con id $id')
+        ..finest('Verificando que la marca exista');
       await performOperation(
         () => odm.obtenerMarcaPorId(session: session, id: id),
       );
-      logger.finer('eliminando marca');
+      logger.finest('Eliminando marca');
       return await performOperation(
         () => odm.eliminarMarca(
           session: session,
@@ -153,6 +152,8 @@ class ServicioMarca extends Servicio<OdmMarca> {
     Session session, {
     required int idUsuario,
   }) async {
+    logger.info('Recuperando marcas del usuario $idUsuario...');
+
     List<Marca> marcas = await performOperation(
       () => odm.listarMarcasPorUsuario(
         session,
@@ -160,8 +161,12 @@ class ServicioMarca extends Servicio<OdmMarca> {
       ),
     );
 
+    logger.finest('Se ha(n) recuperado ${marcas.length} marca(s) relacionada(s) con el usuario $idUsuario.');
+
     final listasUsuarios = {};
     final listasArticulos = {};
+
+    logger.finest('Recuperando usuarios y últimos artículos de la(s) marca(s) encontradas...');
 
     for (final marca in marcas) {
       final listaUsuarios = await performOperation(
@@ -170,12 +175,18 @@ class ServicioMarca extends Servicio<OdmMarca> {
           idMarca: marca.id!,
         ),
       );
+
+      logger.finest('Recuperado(s) ${listaUsuarios.length} usuarios pertenecientes a la marca ${marca.id}');
+
       final listaArticulos = await performOperation(
         () => odmArticulo.listarArticulosPorMarca(
           session: session,
           idMarca: marca.id!,
         ),
       );
+
+      logger.finest('Recuperado(s) ${listaArticulos.length} articulos pertenecientes a la marca ${marca.id}');
+
       listasUsuarios[marca.id] = listaUsuarios;
       listasArticulos[marca.id] = listaArticulos;
     }
@@ -187,6 +198,8 @@ class ServicioMarca extends Servicio<OdmMarca> {
             ..ultimosArticulos = listasArticulos[e.id],
         )
         .toList();
+
+    logger.finest('Retornando información obtenida...');
 
     return response;
   }

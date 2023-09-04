@@ -32,7 +32,7 @@ class ServicioMailer extends Servicio<OdmAuth> {
     required String email,
     required int tipoDeInvitacion,
   }) async {
-    logger.info('se enviara email de invitacion a $email');
+    logger.info('Se enviara email de invitacion a $email');
     try {
       final jwt = JWT(
         {
@@ -49,11 +49,15 @@ class ServicioMailer extends Servicio<OdmAuth> {
         issuer: 'prlab',
       );
 
+      logger.finest('JSON Web Token creado');
+
       final String token = performOperationToken(
         () => jwt.sign(
           SecretKey(ConstantesPrLab.jwtSecret),
         ),
       );
+
+      logger.finest('JSON Web Token firmado');
 
       final String mailURL =
           '${ConstantesPrLab.frontendUrl}/#/register/$token';
@@ -64,6 +68,8 @@ class ServicioMailer extends Servicio<OdmAuth> {
       final String cuerpoCompletoEmail =
           plantillasCorreo.mailingGeneral(contenido: cuerpoMensajeEmailHtml);
 
+      logger.finest('Cuerpo del correo electrónico listo para enviar. Enviando...');
+
       await performOperation(
         () => enviarEmail(
           mailDestinatario: email,
@@ -71,6 +77,8 @@ class ServicioMailer extends Servicio<OdmAuth> {
           mailHtml: cuerpoCompletoEmail,
         ),
       );
+
+      logger.finest('Correo enviado a $email. Guardando JSON Web Token en DB...');
 
       await performOperation(
         () => authRepository.guardarTokenEnDb(
@@ -81,13 +89,8 @@ class ServicioMailer extends Servicio<OdmAuth> {
         ),
       );
 
-      await authRepository.guardarTokenEnDb(
-        session: session,
-        token: token,
-        email: email,
-        tipoDeInvitacion: tipoDeInvitacion,
-      );
-      logger.fine('email enviado con exito');
+      logger.finest('JSON Web Token guardado en DB.');
+
       return true;
     } on Exception catch (e) {
       throw Exception('$e');

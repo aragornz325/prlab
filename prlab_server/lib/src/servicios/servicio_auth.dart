@@ -31,7 +31,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
     required Session session,
     required String email,
   }) async {
-    logger.info('se obtendra el codigo de validacion para $email');
+    logger.info('Se obtendra el codigo de validacion para $email');
     return await performOperation(
       () => odm.getValidationCode(
         session: session,
@@ -62,18 +62,18 @@ class ServicioAuth extends Servicio<OdmAuth> {
       final JWT tokenAbierto = performOperationToken(() => JWT.decode(token));
       final String emailToken = tokenAbierto.payload['email'];
 
-      logger.finer('buscando token en db');
+      logger.finest('Buscando token en db');
       final String tokenDb = await performOperation(
         () => odm.traerTokenPorEmail(session: session, email: emailToken),
       );
 
       if (tokenDb.isEmpty) {
-        logger.shout('token no encontrado en la db');
+        logger.shout('Token no encontrado en la db');
         throw Exception('Token no valido');
       }
 
       if (token != tokenDb) {
-        logger.shout('el token no coincide con el de la db');
+        logger.shout('El token no coincide con el de la db');
         throw Exception('Token no valido');
       }
 
@@ -86,7 +86,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
         ),
       );
 
-      logger.fine('token validado con exito');
+      logger.finest('Token validado con exito');
       return emailToken;
     } on Exception catch (e) {
       throw Exception('$e');
@@ -139,6 +139,8 @@ class ServicioAuth extends Servicio<OdmAuth> {
     required String codigo,
   }) async {
     try {
+      logger.info('Eliminando código OTP $codigo...');
+
       final bool checkearCodigoOTP = await performOperation(
         () => odm.checkearCodigoOTP(
           session: session,
@@ -147,16 +149,19 @@ class ServicioAuth extends Servicio<OdmAuth> {
       );
 
       if (!checkearCodigoOTP) {
-        logger.shout('codigo no encontrado');
+        logger.shout('Codigo no encontrado');
         throw Exception('Codigo no valido');
       }
-      logger.finer('eliminando codigo otp $codigo de la db');
+
       await performOperation(
         () => odm.eliminarOTPResetPassword(
           session: session,
           codigo: codigo,
         ),
       );
+
+      logger.finest('Código OTP eliminado');
+
       return true;
     } on Exception catch (e) {
       throw Exception('$e');

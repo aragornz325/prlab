@@ -32,6 +32,7 @@ class ServicioCliente extends Servicio<OdmCliente> {
     Session session, {
     required int idMarca,
   }) async {
+    logger.info('Recuperando usuarios relacionados a la marca $idMarca...');
     return await performOperation(
       () => odm.listarUsuariosPorMarca(
         session,
