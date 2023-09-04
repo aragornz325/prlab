@@ -1,8 +1,7 @@
 import 'package:prlab_server/src/generated/protocol.dart';
+import 'package:prlab_server/src/odm.dart';
 import 'package:prlab_server/utils/serialization.dart';
 import 'package:serverpod/server.dart';
-
-import '../odm.dart';
 
 /// La clase `OdmMarca` es una clase Dart que proporciona funciones para crear
 /// borrar, modificar y listar objetos `Marca` usando una operación ODM.
@@ -48,6 +47,26 @@ class OdmMarca extends ODM {
       throw Exception('$e');
     }
   }
+
+  /// La función `listarMarcasDeUsuario` recupera una lista de marcas asociadas
+  ///  con un ID de usuario específico de una base de datos mediante una
+  /// operación ODM.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión, que
+  ///   representa una sesión de base de datos.
+  ///   idUsuario (int): La identificación del usuario para el cual queremos
+  ///   enumerar las marcas.
+  Future<List<dynamic>> listarMarcasDeUsuario(
+    Session session, {
+    required int idUsuario,
+  }) async =>
+      performOdmOperation(
+        session,
+        (session) => session.db.query(
+          'SELECT * FROM marcas WHERE EXISTS (SELECT 1 FROM json_array_elements_text(staff) AS element WHERE CAST(element AS INTEGER) = $idUsuario);',
+        ),
+      );
 
   /// La función `eliminarMarca` elimina un registro de la base de datos según
   /// el ID proporcionado.

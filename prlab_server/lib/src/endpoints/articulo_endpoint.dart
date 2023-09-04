@@ -28,11 +28,12 @@ class ArticuloEndpoint extends Endpoint {
     }
   }
 
-  /// La función `listarArticulos` recupera una lista de artículos usando un objeto de sesión y un
-  /// objeto de servicio.
+  /// La función `listarArticulos` recupera una lista de artículos usando un
+  /// objeto de sesión y un objeto de servicio.
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio.
+  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es
+  ///   obligatorio.
 
   Future<List<Articulo>> listarArticulos(
     Session session,
@@ -46,13 +47,14 @@ class ArticuloEndpoint extends Endpoint {
     }
   }
 
-  /// La función `obtenerArticulo` es una función asincrónica de Dart que toma un objeto `Session` y un
-  /// `id` entero como parámetros, y devuelve un `Future` que se resuelve en un objeto `Articulo`.
+  /// La función `obtenerArticulo` es una función asincrónica de Dart que toma
+  /// un objeto `Session` y un `id` entero como parámetros, y devuelve un
+  ///  `Future` que se resuelve en un objeto `Articulo`.
   ///
   /// Args:
-  ///   session (Session): Un objeto de sesión que contiene información sobre la sesión del usuario.
-  ///   id (int): El parámetro "id" es un número entero que representa el identificador único del
-  /// artículo que desea obtener.
+  ///   session (Session): Un objeto de sesión que contiene información sobre
+  ///   la sesión del usuario.id (int): El parámetro "id" es un número entero
+  ///   que representa el identificador único del artículo que desea obtener.
 
   Future<Articulo> obtenerArticulo(
     Session session,
@@ -68,14 +70,15 @@ class ArticuloEndpoint extends Endpoint {
     }
   }
 
-  /// La función `eliminarArticulo` es una función asincrónica de Dart que intenta eliminar un artículo
-  /// utilizando una sesión e ID proporcionadas, y devuelve un valor booleano que indica si la
-  /// eliminación fue exitosa o no.
+  /// La función `eliminarArticulo` es una función asincrónica de Dart que
+  /// intenta eliminar un artículoutilizando una sesión e ID proporcionadas,
+  ///  y devuelve un valor booleano que indica si la eliminación fue exitosa
+  ///  o no.
   ///
   /// Args:
   ///   session (Session): Un parámetro obligatorio de tipo Sesión.
-  ///   id (int): El parámetro "id" es un número entero que representa el identificador único del
-  /// artículo que debe eliminarse.
+  ///   id (int): El parámetro "id" es un número entero que representa el
+  ///   identificador único del artículo que debe eliminarse.
 
   Future<bool> eliminarArticulo(
     Session session,
@@ -95,10 +98,11 @@ class ArticuloEndpoint extends Endpoint {
   /// de artículos en función de un ID de marca determinado.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la sesión o conexión
-  /// actual a la base de datos. Se utiliza para ejecutar consultas o realizar operaciones de bases de
-  /// datos.
-  ///   idMarca (int): La identificación de la marca para la que desea enumerar los artículos.
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa
+  ///   la sesión o conexión actual a la base de datos. Se utiliza para ejecutar
+  ///   consultas o realizar operaciones de bases de datos.
+  ///   idMarca (int): La identificación de la marca para la que desea enumerar
+  ///   los artículos.
   ///
   /// Returns:
   ///   Un objeto futuro que se resuelve en una lista de objetos Articulo.

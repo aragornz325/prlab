@@ -29,6 +29,9 @@ const themeDefaultPRLab = ColorScheme.light(
   /// Color utilizado en titulos y ToolTip
   tertiary: Color(0xff363636),
 
+  /// Color utilizado en bordes delineados oscuros
+  tertiaryContainer: Color(0xff91213B),
+
   /// Color utilizado para notificar error.
   error: Color(0xffE00707),
 
@@ -38,6 +41,7 @@ const themeDefaultPRLab = ColorScheme.light(
   //! se utiliza para el hover de los textfield
   onSurface: Color(0xFFA12B46),
 
-  //TODO(Manu): esto es para el divider de drawer, cambiar todos los onsecondary usados en componentes por outlineVariant
+  // TODO(Manu): esto es para el divider de drawer, cambiar todos
+  // los onsecondary usados en componentes por outlineVariant
   outlineVariant: Color(0xffd9d9d9),
 );

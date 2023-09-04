@@ -53,13 +53,13 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     }
   }
 
-  /// La función `obtenerArticulo` recupera un artículo usando una sesión y un ID, y lanza una excepción
-  /// si ocurre un error.
+  /// La función `obtenerArticulo` recupera un artículo usando una sesión y un
+  /// ID, y lanza una excepciónsi ocurre un error.
   ///
   /// Args:
   ///   session (Session): Un parámetro obligatorio de tipo Sesión.
-  ///   id (int): El parámetro "id" es un número entero que representa el identificador único del
-  /// artículo que se debe obtener.
+  ///   id (int): El parámetro "id" es un número entero que representa el
+  ///   identificador único del artículo que se debe obtener.
 
   Future<Articulo> obtenerArticulo({
     required Session session,
@@ -77,14 +77,16 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     }
   }
 
-  /// La función `eliminarArticulo` es una función de Dart que intenta eliminar un artículo utilizando
-  /// una sesión e ID proporcionados, y devuelve un valor booleano que indica si la operación fue
-  /// exitosa o no.
+  /// La función `eliminarArticulo` es una función de Dart que intenta eliminar
+  /// un artículo utilizando
+  /// una sesión e ID proporcionados, y devuelve un valor booleano que indica si
+  ///  la operación fue exitosa o no.
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio.
-  ///   id (int): El parámetro "id" es un número entero que representa el identificador único del
-  /// artículo que debe eliminarse.
+  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es
+  ///   obligatorio.
+  ///   id (int): El parámetro "id" es un número entero que representa el
+  ///   identificador único delartículo que debe eliminarse.
   Future<bool> eliminarArticulo({
     required Session session,
     required int id,
@@ -105,13 +107,18 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     }
   }
 
-  /// La función `listarArticulosPorMarca` recupera una lista de artículos por marca usando una sesión y
-  /// un ID de marca.
+  /// La función `listarArticulosPorMarca` recupera una lista de artículos por
+  /// marca usando una sesión y un ID de marca.
   ///
   /// Args:
-  ///   session (Session): Un parámetro obligatorio de tipo Sesión.
-  ///   idMarca (int): La identificación de la marca para la que desea enumerar los artículos.
-
+  ///   session (Session): Un parámetro obligatorio de tipo Sesión, que
+  ///   representa la sesión o conexión actual a la base de datos.
+  ///   idMarca (int): La identificación de la marca para la que desea enumerar
+  ///   los artículos.
+  ///
+  /// Returns:
+  ///   El método devuelve un objeto `Futuro` que se resuelve en una
+  ///   `Lista<Artículo>`.
   Future<List<Articulo>> listarArticulosPorMarca({
     required Session session,
     required int idMarca,

@@ -21,7 +21,7 @@ class BlocListaArticulosYRecortes extends Bloc<
     on<BlocListaArticulosYRecortesEventoTraerArticulos>(
       _onTraerListaDeArticulos,
     );
-    on<BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos>(
+    on<BlocListaArticulosYRecortesEventoSeleccion>(
       _onCambiarListaArticulosORecorte,
     );
   }
@@ -33,7 +33,8 @@ class BlocListaArticulosYRecortes extends Bloc<
   ) async {
     emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
     try {
-      // TODO(anyone): sacar por la lista del back y hacer una variable arriba para pasarle la lista del modelo del back
+      // TODO(anyone): sacar por la lista del back y hacer una variable arriba
+      // para pasarle la lista del modelo del back
       final listaPrArticulos = [
         Articulo(
           titulo: 'Flutter article',
@@ -176,7 +177,7 @@ class BlocListaArticulosYRecortes extends Bloc<
   /// Cambia el index seleccionado para que muestre distintas vista entre
   /// recortes y lista de artículos
   Future<void> _onCambiarListaArticulosORecorte(
-    BlocListaArticulosYRecortesEventoSeleccionEntreRecortesYArticulos event,
+    BlocListaArticulosYRecortesEventoSeleccion event,
     Emitter<BlocListaArticulosYRecortesEstado> emit,
   ) async {
     try {
