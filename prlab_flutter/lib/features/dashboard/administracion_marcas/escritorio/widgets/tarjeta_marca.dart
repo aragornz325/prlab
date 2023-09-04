@@ -30,7 +30,7 @@ class TarjetaMarca extends StatelessWidget {
 
     return Container(
       width: 485.pw,
-      height: 370.ph,
+      height: 398.ph,
       color: colores.surfaceTint,
       child: Column(
         children: [
