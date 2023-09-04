@@ -7,6 +7,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
+import 'protocol.dart' as _i2;
 
 class Marca extends _i1.TableRow {
   Marca({
@@ -30,7 +31,7 @@ class Marca extends _i1.TableRow {
       sitioWeb: serializationManager
           .deserialize<String>(jsonSerialization['sitioWeb']),
       staff: serializationManager
-          .deserialize<List<int>?>(jsonSerialization['staff']),
+          .deserialize<List<_i2.Cliente>?>(jsonSerialization['staff']),
       fechaCreacion: serializationManager
           .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
       ultimaModificacion: serializationManager
@@ -46,7 +47,7 @@ class Marca extends _i1.TableRow {
 
   String sitioWeb;
 
-  List<int>? staff;
+  List<_i2.Cliente>? staff;
 
   DateTime? fechaCreacion;
 
@@ -75,7 +76,6 @@ class Marca extends _i1.TableRow {
       'id': id,
       'nombre': nombre,
       'sitioWeb': sitioWeb,
-      'staff': staff,
       'fechaCreacion': fechaCreacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaEliminacion': fechaEliminacion,
@@ -109,9 +109,6 @@ class Marca extends _i1.TableRow {
         return;
       case 'sitioWeb':
         sitioWeb = value;
-        return;
-      case 'staff':
-        staff = value;
         return;
       case 'fechaCreacion':
         fechaCreacion = value;
@@ -250,8 +247,6 @@ class MarcaTable extends _i1.Table {
 
   final sitioWeb = _i1.ColumnString('sitioWeb');
 
-  final staff = _i1.ColumnSerializable('staff');
-
   final fechaCreacion = _i1.ColumnDateTime('fechaCreacion');
 
   final ultimaModificacion = _i1.ColumnDateTime('ultimaModificacion');
@@ -263,7 +258,6 @@ class MarcaTable extends _i1.Table {
         id,
         nombre,
         sitioWeb,
-        staff,
         fechaCreacion,
         ultimaModificacion,
         fechaEliminacion,

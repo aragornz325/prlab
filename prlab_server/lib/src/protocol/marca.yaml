@@ -3,7 +3,7 @@ table: marcas
 fields:
   nombre: String
   sitioWeb: String
-  staff: List<int>?
+  staff: List<Cliente>?, api
   fechaCreacion: DateTime?
   ultimaModificacion: DateTime?
   fechaEliminacion: DateTime?

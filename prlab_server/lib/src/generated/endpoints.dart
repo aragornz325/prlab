@@ -59,8 +59,8 @@ class Endpoints extends _i1.EndpointDispatch {
         'crearArticulo': _i1.MethodConnector(
           name: 'crearArticulo',
           params: {
-            'payload': _i1.ParameterDescription(
-              name: 'payload',
+            'articulo': _i1.ParameterDescription(
+              name: 'articulo',
               type: _i1.getType<_i7.Articulo>(),
               nullable: false,
             )
@@ -71,7 +71,7 @@ class Endpoints extends _i1.EndpointDispatch {
           ) async =>
               (endpoints['articulo'] as _i2.ArticuloEndpoint).crearArticulo(
             session,
-            params['payload'],
+            params['articulo'],
           ),
         ),
         'listarArticulos': _i1.MethodConnector(
@@ -137,6 +137,25 @@ class Endpoints extends _i1.EndpointDispatch {
                   .listarArticulosPorMarca(
             session,
             params['idMarca'],
+          ),
+        ),
+        'actualizarArticulo': _i1.MethodConnector(
+          name: 'actualizarArticulo',
+          params: {
+            'articulo': _i1.ParameterDescription(
+              name: 'articulo',
+              type: _i1.getType<_i7.Articulo>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['articulo'] as _i2.ArticuloEndpoint)
+                  .actualizarArticulo(
+            session,
+            articulo: params['articulo'],
           ),
         ),
       },
@@ -323,8 +342,56 @@ class Endpoints extends _i1.EndpointDispatch {
           ) async =>
               (endpoints['marca'] as _i6.MarcaEndpoint).listarMarcas(session),
         ),
-        'listarMarcasDeUsuario': _i1.MethodConnector(
-          name: 'listarMarcasDeUsuario',
+        'obtenerMarcaPorId': _i1.MethodConnector(
+          name: 'obtenerMarcaPorId',
+          params: {
+            'idMarca': _i1.ParameterDescription(
+              name: 'idMarca',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i6.MarcaEndpoint).obtenerMarcaPorId(
+            session,
+            params['idMarca'],
+          ),
+        ),
+        'asignarUsuarioAMarca': _i1.MethodConnector(
+          name: 'asignarUsuarioAMarca',
+          params: {
+            'idMarca': _i1.ParameterDescription(
+              name: 'idMarca',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'idUsuario': _i1.ParameterDescription(
+              name: 'idUsuario',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'idRol': _i1.ParameterDescription(
+              name: 'idRol',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i6.MarcaEndpoint).asignarUsuarioAMarca(
+            session,
+            idMarca: params['idMarca'],
+            idUsuario: params['idUsuario'],
+            idRol: params['idRol'],
+          ),
+        ),
+        'listarMarcasPorUsuario': _i1.MethodConnector(
+          name: 'listarMarcasPorUsuario',
           params: {
             'idUsuario': _i1.ParameterDescription(
               name: 'idUsuario',
@@ -336,9 +403,27 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['marca'] as _i6.MarcaEndpoint).listarMarcasDeUsuario(
+              (endpoints['marca'] as _i6.MarcaEndpoint).listarMarcasPorUsuario(
             session,
             idUsuario: params['idUsuario'],
+          ),
+        ),
+        'listarUsuariosPorMarca': _i1.MethodConnector(
+          name: 'listarUsuariosPorMarca',
+          params: {
+            'idMarca': _i1.ParameterDescription(
+              name: 'idMarca',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i6.MarcaEndpoint).listarUsuariosPorMarca(
+            session,
+            idMarca: params['idMarca'],
           ),
         ),
       },

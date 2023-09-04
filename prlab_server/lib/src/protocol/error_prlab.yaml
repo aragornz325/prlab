@@ -1,4 +1,0 @@
-exception: notFoud
-fields:
-  message: String
-  errorType: MyEnu

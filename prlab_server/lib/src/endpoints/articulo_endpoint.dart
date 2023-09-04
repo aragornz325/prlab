@@ -5,6 +5,9 @@ import 'package:serverpod/server.dart';
 class ArticuloEndpoint extends Endpoint {
   final servicioArticulo = ServicioArticulo();
 
+  @override
+  final requireLogin = true;
+
   /// La función `crearArticulo` es que crea un artículo usando una sesión y un
   /// payload, y devuelve un booleano que indica si la creación fue exitosa.
   ///
@@ -14,14 +17,14 @@ class ArticuloEndpoint extends Endpoint {
   /// del usuario u otros datos relacionados con la sesión.
   ///   payload (Articulo): El parámetro "payload" es un objeto de tipo
   /// "Articulo" que contiene los datos necesarios para crear un artículo.
-  Future<bool> crearArticulo(
+  Future<int> crearArticulo(
     Session session,
-    Articulo payload,
+    Articulo articulo,
   ) async {
     try {
       return await servicioArticulo.crearArticulo(
         session: session,
-        payload: payload,
+        articulo: articulo,
       );
     } on Exception catch (e) {
       rethrow;
@@ -114,6 +117,27 @@ class ArticuloEndpoint extends Endpoint {
       return await servicioArticulo.listarArticulosPorMarca(
         session: session,
         idMarca: idMarca,
+      );
+    } on Exception catch (e) {
+      rethrow;
+    }
+  }
+
+  /// La función `actualizarArticulo` actualiza un artículo usando el servicio `servicioArticulo` y
+  /// devuelve un booleano indicando si la actualización fue exitosa.
+  ///
+  /// Args:
+  ///   session (Session): Un objeto de sesión que representa la sesión del usuario actual.
+  ///   articulo (Articulo): El parámetro "articulo" es de tipo "Articulo" y es obligatorio.
+
+  Future<bool> actualizarArticulo(
+    Session session, {
+    required Articulo articulo,
+  }) async {
+    try {
+      return await servicioArticulo.actualizarArticulo(
+        session: session,
+        articulo: articulo,
       );
     } on Exception catch (e) {
       rethrow;
