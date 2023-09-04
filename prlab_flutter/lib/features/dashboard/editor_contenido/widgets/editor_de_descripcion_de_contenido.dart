@@ -2,10 +2,8 @@ import 'dart:convert';
 
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
 
 /// {@template  EditorDeDescripcionDeContenido}
 /// Contiene los elementos para la edición
@@ -37,8 +35,6 @@ class _EditorDeDescripcionDeContenidoState
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
-
-    final bloc = context.read<BlocEditorContenido>();
 
     return SizedBox(
       height: 352.ph,
@@ -72,10 +68,6 @@ class _EditorDeDescripcionDeContenidoState
           editorState.logConfiguration
             ..handler = debugPrint
             ..level = LogLevel.off;
-
-          bloc.add(
-            BlocEditorContenidoActualizarDescripcion(snapshot.data!),
-          );
 
           return FloatingToolbar(
             items: [
