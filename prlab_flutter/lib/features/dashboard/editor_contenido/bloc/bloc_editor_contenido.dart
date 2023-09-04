@@ -20,7 +20,7 @@ class BlocEditorContenido
       : super(const BlocEditorContenidoEstadoInicial()) {
     on<BlocEditorContenidoEventoObtenerArticulo>(_onObtenerArticulo);
     on<BlocEditorContenidoEventoAgregarImagen>(_onAgregarImagen);
-    on<BlocEditorContenidoActualizarDescripcion>(_onActualizarDescripcion);
+    on<BlocEditorContenidoActualizarArticulo>(_onActualizarArticulo);
 
     add(BlocEditorContenidoEventoObtenerArticulo(idArticulo: idArticulo));
   }
@@ -73,24 +73,47 @@ class BlocEditorContenido
     );
   }
 
-  /// Refresca la descripción del artículo que se esta
+  /// Refresca la descripción y el título del artículo que se esta
   /// editando dentro del estado de [BlocEditorContenidoEstado].
-  Future<void> _onActualizarDescripcion(
-    BlocEditorContenidoActualizarDescripcion event,
+  Future<void> _onActualizarArticulo(
+    BlocEditorContenidoActualizarArticulo event,
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
-    // TODO(anyone):
-    // Este endpoint no existe
+    final articulo = state.articulo;
 
-    // final respuesta = await client.articulo.actualizarArticulo(
-    //   state.articulo,
-    // );
+    if (articulo == null) {
+      return emit(
+        BlocEditorContenidoEstadoError.desde(
+          state,
+          mensajeDeError: MensajesDeErrorDeAdministracionMarcas.internalError,
+        ),
+      );
+    }
 
-    emit(
-      BlocEditorContenidoEstadoActualizandoDescripcion.desde(
-        state,
-        descripcionDeArticulo: event.descripcionDeArticulo,
-      ),
-    );
+    try {
+      // TODO(ANDRE): Revisar esta logica.
+      await client.articulo.actualizarArticulo(
+        articulo: articulo
+          ..contenido = event.descripcionDeArticulo ??
+              state.articulo?.contenido ??
+              state.descripcionDeArticulo
+          ..titulo = event.titulo ?? state.articulo?.titulo ?? '',
+      );
+
+      emit(
+        BlocEditorContenidoEstadoActualizandoDescripcion.desde(
+          state,
+          descripcionDeArticulo:
+              event.descripcionDeArticulo ?? state.descripcionDeArticulo,
+        ),
+      );
+    } catch (e) {
+      emit(
+        BlocEditorContenidoEstadoError.desde(
+          state,
+          mensajeDeError: MensajesDeErrorDeAdministracionMarcas.unknown,
+        ),
+      );
+    }
   }
 }

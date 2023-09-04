@@ -22,10 +22,11 @@ class BlocDashboard extends Bloc<BlocDashboardEvento, BlocDashboardEstado> {
     emit(BlocDashboardCargando.desde());
     try {
       // TODO(Andre): Averiguar que poner en el titulo.
-      await client.articulo.crearArticulo(Articulo(titulo: ''));
+      final idArticulo = await client.articulo.crearArticulo(
+        Articulo(titulo: ''),
+      );
 
-      // TODO(Andre): Averiguar que poner el id.
-      emit(BlocDashboardExitoso.desde(0));
+      emit(BlocDashboardExitoso.desde(idArticulo));
     } catch (e) {
       emit(BlocDashboardFallido.desde());
     }

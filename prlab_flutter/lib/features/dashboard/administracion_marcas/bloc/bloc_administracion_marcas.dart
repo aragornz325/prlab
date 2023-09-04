@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:prlab_client/prlab_client.dart';
+import 'package:prlab_flutter/utilidades/utilidades.dart';
 
 part 'bloc_administracion_marcas_estado.dart';
 part 'bloc_administracion_marcas_evento.dart';
@@ -34,36 +35,25 @@ class BlocAdministracionMarcas extends Bloc<BlocAdministracionMarcasEvento,
     );
 
     try {
-      // TODO(anyone):
-      // Este endpoint no funciona, y el user id deberia
-      // pasarse desde el session desde el back, no pasarlo, pedir cambiar eso
-      // en el endpoint.
-/*
-      final respuesta = await client.marca.listarMarcasDeUsuario();
-*/
-      final marcas = [
-        Marca(
-          id: 1,
-          nombre: 'Flutter',
-          sitioWeb: 'flutter.com',
-          fechaCreacion: DateTime.now(),
-          ultimaModificacion: DateTime.now(),
-          fechaEliminacion: DateTime.now(),
-        ),
-        Marca(
-          id: 2,
-          nombre: 'Vanz',
-          sitioWeb: 'vanz.com',
-          fechaCreacion: DateTime.now(),
-          ultimaModificacion: DateTime.now(),
-          fechaEliminacion: DateTime.now(),
-        ),
-      ];
+      final idUsuario = sessionManager.signedInUser?.id;
+
+      if (idUsuario == null) {
+        return emit(
+          BlocAdministracionMarcasEstadoError.desde(
+            state,
+            mensajeDeError: MensajesDeErrorDeAdministracionMarcas.userNotFound,
+          ),
+        );
+      }
+
+      final respuesta = await client.marca.listarMarcasPorUsuario(
+        idUsuario: idUsuario,
+      );
 
       emit(
         BlocAdministracionMarcasEstadoExitosoGeneral.desde(
           state,
-          marcas: marcas,
+          marcas: respuesta,
         ),
       );
     } catch (e, st) {
