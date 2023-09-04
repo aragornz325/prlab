@@ -68,7 +68,6 @@ CREATE TABLE "marcas" (
   "id" serial,
   "nombre" text NOT NULL,
   "sitioWeb" text NOT NULL,
-  "staff" json,
   "fechaCreacion" timestamp without time zone,
   "ultimaModificacion" timestamp without time zone,
   "fechaEliminacion" timestamp without time zone

@@ -73,20 +73,45 @@ class MarcaEndpoint extends Endpoint {
     }
   }
 
-  /// La función `listarMarcasDeUsuario` recupera una lista de marcas asociadas
-  /// a un usuario.
-  ///
-  /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y se utiliza
-  ///   para mantener la información de la sesión del usuario.
-  ///   idUsuario (int): La identificación del usuario para quien queremos
-  ///   enumerar las marcas.
-  Future<List<dynamic>> listarMarcasDeUsuario(
+  /// Obtiene el registro de una marca por su id.
+  Future<Marca> obtenerMarcaPorId(Session session, int idMarca) async {
+    return await servicioMarca.obtenerMarcaPorId(session, idMarca);
+  }
+
+  /// Crea la relación entre una marca y un usuario.
+  Future<List<List<dynamic>>> asignarUsuarioAMarca(
+    Session session, {
+    required int idMarca,
+    required int idUsuario,
+    required int idRol,
+  }) async {
+    return await servicioMarca.asignarUsuarioAMarca(
+      session,
+      idMarca: idMarca,
+      idUsuario: idUsuario,
+      idRol: idRol,
+    );
+  }
+
+  /// Obtiene las marcas a las que se encuentra asignado un usuario.
+  Future<List<Marca>> listarMarcasPorUsuario(
     Session session, {
     required int idUsuario,
-  }) async =>
-      servicioMarca.listarMarcasDeUsuario(
-        session,
-        idUsuario: idUsuario,
-      );
+  }) async {
+    return await servicioMarca.listarMarcasPorUsuario(
+      session,
+      idUsuario: idUsuario,
+    );
+  }
+
+  /// Obtiene los usuarios asignados a una marca.
+  Future<List<Cliente>> listarUsuariosPorMarca(
+    Session session, {
+    required int idMarca,
+  }) async {
+    return await servicioMarca.listarUsuariosPorMarca(
+      session,
+      idMarca: idMarca,
+    );
+  }
 }
