@@ -959,6 +959,11 @@ class Protocol extends _i1.SerializationManagerServer {
           ? (data as List).map((e) => deserialize<_i14.Cliente>(e)).toList()
           : null) as dynamic;
     }
+    if (t == _i1.getType<List<_i14.Articulo>?>()) {
+      return (data != null
+          ? (data as List).map((e) => deserialize<_i14.Articulo>(e)).toList()
+          : null) as dynamic;
+    }
     if (t == List<_i15.Articulo>) {
       return (data as List).map((e) => deserialize<_i15.Articulo>(e)).toList()
           as dynamic;
