@@ -146,7 +146,8 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     required Articulo articulo,
   }) async {
     try {
-      logger.info('se va a actualizar el articulo con id: ${articulo.id}');
+      logger.info('Se va a actualizar el articulo con id: ${articulo.id}');
+
       final articuloFinal = await performOperation(
         () {
           return odm.obtenerArticulo(
@@ -155,7 +156,8 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
           );
         },
       );
-      logger.finer('articulo ${articulo.id} recuperado de la db');
+
+      logger.finer('Articulo ${articulo.id} recuperado de la db');
 
       //se compara con el registro de la db, si el valor es null se deja el valor anterior
       //si el valor es distinto de null se actualiza el valor en el registro de la db
@@ -165,7 +167,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
           articuloFinal.setColumn(key, value);
         }
       });
-      logger.finer('articulo ${articulo.id} actualizado');
+      logger.finer('Articulo ${articulo.id} actualizado');
       await performOperation(
         () {
           return odm.actualizarArticulo(
@@ -174,7 +176,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
           );
         },
       );
-      logger.fine('se actualizo el articulo con id: ${articulo.id}');
+      logger.finer('Se actualizo el articulo con id: ${articulo.id}');
       return true;
     } on Exception catch (e) {
       throw Exception('$e');

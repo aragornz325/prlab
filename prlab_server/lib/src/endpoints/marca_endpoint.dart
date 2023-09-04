@@ -98,7 +98,7 @@ class MarcaEndpoint extends Endpoint {
     Session session, {
     required int idUsuario,
   }) async {
-    return servicioMarca.listarMarcasPorUsuario(
+    return await servicioMarca.listarMarcasPorUsuario(
       session,
       idUsuario: idUsuario,
     );

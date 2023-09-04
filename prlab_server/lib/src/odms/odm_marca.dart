@@ -48,26 +48,6 @@ class OdmMarca extends ODM {
     }
   }
 
-  /// La función `listarMarcasDeUsuario` recupera una lista de marcas asociadas
-  ///  con un ID de usuario específico de una base de datos mediante una
-  /// operación ODM.
-  ///
-  /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión, que
-  ///   representa una sesión de base de datos.
-  ///   idUsuario (int): La identificación del usuario para el cual queremos
-  ///   enumerar las marcas.
-  Future<List<dynamic>> listarMarcasDeUsuario(
-    Session session, {
-    required int idUsuario,
-  }) async =>
-      performOdmOperation(
-        session,
-        (session) => session.db.query(
-          'SELECT * FROM marcas WHERE EXISTS (SELECT 1 FROM json_array_elements_text(staff) AS element WHERE CAST(element AS INTEGER) = $idUsuario);',
-        ),
-      );
-
   /// La función `eliminarMarca` elimina un registro de la base de datos según
   /// el ID proporcionado.
   /// Args:
@@ -149,6 +129,7 @@ class OdmMarca extends ODM {
         return listaIds;
       },
     );
+
     if (queryListaDeIdMarcas.isEmpty) {
       return [];
     }
@@ -166,8 +147,10 @@ class OdmMarca extends ODM {
     final listasUsuarios = {};
 
     for (final marca in queryListaDeIdMarcas) {
-      final listaUsuarios =
-          await listarUsuariosPorMarca(session, idMarca: marca);
+      final listaUsuarios = await listarUsuariosPorMarca(
+        session,
+        idMarca: marca,
+      );
       listasUsuarios[marca] = listaUsuarios;
     }
 
@@ -195,6 +178,7 @@ class OdmMarca extends ODM {
         return listaIds;
       },
     );
+
     if (queryListaDeIdUsuarios.isEmpty) {
       return [];
     }

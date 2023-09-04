@@ -35,7 +35,7 @@ class OdmArticulo extends ODM {
           orderDescending: true,
         ) as Articulo;
       });
-      logger.fine('Artículo ${articulo.titulo} creado exitosamente.');
+      logger.finer('Artículo ${articulo.titulo} creado exitosamente.');
       return response.id!;
     } on Exception catch (e) {
       throw Exception('$e');
@@ -82,7 +82,7 @@ class OdmArticulo extends ODM {
         (Session session) => Articulo.findById(session, id),
       );
       if (articulo == null) {
-        logger.shout('no se encontro el articulo con id: $id');
+        logger.shout('No se encontro el articulo con id: $id');
         throw Exception('No se encontró el artículo con el id: $id');
       }
       logger.fine('Articulo con id: $id encontrado');
@@ -105,7 +105,7 @@ class OdmArticulo extends ODM {
     required int id,
   }) async {
     try {
-      logger.info('se va a eliminar el articulo con id: $id');
+      logger.info('Se va a eliminar el articulo con id: $id');
       await performOdmOperation(
         session,
         (Session session) => Articulo.delete(
@@ -113,7 +113,7 @@ class OdmArticulo extends ODM {
           where: (t) => t.id.equals(id),
         ),
       );
-      logger.fine('se elimino el articulo con id: $id');
+      logger.fine('Se elimino el articulo con id: $id');
       return true;
     } on Exception catch (e) {
       throw Exception('$e');
@@ -135,7 +135,7 @@ class OdmArticulo extends ODM {
   }) async {
     try {
       return await performOdmOperation(session, (Session session) {
-        logger.info('buscando los articulos segun marca con id: $idMarca');
+        logger.info('Buscando los articulos segun marca con id: $idMarca');
         return Articulo.find(
           session,
           where: (t) => t.idMarca.equals(idMarca),
@@ -160,7 +160,7 @@ class OdmArticulo extends ODM {
     required Articulo articulo,
   }) async {
     try {
-      logger.info('se va a actualizar un articulo en la BD');
+      logger.info('Se va a actualizar el articulo en la BD con id ${articulo.id}...');
       await performOdmOperation(
         session,
         (Session session) => Articulo.update(
@@ -168,7 +168,7 @@ class OdmArticulo extends ODM {
           articulo,
         ),
       );
-      logger.finest('articulo actualizado en la BD');
+      logger.finest('Articulo ${articulo.id} actualizado en la BD');
       return true;
     } on Exception catch (e) {
       throw Exception('$e');

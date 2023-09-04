@@ -135,9 +135,11 @@ class ServicioMarca extends Servicio<OdmMarca> {
     Session session, {
     required int idMarca,
   }) async {
-    return await performOperation(() => odm.listarUsuariosPorMarca(
-          session,
-          idMarca: idMarca,
-        ));
+    return await performOperation(
+      () => odm.listarUsuariosPorMarca(
+        session,
+        idMarca: idMarca,
+      ),
+    );
   }
 }
