@@ -34,7 +34,11 @@ class BlocListaArticulosYRecortesEventoTraerArticulos
     extends BlocListaArticulosYRecortesEvento {
   /// {@macro BlocListaArticulosYRecortesEventoTraerArticulos}
   @override
-  const BlocListaArticulosYRecortesEventoTraerArticulos();
+  const BlocListaArticulosYRecortesEventoTraerArticulos({
+    this.idMarca,
+  });
+
+  final int? idMarca;
 }
 
 /// {@template BlocListaArticulosYRecortesEventoSeleccion}
@@ -51,4 +55,28 @@ class BlocListaArticulosYRecortesEventoSeleccion
 
   /// Index a cambiar para alternar distintas vistas.
   final int index;
+}
+
+/// {@template BlocListaArticulosYRecortesEventoFiltradoPorEstado}
+/// Cambia los valores de los filtrados entre los filtrados por Estados/Status
+/// para filtrar por cierto Estado, borrador, completo o comentario.
+/// {@endtemplate}
+class BlocListaArticulosYRecortesEventoFiltradoPorEstado
+    extends BlocListaArticulosYRecortesEvento {
+  /// {@macro BlocListaArticulosYRecortesEventoFiltradoPorEstado}
+  @override
+  const BlocListaArticulosYRecortesEventoFiltradoPorEstado({
+    this.borrador,
+    this.comentario,
+    this.completo,
+  });
+
+  /// cambia los valores en el popup con el check box de borrador
+  final bool? borrador;
+
+  /// cambia los valores en el popup con el check box de comentario
+  final bool? comentario;
+
+  /// cambia los valores en el popup con el check box de completo
+  final bool? completo;
 }

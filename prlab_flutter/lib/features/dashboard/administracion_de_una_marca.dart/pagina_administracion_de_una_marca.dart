@@ -15,20 +15,20 @@ import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart'
 class PaginaAdministracionDeUnaMarca extends StatelessWidget {
   /// {@macro PaginaAdministracionDeUnaMarca}
   const PaginaAdministracionDeUnaMarca({
-    @PathParam('nombreMarca') required this.nombreMarca,
+    @PathParam('idMarca') required this.idMarca,
     super.key,
   });
 
-  /// Nombre de la marca a mostrar en el encabezado
-  final String nombreMarca;
+  /// Identificador unico de la marca.
+  final int idMarca;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BlocAdministracionDeUnaMarca(),
-      child: FullResponsiveScreen(
-        mobile: const VistaCelularAdministracionDeUnaMarca(),
-        desktop:
-            VistaEscritorioAdministracionDeUnaMarca(nombreMarca: nombreMarca),
+      create: (context) => BlocAdministracionDeUnaMarca(idMarca),
+      child: const FullResponsiveScreen(
+        mobile: VistaCelularAdministracionDeUnaMarca(),
+        desktop: VistaEscritorioAdministracionDeUnaMarca(),
       ),
     );
   }

@@ -29,6 +29,12 @@ const themeDefaultPRLab = ColorScheme.light(
   /// Color utilizado para notificar error.
   error: Color(0xffE00707),
 
+  /// se usa en el check box de los filtrados(comentario) del popup/alertdialog
+  onTertiary: Color(0xffFF9E0D),
+
+  /// se usa en el check box de los filtrados(completos) del popup/alertdialog
+  onTertiaryContainer: Color(0xff1FDE00),
+
   //! se utiliza en los unFocus de los textfield
   outline: Color(0xffd9d9d9),
 

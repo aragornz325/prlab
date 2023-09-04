@@ -10,7 +10,12 @@ import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recor
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 class ListaArticulosYRecortes extends StatelessWidget {
-  const ListaArticulosYRecortes({super.key});
+  const ListaArticulosYRecortes({
+    super.key,
+    this.idMarca,
+  });
+
+  final int? idMarca;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class ListaArticulosYRecortes extends StatelessWidget {
 
     return BlocProvider<BlocListaArticulosYRecortes>(
       create: (context) => BlocListaArticulosYRecortes()
-        ..add(const BlocListaArticulosYRecortesEventoTraerArticulos())
+        ..add(BlocListaArticulosYRecortesEventoTraerArticulos(idMarca: idMarca))
         ..add(const BlocListaArticulosYRecortesEventoFiltrar()),
       child: BlocBuilder<BlocListaArticulosYRecortes,
           BlocListaArticulosYRecortesEstado>(

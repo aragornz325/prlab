@@ -43,11 +43,11 @@ abstract class $AppRouter extends _i11.RootStackRouter {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<RutaAdministracionDeUnaMarcaArgs>(
           orElse: () => RutaAdministracionDeUnaMarcaArgs(
-              nombreMarca: pathParams.getString('nombreMarca')));
+              idMarca: pathParams.getInt('idMarca')));
       return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i2.PaginaAdministracionDeUnaMarca(
-          nombreMarca: args.nombreMarca,
+          idMarca: args.idMarca,
           key: args.key,
         ),
       );
@@ -74,11 +74,11 @@ abstract class $AppRouter extends _i11.RootStackRouter {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<RutaEditorContenidoArgs>(
           orElse: () =>
-              RutaEditorContenidoArgs(articuloId: pathParams.getInt('id')));
+              RutaEditorContenidoArgs(idArticulo: pathParams.getInt('id')));
       return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i6.PaginaEditorContenido(
-          articuloId: args.articuloId,
+          idArticulo: args.idArticulo,
           key: args.key,
         ),
       );
@@ -144,16 +144,16 @@ class RutaAdministracionContenido extends _i11.PageRouteInfo<void> {
 class RutaAdministracionDeUnaMarca
     extends _i11.PageRouteInfo<RutaAdministracionDeUnaMarcaArgs> {
   RutaAdministracionDeUnaMarca({
-    required String nombreMarca,
+    required int idMarca,
     _i12.Key? key,
     List<_i11.PageRouteInfo>? children,
   }) : super(
           RutaAdministracionDeUnaMarca.name,
           args: RutaAdministracionDeUnaMarcaArgs(
-            nombreMarca: nombreMarca,
+            idMarca: idMarca,
             key: key,
           ),
-          rawPathParams: {'nombreMarca': nombreMarca},
+          rawPathParams: {'idMarca': idMarca},
           initialChildren: children,
         );
 
@@ -165,17 +165,17 @@ class RutaAdministracionDeUnaMarca
 
 class RutaAdministracionDeUnaMarcaArgs {
   const RutaAdministracionDeUnaMarcaArgs({
-    required this.nombreMarca,
+    required this.idMarca,
     this.key,
   });
 
-  final String nombreMarca;
+  final int idMarca;
 
   final _i12.Key? key;
 
   @override
   String toString() {
-    return 'RutaAdministracionDeUnaMarcaArgs{nombreMarca: $nombreMarca, key: $key}';
+    return 'RutaAdministracionDeUnaMarcaArgs{idMarca: $idMarca, key: $key}';
   }
 }
 
@@ -225,16 +225,16 @@ class RutaDashboard extends _i11.PageRouteInfo<void> {
 /// [_i6.PaginaEditorContenido]
 class RutaEditorContenido extends _i11.PageRouteInfo<RutaEditorContenidoArgs> {
   RutaEditorContenido({
-    required int articuloId,
+    required int idArticulo,
     _i12.Key? key,
     List<_i11.PageRouteInfo>? children,
   }) : super(
           RutaEditorContenido.name,
           args: RutaEditorContenidoArgs(
-            articuloId: articuloId,
+            idArticulo: idArticulo,
             key: key,
           ),
-          rawPathParams: {'id': articuloId},
+          rawPathParams: {'id': idArticulo},
           initialChildren: children,
         );
 
@@ -246,17 +246,17 @@ class RutaEditorContenido extends _i11.PageRouteInfo<RutaEditorContenidoArgs> {
 
 class RutaEditorContenidoArgs {
   const RutaEditorContenidoArgs({
-    required this.articuloId,
+    required this.idArticulo,
     this.key,
   });
 
-  final int articuloId;
+  final int idArticulo;
 
   final _i12.Key? key;
 
   @override
   String toString() {
-    return 'RutaEditorContenidoArgs{articuloId: $articuloId, key: $key}';
+    return 'RutaEditorContenidoArgs{idArticulo: $idArticulo, key: $key}';
   }
 }
 

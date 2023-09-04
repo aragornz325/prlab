@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
@@ -17,60 +19,93 @@ class ContainerEdicionArticulo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
-    final l10n = context.l10n;
+
     return Container(
       width: 839.pw,
       height: 508.ph,
       color: colores.surfaceTint,
-      child: Column(
+      child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               UploadLogoPR(),
             ],
           ),
-          const Divider(
+          Divider(
             height: 0,
           ),
-          SizedBox(
-            height: 90.ph,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 24.pw,
-                vertical: 15.ph,
-              ),
-              child: TextField(
-                style: TextStyle(
-                  height: 1,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 25.pf,
-                  color: colores.secondary,
-                ),
-                decoration: InputDecoration(
-                  hintText: l10n.pageEditContentEditArticleContainerHintTitle,
-                  hintMaxLines: 1,
-                  hintStyle: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 25.pf,
-                    color: colores.secondary,
-                  ),
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
+          _CampoDeTextoTitulo(),
+          Divider(
+            height: 0,
+          ),
+          EditorDeDescripcionDeContenido(),
+        ],
+      ),
+    );
+  }
+}
+
+class _CampoDeTextoTitulo extends StatefulWidget {
+  const _CampoDeTextoTitulo();
+
+  @override
+  State<_CampoDeTextoTitulo> createState() => _CampoDeTextoTituloState();
+}
+
+class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
+  final controller = TextEditingController();
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colores = context.colores;
+    final l10n = context.l10n;
+
+    return SizedBox(
+      height: 90.ph,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 24.pw,
+          vertical: 15.ph,
+        ),
+        child: TextField(
+          controller: controller
+            ..addListener(() {
+              context.read<BlocEditorContenido>().add(
+                    BlocEditorContenidoActualizarArticulo(
+                      titulo: controller.text,
+                    ),
+                  );
+            }),
+          style: TextStyle(
+            height: 1,
+            fontWeight: FontWeight.w500,
+            fontSize: 25.pf,
+            color: colores.secondary,
+          ),
+          decoration: InputDecoration(
+            hintText: l10n.pageEditContentEditArticleContainerHintTitle,
+            hintMaxLines: 1,
+            hintStyle: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 25.pf,
+              color: colores.secondary,
+            ),
+            enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide.none,
+            ),
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide.none,
             ),
           ),
-          const Divider(
-            height: 0,
-          ),
-          const EditorDeDescripcionDeContenido(),
-        ],
+        ),
       ),
     );
   }
