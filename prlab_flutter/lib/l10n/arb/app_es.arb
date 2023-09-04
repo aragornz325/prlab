@@ -308,7 +308,36 @@
     "@pageEditContentSubtitle": {
         "description":"Subtitle that appears on top of the list of articles and the edit container, when you are creating or editing an article"
     },
-    
+          "pageEditContentArticleTitleHomePage" : "Página de inicio",
+    "@pageEditContentArticleTitleHomePage": {
+        "description":"Title of the article when its displayed in the vertical list and it leads you to the home page of the article."
+    },
+             "pageEditContentPopupDownload" : "Descargar",
+    "@pageEditContentPopupDownload": {
+        "description":"Text of one of the popup button items to allow the user to download the article."
+    },
+             "pageEditContentPopupPasswordSetting" : "Configuración de contraseña",
+    "@pageEditContentPopupPasswordSetting": {
+        "description":"Text of the popup button to allow the user set the password settings."
+    },
+                 "pageEditContentPopupSendEmail" : "Enviar vía email",
+    "@pageEditContentPopupSendEmail": {
+        "description":"Text of the popup button to allow the user to send via email."
+    },
+
+
+              "pageEditContentArticleTitleMetricsPage" : "Página de métricas",
+    "@pageEditContentArticleTitleMetricsPage": {
+        "description":"Title of the article when its displayed in the vertical list and it leads you to the metrics page of the article."
+    },
+              "pageEditContentArticleTitleCoveragePage" : "Página de cobertura",
+    "@pageEditContentArticleTitleCoveragePage": {
+        "description":"Title of the article when its displayed in the vertical list and it leads you to the coverage page of the article."
+    },
+                      "pageEditContentArticleTitlePerformancePage" : "Página de rendimiento",
+    "@pageEditContentArticleTitlePerformancePage": {
+        "description":"Text that indicates that it is a performance page."
+    },
     "pageContentAdministrationPopupASingleArticle": "Un solo articulo",
     "@pageContentAdministrationAdminPopupASingleArticle": {
         "description":"text in the popup in the button create an article first options to choose"

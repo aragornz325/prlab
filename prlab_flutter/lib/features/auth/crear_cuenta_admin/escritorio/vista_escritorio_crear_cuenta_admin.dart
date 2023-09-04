@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/auth/crear_cuenta_admin/bloc/bloc_crear_cuenta_admin.dart';
 import 'package:prlab_flutter/features/auth/crear_cuenta_admin/dialog/pr_dialog_email_enviado.dart';
 import 'package:prlab_flutter/features/auth/crear_cuenta_admin/escritorio/widgets/widgets.dart';
@@ -34,6 +35,8 @@ class _VistaEscritorioCrearCuentaAdminState
 
   @override
   Widget build(BuildContext context) {
+    final colores = context.colores;
+
     final l10n = context.l10n;
 
     return BlocListener<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
@@ -59,9 +62,17 @@ class _VistaEscritorioCrearCuentaAdminState
               onTap: () {
                 Navigator.of(context).pop();
               },
-              descripcionError: getErrorMessageCreateAccountAdmin(
-                context,
-                state.errorMessage,
+              contenido: Text(
+                getErrorMessageCreateAccountAdmin(
+                  context,
+                  state.errorMessage,
+                ),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15.pf,
+                  color: colores.secondary,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ),
           );

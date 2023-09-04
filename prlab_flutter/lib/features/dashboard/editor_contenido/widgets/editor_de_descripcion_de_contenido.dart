@@ -9,7 +9,7 @@ import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_edit
 
 /// {@template  EditorDeDescripcionDeContenido}
 /// Contiene los elementos para la edición
-/// de la descripción de un [PRArticulo], esta seteado con
+/// de la descripción de un 'PRArticulo', esta seteado con
 /// el package de appflowy_editor y customizado para que se
 /// asemeje a el tema de la aplicación.
 /// {@endtemplate}
@@ -43,9 +43,8 @@ class _EditorDeDescripcionDeContenidoState
     return SizedBox(
       height: 352.ph,
       child: StreamBuilder<String>(
-        // TODO(Andreas):
-        // Una vez que este el endpoint del back, consumir el json
-        // desde el estado retroalimentado por el evento.
+        // TODO(Andreas): Una vez que este el endpoint del back,
+        // consumir el json desde el estado retroalimentado por el evento.
         // stream: Stream.value(bloc.state.descripcionDeArticulo),
         stream: Stream<String>.value(
           jsonEncode(

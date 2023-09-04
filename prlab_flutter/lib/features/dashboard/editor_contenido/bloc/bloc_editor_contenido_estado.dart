@@ -11,6 +11,8 @@ sealed class BlocEditorContenidoEstado {
     this.logoElegidoWeb,
     this.logoSecundarioElegidoCelular,
     this.logoSecundarioElegidoWeb,
+    this.articulo,
+    this.listaSeccionesArticulo = const [],
     this.descripcionDeArticulo = '',
   });
 
@@ -20,6 +22,8 @@ sealed class BlocEditorContenidoEstado {
     Uint8List? logoElegidoWeb,
     File? logoSecundarioElegidoCelular,
     Uint8List? logoSecundarioElegidoWeb,
+    Articulo? articulo,
+    List<Articulo>? listaSeccionesArticulo,
     String? descripcionDeArticulo,
   }) : this._(
           logoElegidoCelular: logoElegidoCelular ?? otro.logoElegidoCelular,
@@ -28,6 +32,9 @@ sealed class BlocEditorContenidoEstado {
               logoSecundarioElegidoCelular ?? otro.logoSecundarioElegidoCelular,
           logoSecundarioElegidoWeb:
               logoSecundarioElegidoWeb ?? otro.logoSecundarioElegidoWeb,
+          articulo: articulo ?? otro.articulo,
+          listaSeccionesArticulo:
+              listaSeccionesArticulo ?? otro.listaSeccionesArticulo,
           descripcionDeArticulo:
               descripcionDeArticulo ?? otro.descripcionDeArticulo,
         );
@@ -36,6 +43,8 @@ sealed class BlocEditorContenidoEstado {
   final Uint8List? logoElegidoWeb;
   final File? logoSecundarioElegidoCelular;
   final Uint8List? logoSecundarioElegidoWeb;
+  final Articulo? articulo;
+  final List<Articulo> listaSeccionesArticulo;
 
   /// El core de el artículo, acá se encuentra toda la información
   /// central del mismo, se pueden subir imagenes, customizar la letra
@@ -75,6 +84,8 @@ class BlocEditorContenidoEstadoRecolectandoDatos
     super.logoElegidoWeb,
     super.logoSecundarioElegidoCelular,
     super.logoSecundarioElegidoWeb,
+    super.articulo,
+    super.listaSeccionesArticulo,
   }) : super.desde();
 }
 
@@ -83,15 +94,29 @@ class BlocEditorContenidoEstadoRecolectandoDatos
 /// {@endtemplate}
 class BlocEditorContenidoEstadoExitoso extends BlocEditorContenidoEstado {
   /// {@macro BlocEditorContenidoEstadoExitoso}
-  BlocEditorContenidoEstadoExitoso.desde(super.otro) : super.desde();
+  BlocEditorContenidoEstadoExitoso.desde(
+    super.otro, {
+    super.logoElegidoCelular,
+    super.logoElegidoWeb,
+    super.logoSecundarioElegidoCelular,
+    super.logoSecundarioElegidoWeb,
+    super.articulo,
+    super.listaSeccionesArticulo,
+  }) : super.desde();
 }
 
-/// {@template BlocEditorContenidoEstadoFallido}
+/// {@template BlocEditorContenidoEstadoError}
 /// Estado de fallo del [BlocEditorContenido].
 /// {@endtemplate}
-class BlocEditorContenidoEstadoFallido extends BlocEditorContenidoEstado {
-  /// {@macro BlocEditorContenidoEstadoFallido}
-  BlocEditorContenidoEstadoFallido.desde(super.otro) : super.desde();
+class BlocEditorContenidoEstadoError extends BlocEditorContenidoEstado {
+  /// {@macro BlocEditorContenidoEstadoError}
+  BlocEditorContenidoEstadoError.desde(
+    super.otro, {
+    required this.mensajeDeError,
+  }) : super.desde();
+
+  /// Mensaje de error
+  final MensajesDeErrorDeAdministracionMarcas mensajeDeError;
 }
 
 /// {@template BlocEditorContenidoEstadoActualizandoDescripcion}

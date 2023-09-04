@@ -1,3 +1,4 @@
+import 'package:prlab_server/src/generated/cliente.dart';
 import 'package:prlab_server/src/generated/marca.dart';
 import 'package:prlab_server/src/odms/odm_marca.dart';
 import 'package:prlab_server/src/servicio.dart';
@@ -61,15 +62,10 @@ class ServicioMarca extends Servicio<OdmMarca> {
     }
   }
 
-  Future<List<dynamic>> listarMarcasDeUsuario(
-    Session session, {
-    required int idUsuario,
-  }) async {
+  /// Obtiene el registro de una marca por su id.
+  Future<Marca> obtenerMarcaPorId(Session session, int idMarca) async {
     return await performOperation(
-      () => odm.listarMarcasDeUsuario(
-        session,
-        idUsuario: idUsuario,
-      ),
+      () => odm.obtenerMarcaPorId(session: session, id: idMarca),
     );
   }
 
@@ -86,10 +82,11 @@ class ServicioMarca extends Servicio<OdmMarca> {
     required int id,
   }) async {
     try {
-      logger.info('se va a eliminar la marca con id $id');
-      logger.finer('verificando que la marca exista');
+      logger
+        ..info('se va a eliminar la marca con id $id')
+        ..finer('verificando que la marca exista');
       await performOperation(
-        () => odm.obtenerMarca(session: session, id: id),
+        () => odm.obtenerMarcaPorId(session: session, id: id),
       );
       logger.finer('eliminando marca');
       return await performOperation(
@@ -101,5 +98,48 @@ class ServicioMarca extends Servicio<OdmMarca> {
     } on Exception catch (e) {
       rethrow;
     }
+  }
+
+  /// Crea la relación entre una marca y un usuario.
+  Future<List<List<dynamic>>> asignarUsuarioAMarca(
+    Session session, {
+    required int idMarca,
+    required int idUsuario,
+    required int idRol,
+  }) async {
+    return await performOperation(
+      () => odm.asignarUsuarioAMarca(
+        session,
+        idMarca: idMarca,
+        idUsuario: idUsuario,
+        idRol: idRol,
+      ),
+    );
+  }
+
+  /// Obtiene las marcas a las que se encuentra asignado un usuario.
+  Future<List<Marca>> listarMarcasPorUsuario(
+    Session session, {
+    required int idUsuario,
+  }) async {
+    return await performOperation(
+      () => odm.listarMarcasPorUsuario(
+        session,
+        idUsuario: idUsuario,
+      ),
+    );
+  }
+
+  /// Obtiene los usuarios asignados a una marca.
+  Future<List<Cliente>> listarUsuariosPorMarca(
+    Session session, {
+    required int idMarca,
+  }) async {
+    return await performOperation(
+      () => odm.listarUsuariosPorMarca(
+        session,
+        idMarca: idMarca,
+      ),
+    );
   }
 }

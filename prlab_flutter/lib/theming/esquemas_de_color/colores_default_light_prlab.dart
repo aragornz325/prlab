@@ -23,6 +23,9 @@ const themeDefaultPRLab = ColorScheme.light(
   /// Color utilizado en titulos y ToolTip
   tertiary: Color(0xff363636),
 
+  /// Color utilizado en bordes delineados oscuros
+  tertiaryContainer: Color(0xff91213B),
+
   /// Color utilizado para notificar error.
   error: Color(0xffE00707),
 

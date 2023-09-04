@@ -13,7 +13,10 @@ import 'package:prlab_flutter/utilidades/widgets/wrapper_navegacion/pr_wrapper_n
 @RoutePage()
 class PaginaDashboard extends StatelessWidget {
   /// {@macro PaginaDashboard}
-  const PaginaDashboard({super.key});
+  const PaginaDashboard({
+    this.articuloId,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,8 @@ class PaginaDashboard extends StatelessWidget {
                   context.router.push(const RutaDashboard());
 
                 case MenuDeOpciones.createArticle:
-                  context.router.push(const RutaEditorContenido());
+                  context.router
+                      .push(RutaEditorContenido(articuloId: ));
                 case MenuDeOpciones.createReport:
                 case MenuDeOpciones.projects:
                 case MenuDeOpciones.dashboards:

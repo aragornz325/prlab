@@ -8,7 +8,7 @@ RUN dart compile exe bin/main.dart -o bin/main
 
 FROM debian:buster-slim AS runtime
 
-ENV runmode=production
+ENV runmode=staging
 ENV serverid=default
 ENV logging=normal
 ENV role=monolith

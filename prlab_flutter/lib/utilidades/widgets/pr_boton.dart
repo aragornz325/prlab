@@ -12,10 +12,12 @@ class PRBoton extends StatelessWidget {
     required this.onTap,
     required this.texto,
     required this.estaHabilitado,
+    this.fontSize,
     this.width,
     this.height,
     this.esOutlined = false,
     this.muestraEstadoDeCarga = false,
+    this.fontWeight,
     super.key,
   });
 
@@ -26,6 +28,8 @@ class PRBoton extends StatelessWidget {
     required bool estaHabilitado,
     required double width,
     double? height,
+    double? fontSize,
+    FontWeight? fontWeight,
   }) {
     return PRBoton(
       onTap: onTap,
@@ -34,6 +38,8 @@ class PRBoton extends StatelessWidget {
       esOutlined: true,
       width: width,
       height: height,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
     );
   }
 
@@ -54,6 +60,12 @@ class PRBoton extends StatelessWidget {
 
   /// Asigna diseño si es outlined
   final bool esOutlined;
+
+  /// Tamaño de la letra.
+  final double? fontSize;
+
+  /// El espesor de la letra
+  final FontWeight? fontWeight;
 
   /// Si es true muestra un circular progress indicator dentro del boton.
   final bool muestraEstadoDeCarga;
@@ -87,8 +99,8 @@ class PRBoton extends StatelessWidget {
               : Text(
                   texto,
                   style: TextStyle(
-                    fontSize: 16.pf,
-                    fontWeight: FontWeight.w600,
+                    fontSize: fontSize ?? 16.pf,
+                    fontWeight: fontWeight ?? FontWeight.w600,
                     color: esOutlined
                         ? estaHabilitado
                             ? colores.primary

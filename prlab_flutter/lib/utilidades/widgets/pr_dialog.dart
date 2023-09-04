@@ -210,7 +210,7 @@ class PRDialog extends StatelessWidget {
   factory PRDialog.error({
     required BuildContext context,
     required VoidCallback onTap,
-    required String descripcionError,
+    required Widget contenido,
     double height = 285,
     double width = 455,
   }) {
@@ -239,15 +239,7 @@ class PRDialog extends StatelessWidget {
             SizedBox(height: 30.ph),
             SizedBox(
               width: 360.pw,
-              child: Text(
-                descripcionError,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 15.pf,
-                  color: colores.secondary,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
+              child: contenido,
             ),
             SizedBox(height: 30.ph),
             Center(

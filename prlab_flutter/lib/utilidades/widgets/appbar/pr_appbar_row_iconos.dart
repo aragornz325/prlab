@@ -89,7 +89,7 @@ class PRAppBarRowIconos extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            /// TODO(Anyone) datos de user
+                            // TODO(Anyone): datos de user
 
                             'PR Lab',
                             style: TextStyle(
@@ -98,7 +98,7 @@ class PRAppBarRowIconos extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            /// TODO(Anyone) datos de user
+                            // TODO(Anyone): datos de user
                             'John Smith - Owner',
                             style: TextStyle(
                               fontSize: 14.pf,
