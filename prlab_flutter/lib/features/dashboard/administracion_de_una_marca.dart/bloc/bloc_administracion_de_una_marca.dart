@@ -25,7 +25,9 @@ class BlocAdministracionDeUnaMarca extends Bloc<
     add(BlocAdministracionDeUnaMarcaEventoInicializar());
   }
 
-  /// EventHandler de [BlocAdministracionDeUnaMarcaEventoInicializar]
+  /// Ejecuta los procesos y llamadas necesarias para la
+  /// correcta inicialización de la pagina de administración
+  /// de marca.
   Future<void> _onInicializar(
     BlocAdministracionDeUnaMarcaEventoInicializar event,
     Emitter<BlocAdministracionDeUnaMarcaEstado> emit,

@@ -23,7 +23,7 @@ class BlocAdministracionDeUnaMarcaEstado extends Equatable {
   final int idMarca;
 
   /// La marca que va a estar siendo visualizada
-  /// en la pafina de adminitracion de marca.
+  /// en la página de administración de marca.
   final Marca? marca;
 
   @override
