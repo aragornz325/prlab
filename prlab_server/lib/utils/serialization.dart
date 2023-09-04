@@ -46,7 +46,10 @@ class AdministradorSerializacion extends SerializationManager{
           as dynamic;
     } else if (t == List<_i16.Marca>) {
       return (data as List).map((e) => deserialize<_i16.Marca>(e)).toList()
-          as dynamic;
+          as dynamic; } else if (t == _i1.getType<List<_i14.Articulo>?>()) {
+      return (data != null
+          ? (data as List).map((e) => deserialize<_i14.Articulo>(e)).toList()
+          : null) as dynamic;
     } else if (t == List<List<dynamic>>) {
       return (data as List).map((e) => deserialize<List<dynamic>>(e)).toList()
           as dynamic;

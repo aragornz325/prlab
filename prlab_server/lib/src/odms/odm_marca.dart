@@ -123,7 +123,7 @@ class OdmMarca extends ODM {
       session,
       (session) async {
         final query = await session.db.query(
-          'SELECT "idMarca" FROM marcas_staff WHERE "idStaff" = $idUsuario;',
+          'SELECT "idMarca" FROM "marcas_staff" WHERE "idStaff" = $idUsuario;',
         );
         final listaIds = query.map((e) => e.first as int).toList();
         return listaIds;
@@ -137,74 +137,19 @@ class OdmMarca extends ODM {
     final responseMaps = await rawQueryOperation(
       session,
       '''
-      SELECT "id", "nombre", "sitioWeb", "fechaCreacion", "ultimaModificacion", "fechaEliminacion" FROM marcas 
+      SELECT "id", "nombre", "sitioWeb", "fechaCreacion", "ultimaModificacion", "fechaEliminacion" FROM "marcas" 
       WHERE "id" IN (${queryListaDeIdMarcas.join(',')});
       ''',
       keysMapaModeloDb:
           Marca(nombre: '', sitioWeb: '').toJsonForDatabase().keys,
     );
 
-    final listasUsuarios = {};
-
-    for (final marca in queryListaDeIdMarcas) {
-      final listaUsuarios = await listarUsuariosPorMarca(
-        session,
-        idMarca: marca,
-      );
-      listasUsuarios[marca] = listaUsuarios;
-    }
-
     final responseSerializado = responseMaps
         .map(
-          (e) => Marca.fromJson(e, AdministradorSerializacion())
-            ..staff = listasUsuarios[e['id']],
+          (e) => Marca.fromJson(e, AdministradorSerializacion()),
         )
         .toList();
     return responseSerializado;
   }
 
-  /// Obtiene los usuarios asignados a una marca.
-  Future<List<Cliente>> listarUsuariosPorMarca(
-    Session session, {
-    required int idMarca,
-  }) async {
-    final queryListaDeIdUsuarios = await performOdmOperation(
-      session,
-      (session) async {
-        final query = await session.db.query(
-          'SELECT "idStaff" FROM marcas_staff WHERE "idMarca" = $idMarca;',
-        );
-        final listaIds = query.map((e) => e.first as int).toList();
-        return listaIds;
-      },
-    );
-
-    if (queryListaDeIdUsuarios.isEmpty) {
-      return [];
-    }
-
-    final responseMaps = await rawQueryOperation(
-      session,
-      '''
-          SELECT "id", "nombre", "apellido", "fechaDeNacimiento", "nombreDeOrganizacion", "domicilio", "telefono", "idUsuario", "idOrganizacion", "contacto", "fechaEliminacion", "ultimaModificacion", "fechaCreacion" FROM "clientes" 
-          WHERE "idUsuario" IN (${queryListaDeIdUsuarios.join(',')});
-        ''',
-      keysMapaModeloDb: Cliente(
-        nombre: 'nombre',
-        apellido: 'apellido',
-        fechaDeNacimiento: DateTime.now(),
-        nombreDeOrganizacion: 'nombreDeOrganizacion',
-        ultimaModificacion: DateTime.now(),
-        fechaCreacion: DateTime.now(),
-      ).toJsonForDatabase().keys,
-    );
-
-    final responseSerializado = responseMaps
-        .map(
-          (e) => Cliente.fromJson(e, AdministradorSerializacion()),
-        )
-        .toList();
-
-    return responseSerializado;
-  }
 }

@@ -20,8 +20,8 @@ import 'proyecto.dart' as _i10;
 import 'publicacion.dart' as _i11;
 import 'protocol.dart' as _i12;
 import 'package:prlab_client/src/protocol/articulo.dart' as _i13;
-import 'package:prlab_client/src/protocol/marca.dart' as _i14;
-import 'package:prlab_client/src/protocol/cliente.dart' as _i15;
+import 'package:prlab_client/src/protocol/cliente.dart' as _i14;
+import 'package:prlab_client/src/protocol/marca.dart' as _i15;
 import 'package:serverpod_auth_client/module.dart' as _i16;
 export 'articulo.dart';
 export 'cliente.dart';
@@ -130,8 +130,12 @@ class Protocol extends _i1.SerializationManager {
       return (data as List).map((e) => deserialize<_i13.Articulo>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i14.Marca>) {
-      return (data as List).map((e) => deserialize<_i14.Marca>(e)).toList()
+    if (t == List<_i14.Cliente>) {
+      return (data as List).map((e) => deserialize<_i14.Cliente>(e)).toList()
+          as dynamic;
+    }
+    if (t == List<_i15.Marca>) {
+      return (data as List).map((e) => deserialize<_i15.Marca>(e)).toList()
           as dynamic;
     }
     if (t == List<List<dynamic>>) {
@@ -140,10 +144,6 @@ class Protocol extends _i1.SerializationManager {
     }
     if (t == List<dynamic>) {
       return (data as List).map((e) => deserialize<dynamic>(e)).toList()
-          as dynamic;
-    }
-    if (t == List<_i15.Cliente>) {
-      return (data as List).map((e) => deserialize<_i15.Cliente>(e)).toList()
           as dynamic;
     }
     try {

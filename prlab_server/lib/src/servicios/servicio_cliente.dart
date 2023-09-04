@@ -26,4 +26,17 @@ class ServicioCliente extends Servicio<OdmCliente> {
       rethrow;
     }
   }
+
+  /// Obtiene los usuarios asignados a una marca.
+  Future<List<Cliente>> listarUsuariosPorMarca(
+    Session session, {
+    required int idMarca,
+  }) async {
+    return await performOperation(
+      () => odm.listarUsuariosPorMarca(
+        session,
+        idMarca: idMarca,
+      ),
+    );
+  }
 }

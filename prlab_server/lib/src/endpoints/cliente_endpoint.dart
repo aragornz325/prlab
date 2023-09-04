@@ -23,4 +23,15 @@ class ClienteEndpoint extends Endpoint {
       rethrow;
     }
   }
+
+  /// Obtiene los usuarios asignados a una marca.
+  Future<List<Cliente>> listarUsuariosPorMarca(
+    Session session, {
+    required int idMarca,
+  }) async {
+    return await servicioCliente.listarUsuariosPorMarca(
+      session,
+      idMarca: idMarca,
+    );
+  }
 }

@@ -1,5 +1,7 @@
 import 'package:prlab_server/src/generated/cliente.dart';
 import 'package:prlab_server/src/generated/marca.dart';
+import 'package:prlab_server/src/odms/odm_articulo.dart';
+import 'package:prlab_server/src/odms/odm_cliente.dart';
 import 'package:prlab_server/src/odms/odm_marca.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/server.dart';
@@ -7,6 +9,9 @@ import 'package:serverpod/server.dart';
 class ServicioMarca extends Servicio<OdmMarca> {
   @override
   final odm = OdmMarca();
+
+  final odmCliente = OdmCliente();
+  final odmArticulo = OdmArticulo();
 
   /// La función `crearMarca` crea una nueva marca y devuelve un booleano que
   /// indica si la operación fue exitosa.
@@ -135,24 +140,41 @@ class ServicioMarca extends Servicio<OdmMarca> {
     Session session, {
     required int idUsuario,
   }) async {
-    return await performOperation(
+    List<Marca> marcas = await performOperation(
       () => odm.listarMarcasPorUsuario(
         session,
         idUsuario: idUsuario,
       ),
     );
-  }
 
-  /// Obtiene los usuarios asignados a una marca.
-  Future<List<Cliente>> listarUsuariosPorMarca(
-    Session session, {
-    required int idMarca,
-  }) async {
-    return await performOperation(
-      () => odm.listarUsuariosPorMarca(
-        session,
-        idMarca: idMarca,
-      ),
-    );
+    final listasUsuarios = {};
+    final listasArticulos = {};
+
+    for (final marca in marcas) {
+      final listaUsuarios = await performOperation(
+        () => odmCliente.listarUsuariosPorMarca(
+          session,
+          idMarca: marca.id!,
+        ),
+      );
+      final listaArticulos = await performOperation(
+        () => odmArticulo.listarArticulosPorMarca(
+          session: session,
+          idMarca: marca.id!,
+        ),
+      );
+      listasUsuarios[marca.id] = listaUsuarios;
+      listasArticulos[marca.id] = listaArticulos;
+    }
+
+    final response = marcas
+        .map(
+          (e) => e
+            ..staff = listasUsuarios[e.id]
+            ..ultimosArticulos = listasArticulos[e.id],
+        )
+        .toList();
+
+    return response;
   }
 }

@@ -104,14 +104,4 @@ class MarcaEndpoint extends Endpoint {
     );
   }
 
-  /// Obtiene los usuarios asignados a una marca.
-  Future<List<Cliente>> listarUsuariosPorMarca(
-    Session session, {
-    required int idMarca,
-  }) async {
-    return await servicioMarca.listarUsuariosPorMarca(
-      session,
-      idMarca: idMarca,
-    );
-  }
 }

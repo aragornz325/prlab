@@ -204,6 +204,15 @@ class _EndpointCliente extends _i1.EndpointRef {
         'completarKyc',
         {'datosDelCliente': datosDelCliente},
       );
+
+  /// Obtiene los usuarios asignados a una marca.
+  _i2.Future<List<_i4.Cliente>> listarUsuariosPorMarca(
+          {required int idMarca}) =>
+      caller.callServerEndpoint<List<_i4.Cliente>>(
+        'cliente',
+        'listarUsuariosPorMarca',
+        {'idMarca': idMarca},
+      );
 }
 
 /// Clase con endopoint para envio de email de registro.
@@ -324,15 +333,6 @@ class _EndpointMarca extends _i1.EndpointRef {
         'marca',
         'listarMarcasPorUsuario',
         {'idUsuario': idUsuario},
-      );
-
-  /// Obtiene los usuarios asignados a una marca.
-  _i2.Future<List<_i4.Cliente>> listarUsuariosPorMarca(
-          {required int idMarca}) =>
-      caller.callServerEndpoint<List<_i4.Cliente>>(
-        'marca',
-        'listarUsuariosPorMarca',
-        {'idMarca': idMarca},
       );
 }
 
