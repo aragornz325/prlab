@@ -95,6 +95,12 @@ class _EndpointArticulo extends _i1.EndpointRef {
         {'idMarca': idMarca},
       );
 
+  /// La función `actualizarArticulo` actualiza un artículo usando el servicio `servicioArticulo` y
+  /// devuelve un booleano indicando si la actualización fue exitosa.
+  ///
+  /// Args:
+  ///   session (Session): Un objeto de sesión que representa la sesión del usuario actual.
+  ///   articulo (Articulo): El parámetro "articulo" es de tipo "Articulo" y es obligatorio.
   _i2.Future<bool> actualizarArticulo({required _i3.Articulo articulo}) =>
       caller.callServerEndpoint<bool>(
         'articulo',
@@ -307,6 +313,14 @@ class _EndpointMarca extends _i1.EndpointRef {
         'marca',
         'listarMarcasPorUsuario',
         {'idUsuario': idUsuario},
+      );
+
+  _i2.Future<List<_i4.Cliente>> listarUsuariosPorMarca(
+          {required int idMarca}) =>
+      caller.callServerEndpoint<List<_i4.Cliente>>(
+        'marca',
+        'listarUsuariosPorMarca',
+        {'idMarca': idMarca},
       );
 }
 

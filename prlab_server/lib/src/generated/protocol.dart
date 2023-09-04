@@ -23,6 +23,7 @@ import 'publicacion.dart' as _i13;
 import 'protocol.dart' as _i14;
 import 'package:prlab_server/src/generated/articulo.dart' as _i15;
 import 'package:prlab_server/src/generated/marca.dart' as _i16;
+import 'package:prlab_server/src/generated/cliente.dart' as _i17;
 export 'articulo.dart';
 export 'cliente.dart';
 export 'comentario.dart';
@@ -972,6 +973,10 @@ class Protocol extends _i1.SerializationManagerServer {
     }
     if (t == List<dynamic>) {
       return (data as List).map((e) => deserialize<dynamic>(e)).toList()
+          as dynamic;
+    }
+    if (t == List<_i17.Cliente>) {
+      return (data as List).map((e) => deserialize<_i17.Cliente>(e)).toList()
           as dynamic;
     }
     try {

@@ -26,39 +26,35 @@ abstract class ODM {
     }
   }
 
+  /// Metodo para ejecutar funciones con queries raw de Serverpod y mapear los 
+  /// resultados a objetos.  
+  /// Requiere del script de la query SQL y las "keys" del objeto a devolver.
   Future<List<Map<String, dynamic>>> rawQueryOperation<T>(
-    Session session, {
-    TableRow? entidad,
-    Map? mapaModelo,
-    required ServerpodDbFunction<T> funcionRawQuery,
+    Session session,
+    String query, {
+    required Iterable<String> keysMapaModeloDb,
+    int? timeoutInSeconds,
+    Transaction? transaction,
   }) async {
     try {
-      this.session = session;
-      if (entidad == null && mapaModelo == null) {
-        throw Exception('Falta una clase TableRow o un Map como modelo');
-      }
 
-      Map<String, dynamic> tempModelo =
-          (entidad != null) ? entidad.allToJson() : mapaModelo;
+      final dbRawQuery = await session.db.query(
+        query,
+        timeoutInSeconds: timeoutInSeconds,
+        transaction: transaction,
+      );
 
-      final tempModeloKeys = tempModelo.keys.toList();
-      final queryResponse = await funcionRawQuery(session);
-
-      final response = queryResponse as List<List<dynamic>>;
-
-      return response.map((e) {
-        var index = 0;
-        for (var key in tempModeloKeys) {
-          if (key.contains('Api')) {
-            tempModelo[key] = null;
-            continue;
-          } else {
-            tempModelo[key] = e[index];
-            index += 1;
-          }
+      List<String> keysMapaModeloList = keysMapaModeloDb.toList();
+     
+      final response = dbRawQuery.map((e) {
+        Map<String, dynamic> modeloResponse = {};
+        for (final key in keysMapaModeloList) {
+          modeloResponse[key] = e[keysMapaModeloList.indexOf(key)];
         }
-        return tempModelo;
+        return modeloResponse;
       }).toList();
+
+      return response;
     } on Exception catch (e, st) {
       throw UnimplementedError('Error no identificado: $e \n$st');
     }

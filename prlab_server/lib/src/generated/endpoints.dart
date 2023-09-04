@@ -408,6 +408,24 @@ class Endpoints extends _i1.EndpointDispatch {
             idUsuario: params['idUsuario'],
           ),
         ),
+        'listarUsuariosPorMarca': _i1.MethodConnector(
+          name: 'listarUsuariosPorMarca',
+          params: {
+            'idMarca': _i1.ParameterDescription(
+              name: 'idMarca',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i6.MarcaEndpoint).listarUsuariosPorMarca(
+            session,
+            idMarca: params['idMarca'],
+          ),
+        ),
       },
     );
     modules['serverpod_auth'] = _i10.Endpoints()..initializeEndpoints(server);

@@ -1,3 +1,4 @@
+import 'package:prlab_server/src/generated/cliente.dart';
 import 'package:prlab_server/src/generated/marca.dart';
 import 'package:prlab_server/src/odms/odm_marca.dart';
 import 'package:prlab_server/src/servicio.dart';
@@ -61,9 +62,11 @@ class ServicioMarca extends Servicio<OdmMarca> {
     }
   }
 
+  /// Obtiene el registro de una marca por su id.
   Future<Marca> obtenerMarcaPorId(Session session, int idMarca) async {
     return await performOperation(
-        () => odm.obtenerMarcaPorId(session, idMarca));
+      () => odm.obtenerMarcaPorId(session: session, id: idMarca),
+    );
   }
 
   /// La función `eliminarMarca` se utiliza para eliminar una marca por su ID.
@@ -82,7 +85,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
       logger.info('se va a eliminar la marca con id $id');
       logger.finer('verificando que la marca exista');
       await performOperation(
-        () => odm.obtenerMarca(session: session, id: id),
+        () => odm.obtenerMarcaPorId(session: session, id: id),
       );
       logger.finer('eliminando marca');
       return await performOperation(
@@ -96,6 +99,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
     }
   }
 
+  /// Crea la relación entre una marca y un usuario.
   Future<List<List<dynamic>>> asignarUsuarioAMarca(
     Session session, {
     required int idMarca,
@@ -112,6 +116,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
     );
   }
 
+  /// Obtiene las marcas a las que se encuentra asignado un usuario.
   Future<List<Marca>> listarMarcasPorUsuario(
     Session session, {
     required int idUsuario,
@@ -122,5 +127,16 @@ class ServicioMarca extends Servicio<OdmMarca> {
         idUsuario: idUsuario,
       ),
     );
+  }
+
+  /// Obtiene los usuarios asignados a una marca.
+  Future<List<Cliente>> listarUsuariosPorMarca(
+    Session session, {
+    required int idMarca,
+  }) async {
+    return await performOperation(() => odm.listarUsuariosPorMarca(
+          session,
+          idMarca: idMarca,
+        ));
   }
 }

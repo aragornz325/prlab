@@ -49,17 +49,6 @@ class OdmMarca extends ODM {
     }
   }
 
-  Future<Marca> obtenerMarcaPorId(Session session, int idMarca) async {
-    final response = await performOdmOperation(
-      session,
-      (session) => Marca.findById(session, idMarca),
-    );
-    if (response == null) {
-      throw Exception('Marca no encontrada!');
-    }
-    return response;
-  }
-
   /// La función `eliminarMarca` elimina un registro de la base de datos según
   /// el ID proporcionado.
   /// Args:
@@ -86,7 +75,8 @@ class OdmMarca extends ODM {
     }
   }
 
-  Future<Marca> obtenerMarca({
+  /// Obtiene el registro de una marca por su id.
+  Future<Marca> obtenerMarcaPorId({
     required Session session,
     required int id,
   }) async {
@@ -109,6 +99,7 @@ class OdmMarca extends ODM {
     }
   }
 
+  /// Crea la relación entre una marca y un usuario.
   Future<List<List<dynamic>>> asignarUsuarioAMarca(
     Session session, {
     required int idMarca,
@@ -124,35 +115,93 @@ class OdmMarca extends ODM {
     );
   }
 
+  /// Obtiene las marcas a las que se encuentra asignado un usuario.
   Future<List<Marca>> listarMarcasPorUsuario(
     Session session, {
     required int idUsuario,
   }) async {
-    final queryListaDeMarcas = await performOdmOperation(
+    final queryListaDeIdMarcas = await performOdmOperation(
       session,
-      (session) => session.db
-          .query(
-            'SELECT "idMarca" FROM marcas_staff WHERE "idStaff" = $idUsuario;',
-          )
-          .then(
-            (value) => value.map((e) => e.first).toList(),
-          ),
+      (session) async {
+        final query = await session.db.query(
+          'SELECT "idMarca" FROM marcas_staff WHERE "idStaff" = $idUsuario;',
+        );
+        final listaIds = query.map((e) => e.first as int).toList();
+        return listaIds;
+      },
     );
-
-    if (queryListaDeMarcas.isEmpty) {
+    if (queryListaDeIdMarcas.isEmpty) {
       return [];
     }
 
-    return await rawQueryOperation(
+    final responseMaps = await rawQueryOperation(
       session,
-      entidad: Marca(nombre: '', sitioWeb: ''),
-      funcionRawQuery: (session) => session.db.query(
-        'SELECT * FROM marcas WHERE "id" IN (${queryListaDeMarcas.join(',')});',
-      ),
-    ).then((value) => value
+      '''
+      SELECT "id", "nombre", "sitioWeb", "fechaCreacion", "ultimaModificacion", "fechaEliminacion" FROM marcas 
+      WHERE "id" IN (${queryListaDeIdMarcas.join(',')});
+      ''',
+      keysMapaModeloDb:
+          Marca(nombre: '', sitioWeb: '').toJsonForDatabase().keys,
+    );
+
+    final listasUsuarios = {};
+
+    for (final marca in queryListaDeIdMarcas) {
+      final listaUsuarios =
+          await listarUsuariosPorMarca(session, idMarca: marca);
+      listasUsuarios[marca] = listaUsuarios;
+    }
+
+    final responseSerializado = responseMaps
         .map(
-          (e) => Marca.fromJson(e, AdministradorSerializacion())..staffApi = [],
+          (e) => Marca.fromJson(e, AdministradorSerializacion())
+            ..staffApi = listasUsuarios[e['id']],
         )
-        .toList());
+        .toList();
+    return responseSerializado;
+  }
+
+  /// Obtiene los usuarios asignados a una marca.
+  Future<List<Cliente>> listarUsuariosPorMarca(
+    Session session, {
+    required int idMarca,
+  }) async {
+    final queryListaDeIdUsuarios = await performOdmOperation(
+      session,
+      (session) async {
+        final query = await session.db.query(
+          'SELECT "idStaff" FROM marcas_staff WHERE "idMarca" = $idMarca;',
+        );
+        final listaIds = query.map((e) => e.first as int).toList();
+        return listaIds;
+      },
+    );
+    if (queryListaDeIdUsuarios.isEmpty) {
+      return [];
+    }
+
+    final responseMaps = await rawQueryOperation(
+      session,
+      '''
+          SELECT "id", "nombre", "apellido", "fechaDeNacimiento", "nombreDeOrganizacion", "domicilio", "telefono", "idUsuario", "idOrganizacion", "contacto", "fechaEliminacion", "ultimaModificacion", "fechaCreacion" FROM "clientes" 
+          WHERE "idUsuario" IN (${queryListaDeIdUsuarios.join(',')});
+        ''',
+      keysMapaModeloDb: Cliente(
+        nombre: 'nombre',
+        apellido: 'apellido',
+        fechaDeNacimiento: DateTime.now(),
+        nombreDeOrganizacion: 'nombreDeOrganizacion',
+        ultimaModificacion: DateTime.now(),
+        fechaCreacion: DateTime.now(),
+      ).toJsonForDatabase().keys,
+    );
+
+    final responseSerializado = responseMaps
+        .map(
+          (e) => Cliente.fromJson(e, AdministradorSerializacion()),
+        )
+        .toList();
+
+    return responseSerializado;
   }
 }

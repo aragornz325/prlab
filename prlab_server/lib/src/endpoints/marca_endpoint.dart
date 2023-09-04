@@ -69,10 +69,12 @@ class MarcaEndpoint extends Endpoint {
     }
   }
 
+  /// Obtiene el registro de una marca por su id.
   Future<Marca> obtenerMarcaPorId(Session session, int idMarca) async {
     return await servicioMarca.obtenerMarcaPorId(session, idMarca);
   }
 
+  /// Crea la relación entre una marca y un usuario.
   Future<List<List<dynamic>>> asignarUsuarioAMarca(
     Session session, {
     required int idMarca,
@@ -87,6 +89,7 @@ class MarcaEndpoint extends Endpoint {
     );
   }
 
+  /// Obtiene las marcas a las que se encuentra asignado un usuario.
   Future<List<Marca>> listarMarcasPorUsuario(
     Session session, {
     required int idUsuario,
@@ -94,6 +97,17 @@ class MarcaEndpoint extends Endpoint {
     return servicioMarca.listarMarcasPorUsuario(
       session,
       idUsuario: idUsuario,
+    );
+  }
+
+  /// Obtiene los usuarios asignados a una marca.
+  Future<List<Cliente>> listarUsuariosPorMarca(
+    Session session, {
+    required int idMarca,
+  }) async {
+    return await servicioMarca.listarUsuariosPorMarca(
+      session,
+      idMarca: idMarca,
     );
   }
 }
