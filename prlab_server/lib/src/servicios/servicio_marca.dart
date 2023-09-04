@@ -69,6 +69,19 @@ class ServicioMarca extends Servicio<OdmMarca> {
     );
   }
 
+  // Future<List<dynamic>> listarMarcasDeUsuario(
+  //   Session session, {
+  //   required int idUsuario,
+  // }) async {
+  //   print(idUsuario);
+  //   return await performOperation(
+  //     () => odm.listarMarcasDeUsuario(
+  //       session,
+  //       idUsuario: idUsuario,
+  //     ),
+  //   );
+  // }
+
   /// La función `eliminarMarca` se utiliza para eliminar una marca por su ID.
   ///
   /// Args:
