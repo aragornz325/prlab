@@ -42,7 +42,10 @@ class OdmCliente extends ODM {
       session,
       (session) async {
         final query = await session.db.query(
-          'SELECT "idStaff" FROM marcas_staff WHERE "idMarca" = $idMarca;',
+          '''
+            SELECT "idStaff" FROM marcas_staff 
+            WHERE "idMarca" = $idMarca AND "fechaEliminacion" IS NULL;
+          ''',
         );
         final listaIds = query.map((e) => e.first as int).toList();
         return listaIds;

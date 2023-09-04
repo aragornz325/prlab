@@ -409,6 +409,31 @@ class Endpoints extends _i1.EndpointDispatch {
             idRol: params['idRol'],
           ),
         ),
+        'desvincularUsuarioDeMarca': _i1.MethodConnector(
+          name: 'desvincularUsuarioDeMarca',
+          params: {
+            'idMarca': _i1.ParameterDescription(
+              name: 'idMarca',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'idUsuario': _i1.ParameterDescription(
+              name: 'idUsuario',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i6.MarcaEndpoint)
+                  .desvincularUsuarioDeMarca(
+            session,
+            idMarca: params['idMarca'],
+            idUsuario: params['idUsuario'],
+          ),
+        ),
         'listarMarcasPorUsuario': _i1.MethodConnector(
           name: 'listarMarcasPorUsuario',
           params: {

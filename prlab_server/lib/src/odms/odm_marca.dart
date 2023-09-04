@@ -129,6 +129,20 @@ class OdmMarca extends ODM {
     );
   }
 
+  /// Da de baja la relacion entre el usuario y la marca 
+  /// en la tabla intermedia.
+  Future<List<List<dynamic>>> desvincularUsuarioDeMarca(
+    Session session, {
+    required int idMarca,
+    required int idUsuario,
+  }) async {
+    return await performOdmOperation(session, (session) => session.db.query('''
+      UPDATE "marcas_staff"
+      SET "fechaEliminacion" = '${DateTime.now().toIso8601String()}'
+      WHERE "idMarca" = $idMarca AND "idStaff" = $idUsuario AND "fechaEliminacion" IS NULL;
+      '''),);
+  }
+
   /// Obtiene las marcas a las que se encuentra asignado un usuario.
   Future<List<Marca>> listarMarcasPorUsuario(
     Session session, {

@@ -93,6 +93,20 @@ class MarcaEndpoint extends Endpoint {
     );
   }
 
+  /// Da de baja la relacion entre el usuario y la marca 
+  /// en la tabla intermedia.
+  Future<List<List<dynamic>>> desvincularUsuarioDeMarca(
+    Session session, {
+    required int idMarca,
+    required int idUsuario,
+  }) async {
+    return await servicioMarca.desvincularUsuarioDeMarca(
+      session,
+      idMarca: idMarca,
+      idUsuario: idUsuario,
+    );
+  }
+
   /// Obtiene las marcas a las que se encuentra asignado un usuario.
   Future<List<Marca>> listarMarcasPorUsuario(
     Session session, {
@@ -103,5 +117,4 @@ class MarcaEndpoint extends Endpoint {
       idUsuario: idUsuario,
     );
   }
-
 }

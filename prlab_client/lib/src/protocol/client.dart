@@ -326,6 +326,19 @@ class _EndpointMarca extends _i1.EndpointRef {
         },
       );
 
+  _i2.Future<List<List<dynamic>>> desvincularUsuarioDeMarca({
+    required int idMarca,
+    required int idUsuario,
+  }) =>
+      caller.callServerEndpoint<List<List<dynamic>>>(
+        'marca',
+        'desvincularUsuarioDeMarca',
+        {
+          'idMarca': idMarca,
+          'idUsuario': idUsuario,
+        },
+      );
+
   /// Obtiene las marcas a las que se encuentra asignado un usuario.
   _i2.Future<List<_i5.Marca>> listarMarcasPorUsuario(
           {required int idUsuario}) =>

@@ -37,7 +37,6 @@ class ArticuloEndpoint extends Endpoint {
   /// Args:
   ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es
   ///   obligatorio.
-
   Future<List<Articulo>> listarArticulos(
     Session session,
   ) async {
@@ -58,7 +57,6 @@ class ArticuloEndpoint extends Endpoint {
   ///   session (Session): Un objeto de sesión que contiene información sobre
   ///   la sesión del usuario.id (int): El parámetro "id" es un número entero
   ///   que representa el identificador único del artículo que desea obtener.
-
   Future<Articulo> obtenerArticulo(
     Session session,
     int id,
@@ -82,7 +80,6 @@ class ArticuloEndpoint extends Endpoint {
   ///   session (Session): Un parámetro obligatorio de tipo Sesión.
   ///   id (int): El parámetro "id" es un número entero que representa el
   ///   identificador único del artículo que debe eliminarse.
-
   Future<bool> eliminarArticulo(
     Session session,
     int id,
@@ -129,7 +126,6 @@ class ArticuloEndpoint extends Endpoint {
   /// Args:
   ///   session (Session): Un objeto de sesión que representa la sesión del usuario actual.
   ///   articulo (Articulo): El parámetro "articulo" es de tipo "Articulo" y es obligatorio.
-
   Future<bool> actualizarArticulo(
     Session session, {
     required Articulo articulo,
