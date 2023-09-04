@@ -14,7 +14,7 @@ class Marca extends _i1.TableRow {
     int? id,
     required this.nombre,
     required this.sitioWeb,
-    this.staffApi,
+    this.staff,
     this.fechaCreacion,
     this.ultimaModificacion,
     this.fechaEliminacion,
@@ -30,8 +30,8 @@ class Marca extends _i1.TableRow {
           serializationManager.deserialize<String>(jsonSerialization['nombre']),
       sitioWeb: serializationManager
           .deserialize<String>(jsonSerialization['sitioWeb']),
-      staffApi: serializationManager
-          .deserialize<List<_i2.Cliente>?>(jsonSerialization['staffApi']),
+      staff: serializationManager
+          .deserialize<List<_i2.Cliente>?>(jsonSerialization['staff']),
       fechaCreacion: serializationManager
           .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
       ultimaModificacion: serializationManager
@@ -47,7 +47,7 @@ class Marca extends _i1.TableRow {
 
   String sitioWeb;
 
-  List<_i2.Cliente>? staffApi;
+  List<_i2.Cliente>? staff;
 
   DateTime? fechaCreacion;
 
@@ -63,7 +63,7 @@ class Marca extends _i1.TableRow {
       'id': id,
       'nombre': nombre,
       'sitioWeb': sitioWeb,
-      'staffApi': staffApi,
+      'staff': staff,
       'fechaCreacion': fechaCreacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaEliminacion': fechaEliminacion,
@@ -88,7 +88,7 @@ class Marca extends _i1.TableRow {
       'id': id,
       'nombre': nombre,
       'sitioWeb': sitioWeb,
-      'staffApi': staffApi,
+      'staff': staff,
       'fechaCreacion': fechaCreacion,
       'ultimaModificacion': ultimaModificacion,
       'fechaEliminacion': fechaEliminacion,

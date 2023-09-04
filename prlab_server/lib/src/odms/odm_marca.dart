@@ -174,7 +174,7 @@ class OdmMarca extends ODM {
     final responseSerializado = responseMaps
         .map(
           (e) => Marca.fromJson(e, AdministradorSerializacion())
-            ..staffApi = listasUsuarios[e['id']],
+            ..staff = listasUsuarios[e['id']],
         )
         .toList();
     return responseSerializado;
