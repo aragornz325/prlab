@@ -5,6 +5,9 @@ import 'package:serverpod/server.dart';
 class ArticuloEndpoint extends Endpoint {
   final servicioArticulo = ServicioArticulo();
 
+  @override
+  final requireLogin = true;
+
   /// La función `crearArticulo` es que crea un artículo usando una sesión y un
   /// payload, y devuelve un booleano que indica si la creación fue exitosa.
   ///
