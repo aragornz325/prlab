@@ -53,7 +53,7 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
             );
           default: // No es la idea que se use, se deberian handlear
             // todos los casos, el linter se da cuenta
-            // si se checkeo todo lo del enum
+            // si se checkeo todo lo del enum (by Nico)
             showDialog<void>(
               context: context,
               builder: (context) => const PRDialogErrorNoDisponible(),
