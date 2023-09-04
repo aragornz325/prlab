@@ -954,13 +954,13 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i1.getType<_i13.Publicacion?>()) {
       return (data != null ? _i13.Publicacion.fromJson(data, this) : null) as T;
     }
-    if (t == _i1.getType<List<int>?>()) {
+    if (t == _i1.getType<List<_i14.Cliente>?>()) {
       return (data != null
-          ? (data as List).map((e) => deserialize<int>(e)).toList()
+          ? (data as List).map((e) => deserialize<_i14.Cliente>(e)).toList()
           : null) as dynamic;
     }
-    if (t == List<_i14.Articulo>) {
-      return (data as List).map((e) => deserialize<_i14.Articulo>(e)).toList()
+    if (t == List<_i15.Articulo>) {
+      return (data as List).map((e) => deserialize<_i15.Articulo>(e)).toList()
           as dynamic;
     }
     if (t == List<_i16.Marca>) {
@@ -973,6 +973,10 @@ class Protocol extends _i1.SerializationManagerServer {
     }
     if (t == List<dynamic>) {
       return (data as List).map((e) => deserialize<dynamic>(e)).toList()
+          as dynamic;
+    }
+    if (t == List<_i17.Cliente>) {
+      return (data as List).map((e) => deserialize<_i17.Cliente>(e)).toList()
           as dynamic;
     }
     try {
