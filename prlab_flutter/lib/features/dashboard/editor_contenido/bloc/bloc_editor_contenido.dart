@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/bloc/bloc_administracion_marcas.dart';
+import 'package:prlab_flutter/utilidades/utilidades.dart';
 
 part 'bloc_editor_contenido_estado.dart';
 part 'bloc_editor_contenido_evento.dart';
@@ -15,10 +16,40 @@ part 'bloc_editor_contenido_evento.dart';
 class BlocEditorContenido
     extends Bloc<BlocEditorContenidoEvento, BlocEditorContenidoEstado> {
   /// {@macro BlocEditorContenido}
-  BlocEditorContenido() : super(const BlocEditorContenidoEstadoInicial()) {
+  BlocEditorContenido(int idArticulo)
+      : super(const BlocEditorContenidoEstadoInicial()) {
     on<BlocEditorContenidoEventoObtenerArticulo>(_onObtenerArticulo);
     on<BlocEditorContenidoEventoAgregarImagen>(_onAgregarImagen);
-    on<BlocEditorContenidoActualizarDescripcion>(_onActualizarDescripcion);
+    on<BlocEditorContenidoActualizarArticulo>(_onActualizarArticulo);
+
+    add(BlocEditorContenidoEventoObtenerArticulo(idArticulo: idArticulo));
+  }
+
+  /// Se encarga principalmente de traer los datos del
+  /// artículo que va a ser editado.
+  Future<void> _onObtenerArticulo(
+    BlocEditorContenidoEventoObtenerArticulo event,
+    Emitter<BlocEditorContenidoEstado> emit,
+  ) async {
+    try {
+      final respuesta = await client.articulo.obtenerArticulo(
+        event.idArticulo,
+      );
+
+      emit(
+        BlocEditorContenidoEstadoExitoso.desde(
+          state,
+          articulo: respuesta,
+        ),
+      );
+    } catch (e) {
+      emit(
+        BlocEditorContenidoEstadoError.desde(
+          state,
+          mensajeDeError: MensajesDeErrorDeAdministracionMarcas.internalError,
+        ),
+      );
+    }
   }
 
   /// Permite agregar y guardar las imagenes de ambos logos en la vista
@@ -42,136 +73,47 @@ class BlocEditorContenido
     );
   }
 
-  /// Trae el articulo a editar o continuar su creacion y actualiza los datos
-  /// en el estado del [BlocEditorContenido].
-  Future<void> _onObtenerArticulo(
-    BlocEditorContenidoEventoObtenerArticulo event,
+  /// Refresca la descripción y el título del artículo que se esta
+  /// editando dentro del estado de [BlocEditorContenidoEstado].
+  Future<void> _onActualizarArticulo(
+    BlocEditorContenidoActualizarArticulo event,
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
-    emit(BlocEditorContenidoEstadoCargando.desde(state));
+    final articulo = state.articulo;
 
-    try {
-      // final articulo = await _backRepository.getArticulo( event.idArticulo);
-      final articulo = _listaPrArticulos[1];
-      emit(
-        BlocEditorContenidoEstadoExitoso.desde(
-          state,
-          articulo: articulo,
-          listaSeccionesArticulo: _listaPrArticulos,
-        ),
-      );
-    } catch (error) {
-      emit(
+    if (articulo == null) {
+      return emit(
         BlocEditorContenidoEstadoError.desde(
           state,
           mensajeDeError: MensajesDeErrorDeAdministracionMarcas.internalError,
-        ), // TODO(SAM): checkear error
+        ),
       );
     }
-  }
 
-  final _listaPrArticulos = [
-    Articulo(
-      titulo: 'Flutter article',
-      fechaCreacion: DateTime.now(),
-      ultimaModificacion: DateTime.now(),
-      contenido: 'contenido?',
-      fechaEliminacion: DateTime.now(),
-      id: 2,
-      idAutor: 2,
-      idProyecto: 2,
-      idStatus: 2,
-    ),
-    Articulo(
-      titulo: 'Flutter articulo',
-      fechaCreacion: DateTime.now(),
-      ultimaModificacion: DateTime.now(),
-      contenido: 'contenido?',
-      fechaEliminacion: DateTime.now(),
-      id: 3,
-      idAutor: 3,
-      idProyecto: 3,
-      idStatus: 3,
-    ),
-    Articulo(
-      titulo: 'Flutter article',
-      fechaCreacion: DateTime.now(),
-      ultimaModificacion: DateTime.now(),
-      contenido: 'contenido?',
-      fechaEliminacion: DateTime.now(),
-      id: 4,
-      idAutor: 4,
-      idProyecto: 4,
-      idStatus: 4,
-    ),
-    Articulo(
-      titulo: 'Flutter article',
-      fechaCreacion: DateTime.now(),
-      ultimaModificacion: DateTime.now(),
-      contenido: 'contenido?',
-      fechaEliminacion: DateTime.now(),
-      id: 5,
-      idAutor: 5,
-      idProyecto: 5,
-      idStatus: 5,
-    ),
-    Articulo(
-      titulo: 'Flutter article',
-      fechaCreacion: DateTime.now(),
-      ultimaModificacion: DateTime.now(),
-      contenido: 'contenido?',
-      fechaEliminacion: DateTime.now(),
-      id: 6,
-      idAutor: 6,
-      idProyecto: 6,
-      idStatus: 6,
-    ),
-    Articulo(
-      titulo: 'Flutter article',
-      fechaCreacion: DateTime.now(),
-      ultimaModificacion: DateTime.now(),
-      contenido: 'contenido?',
-      fechaEliminacion: DateTime.now(),
-      id: 7,
-      idAutor: 7,
-      idProyecto: 7,
-      idStatus: 7,
-    ),
-    Articulo(
-      titulo: 'Flutter article',
-      fechaCreacion: DateTime.now(),
-      ultimaModificacion: DateTime.now(),
-      contenido: 'contenido?',
-      fechaEliminacion: DateTime.now(),
-      id: 8,
-      idAutor: 8,
-      idProyecto: 8,
-      idStatus: 8,
-    ),
-    Articulo(
-      titulo: 'Flutter article',
-      fechaCreacion: DateTime.now(),
-      ultimaModificacion: DateTime.now(),
-      contenido: 'contenido?',
-      fechaEliminacion: DateTime.now(),
-      id: 9,
-      idAutor: 9,
-      idProyecto: 9,
-      idStatus: 9,
-    ),
-  ];
+    try {
+      // TODO(ANDRE): Revisar esta logica.
+      await client.articulo.actualizarArticulo(
+        articulo: articulo
+          ..contenido = event.descripcionDeArticulo ??
+              state.articulo?.contenido ??
+              state.descripcionDeArticulo
+          ..titulo = event.titulo ?? state.articulo?.titulo ?? '',
+      );
 
-  /// Refresca la descripción del artículo que se esta
-  /// editando dentro del estado de [BlocEditorContenidoEstado].
-  void _onActualizarDescripcion(
-    BlocEditorContenidoActualizarDescripcion event,
-    Emitter<BlocEditorContenidoEstado> emit,
-  ) {
-    emit(
-      BlocEditorContenidoEstadoActualizandoDescripcion.desde(
-        state,
-        descripcionDeArticulo: event.descripcionDeArticulo,
-      ),
-    );
+      emit(
+        BlocEditorContenidoEstadoActualizandoDescripcion.desde(
+          state,
+          descripcionDeArticulo:
+              event.descripcionDeArticulo ?? state.descripcionDeArticulo,
+        ),
+      );
+    } catch (e) {
+      emit(
+        BlocEditorContenidoEstadoError.desde(
+          state,
+          mensajeDeError: MensajesDeErrorDeAdministracionMarcas.unknown,
+        ),
+      );
+    }
   }
 }

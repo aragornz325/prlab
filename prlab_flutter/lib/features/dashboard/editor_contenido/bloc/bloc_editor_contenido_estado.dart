@@ -43,7 +43,6 @@ sealed class BlocEditorContenidoEstado {
   final Uint8List? logoElegidoWeb;
   final File? logoSecundarioElegidoCelular;
   final Uint8List? logoSecundarioElegidoWeb;
-  final Articulo? articulo;
   final List<Articulo> listaSeccionesArticulo;
 
   /// El core de el artículo, acá se encuentra toda la información
@@ -51,6 +50,9 @@ sealed class BlocEditorContenidoEstado {
   /// y más, el string contiene el tipo de archivo `html` donde estan
   /// descriptas todas esas especificaciones.
   final String descripcionDeArticulo;
+
+  /// El articulo a ser editado en la página actual.
+  final Articulo? articulo;
 }
 
 /// {@template BlocEditorContenidoEstadoInicial}
@@ -96,13 +98,15 @@ class BlocEditorContenidoEstadoExitoso extends BlocEditorContenidoEstado {
   /// {@macro BlocEditorContenidoEstadoExitoso}
   BlocEditorContenidoEstadoExitoso.desde(
     super.otro, {
+    required Articulo articulo,
     super.logoElegidoCelular,
     super.logoElegidoWeb,
     super.logoSecundarioElegidoCelular,
     super.logoSecundarioElegidoWeb,
-    super.articulo,
     super.listaSeccionesArticulo,
-  }) : super.desde();
+  }) : super.desde(
+          articulo: articulo,
+        );
 }
 
 /// {@template BlocEditorContenidoEstadoError}
