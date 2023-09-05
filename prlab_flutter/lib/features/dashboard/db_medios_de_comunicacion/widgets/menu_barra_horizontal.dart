@@ -19,6 +19,12 @@ class MenuBarraHorizontal extends StatefulWidget {
 class _MenuBarraHorizontalState extends State<MenuBarraHorizontal> {
   ItemMenu itemSeleccionado = ItemMenu.personas;
 
+  void _onSeleccionado(ItemMenu itemMenu) {
+    setState(() {
+      itemSeleccionado = itemMenu;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
@@ -34,11 +40,7 @@ class _MenuBarraHorizontalState extends State<MenuBarraHorizontal> {
             (item) => _ContenedorItemMenu(
               itemMenu: item,
               itemSeleccionado: itemSeleccionado,
-              onSeleccionado: (itemMenu) {
-                setState(() {
-                  itemSeleccionado = itemMenu;
-                });
-              },
+              onSeleccionado: _onSeleccionado,
             ),
           ),
           const Spacer(),
@@ -106,7 +108,7 @@ class _ContadorLimiteDeBusquedas extends StatelessWidget {
 }
 
 // ? Este componente `_ContenedorItemMenu` podría ser utilizado
-// ? tambien en el contenedor de items de filtrado de periodistas
+// ? también en el contenedor de items de filtrado de periodistas
 // ? ya que en ese widget se utiliza un componente
 // ? muy similar.
 
@@ -123,7 +125,7 @@ class _ContenedorItemMenu extends StatelessWidget {
     required this.onSeleccionado,
   });
 
-  /// Ítem del menu que se verá representado en este
+  /// Ítem del menú que se verá representado en este
   /// contenedor.
   final ItemMenu itemMenu;
 
@@ -175,7 +177,7 @@ class _ContenedorItemMenu extends StatelessWidget {
 /// Tipo de ítem que se muestra en la barra
 /// superior de [MenuBarraHorizontal] para
 /// la navegación interna de la página de
-/// busqueda de medios de comunicación.
+/// búsqueda de medios de comunicación.
 enum ItemMenu {
   personas(Icons.search_outlined),
   mediosDeComunicacion(Icons.fact_check_outlined),

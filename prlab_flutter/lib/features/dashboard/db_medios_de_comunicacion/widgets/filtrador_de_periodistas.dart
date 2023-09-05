@@ -22,6 +22,12 @@ class FiltradorDePeriodistas extends StatefulWidget {
 class _FiltradorDePeriodistasState extends State<FiltradorDePeriodistas> {
   ItemMenuFiltros itemSeleccionado = ItemMenuFiltros.busqueda;
 
+  void _onSeleccionado(ItemMenuFiltros itemMenu) {
+    setState(() {
+      itemSeleccionado = itemMenu;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
@@ -38,18 +44,14 @@ class _FiltradorDePeriodistasState extends State<FiltradorDePeriodistas> {
                 (item) => _ContenedorItemMenuFiltros(
                   itemMenuFiltros: item,
                   itemSeleccionado: itemSeleccionado,
-                  onSeleccionado: (itemMenu) {
-                    setState(() {
-                      itemSeleccionado = itemMenu;
-                    });
-                  },
+                  onSeleccionado: _onSeleccionado,
                 ),
               ),
             ],
           ),
           const Divider(),
           // TODO(Andre): Continuar este campo en proximo pr.
-          _CampoDeTexto(
+          _CampoDeTextoFiltrador(
             controller: TextEditingController(),
           ),
         ],
@@ -58,15 +60,15 @@ class _FiltradorDePeriodistasState extends State<FiltradorDePeriodistas> {
   }
 }
 
-/// {@template _CampoDeTexto}
+/// {@template _CampoDeTextoFiltrador}
 /// Utilizado para algunos de los tipos de
 /// filtrado que ofrece la página como el
 /// filtrado por nombre de periodistas entre
 /// otros.
 /// {@endtemplate}
-class _CampoDeTexto extends StatelessWidget {
-  /// {@macro _CampoDeTexto}
-  const _CampoDeTexto({
+class _CampoDeTextoFiltrador extends StatelessWidget {
+  /// {@macro _CampoDeTextoFiltrador}
+  const _CampoDeTextoFiltrador({
     required this.controller,
   });
 
@@ -74,10 +76,16 @@ class _CampoDeTexto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colores = context.colores;
+
     // TODO(Andre): Continuar este campo en proximo pr.
-    return const TextField(
+    return TextField(
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.access_alarm),
+        prefixIcon: Icon(
+          Icons.search_rounded,
+          size: 24.pw,
+          color: colores.primary,
+        ),
       ),
     );
   }

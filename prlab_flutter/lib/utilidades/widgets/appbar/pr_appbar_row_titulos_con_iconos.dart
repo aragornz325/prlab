@@ -37,7 +37,7 @@ class PRAppBarRowTitulosConIconos extends StatelessWidget {
         PRPopUpMenu(
           tituloMenu: l10n.prAppBarCoverageMedia,
           onTap: onTap,
-          enumItemsMenu: MenuDeOpciones.coverturaMedia,
+          enumItemsMenu: MenuDeOpciones.coberturaMedia,
         ),
       ],
     );

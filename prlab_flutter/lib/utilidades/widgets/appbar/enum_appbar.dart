@@ -27,10 +27,10 @@ enum MenuDeOpciones {
   changeAccount,
   signOut,
 
-  // --- Covertura de medios de comunicación --
+  // --- Cobertura de medios de comunicación --
   databaseMedia;
 
-  /// Retorna el nombre de la categoria.
+  /// Retorna el nombre de la categoría.
   String nombreItem(BuildContext context) {
     return switch (this) {
       createArticle => context.l10n.prAppBarCreateContentCreateArticle,
@@ -94,8 +94,8 @@ enum MenuDeOpciones {
       ];
 
   /// Listas de items para diferenciar la sección
-  /// 'Covertura de medios de comunicación'.
-  static List<MenuDeOpciones> get coverturaMedia => [
+  /// 'Cobertura de medios de comunicación'.
+  static List<MenuDeOpciones> get coberturaMedia => [
         databaseMedia,
       ];
 
