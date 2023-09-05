@@ -6,21 +6,21 @@ class MailEndpoint extends Endpoint {
   // @override
   // bool get requireLogin => true;
 
-  /// Instancia de `ServicioMailer`.
+  /// Instancia de [ServicioMailer].
   final servicioMailer = ServicioMailer();
 
-  /// La función `envioMailRegistro` envía un correo electrónico de registro
+  /// La función [envioMailRegistro] envía un correo electrónico de registro
   /// utilizando el servicio `servicioMail`.
   ///
   /// Args:
-  ///   session (Session): Un objeto de sesión que contiene información sobre
+  ///   [session] ([Session]): Un objeto de sesión que contiene información sobre
   /// la sesión del usuario.
-  ///   email (String): El parámetro de correo electrónico es una cadena que
+  ///   [email] ([String]): El parámetro de correo electrónico es una cadena que
   /// representa la dirección de correo electrónico del destinatario a quien se
   /// enviará el correo electrónico de registro.
-  ///   tipoInvitacion (int): El parámetro "tipoInvitacion" es un número entero
+  ///   [tipoInvitacion] ([int]): Este parametro es un número entero
   /// que representa el tipo de invitación. Se utiliza como argumento al llamar
-  /// al método "envioMailRegistro" del objeto "servicioMail".
+  /// al método [envioMailRegistro] del objeto [servicioMail].
   ///
   /// Returns:
   ///   un `Futuro<bool>`.

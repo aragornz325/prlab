@@ -2,29 +2,29 @@ import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/servicios/servicio_marca.dart';
 import 'package:serverpod/serverpod.dart';
 
-/// Enpoints para acceder a aspectos de la entidad Marca.
+/// Enpoints para acceder a aspectos de la entidad [Marca].
 class MarcaEndpoint extends Endpoint {
   /// Instancia del servicio para la entidad Marca.
   final servicioMarca = ServicioMarca();
 
-  /// La función `crearMarca` crea una nueva marca llamando al método
-  /// `crearMarca` del servicio`servicioMarca` y devuelve un booleano
+  /// La función [crearMarca] crea una nueva marca llamando al método
+  /// [crearMarca] del servicio [servicioMarca] y devuelve un booleano
   /// que indica éxito.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa
+  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y representa
   ///   la sesión del usuario
   /// actual.
-  ///   payload (Marca): El parámetro "payload" es un objeto de tipo "Marca" que
-  ///   contiene los datos necesarios para crear una nueva marca..
+  ///   [marca] ([Marca]): Este parametro es un objeto de tipo "Marca" que
+  ///   contiene los datos necesarios para crear una nueva marca.
   Future<bool> crearMarca(
     Session session,
-    Marca payload,
+    Marca marca,
   ) async {
     try {
       await servicioMarca.crearMarca(
         session: session,
-        payload: payload,
+        marca: marca,
       );
       return true;
     } on Exception catch (e) {
@@ -32,15 +32,15 @@ class MarcaEndpoint extends Endpoint {
     }
   }
 
-  /// La función `eliminarMarca` es una función que toma un objeto `Session` y
-  /// un entero `id` como parámetros, e intenta eliminar una marca usando el
-  /// método `servicioMarca.eliminarMarca`.
+  /// La función [eliminarMarca] es una función que toma un objeto `Session` y
+  /// un entero [id] como parámetros, e intenta eliminar una marca usando el
+  /// método [servicioMarca.eliminarMarca].
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa
+  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y representa
   ///   la sesión del usuario
   /// actual
-  ///   id (int): La identificación de la marca que debe eliminarse.
+  ///   [id] ([int]): La identificación de la marca que debe eliminarse.
   Future<bool> eliminarMarca(
     Session session,
     int id,
@@ -56,11 +56,11 @@ class MarcaEndpoint extends Endpoint {
     }
   }
 
-  /// La función `listarMarcas` recupera una lista de marcas usando un objeto
+  /// La función [listarMarcas] recupera una lista de marcas usando un objeto
   /// de sesión y un objeto de servicio.
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión". Se utiliza
+  ///   [session] ([Session]): Este parametro es de tipo "Sesión". Se utiliza
   ///   para pasar la información de la sesión al método "listarMarcas".
 
   Future<List<Marca>> listarMarcas(

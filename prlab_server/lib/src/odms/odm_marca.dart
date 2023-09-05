@@ -4,42 +4,42 @@ import 'package:prlab_server/utils/manejo_de_errores/manejo_de_errores.dart';
 import 'package:prlab_server/utils/serialization.dart';
 import 'package:serverpod/server.dart';
 
-/// La clase `OdmMarca` es una clase Dart que proporciona funciones para crear
+/// La clase [OdmMarca] es una clase Dart que proporciona funciones para crear
 /// borrar, modificar y listar objetos `Marca` usando una operación ODM.
 class OdmMarca extends ODM {
-  /// La función `crearMarca` es una función de Dart que crea un nuevo objeto
+  /// La función [crearMarca] es una función de Dart que crea un nuevo objeto
   /// `Marca` en una base de datos mediante una operación ODM.
 
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es
+  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y es
   /// obligatorio. Representa lasesión de la base de datos que se utilizará para
-  /// la operación.  payload (Marca): El parámetro `payload` es de tipo `Marca`,
+  /// la operación.  [marca] (Marca): El parámetro [marca] es de tipo [Marca],
   /// que es un objeto que representa los datos a insertar en la base de datos.
   Future<bool> crearMarca({
     required Session session,
-    required Marca payload,
+    required Marca marca,
   }) async {
     try {
       await ejecutarOperacionOdm(
         session,
         (Session session) {
-          logger.info('Creando marca: ${payload.nombre}');
+          logger.info('Creando marca: ${marca.nombre}');
           return Marca.insert(
             session,
-            payload
+            marca
               ..fechaCreacion = DateTime.now()
               ..ultimaModificacion = DateTime.now(),
           );
         },
       );
-      logger.fine('Marca ${payload.nombre} creada exitosamente.');
+      logger.fine('Marca ${marca.nombre} creada exitosamente.');
       return true;
     } on Exception catch (e) {
       throw Exception('$e');
     }
   }
 
-  /// La función `listarMarcas` recupera una lista de objetos `Marca` usando
+  /// La función [listarMarcas] recupera una lista de objetos [Marca] usando
   /// una operación ODM y una sesión proporcionada.
   Future<List<Marca>> listarMarcas({
     required Session session,
@@ -54,12 +54,12 @@ class OdmMarca extends ODM {
     }
   }
 
-  /// La función `eliminarMarca` elimina un registro de la base de datos según
+  /// La función [eliminarMarca] elimina un registro de la base de datos según
   /// el ID proporcionado.
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es
+  ///   [session] (Session): El parámetro de sesión es de tipo Sesión y es
   /// obligatorio. Representa la sesión de la base de datos que se utilizará
-  /// para la operación. id (int): El parámetro "id" es un número entero que
+  /// para la operación. [id] (int): El parámetro "id" es un número entero que
   ///  representa el identificador único de la marca que debe eliminarse.
 
   Future<bool> eliminarMarca({

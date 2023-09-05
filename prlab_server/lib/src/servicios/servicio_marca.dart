@@ -20,24 +20,24 @@ class ServicioMarca extends Servicio<OdmMarca> {
   /// indica si la operación fue exitosa.
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es
+  ///   session (Session): El parámetro [sesión] es de tipo "Sesión" y es
   /// obligatorio. Se utiliza para especificar la sesión de creación de la
   /// marca.
-  ///   payload (Marca): El parámetro `payload` es de tipo `Marca` y es
+  ///   marca (Marca): El parámetro [marca] es de tipo `Marca` y es
   /// obligatorio. Representa los datos que se utilizarán para crear una nueva
   /// marca.
   Future<bool> crearMarca({
     required Session session,
-    required Marca payload,
+    required Marca marca,
   }) async {
     try {
       logger.info(
-        'Creando Marca ${payload.nombre}',
+        'Creando Marca ${marca.nombre}',
       );
       return await ejecutarOperacion(
         () => odm.crearMarca(
           session: session,
-          payload: payload
+          marca: marca
             ..fechaCreacion = DateTime.now()
             ..ultimaModificacion = DateTime.now(),
         ),
