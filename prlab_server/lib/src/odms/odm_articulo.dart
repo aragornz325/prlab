@@ -39,7 +39,8 @@ class OdmArticulo extends ODM {
               where: (t) => t.idAutor.equals(articulo.idAutor),
               orderBy: ArticuloTable().fechaCreacion,
               orderDescending: true,
-            ))!.id;
+            ))!
+                .id;
 
             logger.finest(
               'Artículo "${articulo.titulo}" creado exitosamente.',
@@ -161,12 +162,32 @@ class OdmArticulo extends ODM {
           return Articulo.find(
             session,
             where: (t) => t.idMarca.equals(idMarca),
+            orderBy: ArticuloTable().ultimaModificacion,
+            orderDescending: true,
           );
         },
       );
     } on Exception catch (e) {
       throw Exception('$e');
     }
+  }
+
+  /// Recupera los 3 ultimos articulos de la marca. Ordenados del modificado en 
+  /// fecha mas reciente a mas antigua.
+  Future<List<Articulo>> listarUltimosTresArticulosPorMarca(
+    Session session, {
+    required int idMarca,
+  }) async {
+    return await performOdmOperation(
+      session,
+      (session) => Articulo.find(
+        session,
+        where: (t) => t.idMarca.equals(idMarca),
+        orderBy: ArticuloTable().ultimaModificacion,
+        orderDescending: true,
+        limit: 3,
+      ),
+    );
   }
 
   /// La función `actualizarArticulo` actualiza un artículo con la sesión

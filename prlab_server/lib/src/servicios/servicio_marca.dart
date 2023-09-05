@@ -213,8 +213,8 @@ class ServicioMarca extends Servicio<OdmMarca> {
       );
 
       final listaArticulos = await performOperation(
-        () => odmArticulo.listarArticulosPorMarca(
-          session: session,
+        () => odmArticulo.listarUltimosTresArticulosPorMarca(
+          session,
           idMarca: marca.id!,
         ),
       );
