@@ -9,7 +9,7 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 ///
 /// Maneja campos de texto para buscar periodistas
 /// por nombre o el tipo de medio de comunicación
-/// y filtrado por paises, lenguajes entre otros más.
+/// y filtrado por países, lenguajes entre otros más.
 /// {@endtemplate}
 class FiltradorDePeriodistas extends StatefulWidget {
   /// {@macro FiltradorDePeriodistas}
@@ -60,7 +60,7 @@ class _FiltradorDePeriodistasState extends State<FiltradorDePeriodistas> {
 
 /// {@template _CampoDeTexto}
 /// Utilizado para algunos de los tipos de
-/// filtrado que ofrece la pagina como el
+/// filtrado que ofrece la página como el
 /// filtrado por nombre de periodistas entre
 /// otros.
 /// {@endtemplate}

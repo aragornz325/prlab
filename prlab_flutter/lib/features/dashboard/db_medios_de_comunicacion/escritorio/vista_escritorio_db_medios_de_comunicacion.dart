@@ -29,9 +29,9 @@ class VistaEscritorioDbMediosDeComunicacion extends StatelessWidget {
           titulo: l10n.pageMediaDatabaseTitle,
           descripcion: l10n.pageMediaDatabaseDescription,
         ),
-        SizedBox(height: 20.pw),
+        SizedBox(height: 20.ph),
         const MenuBarraHorizontal(),
-        SizedBox(height: 30.pw),
+        SizedBox(height: 30.ph),
         const Row(
           children: [
             FiltradorDePeriodistas(),
