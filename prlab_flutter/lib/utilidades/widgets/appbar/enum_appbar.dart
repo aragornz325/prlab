@@ -118,5 +118,4 @@ enum MenuDeOpciones {
   bool get esProjects => this == projects;
   bool get esDashboards => this == dashboards;
   bool get esMediaDatabase => this == databaseMedia;
-  // TODO(Manu): faltan opciones de coverage media
 }
