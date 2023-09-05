@@ -15,6 +15,7 @@ import 'package:serverpod_auth_client/module.dart' as _i6;
 import 'dart:io' as _i7;
 import 'protocol.dart' as _i8;
 
+/// Endpoints centrados en la entidad Articulo.
 class _EndpointArticulo extends _i1.EndpointRef {
   _EndpointArticulo(_i1.EndpointCaller caller) : super(caller);
 
@@ -99,12 +100,16 @@ class _EndpointArticulo extends _i1.EndpointRef {
         {'idMarca': idMarca},
       );
 
-  /// La función `actualizarArticulo` actualiza un artículo usando el servicio `servicioArticulo` y
-  /// devuelve un booleano indicando si la actualización fue exitosa.
+  /// La función `actualizarArticulo` actualiza un artículo usando el servicio
+  /// `servicioArticulo` y devuelve un booleano indicando si la actualización
+  /// fue exitosa.
   ///
   /// Args:
-  ///   session (Session): Un objeto de sesión que representa la sesión del usuario actual.
-  ///   articulo (Articulo): El parámetro "articulo" es de tipo "Articulo" y es obligatorio.
+  ///   session (Session): Un objeto de sesión que representa la sesión del
+  /// usuario actual.
+  ///
+  /// articulo (Articulo): El parámetro "articulo" es de tipo "Articulo" y es
+  /// obligatorio.
   _i2.Future<bool> actualizarArticulo({required _i3.Articulo articulo}) =>
       caller.callServerEndpoint<bool>(
         'articulo',
@@ -251,6 +256,7 @@ class _EndpointMail extends _i1.EndpointRef {
       );
 }
 
+/// Enpoints para acceder a aspectos de la entidad Marca.
 class _EndpointMarca extends _i1.EndpointRef {
   _EndpointMarca(_i1.EndpointCaller caller) : super(caller);
 

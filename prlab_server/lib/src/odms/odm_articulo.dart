@@ -15,37 +15,62 @@ class OdmArticulo extends ODM {
   ///   obligatorio.
   ///   payload (Articulo): El parámetro payload es de tipo Articulo, que
   ///   representa los datos del artículo que se debe crear.
-
   Future<int> crearArticulo({
     required Session session,
     required Articulo articulo,
   }) async {
     try {
-      final response = await performOdmOperation(
+      return await performOdmOperation(
         session,
-        (Session session) async {
-          logger.info(
-            'Creando artículo: ${articulo.titulo}',
-          );
-          await Articulo.insert(
-            session,
-            articulo
-              ..idAutor = await session.auth.authenticatedUserId ?? 0
-              ..fechaCreacion = DateTime.now()
-              ..ultimaModificacion = DateTime.now(),
-          );
-          return await Articulo.findSingleRow(
-            session,
-            where: (t) => t.idAutor.equals(articulo.idAutor),
-            orderBy: ArticuloTable().fechaCreacion,
-            orderDescending: true,
-          );
-        },
+        (session) => session.db.transaction(
+          (transaction) async {
+            logger.info(
+              'Creando artículo: "${articulo.titulo}"...',
+            );
+            await Articulo.insert(
+              session,
+              articulo
+                ..idAutor = await session.auth.authenticatedUserId ?? 0
+                ..fechaCreacion = DateTime.now()
+                ..ultimaModificacion = DateTime.now(),
+            );
+            final response = (await Articulo.findSingleRow(
+              session,
+              where: (t) => t.idAutor.equals(articulo.idAutor),
+              orderBy: ArticuloTable().fechaCreacion,
+              orderDescending: true,
+            ))!.id;
+
+            logger.finest(
+              'Artículo "${articulo.titulo}" creado exitosamente.',
+            );
+            return response!;
+          },
+        ),
       );
-      logger.finest(
-        'Artículo ${articulo.titulo} creado exitosamente.',
-      );
-      return response!.id!;
+      // (Session session) async {
+      //   logger.info(
+      //     'Creando artículo: ${articulo.titulo}',
+      //   );
+      //   await Articulo.insert(
+      //     session,
+      //     articulo
+      //       ..idAutor = await session.auth.authenticatedUserId ?? 0
+      //       ..fechaCreacion = DateTime.now()
+      //       ..ultimaModificacion = DateTime.now(),
+      //   );
+      //   return await Articulo.findSingleRow(
+      //     session,
+      //     where: (t) => t.idAutor.equals(articulo.idAutor),
+      //     orderBy: ArticuloTable().fechaCreacion,
+      //     orderDescending: true,
+      //   );
+      // },
+      // );
+      // logger.finest(
+      //   'Artículo ${articulo.titulo} creado exitosamente.',
+      // );
+      // return response!;
     } on Exception catch (e) {
       throw Exception('$e');
     }

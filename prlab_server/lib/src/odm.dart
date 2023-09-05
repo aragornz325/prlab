@@ -23,7 +23,9 @@ abstract class ODM {
       this.session = session;
       return await function(session);
     } on Exception catch (e, st) {
-      throw UnimplementedError('Error no identificado: $e \n$st');
+      throw UnimplementedError(
+        'Error no identificado: $e \n$st',
+      );
     }
   }
 
@@ -56,7 +58,9 @@ abstract class ODM {
 
       return response;
     } on Exception catch (e, st) {
-      throw UnimplementedError('Error no identificado: $e \n$st');
+      throw UnimplementedError(
+        'Error no identificado: $e \n$st',
+      );
     }
   }
 }

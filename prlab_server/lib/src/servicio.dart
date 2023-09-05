@@ -19,14 +19,20 @@ abstract class Servicio<T extends ODM> {
     try {
       logger.info('Executing $operation...');
       return operation().then((result) {
-        logger.finer('Operacion completada exitosamente');
+        logger.finer(
+          'Servicio completado exitosamente.',
+        );
         return result;
       });
     } on ExceptionPrLab catch (e) {
       throw e.errorType;
     } on Exception catch (e, st) {
-      logger.severe('Unidentified error: $e \n$st');
-      throw UnimplementedError('Unidentified error: $e \n$st');
+      logger.severe(
+        'Unidentified error: $e \n$st',
+      );
+      throw UnimplementedError(
+        'Unidentified error: $e \n$st',
+      );
     }
   }
 
@@ -34,14 +40,20 @@ abstract class Servicio<T extends ODM> {
   /// manejar sus errores.
   T performOperationToken<T>(T Function() operation) {
     try {
-      logger.info('Verifying token...');
+      logger.info(
+        'Verifying token...',
+      );
       return operation();
     } on JWTException catch (e) {
       logger.shout('$e');
       rethrow;
     } on Exception catch (e, st) {
-      logger.severe('Unidentified error: $e \n$st');
-      throw UnimplementedError('Unidentified error: $e \n$st');
+      logger.severe(
+        'Unidentified error: $e \n$st',
+      );
+      throw UnimplementedError(
+        'Unidentified error: $e \n$st',
+      );
     }
   }
 }
