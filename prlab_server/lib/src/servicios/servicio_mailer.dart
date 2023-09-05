@@ -8,27 +8,24 @@ import 'package:prlab_server/utils/mailer/mailer.dart';
 import 'package:prlab_server/utils/mailer/templates.dart';
 import 'package:serverpod/server.dart';
 
-/// La clase ServicioMailer se utiliza para enviar correos electrónicos.
+/// La clase [ServicioMailer] se utiliza para enviar correos electrónicos.
 class ServicioMailer extends Servicio<OdmAuth> {
+
   /// Instancia de la clase del odm.
   final authRepository = OdmAuth();
 
   /// Instancia de la clase con las plantillas para mailing.
   final plantillasCorreo = PlantillasCorreo();
 
-  /// La función `envioMailRegistro` envía un correo electrónico de registro
-  /// con un token a la dirección de correo electrónico especificada, guarda el
-  /// token en una base de datos y devuelve un valor booleano que indica si el
-  /// correo electrónico se envió correctamente.
+  /// Envía un correo con el enlace de invitación a registro.
   ///
   /// Args:
-  ///   session (Session): Un parámetro obligatorio de tipo Sesión, que
-  /// representa la sesión de usuario actual.
-  ///   email (String): El parámetro de correo electrónico es la dirección de
-  /// correo electrónico a la que se enviará el correo electrónico de registro.
-  ///
-  Future<bool> envioMailRegistro({
-    required Session session,
+  ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
+  /// contiene datos de la conexión.
+  ///   [email] ([String]): La dirección de correo electrónico a la que se 
+  /// enviará el correo electrónico de registro.
+  Future<bool> envioMailRegistro(
+    Session session,{
     required String email,
     required int tipoDeInvitacion,
   }) async {

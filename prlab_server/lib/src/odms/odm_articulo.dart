@@ -67,7 +67,10 @@ class OdmArticulo extends ODM {
       logger.info('Listando artículos');
       return await ejecutarOperacionOdm(
         session,
-        Articulo.find,
+        (session) => Articulo.find(
+              session,
+              where: (t) => t.fechaEliminacion.equals(null),
+            ),
       );
     } on Exception catch (e) {
       throw Exception('$e');
@@ -172,7 +175,7 @@ class OdmArticulo extends ODM {
     }
   }
 
-  /// Recupera los 3 ultimos articulos de la marca. Ordenados del modificado en 
+  /// Recupera los 3 ultimos articulos de la marca. Ordenados del modificado en
   /// fecha mas reciente a mas antigua.
   Future<List<Articulo>> listarUltimosTresArticulosPorMarca(
     Session session, {
