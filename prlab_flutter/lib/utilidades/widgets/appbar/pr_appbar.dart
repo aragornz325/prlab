@@ -23,7 +23,7 @@ class PRAppBar extends StatelessWidget {
     return Container(
       width: 1040.pw,
       height: 100.ph,
-      decoration: BoxDecoration(color: colores.onPrimary),
+      decoration: BoxDecoration(color: colores.surfaceTint),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 40.pw),
         child: Row(

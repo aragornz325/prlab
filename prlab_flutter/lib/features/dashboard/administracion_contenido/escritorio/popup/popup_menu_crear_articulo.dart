@@ -26,7 +26,7 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
 
     return PopupMenuButton<int>(
       offset: const Offset(-20, 35),
-      color: colores.onPrimary,
+      color: colores.surfaceTint,
       shape: const ContinuousRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(20),
@@ -118,7 +118,7 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15.pf,
-                    color: colores.onPrimary,
+                    color: colores.surfaceTint,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -144,7 +144,7 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
               child: Center(
                 child: Icon(
                   Icons.arrow_drop_down_outlined,
-                  color: colores.onPrimary,
+                  color: colores.surfaceTint,
                   size: 24.pf,
                 ),
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popups.dart';
@@ -115,7 +116,15 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                         ),
                       );
                     } else {
-                      return const SizedBox.shrink();
+                      return SizedBox(
+                        width: 1000.pw,
+                        height: 508.ph,
+                        child: Center(
+                          child: Image.asset(
+                            Assets.assets_images_nada_para_ver_png,
+                          ),
+                        ),
+                      );
                     }
                   },
                 ),

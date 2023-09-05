@@ -34,7 +34,7 @@ class InformacionDeLaMarca extends StatelessWidget {
     return Container(
       width: 485.pw,
       height: 80.ph,
-      color: colores.onPrimary,
+      color: colores.surfaceTint,
       child: Row(
         children: [
           BloqueDeInformacionDeMarca(
@@ -105,8 +105,8 @@ class InformacionDeLaMarca extends StatelessWidget {
                       width: 33.pw,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(color: colores.onPrimary),
-                        color: colores.onSecondary,
+                        border: Border.all(color: colores.surfaceTint),
+                        color: colores.outlineVariant,
                       ),
                     ),
                   );

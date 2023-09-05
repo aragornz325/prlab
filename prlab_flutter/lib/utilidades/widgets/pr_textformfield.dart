@@ -399,7 +399,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
                 borderSide: BorderSide(
                   color: widget.esSoloLectura
                       ? colores.primary
-                      : colores.onSecondary,
+                      : colores.outlineVariant,
                 ),
               ),
               suffixIcon: widget.esPassword ? widget.suffixIcon : null,
@@ -426,7 +426,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
                     Container(
                       height: 31.5.ph,
                       width: 1.pw,
-                      decoration: BoxDecoration(color: colores.onSecondary),
+                      decoration: BoxDecoration(color: colores.outlineVariant),
                     ),
                   ],
                 ),

@@ -75,9 +75,7 @@ class _FormRegistroState extends State<FormRegistro> {
               soloLectura: true,
             ),
           ),
-          SizedBox(
-            height: 20.ph,
-          ),
+          SizedBox(height: 40.ph),
           SizedBox(
             width: 359.pw,
             child: PRTextFormFieldPassword(
@@ -94,9 +92,7 @@ class _FormRegistroState extends State<FormRegistro> {
               },
             ),
           ),
-          SizedBox(
-            height: 20.ph,
-          ),
+          SizedBox(height: 40.ph),
           SizedBox(
             width: 359.pw,
             child: PRTextFormFieldPassword(
@@ -113,7 +109,7 @@ class _FormRegistroState extends State<FormRegistro> {
               },
             ),
           ),
-          SizedBox(height: 20.ph),
+          SizedBox(height: 30.ph),
           const TerminosCondicionesPRLab(),
           SizedBox(height: 40.ph),
           ClipRRect(

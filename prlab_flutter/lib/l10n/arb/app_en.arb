@@ -258,11 +258,17 @@
     "@pageRegisterErrorDialogDescription": {
         "description":"This message corresponds to a situation where the register of the user is an error. This is shown in an alert dialog after pressing sign up."
     },
-          "pageKYCSuccessDialogButtonText" : "Go to Log in",
+
+    "pageKYCSuccessDialogButtonText" : "Go to Log in",
     "@pageKYCSuccessDialogButtonText": {
         "description":"This message corresponds to a situation where the registration of the user is successful. This is shown in the button of the alert dialog after pressing continue button in KYC."
     },
 
+    "commonDialogDescriptionDelete" : "Are you sure you want to delete this\n page? you will not be able to undo this\n step.",
+    "@commonDialogDescriptionDelete": {
+        "description":"This description corresponds to a situation where the user wants to delete a page. This is shown in the alert dialog."
+    },
+    
     "drawerHome":"Home",
     "@drawerHome":{
         "description":"Text to indicate that you will be redirected to home"
@@ -485,11 +491,36 @@
     "@pageContentAdministrationPopupSendViaMail": {
         "description": "text in the popup Send via email,this edit text is displayed in a content management popup in an article, one of the options to choose from"
     },
+       "drawerAlertDialogLogoutBack": "Log out",
+    "@drawerAlertDialogLogoutBack": {
+        "description": "Title text shown on the button of the alert dialog logout in the drawer"
+    },
+          "drawerAlertDialogLogoutContentWarning": "Are you sure you want to log out? You \n will need to log in next time.",
+    "@drawerAlertDialogLogoutContentWarning": {
+        "description": "Content text shown in the center of the alert dialog logout in the drawer, that warns the user that if he presses continue he will be logged out."
+    },
+
     
+    "commonApply": "Apply",
+    "@commonApply": {
+        "description": "Text shown on a popup/alertdialog that indicates to Apply a filters,Typically used to filter alert dialogs."
+    },
+
+    "commonAlertDialogFilterByAuthor": "Filter by author",
+    "@commonAlertDialogFilterByAuthor": {
+        "description": "Text in title of alertdialog/popup Filter by author,Typically used to filter in title of alert dialogs."
+    },
+
+    "commonAlertDialogFilterByStatus": "Filter by Status",
+    "@commonAlertDialogFilterByStatus": {
+        "description": "Text in title of alertdialog/popup Filter by Status,Typically used to filter in title of alert dialogs."
+    },
+
     "commonEdit": "Edit",
     "@commonEdit": {
         "description": "Text shown on a button that indicates to edit,this edit text is displayed in a content management popup one of the options to choose from"
     },
+    
 
     "commonDuplicate": "Duplicate",
     "@commonDuplicate": {
