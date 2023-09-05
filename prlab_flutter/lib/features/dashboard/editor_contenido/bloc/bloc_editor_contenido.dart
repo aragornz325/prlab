@@ -31,6 +31,7 @@ class BlocEditorContenido
     BlocEditorContenidoEventoObtenerArticulo event,
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
+    emit(BlocEditorContenidoEstadoCargando.desde(state));
     try {
       final respuesta = await client.articulo.obtenerArticulo(
         event.idArticulo,

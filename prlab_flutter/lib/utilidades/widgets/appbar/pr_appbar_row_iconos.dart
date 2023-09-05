@@ -123,7 +123,10 @@ class PRAppBarRowIconos extends StatelessWidget {
                     value: enumPerfil,
                     child: Text(
                       enumPerfil.nombreItem(context),
-                      style: TextStyle(fontSize: 14.pf),
+                      style: TextStyle(
+                        fontSize: 14.pf,
+                        color: colores.tertiary,
+                      ),
                     ),
                   );
                 }),
