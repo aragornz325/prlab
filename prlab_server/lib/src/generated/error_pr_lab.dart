@@ -9,18 +9,18 @@
 import 'package:prlab_server/utils/manejo_de_errores/manejo_de_errores.dart';
 import 'package:serverpod/serverpod.dart' as _i1;
 
-class ExceptionPrLab extends _i1.SerializableEntity
+class ExcepcionPrLab extends _i1.SerializableEntity
     implements _i1.SerializableException {
-  ExceptionPrLab({
+  ExcepcionPrLab({
     required this.mensaje,
     required this.errorType,
   });
 
-  factory ExceptionPrLab.fromJson(
+  factory ExcepcionPrLab.fromJson(
     Map<String, dynamic> jsonSerialization,
     _i1.SerializationManager serializationManager,
   ) {
-    return ExceptionPrLab(
+    return ExcepcionPrLab(
       mensaje: serializationManager
           .deserialize<String>(jsonSerialization['mensaje']),
       errorType: serializationManager

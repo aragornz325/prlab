@@ -67,8 +67,8 @@ class Protocol extends _i1.SerializationManager {
     if (t == _i5.Entregable) {
       return _i5.Entregable.fromJson(data, this) as T;
     }
-    if (t == _i6.ExceptionPrLab) {
-      return _i6.ExceptionPrLab.fromJson(data, this) as T;
+    if (t == _i6.ExcepcionPrLab) {
+      return _i6.ExcepcionPrLab.fromJson(data, this) as T;
     }
     if (t == _i7.InformacionDeContacto) {
       return _i7.InformacionDeContacto.fromJson(data, this) as T;
@@ -100,8 +100,8 @@ class Protocol extends _i1.SerializationManager {
     if (t == _i1.getType<_i5.Entregable?>()) {
       return (data != null ? _i5.Entregable.fromJson(data, this) : null) as T;
     }
-    if (t == _i1.getType<_i6.ExceptionPrLab?>()) {
-      return (data != null ? _i6.ExceptionPrLab.fromJson(data, this) : null)
+    if (t == _i1.getType<_i6.ExcepcionPrLab?>()) {
+      return (data != null ? _i6.ExcepcionPrLab.fromJson(data, this) : null)
           as T;
     }
     if (t == _i1.getType<_i7.InformacionDeContacto?>()) {
@@ -181,8 +181,8 @@ class Protocol extends _i1.SerializationManager {
     if (data is _i5.Entregable) {
       return 'Entregable';
     }
-    if (data is _i6.ExceptionPrLab) {
-      return 'ExceptionPrLab';
+    if (data is _i6.ExcepcionPrLab) {
+      return 'ExcepcionPrLab';
     }
     if (data is _i7.InformacionDeContacto) {
       return 'InformacionDeContacto';
@@ -223,8 +223,8 @@ class Protocol extends _i1.SerializationManager {
     if (data['className'] == 'Entregable') {
       return deserialize<_i5.Entregable>(data['data']);
     }
-    if (data['className'] == 'ExceptionPrLab') {
-      return deserialize<_i6.ExceptionPrLab>(data['data']);
+    if (data['className'] == 'ExcepcionPrLab') {
+      return deserialize<_i6.ExcepcionPrLab>(data['data']);
     }
     if (data['className'] == 'InformacionDeContacto') {
       return deserialize<_i7.InformacionDeContacto>(data['data']);

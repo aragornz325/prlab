@@ -1,4 +1,4 @@
-exception: ExceptionPrLab
+exception: ExcepcionPrLab
 fields:
   mensaje: String
   errorType: ErrorPrLab
