@@ -31,15 +31,32 @@ class BlocEditorContenido
     BlocEditorContenidoEventoObtenerArticulo event,
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
+    emit(BlocEditorContenidoEstadoCargando.desde(state));
     try {
       final respuesta = await client.articulo.obtenerArticulo(
         event.idArticulo,
       );
-
+      Articulo(
+        titulo: 'Title',
+        contenido: 'content',
+        id: 2,
+      );
       emit(
         BlocEditorContenidoEstadoExitoso.desde(
           state,
           articulo: respuesta,
+          listaSeccionesArticulo: [
+            Articulo(
+              titulo: 'Title',
+              contenido: 'content',
+              id: 2,
+            ),
+            Articulo(
+              titulo: 'Title2',
+              contenido: 'content3',
+              id: 3,
+            ),
+          ],
         ),
       );
     } catch (e) {

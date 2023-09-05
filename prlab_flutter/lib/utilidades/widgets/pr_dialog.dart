@@ -112,15 +112,15 @@ class PRDialog extends StatelessWidget {
 
     /// Es la funcion que se encuentra en el boton que cancela la operacion
     required VoidCallback onTapBotonSecundario,
-    double height = 285,
-    double width = 455,
+    double height = 282,
+    double width = 454,
     bool estaHabilitado = true,
   }) {
     final colores = context.colores;
 
     return PRDialog(
-      height: height.ph,
-      width: width.pw,
+      height: height,
+      width: width,
       tipo: TipoDialog.solicitudAccion,
       content: Column(
         children: [
