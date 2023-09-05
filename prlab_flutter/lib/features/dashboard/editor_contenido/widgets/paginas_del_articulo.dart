@@ -36,6 +36,8 @@ class PaginasDelArticulo extends StatelessWidget {
             return Column(
               children: [
                 ArticuloPRLab.listTile(
+                  // TODO(SAM): Remover hardcodeo de
+                  // paginas y agregar las del back
                   titulo: l10n.pageEditContentArticleTitleHomePage,
                   context: context,
                   contenidoArticulo:
