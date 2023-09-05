@@ -96,6 +96,8 @@ class _ContenedorItemMenuFiltros extends StatelessWidget {
     required this.onSeleccionado,
   });
 
+  /// Item del menu que se verá representado en este
+  /// contenedor.
   final ItemMenuFiltros itemMenuFiltros;
 
   /// El item que en este momento esta seleccionado
@@ -105,6 +107,8 @@ class _ContenedorItemMenuFiltros extends StatelessWidget {
   /// pasan a estar deseleccionados.
   final ItemMenuFiltros itemSeleccionado;
 
+  /// Callback que se ejecuta cuando el usuario clickea
+  /// en el componente.
   final void Function(ItemMenuFiltros itemMenuFiltros) onSeleccionado;
 
   @override

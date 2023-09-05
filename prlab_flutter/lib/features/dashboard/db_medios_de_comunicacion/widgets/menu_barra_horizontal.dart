@@ -105,6 +105,11 @@ class _ContadorLimiteDeBusquedas extends StatelessWidget {
   }
 }
 
+// ? Este componente `_ContenedorItemMenu` podría ser utilizado
+// ? tambien en el contenedor de items de filtrado de periodistas
+// ? ya que en ese widget se utiliza un componente
+// ? muy similar.
+
 /// {@template _ContenedorItemMenu}
 /// Utilizado para representar un item de los
 /// representados en la barra superior de
@@ -118,10 +123,19 @@ class _ContenedorItemMenu extends StatelessWidget {
     required this.onSeleccionado,
   });
 
+  /// Item del menu que se verá representado en este
+  /// contenedor.
   final ItemMenu itemMenu;
 
+  /// El item que en este momento esta seleccionado
+  /// por el usuario.
+  ///
+  /// Si un item es seleccionado, el resto de los items
+  /// pasan a estar deseleccionados.
   final ItemMenu itemSeleccionado;
 
+  /// Callback que se ejecuta cuando el usuario clickea
+  /// en el componente.
   final void Function(ItemMenu itemMenu) onSeleccionado;
 
   @override

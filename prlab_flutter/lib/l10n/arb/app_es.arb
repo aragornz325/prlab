@@ -530,7 +530,7 @@
 
     "prAppBarCoverageMediaDbMedia":"Base de datos de periodistas",
     "@prAppBarCoverageMediaDbMedia":{
-        "description":"Text to redirect to db media page"
+        "description":"Text to redirect to database media page"
     },
 
     "pageMediaDatabaseTitle": "Encontrar medios de comunicación",

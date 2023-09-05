@@ -397,7 +397,7 @@
 
     "prAppBarCoverageMediaDbMedia": "Database Media",
     "@prAppBarCoverageMediaDbMedia":{
-        "description":"Text to redirect to db media page"
+        "description":"Text to redirect to database media page"
     },
 
     "pageContentAdministrationCreateArticle" : "Create an article",
@@ -520,27 +520,27 @@
 
     "pageMediaDatabaseJournalistFilterPeopleItem": "People",
     "@pageMediaDatabaseJournalistFilterPeopleItem": {
-        "description": "One of the 3 squeezable items of the vertical bar containing the journalist filters"
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
     },
 
     "pageMediaDatabaseJournalistFilterMediaOutletsItem": "Media outlets",
     "@pageMediaDatabaseJournalistFilterMediaOutletsItem": {
-        "description": "One of the 3 squeezable items of the vertical bar containing the journalist filters"
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
     },
 
     "pageMediaDatabaseJournalistFilterSearchByKeywordsItem": "Search by keywords",
     "@pageMediaDatabaseJournalistFilterSearchByKeywordsItem": {
-        "description": "One of the 3 squeezable items of the vertical bar containing the journalist filters"
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
     },
 
     "pageMediaDatabaseHorizontalMenuMySelectionsItem": "My Selections",
     "@pageMediaDatabaseHorizontalMenuMySelectionsItem": {
-        "description": "One of the 3 squeezable items of the horizontal bar containing the navigation inside the media database"
+        "description": "One of the 3 tappable items of the horizontal bar containing the navigation inside the media database"
     },
 
     "pageMediaDatabaseHorizontalMenuSavedSearchesItem": "Saved Searches",
     "@pageMediaDatabaseHorizontalMenuSavedSearchesItem": {
-        "description": "One of the 3 squeezable items of the horizontal bar containing the navigation inside the media database"
+        "description": "One of the 3 tappable items of the horizontal bar containing the navigation inside the media database"
     },
     
     "commonApply": "Apply",
