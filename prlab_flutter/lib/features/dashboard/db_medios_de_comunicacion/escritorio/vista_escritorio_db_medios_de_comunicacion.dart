@@ -5,12 +5,12 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/encabezado_de_seccion.dart';
 
 /// {@template VistaEscritorioDbMediosDeComunicacion}
-/// Vista de escritorio de busqueda de medios de comunicación,
+/// Vista de escritorio de búsqueda de medios de comunicación,
 /// muestra una lista de `journalists` para eventualmente
 /// seleccionar en el contacto y sacar los datos del
 /// periodista.
 ///
-/// Contiene una variedad de filtros de busqueda
+/// Contiene una variedad de filtros de búsqueda
 /// como países, cuidades, entre otras cosas.
 /// {@endtemplate}
 class VistaEscritorioDbMediosDeComunicacion extends StatelessWidget {
@@ -21,23 +21,26 @@ class VistaEscritorioDbMediosDeComunicacion extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        EncabezadoDeSeccion(
-          icono: Icons.manage_search_rounded,
-          titulo: l10n.pageMediaDatabaseTitle,
-          descripcion: l10n.pageMediaDatabaseDescription,
-        ),
-        SizedBox(height: 20.ph),
-        const MenuBarraHorizontal(),
-        SizedBox(height: 30.ph),
-        const Row(
-          children: [
-            FiltradorDePeriodistas(),
-          ],
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          EncabezadoDeSeccion(
+            icono: Icons.manage_search_rounded,
+            titulo: l10n.pageMediaDatabaseTitle,
+            descripcion: l10n.pageMediaDatabaseDescription,
+          ),
+          SizedBox(height: 20.ph),
+          const MenuBarraHorizontal(),
+          SizedBox(height: 30.ph),
+          const Row(
+            children: [
+              FiltradorDePeriodistas(),
+            ],
+          ),
+          SizedBox(height: 85.ph),
+        ],
+      ),
     );
   }
 }

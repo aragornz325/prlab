@@ -542,6 +542,46 @@
     "@pageMediaDatabaseHorizontalMenuSavedSearchesItem": {
         "description": "One of the 3 tappable items of the horizontal bar containing the navigation inside the media database"
     },
+
+    "pageMediaDatabaseHorizontalTextFieldJournalistName": "Enter journalist name",
+    "@pageMediaDatabaseHorizontalTextFieldJournalistName": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses that a journalist name be entered"
+    },
+
+    "pageMediaDatabaseHorizontalTextFieldMediaOutlet": "Enter media outlet name",
+    "@pageMediaDatabaseHorizontalTextFieldMediaOutlet": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses that a media outlet name be entered"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelCountry": "Country",
+    "@pageMediaDatabaseHorizontalFilterLabel": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Country` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelCity": "City",
+    "@pageMediaDatabaseHorizontalFilterLabelCity": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `City` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelContactLanguage": "Contact language",
+    "@pageMediaDatabaseHorizontalFilterLabelContactLanguage": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Contact language` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelTopic": "Topic",
+    "@pageMediaDatabaseHorizontalFilterLabelTopic": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Topic` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelRole": "Role",
+    "@pageMediaDatabaseHorizontalFilterLabelRole": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Role` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterButtomButton": "Save data",
+    "@pageMediaDatabaseHorizontalFilterButtomButton": {
+        "description": "It is found in the journalist filters, the people menu, its used to save the filter data, to use it in other opportunity"
+    },
     
     "commonApply": "Apply",
     "@commonApply": {
