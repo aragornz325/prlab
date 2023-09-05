@@ -3,7 +3,13 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
+/// {@template MenuBarraHorizontal}
+/// Contiene los iconos de navegación que
+/// se muestran en la página de lista de
+/// periodistas en la parte superior.
+/// {@endtemplate}
 class MenuBarraHorizontal extends StatefulWidget {
+  /// {@macro MenuBarraHorizontal}
   const MenuBarraHorizontal({super.key});
 
   @override
@@ -11,7 +17,8 @@ class MenuBarraHorizontal extends StatefulWidget {
 }
 
 class _MenuBarraHorizontalState extends State<MenuBarraHorizontal> {
-  ItemMenu itemSeleccionado = ItemMenu.busqueda;
+  ItemMenu itemSeleccionado = ItemMenu.personas;
+
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
@@ -42,7 +49,13 @@ class _MenuBarraHorizontalState extends State<MenuBarraHorizontal> {
   }
 }
 
+/// {@template _ContadorLimiteDeBusquedas}
+/// Contador de la cantidad máxima de veces que
+/// el usuario tiene permitido buscar según su tipo
+/// de suscripción a la aplicación PRLAB.
+/// {@endtemplate}
 class _ContadorLimiteDeBusquedas extends StatelessWidget {
+  /// {@macro _ContadorLimiteDeBusquedas}
   const _ContadorLimiteDeBusquedas();
 
   @override
@@ -92,7 +105,13 @@ class _ContadorLimiteDeBusquedas extends StatelessWidget {
   }
 }
 
+/// {@template _ContenedorItemMenu}
+/// Utilizado para representar un item de los
+/// representados en la barra superior de
+/// [MenuBarraHorizontal].
+/// {@endtemplate}
 class _ContenedorItemMenu extends StatelessWidget {
+  /// {@macro _ContenedorItemMenu}
   const _ContenedorItemMenu({
     required this.itemMenu,
     required this.itemSeleccionado,
@@ -139,10 +158,14 @@ class _ContenedorItemMenu extends StatelessWidget {
   }
 }
 
+/// Tipo de item que se muestra en la barra
+/// superior de [MenuBarraHorizontal] para
+/// la navegación interna de la página de
+/// busqueda de medios de comunicación.
 enum ItemMenu {
-  busqueda(Icons.search_outlined),
-  misSelecciones(Icons.fact_check_outlined),
-  busquedasGuardadas(Icons.save_outlined);
+  personas(Icons.search_outlined),
+  mediosDeComunicacion(Icons.fact_check_outlined),
+  busquedaPorPalabraClave(Icons.save_outlined);
 
   const ItemMenu(this.icon);
 
@@ -153,10 +176,11 @@ enum ItemMenu {
   /// medios de comunicación.
   String nombreItem(BuildContext context) {
     return switch (this) {
-      busqueda => context.l10n.commonSearch,
-      // TODO(Andre): Poner l10n que va.
-      misSelecciones => context.l10n.commonSearch,
-      busquedasGuardadas => context.l10n.commonSearch,
+      personas => context.l10n.pageMediaDatabaseJournalistFilterPeopleItem,
+      mediosDeComunicacion =>
+        context.l10n.pageMediaDatabaseJournalistFilterMediaOutletsItem,
+      busquedaPorPalabraClave =>
+        context.l10n.pageMediaDatabaseJournalistFilterSearchByKeywordsItem,
     };
   }
 }

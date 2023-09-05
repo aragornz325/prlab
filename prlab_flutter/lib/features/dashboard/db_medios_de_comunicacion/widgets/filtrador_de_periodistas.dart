@@ -3,14 +3,23 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
-class FiltrosDeJournalists extends StatefulWidget {
-  const FiltrosDeJournalists({super.key});
+/// {@template FiltradorDePeriodistas}
+/// Contiene los filtros para la búsqueda de
+/// periodistas.
+///
+/// Maneja campos de texto para buscar periodistas
+/// por nombre o el tipo de medio de comunicación
+/// y filtrado por paises, lenguajes entre otros más.
+/// {@endtemplate}
+class FiltradorDePeriodistas extends StatefulWidget {
+  /// {@macro FiltradorDePeriodistas}
+  const FiltradorDePeriodistas({super.key});
 
   @override
-  State<FiltrosDeJournalists> createState() => _FiltrosDeJournalistsState();
+  State<FiltradorDePeriodistas> createState() => _FiltradorDePeriodistasState();
 }
 
-class _FiltrosDeJournalistsState extends State<FiltrosDeJournalists> {
+class _FiltradorDePeriodistasState extends State<FiltradorDePeriodistas> {
   ItemMenuFiltros itemSeleccionado = ItemMenuFiltros.busqueda;
 
   @override
@@ -39,13 +48,48 @@ class _FiltrosDeJournalistsState extends State<FiltrosDeJournalists> {
             ],
           ),
           const Divider(),
+          // TODO(Andre): Continuar este campo en proximo pr.
+          _CampoDeTexto(
+            controller: TextEditingController(),
+          ),
         ],
       ),
     );
   }
 }
 
+/// {@template _CampoDeTexto}
+/// Utilizado para algunos de los tipos de
+/// filtrado que ofrece la pagina como el
+/// filtrado por nombre de periodistas entre
+/// otros.
+/// {@endtemplate}
+class _CampoDeTexto extends StatelessWidget {
+  /// {@macro _CampoDeTexto}
+  const _CampoDeTexto({
+    required this.controller,
+  });
+
+  final TextEditingController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO(Andre): Continuar este campo en proximo pr.
+    return const TextField(
+      decoration: InputDecoration(
+        prefixIcon: Icon(Icons.access_alarm),
+      ),
+    );
+  }
+}
+
+/// {@template _ContenedorItemMenuFiltros}
+/// Utilizado para representar un item de los
+/// representados en la barra superior de
+/// [FiltradorDePeriodistas].
+/// {@endtemplate}
 class _ContenedorItemMenuFiltros extends StatelessWidget {
+  /// {@macro _ContenedorItemMenuFiltros}
   const _ContenedorItemMenuFiltros({
     required this.itemMenuFiltros,
     required this.itemSeleccionado,
@@ -54,6 +98,11 @@ class _ContenedorItemMenuFiltros extends StatelessWidget {
 
   final ItemMenuFiltros itemMenuFiltros;
 
+  /// El item que en este momento esta seleccionado
+  /// por el usuario.
+  ///
+  /// Si un item es seleccionado, el resto de los items
+  /// pasan a estar deseleccionados.
   final ItemMenuFiltros itemSeleccionado;
 
   final void Function(ItemMenuFiltros itemMenuFiltros) onSeleccionado;
@@ -83,6 +132,8 @@ class _ContenedorItemMenuFiltros extends StatelessWidget {
   }
 }
 
+/// Tipo de item que se muestra en la barra
+/// superior de [FiltradorDePeriodistas].
 enum ItemMenuFiltros {
   busqueda(Icons.search_outlined),
   misSelecciones(Icons.fact_check_outlined),
@@ -98,9 +149,10 @@ enum ItemMenuFiltros {
   String nombreItem(BuildContext context) {
     return switch (this) {
       busqueda => context.l10n.commonSearch,
-      // TODO(Andre): Poner l10n que va.
-      misSelecciones => context.l10n.commonSearch,
-      busquedasGuardadas => context.l10n.commonSearch,
+      misSelecciones =>
+        context.l10n.pageMediaDatabaseHorizontalMenuMySelectionsItem,
+      busquedasGuardadas =>
+        context.l10n.pageMediaDatabaseHorizontalMenuSavedSearchesItem,
     };
   }
 }

@@ -4,7 +4,17 @@ import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widge
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/encabezado_de_seccion.dart';
 
+/// {@template VistaEscritorioDbMediosDeComunicacion}
+/// Vista de escritorio de busqueda de medios de comunicación,
+/// muestra una lista de `journalists` para eventualmente
+/// seleccionar en el contacto y sacar los datos del
+/// periodista.
+///
+/// Contiene una variedad de filtros de busqueda
+/// como países, cuidades, entre otras cosas.
+/// {@endtemplate}
 class VistaEscritorioDbMediosDeComunicacion extends StatelessWidget {
+  /// {@macro VistaEscritorioDbMediosDeComunicacion}
   const VistaEscritorioDbMediosDeComunicacion({super.key});
 
   @override
@@ -24,7 +34,7 @@ class VistaEscritorioDbMediosDeComunicacion extends StatelessWidget {
         SizedBox(height: 30.pw),
         const Row(
           children: [
-            FiltrosDeJournalists(),
+            FiltradorDePeriodistas(),
           ],
         ),
       ],

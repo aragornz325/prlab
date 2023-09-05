@@ -51,8 +51,7 @@ enum MenuDeOpciones {
       profile => context.l10n.prAppBarProfile,
       changeAccount => context.l10n.prAppBarProfileChangeAccount,
       signOut => context.l10n.prAppBarProfileSignOut,
-      // TODO(ANDRE): CAMBIAR ANTES DE PR!!
-      databaseMedia => context.l10n.alertDialogButtonSubtitleLinkExpired,
+      databaseMedia => context.l10n.prAppBarCoverageMediaDbMedia,
     };
   }
 
