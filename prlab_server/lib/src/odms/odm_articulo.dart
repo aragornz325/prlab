@@ -48,29 +48,6 @@ class OdmArticulo extends ODM {
           },
         ),
       );
-      // (Session session) async {
-      //   logger.info(
-      //     'Creando artículo: ${articulo.titulo}',
-      //   );
-      //   await Articulo.insert(
-      //     session,
-      //     articulo
-      //       ..idAutor = await session.auth.authenticatedUserId ?? 0
-      //       ..fechaCreacion = DateTime.now()
-      //       ..ultimaModificacion = DateTime.now(),
-      //   );
-      //   return await Articulo.findSingleRow(
-      //     session,
-      //     where: (t) => t.idAutor.equals(articulo.idAutor),
-      //     orderBy: ArticuloTable().fechaCreacion,
-      //     orderDescending: true,
-      //   );
-      // },
-      // );
-      // logger.finest(
-      //   'Artículo ${articulo.titulo} creado exitosamente.',
-      // );
-      // return response!;
     } on Exception catch (e) {
       throw Exception('$e');
     }
