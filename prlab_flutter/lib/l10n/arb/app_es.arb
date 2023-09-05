@@ -545,27 +545,27 @@
 
     "pageMediaDatabaseJournalistFilterPeopleItem": "Personas",
     "@pageMediaDatabaseJournalistFilterPeopleItem": {
-        "description": "One of the 3 squeezable items of the vertical bar containing the journalist filters"
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
     },
 
     "pageMediaDatabaseJournalistFilterMediaOutletsItem": "Medios de comunicación",
     "@pageMediaDatabaseJournalistFilterMediaOutletsItem": {
-        "description": "One of the 3 squeezable items of the vertical bar containing the journalist filters"
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
     },
 
     "pageMediaDatabaseJournalistFilterSearchByKeywordsItem": "Buscar por palabra clave",
     "@pageMediaDatabaseJournalistFilterSearchByKeywordsItem": {
-        "description": "One of the 3 squeezable items of the vertical bar containing the journalist filters"
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
     },
 
     "pageMediaDatabaseHorizontalMenuMySelectionsItem": "Mis Selecciones",
     "@pageMediaDatabaseHorizontalMenuMySelectionsItem": {
-        "description": "One of the 3 squeezable items of the horizontal bar containing the navigation inside the media database"
+        "description": "One of the 3 tappable items of the horizontal bar containing the navigation inside the media database"
     },
 
     "pageMediaDatabaseHorizontalMenuSavedSearchesItem": "Búsquedas guardadas",
     "@pageMediaDatabaseHorizontalMenuSavedSearchesItem": {
-        "description": "One of the 3 squeezable items of the horizontal bar containing the navigation inside the media database"
+        "description": "One of the 3 tappable items of the horizontal bar containing the navigation inside the media database"
     },
     
     "commonPRLab": "PR lab",
