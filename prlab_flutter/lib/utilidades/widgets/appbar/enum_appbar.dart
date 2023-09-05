@@ -25,9 +25,12 @@ enum MenuDeOpciones {
   // --- Perfil ---
   profile,
   changeAccount,
-  signOut;
+  signOut,
 
-  /// Retorna el nombre de la categoria.
+  // --- Cobertura de medios de comunicación --
+  databaseMedia;
+
+  /// Retorna el nombre de la categoría.
   String nombreItem(BuildContext context) {
     return switch (this) {
       createArticle => context.l10n.prAppBarCreateContentCreateArticle,
@@ -48,6 +51,7 @@ enum MenuDeOpciones {
       profile => context.l10n.prAppBarProfile,
       changeAccount => context.l10n.prAppBarProfileChangeAccount,
       signOut => context.l10n.prAppBarProfileSignOut,
+      databaseMedia => context.l10n.prAppBarCoverageMediaDbMedia,
     };
   }
 
@@ -89,6 +93,12 @@ enum MenuDeOpciones {
         signOut,
       ];
 
+  /// Listas de items para diferenciar la sección
+  /// 'Cobertura de medios de comunicación'.
+  static List<MenuDeOpciones> get coberturaMedia => [
+        databaseMedia,
+      ];
+
   bool get esHelpCenter => this == helpCenter;
   bool get eContactSupport => this == contactSupport;
   bool get esPrLabWeb => this == prLabWeb;
@@ -107,6 +117,6 @@ enum MenuDeOpciones {
   bool get esYourArticles => this == yourArticles;
   bool get esProjects => this == projects;
   bool get esDashboards => this == dashboards;
-
+  bool get esMediaDatabase => this == databaseMedia;
   // TODO(Manu): faltan opciones de coverage media
 }

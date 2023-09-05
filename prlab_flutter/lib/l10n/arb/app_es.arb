@@ -377,11 +377,13 @@
     "@commonAlertDialogFilterByStatus": {
         "description": "Text in title of alertdialog/popup Filter by Status,Typically used to filter in title of alert dialogs."
     },
-       "drawerAlertDialogLogoutBack": "Cerrar sesión",
+
+    "drawerAlertDialogLogoutBack": "Cerrar sesión",
     "@drawerAlertDialogLogoutBack": {
         "description": "Title text shown on the button of the alert dialog logout in the drawer"
     },
-         "drawerAlertDialogLogoutContentWarning": "¿Estás seguro que quieres cerrar sesión? Deberás iniciar sesión nuevamente la próxima vez.",
+
+    "drawerAlertDialogLogoutContentWarning": "¿Estás seguro que quieres cerrar sesión? Deberás iniciar sesión nuevamente la próxima vez.",
     "@drawerAlertDialogLogoutContentWarning": {
         "description": "Content text shown in the center of the alert dialog logout in the drawer, that warns the user that if he presses continue he will be logged out."
     },
@@ -526,6 +528,46 @@
         "description":"Text to sign out"
     },
 
+    "prAppBarCoverageMediaDbMedia":"Base de datos de periodistas",
+    "@prAppBarCoverageMediaDbMedia":{
+        "description":"Text to redirect to database media page"
+    },
+
+    "pageMediaDatabaseTitle": "Encontrar medios de comunicación",
+    "@pageMediaDatabaseTitle": {
+        "description": "Title found at the top of the page, refers to the search through the media database"
+    },
+
+    "pageMediaDatabaseDescription": "Accede a la Base de Datos de Medios con más de un millón de contactos para conectar con periodistas relevantes.",
+    "@pageMediaDatabaseDescription": {
+        "description": "This subtitle mentions accessing a media database with over a million contacts for connecting with relevant journalists."
+    },
+
+    "pageMediaDatabaseJournalistFilterPeopleItem": "Personas",
+    "@pageMediaDatabaseJournalistFilterPeopleItem": {
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
+    },
+
+    "pageMediaDatabaseJournalistFilterMediaOutletsItem": "Medios de comunicación",
+    "@pageMediaDatabaseJournalistFilterMediaOutletsItem": {
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
+    },
+
+    "pageMediaDatabaseJournalistFilterSearchByKeywordsItem": "Buscar por palabra clave",
+    "@pageMediaDatabaseJournalistFilterSearchByKeywordsItem": {
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
+    },
+
+    "pageMediaDatabaseHorizontalMenuMySelectionsItem": "Mis Selecciones",
+    "@pageMediaDatabaseHorizontalMenuMySelectionsItem": {
+        "description": "One of the 3 tappable items of the horizontal bar containing the navigation inside the media database"
+    },
+
+    "pageMediaDatabaseHorizontalMenuSavedSearchesItem": "Búsquedas guardadas",
+    "@pageMediaDatabaseHorizontalMenuSavedSearchesItem": {
+        "description": "One of the 3 tappable items of the horizontal bar containing the navigation inside the media database"
+    },
+    
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"

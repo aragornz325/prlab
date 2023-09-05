@@ -52,6 +52,8 @@ class PaginaDashboard extends StatelessWidget {
                   context.read<BlocDashboard>().add(
                         BlocDashboardCrearArticulo(),
                       );
+                } else if (menuDeOpciones case MenuDeOpciones.databaseMedia) {
+                  context.router.push(const RutaDbMediosDeComunicacion());
                 } else {
                   showDialog<void>(
                     context: context,
