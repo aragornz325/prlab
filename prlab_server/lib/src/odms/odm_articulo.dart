@@ -102,7 +102,7 @@ class OdmArticulo extends ODM {
     );
     if (articulo == null) {
       const error = ErrorPrLab.errorElementoNoEncontrado;
-      throw ExceptionPrLab(
+      throw ExcepcionPrLab(
         mensaje: error.mensaje,
         errorType: error,
       );

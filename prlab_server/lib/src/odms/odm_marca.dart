@@ -98,7 +98,7 @@ class OdmMarca extends ODM {
       );
       if (marca == null) {
         const error = ErrorPrLab.errorElementoNoEncontrado;
-        throw ExceptionPrLab(mensaje: error.mensaje, errorType: error);
+        throw ExcepcionPrLab(mensaje: error.mensaje, errorType: error);
       }
       logger.fine('Marca con id: $id encontrada');
       return marca;

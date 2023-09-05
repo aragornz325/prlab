@@ -24,7 +24,7 @@ abstract class Servicio<T extends ODM> {
         );
         return resultado;
       });
-    } on ExceptionPrLab catch (e) {
+    } on ExcepcionPrLab catch (e) {
       throw e.errorType;
     } on Exception catch (e, st) {
       logger.severe(

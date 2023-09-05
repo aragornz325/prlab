@@ -35,7 +35,7 @@ class OdmAuth extends ODM {
 
     if (result.isEmpty) {
       const error = ErrorPrLab.errorElementoNoEncontrado;
-      throw ExceptionPrLab(mensaje: error.mensaje, errorType: error);
+      throw ExcepcionPrLab(mensaje: error.mensaje, errorType: error);
     }
 
     return result.first.first;
@@ -104,7 +104,7 @@ class OdmAuth extends ODM {
 
     if (result.isEmpty) {
       const error = ErrorPrLab.errorElementoNoEncontrado;
-      throw ExceptionPrLab(mensaje: error.mensaje, errorType: error);
+      throw ExcepcionPrLab(mensaje: error.mensaje, errorType: error);
     }
 
     return result.first.first;
@@ -133,7 +133,7 @@ class OdmAuth extends ODM {
 
     if (result.isEmpty) {
       const error = ErrorPrLab.errorElementoNoEncontrado;
-      throw ExceptionPrLab(mensaje: error.mensaje, errorType: error);
+      throw ExcepcionPrLab(mensaje: error.mensaje, errorType: error);
     }
 
     return result;
