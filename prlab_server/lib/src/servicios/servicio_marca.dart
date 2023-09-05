@@ -16,18 +16,16 @@ class ServicioMarca extends Servicio<OdmMarca> {
   /// Instancia del ODM para la administracion de articulos
   final odmArticulo = OdmArticulo();
 
-  /// La función `crearMarca` crea una nueva marca y devuelve un booleano que
-  /// indica si la operación fue exitosa.
+  /// Crea una nueva marca y devuelve un booleano que indica si la operación
+  /// fue exitosa.
   ///
   /// Args:
-  ///   session (Session): El parámetro [sesión] es de tipo "Sesión" y es
-  /// obligatorio. Se utiliza para especificar la sesión de creación de la
-  /// marca.
-  ///   marca (Marca): El parámetro [marca] es de tipo `Marca` y es
-  /// obligatorio. Representa los datos que se utilizarán para crear una nueva
-  /// marca.
-  Future<bool> crearMarca({
-    required Session session,
+  ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
+  /// contiene datos de la conexión.
+  ///   [marca] ([Marca]): Un objeto con el registro de la marca a ser guardado
+  /// en la Base de Datos.
+  Future<bool> crearMarca(
+    Session session, {
     required Marca marca,
   }) async {
     try {
@@ -47,19 +45,14 @@ class ServicioMarca extends Servicio<OdmMarca> {
     }
   }
 
-  /// La función `listarMarcas` lista todas las marcas usando una sesión
-  /// proporcionada.
+  /// Recupera todas las marcas no eliminadas existentes.
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es
-  /// obligatorio.
-  ///
-  /// Returns:
-  ///   El método devuelve un objeto `Futuro` que se resuelve en una
-  /// `Lista<Marca>`.
-  Future<List<Marca>> listarMarcas({
-    required Session session,
-  }) async {
+  ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
+  /// contiene datos de la conexión.
+  Future<List<Marca>> listarMarcas(
+    Session session,
+  ) async {
     try {
       logger.info(
         'Listando Marcas',
@@ -75,10 +68,15 @@ class ServicioMarca extends Servicio<OdmMarca> {
   }
 
   /// Obtiene el registro de una marca por su id.
+  /// 
+  /// Args:
+  ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
+  /// contiene datos de la conexión.
+  ///   [idMarca] ([int]): ID de la [Marca] buscada.
   Future<Marca> obtenerMarcaPorId(
-    Session session,
-    int idMarca,
-  ) async {
+    Session session, {
+    required int idMarca,
+  }) async {
     return await ejecutarOperacion(
       () => odm.obtenerMarcaPorId(
         session: session,
@@ -87,35 +85,20 @@ class ServicioMarca extends Servicio<OdmMarca> {
     );
   }
 
-  // Future<List<dynamic>> listarMarcasDeUsuario(
-  //   Session session, {
-  //   required int idUsuario,
-  // }) async {
-  //   print(idUsuario);
-  //   return await performOperation(
-  //     () => odm.listarMarcasDeUsuario(
-  //       session,
-  //       idUsuario: idUsuario,
-  //     ),
-  //   );
-  // }
-
-  /// La función `eliminarMarca` se utiliza para eliminar una marca por su ID.
+  /// Elimina una marca.
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es
-  /// obligatorio. Representa el objeto de sesión que se utiliza para la
-  /// operación.
-  ///   id (int): El parámetro "id" es un número entero que representa el
-  /// identificador único de la marca que debe eliminarse.
-  Future<bool> eliminarMarca({
-    required Session session,
-    required int id,
+  ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
+  /// contiene datos de la conexión.
+  ///   [idMarca] ([int]): ID de la [Marca] a eliminar.
+  Future<bool> eliminarMarca(
+    Session session,{
+    required int idMarca,
   }) async {
     try {
       logger
         ..info(
-          'Se va a eliminar la marca con id $id',
+          'Se va a eliminar la marca con id $idMarca',
         )
         ..finest(
           'Verificando que la marca exista',
@@ -123,7 +106,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
       await ejecutarOperacion(
         () => odm.obtenerMarcaPorId(
           session: session,
-          id: id,
+          id: idMarca,
         ),
       );
       logger.finest(
@@ -132,7 +115,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
       return await ejecutarOperacion(
         () => odm.eliminarMarca(
           session: session,
-          id: id,
+          id: idMarca,
         ),
       );
     } on Exception catch (e) {
@@ -141,6 +124,15 @@ class ServicioMarca extends Servicio<OdmMarca> {
   }
 
   /// Crea la relación entre una marca y un usuario.
+  /// 
+  /// Args:
+  ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
+  /// contiene datos de la conexión.
+  ///   [idMarca] ([int]): ID de la [Marca].
+  ///   [idUsuario] ([int]): ID del usuario a ser asignado a la Marca 
+  /// (ID de usuario de Serverpod, que está como FK en su registro de Cliente). 
+  ///   [idRol] ([int]): ID del rol que posee el usuario en la marca. Es el
+  /// index de un enum.
   Future<List<List<dynamic>>> asignarUsuarioAMarca(
     Session session, {
     required int idMarca,
@@ -159,6 +151,13 @@ class ServicioMarca extends Servicio<OdmMarca> {
 
   /// Da de baja la relacion entre el usuario y la marca
   /// en la tabla intermedia.
+  /// 
+  /// Args:
+  ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
+  /// contiene datos de la conexión.
+  ///   [idMarca] ([int]): ID de la [Marca].
+  ///   [idUsuario] ([int]): ID del usuario a ser eliminado de la Marca 
+  /// (ID de usuario de Serverpod, que está como FK en su registro de Cliente). 
   Future<List<List<dynamic>>> desvincularUsuarioDeMarca(
     Session session, {
     required int idMarca,
@@ -174,6 +173,10 @@ class ServicioMarca extends Servicio<OdmMarca> {
   }
 
   /// Obtiene las marcas a las que se encuentra asignado un usuario.
+  /// 
+  /// Args:
+  /// [idUsuario] ([int]): ID del usuario (ID de usuario de Serverpod, que está 
+  /// como FK en su registro de Cliente). 
   Future<List<Marca>> listarMarcasPorUsuario(
     Session session, {
     required int idUsuario,

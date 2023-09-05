@@ -31,7 +31,7 @@ class MailEndpoint extends Endpoint {
   ) async {
     try {
       return servicioMailer.envioMailRegistro(
-        session: session,
+        session,
         email: email,
         tipoDeInvitacion: tipoDeInvitacion,
       );

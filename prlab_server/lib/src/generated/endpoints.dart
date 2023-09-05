@@ -319,8 +319,8 @@ class Endpoints extends _i1.EndpointDispatch {
         'crearMarca': _i1.MethodConnector(
           name: 'crearMarca',
           params: {
-            'payload': _i1.ParameterDescription(
-              name: 'payload',
+            'marca': _i1.ParameterDescription(
+              name: 'marca',
               type: _i1.getType<_i9.Marca>(),
               nullable: false,
             )
@@ -331,7 +331,7 @@ class Endpoints extends _i1.EndpointDispatch {
           ) async =>
               (endpoints['marca'] as _i6.MarcaEndpoint).crearMarca(
             session,
-            params['payload'],
+            params['marca'],
           ),
         ),
         'eliminarMarca': _i1.MethodConnector(

@@ -16,7 +16,7 @@ class ClienteEndpoint extends Endpoint {
   ) async {
     try {
       return await servicioCliente.completarKyc(
-        session: session,
+        session,
         datosDelCliente: datosDelCliente,
       );
     } on Exception catch (e) {

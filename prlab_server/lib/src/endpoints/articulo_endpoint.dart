@@ -25,7 +25,7 @@ class ArticuloEndpoint extends Endpoint {
   ) async {
     try {
       return await servicioArticulo.crearArticulo(
-        session: session,
+        session,
         articulo: articulo,
       );
     } on Exception catch (e) {
@@ -44,7 +44,7 @@ class ArticuloEndpoint extends Endpoint {
   ) async {
     try {
       return await servicioArticulo.listarArticulos(
-        session: session,
+        session,
       );
     } on Exception catch (e) {
       rethrow;
@@ -65,7 +65,7 @@ class ArticuloEndpoint extends Endpoint {
   ) async {
     try {
       return await servicioArticulo.obtenerArticulo(
-        session: session,
+        session,
         id: id,
       );
     } on Exception catch (e) {
@@ -88,7 +88,7 @@ class ArticuloEndpoint extends Endpoint {
   ) async {
     try {
       return await servicioArticulo.eliminarArticulo(
-        session: session,
+        session,
         id: id,
       );
     } on Exception catch (e) {
@@ -114,7 +114,7 @@ class ArticuloEndpoint extends Endpoint {
   ) async {
     try {
       return await servicioArticulo.listarArticulosPorMarca(
-        session: session,
+        session,
         idMarca: idMarca,
       );
     } on Exception catch (e) {
@@ -138,7 +138,7 @@ class ArticuloEndpoint extends Endpoint {
   }) async {
     try {
       return await servicioArticulo.actualizarArticulo(
-        session: session,
+        session,
         articulo: articulo,
       );
     } on Exception catch (e) {

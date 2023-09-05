@@ -24,7 +24,7 @@ class AuthEndpoint extends Endpoint {
     String email,
   ) async =>
       await servicioAuth.getValidationCode(
-        session: session,
+        session,
         email: email,
       );
 
@@ -41,7 +41,7 @@ class AuthEndpoint extends Endpoint {
     String token,
   ) async =>
       await servicioAuth.validarTokenPorMail(
-        session: session,
+        session,
         token: token,
       );
 
@@ -59,7 +59,7 @@ class AuthEndpoint extends Endpoint {
     String codigo,
   ) =>
       servicioAuth.validarCodigoResetPassword(
-        session: session,
+        session,
         codigo: codigo,
       );
 
@@ -77,7 +77,7 @@ class AuthEndpoint extends Endpoint {
     String codigo,
   ) =>
       servicioAuth.eliminarOTPResetPassword(
-        session: session,
+        session,
         codigo: codigo,
       );
 }

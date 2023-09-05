@@ -23,7 +23,7 @@ class MarcaEndpoint extends Endpoint {
   ) async {
     try {
       await servicioMarca.crearMarca(
-        session: session,
+        session,
         marca: marca,
       );
       return true;
@@ -47,8 +47,8 @@ class MarcaEndpoint extends Endpoint {
   ) async {
     try {
       await servicioMarca.eliminarMarca(
-        session: session,
-        id: id,
+        session,
+        idMarca: id,
       );
       return true;
     } on Exception catch (e) {
@@ -68,7 +68,7 @@ class MarcaEndpoint extends Endpoint {
   ) async {
     try {
       return servicioMarca.listarMarcas(
-        session: session,
+        session,
       );
     } on Exception catch (e) {
       throw Exception('$e');
@@ -77,7 +77,10 @@ class MarcaEndpoint extends Endpoint {
 
   /// Obtiene el registro de una marca por su id.
   Future<Marca> obtenerMarcaPorId(Session session, int idMarca) async {
-    return await servicioMarca.obtenerMarcaPorId(session, idMarca);
+    return await servicioMarca.obtenerMarcaPorId(
+      session,
+      idMarca: idMarca,
+    );
   }
 
   /// Crea la relación entre una marca y un usuario.

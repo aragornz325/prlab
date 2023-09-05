@@ -47,7 +47,10 @@ class OdmMarca extends ODM {
     try {
       return await ejecutarOperacionOdm(
         session,
-        Marca.find,
+        (session) => Marca.find(
+          session,
+          where: (t) => t.fechaEliminacion.equals(null),
+        ),
       );
     } on Exception catch (e) {
       throw Exception('$e');
@@ -104,7 +107,7 @@ class OdmMarca extends ODM {
     }
   }
 
-  /// Actualiza un registro de Marca. El objeto pasado en el parametro debe 
+  /// Actualiza un registro de Marca. El objeto pasado en el parametro debe
   /// tener el id en la Base de Datos.
   Future<bool> actualizarMarca(Session session, {required Marca marca}) async {
     return await ejecutarOperacionOdm(
@@ -132,18 +135,21 @@ class OdmMarca extends ODM {
     );
   }
 
-  /// Da de baja la relacion entre el usuario y la marca 
+  /// Da de baja la relacion entre el usuario y la marca
   /// en la tabla intermedia.
   Future<List<List<dynamic>>> desvincularUsuarioDeMarca(
     Session session, {
     required int idMarca,
     required int idUsuario,
   }) async {
-    return await ejecutarOperacionOdm(session, (session) => session.db.query('''
+    return await ejecutarOperacionOdm(
+      session,
+      (session) => session.db.query('''
       UPDATE "marcas_staff"
       SET "fechaEliminacion" = '${DateTime.now().toIso8601String()}'
       WHERE "idMarca" = $idMarca AND "idStaff" = $idUsuario AND "fechaEliminacion" IS NULL;
-      '''),);
+      '''),
+    );
   }
 
   /// Obtiene las marcas a las que se encuentra asignado un usuario.
