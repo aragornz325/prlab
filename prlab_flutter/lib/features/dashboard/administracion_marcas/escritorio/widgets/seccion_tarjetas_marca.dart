@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/bloc/bloc_administracion_marcas.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/escritorio/widgets/widgets.dart';
 
@@ -23,6 +24,16 @@ class SeccionTarjetasDeMarca extends StatelessWidget {
           child: BlocBuilder<BlocAdministracionMarcas,
               BlocAdministracionMarcasEstado>(
             builder: (context, state) {
+              if (state is BlocAdministracionMarcasEstadoCargando) {
+                return const Center(child: CircularProgressIndicator());
+              }
+
+              if (state is BlocAdministracionMarcasEstadoError) {
+                return Center(
+                  child: Image.asset(Assets.assets_images_nada_para_ver_png),
+                );
+              }
+
               return ListView.separated(
                 itemCount: state.marcas.length,
                 scrollDirection: Axis.horizontal,

@@ -63,19 +63,27 @@ class ListaArticulosYRecortes extends StatelessWidget {
                   ),
 
                 // si la lista de articulos no tiene elementos
-                if (state.index == 0)
-                  if (state.articulos.isEmpty)
-                    Center(
-                      child: SizedBox(
-                        height: max(300.ph, 300.sh),
-                        width: 200.pw,
-                        child:
-                            Image.asset(Assets.assets_images_nada_para_ver_png),
-                      ),
-                    )
-                  else
-                    // si la lista de articulos tiene elementos
-                    ListaDeArticulos(articulos: state.articulos),
+                if (state.index == 0 &&
+                    state is BlocListaArticulosYRecortesEstadoCargando)
+                  SizedBox(
+                    height: max(300.ph, 300.sh),
+                    width: 200.pw,
+                    child: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                else if (state.articulos.isEmpty)
+                  Center(
+                    child: SizedBox(
+                      height: max(300.ph, 300.sh),
+                      width: 200.pw,
+                      child:
+                          Image.asset(Assets.assets_images_nada_para_ver_png),
+                    ),
+                  )
+                else
+                  // si la lista de articulos tiene elementos
+                  ListaDeArticulos(articulos: state.articulos),
               ],
             ),
           );
