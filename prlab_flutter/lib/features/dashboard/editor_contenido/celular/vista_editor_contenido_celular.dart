@@ -39,9 +39,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                       BlocBuilder<BlocEditorContenido,
                           BlocEditorContenidoEstado>(
                         builder: (context, state) {
-                          if (state is BlocEditorContenidoEstadoCargando) {
-                            return const CircularProgressIndicator();
-                          } else if (state.articulo != null) {
+                          if (state.articulo != null) {
                             return EncabezadoDeSeccion(
                               icono: Icons.add,
                               titulo: state.articulo!.titulo,
@@ -97,7 +95,13 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                 BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
                   builder: (context, state) {
                     if (state is BlocEditorContenidoEstadoCargando) {
-                      return const CircularProgressIndicator();
+                      return SizedBox(
+                        width: 1000.pw,
+                        height: 508.ph,
+                        child: const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
                     } else if (state.articulo != null) {
                       return SizedBox(
                         width: 1000.pw,
