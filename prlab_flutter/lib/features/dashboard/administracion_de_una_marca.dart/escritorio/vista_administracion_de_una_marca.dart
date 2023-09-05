@@ -37,7 +37,7 @@ class VistaEscritorioAdministracionDeUnaMarca extends StatelessWidget {
                   titulo: '',
                   descripcion: l10n.pageBrandAdministrationDescription,
                 );
-              }
+              } 
 
               final titulo =
                   '${state.marca?.nombre} ${l10n.commonArticles.toLowerCase()}';
