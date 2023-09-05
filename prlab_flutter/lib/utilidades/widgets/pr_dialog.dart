@@ -98,6 +98,82 @@ class PRDialog extends StatelessWidget {
     );
   }
 
+  /// PRDialog.confirmar es un tipo de dialog de solicitar al usuario que
+  /// realice una Accion para eliminar o aceptar algo.
+  factory PRDialog.confirmar({
+    required String titulo,
+    required String tituloBotonPrimario,
+    required String tituloBotonSecundario,
+    required Widget content,
+    required BuildContext context,
+
+    /// Es la funcion que se encuentra en el boton que acepta o confirma
+    required VoidCallback onTapBotonPrimario,
+
+    /// Es la funcion que se encuentra en el boton que cancela la operacion
+    required VoidCallback onTapBotonSecundario,
+    double height = 285,
+    double width = 455,
+    bool estaHabilitado = true,
+  }) {
+    final colores = context.colores;
+
+    return PRDialog(
+      height: height.ph,
+      width: width.pw,
+      tipo: TipoDialog.solicitudAccion,
+      content: Column(
+        children: [
+          SizedBox(
+            width: 360.pw,
+            child: Column(
+              children: [
+                SizedBox(height: 40.ph),
+                Text(
+                  titulo,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20.pf,
+                    fontWeight: FontWeight.w600,
+                    color: colores.tertiary,
+                  ),
+                ),
+                SizedBox(height: 40.ph),
+                Center(child: content),
+                SizedBox(height: 40.ph),
+                Row(
+                  children: [
+                    PRBoton.esOutlined(
+                      fontSize: 16.pf,
+                      fontWeight: FontWeight.w600,
+                      width: 170.pw,
+                      estaHabilitado: estaHabilitado,
+                      onTap: onTapBotonSecundario,
+                      texto: tituloBotonSecundario,
+                      borderWidth: 2,
+                    ),
+                    SizedBox(
+                      width: max(20.pw, 20.sw),
+                    ),
+                    PRBoton.esOutlined(
+                      fontSize: 16.pf,
+                      fontWeight: FontWeight.w600,
+                      width: 170.pw,
+                      estaHabilitado: estaHabilitado,
+                      onTap: onTapBotonPrimario,
+                      texto: tituloBotonPrimario,
+                      borderWidth: 2,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   /// `PRDialog.informacion` donde puede tener un contenido editado para
   ///  mostrar el tipo de informacion al usuario
   factory PRDialog.informacion({
