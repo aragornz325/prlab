@@ -49,26 +49,35 @@ class ServicioMailer extends Servicio<OdmAuth> {
         issuer: 'prlab',
       );
 
-      logger.finest('JSON Web Token creado');
+      logger.finest(
+        'JSON Web Token creado',
+      );
 
       final String token = performOperationToken(
         () => jwt.sign(
-          SecretKey(ConstantesPrLab.jwtSecret),
+          SecretKey(
+            ConstantesPrLab.jwtSecret,
+          ),
         ),
       );
 
-      logger.finest('JSON Web Token firmado');
+      logger.finest(
+        'JSON Web Token firmado',
+      );
 
-      final String mailURL =
-          '${ConstantesPrLab.frontendUrl}/#/register/$token';
+      final String mailURL = '${ConstantesPrLab.frontendUrl}/#/register/$token';
 
-      final String cuerpoMensajeEmailHtml =
-          plantillasCorreo.cuerpoRegistro(enlace: mailURL);
+      final String cuerpoMensajeEmailHtml = plantillasCorreo.cuerpoRegistro(
+        enlace: mailURL,
+      );
 
-      final String cuerpoCompletoEmail =
-          plantillasCorreo.mailingGeneral(contenido: cuerpoMensajeEmailHtml);
+      final String cuerpoCompletoEmail = plantillasCorreo.mailingGeneral(
+        contenido: cuerpoMensajeEmailHtml,
+      );
 
-      logger.finest('Cuerpo del correo electrónico listo para enviar. Enviando...');
+      logger.finest(
+        'Cuerpo del correo electrónico listo para enviar. Enviando...',
+      );
 
       await performOperation(
         () => enviarEmail(
@@ -78,7 +87,9 @@ class ServicioMailer extends Servicio<OdmAuth> {
         ),
       );
 
-      logger.finest('Correo enviado a $email. Guardando JSON Web Token en DB...');
+      logger.finest(
+        'Correo enviado a $email. Guardando JSON Web Token en DB...',
+      );
 
       await performOperation(
         () => authRepository.guardarTokenEnDb(
@@ -89,7 +100,9 @@ class ServicioMailer extends Servicio<OdmAuth> {
         ),
       );
 
-      logger.finest('JSON Web Token guardado en DB.');
+      logger.finest(
+        'JSON Web Token guardado en DB.',
+      );
 
       return true;
     } on Exception catch (e) {

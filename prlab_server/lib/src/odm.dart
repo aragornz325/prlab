@@ -11,6 +11,7 @@ abstract class ODM {
   /// Sesion (clase de Serverpod).
   late Session? session;
 
+  /// Instancia del logger.
   final logger = Logger('ODM');
 
   /// Metodo para ejecutar las operaciones de los ODM y manejar errores.
@@ -26,8 +27,8 @@ abstract class ODM {
     }
   }
 
-  /// Metodo para ejecutar funciones con queries raw de Serverpod y mapear los 
-  /// resultados a objetos.  
+  /// Metodo para ejecutar funciones con queries raw de Serverpod y mapear los
+  /// resultados a objetos.
   /// Requiere del script de la query SQL y las "keys" del objeto a devolver.
   Future<List<Map<String, dynamic>>> rawQueryOperation<T>(
     Session session,
@@ -37,7 +38,6 @@ abstract class ODM {
     Transaction? transaction,
   }) async {
     try {
-
       final dbRawQuery = await session.db.query(
         query,
         timeoutInSeconds: timeoutInSeconds,
@@ -45,7 +45,7 @@ abstract class ODM {
       );
 
       List<String> keysMapaModeloList = keysMapaModeloDb.toList();
-     
+
       final response = dbRawQuery.map((e) {
         Map<String, dynamic> modeloResponse = {};
         for (final key in keysMapaModeloList) {

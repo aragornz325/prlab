@@ -104,6 +104,8 @@ class OdmMarca extends ODM {
     }
   }
 
+  /// Actualiza un registro de Marca. El objeto pasado en el parametro debe 
+  /// tener el id en la Base de Datos.
   Future<bool> actualizarMarca(Session session, {required Marca marca}) async {
     return await performOdmOperation(
       session,

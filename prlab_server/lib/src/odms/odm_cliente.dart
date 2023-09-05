@@ -18,7 +18,11 @@ class OdmCliente extends ODM {
         (Session session) =>
             session.db.transaction((Transaction transaction) async {
           await session.db.query(
-            'UPDATE serverpod_user_info SET "fullName" = \'${datosDelCliente.nombre};${datosDelCliente.apellido}\' WHERE "id" = ${datosDelCliente.idUsuario};',
+            '''
+              UPDATE serverpod_user_info 
+              SET "fullName" = '${datosDelCliente.nombre};${datosDelCliente.apellido}' 
+              WHERE "id" = ${datosDelCliente.idUsuario};
+              ''',
           );
           await session.db.insert(
             datosDelCliente

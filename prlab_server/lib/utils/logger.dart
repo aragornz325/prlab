@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:logging/logging.dart';
 
+/// Funcion para inicializar el logger del servidor.
 void inicializarLogger({
   bool modoDebugging = false,
   bool colores = true,

@@ -5,11 +5,15 @@ import 'package:prlab_server/src/odms/odm_marca.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/server.dart';
 
+/// Servicio para administrar aspectos de la entidad Marca.
 class ServicioMarca extends Servicio<OdmMarca> {
   @override
   final odm = OdmMarca();
 
+  /// Instancia del ODM para la administracion de clientes.
   final odmCliente = OdmCliente();
+
+  /// Instancia del ODM para la administracion de articulos
   final odmArticulo = OdmArticulo();
 
   /// La función `crearMarca` crea una nueva marca y devuelve un booleano que
@@ -27,7 +31,9 @@ class ServicioMarca extends Servicio<OdmMarca> {
     required Marca payload,
   }) async {
     try {
-      logger.info('Creando Marca ${payload.nombre}');
+      logger.info(
+        'Creando Marca ${payload.nombre}',
+      );
       return await performOperation(
         () => odm.crearMarca(
           session: session,
@@ -55,7 +61,9 @@ class ServicioMarca extends Servicio<OdmMarca> {
     required Session session,
   }) async {
     try {
-      logger.info('Listando Marcas');
+      logger.info(
+        'Listando Marcas',
+      );
       return await performOperation(
         () => odm.listarMarcas(
           session: session,
@@ -67,9 +75,15 @@ class ServicioMarca extends Servicio<OdmMarca> {
   }
 
   /// Obtiene el registro de una marca por su id.
-  Future<Marca> obtenerMarcaPorId(Session session, int idMarca) async {
+  Future<Marca> obtenerMarcaPorId(
+    Session session,
+    int idMarca,
+  ) async {
     return await performOperation(
-      () => odm.obtenerMarcaPorId(session: session, id: idMarca),
+      () => odm.obtenerMarcaPorId(
+        session: session,
+        id: idMarca,
+      ),
     );
   }
 
@@ -100,12 +114,21 @@ class ServicioMarca extends Servicio<OdmMarca> {
   }) async {
     try {
       logger
-        ..info('Se va a eliminar la marca con id $id')
-        ..finest('Verificando que la marca exista');
+        ..info(
+          'Se va a eliminar la marca con id $id',
+        )
+        ..finest(
+          'Verificando que la marca exista',
+        );
       await performOperation(
-        () => odm.obtenerMarcaPorId(session: session, id: id),
+        () => odm.obtenerMarcaPorId(
+          session: session,
+          id: id,
+        ),
       );
-      logger.finest('Eliminando marca');
+      logger.finest(
+        'Eliminando marca',
+      );
       return await performOperation(
         () => odm.eliminarMarca(
           session: session,
@@ -134,7 +157,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
     );
   }
 
-  /// Da de baja la relacion entre el usuario y la marca 
+  /// Da de baja la relacion entre el usuario y la marca
   /// en la tabla intermedia.
   Future<List<List<dynamic>>> desvincularUsuarioDeMarca(
     Session session, {
@@ -142,8 +165,11 @@ class ServicioMarca extends Servicio<OdmMarca> {
     required int idUsuario,
   }) async {
     return await performOperation(
-      () => odm.desvincularUsuarioDeMarca(session,
-          idMarca: idMarca, idUsuario: idUsuario),
+      () => odm.desvincularUsuarioDeMarca(
+        session,
+        idMarca: idMarca,
+        idUsuario: idUsuario,
+      ),
     );
   }
 
@@ -152,7 +178,9 @@ class ServicioMarca extends Servicio<OdmMarca> {
     Session session, {
     required int idUsuario,
   }) async {
-    logger.info('Recuperando marcas del usuario $idUsuario...');
+    logger.info(
+      'Recuperando marcas del usuario $idUsuario...',
+    );
 
     List<Marca> marcas = await performOperation(
       () => odm.listarMarcasPorUsuario(
@@ -161,12 +189,16 @@ class ServicioMarca extends Servicio<OdmMarca> {
       ),
     );
 
-    logger.finest('Se ha(n) recuperado ${marcas.length} marca(s) relacionada(s) con el usuario $idUsuario.');
+    logger.finest(
+      'Se ha(n) recuperado ${marcas.length} marca(s) relacionada(s) con el usuario $idUsuario.',
+    );
 
     final listasUsuarios = {};
     final listasArticulos = {};
 
-    logger.finest('Recuperando usuarios y últimos artículos de la(s) marca(s) encontradas...');
+    logger.finest(
+      'Recuperando usuarios y últimos artículos de la(s) marca(s) encontradas...',
+    );
 
     for (final marca in marcas) {
       final listaUsuarios = await performOperation(
@@ -176,7 +208,9 @@ class ServicioMarca extends Servicio<OdmMarca> {
         ),
       );
 
-      logger.finest('Recuperado(s) ${listaUsuarios.length} usuarios pertenecientes a la marca ${marca.id}');
+      logger.finest(
+        'Recuperado(s) ${listaUsuarios.length} usuarios pertenecientes a la marca ${marca.id}',
+      );
 
       final listaArticulos = await performOperation(
         () => odmArticulo.listarArticulosPorMarca(
@@ -185,7 +219,9 @@ class ServicioMarca extends Servicio<OdmMarca> {
         ),
       );
 
-      logger.finest('Recuperado(s) ${listaArticulos.length} articulos pertenecientes a la marca ${marca.id}');
+      logger.finest(
+        'Recuperado(s) ${listaArticulos.length} articulos pertenecientes a la marca ${marca.id}',
+      );
 
       listasUsuarios[marca.id] = listaUsuarios;
       listasArticulos[marca.id] = listaArticulos;
@@ -199,7 +235,9 @@ class ServicioMarca extends Servicio<OdmMarca> {
         )
         .toList();
 
-    logger.finest('Retornando información obtenida...');
+    logger.finest(
+      'Retornando información obtenida...',
+    );
 
     return response;
   }

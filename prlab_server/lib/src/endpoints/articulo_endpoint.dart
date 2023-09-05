@@ -2,7 +2,9 @@ import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/servicios/servicio_articulo.dart';
 import 'package:serverpod/server.dart';
 
+/// Endpoints centrados en la entidad Articulo.
 class ArticuloEndpoint extends Endpoint {
+  /// Instancia del servicio para la entidad Articulo.
   final servicioArticulo = ServicioArticulo();
 
   @override
@@ -120,12 +122,16 @@ class ArticuloEndpoint extends Endpoint {
     }
   }
 
-  /// La función `actualizarArticulo` actualiza un artículo usando el servicio `servicioArticulo` y
-  /// devuelve un booleano indicando si la actualización fue exitosa.
+  /// La función `actualizarArticulo` actualiza un artículo usando el servicio
+  /// `servicioArticulo` y devuelve un booleano indicando si la actualización
+  /// fue exitosa.
   ///
   /// Args:
-  ///   session (Session): Un objeto de sesión que representa la sesión del usuario actual.
-  ///   articulo (Articulo): El parámetro "articulo" es de tipo "Articulo" y es obligatorio.
+  ///   session (Session): Un objeto de sesión que representa la sesión del
+  /// usuario actual.
+  ///
+  /// articulo (Articulo): El parámetro "articulo" es de tipo "Articulo" y es
+  /// obligatorio.
   Future<bool> actualizarArticulo(
     Session session, {
     required Articulo articulo,

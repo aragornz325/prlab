@@ -3,6 +3,7 @@ import 'package:prlab_server/src/odms/odm_articulo.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/server.dart';
 
+/// Servicio para administracion de articulos.
 class ServicioArticulo extends Servicio<OdmArticulo> {
   @override
   final odm = OdmArticulo();
@@ -134,12 +135,14 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     }
   }
 
-  /// La función `actualizarArticulo` actualiza un artículo en una sesión y devuelve un booleano que
-  /// indica si la operación fue exitosa.
+  /// La función `actualizarArticulo` actualiza un artículo en una sesión y 
+  /// devuelve un booleano que indica si la operación fue exitosa.
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio.
-  ///   articulo (Articulo): El parámetro "articulo" es de tipo Articulo y es obligatorio.
+  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es 
+  /// obligatorio.
+  ///   articulo (Articulo): El parámetro "articulo" es de tipo Articulo y es 
+  /// obligatorio.
   Future<bool> actualizarArticulo({
     required Session session,
     required Articulo articulo,
@@ -158,8 +161,10 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
 
       logger.finest('Articulo ${articulo.id} recuperado de la db');
 
-      //se compara con el registro de la db, si el valor es null se deja el valor anterior
-      //si el valor es distinto de null se actualiza el valor en el registro de la db
+      // Se compara con el registro de la db, si el valor es null se deja el 
+      // valor anterior.
+      // Si el valor es distinto de null se actualiza el valor en el registro 
+      // de la DB.
 
       articulo.toJson().forEach((key, value) {
         if (value != null) {

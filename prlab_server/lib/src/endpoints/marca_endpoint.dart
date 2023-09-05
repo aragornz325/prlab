@@ -2,7 +2,9 @@ import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/servicios/servicio_marca.dart';
 import 'package:serverpod/serverpod.dart';
 
+/// Enpoints para acceder a aspectos de la entidad Marca.
 class MarcaEndpoint extends Endpoint {
+  /// Instancia del servicio para la entidad Marca.
   final servicioMarca = ServicioMarca();
 
   /// La función `crearMarca` crea una nueva marca llamando al método
@@ -93,7 +95,7 @@ class MarcaEndpoint extends Endpoint {
     );
   }
 
-  /// Da de baja la relacion entre el usuario y la marca 
+  /// Da de baja la relacion entre el usuario y la marca
   /// en la tabla intermedia.
   Future<List<List<dynamic>>> desvincularUsuarioDeMarca(
     Session session, {
