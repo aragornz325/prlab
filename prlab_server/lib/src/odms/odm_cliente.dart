@@ -13,7 +13,7 @@ class OdmCliente extends ODM {
     required Cliente datosDelCliente,
   }) async {
     try {
-      await performOdmOperation(
+      await ejecutarOperacionOdm(
         session,
         (Session session) =>
             session.db.transaction((Transaction transaction) async {
@@ -42,7 +42,7 @@ class OdmCliente extends ODM {
     Session session, {
     required int idMarca,
   }) async {
-    final queryListaDeIdUsuarios = await performOdmOperation(
+    final queryListaDeIdUsuarios = await ejecutarOperacionOdm(
       session,
       (session) async {
         final query = await session.db.query(
@@ -60,13 +60,13 @@ class OdmCliente extends ODM {
       return [];
     }
 
-    final responseMaps = await rawQueryOperation(
+    final responseMaps = await ejecutarConsultaSql(
       session,
       '''
           SELECT "id", "nombre", "apellido", "fechaDeNacimiento", "nombreDeOrganizacion", "domicilio", "telefono", "idUsuario", "idOrganizacion", "contacto", "fechaEliminacion", "ultimaModificacion", "fechaCreacion" FROM "clientes" 
           WHERE "idUsuario" IN (${queryListaDeIdUsuarios.join(',')});
         ''',
-      keysMapaModeloDb: Cliente(
+      clavesMapaModeloDb: Cliente(
         nombre: 'nombre',
         apellido: 'apellido',
         fechaDeNacimiento: DateTime.now(),

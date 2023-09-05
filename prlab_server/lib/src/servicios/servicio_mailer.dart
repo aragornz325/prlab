@@ -53,7 +53,7 @@ class ServicioMailer extends Servicio<OdmAuth> {
         'JSON Web Token creado',
       );
 
-      final String token = performOperationToken(
+      final String token = ejecutarOperacionToken(
         () => jwt.sign(
           SecretKey(
             ConstantesPrLab.jwtSecret,
@@ -79,7 +79,7 @@ class ServicioMailer extends Servicio<OdmAuth> {
         'Cuerpo del correo electrónico listo para enviar. Enviando...',
       );
 
-      await performOperation(
+      await ejecutarOperacion(
         () => enviarEmail(
           mailDestinatario: email,
           subject: 'You have been invited to PRLab.',
@@ -91,7 +91,7 @@ class ServicioMailer extends Servicio<OdmAuth> {
         'Correo enviado a $email. Guardando JSON Web Token en DB...',
       );
 
-      await performOperation(
+      await ejecutarOperacion(
         () => authRepository.guardarTokenEnDb(
           session: session,
           token: token,

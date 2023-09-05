@@ -16,7 +16,7 @@ class ServicioCliente extends Servicio<OdmCliente> {
   }) async {
     try {
       logger.info('Completando KYC para ${datosDelCliente.nombre}');
-      return await performOperation(
+      return await ejecutarOperacion(
         () => odm.completarKyc(
           session: session,
           datosDelCliente: datosDelCliente,
@@ -33,7 +33,7 @@ class ServicioCliente extends Servicio<OdmCliente> {
     required int idMarca,
   }) async {
     logger.info('Recuperando usuarios relacionados a la marca $idMarca...');
-    return await performOperation(
+    return await ejecutarOperacion(
       () => odm.listarUsuariosPorMarca(
         session,
         idMarca: idMarca,

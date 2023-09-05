@@ -20,7 +20,7 @@ class OdmMarca extends ODM {
     required Marca payload,
   }) async {
     try {
-      await performOdmOperation(
+      await ejecutarOperacionOdm(
         session,
         (Session session) {
           logger.info('Creando marca: ${payload.nombre}');
@@ -45,7 +45,7 @@ class OdmMarca extends ODM {
     required Session session,
   }) async {
     try {
-      return await performOdmOperation(
+      return await ejecutarOperacionOdm(
         session,
         Marca.find,
       );
@@ -67,7 +67,7 @@ class OdmMarca extends ODM {
     required int id,
   }) async {
     try {
-      await performOdmOperation(
+      await ejecutarOperacionOdm(
         session,
         (Session session) => Marca.delete(
           session,
@@ -86,7 +86,7 @@ class OdmMarca extends ODM {
     required int id,
   }) async {
     try {
-      final marca = await performOdmOperation(
+      final marca = await ejecutarOperacionOdm(
         session,
         (Session session) {
           logger.info('Buscando marca con id: $id');
@@ -107,7 +107,7 @@ class OdmMarca extends ODM {
   /// Actualiza un registro de Marca. El objeto pasado en el parametro debe 
   /// tener el id en la Base de Datos.
   Future<bool> actualizarMarca(Session session, {required Marca marca}) async {
-    return await performOdmOperation(
+    return await ejecutarOperacionOdm(
       session,
       (session) => Marca.update(
         session,
@@ -123,7 +123,7 @@ class OdmMarca extends ODM {
     required int idUsuario,
     required int idRol,
   }) async {
-    return await performOdmOperation(
+    return await ejecutarOperacionOdm(
       session,
       (session) => session.db.query('''
       INSERT INTO "marcas_staff" ("idMarca", "idStaff", "idRol") 
@@ -139,7 +139,7 @@ class OdmMarca extends ODM {
     required int idMarca,
     required int idUsuario,
   }) async {
-    return await performOdmOperation(session, (session) => session.db.query('''
+    return await ejecutarOperacionOdm(session, (session) => session.db.query('''
       UPDATE "marcas_staff"
       SET "fechaEliminacion" = '${DateTime.now().toIso8601String()}'
       WHERE "idMarca" = $idMarca AND "idStaff" = $idUsuario AND "fechaEliminacion" IS NULL;
@@ -151,7 +151,7 @@ class OdmMarca extends ODM {
     Session session, {
     required int idUsuario,
   }) async {
-    final queryListaDeIdMarcas = await performOdmOperation(
+    final queryListaDeIdMarcas = await ejecutarOperacionOdm(
       session,
       (session) async {
         final query = await session.db.query(
@@ -166,13 +166,13 @@ class OdmMarca extends ODM {
       return [];
     }
 
-    final responseMaps = await rawQueryOperation(
+    final responseMaps = await ejecutarConsultaSql(
       session,
       '''
       SELECT "id", "nombre", "sitioWeb", "fechaCreacion", "ultimaModificacion", "fechaEliminacion" FROM "marcas" 
       WHERE "id" IN (${queryListaDeIdMarcas.join(',')});
       ''',
-      keysMapaModeloDb:
+      clavesMapaModeloDb:
           Marca(nombre: '', sitioWeb: '').toJsonForDatabase().keys,
     );
 

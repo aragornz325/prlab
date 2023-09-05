@@ -22,7 +22,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     required Articulo articulo,
   }) async {
     try {
-      return await performOperation(
+      return await ejecutarOperacion(
         () => odm.crearArticulo(
           session: session,
           articulo: articulo,
@@ -43,7 +43,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     required Session session,
   }) async {
     try {
-      return await performOperation(
+      return await ejecutarOperacion(
         () => odm.listarArticulos(
           session: session,
         ),
@@ -66,7 +66,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     required int id,
   }) async {
     try {
-      return await performOperation(
+      return await ejecutarOperacion(
         () => odm.obtenerArticuloPorId(
           session: session,
           id: id,
@@ -92,10 +92,10 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     required int id,
   }) async {
     try {
-      await performOperation(
+      await ejecutarOperacion(
         () => odm.obtenerArticuloPorId(session: session, id: id),
       );
-      await performOperation(
+      await ejecutarOperacion(
         () => odm.eliminarArticulo(
           session: session,
           id: id,
@@ -124,7 +124,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     required int idMarca,
   }) async {
     try {
-      return await performOperation(
+      return await ejecutarOperacion(
         () => odm.listarArticulosPorMarca(
           session: session,
           idMarca: idMarca,
@@ -150,7 +150,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     try {
       logger.info('Se va a actualizar el articulo con id: ${articulo.id}');
 
-      final articuloFinal = await performOperation(
+      final articuloFinal = await ejecutarOperacion(
         () {
           return odm.obtenerArticuloPorId(
             session: session,
@@ -172,7 +172,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
         }
       });
       logger.finest('Articulo ${articulo.id} actualizado');
-      await performOperation(
+      await ejecutarOperacion(
         () {
           return odm.actualizarArticulo(
             session: session,

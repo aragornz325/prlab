@@ -20,7 +20,7 @@ class OdmArticulo extends ODM {
     required Articulo articulo,
   }) async {
     try {
-      return await performOdmOperation(
+      return await ejecutarOperacionOdm(
         session,
         (session) => session.db.transaction(
           (transaction) async {
@@ -65,7 +65,7 @@ class OdmArticulo extends ODM {
   }) async {
     try {
       logger.info('Listando artículos');
-      return await performOdmOperation(
+      return await ejecutarOperacionOdm(
         session,
         Articulo.find,
       );
@@ -90,7 +90,7 @@ class OdmArticulo extends ODM {
     logger.info(
       'Obteniendo artículo con id: $id',
     );
-    final articulo = await performOdmOperation(
+    final articulo = await ejecutarOperacionOdm(
       session,
       (Session session) => Articulo.findById(
         session,
@@ -124,7 +124,7 @@ class OdmArticulo extends ODM {
   }) async {
     try {
       logger.info('Se va a eliminar el articulo con id: $id');
-      await performOdmOperation(
+      await ejecutarOperacionOdm(
         session,
         (Session session) => Articulo.delete(
           session,
@@ -153,7 +153,7 @@ class OdmArticulo extends ODM {
     required int idMarca,
   }) async {
     try {
-      return await performOdmOperation(
+      return await ejecutarOperacionOdm(
         session,
         (Session session) {
           logger.info(
@@ -178,7 +178,7 @@ class OdmArticulo extends ODM {
     Session session, {
     required int idMarca,
   }) async {
-    return await performOdmOperation(
+    return await ejecutarOperacionOdm(
       session,
       (session) => Articulo.find(
         session,
@@ -208,7 +208,7 @@ class OdmArticulo extends ODM {
       logger.info(
         'Se va a actualizar el articulo en la BD con id ${articulo.id}...',
       );
-      await performOdmOperation(
+      await ejecutarOperacionOdm(
         session,
         (Session session) => Articulo.update(
           session,

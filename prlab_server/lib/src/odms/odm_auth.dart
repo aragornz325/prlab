@@ -28,7 +28,7 @@ class OdmAuth extends ODM {
     required Session session,
     required String email,
   }) async {
-    final result = await performOdmOperation(
+    final result = await ejecutarOperacionOdm(
       session,
       (Session session) => session.db.query(
         'SELECT "verificationCode" FROM serverpod_email_create_request WHERE email = \'$email\'',
@@ -63,7 +63,7 @@ class OdmAuth extends ODM {
     required String email,
     required int tipoDeInvitacion,
   }) async {
-    await performOdmOperation(
+    await ejecutarOperacionOdm(
       session,
       (Session session) => session.db.transaction((Transaction txn) async {
         final checkearToken = await session.db
@@ -98,7 +98,7 @@ class OdmAuth extends ODM {
     required Session session,
     required String email,
   }) async {
-    final List<List<dynamic>> result = await performOdmOperation(
+    final List<List<dynamic>> result = await ejecutarOperacionOdm(
       session,
       (Session session) => session.db
           .query('SELECT token FROM invitaciones WHERE email = \'$email\''),
@@ -126,7 +126,7 @@ class OdmAuth extends ODM {
     required Session session,
     required String codigo,
   }) async {
-    final result = await performOdmOperation(
+    final result = await ejecutarOperacionOdm(
       session,
       (Session session) => session.db.query(
         'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
@@ -155,7 +155,7 @@ class OdmAuth extends ODM {
     required Session session,
     required String codigo,
   }) async =>
-      performOdmOperation(
+      ejecutarOperacionOdm(
         session,
         (Session session) => session.db.query(
           'DELETE FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
@@ -175,7 +175,7 @@ class OdmAuth extends ODM {
     required Session session,
     required String codigo,
   }) async {
-    final codigoEnDb = await performOdmOperation(
+    final codigoEnDb = await ejecutarOperacionOdm(
       session,
       (Session session) => session.db.query(
         'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',

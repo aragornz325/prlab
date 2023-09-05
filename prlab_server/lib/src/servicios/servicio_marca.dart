@@ -34,7 +34,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
       logger.info(
         'Creando Marca ${payload.nombre}',
       );
-      return await performOperation(
+      return await ejecutarOperacion(
         () => odm.crearMarca(
           session: session,
           payload: payload
@@ -64,7 +64,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
       logger.info(
         'Listando Marcas',
       );
-      return await performOperation(
+      return await ejecutarOperacion(
         () => odm.listarMarcas(
           session: session,
         ),
@@ -79,7 +79,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
     Session session,
     int idMarca,
   ) async {
-    return await performOperation(
+    return await ejecutarOperacion(
       () => odm.obtenerMarcaPorId(
         session: session,
         id: idMarca,
@@ -120,7 +120,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
         ..finest(
           'Verificando que la marca exista',
         );
-      await performOperation(
+      await ejecutarOperacion(
         () => odm.obtenerMarcaPorId(
           session: session,
           id: id,
@@ -129,7 +129,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
       logger.finest(
         'Eliminando marca',
       );
-      return await performOperation(
+      return await ejecutarOperacion(
         () => odm.eliminarMarca(
           session: session,
           id: id,
@@ -147,7 +147,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
     required int idUsuario,
     required int idRol,
   }) async {
-    return await performOperation(
+    return await ejecutarOperacion(
       () => odm.asignarUsuarioAMarca(
         session,
         idMarca: idMarca,
@@ -164,7 +164,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
     required int idMarca,
     required int idUsuario,
   }) async {
-    return await performOperation(
+    return await ejecutarOperacion(
       () => odm.desvincularUsuarioDeMarca(
         session,
         idMarca: idMarca,
@@ -182,7 +182,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
       'Recuperando marcas del usuario $idUsuario...',
     );
 
-    List<Marca> marcas = await performOperation(
+    List<Marca> marcas = await ejecutarOperacion(
       () => odm.listarMarcasPorUsuario(
         session,
         idUsuario: idUsuario,
@@ -201,7 +201,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
     );
 
     for (final marca in marcas) {
-      final listaUsuarios = await performOperation(
+      final listaUsuarios = await ejecutarOperacion(
         () => odmCliente.listarUsuariosPorMarca(
           session,
           idMarca: marca.id!,
@@ -212,7 +212,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
         'Recuperado(s) ${listaUsuarios.length} usuarios pertenecientes a la marca ${marca.id}',
       );
 
-      final listaArticulos = await performOperation(
+      final listaArticulos = await ejecutarOperacion(
         () => odmArticulo.listarUltimosTresArticulosPorMarca(
           session,
           idMarca: marca.id!,

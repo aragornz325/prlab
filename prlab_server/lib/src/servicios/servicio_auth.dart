@@ -32,7 +32,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
     required String email,
   }) async {
     logger.info('Se obtendra el codigo de validacion para $email');
-    return await performOperation(
+    return await ejecutarOperacion(
       () => odm.getValidationCode(
         session: session,
         email: email,
@@ -59,11 +59,11 @@ class ServicioAuth extends Servicio<OdmAuth> {
     required String token,
   }) async {
     try {
-      final JWT tokenAbierto = performOperationToken(() => JWT.decode(token));
+      final JWT tokenAbierto = ejecutarOperacionToken(() => JWT.decode(token));
       final String emailToken = tokenAbierto.payload['email'];
 
       logger.finest('Buscando token en db');
-      final String tokenDb = await performOperation(
+      final String tokenDb = await ejecutarOperacion(
         () => odm.traerTokenPorEmail(session: session, email: emailToken),
       );
 
@@ -77,7 +77,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
         throw Exception('Token no valido');
       }
 
-      performOperationToken(
+      ejecutarOperacionToken(
         () => JWT.verify(
           token,
           SecretKey(
@@ -108,7 +108,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
     required String codigo,
   }) async {
     try {
-      final List<dynamic> validarEnDb = await performOperation(
+      final List<dynamic> validarEnDb = await ejecutarOperacion(
         () => odm.validarCodigoResetPassword(
           session: session,
           codigo: codigo,
@@ -141,7 +141,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
     try {
       logger.info('Eliminando código OTP $codigo...');
 
-      final bool checkearCodigoOTP = await performOperation(
+      final bool checkearCodigoOTP = await ejecutarOperacion(
         () => odm.checkearCodigoOTP(
           session: session,
           codigo: codigo,
@@ -153,7 +153,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
         throw Exception('Codigo no valido');
       }
 
-      await performOperation(
+      await ejecutarOperacion(
         () => odm.eliminarOTPResetPassword(
           session: session,
           codigo: codigo,
