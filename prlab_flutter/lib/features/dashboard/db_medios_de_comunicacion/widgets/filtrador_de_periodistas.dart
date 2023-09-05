@@ -84,7 +84,7 @@ class _CampoDeTexto extends StatelessWidget {
 }
 
 /// {@template _ContenedorItemMenuFiltros}
-/// Utilizado para representar un item de los
+/// Utilizado para representar un ítem de los
 /// representados en la barra superior de
 /// [FiltradorDePeriodistas].
 /// {@endtemplate}
@@ -96,14 +96,14 @@ class _ContenedorItemMenuFiltros extends StatelessWidget {
     required this.onSeleccionado,
   });
 
-  /// Item del menu que se verá representado en este
+  /// Ítem del menu que se verá representado en este
   /// contenedor.
   final ItemMenuFiltros itemMenuFiltros;
 
-  /// El item que en este momento esta seleccionado
+  /// El ítem que en este momento esta seleccionado
   /// por el usuario.
   ///
-  /// Si un item es seleccionado, el resto de los items
+  /// Si un ítem es seleccionado, el resto de los items
   /// pasan a estar deseleccionados.
   final ItemMenuFiltros itemSeleccionado;
 
@@ -136,7 +136,7 @@ class _ContenedorItemMenuFiltros extends StatelessWidget {
   }
 }
 
-/// Tipo de item que se muestra en la barra
+/// Tipo de ítem que se muestra en la barra
 /// superior de [FiltradorDePeriodistas].
 enum ItemMenuFiltros {
   busqueda(Icons.search_outlined),

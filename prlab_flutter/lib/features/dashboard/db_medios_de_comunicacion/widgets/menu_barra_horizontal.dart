@@ -123,14 +123,14 @@ class _ContenedorItemMenu extends StatelessWidget {
     required this.onSeleccionado,
   });
 
-  /// Item del menu que se verá representado en este
+  /// Ítem del menu que se verá representado en este
   /// contenedor.
   final ItemMenu itemMenu;
 
-  /// El item que en este momento esta seleccionado
+  /// El ítem que en este momento esta seleccionado
   /// por el usuario.
   ///
-  /// Si un item es seleccionado, el resto de los items
+  /// Si un ítem es seleccionado, el resto de los items
   /// pasan a estar deseleccionados.
   final ItemMenu itemSeleccionado;
 
@@ -172,7 +172,7 @@ class _ContenedorItemMenu extends StatelessWidget {
   }
 }
 
-/// Tipo de item que se muestra en la barra
+/// Tipo de ítem que se muestra en la barra
 /// superior de [MenuBarraHorizontal] para
 /// la navegación interna de la página de
 /// busqueda de medios de comunicación.
