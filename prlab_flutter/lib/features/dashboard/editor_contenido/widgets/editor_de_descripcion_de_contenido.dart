@@ -118,6 +118,9 @@ class _EditorDeDescripcionDeContenidoState
                       ),
                     ),
                   ),
+                  // TODO(anyone):
+                  // Cuando el editor se maneje con streams
+                  // eliminar este boton.
                   PRBoton.esOutlined(
                     onTap: () async {
                       _jsonString = Future.value(
