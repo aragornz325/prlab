@@ -89,7 +89,7 @@ class ArticuloEndpoint extends Endpoint {
     try {
       return await servicioArticulo.eliminarArticulo(
         session: session,
-        id: id,
+        idArticulo: id,
       );
     } on Exception catch (e) {
       rethrow;

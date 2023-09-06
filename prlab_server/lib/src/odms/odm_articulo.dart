@@ -67,7 +67,10 @@ class OdmArticulo extends ODM {
       logger.info('Listando artículos');
       return await performOdmOperation(
         session,
-        Articulo.find,
+        (session) => Articulo.find(
+          session,
+          where: (t) => t.fechaEliminacion.equals(null),
+        ),
       );
     } on Exception catch (e) {
       throw Exception('$e');
@@ -110,15 +113,15 @@ class OdmArticulo extends ODM {
     return articulo;
   }
 
-  /// La función `eliminarArticulo` elimina un artículo de una sesión usando su
-  /// ID.
+  /// La función `eliminarArticulo` elimina un artículo con borrado fisico.
+  /// No recomendable su uso.
   ///
   /// Args:
   ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es
   ///   obligatorio.
   ///   id (int): El parámetro "id" es un número entero que representa el
   ///   identificador único del artículo que debe eliminarse.
-  Future<bool> eliminarArticulo({
+  Future<bool> eliminarArticuloBorradoFisico({
     required Session session,
     required int id,
   }) async {
@@ -133,6 +136,30 @@ class OdmArticulo extends ODM {
       );
       logger.finest(
         'Se elimino el articulo con id: $id',
+      );
+      return true;
+    } on Exception catch (e) {
+      throw Exception('$e');
+    }
+  }
+
+  /// Elimina un articulo con borrado logico.
+  Future<bool> eliminarArticulo({
+    required Session session,
+    required int idArticulo,
+  }) async {
+    try {
+      logger.info('Se va a eliminar el articulo con id: $idArticulo');
+      await performOdmOperation(
+        session,
+        (Session session) => session.db.query('''
+            UPDATE "articulos" 
+            SET "fechaEliminacion" = ${DateTime.now().toIso8601String()}
+            WHERE "id" = $idArticulo AND "fechaEliminacion" IS NULL;
+          '''),
+      );
+      logger.finest(
+        'Se elimino el articulo con id: $idArticulo',
       );
       return true;
     } on Exception catch (e) {
@@ -172,7 +199,7 @@ class OdmArticulo extends ODM {
     }
   }
 
-  /// Recupera los 3 ultimos articulos de la marca. Ordenados del modificado en 
+  /// Recupera los 3 ultimos articulos de la marca. Ordenados del modificado en
   /// fecha mas reciente a mas antigua.
   Future<List<Articulo>> listarUltimosTresArticulosPorMarca(
     Session session, {
@@ -222,5 +249,17 @@ class OdmArticulo extends ODM {
     } on Exception catch (e) {
       throw Exception('$e');
     }
+  }
+
+  Future<int> contarArticulosDeMarca(
+    Session session, {
+    required int idMarca,
+  }) async {
+    return await performOdmOperation(
+        session,
+        (session) => Articulo.count(
+              session,
+              where: (t) => t.idMarca.equals(idMarca),
+            ));
   }
 }

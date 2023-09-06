@@ -89,16 +89,16 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
   ///   identificador único delartículo que debe eliminarse.
   Future<bool> eliminarArticulo({
     required Session session,
-    required int id,
+    required int idArticulo,
   }) async {
     try {
       await performOperation(
-        () => odm.obtenerArticuloPorId(session: session, id: id),
+        () => odm.obtenerArticuloPorId(session: session, id: idArticulo),
       );
       await performOperation(
         () => odm.eliminarArticulo(
           session: session,
-          id: id,
+          idArticulo: idArticulo,
         ),
       );
       return true;

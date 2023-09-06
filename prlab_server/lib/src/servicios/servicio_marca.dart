@@ -110,29 +110,17 @@ class ServicioMarca extends Servicio<OdmMarca> {
   /// identificador único de la marca que debe eliminarse.
   Future<bool> eliminarMarca({
     required Session session,
-    required int id,
+    required int idMarca,
   }) async {
     try {
       logger
         ..info(
-          'Se va a eliminar la marca con id $id',
-        )
-        ..finest(
-          'Verificando que la marca exista',
+          'Se va a eliminar la marca con id $idMarca',
         );
-      await performOperation(
-        () => odm.obtenerMarcaPorId(
-          session: session,
-          id: id,
-        ),
-      );
-      logger.finest(
-        'Eliminando marca',
-      );
       return await performOperation(
         () => odm.eliminarMarca(
           session: session,
-          id: id,
+          idMarca: idMarca,
         ),
       );
     } on Exception catch (e) {
@@ -195,6 +183,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
 
     final listasUsuarios = {};
     final listasArticulos = {};
+    final cantidadesDeArticulos = {};
 
     logger.finest(
       'Recuperando usuarios y últimos artículos de la(s) marca(s) encontradas...',
@@ -223,16 +212,21 @@ class ServicioMarca extends Servicio<OdmMarca> {
         'Recuperado(s) ${listaArticulos.length} articulos pertenecientes a la marca ${marca.id}',
       );
 
+      final cantidadArticulos = await odmArticulo.contarArticulosDeMarca(session, idMarca: marca.id!);
+
       listasUsuarios[marca.id] = listaUsuarios;
       listasArticulos[marca.id] = listaArticulos;
+      cantidadesDeArticulos[marca.id] = cantidadArticulos;
     }
 
     final response = marcas
         .map(
           (e) => e
             ..staff = listasUsuarios[e.id]
-            ..ultimosArticulos = listasArticulos[e.id],
-        )
+            ..ultimosArticulos = listasArticulos[e.id]
+            ..cantidadArticulos = cantidadesDeArticulos[e.id]
+            ..cantidadClippings = 0,
+            )
         .toList();
 
     logger.finest(

@@ -48,7 +48,7 @@ class MarcaEndpoint extends Endpoint {
     try {
       await servicioMarca.eliminarMarca(
         session: session,
-        id: id,
+        idMarca: id,
       );
       return true;
     } on Exception catch (e) {
