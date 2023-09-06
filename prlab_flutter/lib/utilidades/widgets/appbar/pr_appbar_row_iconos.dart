@@ -36,7 +36,10 @@ class PRAppBarRowIconos extends StatelessWidget {
                   value: enumOpciones,
                   child: Text(
                     enumOpciones.nombreItem(context),
-                    style: TextStyle(fontSize: 14.pf),
+                    style: TextStyle(
+                      fontSize: 14.pf,
+                      color: colores.tertiary,
+                    ),
                   ),
                 );
               }).toList();
@@ -61,7 +64,10 @@ class PRAppBarRowIconos extends StatelessWidget {
                   onTap: () => onTap(enumConfiguraciones),
                   child: Text(
                     enumConfiguraciones.nombreItem(context),
-                    style: TextStyle(fontSize: 14.pf),
+                    style: TextStyle(
+                      fontSize: 14.pf,
+                      color: colores.tertiary,
+                    ),
                   ),
                 );
               }).toList();
@@ -89,7 +95,7 @@ class PRAppBarRowIconos extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            /// TODO(Anyone) datos de user
+                            // TODO(Anyone): datos de user
 
                             'PR Lab',
                             style: TextStyle(
@@ -98,7 +104,7 @@ class PRAppBarRowIconos extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            /// TODO(Anyone) datos de user
+                            // TODO(Anyone): datos de user
                             'John Smith - Owner',
                             style: TextStyle(
                               fontSize: 14.pf,
@@ -117,7 +123,10 @@ class PRAppBarRowIconos extends StatelessWidget {
                     value: enumPerfil,
                     child: Text(
                       enumPerfil.nombreItem(context),
-                      style: TextStyle(fontSize: 14.pf),
+                      style: TextStyle(
+                        fontSize: 14.pf,
+                        color: colores.tertiary,
+                      ),
                     ),
                   );
                 }),
@@ -130,7 +139,7 @@ class PRAppBarRowIconos extends StatelessWidget {
             ),
             child: CircleAvatar(
               maxRadius: 20.pw,
-              backgroundColor: colores.onSecondary,
+              backgroundColor: colores.outlineVariant,
             ),
           ),
         ],

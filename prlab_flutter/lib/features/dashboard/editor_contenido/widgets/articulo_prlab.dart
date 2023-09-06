@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
@@ -21,19 +20,21 @@ class ArticuloPRLab extends StatelessWidget {
     super.key,
   });
 
-  /// Articulo factory que tiene el icono de una casa.en la lista de los
-  /// articulos.
-  factory ArticuloPRLab.home({
+  /// Articulo factory que recibe un icono, un titulo y un contenido de
+  /// la descripcion en la lista de los articulos. Usado para el articulo
+  /// home metricas y coverage.
+  factory ArticuloPRLab.listTile({
     required String titulo,
     required String contenidoArticulo,
     required BuildContext context,
+    required String icono,
   }) {
     final colores = context.colores;
     return ArticuloPRLab(
       titulo: titulo,
       contenidoArticulo: contenidoArticulo,
       onTap: () {
-        // TODO(onyone): poner onTap del articulo home.
+        // TODO(Anyone): poner onTap del articulo home.
         showDialog<void>(
           context: context,
           builder: (context) => const PRDialogErrorNoDisponible(),
@@ -46,7 +47,7 @@ class ArticuloPRLab extends StatelessWidget {
               height: 30.ph,
               width: 30.pw,
               child: Image.asset(
-                Assets.assets_icons_casa_png,
+                icono,
               ),
             ),
           ),

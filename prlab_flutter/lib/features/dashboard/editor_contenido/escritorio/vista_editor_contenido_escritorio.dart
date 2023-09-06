@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/dashboard/editor_contenido/celular/vista_editor_contenido_celular.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popup_agregar_pagina.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popup_publicar.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/encabezado_de_seccion.dart';
@@ -13,38 +17,7 @@ import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 /// {@endtemplate}
 class VistaEditorContenidoEscritorio extends StatelessWidget {
   /// {@macro VistaEditorContenidoEscritorio}
-  VistaEditorContenidoEscritorio({super.key});
-
-  final listaPaginasDeArticulos = ListaDePaginasDelArticulo([
-    // TODO(SAM): eliminar cuando venga del back
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-    Article('Home page', 'Flutter article1'),
-    Article('Home page', 'Flutter article2'),
-    Article('Home page', 'Flutter article3'),
-  ]);
+  const VistaEditorContenidoEscritorio({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,139 +28,155 @@ class VistaEditorContenidoEscritorio extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              width: 1000.pw,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  EncabezadoDeSeccion(
-                    icono: Icons.add,
-                    titulo:
-                        'Flutter article', // TODO(SAM): probablemente sea el titulo del articulo, deberia definirlo Guille
-                    descripcion: l10n.pageEditContentSubtitle,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 40.ph),
+                SizedBox(
+                  width: 1000.pw,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      PRBoton.esOutlined(
-                        onTap: () {
-                          // TODO(anyone): agregarle funcionalidad feature en progreso
-                          showDialog<void>(
-                            context: context,
-                            builder: (context) =>
-                                const PRDialogErrorNoDisponible(),
-                          );
+                      BlocBuilder<BlocEditorContenido,
+                          BlocEditorContenidoEstado>(
+                        builder: (context, state) {
+                          if (state.articulo != null) {
+                            return EncabezadoDeSeccion(
+                              icono: Icons.add,
+                              titulo: state.articulo!.titulo,
+                              descripcion: l10n.pageEditContentSubtitle,
+                            );
+                          } else {
+                            return const SizedBox.shrink();
+                          }
                         },
-                        texto: l10n.commonPreview,
-                        estaHabilitado: true,
-                        width: 100.pw,
-                        height: 30.ph,
                       ),
-                      SizedBox(
-                        width: 20.pw,
-                      ),
-                      PRBoton(
-                        onTap: () {
-                          // TODO(anyone): agregarle funcionalidad feature en progreso
-                          showDialog<void>(
-                            context: context,
-                            builder: (context) =>
-                                const PRDialogErrorNoDisponible(),
-                          );
-                        },
-                        texto: l10n.commonShare,
-                        estaHabilitado: true,
-                        width: 100.pw,
-                        height: 30.ph,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          PRBoton.esOutlined(
+                            fontSize: 15.pf,
+                            fontWeight: FontWeight.w500,
+                            onTap: () {
+                              showDialog<void>(
+                                context: context,
+                                builder: (context) =>
+                                    const PRDialogErrorNoDisponible(),
+                              );
+                            },
+                            texto: l10n.commonPreview,
+                            estaHabilitado: true,
+                            width: 100.pw,
+                            height: 30.ph,
+                          ),
+                          SizedBox(
+                            width: 20.pw,
+                          ),
+                          PRBoton(
+                            fontSize: 15.pf,
+                            fontWeight: FontWeight.w500,
+                            onTap: () {
+                              showDialog<void>(
+                                context: context,
+                                builder: (context) =>
+                                    const PRDialogErrorNoDisponible(),
+                              );
+                            },
+                            texto: l10n.commonShare,
+                            estaHabilitado: true,
+                            width: 100.pw,
+                            height: 30.ph,
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
-            SizedBox(height: 20.ph),
-            SizedBox(
-              width: 1000.pw,
-              height: 508.ph,
-              child: Row(
-                children: [
-                  PaginasDelArticulo(
-                    listaPaginasDeArticulos: listaPaginasDeArticulos,
-                  ),
-                  SizedBox(
-                    width: 10.pw,
-                  ),
-                  const ContainerEdicionArticulo(),
-                ],
-              ),
-            ),
-            SizedBox(
-              width: 1040.pw,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 20.ph,
                 ),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      child: Text(
-                        'Showing page 1 of 1 <      >',
-                        // TODO(SAM): cambiar luego por widget correspondiente
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15.pf,
-                          color: colores.secondary,
+                SizedBox(height: 20.ph),
+                BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
+                  builder: (context, state) {
+                    if (state is BlocEditorContenidoEstadoCargando) {
+                      return SizedBox(
+                        width: 1000.pw,
+                        height: 508.ph,
+                        child: const Center(
+                          child: CircularProgressIndicator(),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 20.pw,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 1.pw,
-                      ),
-                      child: SizedBox(
-                        height: 40.ph,
-                        width: 800.pw,
+                      );
+                    } else if (state.articulo != null) {
+                      return SizedBox(
+                        width: 1000.pw,
+                        height: 508.ph,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            PRBoton(
-                              onTap: () {
-                                // TODO(anyone): agregarle funcionalidad feature en progreso
-                                showDialog<void>(
-                                  context: context,
-                                  builder: (context) =>
-                                      const PRDialogErrorNoDisponible(),
-                                );
-                              },
-                              texto: l10n.commonAddPage,
-                              estaHabilitado: true,
-                              width: 139.pw,
-                              height: 30.ph,
+                            PaginasDelArticulo(
+                              listaSeccionesDeArticulos:
+                                  state.listaSeccionesArticulo,
                             ),
-                            PRBoton(
-                              onTap: () {
-                                // TODO(anyone): agregarle funcionalidad feature en progreso
-                                showDialog<void>(
-                                  context: context,
-                                  builder: (context) =>
-                                      const PRDialogErrorNoDisponible(),
-                                );
-                              },
-                              texto: l10n.commonPublish,
-                              estaHabilitado: true,
-                              width: 139.pw,
-                              height: 30.ph,
+                            SizedBox(
+                              width: 10.pw,
                             ),
+                            const ContainerEdicionArticulo(),
                           ],
                         ),
-                      ),
-                    ),
-                  ],
+                      );
+                    } else {
+                      return SizedBox(
+                        width: 1000.pw,
+                        height: 508.ph,
+                        child: Center(
+                          child: Image.asset(
+                            Assets.assets_images_nada_para_ver_png,
+                          ),
+                        ),
+                      );
+                    }
+                  },
                 ),
-              ),
+                SizedBox(
+                  width: 1040.pw,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 20.ph,
+                    ),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          child: Text(
+                            'Showing page 1 of 1 <      >',
+                            // TODO(SAM): cambiar luego por widget
+                            // correspondiente
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 15.pf,
+                              color: colores.secondary,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20.pw,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 1.pw,
+                          ),
+                          child: SizedBox(
+                            height: 40.ph,
+                            width: 800.pw,
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                PopUpMenuAgregarPagina(),
+                                PopUpMenuOpcionesPublicar(),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

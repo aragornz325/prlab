@@ -4,7 +4,6 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 /// Enum utilizado para manejar la navegacion de PRAppBAr
 enum MenuDeOpciones {
   // --- Crear contenido ---
-  createArticle,
   createReport,
   yourArticles,
   // --- Distribucion del contenido ---
@@ -25,12 +24,14 @@ enum MenuDeOpciones {
   // --- Perfil ---
   profile,
   changeAccount,
-  signOut;
+  signOut,
 
-  /// Retorna el nombre de la categoria.
+  // --- Cobertura de medios de comunicación --
+  databaseMedia;
+
+  /// Retorna el nombre de la categoría.
   String nombreItem(BuildContext context) {
     return switch (this) {
-      createArticle => context.l10n.prAppBarCreateContentCreateArticle,
       createReport => context.l10n.prAppBarCreateContentCreateReport,
       yourArticles => context.l10n.prAppBarCreateContentYourArticles,
       projects => context.l10n.prAppBarDistributionContentProjects,
@@ -48,12 +49,12 @@ enum MenuDeOpciones {
       profile => context.l10n.prAppBarProfile,
       changeAccount => context.l10n.prAppBarProfileChangeAccount,
       signOut => context.l10n.prAppBarProfileSignOut,
+      databaseMedia => context.l10n.prAppBarCoverageMediaDbMedia,
     };
   }
 
   /// Listas de items para diferenciar la sección 'Crear contenido'
   static List<MenuDeOpciones> get crearContenido => [
-        createArticle,
         createReport,
         yourArticles,
       ];
@@ -89,6 +90,12 @@ enum MenuDeOpciones {
         signOut,
       ];
 
+  /// Listas de items para diferenciar la sección
+  /// 'Cobertura de medios de comunicación'.
+  static List<MenuDeOpciones> get coberturaMedia => [
+        databaseMedia,
+      ];
+
   bool get esHelpCenter => this == helpCenter;
   bool get eContactSupport => this == contactSupport;
   bool get esPrLabWeb => this == prLabWeb;
@@ -102,11 +109,9 @@ enum MenuDeOpciones {
   bool get esProfile => this == profile;
   bool get esChangeAccount => this == changeAccount;
   bool get esSignOut => this == signOut;
-  bool get esCreateArticle => this == createArticle;
   bool get esCreateReport => this == createReport;
   bool get esYourArticles => this == yourArticles;
   bool get esProjects => this == projects;
   bool get esDashboards => this == dashboards;
-
-  //TODO(Manu): faltan opciones de coverage media
+  bool get esMediaDatabase => this == databaseMedia;
 }

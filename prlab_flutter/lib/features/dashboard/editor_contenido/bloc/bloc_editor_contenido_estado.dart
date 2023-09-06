@@ -11,7 +11,8 @@ sealed class BlocEditorContenidoEstado {
     this.logoElegidoWeb,
     this.logoSecundarioElegidoCelular,
     this.logoSecundarioElegidoWeb,
-    this.descripcionDeArticulo = '',
+    this.articulo,
+    this.listaSeccionesArticulo = const [],
   });
 
   BlocEditorContenidoEstado.desde(
@@ -20,7 +21,8 @@ sealed class BlocEditorContenidoEstado {
     Uint8List? logoElegidoWeb,
     File? logoSecundarioElegidoCelular,
     Uint8List? logoSecundarioElegidoWeb,
-    String? descripcionDeArticulo,
+    Articulo? articulo,
+    List<Articulo>? listaSeccionesArticulo,
   }) : this._(
           logoElegidoCelular: logoElegidoCelular ?? otro.logoElegidoCelular,
           logoElegidoWeb: logoElegidoWeb ?? otro.logoElegidoWeb,
@@ -28,20 +30,19 @@ sealed class BlocEditorContenidoEstado {
               logoSecundarioElegidoCelular ?? otro.logoSecundarioElegidoCelular,
           logoSecundarioElegidoWeb:
               logoSecundarioElegidoWeb ?? otro.logoSecundarioElegidoWeb,
-          descripcionDeArticulo:
-              descripcionDeArticulo ?? otro.descripcionDeArticulo,
+          articulo: articulo ?? otro.articulo,
+          listaSeccionesArticulo:
+              listaSeccionesArticulo ?? otro.listaSeccionesArticulo,
         );
 
   final File? logoElegidoCelular;
   final Uint8List? logoElegidoWeb;
   final File? logoSecundarioElegidoCelular;
   final Uint8List? logoSecundarioElegidoWeb;
+  final List<Articulo> listaSeccionesArticulo;
 
-  /// El core de el artículo, acá se encuentra toda la información
-  /// central del mismo, se pueden subir imagenes, customizar la letra
-  /// y más, el string contiene el tipo de archivo `html` donde estan
-  /// descriptas todas esas especificaciones.
-  final String descripcionDeArticulo;
+  /// El articulo a ser editado en la página actual.
+  final Articulo? articulo;
 }
 
 /// {@template BlocEditorContenidoEstadoInicial}
@@ -75,6 +76,8 @@ class BlocEditorContenidoEstadoRecolectandoDatos
     super.logoElegidoWeb,
     super.logoSecundarioElegidoCelular,
     super.logoSecundarioElegidoWeb,
+    super.articulo,
+    super.listaSeccionesArticulo,
   }) : super.desde();
 }
 
@@ -83,15 +86,31 @@ class BlocEditorContenidoEstadoRecolectandoDatos
 /// {@endtemplate}
 class BlocEditorContenidoEstadoExitoso extends BlocEditorContenidoEstado {
   /// {@macro BlocEditorContenidoEstadoExitoso}
-  BlocEditorContenidoEstadoExitoso.desde(super.otro) : super.desde();
+  BlocEditorContenidoEstadoExitoso.desde(
+    super.otro, {
+    required Articulo articulo,
+    super.logoElegidoCelular,
+    super.logoElegidoWeb,
+    super.logoSecundarioElegidoCelular,
+    super.logoSecundarioElegidoWeb,
+    super.listaSeccionesArticulo,
+  }) : super.desde(
+          articulo: articulo,
+        );
 }
 
-/// {@template BlocEditorContenidoEstadoFallido}
+/// {@template BlocEditorContenidoEstadoError}
 /// Estado de fallo del [BlocEditorContenido].
 /// {@endtemplate}
-class BlocEditorContenidoEstadoFallido extends BlocEditorContenidoEstado {
-  /// {@macro BlocEditorContenidoEstadoFallido}
-  BlocEditorContenidoEstadoFallido.desde(super.otro) : super.desde();
+class BlocEditorContenidoEstadoError extends BlocEditorContenidoEstado {
+  /// {@macro BlocEditorContenidoEstadoError}
+  BlocEditorContenidoEstadoError.desde(
+    super.otro, {
+    required this.mensajeDeError,
+  }) : super.desde();
+
+  /// Mensaje de error
+  final MensajesDeErrorDeAdministracionMarcas mensajeDeError;
 }
 
 /// {@template BlocEditorContenidoEstadoActualizandoDescripcion}
@@ -106,5 +125,21 @@ class BlocEditorContenidoEstadoActualizandoDescripcion
   BlocEditorContenidoEstadoActualizandoDescripcion.desde(
     super.otro, {
     required String descripcionDeArticulo,
-  }) : super.desde(descripcionDeArticulo: descripcionDeArticulo);
+  }) : super.desde(
+          // TODO(anyone):
+          // Cuando esten los modelos hechos con mappable,
+          // hacer esto con copyWith.
+          articulo: Articulo(
+            id: otro.articulo?.id,
+            titulo: otro.articulo?.titulo ?? '',
+            contenido: descripcionDeArticulo,
+            idProyecto: otro.articulo?.idProyecto,
+            idMarca: otro.articulo?.idMarca,
+            idAutor: otro.articulo?.idAutor,
+            idStatus: otro.articulo?.idStatus,
+            fechaEliminacion: otro.articulo?.fechaEliminacion,
+            ultimaModificacion: otro.articulo?.ultimaModificacion,
+            fechaCreacion: otro.articulo?.fechaCreacion,
+          ),
+        );
 }

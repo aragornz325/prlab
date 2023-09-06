@@ -6,7 +6,7 @@ import 'package:prlab_flutter/features/dashboard/administracion_de_una_marca.dar
 import 'package:prlab_flutter/features/dashboard/administracion_de_una_marca.dart/escritorio/vista_administracion_de_una_marca.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
 
-//! TODO(anyone): DEFINIR SI [AdministracionDeUnaMarca] ES EL NOMBRE CORRECTO
+// TODO(anyone): DEFINIR SI [AdministracionDeUnaMarca] ES EL NOMBRE CORRECTO
 /// {@template PaginaAdministracionDeUnaMarca}
 /// Pagina de administracion de una marca donde el usuario puede los articulos
 /// de sus marcas e informacion de los mismas
@@ -15,20 +15,20 @@ import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart'
 class PaginaAdministracionDeUnaMarca extends StatelessWidget {
   /// {@macro PaginaAdministracionDeUnaMarca}
   const PaginaAdministracionDeUnaMarca({
-    @PathParam('nombreMarca') required this.nombreMarca,
+    @PathParam('idMarca') required this.idMarca,
     super.key,
   });
 
-  /// Nombre de la marca a mostrar en el encabezado
-  final String nombreMarca;
+  /// Identificador unico de la marca.
+  final int idMarca;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BlocAdministracionDeUnaMarca(),
-      child: FullResponsiveScreen(
-        mobile: const VistaCelularAdministracionDeUnaMarca(),
-        desktop:
-            VistaEscritorioAdministracionDeUnaMarca(nombreMarca: nombreMarca),
+      create: (context) => BlocAdministracionDeUnaMarca(idMarca),
+      child: const FullResponsiveScreen(
+        mobile: VistaCelularAdministracionDeUnaMarca(),
+        desktop: VistaEscritorioAdministracionDeUnaMarca(),
       ),
     );
   }

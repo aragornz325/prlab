@@ -68,16 +68,20 @@ class AppRouter extends $AppRouter {
               initial: true,
             ),
             AutoRoute(
-              path: 'brand-administration/:nombreMarca',
+              path: 'brand-administration/:idMarca',
               page: RutaAdministracionDeUnaMarca.page,
             ),
             AutoRoute(
-              path: 'edit-content',
+              path: 'edit-content/:id',
               page: RutaEditorContenido.page,
             ),
             AutoRoute(
               page: RutaAdministracionContenido.page,
               path: 'content-management',
+            ),
+            AutoRoute(
+              page: RutaDbMediosDeComunicacion.page,
+              path: 'media-database',
             ),
           ],
         ),

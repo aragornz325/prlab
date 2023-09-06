@@ -24,7 +24,7 @@ class PRPopUpMenuRowTitulo extends StatelessWidget {
   Widget build(BuildContext context) {
     final colores = context.colores;
     return Container(
-      decoration: BoxDecoration(color: colores.onPrimary),
+      decoration: BoxDecoration(color: colores.surfaceTint),
       height: 30.ph,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5.pw),
@@ -41,7 +41,6 @@ class PRPopUpMenuRowTitulo extends StatelessWidget {
             ),
             SizedBox(width: 5.pw),
             Icon(
-              // TODO(Manu): definir si es necesario o como hacerlo
               estaExpandido
                   ? Icons.arrow_drop_up_rounded
                   : Icons.arrow_drop_down_rounded,

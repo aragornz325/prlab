@@ -22,21 +22,23 @@ class PRWrapperNavegacion extends StatelessWidget {
   final void Function(MenuDeOpciones) onTap;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const PrDrawer(),
-        SizedBox(width: 30.pw),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              PRAppBar(onTap: onTap),
-              SizedBox(height: 30.ph),
-              Expanded(child: body),
-            ],
+    return Scaffold(
+      body: Row(
+        children: [
+          const PrDrawer(),
+          SizedBox(width: 30.pw),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                PRAppBar(onTap: onTap),
+                SizedBox(height: 30.ph),
+                Expanded(child: body),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

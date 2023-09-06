@@ -10,7 +10,12 @@ import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recor
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 class ListaArticulosYRecortes extends StatelessWidget {
-  const ListaArticulosYRecortes({super.key});
+  const ListaArticulosYRecortes({
+    super.key,
+    this.idMarca,
+  });
+
+  final int? idMarca;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class ListaArticulosYRecortes extends StatelessWidget {
 
     return BlocProvider<BlocListaArticulosYRecortes>(
       create: (context) => BlocListaArticulosYRecortes()
-        ..add(const BlocListaArticulosYRecortesEventoTraerArticulos())
+        ..add(BlocListaArticulosYRecortesEventoTraerArticulos(idMarca: idMarca))
         ..add(const BlocListaArticulosYRecortesEventoFiltrar()),
       child: BlocBuilder<BlocListaArticulosYRecortes,
           BlocListaArticulosYRecortesEstado>(
@@ -28,11 +33,11 @@ class ListaArticulosYRecortes extends StatelessWidget {
           return Container(
             height: max(508.ph, 508.sh),
             width: 1000.pw,
-            color: colores.onPrimary,
+            color: colores.surfaceTint,
             child: Column(
               children: [
                 const BotonesArticulosYRecorte(),
-                Divider(color: colores.onSecondary),
+                Divider(color: colores.outlineVariant),
 
                 // si el index es 1 o recortes
                 if (state.index == 1)
@@ -53,24 +58,32 @@ class ListaArticulosYRecortes extends StatelessWidget {
                   Column(
                     children: [
                       const TextFieldBusquedaFiltrado(),
-                      Divider(color: colores.onSecondary),
+                      Divider(color: colores.outlineVariant),
                     ],
                   ),
 
                 // si la lista de articulos no tiene elementos
-                if (state.index == 0)
-                  if (state.articulos.isEmpty)
-                    Center(
-                      child: SizedBox(
-                        height: max(300.ph, 300.sh),
-                        width: 200.pw,
-                        child:
-                            Image.asset(Assets.assets_images_nada_para_ver_png),
-                      ),
-                    )
-                  else
-                    // si la lista de articulos tiene elementos
-                    ListaDeArticulos(articulos: state.articulos),
+                if (state.index == 0 &&
+                    state is BlocListaArticulosYRecortesEstadoCargando)
+                  SizedBox(
+                    height: max(300.ph, 300.sh),
+                    width: 200.pw,
+                    child: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                else if (state.articulos.isEmpty)
+                  Center(
+                    child: SizedBox(
+                      height: max(300.ph, 300.sh),
+                      width: 200.pw,
+                      child:
+                          Image.asset(Assets.assets_images_nada_para_ver_png),
+                    ),
+                  )
+                else
+                  // si la lista de articulos tiene elementos
+                  ListaDeArticulos(articulos: state.articulos),
               ],
             ),
           );

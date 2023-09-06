@@ -18,11 +18,25 @@ class BlocEditorContenidoEventoAgregarImagen extends BlocEditorContenidoEvento {
     this.logoSecundarioElegidoCelular,
     this.logoSecundarioElegidoWeb,
   });
-
+// TODO(SAM): Agregar docu
   final File? logoElegidoCelular;
   final Uint8List? logoElegidoWeb;
   final File? logoSecundarioElegidoCelular;
   final Uint8List? logoSecundarioElegidoWeb;
+}
+
+/// {@template BlocEditorContenidoEventoObtenerArticulo}
+/// Obtiene el articulo a partir de un ID, para poder continuar con su edicion
+/// o creacion.
+/// {@endtemplate}
+class BlocEditorContenidoEventoObtenerArticulo
+    extends BlocEditorContenidoEvento {
+  /// {@macro BlocEditorContenidoEventoObtenerArticulo}
+  BlocEditorContenidoEventoObtenerArticulo({
+    required this.idArticulo,
+  });
+
+  final int idArticulo;
 }
 
 /// {@template BlocEditorContenidoActualizarDescripcion}
@@ -30,14 +44,19 @@ class BlocEditorContenidoEventoAgregarImagen extends BlocEditorContenidoEvento {
 /// articulo a medida que se vayan ejecutando cambios dentro
 /// del mismo
 /// {@endtemplate}
-class BlocEditorContenidoActualizarDescripcion
-    extends BlocEditorContenidoEvento {
+class BlocEditorContenidoActualizarArticulo extends BlocEditorContenidoEvento {
   ///{@macro BlocEditorContenidoActualizarDescripcion}
-  BlocEditorContenidoActualizarDescripcion(this.descripcionDeArticulo);
+  BlocEditorContenidoActualizarArticulo({
+    this.descripcionDeArticulo,
+    this.titulo,
+  });
 
   /// El core de el artículo, acá se encuentra toda la información
   /// central del mismo, se pueden subir imagenes, customizar la letra
   /// y más, el string contiene el tipo de archivo `html` donde estan
   /// descriptas todas esas especificaciones.
-  final String descripcionDeArticulo;
+  final String? descripcionDeArticulo;
+
+  /// El título del articulo.
+  final String? titulo;
 }

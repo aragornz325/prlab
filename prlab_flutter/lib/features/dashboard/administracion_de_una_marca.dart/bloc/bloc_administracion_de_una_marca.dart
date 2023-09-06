@@ -1,25 +1,34 @@
 import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-part 'bloc_administracion_de_una_marca_evento.dart';
+import 'package:prlab_client/prlab_client.dart';
+import 'package:prlab_flutter/utilidades/utilidades.dart';
+
 part 'bloc_administracion_de_una_marca_estado.dart';
+part 'bloc_administracion_de_una_marca_evento.dart';
 
 /// {@template BlocAdministracionDeUnaMarca}
-/// Bloc que maneja los estados y lógica de la pagina de [AdministracionDeUnaMarca]
+/// Bloc que maneja los estados y lógica de la pagina de
+/// 'AdministracionDeUnaMarca'
 /// {@endtemplate}
 class BlocAdministracionDeUnaMarca extends Bloc<
     BlocAdministracionDeUnaMarcaEvento, BlocAdministracionDeUnaMarcaEstado> {
   /// {@macro BlocAdministracionDeUnaMarca}
-  BlocAdministracionDeUnaMarca()
+  BlocAdministracionDeUnaMarca(int marcaId)
       : super(
-          const BlocAdministracionDeUnaMarcaEstadoInicial(),
+          BlocAdministracionDeUnaMarcaEstadoInicial(marcaId),
         ) {
-    on<BlocAdministracionDeUnaMarcaEventoInicializar>(_inicializar);
+    on<BlocAdministracionDeUnaMarcaEventoInicializar>(_onInicializar);
+
+    add(BlocAdministracionDeUnaMarcaEventoInicializar());
   }
 
-  /// EventHandler de [BlocAdministracionDeUnaMarcaEventoInicializar]
-  Future<void> _inicializar(
+  /// Ejecuta los procesos y llamadas necesarias para la
+  /// correcta inicialización de la pagina de administración
+  /// de marca.
+  Future<void> _onInicializar(
     BlocAdministracionDeUnaMarcaEventoInicializar event,
     Emitter<BlocAdministracionDeUnaMarcaEstado> emit,
   ) async {
@@ -27,8 +36,16 @@ class BlocAdministracionDeUnaMarca extends Bloc<
       BlocAdministracionDeUnaMarcaEstadoCargando.desde(state),
     );
     try {
-      // TODO(Gon): Inicializar la pag todavia no se si tiene
-      // que traer una lista de la pag anterior o pedirla al back
+      final respuesta = await client.marca.obtenerMarcaPorId(
+        state.idMarca,
+      );
+
+      emit(
+        BlocAdministracionDeUnaMarcaEstadoExitosoGeneral.desde(
+          state,
+          marca: respuesta,
+        ),
+      );
     } catch (e, st) {
       if (kDebugMode) {
         debugger();

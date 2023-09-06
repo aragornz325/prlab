@@ -308,7 +308,36 @@
     "@pageEditContentSubtitle": {
         "description":"Subtitle that appears on top of the list of articles and the edit container, when you are creating or editing an article"
     },
-    
+          "pageEditContentArticleTitleHomePage" : "Página de inicio",
+    "@pageEditContentArticleTitleHomePage": {
+        "description":"Title of the article when its displayed in the vertical list and it leads you to the home page of the article."
+    },
+             "pageEditContentPopupDownload" : "Descargar",
+    "@pageEditContentPopupDownload": {
+        "description":"Text of one of the popup button items to allow the user to download the article."
+    },
+             "pageEditContentPopupPasswordSetting" : "Configuración de contraseña",
+    "@pageEditContentPopupPasswordSetting": {
+        "description":"Text of the popup button to allow the user set the password settings."
+    },
+                 "pageEditContentPopupSendEmail" : "Enviar vía email",
+    "@pageEditContentPopupSendEmail": {
+        "description":"Text of the popup button to allow the user to send via email."
+    },
+
+
+              "pageEditContentArticleTitleMetricsPage" : "Página de métricas",
+    "@pageEditContentArticleTitleMetricsPage": {
+        "description":"Title of the article when its displayed in the vertical list and it leads you to the metrics page of the article."
+    },
+              "pageEditContentArticleTitleCoveragePage" : "Página de cobertura",
+    "@pageEditContentArticleTitleCoveragePage": {
+        "description":"Title of the article when its displayed in the vertical list and it leads you to the coverage page of the article."
+    },
+                      "pageEditContentArticleTitlePerformancePage" : "Página de rendimiento",
+    "@pageEditContentArticleTitlePerformancePage": {
+        "description":"Text that indicates that it is a performance page."
+    },
     "pageContentAdministrationPopupASingleArticle": "Un solo articulo",
     "@pageContentAdministrationAdminPopupASingleArticle": {
         "description":"text in the popup in the button create an article first options to choose"
@@ -333,7 +362,31 @@
     "@pageContentAdministrationPopupSendViaMail": {
         "description": "text in the popup Send via email,this edit text is displayed in a content management popup in an article, one of the options to choose from"
     },
-    
+
+    "commonApply": "Aplicar",
+    "@commonApply": {
+        "description": "Text shown on a popup/alertdialog that indicates to Apply a filters,Typically used to filter alert dialogs."
+    },
+
+    "commonAlertDialogFilterByAuthor": "Filtrar por autor",
+    "@commonAlertDialogFilterByAuthor": {
+        "description": "Text in title of alertdialog/popup Filter by author,Typically used to filter in title of alert dialogs."
+    },
+
+    "commonAlertDialogFilterByStatus": "Filtrar por estado",
+    "@commonAlertDialogFilterByStatus": {
+        "description": "Text in title of alertdialog/popup Filter by Status,Typically used to filter in title of alert dialogs."
+    },
+
+    "drawerAlertDialogLogoutBack": "Cerrar sesión",
+    "@drawerAlertDialogLogoutBack": {
+        "description": "Title text shown on the button of the alert dialog logout in the drawer"
+    },
+
+    "drawerAlertDialogLogoutContentWarning": "¿Estás seguro que quieres cerrar sesión? Deberás iniciar sesión nuevamente la próxima vez.",
+    "@drawerAlertDialogLogoutContentWarning": {
+        "description": "Content text shown in the center of the alert dialog logout in the drawer, that warns the user that if he presses continue he will be logged out."
+    },
     "commonEdit": "Editar",
     "@commonEdit": {
         "description": "Text shown on a button that indicates to edit,this edit text is displayed in a content management popup one of the options to choose from"
@@ -475,11 +528,96 @@
         "description":"Text to sign out"
     },
 
+    "prAppBarCoverageMediaDbMedia":"Base de datos de periodistas",
+    "@prAppBarCoverageMediaDbMedia":{
+        "description":"Text to redirect to database media page"
+    },
+
+    "pageMediaDatabaseTitle": "Encontrar medios de comunicación",
+    "@pageMediaDatabaseTitle": {
+        "description": "Title found at the top of the page, refers to the search through the media database"
+    },
+
+    "pageMediaDatabaseDescription": "Accede a la Base de Datos de Medios con más de un millón de contactos para conectar con periodistas relevantes.",
+    "@pageMediaDatabaseDescription": {
+        "description": "This subtitle mentions accessing a media database with over a million contacts for connecting with relevant journalists."
+    },
+
+    "pageMediaDatabaseJournalistFilterPeopleItem": "Personas",
+    "@pageMediaDatabaseJournalistFilterPeopleItem": {
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
+    },
+
+    "pageMediaDatabaseJournalistFilterMediaOutletsItem": "Medios de comunicación",
+    "@pageMediaDatabaseJournalistFilterMediaOutletsItem": {
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
+    },
+
+    "pageMediaDatabaseJournalistFilterSearchByKeywordsItem": "Buscar por palabra clave",
+    "@pageMediaDatabaseJournalistFilterSearchByKeywordsItem": {
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
+    },
+
+    "pageMediaDatabaseHorizontalMenuMySelectionsItem": "Mis Selecciones",
+    "@pageMediaDatabaseHorizontalMenuMySelectionsItem": {
+        "description": "One of the 3 tappable items of the horizontal bar containing the navigation inside the media database"
+    },
+
+    "pageMediaDatabaseHorizontalMenuSavedSearchesItem": "Búsquedas guardadas",
+    "@pageMediaDatabaseHorizontalMenuSavedSearchesItem": {
+        "description": "One of the 3 tappable items of the horizontal bar containing the navigation inside the media database"
+    },
+
+    "pageMediaDatabaseHorizontalTextFieldJournalistName": "Ingrese nombre de periodista",
+    "@pageMediaDatabaseHorizontalTextFieldJournalistName": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses that a journalist name be entered"
+    },
+
+    "pageMediaDatabaseHorizontalTextFieldMediaOutlet": "Ingrese nombre del medio de comunicación",
+    "@pageMediaDatabaseHorizontalTextFieldMediaOutlet": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses that a media outlet name be entered"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelCountry": "País",
+    "@pageMediaDatabaseHorizontalFilterLabel": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Country` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelCity": "Ciudad",
+    "@pageMediaDatabaseHorizontalFilterLabelCity": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `City` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelContactLanguage": "Lenguaje del contacto",
+    "@pageMediaDatabaseHorizontalFilterLabelContactLanguage": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Contact language` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelTopic": "Tema",
+    "@pageMediaDatabaseHorizontalFilterLabelTopic": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Topic` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelRole": "Rol",
+    "@pageMediaDatabaseHorizontalFilterLabelRole": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Role` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterButtomButton": "Guardar datos",
+    "@pageMediaDatabaseHorizontalFilterButtomButton": {
+        "description": "It is found in the journalist filters, the people menu, its used to save the filter data, to use it in other opportunity"
+    },
+    
+    "pageMediaDatabaseHorizontalFilterClearAll": "Limpiar todo",
+    "@pageMediaDatabaseHorizontalFilterClearAll": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses the intention of delete all the items from specific filter"
+    },
+    
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
     },
-    "commonBack": "Atras",
+    "commonBack": "Atrás",
     "@commonBack": {
         "description": "Text back in button of screen create admin account"
     },

@@ -6,35 +6,46 @@ part of 'bloc_administracion_de_una_marca.dart';
 class BlocAdministracionDeUnaMarcaEstado extends Equatable {
   /// {@macro BlocAdministracionDeUnaMarcaEstado}
   const BlocAdministracionDeUnaMarcaEstado._({
-    this.ejemplo = false,
+    required this.idMarca,
+    this.marca,
   });
 
   BlocAdministracionDeUnaMarcaEstado.desde(
     BlocAdministracionDeUnaMarcaEstado otro, {
-    bool? ejemplo,
+    int? idMarca,
+    Marca? marca,
   }) : this._(
-          ejemplo: ejemplo ?? otro.ejemplo,
+          idMarca: idMarca ?? otro.idMarca,
+          marca: marca ?? otro.marca,
         );
 
-  /// AdministracionDeUnaMarca
-  final bool ejemplo;
+  /// Identificador unico de una marca.
+  final int idMarca;
 
-  List<Object> get props => [
-        ejemplo,
+  /// La marca que va a estar siendo visualizada
+  /// en la página de administración de marca.
+  final Marca? marca;
+
+  @override
+  List<Object?> get props => [
+        idMarca,
+        marca,
       ];
 }
 
 /// {@template BlocAdministracionMarcasEstadoInicial}
-/// Estado inicial de los componentes de la pantalla [AdministracionDeUnaMarca]
+/// Estado inicial de los componentes de la pantalla 'AdministracionDeUnaMarca'
 /// {@endtemplate}
 class BlocAdministracionDeUnaMarcaEstadoInicial
     extends BlocAdministracionDeUnaMarcaEstado {
   /// {@macro BlocAdministracionMarcasEstadoInicial}
-  const BlocAdministracionDeUnaMarcaEstadoInicial() : super._();
+  const BlocAdministracionDeUnaMarcaEstadoInicial(int idMarca)
+      : super._(idMarca: idMarca);
 }
 
 /// {@template BlocAdministracionMarcasEstadoCargando}
-/// Estado de cargando de los componentes de la pantalla [AdministracionDeUnaMarca]
+/// Estado de cargando de los componentes de la pantalla
+/// 'AdministracionDeUnaMarca'
 /// {@endtemplate}
 class BlocAdministracionDeUnaMarcaEstadoCargando
     extends BlocAdministracionDeUnaMarcaEstado {
@@ -45,17 +56,20 @@ class BlocAdministracionDeUnaMarcaEstadoCargando
 }
 
 /// {@template BlocAdministracionMarcasEstadoExitosoGeneral}
-/// Estado exitoso general de los componentes de la pantalla [AdministracionDeUnaMarca]
+/// Estado exitoso general de los componentes de la pantalla
+/// 'AdministracionDeUnaMarca'
 /// {@endtemplate}
 class BlocAdministracionDeUnaMarcaEstadoExitosoGeneral
     extends BlocAdministracionDeUnaMarcaEstado {
   /// {@macro BlocAdministracionMarcasEstadoExitosoGeneral}
-  BlocAdministracionDeUnaMarcaEstadoExitosoGeneral.desde(super.otro)
-      : super.desde();
+  BlocAdministracionDeUnaMarcaEstadoExitosoGeneral.desde(
+    super.otro, {
+    required super.marca,
+  }) : super.desde();
 }
 
 /// {@template BlocAdministracionMarcasEstadoError}
-/// Estado de error de los componentes de la pantalla [AdministracionDeUnaMarca]
+/// Estado de error de los componentes de la pantalla 'AdministracionDeUnaMarca'
 /// {@endtemplate}
 class BlocAdministracionDeUnaMarcaEstadoError
     extends BlocAdministracionDeUnaMarcaEstado {
@@ -69,8 +83,9 @@ class BlocAdministracionDeUnaMarcaEstadoError
   final MensajesDeErrorAdministracionDeUnaMarca mensajeDeError;
 }
 
-/// Tipos de errores de [AdministracionDeUnaMarca] en caso de que sean necesarios
+/// Tipos de errores de 'AdministracionDeUnaMarca' en caso de que sean
+/// necesarios
 enum MensajesDeErrorAdministracionDeUnaMarca {
   unknown,
-  //TODO(Gon): Manejar errores de [AdministracionDeUnaMarca]
+  // TODO(Gon): Manejar errores de [AdministracionDeUnaMarca]
 }
