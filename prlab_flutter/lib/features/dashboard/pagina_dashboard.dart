@@ -49,10 +49,6 @@ class PaginaDashboard extends StatelessWidget {
                   // TODO(Anyone): Agregar rutas faltantes
                   case MenuDeOpciones.yourArticles:
                     context.router.push(const RutaAdministracionContenido());
-                  case MenuDeOpciones.createArticle:
-                    context.read<BlocDashboard>().add(
-                          BlocDashboardCrearArticulo(),
-                        );
                   case MenuDeOpciones.databaseMedia:
                     context.router.push(const RutaDbMediosDeComunicacion());
                   case MenuDeOpciones.createReport:

@@ -5,12 +5,12 @@ import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/escri
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
 
 /// {@template PaginaDbMediosDeComunicacion}
-/// Página de busqueda de medios de comunicación, muestra
+/// Página de búsqueda de medios de comunicación, muestra
 /// una lista de `journalists` para eventualmente
 /// seleccionar en el contacto y sacar los datos del
 /// periodista.
 ///
-/// Contiene una variedad de filtros de busqueda
+/// Contiene una variedad de filtros de búsqueda
 /// como países, cuidades, entre otras cosas.
 /// {@endtemplate}
 @RoutePage()
