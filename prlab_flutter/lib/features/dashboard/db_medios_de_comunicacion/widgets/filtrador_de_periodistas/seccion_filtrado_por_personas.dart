@@ -9,11 +9,8 @@ part of 'filtrador_de_periodistas.dart';
 class SeccionFiltradoPorPersonas extends StatefulWidget {
   /// {@macro SeccionFiltradoPorPersonas}
   const SeccionFiltradoPorPersonas({
-    required this.width,
     super.key,
   });
-
-  final double width;
 
   @override
   State<SeccionFiltradoPorPersonas> createState() =>
@@ -36,72 +33,69 @@ class _SeccionFiltradoPorPersonasState
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return SizedBox(
-      width: widget.width,
-      child: Column(
-        children: [
-          // TODO(Andre):
-          // Cuando este el bloc de la feature agregarle
-          // funcionalidad a todos estos campos y tiles.
-          _CampoDeTextoFiltrador(
-            controller: _nombrePeriodistaController,
-            hintText: l10n.pageMediaDatabaseHorizontalTextFieldJournalistName,
+    return Column(
+      children: [
+        // TODO(Andre):
+        // Cuando este el bloc de la feature agregarle
+        // funcionalidad a todos estos campos y tiles.
+        _CampoDeTextoFiltrador(
+          controller: _nombrePeriodistaController,
+          hintText: l10n.pageMediaDatabaseHorizontalTextFieldJournalistName,
+        ),
+        const Divider(height: 0),
+        _CampoDeTextoFiltrador(
+          controller: _nombreMedioDeComunicacionController,
+          hintText: l10n.pageMediaDatabaseHorizontalTextFieldMediaOutlet,
+        ),
+        const Divider(height: 0),
+        TileConCheckBoxes(
+          titulo: l10n.pageMediaDatabaseHorizontalFilterLabelCountry,
+          onTapEliminarTodo: (_) {},
+          onTapSeleccionarMasItems: (_) {},
+          onTapEliminarItem: (_) {},
+        ),
+        TileConCheckBoxes(
+          titulo: l10n.pageMediaDatabaseHorizontalFilterLabelCity,
+          onTapEliminarTodo: (_) {},
+          onTapSeleccionarMasItems: (_) {},
+          onTapEliminarItem: (_) {},
+        ),
+        TileConCheckBoxes(
+          titulo: l10n.pageMediaDatabaseHorizontalFilterLabelContactLanguage,
+          onTapEliminarTodo: (_) {},
+          onTapSeleccionarMasItems: (_) {},
+          onTapEliminarItem: (_) {},
+        ),
+        TileConCheckBoxes(
+          titulo: l10n.pageMediaDatabaseHorizontalFilterLabelTopic,
+          onTapEliminarTodo: (_) {},
+          onTapSeleccionarMasItems: (_) {},
+          onTapEliminarItem: (_) {},
+        ),
+        TileConCheckBoxes(
+          titulo: l10n.pageMediaDatabaseHorizontalFilterLabelRole,
+          onTapEliminarTodo: (_) {},
+          onTapSeleccionarMasItems: (_) {},
+          onTapEliminarItem: (_) {},
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 15.sh),
+          child: PRBoton.esOutlined(
+            onTap: () {
+              showDialog<void>(
+                context: context,
+                builder: (_) => const PRDialogErrorNoDisponible(),
+              );
+            },
+            texto: l10n.pageMediaDatabaseHorizontalFilterButtomButton,
+            fontSize: 15.pf,
+            fontWeight: FontWeight.w500,
+            estaHabilitado: true,
+            height: 30.sh,
+            width: 100.pw,
           ),
-          const Divider(height: 0),
-          _CampoDeTextoFiltrador(
-            controller: _nombreMedioDeComunicacionController,
-            hintText: l10n.pageMediaDatabaseHorizontalTextFieldMediaOutlet,
-          ),
-          const Divider(height: 0),
-          TileConCheckBoxes(
-            titulo: l10n.pageMediaDatabaseHorizontalFilterLabelCountry,
-            onTapEliminarTodo: (_) {},
-            onTapSeleccionarMasItems: (_) {},
-            onTapEliminarItem: (_) {},
-          ),
-          TileConCheckBoxes(
-            titulo: l10n.pageMediaDatabaseHorizontalFilterLabelCity,
-            onTapEliminarTodo: (_) {},
-            onTapSeleccionarMasItems: (_) {},
-            onTapEliminarItem: (_) {},
-          ),
-          TileConCheckBoxes(
-            titulo: l10n.pageMediaDatabaseHorizontalFilterLabelContactLanguage,
-            onTapEliminarTodo: (_) {},
-            onTapSeleccionarMasItems: (_) {},
-            onTapEliminarItem: (_) {},
-          ),
-          TileConCheckBoxes(
-            titulo: l10n.pageMediaDatabaseHorizontalFilterLabelTopic,
-            onTapEliminarTodo: (_) {},
-            onTapSeleccionarMasItems: (_) {},
-            onTapEliminarItem: (_) {},
-          ),
-          TileConCheckBoxes(
-            titulo: l10n.pageMediaDatabaseHorizontalFilterLabelRole,
-            onTapEliminarTodo: (_) {},
-            onTapSeleccionarMasItems: (_) {},
-            onTapEliminarItem: (_) {},
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 15.sh),
-            child: PRBoton.esOutlined(
-              onTap: () {
-                showDialog<void>(
-                  context: context,
-                  builder: (_) => const PRDialogErrorNoDisponible(),
-                );
-              },
-              texto: l10n.pageMediaDatabaseHorizontalFilterButtomButton,
-              fontSize: 15.pf,
-              fontWeight: FontWeight.w500,
-              estaHabilitado: true,
-              height: 30.sh,
-              width: 100.pw,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
