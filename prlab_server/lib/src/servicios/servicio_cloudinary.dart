@@ -8,6 +8,7 @@ class ServicioCloudinary extends Servicio<OdmCloudinary> {
   /// Instancia de ODM.
   @override
   final odmCloudinary = OdmManejoArchivosCloudinary();
+  final servicioArticulo = ServicioArticulo();
 
   /// Sube una imagen a la nube. Requiere de la ruta del archivo, el nombre y
   /// la carpeta donde se va a alojar.
@@ -17,7 +18,7 @@ class ServicioCloudinary extends Servicio<OdmCloudinary> {
     required String fileName,
     required String cloudinaryFolder,
   }) async {
-    logger.info('Subiendo imagen $fileName a la carpeta $cloudinaryFolder');
+    logger.info('Subiendo imagen $fileName a la nube');
     return await performOperation(() => odmCloudinary.subirImagen(
           session,
           path: path,
@@ -42,4 +43,21 @@ class ServicioCloudinary extends Servicio<OdmCloudinary> {
       ),
     );
   }
+
+  Future<String> subirImagenArticulo({
+    required Session session,
+    required String path,
+    required int idArticulo,
+  }) async {
+    logger.info('Subiendo imagen $path a la nube');
+    final fileName = path.split('/').last;
+    return await performOperation(
+      () => odmCloudinary.subirImagen(session,
+          path: path,
+          fileName: fileName,
+          cloudinaryFolder: 'cloudinaryCustomFolder'),
+    );
+  }
+
+
 }

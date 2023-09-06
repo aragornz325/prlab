@@ -1,9 +1,9 @@
+import 'package:logging/logging.dart';
 import 'package:prlab_server/src/servicios/servicio_cloudinary.dart';
 import 'package:serverpod/server.dart';
 
 /// Endpoints para manejo de archivos con almacenamiento en la nube.
 class ArchivosEndpoint extends Endpoint {
-
   /// Instancia del servicio.
   final servicio = ServicioCloudinary();
 
@@ -14,13 +14,15 @@ class ArchivosEndpoint extends Endpoint {
     required String path,
     required String fileName,
     required String cloudinaryFolder,
-  }) async =>
-      await servicio.subirImagen(
-        session,
-        path: path,
-        fileName: fileName,
-        cloudinaryFolder: cloudinaryFolder,
-      );
+  }) async {
+    print('llegue al controller');
+    return await servicio.subirImagen(
+      session,
+      path: path,
+      fileName: fileName,
+      cloudinaryFolder: cloudinaryFolder,
+    );
+  }
 
   /// Borra una imagen del alojamiento en la nube. Requiere de su public-id
   /// (<carpeta>/<nombre-del-archivo-sin-extension>) y la url.
@@ -28,6 +30,16 @@ class ArchivosEndpoint extends Endpoint {
     Session session,
     String publicId,
     String url,
-  ) async =>
-      await servicio.borrarImagen(session, publicId, url);
+  ) async {
+    return await servicio.borrarImagen(session, publicId, url);
+  }
+
+  Future<String> subirImagenArticulo(
+    Session session, {
+    required String path,
+    required int idArticulo,
+  }) async {
+    return await servicio.subirImagenArticulo(
+        session: session, path: path, idArticulo: idArticulo);
+  }
 }

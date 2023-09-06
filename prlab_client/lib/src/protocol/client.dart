@@ -13,6 +13,46 @@ import 'package:serverpod_auth_client/module.dart' as _i4;
 import 'dart:io' as _i5;
 import 'protocol.dart' as _i6;
 
+/// Endpoints para manejo de archivos con almacenamiento en la nube.
+class _EndpointArchivos extends _i1.EndpointRef {
+  _EndpointArchivos(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'archivos';
+
+  /// Sube una imagen a la nube. Requiere de la ruta del archivo, el nombre y
+  /// la carpeta donde se va a alojar.
+  _i2.Future<String> subirImagen({
+    required String path,
+    required String fileName,
+    required String cloudinaryFolder,
+  }) =>
+      caller.callServerEndpoint<String>(
+        'archivos',
+        'subirImagen',
+        {
+          'path': path,
+          'fileName': fileName,
+          'cloudinaryFolder': cloudinaryFolder,
+        },
+      );
+
+  /// Borra una imagen del alojamiento en la nube. Requiere de su public-id
+  /// (<carpeta>/<nombre-del-archivo-sin-extension>) y la url.
+  _i2.Future<bool> borrarImagen(
+    String publicId,
+    String url,
+  ) =>
+      caller.callServerEndpoint<bool>(
+        'archivos',
+        'borrarImagen',
+        {
+          'publicId': publicId,
+          'url': url,
+        },
+      );
+}
+
 /// La clase `AuthEndpoint` está ampliando la clase `Endpoint`. por tanto maneja
 /// todas las peticiones relacionadas con el auth del sistema
 class _EndpointAuth extends _i1.EndpointRef {
@@ -142,46 +182,6 @@ class _EndpointMail extends _i1.EndpointRef {
       );
 }
 
-/// Endpoints para manejo de archivos con almacenamiento en la nube.
-class _EndpointArchivos extends _i1.EndpointRef {
-  _EndpointArchivos(_i1.EndpointCaller caller) : super(caller);
-
-  @override
-  String get name => 'archivos';
-
-  /// Sube una imagen a la nube. Requiere de la ruta del archivo, el nombre y
-  /// la carpeta donde se va a alojar.
-  _i2.Future<String> subirImagen({
-    required String path,
-    required String fileName,
-    required String cloudinaryFolder,
-  }) =>
-      caller.callServerEndpoint<String>(
-        'archivos',
-        'subirImagen',
-        {
-          'path': path,
-          'fileName': fileName,
-          'cloudinaryFolder': cloudinaryFolder,
-        },
-      );
-
-  /// Borra una imagen del alojamiento en la nube. Requiere de su public-id
-  /// (<carpeta>/<nombre-del-archivo-sin-extension>) y la url.
-  _i2.Future<bool> borrarImagen(
-    String publicId,
-    String url,
-  ) =>
-      caller.callServerEndpoint<bool>(
-        'archivos',
-        'borrarImagen',
-        {
-          'publicId': publicId,
-          'url': url,
-        },
-      );
-}
-
 class _Modules {
   _Modules(Client client) {
     auth = _i4.Caller(client);
@@ -201,12 +201,14 @@ class Client extends _i1.ServerpodClient {
           context: context,
           authenticationKeyManager: authenticationKeyManager,
         ) {
+    archivos = _EndpointArchivos(this);
     auth = _EndpointAuth(this);
     cliente = _EndpointCliente(this);
     mail = _EndpointMail(this);
-    archivos = _EndpointArchivos(this);
     modules = _Modules(this);
   }
+
+  late final _EndpointArchivos archivos;
 
   late final _EndpointAuth auth;
 
@@ -214,16 +216,14 @@ class Client extends _i1.ServerpodClient {
 
   late final _EndpointMail mail;
 
-  late final _EndpointArchivos archivos;
-
   late final _Modules modules;
 
   @override
   Map<String, _i1.EndpointRef> get endpointRefLookup => {
+        'archivos': archivos,
         'auth': auth,
         'cliente': cliente,
         'mail': mail,
-        'archivos': archivos,
       };
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup =>
