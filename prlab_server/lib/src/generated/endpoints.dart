@@ -261,6 +261,24 @@ class Endpoints extends _i1.EndpointDispatch {
             params['datosDelCliente'],
           ),
         ),
+        'comprobarKyc': _i1.MethodConnector(
+          name: 'comprobarKyc',
+          params: {
+            'idUsuario': _i1.ParameterDescription(
+              name: 'idUsuario',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['cliente'] as _i4.ClienteEndpoint).comprobarKyc(
+            session,
+            params['idUsuario'],
+          ),
+        ),
         'listarUsuariosPorMarca': _i1.MethodConnector(
           name: 'listarUsuariosPorMarca',
           params: {

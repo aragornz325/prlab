@@ -37,6 +37,19 @@ class OdmCliente extends ODM {
     }
   }
 
+  /// Comprueba si un usuario completó la fase de registro.
+  Future<bool> comprobarKyc(Session session, {required int idUsuario}) async {
+    final query = await ejecutarOperacionOdm(
+      session,
+      (session) => Cliente.findSingleRow(
+        session,
+        where: (t) => t.idUsuario.equals(idUsuario),
+      ),
+    );
+
+    return query != null;
+  }
+
   /// Obtiene los usuarios asignados a una marca.
   Future<List<Cliente>> listarUsuariosPorMarca(
     Session session, {

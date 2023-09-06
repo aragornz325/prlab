@@ -33,6 +33,11 @@ class ServicioCliente extends Servicio<OdmCliente> {
     }
   }
 
+  /// Comprueba si un usuario completó la fase de registro.
+  Future<bool> comprobarKyc(Session session,{required int idUsuario}) async {
+    return await odm.comprobarKyc(session, idUsuario: idUsuario);
+  }
+
   /// Obtiene los usuarios asignados a una Marca.
   /// 
   /// Args:

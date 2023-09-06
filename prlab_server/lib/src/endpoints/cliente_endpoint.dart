@@ -24,6 +24,11 @@ class ClienteEndpoint extends Endpoint {
     }
   }
 
+  /// Comprueba si un usuario completó la fase de registro.
+  Future<bool> comprobarKyc(Session session, int idUsuario) async {
+    return await servicioCliente.comprobarKyc(session, idUsuario: idUsuario);
+  }
+
   /// Obtiene los usuarios asignados a una marca.
   Future<List<Cliente>> listarUsuariosPorMarca(
     Session session, {

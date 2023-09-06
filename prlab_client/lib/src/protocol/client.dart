@@ -207,6 +207,14 @@ class _EndpointCliente extends _i1.EndpointRef {
         {'datosDelCliente': datosDelCliente},
       );
 
+  /// Comprueba si un usuario completó su KYC.
+  _i2.Future<bool> comprobarKyc(int idUsuario) =>
+      caller.callServerEndpoint<bool>(
+        'cliente',
+        'comprobarKyc',
+        {'idUsuario': idUsuario},
+      );
+
   /// Obtiene los usuarios asignados a una marca.
   _i2.Future<List<_i4.Cliente>> listarUsuariosPorMarca(
           {required int idMarca}) =>
