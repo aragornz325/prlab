@@ -45,18 +45,32 @@ class PaginaDashboard extends StatelessWidget {
             return PRWrapperNavegacion(
               body: content,
               onTap: (menuDeOpciones) {
-                // TODO(Anyone): Agregar rutas y cuando esten todas pasar a switch
-                if (menuDeOpciones case MenuDeOpciones.yourArticles) {
-                  context.router.push(const RutaAdministracionContenido());
-                } else if (menuDeOpciones case MenuDeOpciones.createArticle) {
-                  context.read<BlocDashboard>().add(
-                        BlocDashboardCrearArticulo(),
-                      );
-                } else {
-                  showDialog<void>(
-                    context: context,
-                    builder: (context) => const PRDialogErrorNoDisponible(),
-                  );
+                switch (menuDeOpciones) {
+                  // TODO(Anyone): Agregar rutas faltantes
+                  case MenuDeOpciones.yourArticles:
+                    context.router.push(const RutaAdministracionContenido());
+                  case MenuDeOpciones.databaseMedia:
+                    context.router.push(const RutaDbMediosDeComunicacion());
+                  case MenuDeOpciones.createReport:
+                  case MenuDeOpciones.projects:
+                  case MenuDeOpciones.dashboards:
+                  case MenuDeOpciones.helpCenter:
+                  case MenuDeOpciones.contactSupport:
+                  case MenuDeOpciones.prLabWeb:
+                  case MenuDeOpciones.prLabNewsroom:
+                  case MenuDeOpciones.productUpdate:
+                  case MenuDeOpciones.accountSettings:
+                  case MenuDeOpciones.payments:
+                  case MenuDeOpciones.users:
+                  case MenuDeOpciones.emailSetup:
+                  case MenuDeOpciones.activityHistory:
+                  case MenuDeOpciones.profile:
+                  case MenuDeOpciones.changeAccount:
+                  case MenuDeOpciones.signOut:
+                    showDialog<void>(
+                      context: context,
+                      builder: (context) => const PRDialogErrorNoDisponible(),
+                    );
                 }
               },
             );

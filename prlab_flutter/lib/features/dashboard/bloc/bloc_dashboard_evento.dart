@@ -13,4 +13,9 @@ abstract class BlocDashboardEvento {
 /// dentro de la db, este artículo tendría
 /// como autor el mismo usuario que lo crea.
 /// {@macro BlocDashboardCrearArticulo}
-class BlocDashboardCrearArticulo extends BlocDashboardEvento {}
+class BlocDashboardCrearArticulo extends BlocDashboardEvento {
+  BlocDashboardCrearArticulo(this.marca);
+
+  /// La marca a la cual se le quiere crear un nuevo artículo.
+  final Marca marca;
+}

@@ -395,6 +395,11 @@
         "description":"Text to sign out"
     },
 
+    "prAppBarCoverageMediaDbMedia": "Database Media",
+    "@prAppBarCoverageMediaDbMedia":{
+        "description":"Text to redirect to database media page"
+    },
+
     "pageContentAdministrationCreateArticle" : "Create an article",
     "@pageContentAdministrationCreateArticle": {
         "description":"This text is in content management view in the button to create a new article"
@@ -491,15 +496,97 @@
     "@pageContentAdministrationPopupSendViaMail": {
         "description": "text in the popup Send via email,this edit text is displayed in a content management popup in an article, one of the options to choose from"
     },
-       "drawerAlertDialogLogoutBack": "Log out",
+
+    "drawerAlertDialogLogoutBack": "Log out",
     "@drawerAlertDialogLogoutBack": {
         "description": "Title text shown on the button of the alert dialog logout in the drawer"
     },
-          "drawerAlertDialogLogoutContentWarning": "Are you sure you want to log out? You \n will need to log in next time.",
+
+    "drawerAlertDialogLogoutContentWarning": "Are you sure you want to log out? You \n will need to log in next time.",
     "@drawerAlertDialogLogoutContentWarning": {
         "description": "Content text shown in the center of the alert dialog logout in the drawer, that warns the user that if he presses continue he will be logged out."
     },
 
+    
+    "pageMediaDatabaseTitle": "Find media database",
+    "@pageMediaDatabaseTitle": {
+        "description": "Title found at the top of the page, refers to the search through the media database"
+    },
+
+    "pageMediaDatabaseDescription": "Access the Media Database with over a million contacts to --- relevant journalists.",
+    "@pageMediaDatabaseDescription": {
+        "description": "This subtitle mentions accessing a media database with over a million contacts for connecting with relevant journalists."
+    },
+
+    "pageMediaDatabaseJournalistFilterPeopleItem": "People",
+    "@pageMediaDatabaseJournalistFilterPeopleItem": {
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
+    },
+
+    "pageMediaDatabaseJournalistFilterMediaOutletsItem": "Media outlets",
+    "@pageMediaDatabaseJournalistFilterMediaOutletsItem": {
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
+    },
+
+    "pageMediaDatabaseJournalistFilterSearchByKeywordsItem": "Search by keywords",
+    "@pageMediaDatabaseJournalistFilterSearchByKeywordsItem": {
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
+    },
+
+    "pageMediaDatabaseHorizontalMenuMySelectionsItem": "My Selections",
+    "@pageMediaDatabaseHorizontalMenuMySelectionsItem": {
+        "description": "One of the 3 tappable items of the horizontal bar containing the navigation inside the media database"
+    },
+
+    "pageMediaDatabaseHorizontalMenuSavedSearchesItem": "Saved Searches",
+    "@pageMediaDatabaseHorizontalMenuSavedSearchesItem": {
+        "description": "One of the 3 tappable items of the horizontal bar containing the navigation inside the media database"
+    },
+
+    "pageMediaDatabaseHorizontalTextFieldJournalistName": "Enter journalist name",
+    "@pageMediaDatabaseHorizontalTextFieldJournalistName": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses that a journalist name be entered"
+    },
+
+    "pageMediaDatabaseHorizontalTextFieldMediaOutlet": "Enter media outlet name",
+    "@pageMediaDatabaseHorizontalTextFieldMediaOutlet": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses that a media outlet name be entered"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelCountry": "Country",
+    "@pageMediaDatabaseHorizontalFilterLabel": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Country` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelCity": "City",
+    "@pageMediaDatabaseHorizontalFilterLabelCity": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `City` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelContactLanguage": "Contact language",
+    "@pageMediaDatabaseHorizontalFilterLabelContactLanguage": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Contact language` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelTopic": "Topic",
+    "@pageMediaDatabaseHorizontalFilterLabelTopic": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Topic` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelRole": "Role",
+    "@pageMediaDatabaseHorizontalFilterLabelRole": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Role` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterButtomButton": "Save data",
+    "@pageMediaDatabaseHorizontalFilterButtomButton": {
+        "description": "It is found in the journalist filters, the people menu, its used to save the filter data, to use it in other opportunity"
+    },
+
+    "pageMediaDatabaseHorizontalFilterClearAll": "Clear all",
+    "@pageMediaDatabaseHorizontalFilterClearAll": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses the intention of delete all the items from specific filter"
+    },
     
     "commonApply": "Apply",
     "@commonApply": {

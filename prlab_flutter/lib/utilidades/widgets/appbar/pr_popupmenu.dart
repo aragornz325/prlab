@@ -6,7 +6,7 @@ import 'package:prlab_flutter/utilidades/widgets/appbar/appbar.dart';
 /// {@template PRPopUpMenu}
 /// PopUpMenu customizado para utilizar en AppBar
 /// {@endtemplate}
-class PRPopUpMenu extends StatelessWidget {
+class PRPopUpMenu extends StatefulWidget {
   /// {@macro PRpopUpMenu}
   const PRPopUpMenu({
     required this.tituloMenu,
@@ -25,16 +25,32 @@ class PRPopUpMenu extends StatelessWidget {
   final void Function(MenuDeOpciones) onTap;
 
   @override
+  State<PRPopUpMenu> createState() => _PRPopUpMenuState();
+}
+
+class _PRPopUpMenuState extends State<PRPopUpMenu> {
+  bool _estaExpandido = false;
+  @override
   Widget build(BuildContext context) {
     final colores = context.colores;
     return PopupMenuButton<MenuDeOpciones>(
+      onOpened: () {
+        setState(() {
+          _estaExpandido = true;
+        });
+      },
+      onCanceled: () {
+        setState(() {
+          _estaExpandido = false;
+        });
+      },
       itemBuilder: (BuildContext context) {
-        return enumItemsMenu.map((MenuDeOpciones enumItemsMenu) {
+        return widget.enumItemsMenu.map((MenuDeOpciones enumItemsMenu) {
           return PopupMenuItem<MenuDeOpciones>(
             labelTextStyle: MaterialStatePropertyAll(
               TextStyle(color: colores.tertiary),
             ),
-            onTap: () => onTap(enumItemsMenu),
+            onTap: () => widget.onTap(enumItemsMenu),
             value: enumItemsMenu,
             child: Text(
               enumItemsMenu.nombreItem(context),
@@ -48,7 +64,10 @@ class PRPopUpMenu extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
-      child: PRPopUpMenuRowTitulo(tituloMenu: tituloMenu, estaExpandido: false),
+      child: PRPopUpMenuRowTitulo(
+        tituloMenu: widget.tituloMenu,
+        estaExpandido: _estaExpandido,
+      ),
     );
   }
 }
