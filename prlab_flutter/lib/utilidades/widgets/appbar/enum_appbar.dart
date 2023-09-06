@@ -4,7 +4,6 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 /// Enum utilizado para manejar la navegacion de PRAppBAr
 enum MenuDeOpciones {
   // --- Crear contenido ---
-  createArticle,
   createReport,
   yourArticles,
   // --- Distribucion del contenido ---
@@ -33,7 +32,6 @@ enum MenuDeOpciones {
   /// Retorna el nombre de la categoría.
   String nombreItem(BuildContext context) {
     return switch (this) {
-      createArticle => context.l10n.prAppBarCreateContentCreateArticle,
       createReport => context.l10n.prAppBarCreateContentCreateReport,
       yourArticles => context.l10n.prAppBarCreateContentYourArticles,
       projects => context.l10n.prAppBarDistributionContentProjects,
@@ -57,7 +55,6 @@ enum MenuDeOpciones {
 
   /// Listas de items para diferenciar la sección 'Crear contenido'
   static List<MenuDeOpciones> get crearContenido => [
-        createArticle,
         createReport,
         yourArticles,
       ];
@@ -112,7 +109,6 @@ enum MenuDeOpciones {
   bool get esProfile => this == profile;
   bool get esChangeAccount => this == changeAccount;
   bool get esSignOut => this == signOut;
-  bool get esCreateArticle => this == createArticle;
   bool get esCreateReport => this == createReport;
   bool get esYourArticles => this == yourArticles;
   bool get esProjects => this == projects;

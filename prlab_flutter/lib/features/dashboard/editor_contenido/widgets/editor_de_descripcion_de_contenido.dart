@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template  EditorDeDescripcionDeContenido}
 /// Contiene los elementos para la edición
@@ -26,6 +28,24 @@ class _EditorDeDescripcionDeContenidoState
     extends State<EditorDeDescripcionDeContenido> {
   final scrollController = ScrollController();
 
+  late Future<String> _jsonString;
+
+  @override
+  void initState() {
+    final bloc = context.read<BlocEditorContenido>();
+
+    _jsonString = Future.value(
+      bloc.state.articulo?.contenido == null ||
+              bloc.state.articulo?.contenido == ''
+          ? jsonEncode(
+              EditorState.blank().document.toJson(),
+            )
+          : bloc.state.articulo?.contenido ?? '',
+    );
+
+    super.initState();
+  }
+
   @override
   void dispose() {
     scrollController.dispose();
@@ -34,64 +54,96 @@ class _EditorDeDescripcionDeContenidoState
 
   @override
   Widget build(BuildContext context) {
-    final colores = context.colores;
-
     return SizedBox(
       height: 352.ph,
-      child: StreamBuilder<String>(
-        // TODO(Andreas): Una vez que este el endpoint del back,
-        // consumir el json desde el estado retroalimentado por el evento.
-        // stream: Stream.value(bloc.state.descripcionDeArticulo),
-        stream: Stream<String>.value(
-          jsonEncode(
-            EditorState.blank().document.toJson(),
-          ),
-        ),
-        builder: (context, snapshot) {
-          final estaConectado =
-              snapshot.connectionState == ConnectionState.done;
+      child: BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
+        builder: (context, state) {
+          return FutureBuilder<String>(
+            // TODO(Andreas): Una vez que este el endpoint del back,
+            // consumir el json desde el estado retroalimentado por el evento.
+            // stream: Stream.value(bloc.state.descripcionDeArticulo),
+            future: _jsonString,
+            builder: (context, snapshot) {
+              final estaConectado =
+                  snapshot.connectionState == ConnectionState.done;
 
-          if (!snapshot.hasData && !estaConectado) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
+              if (!snapshot.hasData && !estaConectado) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
 
-          final editorState = EditorState(
-            document: Document.fromJson(
-              Map<String, Object>.from(
-                json.decode(snapshot.data!) as Map,
-              ),
-            ),
-          );
+              final editorState = EditorState(
+                document: Document.fromJson(
+                  Map<String, Object>.from(
+                    json.decode(snapshot.data!) as Map,
+                  ),
+                ),
+              );
 
-          editorState.logConfiguration
-            ..handler = debugPrint
-            ..level = LogLevel.off;
+              editorState.logConfiguration
+                ..handler = debugPrint
+                ..level = LogLevel.off;
 
-          return FloatingToolbar(
-            items: [
-              paragraphItem,
-              ...headingItems,
-              ...markdownFormatItems,
-              quoteItem,
-              bulletedListItem,
-              numberedListItem,
-              linkItem,
-              buildTextColorItem(),
-              buildHighlightColorItem(),
-              ...textDirectionItems,
-            ],
-            editorState: editorState,
-            scrollController: scrollController,
-            style: FloatingToolbarStyle(
-              backgroundColor: colores.outlineVariant,
-              toolbarActiveColor: colores.primary,
-            ),
-            child: _ContenedorDeDescripcionDeContenido(
-              editorState: editorState,
-              scrollController: scrollController,
-            ),
+              editorState.transactionStream.listen((event) {
+                if (event.$1 == TransactionTime.after) {
+                  _jsonString = Future.value(
+                    jsonEncode(editorState.document.toJson()),
+                  );
+                }
+              });
+
+              return Column(
+                children: [
+                  SizedBox(
+                    height: 310.ph,
+                    child: FloatingToolbar(
+                      items: [
+                        paragraphItem,
+                        ...headingItems,
+                        ...markdownFormatItems,
+                        quoteItem,
+                        bulletedListItem,
+                        numberedListItem,
+                        linkItem,
+                        buildTextColorItem(),
+                        buildHighlightColorItem(),
+                        ...textDirectionItems,
+                      ],
+                      editorState: editorState,
+                      scrollController: scrollController,
+                      child: _ContenedorDeDescripcionDeContenido(
+                        editorState: editorState,
+                        scrollController: scrollController,
+                      ),
+                    ),
+                  ),
+                  // TODO(anyone):
+                  // Cuando el editor se maneje con streams
+                  // eliminar este boton.
+                  PRBoton.esOutlined(
+                    onTap: () async {
+                      _jsonString = Future.value(
+                        jsonEncode(editorState.document.toJson()),
+                      );
+
+                      context.read<BlocEditorContenido>().add(
+                            BlocEditorContenidoActualizarArticulo(
+                              descripcionDeArticulo: jsonEncode(
+                                await _jsonString,
+                              ),
+                            ),
+                          );
+                    },
+                    // No tiene traduc porque es temporal.
+                    texto: 'Save description',
+                    estaHabilitado: true,
+                    width: 139.pw,
+                    height: 30.ph,
+                  ),
+                ],
+              );
+            },
           );
         },
       ),
