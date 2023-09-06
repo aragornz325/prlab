@@ -207,7 +207,7 @@ class _EndpointCliente extends _i1.EndpointRef {
         {'datosDelCliente': datosDelCliente},
       );
 
-  /// Comprueba si un usuario completó su KYC.
+  /// Comprueba si un usuario completó la fase de registro.
   _i2.Future<bool> comprobarKyc(int idUsuario) =>
       caller.callServerEndpoint<bool>(
         'cliente',
