@@ -7,15 +7,15 @@ part of 'filtrador_de_periodistas.dart';
 /// de [Item].
 ///
 /// _Nota: Este componente se limita a dar las herramientas
-/// para el computo por fuera del mismo a través de los diferentes callbacks
+/// para el cómputo por fuera del mismo a través de los diferentes callbacks
 /// que ofrece, los cambios en la lista de items unicamente se verán reflejados
 /// si se brindan las listas actualizadas cuando se instancia el mismo_
 ///
 /// Contiene además funcionalidades de la eliminación de
-/// items pre-seleccionados, aquellos que se encuentren en la lista
+/// ítems pre-seleccionados, aquellos que se encuentren en la lista
 /// de [listaDeSeleccionados].
 ///
-/// También la adhesion de nuevos [Item]s, obtenidos de [listaDeSeleccionables]
+/// También la adhesión de nuevos [Item]s, obtenidos de [listaDeSeleccionables]
 /// a la lista de [listaDeSeleccionados] a través de un popup
 /// con la lista de [Item]s y respectivos checkboxes.
 /// {@endtemplate}
@@ -45,15 +45,15 @@ class TileConCheckBoxes<T> extends StatelessWidget {
   final List<Item<T>> listaDeSeleccionables;
 
   /// Callback que devuelve la lista de ítems a ser eliminados
-  /// para manejar un posible computo por fuera de este objeto.
+  /// para manejar un posible cómputo por fuera de este objeto.
   final void Function(List<T> itemsParaEliminar) onTapEliminarTodo;
 
   /// Callback que devuelve el objecto que se deseo eliminar
-  /// para un posible computo por fuera de este objeto.
+  /// para un posible cómputo por fuera de este objeto.
   final void Function(T itemParaEliminar) onTapEliminarItem;
 
   /// Callback que devuelve la lista de ítems a ser adheridos
-  /// para manejar un posible computo por fuera de este objeto.
+  /// para manejar un posible cómputo por fuera de este objeto.
   final void Function(List<T> itemsParaAdherir) onTapSeleccionarMasItems;
 
   List<T> get itemValues => listaDeSeleccionados.map((e) => e.valor).toList();

@@ -2,7 +2,7 @@ part of 'filtrador_de_periodistas.dart';
 
 /// {@template SeccionFiltradoPorPersonas}
 /// Muestra una lista de filtros relacionados
-/// con datos que tiene el periodista, este menu
+/// con datos que tiene el periodista, este menú
 /// aparece cuando seleccionas `People` en los
 /// ítems del menu de [FiltradorDePeriodistas].
 /// {@endtemplate}
