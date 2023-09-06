@@ -2,6 +2,7 @@
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:logging/logging.dart';
+import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/odm.dart';
 
 /// Clase abstracta para la capa de Servicio.
@@ -14,31 +15,36 @@ abstract class Servicio<T extends ODM> {
   final logger = Logger('Servicio');
 
   /// Metodo para ejecutar las operaciones y manejar errores.
-  Future<T> performOperation<T>(Future<T> Function() operation) async {
+  Future<T> ejecutarOperacion<T>(Future<T> Function() operacion) async {
     try {
-      logger.fine('Executing $operation...');
-      return operation().then((result) {
-        logger.fine('Operacion completada exitosamente');
-        return result;
-      });
+      return operacion();
+    } on ExcepcionPrLab catch (e) {
+      throw e.errorType;
     } on Exception catch (e, st) {
-      logger.severe('Unidentified error: $e \n$st');
-      throw UnimplementedError('Unidentified error: $e \n$st');
+      logger.severe(
+        'Unidentified error: $e \n$st',
+      );
+      throw UnimplementedError(
+        'Unidentified error: $e \n$st',
+      );
     }
   }
 
   /// Metodo para ejecutar las operaciones relacionadas a JSON Web Tokens y
   /// manejar sus errores.
-  T performOperationToken<T>(T Function() operation) {
+  T ejecutarOperacionToken<T>(T Function() operacion) {
     try {
-      logger.fine('Verifying token...');
-      return operation();
+      return operacion();
     } on JWTException catch (e) {
       logger.shout('$e');
       rethrow;
     } on Exception catch (e, st) {
-      logger.severe('Unidentified error: $e \n$st');
-      throw UnimplementedError('Unidentified error: $e \n$st');
+      logger.severe(
+        'Unidentified error: $e \n$st',
+      );
+      throw UnimplementedError(
+        'Unidentified error: $e \n$st',
+      );
     }
   }
 }
