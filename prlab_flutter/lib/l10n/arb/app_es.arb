@@ -363,6 +363,11 @@
         "description": "text in the popup Send via email,this edit text is displayed in a content management popup in an article, one of the options to choose from"
     },
 
+    "pageKYCAlertDialogCalendarTitleSelectYourBirthDate": "Selecciona tu fecha de nacimiento",
+    "@pageKYCAlertDialogCalendarTitleSelectYourBirthDate": {
+        "description": "Text in title of alertdialog/popup Select your birthdate,Usually use in el form Kyc."
+    },
+
     "commonApply": "Aplicar",
     "@commonApply": {
         "description": "Text shown on a popup/alertdialog that indicates to Apply a filters,Typically used to filter alert dialogs."
@@ -376,6 +381,11 @@
     "commonAlertDialogFilterByStatus": "Filtrar por estado",
     "@commonAlertDialogFilterByStatus": {
         "description": "Text in title of alertdialog/popup Filter by Status,Typically used to filter in title of alert dialogs."
+    },
+
+    "commonAlertDialogFilterByDate": "Filtrar por fecha",
+    "@commonAlertDialogFilterByDate": {
+        "description": "Text in title of alertdialog/popup Filter by date,Typically used to filter in title of alert dialogs."
     },
 
     "drawerAlertDialogLogoutBack": "Cerrar sesión",

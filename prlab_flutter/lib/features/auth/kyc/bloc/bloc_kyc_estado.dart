@@ -11,7 +11,7 @@ sealed class BlocKycEstado {
     required this.idUsuario,
     this.nombre = '',
     this.apellido = '',
-    this.fechaDeNacimiento = '',
+    this.fechaDeNacimiento,
     this.nombreDeCompania = '',
     this.localidad = '',
     this.numeroContacto = '',
@@ -22,7 +22,7 @@ sealed class BlocKycEstado {
     BlocKycEstado otro, {
     String? nombre,
     String? apellido,
-    String? fechaDeNacimiento,
+    DateTime? fechaDeNacimiento,
     String? nombreDeCompania,
     String? localidad,
     String? numeroContacto,
@@ -46,7 +46,7 @@ sealed class BlocKycEstado {
   final String apellido;
 
   // Fecha de nacimiento del usuario.
-  final String fechaDeNacimiento;
+  final DateTime? fechaDeNacimiento;
 
   // Nombre de la compañia en la que trabaja el usuario.
   final String nombreDeCompania;
@@ -62,10 +62,14 @@ sealed class BlocKycEstado {
   bool get esFormularioCompletado =>
       nombre.isNotEmpty &&
       apellido.isNotEmpty &&
-      fechaDeNacimiento.isNotEmpty &&
+      fechaDeNacimiento != DateTime.now() &&
       nombreDeCompania.isNotEmpty &&
       localidad.isNotEmpty &&
       numeroContacto.isNotEmpty;
+
+  String get etiquetaFechaNacimiento => '${fechaDeNacimiento?.day}/'
+      '${fechaDeNacimiento?.month}/'
+      '${fechaDeNacimiento?.year}';
 }
 
 /// {@template BlocKycEstadoInicial}

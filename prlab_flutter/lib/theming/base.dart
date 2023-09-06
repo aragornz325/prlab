@@ -25,4 +25,7 @@ extension PRLabColorScheme on ColorScheme {
 
   /// Este color es utilizable para los BoxShadows.
   Color get negroBajaOpacidad => Colors.black.withOpacity(.25);
+
+  /// se utiliza para las letras del calendario
+  Color get letrasDelCalendario => Color(0xff262D33);
 }

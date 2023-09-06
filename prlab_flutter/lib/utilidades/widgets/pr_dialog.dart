@@ -53,9 +53,12 @@ class PRDialog extends StatelessWidget {
     required Widget content,
     required BuildContext context,
     required VoidCallback onTap,
-    double height = 285,
     double width = 455,
+    double height = 285,
     bool estaHabilitado = true,
+    double? anchoDelBoton,
+    double? alturaEntreBotonYContenido,
+    String? tituloDelBoton,
   }) {
     final l10n = context.l10n;
 
@@ -83,12 +86,12 @@ class PRDialog extends StatelessWidget {
                 ),
                 SizedBox(height: 40.ph),
                 content,
-                SizedBox(height: 40.ph),
+                SizedBox(height: alturaEntreBotonYContenido ?? 40.ph),
                 PRBoton.esOutlined(
-                  width: 360.pw,
+                  width: anchoDelBoton ?? 360.pw,
                   estaHabilitado: estaHabilitado,
                   onTap: onTap,
-                  texto: l10n.commonSend,
+                  texto: tituloDelBoton ?? l10n.commonSend,
                 ),
               ],
             ),

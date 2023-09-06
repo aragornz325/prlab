@@ -20,6 +20,7 @@ class PRTextFormField extends StatefulWidget {
     this.esSoloLectura = false,
     this.esPassword = false,
     this.obscureText = false,
+    this.usarColorSecundario = false,
     this.prefixIconColor,
     this.suffixIcon,
     this.onChanged,
@@ -29,6 +30,7 @@ class PRTextFormField extends StatefulWidget {
     this.maxLength,
     this.cursorColor,
     this.decoration,
+    this.onTap,
     super.key,
   });
 
@@ -295,12 +297,24 @@ class PRTextFormField extends StatefulWidget {
     /// Funcion onChanged
     void Function(String)? onChanged,
 
+    /// Al apretar este campo ejecuta esta acción
+    void Function()? onTap,
+
+    /// hace referencia al ReadOnly/solo lectura o no podes escribir
+    bool esSoloLectura = false,
+
     /// Ancho del campo de texto.
     double? width,
+
+    /// para usar el color secundario en el icono
+    bool usarColorSecundario = true,
   }) {
     final l10n = context.l10n;
 
     return PRTextFormField(
+      esSoloLectura: esSoloLectura,
+      usarColorSecundario: usarColorSecundario,
+      onTap: onTap,
       width: width,
       keyboardType: TextInputType.datetime,
       controller: controller,
@@ -368,6 +382,12 @@ class PRTextFormField extends StatefulWidget {
   /// Decoración del textfield
   final InputDecoration? decoration;
 
+  /// Al Apretar el Campo ejecuta esta Accion.
+  final void Function()? onTap;
+
+  /// Para usar el color secundario del icono
+  final bool? usarColorSecundario;
+
   @override
   State<PRTextFormField> createState() => _PRTextFormFieldState();
 }
@@ -380,6 +400,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
     return SizedBox(
       width: widget.width?.sw ?? 360.sw,
       child: TextFormField(
+        onTap: widget.onTap,
         cursorColor: widget.cursorColor,
         maxLength: widget.maxLength,
         keyboardType: widget.keyboardType ?? TextInputType.none,
@@ -413,7 +434,9 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
                       widget.prefixIcon,
                       color: widget.controller.text.isEmpty
                           ? widget.esSoloLectura
-                              ? colores.secondaryBajaOpacidad
+                              ? widget.usarColorSecundario!
+                                  ? colores.secondary
+                                  : colores.secondaryBajaOpacidad
                               : colores.secondary
                           : widget.esSoloLectura
                               ? colores.primaryOpacidadSesenta

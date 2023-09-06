@@ -97,16 +97,27 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
               SizedBox(height: 40.sh),
               // TODO(anyone): cambiar esto a el showpicker del calendario y que
               // se le pase la fecha seleccionada al bloc
-              PRTextFormField.fecha(
-                width: 359.pw,
-                controller: controllerFechaDeNacimiento,
-                hintText: l10n.commonDateHintText,
-                context: context,
-                onChanged: (_) => context.read<BlocKyc>().add(
-                      BlocKycEventoRecolectarInformacionDeKyc(
-                        fechaDeNacimiento: controllerFechaDeNacimiento.text,
-                      ),
-                    ),
+              BlocBuilder<BlocKyc, BlocKycEstado>(
+                builder: (context, state) {
+                  return PRTextFormField.fecha(
+                    width: 359.pw,
+                    controller: controllerFechaDeNacimiento,
+                    hintText: state.fechaDeNacimiento == null
+                        ? l10n.commonDateHintText
+                        : state.etiquetaFechaNacimiento,
+                    context: context,
+                    onTap: () {
+                      showDialog<void>(
+                        context: context,
+                        builder: (_) => BlocProvider.value(
+                          value: context.read<BlocKyc>(),
+                          child: PRDialogSeleccionarFecha(),
+                        ),
+                      );
+                    },
+                    esSoloLectura: true,
+                  );
+                },
               ),
               SizedBox(height: 40.sh),
               PRTextFormField.soloLetras(
