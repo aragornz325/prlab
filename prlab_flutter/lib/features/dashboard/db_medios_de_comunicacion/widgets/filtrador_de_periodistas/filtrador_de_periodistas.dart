@@ -90,9 +90,7 @@ class _FiltradorDePeriodistasState extends State<FiltradorDePeriodistas> {
                 _onCambiarDePagina(_itemSeleccionado);
               },
               children: [
-                SeccionFiltradoPorPersonas(
-                  width: 376.sh,
-                ),
+                const SeccionFiltradoPorPersonas(),
                 Center(
                   child: Image.asset(Assets.assets_images_nada_para_ver_png),
                 ),

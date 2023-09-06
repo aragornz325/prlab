@@ -15,7 +15,7 @@ part of 'filtrador_de_periodistas.dart';
 /// items pre-seleccionados, aquellos que se encuentren en la lista
 /// de [listaDeSeleccionados].
 ///
-/// También la adhición de nuevos [Item]s, obtenidos de [listaDeSeleccionables]
+/// También la adhesion de nuevos [Item]s, obtenidos de [listaDeSeleccionables]
 /// a la lista de [listaDeSeleccionados] a través de un popup
 /// con la lista de [Item]s y respectivos checkboxes.
 /// {@endtemplate}
@@ -40,7 +40,8 @@ class TileConCheckBoxes<T> extends StatelessWidget {
   /// Aquellos ítems que fueron seleccionados.
   final List<Item<T>> listaDeSeleccionados;
 
-  /// Lista completa de ítems que pueden ser seleccionables.
+  /// Lista completa de ítems que pueden ser seleccionables o
+  /// ya fueron seleccionados.
   final List<Item<T>> listaDeSeleccionables;
 
   /// Callback que devuelve la lista de ítems a ser eliminados
@@ -60,6 +61,8 @@ class TileConCheckBoxes<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
+    final l10n = context.l10n;
 
     return Column(
       children: [
@@ -81,9 +84,9 @@ class TileConCheckBoxes<T> extends StatelessWidget {
                   if (listaDeSeleccionados.isNotEmpty)
                     InkWell(
                       onTap: () => onTapEliminarTodo.call(itemValues),
-                      child: const Text(
-                        'Clear all',
-                        style: TextStyle(
+                      child: Text(
+                        l10n.pageMediaDatabaseHorizontalFilterClearAll,
+                        style: const TextStyle(
                           decoration: TextDecoration.underline,
                         ),
                       ),
@@ -155,12 +158,24 @@ class ListaDeItemsSeleccionablesDialog<T> extends StatefulWidget {
     super.key,
   });
 
+  /// El título sirve para representar al tipo de
+  /// [T] que se esta brindando en forma de etiqueta,
+  /// de esta manera utilizarlo dentro de un par de
+  /// componente internos de [ListaDeItemsSeleccionablesDialog].
   final String titulo;
 
+  /// Lista completa de ítems que pueden ser seleccionables o
+  /// ya fueron seleccionados.
   final List<Item<T>> listaDeSeleccionables;
 
+  /// Aquellos ítems que fueron seleccionados.
   final List<Item<T>> listaDeSeleccionados;
 
+  /// Al clickear en el boton de aplicar, se ejecuta
+  /// esta funcion donde se devuelve la nueva lista de [T]s
+  /// que fueron seleccionados, incluyendo los que previamente
+  /// ya estaban seleccionados y no fueron destildados en los
+  /// checkboxes.
   final void Function(List<T>) onTapAplicar;
 
   Future<void> show(BuildContext context) => showDialog(

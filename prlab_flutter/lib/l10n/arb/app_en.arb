@@ -582,6 +582,11 @@
     "@pageMediaDatabaseHorizontalFilterButtomButton": {
         "description": "It is found in the journalist filters, the people menu, its used to save the filter data, to use it in other opportunity"
     },
+
+    "pageMediaDatabaseHorizontalFilterClearAll": "Clear all",
+    "@pageMediaDatabaseHorizontalFilterClearAll": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses the intention of delete all the items from specific filter"
+    },
     
     "commonApply": "Apply",
     "@commonApply": {
