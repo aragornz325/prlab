@@ -13,11 +13,10 @@ extension PRLabColorScheme on ColorScheme {
       themeDefaultPRLab.primary.withOpacity(0.5);
 
   /// Este color es utilizable en los items del drawer cuando son seleccionados
-  Color get primaryOpacidadDiez => themeDefaultPRLab.primary.withOpacity(0.1);
+  Color get primaryOpacidadVeinte => themeDefaultPRLab.primary.withOpacity(0.2);
 
-  /// Este color es utilizable en backgrounds de componentes cuando se requiere
-  /// el color primario atenuado.
-  Color get primaryAltaOpacidad => themeDefaultPRLab.primary.withOpacity(0.2);
+  /// Este color es utilizable en los items del drawer cuando son seleccionados
+  Color get primaryOpacidadDiez => themeDefaultPRLab.primary.withOpacity(0.1);
 
   /// Este color es utilizable en textfields deshabilitados.
   Color get secondaryBajaOpacidad =>

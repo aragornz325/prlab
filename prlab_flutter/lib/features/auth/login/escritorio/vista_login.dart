@@ -8,8 +8,6 @@ import 'package:prlab_flutter/features/auth/login/bloc/bloc_login.dart';
 import 'package:prlab_flutter/features/auth/login/escritorio/widgets/texto_bienvenida.dart';
 import 'package:prlab_flutter/features/auth/recuperar_password/dialog/dialog.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/theming/base.dart';
-import 'package:prlab_flutter/utilidades/widgets/dropdowns_package.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// Vista de escritorio de la pantalla login donde el usuario
@@ -42,8 +40,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
-    final theme = context.colores;
+    final colores = context.colores;
 
     return BlocConsumer<BlocLogin, BlocLoginEstado>(
       listener: (context, state) {
@@ -99,90 +96,37 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
           );
         }
         return Scaffold(
-          backgroundColor: Colors.black,
           body: Row(
             children: [
               Container(
-                color: Colors.black,
+                color: colores.background,
                 width: 44.5.wp,
                 height: 100.hp,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    PRDropdown(
-                      dropdownButtonDecoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(5)),
-                        color: theme.background,
+                    const TextoBienvenida(),
+                    SizedBox(height: 90.ph),
+                    SizedBox(
+                      width: 360.pw,
+                      height: 40.ph,
+                      child: PRTextFormField.email(
+                        context: context,
+                        controller: controllerEmail,
+                        onChanged: (_) => _habilitarBotones(),
+                        hintText: l10n.pageLoginPlaceholderEmail,
                       ),
-                      iconsColor: theme.primary,
-                      selectedItemColor: theme.primaryOpacidadDiez,
-                      width: 215.pw,
-                      itemhaveIcons: true,
-                      itemsIconList: const [
-                        Icons.menu,
-                        Icons.person_outline,
-                        Icons.checklist_rtl,
-                        Icons.calendar_month_outlined,
-                      ],
-                      list: const [
-                        {'id': 'all', 'label': 'All'},
-                        {'id': 'author', 'label': 'Author'},
-                        {'id': 'status', 'label': 'Status'},
-                        {'id': 'dates', 'label': 'Dates'},
-                      ],
-                      initiallySelected: const [
-                        {'id': 'all', 'label': 'All'},
-                      ],
-                      onChange: (newList) {},
-                      oneMinimumSelected: true,
                     ),
-                    PRDropdown(
-                      dropdownButtonDecoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(5)),
-                        color: theme.background,
+                    SizedBox(height: 40.ph),
+                    SizedBox(
+                      width: 360.pw,
+                      height: 40.ph,
+                      child: PRTextFormFieldPassword(
+                        controller: controllerPassword,
+                        hintText: l10n.pageLoginPlaceholderPassword,
+                        onChanged: (_) => _habilitarBotones(),
                       ),
-                      selectedItemColor: theme.primaryOpacidadDiez,
-                      width: 215.pw,
-                      hasAvatar: true,
-                      list: const [
-                        {'id': 'dog', 'label': 'Dog'},
-                        {'id': 'cat', 'label': 'Cat'},
-                        {'id': 'mouse', 'label': 'Mouse'},
-                        {'id': 'rabbit', 'label': 'Rabbit'},
-                      ],
-                      initiallySelected: const [
-                        {'id': 'mouse', 'label': 'Mouse'},
-                      ],
-                      onChange: (newList) {},
-                      whenEmpty: 'Choose from the list',
-                      // TODO(Gon): Definir que pasa con los iconos cuando seleccionas varios
-                      multiSelect: true,
-                      oneMinimumSelected: true,
                     ),
-                    // const TextoBienvenida(),
-                    // SizedBox(height: 90.ph),
-                    // SizedBox(
-                    //   width: 360.pw,
-                    //   height: 40.ph,
-                    //   child: PRTextFormField.email(
-                    //     context: context,
-                    //     controller: controllerEmail,
-                    //     onChanged: (_) => _habilitarBotones(),
-                    //     hintText: l10n.pageLoginPlaceholderEmail,
-                    //   ),
-                    // ),
-                    // SizedBox(height: 40.ph),
-                    // SizedBox(
-                    //   width: 360.pw,
-                    //   height: 40.ph,
-                    //   child: PRTextFormFieldPassword(
-                    //     controller: controllerPassword,
-                    //     hintText: l10n.pageLoginPlaceholderPassword,
-                    //     onChanged: (_) => _habilitarBotones(),
-                    //   ),
-                    // ),
                   ],
                 ),
               ),

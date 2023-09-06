@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:full_responsive/full_responsive.dart';
 
 const double tileHeight = 50;
 const double selectAllButtonHeight = 40;
@@ -15,7 +16,6 @@ class PRDropdown extends StatefulWidget {
     this.label = 'label',
     this.id = 'id',
     this.numberOfItemsLabelToShow = 3,
-    this.dropdownButtonDecoration,
     this.itemsIconList,
     this.selectedItemColor = Colors.grey,
     this.unSelectedItemColor = Colors.white,
@@ -45,7 +45,6 @@ class PRDropdown extends StatefulWidget {
     required this.onChange,
     this.whenEmpty = '',
     this.numberOfItemsLabelToShow = 3,
-    this.dropdownButtonDecoration,
     this.itemsIconList,
     this.selectedItemColor = Colors.grey,
     this.unSelectedItemColor = Colors.white,
@@ -101,9 +100,6 @@ class PRDropdown extends StatefulWidget {
 
   /// Initially selected list
   final List<dynamic> initiallySelected;
-
-  /// Decoration for input element
-  final Decoration? dropdownButtonDecoration;
 
   /// Dropdown size
   final bool isLarge;
@@ -345,7 +341,7 @@ class _PRDropdownState extends State<PRDropdown> {
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.zero,
           border: Border(
-            bottom: BorderSide(color: Colors.grey),
+            bottom: BorderSide(color: Color(0xffd9d9d9)),
           ),
         ),
         child: const Text('Select all'),
@@ -428,11 +424,6 @@ class _PRDropdownState extends State<PRDropdown> {
     super.initState();
     filterController = TextEditingController();
     filteredOptions = [...widget.list];
-    boxDecoration = widget.dropdownButtonDecoration ??
-        BoxDecoration(
-          border: Border.all(color: Colors.grey),
-          // borderRadius: BorderRadius.circular(5),
-        );
   }
 
   @override
@@ -454,14 +445,14 @@ class _PRDropdownState extends State<PRDropdown> {
 
         return ConstrainedBox(
           constraints: BoxConstraints.expand(
-            height: tileHeight,
-            width: modalWidth,
+            height: tileHeight.ph,
+            width: modalWidth.pw,
           ),
           child: MenuAnchor(
             crossAxisUnconstrained: false,
             style: MenuStyle(
               fixedSize: MaterialStateProperty.resolveWith((states) {
-                return Size(modalWidth, modalHeight);
+                return Size(modalWidth.pw, modalHeight.ph);
               }),
               padding: MaterialStateProperty.resolveWith((states) {
                 return EdgeInsets.zero;
@@ -479,7 +470,18 @@ class _PRDropdownState extends State<PRDropdown> {
                 child: Container(
                   padding: widget.padding ??
                       const EdgeInsets.symmetric(horizontal: 12),
-                  decoration: boxDecoration,
+                  decoration: BoxDecoration(
+                    borderRadius: controller.isOpen
+                        ? const BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            topLeft: Radius.circular(10),
+                          )
+                        : const BorderRadius.all(Radius.circular(10)),
+                    border: Border.all(
+                      color: Color(0xffd9d9d9d9),
+                    ),
+                    color: Colors.white,
+                  ),
                   width: modalWidth,
                   child: Row(
                     children: [
@@ -605,15 +607,25 @@ class _CustomTile extends StatelessWidget {
       // splashColor: splashColor ?? themeData.primaryColor,
       onTap: handleOnChange,
       child: Container(
-        color: value ? selectedItemColor : Colors.white,
-        height: tileHeight,
+        decoration: BoxDecoration(
+          color: value ? selectedItemColor : Colors.white,
+          border: const Border(
+            left: BorderSide(
+              color: Color(0xffd9d9d9d9),
+            ),
+            right: BorderSide(
+              color: Color(0xffd9d9d9d9),
+            ),
+          ),
+        ),
+        height: tileHeight.ph,
         child: Row(
           children: [
             const SizedBox(width: 6),
             if (hasAvatar)
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 2),
-                width: 30,
+                width: 30.pw,
                 height: 30,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
@@ -625,6 +637,7 @@ class _CustomTile extends StatelessWidget {
                   ? Icon(
                       itemsIconList![index],
                       color: iconsColor,
+                      size: 20.pf,
                     )
                   : Container(),
             const SizedBox(width: 5),
