@@ -199,8 +199,14 @@ class OdmArticulo extends ODM {
     }
   }
 
-  /// Recupera los 3 ultimos articulos de la marca. Ordenados del modificado en
+  /// Recupera los 3 ultimos articulos de la [Marca]. Ordenados del modificado en
   /// fecha mas reciente a mas antigua.
+  ///
+  /// Args:
+  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y es
+  ///   obligatorio.
+  ///   [idMarca] ([int]): este parametro es un número entero que representa
+  ///   el ID de una marca específica.
   Future<List<Articulo>> listarUltimosTresArticulosPorMarca(
     Session session, {
     required int idMarca,
@@ -209,7 +215,8 @@ class OdmArticulo extends ODM {
       session,
       (session) => Articulo.find(
         session,
-        where: (t) => t.idMarca.equals(idMarca),
+        where: (t) =>
+            (t.idMarca.equals(idMarca)) & (t.fechaEliminacion.equals(null)),
         orderBy: ArticuloTable().ultimaModificacion,
         orderDescending: true,
         limit: 3,
@@ -251,15 +258,24 @@ class OdmArticulo extends ODM {
     }
   }
 
+  /// Cuenta los artículos pertenecientes a una [Marca].
+  ///
+  /// Args:
+  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y es
+  ///   obligatorio.
+  ///   [idMarca] ([int]): este parametro es un número entero que representa
+  ///   el ID de una marca específica.
   Future<int> contarArticulosDeMarca(
     Session session, {
     required int idMarca,
   }) async {
     return await ejecutarOperacionOdm(
+      session,
+      (session) => Articulo.count(
         session,
-        (session) => Articulo.count(
-              session,
-              where: (t) => t.idMarca.equals(idMarca),
-            ));
+        where: (t) =>
+            (t.idMarca.equals(idMarca)) & (t.fechaEliminacion.equals(null)),
+      ),
+    );
   }
 }
