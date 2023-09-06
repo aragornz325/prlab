@@ -41,7 +41,6 @@ class PRPopUpMenuRowTitulo extends StatelessWidget {
             ),
             SizedBox(width: 5.pw),
             Icon(
-              // TODO(Manu): definir si es necesario o como hacerlo
               estaExpandido
                   ? Icons.arrow_drop_up_rounded
                   : Icons.arrow_drop_down_rounded,
