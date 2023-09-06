@@ -7,20 +7,20 @@ import 'package:serverpod/server.dart';
 
 /// ODM para administracion de articulos.
 class OdmArticulo extends ODM {
-  /// La función `crearArticulo` crea un nuevo artículo insertándolo en una base
+  /// La función [crearArticulo] crea un nuevo artículo insertándolo en una base
   ///  de datos mediante una operación ODM.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es
+  ///   [session] (Session): El parámetro de sesión es de tipo Sesión y es
   ///   obligatorio.
-  ///   payload (Articulo): El parámetro payload es de tipo Articulo, que
+  ///   [articulo] (Articulo): Este parametro es de tipo Articulo y
   ///   representa los datos del artículo que se debe crear.
   Future<int> crearArticulo({
     required Session session,
     required Articulo articulo,
   }) async {
     try {
-      return await performOdmOperation(
+      return await ejecutarOperacionOdm(
         session,
         (session) => session.db.transaction(
           (transaction) async {
@@ -54,18 +54,18 @@ class OdmArticulo extends ODM {
     }
   }
 
-  /// La función `listarArticulos` recupera una lista de artículos usando una
+  /// La función [listarArticulos] recupera una lista de artículos usando una
   /// sesión y una operación ODM.
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es
+  ///   [session] (Session): El parámetro [sesión] es de tipo "Sesión" y es
   ///   obligatorio.
   Future<List<Articulo>> listarArticulos({
     required Session session,
   }) async {
     try {
       logger.info('Listando artículos');
-      return await performOdmOperation(
+      return await ejecutarOperacionOdm(
         session,
         (session) => Articulo.find(
           session,
@@ -77,14 +77,14 @@ class OdmArticulo extends ODM {
     }
   }
 
-  /// La función `obtenerArticulo` recupera un artículo por su ID usando una
+  /// La función [obtenerArticulo] recupera un artículo por su ID usando una
   /// operación ODM y lo devuelve, o lanza una excepción si no se encuentra
   /// el artículo.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es
+  ///   [session] (Session): El parámetro de sesión es de tipo Sesión y es
   ///   obligatorio.
-  ///   id (int): El parámetro "id" es un número entero que representa el
+  ///   [id] (int): El parámetro [id] es un número entero que representa el
   ///   identificador único del artículo que debe recuperarse.
   Future<Articulo> obtenerArticuloPorId({
     required Session session,
@@ -93,7 +93,7 @@ class OdmArticulo extends ODM {
     logger.info(
       'Obteniendo artículo con id: $id',
     );
-    final articulo = await performOdmOperation(
+    final articulo = await ejecutarOperacionOdm(
       session,
       (Session session) => Articulo.findById(
         session,
@@ -102,7 +102,7 @@ class OdmArticulo extends ODM {
     );
     if (articulo == null) {
       const error = ErrorPrLab.errorElementoNoEncontrado;
-      throw ExceptionPrLab(
+      throw ExcepcionPrLab(
         mensaje: error.mensaje,
         errorType: error,
       );
@@ -117,9 +117,9 @@ class OdmArticulo extends ODM {
   /// No recomendable su uso.
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es
+  ///   [session] (Session): Este parametro es de tipo "Sesión" y es
   ///   obligatorio.
-  ///   id (int): El parámetro "id" es un número entero que representa el
+  ///   [id] (int): El parámetro "id" es un número entero que representa el
   ///   identificador único del artículo que debe eliminarse.
   Future<bool> eliminarArticuloBorradoFisico({
     required Session session,
@@ -127,7 +127,7 @@ class OdmArticulo extends ODM {
   }) async {
     try {
       logger.info('Se va a eliminar el articulo con id: $id');
-      await performOdmOperation(
+      await ejecutarOperacionOdm(
         session,
         (Session session) => Articulo.delete(
           session,
@@ -150,7 +150,7 @@ class OdmArticulo extends ODM {
   }) async {
     try {
       logger.info('Se va a eliminar el articulo con id: $idArticulo');
-      await performOdmOperation(
+      await ejecutarOperacionOdm(
         session,
         (Session session) => session.db.query('''
             UPDATE "articulos" 
@@ -171,16 +171,16 @@ class OdmArticulo extends ODM {
   /// basados en un ID de marca determinado.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es
+  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y es
   ///   obligatorio.
-  ///   idMarca (int): El parámetro `idMarca` es un número entero que representa
+  ///   [idMarca] ([int]): este parametro es un número entero que representa
   ///   el ID de una marca específica.
   Future<List<Articulo>> listarArticulosPorMarca({
     required Session session,
     required int idMarca,
   }) async {
     try {
-      return await performOdmOperation(
+      return await ejecutarOperacionOdm(
         session,
         (Session session) {
           logger.info(
@@ -205,7 +205,7 @@ class OdmArticulo extends ODM {
     Session session, {
     required int idMarca,
   }) async {
-    return await performOdmOperation(
+    return await ejecutarOperacionOdm(
       session,
       (session) => Articulo.find(
         session,
@@ -217,14 +217,14 @@ class OdmArticulo extends ODM {
     );
   }
 
-  /// La función `actualizarArticulo` actualiza un artículo con la sesión
+  /// La función [actualizarArticulo] actualiza un artículo con la sesión
   /// proporcionada y el objeto de artículo, y devuelve un booleano que indica
   /// si la actualización fue exitosa o no.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es
+  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y es
   /// obligatorio.
-  ///   articulo (Articulo): El parámetro "articulo" es un objeto de tipo
+  ///   [articulo] ([Articulo]): El parámetro "articulo" es un objeto de tipo
   /// "Articulo" que representa un artículo. Es necesario para la función y
   /// contiene la información del artículo que necesita ser actualizado.
   Future<bool> actualizarArticulo({
@@ -235,7 +235,7 @@ class OdmArticulo extends ODM {
       logger.info(
         'Se va a actualizar el articulo en la BD con id ${articulo.id}...',
       );
-      await performOdmOperation(
+      await ejecutarOperacionOdm(
         session,
         (Session session) => Articulo.update(
           session,
@@ -255,7 +255,7 @@ class OdmArticulo extends ODM {
     Session session, {
     required int idMarca,
   }) async {
-    return await performOdmOperation(
+    return await ejecutarOperacionOdm(
         session,
         (session) => Articulo.count(
               session,

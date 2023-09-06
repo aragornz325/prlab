@@ -15,16 +15,16 @@ abstract class Servicio<T extends ODM> {
   final logger = Logger('Servicio');
 
   /// Metodo para ejecutar las operaciones y manejar errores.
-  Future<T> performOperation<T>(Future<T> Function() operation) async {
+  Future<T> ejecutarOperacion<T>(Future<T> Function() operacion) async {
     try {
-      logger.info('Executing $operation...');
-      return operation().then((result) {
+      logger.info('Executing $operacion...');
+      return operacion().then((resultado) {
         logger.finer(
           'Servicio completado exitosamente.',
         );
-        return result;
+        return resultado;
       });
-    } on ExceptionPrLab catch (e) {
+    } on ExcepcionPrLab catch (e) {
       throw e.errorType;
     } on Exception catch (e, st) {
       logger.severe(
@@ -38,12 +38,12 @@ abstract class Servicio<T extends ODM> {
 
   /// Metodo para ejecutar las operaciones relacionadas a JSON Web Tokens y
   /// manejar sus errores.
-  T performOperationToken<T>(T Function() operation) {
+  T ejecutarOperacionToken<T>(T Function() operacion) {
     try {
       logger.info(
         'Verifying token...',
       );
-      return operation();
+      return operacion();
     } on JWTException catch (e) {
       logger.shout('$e');
       rethrow;

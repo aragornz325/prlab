@@ -43,7 +43,7 @@ void inicializarLogger({
       }
 
       mensaje =
-          '$blanco$tiempo$fin$inicio [${record.level.name}]: ${record.message} $fin';
+          '$blanco$tiempo$fin$inicio [${record.level.name}]: [${record.loggerName}] ${record.message} $fin';
     } else {
       mensaje = '$tiempo [${record.level.name}]: ${record.message}';
     }

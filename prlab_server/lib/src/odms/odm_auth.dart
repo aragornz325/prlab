@@ -10,25 +10,23 @@ import 'package:serverpod/server.dart';
 /// DB relacionadas con la autenticación.
 
 class OdmAuth extends ODM {
-  /// La función `getValidationCode` recupera el código de verificación
+  /// La función [getValidationCode] recupera el código de verificación
   /// asociado con un correo electrónico determinado de la tabla
   /// serverpod_email_create_request de la base de datos.
   ///
   /// Args:
-  ///   session (Session): El parámetro `session` es del tipo `Session` y es
+  ///   [session] ([Session]): El parámetro [session] es del tipo Session y es
   /// obligatorio. Representa la sesión o conexión actual a la base de datos.
-  ///   email (String): El parámetro de correo electrónico es una cadena
+  ///   [email] ([String]): El parámetro de correo electrónico es una cadena
   /// obligatoria que representa la
   /// dirección de correo electrónico para la que se recupera el código de
   /// validación.
-  ///
-  /// retorna un `Future<String>` (el codigo en si).
 
   Future<String> getValidationCode({
     required Session session,
     required String email,
   }) async {
-    final result = await performOdmOperation(
+    final result = await ejecutarOperacionOdm(
       session,
       (Session session) => session.db.query(
         'SELECT "verificationCode" FROM serverpod_email_create_request WHERE email = \'$email\'',
@@ -37,22 +35,22 @@ class OdmAuth extends ODM {
 
     if (result.isEmpty) {
       const error = ErrorPrLab.errorElementoNoEncontrado;
-      throw ExceptionPrLab(mensaje: error.mensaje, errorType: error);
+      throw ExcepcionPrLab(mensaje: error.mensaje, errorType: error);
     }
 
     return result.first.first;
   }
 
-  /// La función `guardarTokenEnDb` guarda un token y un correo electrónico en
-  /// una tabla de base de datos llamada `registro_token_email`.
+  /// La función [guardarTokenEnDb] guarda un token y un correo electrónico en
+  /// una tabla de base de datos llamada [registro_token_email].
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es un objeto que representa
+  ///   [session] ([Session]): El parámetro de sesión es un objeto que representa
   /// la sesión actual o la conexión a la base de datos. Es necesario para
   /// ejecutar la consulta de la base de datos.
-  ///   token (String): Una cadena que representa el token que debe guardarse
+  ///   [token] ([String]): Una cadena que representa el token que debe guardarse
   /// en la base de datos.
-  ///   email (String): El parámetro de correo electrónico es una cadena
+  ///   [email] ([String]): El parámetro de correo electrónico es una cadena
   /// obligatoria que representa la dirección de correo electrónico asociada
   /// con el token.
   ///
@@ -63,7 +61,7 @@ class OdmAuth extends ODM {
     required String email,
     required int tipoDeInvitacion,
   }) async {
-    await performOdmOperation(
+    await ejecutarOperacionOdm(
       session,
       (Session session) => session.db.transaction((Transaction txn) async {
         final checkearToken = await session.db
@@ -83,14 +81,14 @@ class OdmAuth extends ODM {
     return true;
   }
 
-  /// La función `traerTokenPorEmail` recupera un token de una tabla de base de
+  /// La función [traerTokenPorEmail] recupera un token de una tabla de base de
   /// datos en función del correo electrónico proporcionado.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es
+  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y es
   /// obligatorio. Se utiliza para acceder a la base de datos y realizar
   /// consultas.
-  ///   email (String): El parámetro de correo electrónico es una cadena
+  ///   [email] ([String]): El parámetro de correo electrónico es una cadena
   /// obligatoria que representa la dirección de correo electrónico para la que
   /// queremos recuperar el token.
 
@@ -98,7 +96,7 @@ class OdmAuth extends ODM {
     required Session session,
     required String email,
   }) async {
-    final List<List<dynamic>> result = await performOdmOperation(
+    final List<List<dynamic>> result = await ejecutarOperacionOdm(
       session,
       (Session session) => session.db
           .query('SELECT token FROM invitaciones WHERE email = \'$email\''),
@@ -106,19 +104,19 @@ class OdmAuth extends ODM {
 
     if (result.isEmpty) {
       const error = ErrorPrLab.errorElementoNoEncontrado;
-      throw ExceptionPrLab(mensaje: error.mensaje, errorType: error);
+      throw ExcepcionPrLab(mensaje: error.mensaje, errorType: error);
     }
 
     return result.first.first;
   }
 
-  /// La función `validarCodigoResetPassword` verifica si un código de
+  /// La función [validarCodigoResetPassword] verifica si un código de
   /// verificación dado es válido consultando una tabla de base de datos.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es
+  ///   [session] ([Session]): Este parametro es de tipo Sesión y es
   /// obligatorio. Representa la sesión o conexión actual a la base de datos.
-  ///   codigo (String): El parámetro "codigo" es una cadena requerida que
+  ///   [codigo] ([String]): Este parametro es una cadena requerida que
   /// representa el código de verificación para restablecer una contraseña.
   ///
 
@@ -126,7 +124,7 @@ class OdmAuth extends ODM {
     required Session session,
     required String codigo,
   }) async {
-    final result = await performOdmOperation(
+    final result = await ejecutarOperacionOdm(
       session,
       (Session session) => session.db.query(
         'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
@@ -135,19 +133,19 @@ class OdmAuth extends ODM {
 
     if (result.isEmpty) {
       const error = ErrorPrLab.errorElementoNoEncontrado;
-      throw ExceptionPrLab(mensaje: error.mensaje, errorType: error);
+      throw ExcepcionPrLab(mensaje: error.mensaje, errorType: error);
     }
 
     return result;
   }
 
-  /// La función `eliminarOTPResetPassword` elimina un registro de la tabla
-  /// `serverpod_email_reset` según un código de verificación determinado.
+  /// La función [eliminarOTPResetPassword] elimina un registro de la tabla
+  /// [serverpod_email_reset] según un código de verificación determinado.
   ///
   /// Args:
-  ///   sesion (Session): El parámetro "sesion" es de tipo Sesión y es
+  ///   [session] ([Session]): El parámetro "sesion" es de tipo Sesión y es
   /// obligatorio. Representa la sesión actual o la conexión a la base de datos.
-  ///   codigo (String): El parámetro "código" es una cadena obligatoria que
+  ///   [codigo] ([String]): El parámetro "código" es una cadena obligatoria que
   /// representa el código de verificación utilizado para restablecer una
   /// contraseña.
   ///
@@ -155,27 +153,27 @@ class OdmAuth extends ODM {
     required Session session,
     required String codigo,
   }) async =>
-      performOdmOperation(
+      ejecutarOperacionOdm(
         session,
         (Session session) => session.db.query(
           'DELETE FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
         ),
       );
 
-  /// La función `checkearCodigoOTP` verifica si un código de verificación dado
+  /// La función [checkearCodigoOTP] verifica si un código de verificación dado
   /// existe en la base de datos.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es
+  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y es
   /// obligatorio. Representa la sesión o conexión actual a la base de datos.
-  ///   codigo (String): El parámetro `codigo` es una cadena requerida que
+  ///   [codigo] ([String]): El parámetro código es una cadena requerida que
   /// representa el código OTP (contraseña de un solo uso) que debe verificarse.
   ///
   Future<bool> checkearCodigoOTP({
     required Session session,
     required String codigo,
   }) async {
-    final codigoEnDb = await performOdmOperation(
+    final codigoEnDb = await ejecutarOperacionOdm(
       session,
       (Session session) => session.db.query(
         'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',

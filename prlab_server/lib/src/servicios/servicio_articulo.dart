@@ -3,26 +3,24 @@ import 'package:prlab_server/src/odms/odm_articulo.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/server.dart';
 
-/// Servicio para administracion de articulos.
+/// Servicio para administración de artículos.
 class ServicioArticulo extends Servicio<OdmArticulo> {
   @override
   final odm = OdmArticulo();
 
-  /// La función `crearArticulo` crea un artículo llamando al método
-  /// `odm.crearArticulo` y manejando cualquier excepción que ocurra.
+  /// Crea un [Articulo].
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es
-  /// obligatorio. Representa el objeto de sesión que se utiliza con fines de
-  /// autenticación o seguimiento. payload (Articulo): El parámetro "payload" es
-  /// un objeto de tipo "Articulo" que contiene los datos necesarios para crear
-  /// un artículo.
-  Future<int> crearArticulo({
-    required Session session,
+  ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
+  /// contiene datos de la conexión.<br>
+  /// [articulo] ([Articulo]): Un objeto que contiene datos del artículo a
+  /// crearse. No debe contener id, ni fechas de creación o modificación.
+  Future<int> crearArticulo(
+    Session session, {
     required Articulo articulo,
   }) async {
     try {
-      return await performOperation(
+      return await ejecutarOperacion(
         () => odm.crearArticulo(
           session: session,
           articulo: articulo,
@@ -33,17 +31,16 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     }
   }
 
-  /// La función `listarArticulos` lista todos los artículos usando una sesión
-  /// proporcionada.
+  /// Lista todos los artículos existentes no eliminados en la Base de Datos.
   ///
   /// Args:
-  ///  session (Session): El parámetro "sesión" es de tipo "Sesión" y es
-  /// obligatorio.
-  Future<List<Articulo>> listarArticulos({
-    required Session session,
-  }) async {
+  ///  [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
+  /// contiene datos de la conexión.
+  Future<List<Articulo>> listarArticulos(
+    Session session,
+  ) async {
     try {
-      return await performOperation(
+      return await ejecutarOperacion(
         () => odm.listarArticulos(
           session: session,
         ),
@@ -53,20 +50,17 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     }
   }
 
-  /// La función `obtenerArticulo` recupera un artículo usando una sesión y un
-  /// ID, y lanza una excepciónsi ocurre un error.
+  /// Recupera los datos de un [Articulo] por su [id].
   ///
   /// Args:
-  ///   session (Session): Un parámetro obligatorio de tipo Sesión.
-  ///   id (int): El parámetro "id" es un número entero que representa el
-  ///   identificador único del artículo que se debe obtener.
-
-  Future<Articulo> obtenerArticulo({
-    required Session session,
+  ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
+  /// contiene datos de la conexión.
+  ///   [id] ([int]): El ID del artículo consultado.
+  Future<Articulo> obtenerArticulo(Session session,{
     required int id,
   }) async {
     try {
-      return await performOperation(
+      return await ejecutarOperacion(
         () => odm.obtenerArticuloPorId(
           session: session,
           id: id,
@@ -77,25 +71,18 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     }
   }
 
-  /// La función `eliminarArticulo` es una función de Dart que intenta eliminar
-  /// un artículo utilizando
-  /// una sesión e ID proporcionados, y devuelve un valor booleano que indica si
-  ///  la operación fue exitosa o no.
+  /// Elimina un [Articulo] de forma permanente.
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es
-  ///   obligatorio.
-  ///   id (int): El parámetro "id" es un número entero que representa el
-  ///   identificador único delartículo que debe eliminarse.
-  Future<bool> eliminarArticulo({
-    required Session session,
+  ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
+  /// contiene datos de la conexión.
+  ///   [id] ([int]): El ID del artículo consultado.
+  Future<bool> eliminarArticulo(
+    Session session,{
     required int idArticulo,
   }) async {
     try {
-      await performOperation(
-        () => odm.obtenerArticuloPorId(session: session, id: idArticulo),
-      );
-      await performOperation(
+      await ejecutarOperacion(
         () => odm.eliminarArticulo(
           session: session,
           idArticulo: idArticulo,
@@ -107,24 +94,19 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     }
   }
 
-  /// La función `listarArticulosPorMarca` recupera una lista de artículos por
-  /// marca usando una sesión y un ID de marca.
+  /// Recupera los artículos pertenecientes a una [Marca].
   ///
   /// Args:
-  ///   session (Session): Un parámetro obligatorio de tipo Sesión, que
-  ///   representa la sesión o conexión actual a la base de datos.
-  ///   idMarca (int): La identificación de la marca para la que desea enumerar
-  ///   los artículos.
-  ///
-  /// Returns:
-  ///   El método devuelve un objeto `Futuro` que se resuelve en una
-  ///   `Lista<Artículo>`.
-  Future<List<Articulo>> listarArticulosPorMarca({
-    required Session session,
+  ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
+  /// contiene datos de la conexión.
+  ///   [idMarca] ([int]): El ID de la [Marca] a la que pertenecen los 
+  /// artículos.
+  Future<List<Articulo>> listarArticulosPorMarca(
+    Session session,{
     required int idMarca,
   }) async {
     try {
-      return await performOperation(
+      return await ejecutarOperacion(
         () => odm.listarArticulosPorMarca(
           session: session,
           idMarca: idMarca,
@@ -135,22 +117,21 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     }
   }
 
-  /// La función `actualizarArticulo` actualiza un artículo en una sesión y 
-  /// devuelve un booleano que indica si la operación fue exitosa.
+  /// Actualiza el registro de un [Articulo].
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es 
-  /// obligatorio.
-  ///   articulo (Articulo): El parámetro "articulo" es de tipo Articulo y es 
-  /// obligatorio.
-  Future<bool> actualizarArticulo({
-    required Session session,
+  ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
+  /// contiene datos de la conexión.
+  ///   [articulo] ([Articulo]): El objeto del artículo a actualizar. Necesita 
+  /// contener el id del mismo.
+  Future<bool> actualizarArticulo(
+    Session session,{
     required Articulo articulo,
   }) async {
     try {
       logger.info('Se va a actualizar el articulo con id: ${articulo.id}');
 
-      final articuloFinal = await performOperation(
+      final articuloFinal = await ejecutarOperacion(
         () {
           return odm.obtenerArticuloPorId(
             session: session,
@@ -161,9 +142,9 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
 
       logger.finest('Articulo ${articulo.id} recuperado de la db');
 
-      // Se compara con el registro de la db, si el valor es null se deja el 
+      // Se compara con el registro de la db, si el valor es null se deja el
       // valor anterior.
-      // Si el valor es distinto de null se actualiza el valor en el registro 
+      // Si el valor es distinto de null se actualiza el valor en el registro
       // de la DB.
 
       articulo.toJson().forEach((key, value) {
@@ -172,7 +153,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
         }
       });
       logger.finest('Articulo ${articulo.id} actualizado');
-      await performOperation(
+      await ejecutarOperacion(
         () {
           return odm.actualizarArticulo(
             session: session,
