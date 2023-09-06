@@ -51,7 +51,8 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
 
       if (userInfo == null) {
         return emit(
-          // TODO(Gon): Preguntar al back que devuelve para handlear los errores
+          // TODO(anyone): Preguntar al back que devuelve para handlear
+          // los errores
           BlocLoginEstadoErrorAlIniciarSesion.desde(
             state,
             mensajeDeError: MensajesDeErrorDelLogin.unknown,
@@ -61,7 +62,7 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
 
       emit(BlocLoginEstadoExitosoIniciarSesion.desde(state));
     } catch (e, st) {
-      // TODO(Gon): Preguntar al back que devuelve para handlear los errores
+      // TODO(anyone): Preguntar al back que devuelve para handlear los errores
       if (kDebugMode) {
         debugger();
         print(st);
@@ -107,7 +108,8 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
           BlocLoginEstadoExitosoGeneral.desde(state),
         );
       } else {
-        // TODO(Gon): Preguntar al back que devuelve para handlear los errores
+        // TODO(anyone): Preguntar al back que devuelve para handlear los
+        // errores
         emit(
           BlocLoginEstadoErrorAlRecuperarPassword.desde(
             state,
@@ -116,7 +118,8 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
         );
       }
     } catch (e, st) {
-      // TODO(Gon): Preguntar al back que devuelve para handlear los errores
+      // TODO(anyone): Preguntar al back que devuelve para handlear los
+      // errores
       emit(
         BlocLoginEstadoErrorAlRecuperarPassword.desde(
           state,
@@ -144,7 +147,8 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
           BlocLoginEstadoExitosoAlValidarOTP.desde(state),
         );
       } else {
-        // TODO(Gon): Preguntar al back que devuelve para handlear los errores
+        // TODO(anyone): Preguntar al back que devuelve para handlear los
+        // errores
         emit(
           BlocLoginEstadoErrorAlRecuperarPassword.desde(
             state,
@@ -153,7 +157,8 @@ class BlocLogin extends Bloc<BlocLoginEvento, BlocLoginEstado> {
         );
       }
     } catch (e, st) {
-      // TODO(Gon): Preguntar al back que devuelve para handlear los errores
+      // TODO(anyone): Preguntar al back que devuelve para handlear los
+      // errores
       if (kDebugMode) {
         debugger();
         print(st);

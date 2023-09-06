@@ -1,9 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/auth/login/bloc_temporizador/bloc_temporizador.dart';
-
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
@@ -27,6 +26,8 @@ enum TipoDialog {
   /// este tipo de dialog/popup se usan para avisarle de algún tipo de error
   /// al usuario.
   error,
+
+  exito,
 }
 
 /// {@template PrLabDialog}
@@ -58,6 +59,8 @@ class PRDialog extends StatelessWidget {
   }) {
     final l10n = context.l10n;
 
+    final colores = context.colores;
+
     return PRDialog(
       height: height,
       width: width,
@@ -75,6 +78,7 @@ class PRDialog extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 20.pf,
                     fontWeight: FontWeight.w600,
+                    color: colores.tertiary,
                   ),
                 ),
                 SizedBox(height: 40.ph),
@@ -85,6 +89,82 @@ class PRDialog extends StatelessWidget {
                   estaHabilitado: estaHabilitado,
                   onTap: onTap,
                   texto: l10n.commonSend,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// PRDialog.confirmar es un tipo de dialog de solicitar al usuario que
+  /// realice una Accion para eliminar o aceptar algo.
+  factory PRDialog.confirmar({
+    required String titulo,
+    required String tituloBotonPrimario,
+    required String tituloBotonSecundario,
+    required Widget content,
+    required BuildContext context,
+
+    /// Es la funcion que se encuentra en el boton que acepta o confirma
+    required VoidCallback onTapBotonPrimario,
+
+    /// Es la funcion que se encuentra en el boton que cancela la operacion
+    required VoidCallback onTapBotonSecundario,
+    double height = 282,
+    double width = 454,
+    bool estaHabilitado = true,
+  }) {
+    final colores = context.colores;
+
+    return PRDialog(
+      height: height,
+      width: width,
+      tipo: TipoDialog.solicitudAccion,
+      content: Column(
+        children: [
+          SizedBox(
+            width: 360.pw,
+            child: Column(
+              children: [
+                SizedBox(height: 40.ph),
+                Text(
+                  titulo,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20.pf,
+                    fontWeight: FontWeight.w600,
+                    color: colores.tertiary,
+                  ),
+                ),
+                SizedBox(height: 40.ph),
+                Center(child: content),
+                SizedBox(height: 40.ph),
+                Row(
+                  children: [
+                    PRBoton.esOutlined(
+                      fontSize: 16.pf,
+                      fontWeight: FontWeight.w600,
+                      width: 170.pw,
+                      estaHabilitado: estaHabilitado,
+                      onTap: onTapBotonSecundario,
+                      texto: tituloBotonSecundario,
+                      borderWidth: 2,
+                    ),
+                    SizedBox(
+                      width: max(20.pw, 20.sw),
+                    ),
+                    PRBoton.esOutlined(
+                      fontSize: 16.pf,
+                      fontWeight: FontWeight.w600,
+                      width: 170.pw,
+                      estaHabilitado: estaHabilitado,
+                      onTap: onTapBotonPrimario,
+                      texto: tituloBotonPrimario,
+                      borderWidth: 2,
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -168,8 +248,7 @@ class PRDialog extends StatelessWidget {
               titulo,
               style: TextStyle(
                 fontSize: 20.pf,
-                // TODO(anyone): Cambiar colors a los del theme
-                color: Colors.black,
+                color: colores.tertiary,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -209,7 +288,7 @@ class PRDialog extends StatelessWidget {
   factory PRDialog.error({
     required BuildContext context,
     required VoidCallback onTap,
-    required String descripcionError,
+    required Widget contenido,
     double height = 285,
     double width = 455,
   }) {
@@ -238,15 +317,7 @@ class PRDialog extends StatelessWidget {
             SizedBox(height: 30.ph),
             SizedBox(
               width: 360.pw,
-              child: Text(
-                descripcionError,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 15.pf,
-                  color: colores.secondary,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
+              child: contenido,
             ),
             SizedBox(height: 30.ph),
             Center(
@@ -262,6 +333,132 @@ class PRDialog extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  /// `PRDialog.éxito` Es un tipo de dialog donde se le avisa al usuario que su
+  /// petición ha sido exitosa
+  factory PRDialog.exito({
+    required BuildContext context,
+    required VoidCallback onTap,
+    required String descripcion,
+    double height = 285,
+    double width = 455,
+  }) {
+    final l10n = context.l10n;
+
+    final colores = context.colores;
+
+    return PRDialog(
+      height: height,
+      width: width,
+      tipo: TipoDialog.exito,
+      content: SizedBox(
+        width: 360.pw,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(height: 20.ph),
+            Text(
+              l10n.commonSuccess,
+              style: TextStyle(
+                fontSize: 20.pf,
+                color: colores.error,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(height: 30.ph),
+            SizedBox(
+              width: 360.pw,
+              child: Text(
+                descripcion,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15.pf,
+                  color: colores.secondary,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+            SizedBox(height: 30.ph),
+            Center(
+              child: SizedBox(
+                width: 360.pw,
+                child: PRBoton.esOutlined(
+                  onTap: onTap,
+                  texto: l10n.commonContinue,
+                  estaHabilitado: true,
+                  width: 360.pw,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// `PRDialog.delete` es un tipo de dialog de solicitar al usuario que
+  ///  realicé una Accion en este caso eliminar algo.
+  factory PRDialog.delete({
+    required String titulo,
+    required String tituloBotonPrimario,
+    required String tituloBotonSecundario,
+    required Widget content,
+    required BuildContext context,
+    required VoidCallback onTapBotonPrimario,
+    required VoidCallback onTapBotonSecundario,
+    double height = 285,
+    double width = 455,
+    bool estaHabilitado = true,
+  }) {
+    final colores = context.colores;
+
+    return PRDialog(
+      height: height,
+      width: width,
+      tipo: TipoDialog.solicitudAccion,
+      content: Column(
+        children: [
+          SizedBox(
+            width: 360.pw,
+            child: Column(
+              children: [
+                SizedBox(height: 40.ph),
+                Text(
+                  titulo,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20.pf,
+                    fontWeight: FontWeight.w600,
+                    color: colores.tertiary,
+                  ),
+                ),
+                SizedBox(height: 40.ph),
+                content,
+                SizedBox(height: 40.ph),
+                Row(
+                  children: [
+                    PRBoton.esOutlined(
+                      width: 170.pw,
+                      estaHabilitado: estaHabilitado,
+                      onTap: onTapBotonPrimario,
+                      texto: tituloBotonPrimario,
+                    ),
+                    SizedBox(width: max(20.pw, 20.sw)),
+                    PRBoton.esOutlined(
+                      width: 170.pw,
+                      estaHabilitado: estaHabilitado,
+                      onTap: onTapBotonSecundario,
+                      texto: tituloBotonSecundario,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -283,7 +480,6 @@ class PRDialog extends StatelessWidget {
     final colores = context.colores;
 
     return AlertDialog(
-      // TODO(anyone): Cambiar colors a los del theme
       backgroundColor: colores.background,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.sw),
@@ -297,31 +493,33 @@ class PRDialog extends StatelessWidget {
   }
 }
 
-// TODO(anyone): sacar y poner en los refactor de los textfield
-class TextfieldCodigoDeRecuperarPassword extends StatefulWidget {
-  const TextfieldCodigoDeRecuperarPassword({
-    required this.controller,
-    required this.email,
-    super.key,
-  });
-  final TextEditingController controller;
-  final String email;
+/// {@template PRDialogErrorNoDisponible}
+/// Muestra un mensaje de error en cualquier caso
+/// que la caracteristica solicitada no este desarrollada o disponible.
+/// {@endtemplate}
+class PRDialogErrorNoDisponible extends StatelessWidget {
+  /// {@macro PRDialogErrorNoDisponible}
 
-  @override
-  State<TextfieldCodigoDeRecuperarPassword> createState() =>
-      _TextfieldCodigoDeRecuperarPasswordState();
-}
-
-class _TextfieldCodigoDeRecuperarPasswordState
-    extends State<TextfieldCodigoDeRecuperarPassword> {
+  const PRDialogErrorNoDisponible({super.key});
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<BlocTemporizador>().state;
+    final l10n = context.l10n;
+    final colores = context.colores;
 
-    return PrLabTextfield(
-      controller: widget.controller,
-      solicitoNuevoCodigo: state is BlocTemporizadorEstadoCorriendo,
-      segundosFaltantes: state.duracionTimer,
+    return PRDialog.informacion(
+      onTap: () => Navigator.of(context).pop(),
+      context: context,
+      titulo: l10n.commonError,
+      botonText: l10n.commonBack,
+      content: Text(
+        l10n.commonFeatureNotAvailable,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 15.pf,
+          color: colores.secondary,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
     );
   }
 }

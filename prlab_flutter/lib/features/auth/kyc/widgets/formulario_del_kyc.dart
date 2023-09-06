@@ -70,6 +70,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
             children: [
               const EncabezadoDelKyc(),
               PRTextFormField.soloLetras(
+                width: 359.pw,
                 controller: controllerNombre,
                 hintText: l10n.pageKycNameHintText,
                 prefixIcon: Icons.person_outline,
@@ -82,6 +83,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
               ),
               SizedBox(height: 40.sh),
               PRTextFormField.soloLetras(
+                width: 359.pw,
                 controller: controllerApellido,
                 hintText: l10n.pageKycLastNameHintText,
                 prefixIcon: Icons.person_outline,
@@ -93,7 +95,10 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                     ),
               ),
               SizedBox(height: 40.sh),
+              // TODO(anyone): cambiar esto a el showpicker del calendario y que
+              // se le pase la fecha seleccionada al bloc
               PRTextFormField.fecha(
+                width: 359.pw,
                 controller: controllerFechaDeNacimiento,
                 hintText: l10n.commonDateHintText,
                 context: context,
@@ -105,6 +110,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
               ),
               SizedBox(height: 40.sh),
               PRTextFormField.soloLetras(
+                width: 359.pw,
                 controller: controllerNombreDeCompania,
                 hintText: l10n.pageKycCompanyNameHintText,
                 prefixIcon: Icons.apartment_outlined,
@@ -117,6 +123,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
               ),
               SizedBox(height: 40.sh),
               PRTextFormField.soloLetras(
+                width: 359.pw,
                 controller: controllerLocalidad,
                 hintText: l10n.pageKycCompanyLocationHintText,
                 prefixIcon: Icons.location_on_outlined,
@@ -129,6 +136,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
               ),
               SizedBox(height: 40.sh),
               PRTextFormField.soloNumeros(
+                width: 359.pw,
                 controller: controllerNumeroContacto,
                 hintText: l10n.pageKycContactHintText,
                 prefixIcon: Icons.phone_outlined,

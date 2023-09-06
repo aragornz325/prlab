@@ -8,11 +8,15 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
 import '../endpoints/archivos_endpoint.dart' as _i2;
-import '../endpoints/auth_endpoint.dart' as _i3;
-import '../endpoints/cliente_endpoint.dart' as _i4;
-import '../endpoints/mail_endpoint.dart' as _i5;
-import 'package:prlab_server/src/generated/cliente.dart' as _i6;
-import 'package:serverpod_auth_server/module.dart' as _i7;
+import '../endpoints/articulo_endpoint.dart' as _i3;
+import '../endpoints/auth_endpoint.dart' as _i4;
+import '../endpoints/cliente_endpoint.dart' as _i5;
+import '../endpoints/mail_endpoint.dart' as _i6;
+import '../endpoints/marca_endpoint.dart' as _i7;
+import 'package:prlab_server/src/generated/articulo.dart' as _i8;
+import 'package:prlab_server/src/generated/cliente.dart' as _i9;
+import 'package:prlab_server/src/generated/marca.dart' as _i10;
+import 'package:serverpod_auth_server/module.dart' as _i11;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -24,22 +28,34 @@ class Endpoints extends _i1.EndpointDispatch {
           'archivos',
           null,
         ),
-      'auth': _i3.AuthEndpoint()
+      'articulo': _i3.ArticuloEndpoint()
+        ..initialize(
+          server,
+          'articulo',
+          null,
+        ),
+      'auth': _i4.AuthEndpoint()
         ..initialize(
           server,
           'auth',
           null,
         ),
-      'cliente': _i4.ClienteEndpoint()
+      'cliente': _i5.ClienteEndpoint()
         ..initialize(
           server,
           'cliente',
           null,
         ),
-      'mail': _i5.MailEndpoint()
+      'mail': _i6.MailEndpoint()
         ..initialize(
           server,
           'mail',
+          null,
+        ),
+      'marca': _i7.MarcaEndpoint()
+        ..initialize(
+          server,
+          'marca',
           null,
         ),
     };
@@ -101,6 +117,139 @@ class Endpoints extends _i1.EndpointDispatch {
             params['url'],
           ),
         ),
+        'subirImagenArticulo': _i1.MethodConnector(
+          name: 'subirImagenArticulo',
+          params: {
+            'path': _i1.ParameterDescription(
+              name: 'path',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'idArticulo': _i1.ParameterDescription(
+              name: 'idArticulo',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['archivos'] as _i2.ArchivosEndpoint)
+                  .subirImagenArticulo(
+            session,
+            path: params['path'],
+            idArticulo: params['idArticulo'],
+          ),
+        ),
+      },
+    );
+    connectors['articulo'] = _i1.EndpointConnector(
+      name: 'articulo',
+      endpoint: endpoints['articulo']!,
+      methodConnectors: {
+        'crearArticulo': _i1.MethodConnector(
+          name: 'crearArticulo',
+          params: {
+            'articulo': _i1.ParameterDescription(
+              name: 'articulo',
+              type: _i1.getType<_i8.Articulo>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['articulo'] as _i3.ArticuloEndpoint).crearArticulo(
+            session,
+            params['articulo'],
+          ),
+        ),
+        'listarArticulos': _i1.MethodConnector(
+          name: 'listarArticulos',
+          params: {},
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['articulo'] as _i3.ArticuloEndpoint)
+                  .listarArticulos(session),
+        ),
+        'obtenerArticulo': _i1.MethodConnector(
+          name: 'obtenerArticulo',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['articulo'] as _i3.ArticuloEndpoint).obtenerArticulo(
+            session,
+            params['id'],
+          ),
+        ),
+        'eliminarArticulo': _i1.MethodConnector(
+          name: 'eliminarArticulo',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['articulo'] as _i3.ArticuloEndpoint).eliminarArticulo(
+            session,
+            params['id'],
+          ),
+        ),
+        'listarArticulosPorMarca': _i1.MethodConnector(
+          name: 'listarArticulosPorMarca',
+          params: {
+            'idMarca': _i1.ParameterDescription(
+              name: 'idMarca',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['articulo'] as _i3.ArticuloEndpoint)
+                  .listarArticulosPorMarca(
+            session,
+            params['idMarca'],
+          ),
+        ),
+        'actualizarArticulo': _i1.MethodConnector(
+          name: 'actualizarArticulo',
+          params: {
+            'articulo': _i1.ParameterDescription(
+              name: 'articulo',
+              type: _i1.getType<_i8.Articulo>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['articulo'] as _i3.ArticuloEndpoint)
+                  .actualizarArticulo(
+            session,
+            articulo: params['articulo'],
+          ),
+        ),
       },
     );
     connectors['auth'] = _i1.EndpointConnector(
@@ -120,7 +269,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['auth'] as _i3.AuthEndpoint).getValidationCode(
+              (endpoints['auth'] as _i4.AuthEndpoint).getValidationCode(
             session,
             params['email'],
           ),
@@ -138,7 +287,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['auth'] as _i3.AuthEndpoint).validarTokenPorMail(
+              (endpoints['auth'] as _i4.AuthEndpoint).validarTokenPorMail(
             session,
             params['token'],
           ),
@@ -156,7 +305,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['auth'] as _i3.AuthEndpoint)
+              (endpoints['auth'] as _i4.AuthEndpoint)
                   .validarCodigoResetPassword(
             session,
             params['codigo'],
@@ -175,7 +324,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['auth'] as _i3.AuthEndpoint).eliminarOTPResetPassword(
+              (endpoints['auth'] as _i4.AuthEndpoint).eliminarOTPResetPassword(
             session,
             params['codigo'],
           ),
@@ -191,7 +340,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'datosDelCliente': _i1.ParameterDescription(
               name: 'datosDelCliente',
-              type: _i1.getType<_i6.Cliente>(),
+              type: _i1.getType<_i9.Cliente>(),
               nullable: false,
             )
           },
@@ -199,7 +348,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['cliente'] as _i4.ClienteEndpoint).completarKyc(
+              (endpoints['cliente'] as _i5.ClienteEndpoint).completarKyc(
             session,
             params['datosDelCliente'],
           ),
@@ -228,7 +377,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['mail'] as _i5.MailEndpoint).envioMailRegistro(
+              (endpoints['mail'] as _i6.MailEndpoint).envioMailRegistro(
             session,
             params['email'],
             params['tipoDeInvitacion'],
@@ -236,6 +385,141 @@ class Endpoints extends _i1.EndpointDispatch {
         )
       },
     );
-    modules['serverpod_auth'] = _i7.Endpoints()..initializeEndpoints(server);
+    connectors['marca'] = _i1.EndpointConnector(
+      name: 'marca',
+      endpoint: endpoints['marca']!,
+      methodConnectors: {
+        'crearMarca': _i1.MethodConnector(
+          name: 'crearMarca',
+          params: {
+            'payload': _i1.ParameterDescription(
+              name: 'payload',
+              type: _i1.getType<_i10.Marca>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i7.MarcaEndpoint).crearMarca(
+            session,
+            params['payload'],
+          ),
+        ),
+        'eliminarMarca': _i1.MethodConnector(
+          name: 'eliminarMarca',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i7.MarcaEndpoint).eliminarMarca(
+            session,
+            params['id'],
+          ),
+        ),
+        'listarMarcas': _i1.MethodConnector(
+          name: 'listarMarcas',
+          params: {},
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i7.MarcaEndpoint).listarMarcas(session),
+        ),
+        'obtenerMarcaPorId': _i1.MethodConnector(
+          name: 'obtenerMarcaPorId',
+          params: {
+            'idMarca': _i1.ParameterDescription(
+              name: 'idMarca',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i7.MarcaEndpoint).obtenerMarcaPorId(
+            session,
+            params['idMarca'],
+          ),
+        ),
+        'asignarUsuarioAMarca': _i1.MethodConnector(
+          name: 'asignarUsuarioAMarca',
+          params: {
+            'idMarca': _i1.ParameterDescription(
+              name: 'idMarca',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'idUsuario': _i1.ParameterDescription(
+              name: 'idUsuario',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'idRol': _i1.ParameterDescription(
+              name: 'idRol',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i7.MarcaEndpoint).asignarUsuarioAMarca(
+            session,
+            idMarca: params['idMarca'],
+            idUsuario: params['idUsuario'],
+            idRol: params['idRol'],
+          ),
+        ),
+        'listarMarcasPorUsuario': _i1.MethodConnector(
+          name: 'listarMarcasPorUsuario',
+          params: {
+            'idUsuario': _i1.ParameterDescription(
+              name: 'idUsuario',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i7.MarcaEndpoint).listarMarcasPorUsuario(
+            session,
+            idUsuario: params['idUsuario'],
+          ),
+        ),
+        'listarUsuariosPorMarca': _i1.MethodConnector(
+          name: 'listarUsuariosPorMarca',
+          params: {
+            'idMarca': _i1.ParameterDescription(
+              name: 'idMarca',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i7.MarcaEndpoint).listarUsuariosPorMarca(
+            session,
+            idMarca: params['idMarca'],
+          ),
+        ),
+      },
+    );
+    modules['serverpod_auth'] = _i11.Endpoints()..initializeEndpoints(server);
   }
 }

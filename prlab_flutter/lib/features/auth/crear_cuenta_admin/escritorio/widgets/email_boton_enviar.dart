@@ -79,12 +79,7 @@ class _PrLabEmailYBotonEnviarState extends State<PrLabEmailYBotonEnviar> {
                 ),
               ),
               SizedBox(height: 50.sh),
-              BlocConsumer<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
-                listener: (context, state) {
-                  if (state is BlocCrearCuentaAdminEstadoExitosoEmailEnviado) {
-                    widget.controller.clear();
-                  }
-                },
+              BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
                 builder: (context, state) {
                   return Center(
                     child: SizedBox(

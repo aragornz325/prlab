@@ -1,0 +1,9 @@
+class: Marca
+table: marcas
+fields:
+  nombre: String
+  sitioWeb: String
+  staff: List<Cliente>?, api
+  fechaCreacion: DateTime?
+  ultimaModificacion: DateTime?
+  fechaEliminacion: DateTime?

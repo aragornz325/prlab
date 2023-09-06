@@ -54,7 +54,7 @@ class PRDrawerListaItems extends StatelessWidget {
           icono: Icons.space_dashboard_outlined,
           tituloItem: l10n.drawerTemplates,
           estaSeleccionado: enumDrawer.esTemplates,
-        )
+        ),
       ],
     );
   }

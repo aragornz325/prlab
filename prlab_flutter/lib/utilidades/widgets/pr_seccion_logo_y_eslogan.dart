@@ -63,7 +63,7 @@ class SeccionLogoYEslogan extends StatelessWidget {
                     PRLabConfiguracion.esloganPRLab,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: colores.onPrimary,
+                      color: colores.surfaceTint,
                       fontSize: 64.pf,
                       fontWeight: FontWeight.w700,
                     ),

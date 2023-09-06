@@ -19,36 +19,16 @@ class VistaEscritorioAdministracionMarcas extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: colores.background,
-      body: Row(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 210.pw,
-            height: 100.hp,
-            color: colores.primary.withOpacity(.5),
+          EncabezadoDeSeccion(
+            icono: Icons.beenhere_outlined,
+            titulo: l10n.pageBrandAdministrationTitle,
+            descripcion: l10n.pageBrandAdministrationDescription,
           ),
-          SizedBox(width: 30.pw),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 1040.pw,
-                height: 100.ph,
-                color: colores.primary.withOpacity(.5),
-              ),
-              SizedBox(height: 40.pw),
-              EncabezadoDeSeccion(
-                icono: Icons.beenhere_outlined,
-                titulo: l10n.pageBrandAdministrationTitle,
-                descripcion: l10n.pageBrandAdministrationDescription,
-              ),
-              SizedBox(height: 20.pw),
-              const SeccionTarjetasDeMarca(),
-              SizedBox(
-                width: 1040.pw,
-                height: 85.ph,
-              ),
-            ],
-          ),
+          SizedBox(height: 20.pw),
+          const SeccionTarjetasDeMarca(),
         ],
       ),
     );

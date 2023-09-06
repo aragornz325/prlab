@@ -6,27 +6,26 @@ part of 'bloc_administracion_marcas.dart';
 class BlocAdministracionMarcasEstado extends Equatable {
   /// {@macro BlocAdministracionMarcasEstado}
   const BlocAdministracionMarcasEstado._({
-    this.example = false,
+    this.marcas = const [],
   });
 
   BlocAdministracionMarcasEstado.desde(
     BlocAdministracionMarcasEstado otro, {
-    bool? example,
+    List<Marca>? marcas,
   }) : this._(
-          example: example ?? otro.example,
+          marcas: marcas ?? otro.marcas,
         );
 
-  /// Example
-  final bool example;
+  final List<Marca> marcas;
 
   @override
   List<Object> get props => [
-        example,
+        marcas,
       ];
 }
 
 /// {@template BlocAdministracionMarcasEstadoInicial}
-/// Estado inicial de los componentes de la pantalla administracion de marcas
+/// Estado inicial de los componentes de la pantalla administración de marcas
 /// {@endtemplate}
 class BlocAdministracionMarcasEstadoInicial
     extends BlocAdministracionMarcasEstado {
@@ -35,7 +34,7 @@ class BlocAdministracionMarcasEstadoInicial
 }
 
 /// {@template BlocAdministracionMarcasEstadoCargando}
-/// Estado de cargando de los componentes de la pantalla administracion
+/// Estado de cargando de los componentes de la pantalla administración
 /// de marcas
 /// {@endtemplate}
 class BlocAdministracionMarcasEstadoCargando
@@ -47,18 +46,20 @@ class BlocAdministracionMarcasEstadoCargando
 }
 
 /// {@template BlocAdministracionMarcasEstadoExitosoGeneral}
-// TODO(Gon): Documentar
-
+/// Estado exitoso general de los componentes de la pantalla
+/// administración de marcas
 /// {@endtemplate}
 class BlocAdministracionMarcasEstadoExitosoGeneral
     extends BlocAdministracionMarcasEstado {
   /// {@macro BlocAdministracionMarcasEstadoExitosoGeneral}
-  BlocAdministracionMarcasEstadoExitosoGeneral.desde(super.otro)
-      : super.desde();
+  BlocAdministracionMarcasEstadoExitosoGeneral.desde(
+    super.otro, {
+    required super.marcas,
+  }) : super.desde();
 }
 
 /// {@template BlocAdministracionMarcasEstadoError}
-/// Estado de error de los componentes de la pantalla administracion de marcas
+/// Estado de error de los componentes de la pantalla administración de marcas
 /// {@endtemplate}
 class BlocAdministracionMarcasEstadoError
     extends BlocAdministracionMarcasEstado {
@@ -72,9 +73,10 @@ class BlocAdministracionMarcasEstadoError
   final MensajesDeErrorDeAdministracionMarcas mensajeDeError;
 }
 
-// TODO(Gon): Verificar si es necesario y que excepciones pueden llegar a ocurri
+// TODO(anyone): Verificar si es necesario y que excepciones pueden
+// llegar a ocurrir
 
-/// Tipos de errores de  administracion de marcas a mostrar
+/// Tipos de errores de  administración de marcas a mostrar
 enum MensajesDeErrorDeAdministracionMarcas {
   userNotFound,
   invalidCredentials,

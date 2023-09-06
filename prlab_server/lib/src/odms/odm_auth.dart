@@ -150,7 +150,7 @@ class OdmAuth extends ODM {
     required Session session,
     required String codigo,
   }) async =>
-      await performOdmOperation(
+      performOdmOperation(
         session,
         (Session session) => session.db.query(
           'DELETE FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',

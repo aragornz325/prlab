@@ -7,11 +7,11 @@ class BlocLoginEstado extends Equatable {
   /// {@macro BlocLoginEstado}
   const BlocLoginEstado._({
     this.botonLoginHabilitado = false,
-    // TODO(Anyone):
-    // Si el condicional de que estos botones esten habilitados o no es que el mail
-    // sea valido y la variable esta en el estado, es mejor hacer un getter desde
-    // el estado, asi tenes que mantener menos variables, inclusive creo que te
-    // ahorrarias un evento para modificar este valor
+    // TODO(Anyone): Si el condicional
+    // de que estos botones esten habilitados o no es que el mail
+    // sea valido y la variable esta en el estado, es mejor hacer un getter
+    // desde el estado, asi tenes que mantener menos variables, inclusive
+    // creo que te ahorrarias un evento para modificar este valor
     this.botonOlvidePasswordHabilitado = false,
     this.estaIniciandoSesion = false,
     this.duracionTimer = 60,
@@ -101,9 +101,8 @@ class BlocLoginEstadoCargando extends BlocLoginEstado {
 }
 
 /// {@template BlocLoginEstadoExitosoGeneral}
-// TODO(Gon): Verificar esta docu y naming
-/// Existe este estado para separarlo de los demas estados de exito,
-/// por ejemplo iniciar sesion o recuperar contraseña
+/// Existe este estado para separarlo de los demás estados de éxito,
+/// por ejemplo iniciar sesión o recuperar contraseña
 /// {@endtemplate}
 class BlocLoginEstadoExitosoGeneral extends BlocLoginEstado {
   /// {@macro BlocLoginEstadoExitosoGeneral}

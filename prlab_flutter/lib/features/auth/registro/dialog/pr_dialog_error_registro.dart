@@ -16,18 +16,13 @@ class PrDialogErrorRegistro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     final colores = context.colores;
 
-    return PRDialog.informacion(
-      // TODO(Anyone): Se uso el informacion en vez del .error porque el error
-      //no permite pasar un widget como content ( y en este caso se necesita
-      //pasar un string estilo mail (azul con underline)Por razones de tiempo no
-      //hice modificaciones en el .error para que se adapte a lo que necesito.
-      botonText: l10n.commonBack,
+    return PRDialog.error(
       context: context,
       onTap: () => Navigator.of(context).pop(),
-      titulo: l10n.commonError,
-      content: Row(
+      contenido: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(

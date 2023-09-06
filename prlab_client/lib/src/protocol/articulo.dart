@@ -14,11 +14,12 @@ class Articulo extends _i1.SerializableEntity {
     required this.titulo,
     this.contenido,
     this.idProyecto,
+    this.idMarca,
     this.idAutor,
     this.idStatus,
     this.fechaEliminacion,
-    required this.ultimaModificacion,
-    required this.fechaCreacion,
+    this.ultimaModificacion,
+    this.fechaCreacion,
   });
 
   factory Articulo.fromJson(
@@ -33,6 +34,8 @@ class Articulo extends _i1.SerializableEntity {
           .deserialize<String?>(jsonSerialization['contenido']),
       idProyecto: serializationManager
           .deserialize<int?>(jsonSerialization['idProyecto']),
+      idMarca:
+          serializationManager.deserialize<int?>(jsonSerialization['idMarca']),
       idAutor:
           serializationManager.deserialize<int?>(jsonSerialization['idAutor']),
       idStatus:
@@ -40,9 +43,9 @@ class Articulo extends _i1.SerializableEntity {
       fechaEliminacion: serializationManager
           .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
       ultimaModificacion: serializationManager
-          .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
+          .deserialize<DateTime?>(jsonSerialization['ultimaModificacion']),
       fechaCreacion: serializationManager
-          .deserialize<DateTime>(jsonSerialization['fechaCreacion']),
+          .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
     );
   }
 
@@ -57,15 +60,17 @@ class Articulo extends _i1.SerializableEntity {
 
   int? idProyecto;
 
+  int? idMarca;
+
   int? idAutor;
 
   int? idStatus;
 
   DateTime? fechaEliminacion;
 
-  DateTime ultimaModificacion;
+  DateTime? ultimaModificacion;
 
-  DateTime fechaCreacion;
+  DateTime? fechaCreacion;
 
   @override
   Map<String, dynamic> toJson() {
@@ -74,6 +79,7 @@ class Articulo extends _i1.SerializableEntity {
       'titulo': titulo,
       'contenido': contenido,
       'idProyecto': idProyecto,
+      'idMarca': idMarca,
       'idAutor': idAutor,
       'idStatus': idStatus,
       'fechaEliminacion': fechaEliminacion,

@@ -122,7 +122,7 @@
         "description":"text in alertdialog suffix textfield on button if the verificaction code was sent, Code sent"
     },
         
-    "alertDialogTooltipRequestNewCode":"You can request a new code in {seconds} seconds.This will expire in {minutes} minutes.",
+    "alertDialogTooltipRequestNewCode":"You can request a new\ncode in {seconds} seconds.\nThis will expire in {minutes}\n minutes.",
     "@alertDialogTooltipRequestNewCode": {
         "description":"part text in alertdialog of textfield on tooltip, You can request a new code in 56 seconds.This will expire in 30 minutes.",
         "placeholders" : {
@@ -203,6 +203,16 @@
     "@pageRecoverPasswordRepeatPasswordHintText": {
         "description":"Text in page recover password setted on the reseat password text field hint text"
     },
+
+    "pageRecoverPasswordChangePasswordSuccessDialogDescription" : "Your password has been successfully changed.",
+    "@pageRecoverPasswordChangePasswordSuccessDialogDescription": {
+        "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
+    },
+
+    "pageRecoverPasswordSuccessDialogButtonText" : "Go to LOGIN",
+    "@pageRecoverPasswordSuccessDialogButtonText": {
+        "description":"Text that is shown on the success dialog button"
+    },
     
     "pageLoginInsertedCodeSuccessfullyDialogDescription" : "Your code has been entered correctly, continue to recover your account.",
     "@pageLoginInsertedCodeSuccessfullyDialogDescription": {
@@ -222,11 +232,6 @@
     "pageLoginInsertedCodeFailDialogDescription" : "The code you entered is incorrect, please try again",
     "@pageLoginInsertedCodeFailDialogDescription": {
         "description":"Pertains to a scenario in which a user attempts to enter a code, such as a password or verification code, but the input is found to be incorrect. The user is then advised to make another attempt in order to rectify the error."
-    },
-
-    "pageRecoverPasswordChangePasswordSuccessDialogDescription" : "Your password has been successfully changed.",
-    "@pageRecoverPasswordChangePasswordSuccessDialogDescription": {
-        "description":"This message corresponds to a situation where the user has successfully updated their password during the password recovery process. The provided description informs the user that their password change has been completed successfully."
     },
 
     "pageBrandAdministrationRecentlyModifiedText" : "Recently modified",
@@ -253,11 +258,17 @@
     "@pageRegisterErrorDialogDescription": {
         "description":"This message corresponds to a situation where the register of the user is an error. This is shown in an alert dialog after pressing sign up."
     },
-          "pageKYCSuccessDialogButtonText" : "Go to Log in",
+
+    "pageKYCSuccessDialogButtonText" : "Go to Log in",
     "@pageKYCSuccessDialogButtonText": {
         "description":"This message corresponds to a situation where the registration of the user is successful. This is shown in the button of the alert dialog after pressing continue button in KYC."
     },
 
+    "commonDialogDescriptionDelete" : "Are you sure you want to delete this\n page? you will not be able to undo this\n step.",
+    "@commonDialogDescriptionDelete": {
+        "description":"This description corresponds to a situation where the user wants to delete a page. This is shown in the alert dialog."
+    },
+    
     "drawerHome":"Home",
     "@drawerHome":{
         "description":"Text to indicate that you will be redirected to home"
@@ -276,6 +287,117 @@
     "drawerLogOut": "Log Out",
     "@drawerLogOut":{
         "description":"Text in the logout item"
+    },
+
+
+    "prAppBarCreateContent":"Create Content",
+    "@prAppBarCreateContent":{
+        "description": "Text of the first item in the app bar used to display a content creation menu"
+    },
+    
+    "prAppBarCreateContentCreateArticle":"Create article",
+    "@prAppBarCreateContentCreateArticle":{
+        "description":"Text to redirect to the create article menu"
+    },
+
+    "prAppBarCreateContentCreateReport":"Create report",
+    "@prAppBarCreateContentCreateReport":{
+        "description":"Text to redirect to the create report menu"
+    },
+
+    "prAppBarCreateContentYourArticles":"Your articles",
+    "@prAppBarCreateContentYourArticles":{
+        "description":"Text to redirect to the your articles menu"
+    },
+
+    "prAppBarDistributionContent":"Distribution Content",
+    "@prAppBarDistributionContent":{
+        "description": "Text of the second item in the app bar used to display a content distribution menu"
+    },
+
+    "prAppBarDistributionContentProjects":"Projects",
+    "@prAppBarDistributionContentProjects":{
+        "description":"Text to redirect to the projects menu"
+    },
+
+    "prAppBarDistributionContentDashboards":"Dashboards",
+    "@prAppBarDistributionContentDashboards":{
+        "description":"Text to redirect to the dashboards menu"
+    },
+
+    "prAppBarCoverageMedia":"Coverage Media",
+    "@prAppBarCoverageMedia":{
+        "description": "Text of the third item in the app bar used to display a coverage media menu"
+    },
+
+    "prAppBarOptionsHelpCenter":"Help center",
+    "@prAppBarOptionsHelpCenter":{
+        "description":"Text to redirect to the help center"
+    },
+
+    "prAppBarOptionsContactSupport":"Contact support",
+    "@prAppBarOptionsContactSupport":{
+        "description":"Text to redirect to the contact support"
+    },
+
+    "prAppBarOptionsPRLabWeb":"PR Lab web",
+    "@prAppBarOptionsPRLabWeb":{
+        "description":"Text to redirect to the PR Lab web"
+    },
+
+    "prAppBarOptionsPRLabNewsroom":"PR Lab newsroom",
+    "@prAppBarOptionsPRLabNewsroom":{
+        "description":"Text to redirect to the PR Lab newsroom"
+    },
+
+    "prAppBarOptionsProductUpdates":"Product updates",
+    "@prAppBarOptionsProductUpdates":{
+        "description":"Text to redirect to the Product updates"
+    },
+
+    "prAppBarSettingsAccountSettigns":"Account settigns",
+    "@prAppBarSettingsAccountSettigns":{
+        "description":"Text to redirect to the account settigns"
+    },
+
+    "prAppBarSettingsPayments":"Payments",
+    "@prAppBarSettingsPayments":{
+        "description":"Text to redirect to the paymens menu"
+    },
+
+    "prAppBarSettingsUsers":"Users",
+    "@prAppBarSettingsUsers":{
+        "description":"Text to redirect to the Users menu"
+    },
+
+    "prAppBarSettingsEmailSetup":"Email setup",
+    "@prAppBarSettingsEmailSetup":{
+        "description":"Text to redirect to the Email setup"
+    },
+
+    "prAppBarSettingsActivityHistory":"Activity history",
+    "@prAppBarSettingsActivityHistory":{
+        "description":"Text to redirect to the Activity history"
+    },
+
+    "prAppBarProfile":"Profile",
+    "@prAppBarProfile":{
+        "description":"Text to redirect to the Profile menu"
+    },
+
+    "prAppBarProfileChangeAccount":"Change account",
+    "@prAppBarProfileChangeAccount":{
+        "description":"Text to change account"
+    },
+
+    "prAppBarProfileSignOut":"Sign out",
+    "@prAppBarProfileSignOut":{
+        "description":"Text to sign out"
+    },
+
+    "prAppBarCoverageMediaDbMedia": "Database Media",
+    "@prAppBarCoverageMediaDbMedia":{
+        "description":"Text to redirect to database media page"
     },
 
     "pageContentAdministrationCreateArticle" : "Create an article",
@@ -302,10 +424,166 @@
     "@pageContentAdministrationBarInformationAuthor": {
         "description":"shows the image of the author or who created this article or their two initials"
     },
+      "pageEditContentEditArticleContainerButtonUploadLogo" : "Upload logo",
+    "@pageEditContentEditArticleContainerButtonUploadLogo": {
+        "description":"Text of the button to upload the main logo, when you are creating or editing an article"
+    },
+      "pageEditContentEditArticleContainerButtonUploadSecondaryLogo" : "Upload secondary logo",
+    "@pageEditContentEditArticleContainerButtonUploadSecondaryLogo": {
+        "description":"Text of the button to upload the secondary logo, when you are creating or editing an article"
+    },
+      "pageEditContentEditArticleContainerHintTitle" : "Enter article title",
+    "@pageEditContentEditArticleContainerHintTitle": {
+        "description":"Hint text of the article title, when you are creating or editing an article"
+    },
+    "pageEditContentEditArticleContainerHintDescription" : "Enter article description",
+    "@pageEditContentEditArticleContainerHintDescription": {
+        "description":"Hint text of the article description, when you are creating or editing an article"
+    },
+      "pageEditContentSubtitle" : "Create an article, share it with your team, edit it, comment on it, and more.",
+    "@pageEditContentSubtitle": {
+        "description":"Subtitle that appears on top of the list of articles and the edit container, when you are creating or editing an article"
+    },
+          "pageEditContentArticleTitleHomePage" : "Home page",
+    "@pageEditContentArticleTitleHomePage": {
+        "description":"Title of the article when its displayed in the vertical list and it leads you to the home page of the article."
+    },
+               "pageEditContentPopupDownload" : "Download",
+    "@pageEditContentPopupDownload": {
+        "description":"Text of one of the popup button items to allow the user to download the article."
+    },
+             "pageEditContentPopupPasswordSetting" : "Password settings",
+    "@pageEditContentPopupPasswordSetting": {
+        "description":"Text of the popup button to allow the user set the password settings."
+    },
+                 "pageEditContentPopupSendEmail" : "Send via email",
+    "@pageEditContentPopupSendEmail": {
+        "description":"Text of the popup button to allow the user to send via email."
+    },
+              "pageEditContentArticleTitleMetricsPage" : "Metrics page",
+    "@pageEditContentArticleTitleMetricsPage": {
+        "description":"Title of the article when its displayed in the vertical list and it leads you to the metrics page of the article."
+    },
+              "pageEditContentArticleTitleCoveragePage" : "Coverage page",
+    "@pageEditContentArticleTitleCoveragePage": {
+        "description":"Title of the article when its displayed in the vertical list and it leads you to the coverage page of the article."
+    },
+                  "pageEditContentArticleTitlePerformancePage" : "Performance page",
+    "@pageEditContentArticleTitlePerformancePage": {
+        "description":"Text that indicates that it is a performance page."
+    },
+    "pageContentAdministrationPopupASingleArticle": "A single article",
+    "@pageContentAdministrationAdminPopupASingleArticle": {
+        "description":"text in the popup in the button create an article first options to choose"
+    },
+    
+    "pageContentAdministrationPopupByBrand": "By brand",
+    "@pageContentAdministrationPopupByBrand": {
+        "description":"text in the popup in the button create an article second options to choose"
+    },
+
+    "pageContentAdministrationPopupUseTemplate": "Use template",
+    "@pageContentAdministrationPopupUseTemplate": {
+        "description":"text in the popup in the button create an article third options to choose"
+    },
+    
+    "pageContentAdministrationTitleYourArticle": "Your articles",
+    "@pageContentAdministrationTitleYourArticle": {
+        "description": "default title in case the article does not have a name,it is used in content management"
+    },
+
+    "pageContentAdministrationPopupSendViaMail": "Send via email",
+    "@pageContentAdministrationPopupSendViaMail": {
+        "description": "text in the popup Send via email,this edit text is displayed in a content management popup in an article, one of the options to choose from"
+    },
+
+    "drawerAlertDialogLogoutBack": "Log out",
+    "@drawerAlertDialogLogoutBack": {
+        "description": "Title text shown on the button of the alert dialog logout in the drawer"
+    },
+
+    "drawerAlertDialogLogoutContentWarning": "Are you sure you want to log out? You \n will need to log in next time.",
+    "@drawerAlertDialogLogoutContentWarning": {
+        "description": "Content text shown in the center of the alert dialog logout in the drawer, that warns the user that if he presses continue he will be logged out."
+    },
+
+    
+    "pageMediaDatabaseTitle": "Find media database",
+    "@pageMediaDatabaseTitle": {
+        "description": "Title found at the top of the page, refers to the search through the media database"
+    },
+
+    "pageMediaDatabaseDescription": "Access the Media Database with over a million contacts to --- relevant journalists.",
+    "@pageMediaDatabaseDescription": {
+        "description": "This subtitle mentions accessing a media database with over a million contacts for connecting with relevant journalists."
+    },
+
+    "pageMediaDatabaseJournalistFilterPeopleItem": "People",
+    "@pageMediaDatabaseJournalistFilterPeopleItem": {
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
+    },
+
+    "pageMediaDatabaseJournalistFilterMediaOutletsItem": "Media outlets",
+    "@pageMediaDatabaseJournalistFilterMediaOutletsItem": {
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
+    },
+
+    "pageMediaDatabaseJournalistFilterSearchByKeywordsItem": "Search by keywords",
+    "@pageMediaDatabaseJournalistFilterSearchByKeywordsItem": {
+        "description": "One of the 3 tappable items of the vertical bar containing the journalist filters"
+    },
+
+    "pageMediaDatabaseHorizontalMenuMySelectionsItem": "My Selections",
+    "@pageMediaDatabaseHorizontalMenuMySelectionsItem": {
+        "description": "One of the 3 tappable items of the horizontal bar containing the navigation inside the media database"
+    },
+
+    "pageMediaDatabaseHorizontalMenuSavedSearchesItem": "Saved Searches",
+    "@pageMediaDatabaseHorizontalMenuSavedSearchesItem": {
+        "description": "One of the 3 tappable items of the horizontal bar containing the navigation inside the media database"
+    },
+    
+    "commonApply": "Apply",
+    "@commonApply": {
+        "description": "Text shown on a popup/alertdialog that indicates to Apply a filters,Typically used to filter alert dialogs."
+    },
+
+    "commonAlertDialogFilterByAuthor": "Filter by author",
+    "@commonAlertDialogFilterByAuthor": {
+        "description": "Text in title of alertdialog/popup Filter by author,Typically used to filter in title of alert dialogs."
+    },
+
+    "commonAlertDialogFilterByStatus": "Filter by Status",
+    "@commonAlertDialogFilterByStatus": {
+        "description": "Text in title of alertdialog/popup Filter by Status,Typically used to filter in title of alert dialogs."
+    },
+
+    "commonEdit": "Edit",
+    "@commonEdit": {
+        "description": "Text shown on a button that indicates to edit,this edit text is displayed in a content management popup one of the options to choose from"
+    },
+    
+
+    "commonDuplicate": "Duplicate",
+    "@commonDuplicate": {
+        "description": "Text shown on a button that indicates to Duplicate,this edit text is displayed in a content management popup one of the options to choose from"
+    },
+
+    "commonDelete": "Delete",
+    "@commonDelete": {
+        "description": "Text that indicates to Delete,this edit text is displayed in a content management popup one of the options to choose from"
+    },
+
+    "commonAddPage": "Add page",
+    "@commonAddPage": {
+        "description": "Text shown on a button that indicates to add a page"
+    },
+    
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
     },
+
     "commonBack": "Back",
     "@commonBack": {
         "description": "Text back in button of screen create admin account"
@@ -339,6 +617,14 @@
     "@commonPasswordDoNotMatch" : {
         "descripcion": "text to indicate that the passwords do not match"
     },
+    "commonPreview": "Preview",
+    "@commonPreview": {
+        "description": "Text shown on a button that indicates a preview"
+    },
+      "commonShare": "Share",
+    "@commonShare": {
+        "description": "Text shown on a button that indicates to share"
+    },
     "commonRecoverPassword" : "Recover Password",
     "@commonRecoverPassword": {
         "description":"Text in page recover password setted on the top of the page as a title"
@@ -354,10 +640,17 @@
     "commonInvalidCharacters": "Invalid characters",
     "@commonInvalidCharacters":{
         "description":"Text indicating that invalid characters were used"},
+            
 
     "commonError" : "Error!",
     "@commonError": {
         "description":"text in alertdialog title, Error"
+    },
+
+
+    "commonFeatureNotAvailable":"This feature is not available in this version.",
+    "@commonFeatureNotAvailable":{
+        "descripcion": "Text in pop up to indicate that a feature in progress"
     },
     "commonSomethingWentWrong" : "Something went wrong",
     "@commonWentWrong": {
@@ -372,6 +665,10 @@
         "description": "Text in screen create admin account in alertdialog in button, Ok"
     },
 
+ "commonPublish": "Publish",
+    "@commonPublish": {
+        "description": "Text shown on a button that indicates to publish"
+    },
     "commonSuccess" : "Success",
     "@commonSuccess": {
         "description": "A label that signifies an achievement or favorable outcome, denoting a state of accomplishment or triumph."

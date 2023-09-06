@@ -12,10 +12,13 @@ class PRBoton extends StatelessWidget {
     required this.onTap,
     required this.texto,
     required this.estaHabilitado,
+    this.fontSize,
     this.width,
     this.height,
     this.esOutlined = false,
     this.muestraEstadoDeCarga = false,
+    this.fontWeight,
+    this.borderWidth,
     super.key,
   });
 
@@ -25,7 +28,10 @@ class PRBoton extends StatelessWidget {
     required String texto,
     required bool estaHabilitado,
     required double width,
+    double? borderWidth,
     double? height,
+    double? fontSize,
+    FontWeight? fontWeight,
   }) {
     return PRBoton(
       onTap: onTap,
@@ -34,6 +40,9 @@ class PRBoton extends StatelessWidget {
       esOutlined: true,
       width: width,
       height: height,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      borderWidth: borderWidth,
     );
   }
 
@@ -55,6 +64,15 @@ class PRBoton extends StatelessWidget {
   /// Asigna diseño si es outlined
   final bool esOutlined;
 
+  /// Tamaño de la letra.
+  final double? fontSize;
+
+  /// Grosor del borde del boton.
+  final double? borderWidth;
+
+  /// El espesor de la letra
+  final FontWeight? fontWeight;
+
   /// Si es true muestra un circular progress indicator dentro del boton.
   final bool muestraEstadoDeCarga;
   @override
@@ -75,6 +93,7 @@ class PRBoton extends StatelessWidget {
           borderRadius: BorderRadius.circular(100),
           border: esOutlined
               ? Border.all(
+                  width: borderWidth?.pw ?? 1.pw,
                   color: estaHabilitado
                       ? colores.primary
                       : colores.primaryOpacidadSesenta,
@@ -87,8 +106,8 @@ class PRBoton extends StatelessWidget {
               : Text(
                   texto,
                   style: TextStyle(
-                    fontSize: 16.pf,
-                    fontWeight: FontWeight.w600,
+                    fontSize: fontSize ?? 16.pf,
+                    fontWeight: fontWeight ?? FontWeight.w600,
                     color: esOutlined
                         ? estaHabilitado
                             ? colores.primary

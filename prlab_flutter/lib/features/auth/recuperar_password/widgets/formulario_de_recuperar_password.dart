@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-
-import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/features/auth/recuperar_password/bloc/bloc_recuperar_password.dart';
 import 'package:prlab_flutter/features/auth/recuperar_password/dialog/dialog.dart';
 import 'package:prlab_flutter/features/auth/recuperar_password/widgets/widgets.dart';
-
+import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template FormularioDeRecuperarPassword}
@@ -78,6 +76,7 @@ class _FormularioDeRecuperarPasswordState
               children: [
                 const EncabezadoDeRecuperarPassword(),
                 PRTextFormFieldPassword(
+                  width: 359.pw,
                   controller: controllerPassword,
                   hintText: l10n.pageRecoverPasswordNewPasswordHintText,
                   onChanged: (_) => context.read<BlocRecuperarPassword>().add(
@@ -86,8 +85,9 @@ class _FormularioDeRecuperarPasswordState
                         ),
                       ),
                 ),
-                SizedBox(height: 40.sh),
+                SizedBox(height: 40.ph),
                 PRTextFormFieldPassword(
+                  width: 359.pw,
                   controller: controllerPasswordRepetida,
                   hintText: l10n.pageRecoverPasswordRepeatPasswordHintText,
                   validator: _validarPasswordRepetida,
@@ -97,7 +97,7 @@ class _FormularioDeRecuperarPasswordState
                         ),
                       ),
                 ),
-                SizedBox(height: 50.sh),
+                SizedBox(height: 50.ph),
                 BlocBuilder<BlocRecuperarPassword, BlocRecuperarPasswordEstado>(
                   builder: (context, state) {
                     return PRBoton(
@@ -107,7 +107,7 @@ class _FormularioDeRecuperarPasswordState
                     );
                   },
                 ),
-                SizedBox(height: 80.sh),
+                SizedBox(height: 270.sh),
               ],
             ),
           ),

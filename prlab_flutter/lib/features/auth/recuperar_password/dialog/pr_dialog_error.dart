@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
@@ -12,14 +14,24 @@ class PRDialogError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colores = context.colores;
+
     final l10n = context.l10n;
 
     return PRDialog.error(
       context: context,
-      // TODO(Andreas):   El handleo de errores todavia no estan seteado,
+      // TODO(anyone):   El handleo de errores todavia no estan seteado,
       // por ende dejo esto por default hasta que se haga
       // un refactor de esto.
-      descripcionError: l10n.commonSomethingWentWrong,
+      contenido: Text(
+        l10n.commonSomethingWentWrong,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 15.pf,
+          color: colores.secondary,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
       onTap: () => Navigator.of(context).pop(),
     );
   }

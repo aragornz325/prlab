@@ -1,6 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_client/prlab_client.dart';
+import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
+import 'package:prlab_flutter/features/dashboard/bloc/bloc_dashboard.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -11,20 +16,11 @@ import 'package:url_launcher/url_launcher.dart';
 class TarjetaMarca extends StatelessWidget {
   /// {@macro TarjetaMarca}
   const TarjetaMarca({
-    required this.linkMarca,
-    required this.nombreMarca,
-    required this.linksArticulos,
+    required this.marca,
     super.key,
   });
 
-  /// Link a la web de la marca
-  final String linkMarca;
-
-  /// Nombre de la marca
-  final String nombreMarca;
-
-  /// Links a los articulos de la marca
-  final List<String> linksArticulos;
+  final Marca marca;
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +30,8 @@ class TarjetaMarca extends StatelessWidget {
 
     return Container(
       width: 485.pw,
-      height: 370.ph,
-      color: colores.onPrimary,
+      height: 398.ph,
+      color: colores.surfaceTint,
       child: Column(
         children: [
           Container(
@@ -56,9 +52,9 @@ class TarjetaMarca extends StatelessWidget {
                     ),
                     SizedBox(width: 5.pw),
                     GestureDetector(
-                      onTap: () => launchUrl(Uri.parse(linkMarca)),
+                      onTap: () => launchUrl(Uri.parse(marca.sitioWeb)),
                       child: Text(
-                        linkMarca,
+                        marca.sitioWeb,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 14.pf,
@@ -67,22 +63,30 @@ class TarjetaMarca extends StatelessWidget {
                           decorationColor: colores.primaryContainer,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
-                Icon(
-                  Icons.settings_outlined,
-                  color: colores.primary,
-                  size: 24.pf,
-                )
+                GestureDetector(
+                  onTap: () {
+                    // TODO(anyone): agregarle funcionalidad
+                    showDialog<void>(
+                      context: context,
+                      builder: (context) => const PRDialogErrorNoDisponible(),
+                    );
+                  },
+                  child: Icon(
+                    Icons.settings_outlined,
+                    color: colores.primary,
+                    size: 24.pf,
+                  ),
+                ),
               ],
             ),
           ),
-          const Divider(
+          Divider(
             thickness: .2,
             height: 1,
-            // TODO(Gon): Agregar al theme
-            color: Colors.grey,
+            color: colores.secondary,
           ),
           Container(
             height: 90.ph,
@@ -94,7 +98,7 @@ class TarjetaMarca extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  nombreMarca,
+                  marca.nombre,
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 25.pf,
@@ -105,33 +109,45 @@ class TarjetaMarca extends StatelessWidget {
                   children: [
                     PRBoton.esOutlined(
                       onTap: () {
-                        // TODO(Gon): Agregar funcion 'lista' o popup de feature in progress
+                        final idMarca = marca.id;
+                        if (idMarca == null) return;
+
+                        context.router.push(
+                          RutaAdministracionDeUnaMarca(
+                            idMarca: idMarca,
+                          ),
+                        );
                       },
                       texto: l10n.commonList,
                       estaHabilitado: true,
                       width: 100.pw,
                       height: 30.ph,
+                      fontSize: 15.pf,
+                      fontWeight: FontWeight.w500,
                     ),
                     SizedBox(width: 20.pw),
                     PRBoton(
                       onTap: () {
-                        // TODO(Gon): Agregar funcion 'crear' o popup de feature in progress
+                        context
+                            .read<BlocDashboard>()
+                            .add(BlocDashboardCrearArticulo());
                       },
                       texto: l10n.commonCreate,
                       estaHabilitado: true,
                       width: 100.pw,
                       height: 30.ph,
-                    )
+                      fontSize: 15.pf,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ],
                 ),
               ],
             ),
           ),
-          const Divider(
+          Divider(
             thickness: .2,
             height: 1,
-            // TODO(Gon): Agregar al theme
-            color: Colors.grey,
+            color: colores.secondary,
           ),
           Container(
             height: 205.ph,
@@ -164,26 +180,32 @@ class TarjetaMarca extends StatelessWidget {
                             height: 10.ph,
                           );
                         },
-                        itemCount: linksArticulos.length,
+                        // TODO(Gon):
+                        // Consumir de la lista de articulos que trae el back.
+                        itemCount: ['NOTHING'].length,
                         itemBuilder: (context, index) {
                           return Row(
                             children: [
                               Container(
                                 width: 10.pw,
                                 height: 10.ph,
-                                decoration: const BoxDecoration(
-                                  // TODO(Gon): Agregar al theme
-                                  color: Colors.grey,
+                                decoration: BoxDecoration(
+                                  color: colores.secondary,
                                   shape: BoxShape.circle,
                                 ),
                               ),
                               SizedBox(width: 5.pw),
                               GestureDetector(
                                 onTap: () {
-                                  // TODO(Gon): Agregar funcion al apretar link
+                                  context.router.push(
+                                    RutaEditorContenido(idArticulo: 0),
+                                    // TODO(anyone): pasar el id correcto
+                                  );
                                 },
                                 child: Text(
-                                  linksArticulos[index],
+                                  // TODO(Gon):
+                                  // Consumir de la lista de articulos que trae el back.
+                                  ['NOTHING'][index],
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14.pf,
@@ -197,7 +219,7 @@ class TarjetaMarca extends StatelessWidget {
                           );
                         },
                       ),
-                    )
+                    ),
                   ],
                 ),
               ],

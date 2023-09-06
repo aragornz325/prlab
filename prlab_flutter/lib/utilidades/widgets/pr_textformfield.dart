@@ -14,8 +14,8 @@ import 'package:prlab_flutter/utilidades/funciones/functions.dart';
 class PRTextFormField extends StatefulWidget {
   const PRTextFormField({
     required this.controller,
-    required this.prefixIcon,
-    required this.validator,
+    this.prefixIcon,
+    this.validator,
     this.hintText,
     this.esSoloLectura = false,
     this.esPassword = false,
@@ -26,8 +26,125 @@ class PRTextFormField extends StatefulWidget {
     this.keyboardType,
     this.width,
     this.inputFormatters,
+    this.maxLength,
+    this.cursorColor,
+    this.decoration,
     super.key,
   });
+
+  /// TFF de verificar el codigo mandado para recuperar la contraseña o
+  /// cambiarla por una nueva
+  factory PRTextFormField.verificacionCodigo({
+    /// Controller de [PRTextFormField]
+    required TextEditingController controller,
+
+    /// Contexto para traducciones
+    required BuildContext context,
+
+    /// validator de [PRTextFormField]
+    String? Function(String?)? validator,
+
+    // ignore: inference_failure_on_function_return_type
+    Function(String)? onChanged,
+
+    /// cantidad de minutos faltantes
+    int minutosFaltantes = 30,
+
+    /// cantidad de segundos faltantes
+    int segundosFaltantes = 60,
+
+    /// si ya se envio un nuevo codigo
+    bool solicitoNuevoCodigo = false,
+
+    /// Ancho del campo de texto.
+    double? width,
+
+    /// widget de obtener nuevo codigo
+    Widget? widgetDeSuffix,
+  }) {
+    final colores = context.colores;
+
+    final l10n = context.l10n;
+
+    final tooltipMessage = l10n.alertDialogTooltipRequestNewCode(
+      segundosFaltantes,
+      minutosFaltantes,
+    );
+
+    return PRTextFormField(
+      width: width,
+      controller: controller,
+      validator: validator,
+      inputFormatters: [
+        FilteringTextInputFormatter.allow(
+          RegExp(r'^\d+$'),
+        ),
+      ],
+      maxLength: 8,
+      keyboardType: TextInputType.number,
+      cursorColor: colores.primary,
+      onChanged: onChanged,
+      decoration: InputDecoration(
+        counterText: '',
+        labelText: l10n.alertDialogTextfieldHitTextTextEmailVerificationCode,
+        labelStyle: TextStyle(
+          fontSize: 15.pf,
+          fontWeight: FontWeight.w400,
+          color: colores.secondary,
+        ),
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: colores.secondary,
+          ),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: colores.secondary,
+          ),
+        ),
+        suffixIcon: Padding(
+          padding: EdgeInsets.only(top: 20.ph),
+          child: SizedBox(
+            width: 100.pw,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                widgetDeSuffix ?? const SizedBox(),
+                ...[
+                  if (solicitoNuevoCodigo)
+                    Tooltip(
+                      textAlign: TextAlign.center,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.pw,
+                        vertical: 10.ph,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        color: colores.tertiary,
+                      ),
+                      textStyle: TextStyle(
+                        fontSize: 12.pf,
+                        fontWeight: FontWeight.w400,
+                        color: colores.background,
+                      ),
+                      margin: EdgeInsets.only(right: 120.pw),
+                      message: tooltipMessage,
+                      child: Icon(
+                        Icons.info,
+                        color: colores.tertiary,
+                        size: 12.5.pf,
+                      ),
+                    ),
+                ],
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   /// TFF de email, con dos configuraciones, solo lectura o completable
   factory PRTextFormField.email({
@@ -218,7 +335,7 @@ class PRTextFormField extends StatefulWidget {
   final String? hintText;
 
   /// Icono izquierdo
-  final IconData prefixIcon;
+  final IconData? prefixIcon;
 
   /// Icono derecho
   final Widget? suffixIcon;
@@ -230,7 +347,7 @@ class PRTextFormField extends StatefulWidget {
   final TextInputType? keyboardType;
 
   /// Validators para cada textformfield
-  final String? Function(String? value) validator;
+  final String? Function(String? value)? validator;
 
   /// Funcion onChanged
   final void Function(String)? onChanged;
@@ -241,6 +358,15 @@ class PRTextFormField extends StatefulWidget {
   /// Formateadores de texto para ponerle restricciones a el usuario
   /// sobre que tipo de caracteres puede completar en el campo de texto.
   final List<TextInputFormatter>? inputFormatters;
+
+  /// Máximo de caracteres a poner
+  final int? maxLength;
+
+  /// color del cursor al estar escribiendo
+  final Color? cursorColor;
+
+  /// Decoración del textfield
+  final InputDecoration? decoration;
 
   @override
   State<PRTextFormField> createState() => _PRTextFormFieldState();
@@ -254,6 +380,8 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
     return SizedBox(
       width: widget.width?.sw ?? 360.sw,
       child: TextFormField(
+        cursorColor: widget.cursorColor,
+        maxLength: widget.maxLength,
         keyboardType: widget.keyboardType ?? TextInputType.none,
         controller: widget.controller,
         readOnly: widget.esSoloLectura,
@@ -264,44 +392,46 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
           fontSize: 15.pf,
         ),
         inputFormatters: widget.inputFormatters,
-        decoration: InputDecoration(
-          hintText: widget.hintText,
-          border: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color:
-                  widget.esSoloLectura ? colores.primary : colores.onSecondary,
+        decoration: widget.decoration ??
+            InputDecoration(
+              hintText: widget.hintText,
+              border: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: widget.esSoloLectura
+                      ? colores.primary
+                      : colores.outlineVariant,
+                ),
+              ),
+              suffixIcon: widget.esPassword ? widget.suffixIcon : null,
+              prefixIcon: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 4.pw),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      widget.prefixIcon,
+                      color: widget.controller.text.isEmpty
+                          ? widget.esSoloLectura
+                              ? colores.secondaryBajaOpacidad
+                              : colores.secondary
+                          : widget.esSoloLectura
+                              ? colores.primaryOpacidadSesenta
+                              : colores.primary,
+                      size: 25.pf,
+                    ),
+                    SizedBox(
+                      width: 5.ph,
+                    ),
+                    Container(
+                      height: 31.5.ph,
+                      width: 1.pw,
+                      decoration: BoxDecoration(color: colores.outlineVariant),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-          suffixIcon: widget.esPassword ? widget.suffixIcon : null,
-          prefixIcon: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4.pw),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  widget.prefixIcon,
-                  color: widget.controller.text.isEmpty
-                      ? widget.esSoloLectura
-                          ? colores.secondaryBajaOpacidad
-                          : colores.secondary
-                      : widget.esSoloLectura
-                          ? colores.primaryOpacidadSesenta
-                          : colores.primary,
-                  size: 25.pf,
-                ),
-                SizedBox(
-                  width: 5.ph,
-                ),
-                Container(
-                  height: 31.5.ph,
-                  width: 1.pw,
-                  decoration: BoxDecoration(color: colores.onSecondary),
-                ),
-              ],
-            ),
-          ),
-        ),
         validator: widget.validator,
         onChanged: (value) {
           setState(() {

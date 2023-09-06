@@ -2,7 +2,7 @@ class: Organizacion
 table: organizaciones
 fields:
   nombre: String
-  tipo: int? parent=tipos_de_organizacion
+  tipo: int?
   contacto: int? parent=informacion_de_contactos
   fechaEliminacion: DateTime?
   ultimaModificacion: DateTime
