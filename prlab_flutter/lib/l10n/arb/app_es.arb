@@ -567,6 +567,51 @@
     "@pageMediaDatabaseHorizontalMenuSavedSearchesItem": {
         "description": "One of the 3 tappable items of the horizontal bar containing the navigation inside the media database"
     },
+
+    "pageMediaDatabaseHorizontalTextFieldJournalistName": "Ingrese nombre de periodista",
+    "@pageMediaDatabaseHorizontalTextFieldJournalistName": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses that a journalist name be entered"
+    },
+
+    "pageMediaDatabaseHorizontalTextFieldMediaOutlet": "Ingrese nombre del medio de comunicación",
+    "@pageMediaDatabaseHorizontalTextFieldMediaOutlet": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses that a media outlet name be entered"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelCountry": "País",
+    "@pageMediaDatabaseHorizontalFilterLabel": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Country` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelCity": "Ciudad",
+    "@pageMediaDatabaseHorizontalFilterLabelCity": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `City` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelContactLanguage": "Lenguaje del contacto",
+    "@pageMediaDatabaseHorizontalFilterLabelContactLanguage": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Contact language` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelTopic": "Tema",
+    "@pageMediaDatabaseHorizontalFilterLabelTopic": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Topic` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterLabelRole": "Rol",
+    "@pageMediaDatabaseHorizontalFilterLabelRole": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Role` type of filter"
+    },
+
+    "pageMediaDatabaseHorizontalFilterButtomButton": "Guardar datos",
+    "@pageMediaDatabaseHorizontalFilterButtomButton": {
+        "description": "It is found in the journalist filters, the people menu, its used to save the filter data, to use it in other opportunity"
+    },
+    
+    "pageMediaDatabaseHorizontalFilterClearAll": "Limpiar todo",
+    "@pageMediaDatabaseHorizontalFilterClearAll": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses the intention of delete all the items from specific filter"
+    },
     
     "commonPRLab": "PR lab",
     "@commonPRLab": {
