@@ -76,7 +76,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
-  ///   [id] ([int]): El ID del artículo consultado.
+  ///   [idArticulo] ([int]): El ID del artículo consultado.
   Future<bool> eliminarArticulo(
     Session session,{
     required int idArticulo,
