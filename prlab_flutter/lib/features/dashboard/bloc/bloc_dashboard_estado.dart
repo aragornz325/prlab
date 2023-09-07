@@ -69,3 +69,9 @@ class BlocDashboardEstadoLogueoFallido extends BlocDashboardEstado {
   /// {@macro BlocDashboardEstadoLogueoFallido}
   BlocDashboardEstadoLogueoFallido.desde() : super.desde();
 }
+
+// TODO(Andre): Agregar documentacion
+class BlocDashboardEstadoFaltaCompletarKyc extends BlocDashboardEstado {
+  /// {@macro BlocDashboardEstadoLogueoFallido}
+  BlocDashboardEstadoFaltaCompletarKyc.desde() : super.desde();
+}

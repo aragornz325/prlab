@@ -46,12 +46,15 @@ class BlocDashboard extends Bloc<BlocDashboardEvento, BlocDashboardEstado> {
   ) async {
     emit(BlocDashboardCargando.desde());
     try {
-      final respuesta = await client.cliente
-          .comprobarKyc(sessionManager.signedInUser?.id ?? 0);
+      final respuesta = await client.cliente.comprobarKyc(
+        sessionManager.signedInUser?.id ?? 0,
+      );
+
       if (!respuesta) {
-        emit(BlocDashboardEstadoLogueoFallido.desde());
+        emit(BlocDashboardEstadoFaltaCompletarKyc.desde());
+      } else {
+        emit(BlocDashboardEstadoLogueoExitoso.desde());
       }
-      emit(BlocDashboardEstadoLogueoExitoso.desde());
     } catch (e) {
       emit(BlocDashboardEstadoLogueoFallido.desde());
     }

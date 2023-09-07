@@ -24,7 +24,8 @@ class PRDialogSeleccionarFecha extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return PRDialog.solicitudAccion(
-      height: 450.ph,
+      // TODO(Mati): Fijarse que esto se adapte mejor a las pantallas.
+      height: 600.sh,
       width: 200.pw,
       anchoDelBoton: 265.pw,
       alturaEntreBotonYContenido: 30.ph,
