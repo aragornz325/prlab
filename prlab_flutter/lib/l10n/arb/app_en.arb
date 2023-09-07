@@ -588,6 +588,31 @@
         "description": "It is found in the journalist filters, the people menu, a message that expresses the intention of delete all the items from specific filter"
     },
     
+    "cardPeriodistaBotonDetails": "Details",
+    "@cardPeriodistaBotonDetails": {
+        "description": "Text in the card of the journalist to show details"
+    },
+
+    "cardPeriodistaBotonAdd": "Add to list",
+    "@cardPeriodistaBotonAdd": {
+        "description": "Text in the card of the journalist to add to list"
+    },
+
+    "cardPeriodistaAnchorAt": "Anchor at ",
+    "@cardPeriodistaAnchorAt": {
+        "description": "Text in the card of the journalist to identify with a brand"
+    },
+
+    "cardPeriodistaLocation": "Location",
+    "@cardPeriodistaLocation": {
+        "description": "Text in the card of the journalist to indicate the location"
+    },
+
+    "cardPeriodistaTopicCovered": "Topic covered",
+    "@cardPeriodistaTopicCovered": {
+        "description": "Text in the card of the journalist to indicate the topics covered"
+    },
+    
     "pageKYCAlertDialogCalendarTitleSelectYourBirthDate": "Select your birthdate",
     "@pageKYCAlertDialogCalendarTitleSelectYourBirthDate": {
         "description": "Text in title of alertdialog/popup Select your birthdate,Usually use in el form Kyc."
