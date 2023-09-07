@@ -1,72 +1,110 @@
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/odm.dart';
+import 'package:prlab_server/utils/manejo_de_errores/manejo_de_errores.dart';
 import 'package:prlab_server/utils/serialization.dart';
 import 'package:serverpod/server.dart';
 
-/// La clase `OdmMarca` es una clase Dart que proporciona funciones para crear
+/// La clase [OdmMarca] es una clase Dart que proporciona funciones para crear
 /// borrar, modificar y listar objetos `Marca` usando una operación ODM.
 class OdmMarca extends ODM {
-  /// La función `crearMarca` es una función de Dart que crea un nuevo objeto
+  /// La función [crearMarca] es una función de Dart que crea un nuevo objeto
   /// `Marca` en una base de datos mediante una operación ODM.
 
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es
+  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y es
   /// obligatorio. Representa lasesión de la base de datos que se utilizará para
-  /// la operación.  payload (Marca): El parámetro `payload` es de tipo `Marca`,
+  /// la operación.  [marca] (Marca): El parámetro [marca] es de tipo [Marca],
   /// que es un objeto que representa los datos a insertar en la base de datos.
   Future<bool> crearMarca({
     required Session session,
-    required Marca payload,
+    required Marca marca,
   }) async {
     try {
-      await performOdmOperation(
+      await ejecutarOperacionOdm(
         session,
         (Session session) {
-          logger.info('Creando marca: ${payload.nombre}');
-          return Marca.insert(session, payload);
+          logger.info('Creando marca: ${marca.nombre}');
+          return Marca.insert(
+            session,
+            marca
+              ..fechaCreacion = DateTime.now()
+              ..ultimaModificacion = DateTime.now(),
+          );
         },
       );
-      logger.fine('Marca ${payload.nombre} creada exitosamente.');
+      logger.fine('Marca ${marca.nombre} creada exitosamente.');
       return true;
     } on Exception catch (e) {
       throw Exception('$e');
     }
   }
 
-  /// La función `listarMarcas` recupera una lista de objetos `Marca` usando
+  /// La función [listarMarcas] recupera una lista de objetos [Marca] usando
   /// una operación ODM y una sesión proporcionada.
   Future<List<Marca>> listarMarcas({
     required Session session,
   }) async {
     try {
-      return await performOdmOperation(
+      return await ejecutarOperacionOdm(
         session,
-        Marca.find,
+        (session) => Marca.find(
+          session,
+          where: (t) => t.fechaEliminacion.equals(null),
+        ),
       );
     } on Exception catch (e) {
       throw Exception('$e');
     }
   }
 
-  /// La función `eliminarMarca` elimina un registro de la base de datos según
-  /// el ID proporcionado.
+  /// La función [eliminarMarcaBorradoFisico] elimina un registro de la base de 
+  /// datos según el ID proporcionado. BORRADO FÍSICO.
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es
+  ///   [session] (Session): El parámetro de sesión es de tipo Sesión y es
   /// obligatorio. Representa la sesión de la base de datos que se utilizará
-  /// para la operación. id (int): El parámetro "id" es un número entero que
+  /// para la operación. [id] (int): El parámetro "id" es un número entero que
   ///  representa el identificador único de la marca que debe eliminarse.
-
-  Future<bool> eliminarMarca({
+  Future<bool> eliminarMarcaBorradoFisico({
     required Session session,
-    required int id,
+    required int idMarca,
   }) async {
     try {
-      await performOdmOperation(
+      await ejecutarOperacionOdm(
         session,
         (Session session) => Marca.delete(
           session,
-          where: (t) => t.id.equals(id),
+          where: (t) => t.id.equals(idMarca),
         ),
+      );
+      return true;
+    } on Exception catch (e) {
+      throw Exception('$e');
+    }
+  }
+
+  /// Elimina una marca con borrado logico.
+  /// Args:
+  /// [session] ([Session]): El parámetro de sesión es de tipo Sesión y es
+  /// obligatorio. Representa la sesión de la base de datos que se utilizará
+  /// para la operación. <br>
+  /// [idMarca] ([int]): El parámetro "id" es un número entero que
+  ///  representa el identificador único de la marca que debe eliminarse.
+  Future<bool> eliminarMarca({
+    required Session session,
+    required int idMarca,
+  }) async {
+    try {
+      logger.info('Se va a eliminar la marca con id: $idMarca');
+      await ejecutarOperacionOdm(
+        session,
+        (Session session) => session.db.query('''
+            UPDATE "articulos" 
+            SET "fechaEliminacion" = ${DateTime.now().toIso8601String()}
+            WHERE "id" = $idMarca AND "fechaEliminacion" IS NULL;
+          '''),
+      );
+      logger.finest(
+        'Se elimino la marca con id: $idMarca',
       );
       return true;
     } on Exception catch (e) {
@@ -80,7 +118,7 @@ class OdmMarca extends ODM {
     required int id,
   }) async {
     try {
-      final marca = await performOdmOperation(
+      final marca = await ejecutarOperacionOdm(
         session,
         (Session session) {
           logger.info('Buscando marca con id: $id');
@@ -88,14 +126,26 @@ class OdmMarca extends ODM {
         },
       );
       if (marca == null) {
-        logger.shout('No se encontró la marca con id: $id');
-        throw Exception('No se encontró la marca con el id: $id');
+        const error = ErrorPrLab.errorElementoNoEncontrado;
+        throw ExcepcionPrLab(mensaje: error.mensaje, errorType: error);
       }
       logger.fine('Marca con id: $id encontrada');
       return marca;
     } on Exception catch (e) {
       throw Exception('$e');
     }
+  }
+
+  /// Actualiza un registro de Marca. El objeto pasado en el parametro debe
+  /// tener el id en la Base de Datos.
+  Future<bool> actualizarMarca(Session session, {required Marca marca}) async {
+    return await ejecutarOperacionOdm(
+      session,
+      (session) => Marca.update(
+        session,
+        marca..ultimaModificacion = DateTime.now(),
+      ),
+    );
   }
 
   /// Crea la relación entre una marca y un usuario.
@@ -105,11 +155,28 @@ class OdmMarca extends ODM {
     required int idUsuario,
     required int idRol,
   }) async {
-    return await performOdmOperation(
+    return await ejecutarOperacionOdm(
       session,
       (session) => session.db.query('''
       INSERT INTO "marcas_staff" ("idMarca", "idStaff", "idRol") 
       VALUES ($idMarca, $idUsuario, $idRol);
+      '''),
+    );
+  }
+
+  /// Da de baja la relacion entre el usuario y la marca
+  /// en la tabla intermedia.
+  Future<List<List<dynamic>>> desvincularUsuarioDeMarca(
+    Session session, {
+    required int idMarca,
+    required int idUsuario,
+  }) async {
+    return await ejecutarOperacionOdm(
+      session,
+      (session) => session.db.query('''
+      UPDATE "marcas_staff"
+      SET "fechaEliminacion" = '${DateTime.now().toIso8601String()}'
+      WHERE "idMarca" = $idMarca AND "idStaff" = $idUsuario AND "fechaEliminacion" IS NULL;
       '''),
     );
   }
@@ -119,11 +186,11 @@ class OdmMarca extends ODM {
     Session session, {
     required int idUsuario,
   }) async {
-    final queryListaDeIdMarcas = await performOdmOperation(
+    final queryListaDeIdMarcas = await ejecutarOperacionOdm(
       session,
       (session) async {
         final query = await session.db.query(
-          'SELECT "idMarca" FROM marcas_staff WHERE "idStaff" = $idUsuario;',
+          'SELECT "idMarca" FROM "marcas_staff" WHERE "idStaff" = $idUsuario;',
         );
         final listaIds = query.map((e) => e.first as int).toList();
         return listaIds;
@@ -134,77 +201,21 @@ class OdmMarca extends ODM {
       return [];
     }
 
-    final responseMaps = await rawQueryOperation(
+    final responseMaps = await ejecutarConsultaSql(
       session,
       '''
-      SELECT "id", "nombre", "sitioWeb", "fechaCreacion", "ultimaModificacion", "fechaEliminacion" FROM marcas 
+      SELECT "id", "nombre", "sitioWeb", "fechaCreacion", "ultimaModificacion", "fechaEliminacion" FROM "marcas" 
       WHERE "id" IN (${queryListaDeIdMarcas.join(',')});
       ''',
-      keysMapaModeloDb:
+      clavesMapaModeloDb:
           Marca(nombre: '', sitioWeb: '').toJsonForDatabase().keys,
     );
 
-    final listasUsuarios = {};
-
-    for (final marca in queryListaDeIdMarcas) {
-      final listaUsuarios = await listarUsuariosPorMarca(
-        session,
-        idMarca: marca,
-      );
-      listasUsuarios[marca] = listaUsuarios;
-    }
-
     final responseSerializado = responseMaps
         .map(
-          (e) => Marca.fromJson(e, AdministradorSerializacion())
-            ..staff = listasUsuarios[e['id']],
+          (e) => Marca.fromJson(e, AdministradorSerializacion()),
         )
         .toList();
-    return responseSerializado;
-  }
-
-  /// Obtiene los usuarios asignados a una marca.
-  Future<List<Cliente>> listarUsuariosPorMarca(
-    Session session, {
-    required int idMarca,
-  }) async {
-    final queryListaDeIdUsuarios = await performOdmOperation(
-      session,
-      (session) async {
-        final query = await session.db.query(
-          'SELECT "idStaff" FROM marcas_staff WHERE "idMarca" = $idMarca;',
-        );
-        final listaIds = query.map((e) => e.first as int).toList();
-        return listaIds;
-      },
-    );
-
-    if (queryListaDeIdUsuarios.isEmpty) {
-      return [];
-    }
-
-    final responseMaps = await rawQueryOperation(
-      session,
-      '''
-          SELECT "id", "nombre", "apellido", "fechaDeNacimiento", "nombreDeOrganizacion", "domicilio", "telefono", "idUsuario", "idOrganizacion", "contacto", "fechaEliminacion", "ultimaModificacion", "fechaCreacion" FROM "clientes" 
-          WHERE "idUsuario" IN (${queryListaDeIdUsuarios.join(',')});
-        ''',
-      keysMapaModeloDb: Cliente(
-        nombre: 'nombre',
-        apellido: 'apellido',
-        fechaDeNacimiento: DateTime.now(),
-        nombreDeOrganizacion: 'nombreDeOrganizacion',
-        ultimaModificacion: DateTime.now(),
-        fechaCreacion: DateTime.now(),
-      ).toJsonForDatabase().keys,
-    );
-
-    final responseSerializado = responseMaps
-        .map(
-          (e) => Cliente.fromJson(e, AdministradorSerializacion()),
-        )
-        .toList();
-
     return responseSerializado;
   }
 }

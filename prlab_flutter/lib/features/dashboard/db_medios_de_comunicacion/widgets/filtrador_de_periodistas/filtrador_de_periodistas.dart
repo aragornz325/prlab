@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
+
+part 'campo_de_texto_filtrador.dart';
+part 'seccion_filtrado_por_personas.dart';
+part 'tile_con_check_boxes.dart';
 
 /// {@template FiltradorDePeriodistas}
 /// Contiene los filtros para la búsqueda de
@@ -20,11 +26,31 @@ class FiltradorDePeriodistas extends StatefulWidget {
 }
 
 class _FiltradorDePeriodistasState extends State<FiltradorDePeriodistas> {
-  ItemMenuFiltros itemSeleccionado = ItemMenuFiltros.busqueda;
+  ItemMenuFiltros _itemSeleccionado = ItemMenuFiltros.busqueda;
 
-  void _onSeleccionado(ItemMenuFiltros itemMenu) {
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    _pageController = PageController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _onCambiarDePagina(ItemMenuFiltros itemMenu) {
     setState(() {
-      itemSeleccionado = itemMenu;
+      if (_pageController.page != itemMenu.index) {
+        _pageController.jumpToPage(
+          itemMenu.index,
+        );
+      }
+
+      _itemSeleccionado = itemMenu;
     });
   }
 
@@ -43,49 +69,38 @@ class _FiltradorDePeriodistasState extends State<FiltradorDePeriodistas> {
               ...ItemMenuFiltros.values.map(
                 (item) => _ContenedorItemMenuFiltros(
                   itemMenuFiltros: item,
-                  itemSeleccionado: itemSeleccionado,
-                  onSeleccionado: _onSeleccionado,
+                  itemSeleccionado: _itemSeleccionado,
+                  onSeleccionado: _onCambiarDePagina,
                 ),
               ),
             ],
           ),
-          const Divider(),
-          // TODO(Andre): Continuar este campo en proximo pr.
-          _CampoDeTextoFiltrador(
-            controller: TextEditingController(),
+          const Divider(height: 0),
+          SizedBox(
+            // ? Esto funcionaría mejor para la PageView si
+            // ? fuese mas dinámico y no un valor en duro.
+            height: 620.sh,
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (value) {
+                _itemSeleccionado = ItemMenuFiltros.values.firstWhere(
+                  (element) => element.index == value,
+                );
+
+                _onCambiarDePagina(_itemSeleccionado);
+              },
+              children: [
+                const SeccionFiltradoPorPersonas(),
+                Center(
+                  child: Image.asset(Assets.assets_images_nada_para_ver_png),
+                ),
+                Center(
+                  child: Image.asset(Assets.assets_images_nada_para_ver_png),
+                ),
+              ],
+            ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-/// {@template _CampoDeTextoFiltrador}
-/// Utilizado para algunos de los tipos de
-/// filtrado que ofrece la página como el
-/// filtrado por nombre de periodistas entre
-/// otros.
-/// {@endtemplate}
-class _CampoDeTextoFiltrador extends StatelessWidget {
-  /// {@macro _CampoDeTextoFiltrador}
-  const _CampoDeTextoFiltrador({
-    required this.controller,
-  });
-
-  final TextEditingController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    final colores = context.colores;
-
-    // TODO(Andre): Continuar este campo en proximo pr.
-    return TextField(
-      decoration: InputDecoration(
-        prefixIcon: Icon(
-          Icons.search_rounded,
-          size: 24.pw,
-          color: colores.primary,
-        ),
       ),
     );
   }
