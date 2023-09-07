@@ -44,13 +44,13 @@ class SeccionTarjetasDeMarca extends StatelessWidget {
                         marca: state.marcas[index],
                       ),
                       SizedBox(height: 30.ph),
-                      // TODO(Gon):
-                      // Consumir informacion de la marca traida del back
-                      // cuando se agreguen los articulos al modelo
-                      const InformacionDeLaMarca(
-                        cantidadArticulos: 3,
-                        cantidadClippings: 3,
-                        cantidadMiembros: 3,
+                      InformacionDeLaMarca(
+                        cantidadArticulos:
+                            state.marcas[index].ultimosArticulos?.length ?? 0,
+                        cantidadClippings:
+                            state.marcas[index].cantidadClippings ?? 0,
+                        cantidadMiembros:
+                            state.marcas[index].staff?.length ?? 0,
                       ),
                     ],
                   );

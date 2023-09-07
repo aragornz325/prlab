@@ -15,6 +15,7 @@ import 'package:serverpod_auth_client/module.dart' as _i6;
 import 'dart:io' as _i7;
 import 'protocol.dart' as _i8;
 
+/// Endpoints centrados en la entidad [Articulo].
 class _EndpointArticulo extends _i1.EndpointRef {
   _EndpointArticulo(_i1.EndpointCaller caller) : super(caller);
 
@@ -22,13 +23,13 @@ class _EndpointArticulo extends _i1.EndpointRef {
   String get name => 'articulo';
 
   /// La función `crearArticulo` es que crea un artículo usando una sesión y un
-  /// payload, y devuelve un booleano que indica si la creación fue exitosa.
+  /// articulo, y devuelve un booleano que indica si la creación fue exitosa.
   ///
   /// Args:
-  ///   session (Session): Un objeto de sesión que representa la sesión del
+  ///   [session] ([Session]): Un objeto de sesión que representa la sesión del
   /// usuario actual. Puede contener información como el token de autenticación
   /// del usuario u otros datos relacionados con la sesión.
-  ///   payload (Articulo): El parámetro "payload" es un objeto de tipo
+  ///   [articulo] ([Articulo]): El parámetro "articulo" es un objeto de tipo
   /// "Articulo" que contiene los datos necesarios para crear un artículo.
   _i2.Future<int> crearArticulo(_i3.Articulo articulo) =>
       caller.callServerEndpoint<int>(
@@ -37,11 +38,11 @@ class _EndpointArticulo extends _i1.EndpointRef {
         {'articulo': articulo},
       );
 
-  /// La función `listarArticulos` recupera una lista de artículos usando un
+  /// La función [listarArticulos] recupera una lista de artículos usando un
   /// objeto de sesión y un objeto de servicio.
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es
+  ///   [session] ([Session]): El parámetro [sesión] es de tipo "Sesión" y es
   ///   obligatorio.
   _i2.Future<List<_i3.Articulo>> listarArticulos() =>
       caller.callServerEndpoint<List<_i3.Articulo>>(
@@ -50,13 +51,13 @@ class _EndpointArticulo extends _i1.EndpointRef {
         {},
       );
 
-  /// La función `obtenerArticulo` es una función asincrónica de Dart que toma
-  /// un objeto `Session` y un `id` entero como parámetros, y devuelve un
-  ///  `Future` que se resuelve en un objeto `Articulo`.
+  /// La función [obtenerArticulo] es una función asincrónica de Dart que toma
+  /// un objeto [Session] y un [id] entero como parámetros, y devuelve un
+  ///  [Future] que se resuelve en un objeto [Articulo].
   ///
   /// Args:
-  ///   session (Session): Un objeto de sesión que contiene información sobre
-  ///   la sesión del usuario.id (int): El parámetro "id" es un número entero
+  ///   [session] ([Session]): Un objeto de sesión que contiene información sobre
+  ///   la sesión del usuario. id (int): El parámetro [id] es un número entero
   ///   que representa el identificador único del artículo que desea obtener.
   _i2.Future<_i3.Articulo> obtenerArticulo(int id) =>
       caller.callServerEndpoint<_i3.Articulo>(
@@ -65,14 +66,14 @@ class _EndpointArticulo extends _i1.EndpointRef {
         {'id': id},
       );
 
-  /// La función `eliminarArticulo` es una función asincrónica de Dart que
+  /// La función [eliminarArticulo] es una función asincrónica de Dart que
   /// intenta eliminar un artículoutilizando una sesión e ID proporcionadas,
   ///  y devuelve un valor booleano que indica si la eliminación fue exitosa
   ///  o no.
   ///
   /// Args:
-  ///   session (Session): Un parámetro obligatorio de tipo Sesión.
-  ///   id (int): El parámetro "id" es un número entero que representa el
+  ///   [session] ([Session]): Un parámetro obligatorio de tipo Sesión.
+  ///   [id] ([int]): El parámetro [id] es un número entero que representa el
   ///   identificador único del artículo que debe eliminarse.
   _i2.Future<bool> eliminarArticulo(int id) => caller.callServerEndpoint<bool>(
         'articulo',
@@ -80,14 +81,14 @@ class _EndpointArticulo extends _i1.EndpointRef {
         {'id': id},
       );
 
-  /// La función "listarArticulosPorMarca" es un servicio querecupera una lista
+  /// La función [listarArticulosPorMarca] es un servicio querecupera una lista
   /// de artículos en función de un ID de marca determinado.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa
+  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y representa
   ///   la sesión o conexión actual a la base de datos. Se utiliza para ejecutar
   ///   consultas o realizar operaciones de bases de datos.
-  ///   idMarca (int): La identificación de la marca para la que desea enumerar
+  ///   [idMarca] ([int]): La identificación de la marca para la que desea enumerar
   ///   los artículos.
   ///
   /// Returns:
@@ -99,12 +100,16 @@ class _EndpointArticulo extends _i1.EndpointRef {
         {'idMarca': idMarca},
       );
 
-  /// La función `actualizarArticulo` actualiza un artículo usando el servicio `servicioArticulo` y
-  /// devuelve un booleano indicando si la actualización fue exitosa.
+  /// La función [actualizarArticulo] actualiza un artículo usando el servicio
+  /// [servicioArticulo] y devuelve un booleano indicando si la actualización
+  /// fue exitosa.
   ///
   /// Args:
-  ///   session (Session): Un objeto de sesión que representa la sesión del usuario actual.
-  ///   articulo (Articulo): El parámetro "articulo" es de tipo "Articulo" y es obligatorio.
+  ///   [session] ([Session]): Un objeto de sesión que representa la sesión del
+  /// usuario actual.
+  ///
+  /// [articulo] ([Articulo]): El parámetro [articulo] es de tipo "Articulo" y es
+  /// obligatorio.
   _i2.Future<bool> actualizarArticulo({required _i3.Articulo articulo}) =>
       caller.callServerEndpoint<bool>(
         'articulo',
@@ -113,7 +118,7 @@ class _EndpointArticulo extends _i1.EndpointRef {
       );
 }
 
-/// La clase `AuthEndpoint` está ampliando la clase `Endpoint`. por tanto maneja
+/// La clase `AuthEndpoint` está ampliando la clase Endpoint. por tanto maneja
 /// todas las peticiones relacionadas con el auth del sistema
 class _EndpointAuth extends _i1.EndpointRef {
   _EndpointAuth(_i1.EndpointCaller caller) : super(caller);
@@ -121,19 +126,16 @@ class _EndpointAuth extends _i1.EndpointRef {
   @override
   String get name => 'auth';
 
-  /// La función `getValidationCode` devuelve un Future que recupera un código
-  /// de validación del `AuthService` utilizando la sesión y el correo
+  /// La función [getValidationCode] devuelve un Future que recupera un código
+  /// de validación del [AuthService] utilizando la sesión y el correo
   /// electrónico proporcionados.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es un objeto que representa
-  /// la sesión de usuario actual. Puede contener información como el token de
-  /// autenticación del usuario o el ID de sesión.
-  ///   email (String): El parámetro de correo electrónico es una cadena que
+  ///   [session] ([Session]): El parámetro de sesión es un objeto que representa
+  /// la sesión de usuario actual.
+  ///   [email] ([String]): El parámetro de correo electrónico es una cadena que
   /// representa la dirección de correo electrónico del usuario para el que se
   /// solicita el código de validación.
-  ///
-  /// Retorna un `Future<String>` (el codigo en si).
   _i2.Future<String> getValidationCode(String email) =>
       caller.callServerEndpoint<String>(
         'auth',
@@ -141,14 +143,14 @@ class _EndpointAuth extends _i1.EndpointRef {
         {'email': email},
       );
 
-  /// La función `validarTokenPorMail` valida un token usando `authService` y
+  /// La función [validarTokenPorMail] valida un token usando [authService] y
   /// devuelve un `Future` que se resuelve en una `String`.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y se
+  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y se
   /// utiliza para representar una sesión de usuario o una sesión de
   /// autenticación.
-  ///   token (String): Una cadena que representa el token que debe validarse.
+  ///   [token] ([String]): Una cadena que representa el token que debe validarse.
   _i2.Future<String> validarTokenPorMail(String token) =>
       caller.callServerEndpoint<String>(
         'auth',
@@ -156,14 +158,14 @@ class _EndpointAuth extends _i1.EndpointRef {
         {'token': token},
       );
 
-  /// La función `validarCodigoResetPassword` toma un objeto `Session` y una
-  /// cadena `codigo` como parámetros y devuelve un `Future<bool>` que indica
+  /// La función [validarCodigoResetPassword] toma un objeto [Session] y una
+  /// cadena [codigo] como parámetros y devuelve un `Future<bool>` que indica
   /// si el código de restablecimiento de contraseña es válido.
   ///
   /// Args:
-  ///   session (Session): Un objeto Session que representa la sesión de
+  ///   [session] ([Session]): Un objeto Session que representa la sesión de
   /// usuario actual.
-  ///   codigo (String): El parámetro "codigo" es una cadena que representa el
+  ///   [codigo] ([String]): El parámetro [codigo] es una cadena que representa el
   /// código de restablecimiento de contraseña que debe validarse.
   _i2.Future<bool> validarCodigoResetPassword(String codigo) =>
       caller.callServerEndpoint<bool>(
@@ -172,14 +174,14 @@ class _EndpointAuth extends _i1.EndpointRef {
         {'codigo': codigo},
       );
 
-  /// La función `eliminarOTPResetPassword` llama al método
-  /// `eliminarOTPResetPassword` desde `authService` y devuelve `Future<bool>`.
+  /// La función [eliminarOTPResetPassword] llama al método
+  /// [eliminarOTPResetPassword] desde [authService] y devuelve `Future<bool>`.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y
+  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y
   /// representa la información de la sesión del usuario. Se utiliza para
   /// autenticar y autorizar al usuario para la operación.
-  ///   codigo (String): El parámetro "codigo" es una cadena que representa el
+  ///   [codigo] ([String]): El parámetro "codigo" es una cadena que representa el
   /// código utilizado para restablecer la contraseña.
   _i2.Future<bool> eliminarOTPResetPassword(String codigo) =>
       caller.callServerEndpoint<bool>(
@@ -204,6 +206,23 @@ class _EndpointCliente extends _i1.EndpointRef {
         'completarKyc',
         {'datosDelCliente': datosDelCliente},
       );
+
+  /// Comprueba si un usuario completó la fase de registro.
+  _i2.Future<bool> comprobarKyc(int idUsuario) =>
+      caller.callServerEndpoint<bool>(
+        'cliente',
+        'comprobarKyc',
+        {'idUsuario': idUsuario},
+      );
+
+  /// Obtiene los usuarios asignados a una marca.
+  _i2.Future<List<_i4.Cliente>> listarUsuariosPorMarca(
+          {required int idMarca}) =>
+      caller.callServerEndpoint<List<_i4.Cliente>>(
+        'cliente',
+        'listarUsuariosPorMarca',
+        {'idMarca': idMarca},
+      );
 }
 
 /// Clase con endopoint para envio de email de registro.
@@ -213,18 +232,18 @@ class _EndpointMail extends _i1.EndpointRef {
   @override
   String get name => 'mail';
 
-  /// La función `envioMailRegistro` envía un correo electrónico de registro
+  /// La función [envioMailRegistro] envía un correo electrónico de registro
   /// utilizando el servicio `servicioMail`.
   ///
   /// Args:
-  ///   session (Session): Un objeto de sesión que contiene información sobre
+  ///   [session] ([Session]): Un objeto de sesión que contiene información sobre
   /// la sesión del usuario.
-  ///   email (String): El parámetro de correo electrónico es una cadena que
+  ///   [email] ([String]): El parámetro de correo electrónico es una cadena que
   /// representa la dirección de correo electrónico del destinatario a quien se
   /// enviará el correo electrónico de registro.
-  ///   tipoInvitacion (int): El parámetro "tipoInvitacion" es un número entero
+  ///   [tipoInvitacion] ([int]): Este parametro es un número entero
   /// que representa el tipo de invitación. Se utiliza como argumento al llamar
-  /// al método "envioMailRegistro" del objeto "servicioMail".
+  /// al método [envioMailRegistro] del objeto [servicioMail].
   ///
   /// Returns:
   ///   un `Futuro<bool>`.
@@ -242,49 +261,50 @@ class _EndpointMail extends _i1.EndpointRef {
       );
 }
 
+/// Enpoints para acceder a aspectos de la entidad [Marca].
 class _EndpointMarca extends _i1.EndpointRef {
   _EndpointMarca(_i1.EndpointCaller caller) : super(caller);
 
   @override
   String get name => 'marca';
 
-  /// La función `crearMarca` crea una nueva marca llamando al método
-  /// `crearMarca` del servicio`servicioMarca` y devuelve un booleano
+  /// La función [crearMarca] crea una nueva marca llamando al método
+  /// [crearMarca] del servicio [servicioMarca] y devuelve un booleano
   /// que indica éxito.
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa
+  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y representa
   ///   la sesión del usuario
   /// actual.
-  ///   payload (Marca): El parámetro "payload" es un objeto de tipo "Marca" que
-  ///   contiene los datos necesarios para crear una nueva marca..
-  _i2.Future<bool> crearMarca(_i5.Marca payload) =>
+  ///   [marca] ([Marca]): Este parametro es un objeto de tipo "Marca" que
+  ///   contiene los datos necesarios para crear una nueva marca.
+  _i2.Future<bool> crearMarca(_i5.Marca marca) =>
       caller.callServerEndpoint<bool>(
         'marca',
         'crearMarca',
-        {'payload': payload},
+        {'marca': marca},
       );
 
-  /// La función `eliminarMarca` es una función que toma un objeto `Session` y
-  /// un entero `id` como parámetros, e intenta eliminar una marca usando el
-  /// método `servicioMarca.eliminarMarca`.
+  /// La función [eliminarMarca] es una función que toma un objeto `Session` y
+  /// un entero [id] como parámetros, e intenta eliminar una marca usando el
+  /// método [servicioMarca.eliminarMarca].
   ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa
+  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y representa
   ///   la sesión del usuario
   /// actual
-  ///   id (int): La identificación de la marca que debe eliminarse.
+  ///   [id] ([int]): La identificación de la marca que debe eliminarse.
   _i2.Future<bool> eliminarMarca(int id) => caller.callServerEndpoint<bool>(
         'marca',
         'eliminarMarca',
         {'id': id},
       );
 
-  /// La función `listarMarcas` recupera una lista de marcas usando un objeto
+  /// La función [listarMarcas] recupera una lista de marcas usando un objeto
   /// de sesión y un objeto de servicio.
   ///
   /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión". Se utiliza
+  ///   [session] ([Session]): Este parametro es de tipo "Sesión". Se utiliza
   ///   para pasar la información de la sesión al método "listarMarcas".
   _i2.Future<List<_i5.Marca>> listarMarcas() =>
       caller.callServerEndpoint<List<_i5.Marca>>(
@@ -317,6 +337,21 @@ class _EndpointMarca extends _i1.EndpointRef {
         },
       );
 
+  /// Da de baja la relacion entre el usuario y la marca
+  /// en la tabla intermedia.
+  _i2.Future<List<List<dynamic>>> desvincularUsuarioDeMarca({
+    required int idMarca,
+    required int idUsuario,
+  }) =>
+      caller.callServerEndpoint<List<List<dynamic>>>(
+        'marca',
+        'desvincularUsuarioDeMarca',
+        {
+          'idMarca': idMarca,
+          'idUsuario': idUsuario,
+        },
+      );
+
   /// Obtiene las marcas a las que se encuentra asignado un usuario.
   _i2.Future<List<_i5.Marca>> listarMarcasPorUsuario(
           {required int idUsuario}) =>
@@ -324,15 +359,6 @@ class _EndpointMarca extends _i1.EndpointRef {
         'marca',
         'listarMarcasPorUsuario',
         {'idUsuario': idUsuario},
-      );
-
-  /// Obtiene los usuarios asignados a una marca.
-  _i2.Future<List<_i4.Cliente>> listarUsuariosPorMarca(
-          {required int idMarca}) =>
-      caller.callServerEndpoint<List<_i4.Cliente>>(
-        'marca',
-        'listarUsuariosPorMarca',
-        {'idMarca': idMarca},
       );
 }
 

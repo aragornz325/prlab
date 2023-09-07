@@ -2,7 +2,7 @@ import 'package:logging/logging.dart';
 import 'package:serverpod/serverpod.dart';
 
 /// Tipo de funcion que ejecuta el metodo performOdmOperation.
-typedef ServerpodDbFunction<T> = Future<T> Function(Session session);
+typedef FuncionServerpodDb<T> = Future<T> Function(Session session);
 
 /// Objeto de session de Serverpod.
 
@@ -11,52 +11,56 @@ abstract class ODM {
   /// Sesion (clase de Serverpod).
   late Session? session;
 
+  /// Instancia del logger.
   final logger = Logger('ODM');
 
   /// Metodo para ejecutar las operaciones de los ODM y manejar errores.
-  Future<T> performOdmOperation<T>(
+  Future<T> ejecutarOperacionOdm<T>(
     Session session,
-    ServerpodDbFunction<T> function,
+    FuncionServerpodDb<T> funcion,
   ) async {
     try {
       this.session = session;
-      return await function(session);
+      return await funcion(session);
     } on Exception catch (e, st) {
-      throw UnimplementedError('Error no identificado: $e \n$st');
+      throw UnimplementedError(
+        'Error no identificado: $e \n$st',
+      );
     }
   }
 
-  /// Metodo para ejecutar funciones con queries raw de Serverpod y mapear los 
-  /// resultados a objetos.  
+  /// Metodo para ejecutar funciones con queries raw de Serverpod y mapear los
+  /// resultados a objetos.
   /// Requiere del script de la query SQL y las "keys" del objeto a devolver.
-  Future<List<Map<String, dynamic>>> rawQueryOperation<T>(
+  Future<List<Map<String, dynamic>>> ejecutarConsultaSql<T>(
     Session session,
-    String query, {
-    required Iterable<String> keysMapaModeloDb,
-    int? timeoutInSeconds,
-    Transaction? transaction,
+    String consulta, {
+    required Iterable<String> clavesMapaModeloDb,
+    int? tiempoDeEsperaEnSegundos,
+    Transaction? transaccion,
   }) async {
     try {
-
-      final dbRawQuery = await session.db.query(
-        query,
-        timeoutInSeconds: timeoutInSeconds,
-        transaction: transaction,
+      final consultaDb = await session.db.query(
+        consulta,
+        timeoutInSeconds: tiempoDeEsperaEnSegundos,
+        transaction: transaccion,
       );
 
-      List<String> keysMapaModeloList = keysMapaModeloDb.toList();
-     
-      final response = dbRawQuery.map((e) {
-        Map<String, dynamic> modeloResponse = {};
-        for (final key in keysMapaModeloList) {
-          modeloResponse[key] = e[keysMapaModeloList.indexOf(key)];
+      List<String> clavesMapaModeloLista = clavesMapaModeloDb.toList();
+
+      final respuesta = consultaDb.map((e) {
+        Map<String, dynamic> modeloRespuesta = {};
+        for (final clave in clavesMapaModeloLista) {
+          modeloRespuesta[clave] = e[clavesMapaModeloLista.indexOf(clave)];
         }
-        return modeloResponse;
+        return modeloRespuesta;
       }).toList();
 
-      return response;
+      return respuesta;
     } on Exception catch (e, st) {
-      throw UnimplementedError('Error no identificado: $e \n$st');
+      throw UnimplementedError(
+        'Error no identificado: $e \n$st',
+      );
     }
   }
 }
