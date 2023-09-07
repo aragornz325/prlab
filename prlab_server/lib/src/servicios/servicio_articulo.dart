@@ -1,12 +1,14 @@
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/odms/odm_articulo.dart';
 import 'package:prlab_server/src/servicio.dart';
+import 'package:prlab_server/src/servicios/servicio_cloudinary.dart';
 import 'package:serverpod/server.dart';
 
 /// Servicio para administración de artículos.
 class ServicioArticulo extends Servicio<OdmArticulo> {
   @override
   final odm = OdmArticulo();
+  final servicioCloudinary = ServicioCloudinary();
 
   /// Crea un [Articulo].
   ///
@@ -56,7 +58,8 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
   ///   [id] ([int]): El ID del artículo consultado.
-  Future<Articulo> obtenerArticulo(Session session,{
+  Future<Articulo> obtenerArticulo(
+    Session session, {
     required int id,
   }) async {
     try {
@@ -78,7 +81,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
   /// contiene datos de la conexión.
   ///   [idArticulo] ([int]): El ID del artículo consultado.
   Future<bool> eliminarArticulo(
-    Session session,{
+    Session session, {
     required int idArticulo,
   }) async {
     try {
@@ -99,10 +102,10 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
-  ///   [idMarca] ([int]): El ID de la [Marca] a la que pertenecen los 
+  ///   [idMarca] ([int]): El ID de la [Marca] a la que pertenecen los
   /// artículos.
   Future<List<Articulo>> listarArticulosPorMarca(
-    Session session,{
+    Session session, {
     required int idMarca,
   }) async {
     try {
@@ -122,10 +125,10 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
-  ///   [articulo] ([Articulo]): El objeto del artículo a actualizar. Necesita 
+  ///   [articulo] ([Articulo]): El objeto del artículo a actualizar. Necesita
   /// contener el id del mismo.
   Future<bool> actualizarArticulo(
-    Session session,{
+    Session session, {
     required Articulo articulo,
   }) async {
     try {
@@ -166,5 +169,39 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     } on Exception catch (e) {
       throw Exception('$e');
     }
+  }
+
+  /// servicio para actualizar la imagen de un articulo
+  /// Args:
+  ///  [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
+  /// contiene datos de la conexión.
+  /// [path] ([String]): El path de la imagen a subir.
+  /// [idArticulo] ([int]): El ID del artículo al que pertenece la imagen.
+  /// Returns:
+  /// [String]: La url de la imagen subida.
+  Future<String> subirImagenArticulo(
+    Session session, {
+    required String path,
+    required int idArticulo,
+  }) async {
+    final nombreImagen = path.split('/').last;
+    final carpeta = 'articulos/$idArticulo';
+    final imagenSubida = await ejecutarOperacion(
+      () => servicioCloudinary.subirImagen(session,
+          path: path, fileName: nombreImagen, cloudinaryFolder: carpeta),
+    );
+    logger.finest('Imagen subida a cloudinary: $imagenSubida ');
+    final publicId = imagenSubida.publicId;
+    final url = imagenSubida.secureUrl;
+    await ejecutarOperacion(
+      () => odm.guardarRegistroimagen(session,
+          nombre: nombreImagen,
+          publicId: publicId,
+          url: url,
+          idArticulo: idArticulo),
+    );
+    logger.finest('Registro de imagen guardado en la db');
+    logger.fine('articulo $idArticulo actualizado con imagen: $url');
+    return imagenSubida.secureUrl;
   }
 }

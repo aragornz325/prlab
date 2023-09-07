@@ -53,19 +53,6 @@ class _EndpointArchivos extends _i1.EndpointRef {
           'url': url,
         },
       );
-
-  _i2.Future<String> subirImagenArticulo({
-    required String path,
-    required int idArticulo,
-  }) =>
-      caller.callServerEndpoint<String>(
-        'archivos',
-        'subirImagenArticulo',
-        {
-          'path': path,
-          'idArticulo': idArticulo,
-        },
-      );
 }
 
 /// Endpoints centrados en la entidad [Articulo].
@@ -168,6 +155,19 @@ class _EndpointArticulo extends _i1.EndpointRef {
         'articulo',
         'actualizarArticulo',
         {'articulo': articulo},
+      );
+
+  _i2.Future<String> guardarRegistroimagen({
+    required String path,
+    required int idArticulo,
+  }) =>
+      caller.callServerEndpoint<String>(
+        'articulo',
+        'guardarRegistroimagen',
+        {
+          'path': path,
+          'idArticulo': idArticulo,
+        },
       );
 }
 

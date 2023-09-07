@@ -1,3 +1,4 @@
+import 'package:logging/logging.dart';
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/servicios/servicio_articulo.dart';
 import 'package:serverpod/server.dart';
@@ -8,7 +9,7 @@ class ArticuloEndpoint extends Endpoint {
   final servicioArticulo = ServicioArticulo();
 
   @override
-  final requireLogin = true;
+  final requireLogin = false;
 
   /// La función `crearArticulo` es que crea un artículo usando una sesión y un
   /// articulo, y devuelve un booleano que indica si la creación fue exitosa.
@@ -141,6 +142,22 @@ class ArticuloEndpoint extends Endpoint {
         session,
         articulo: articulo,
       );
+    } on Exception catch (e) {
+      rethrow;
+    }
+  }
+
+  /// La función [guardarRegistroimagen] toma un objeto [Session] y un [path] 
+  /// como parámetros, y devuelve un [Future] que se resuelve en un
+  ///  objeto [String].
+  Future<String> guardarRegistroimagen(
+    Session session, {
+    required String path,
+    required int idArticulo,
+  }) async {
+    try {
+      return await servicioArticulo.subirImagenArticulo(session,
+          path: path, idArticulo: idArticulo);
     } on Exception catch (e) {
       rethrow;
     }

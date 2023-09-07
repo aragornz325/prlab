@@ -206,6 +206,30 @@ ALTER TABLE ONLY "articulos"
         ON DELETE CASCADE;
 
 --
+-- Class ImagenArticulo as table imagen_articulo
+--
+
+CREATE TABLE "imagen_articulo" (
+  "id" serial,
+  "url" text NOT NULL,
+  "nombreImagen" text NOT NULL,
+  "publicId" text NOT NULL,
+  "idArticulo" integer,
+  "fechaEliminacion" timestamp without time zone,
+  "ultimaModificacion" timestamp without time zone NOT NULL,
+  "fechaCreacion" timestamp without time zone NOT NULL
+);
+
+ALTER TABLE ONLY "imagen_articulo"
+  ADD CONSTRAINT imagen_articulo_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY "imagen_articulo"
+  ADD CONSTRAINT imagen_articulo_fk_0
+    FOREIGN KEY("idArticulo")
+      REFERENCES articulos(id)
+        ON DELETE CASCADE;
+
+--
 -- Class Publicacion as table publicaciones
 --
 

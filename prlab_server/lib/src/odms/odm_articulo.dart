@@ -278,4 +278,35 @@ class OdmArticulo extends ODM {
       ),
     );
   }
+
+  /// La función `guardarRegistroimagen` guarda un registro de imagen en una base de datos utilizando la
+  /// sesión proporcionada, los detalles de la imagen y el ID del artículo.
+  /// 
+  /// Args:
+  ///   nombre (String): El nombre de la imagen.
+  ///   publicId (String): El parámetro `publicId` es una cadena obligatoria que representa el
+  /// identificador único de la imagen. Se utiliza para hacer referencia a la imagen en el sistema de
+  /// almacenamiento o cualquier otro servicio externo.
+  ///   url (String): La URL de la imagen que se guardará.
+  ///   idArticulo (int): El parámetro "idArticulo" representa el ID del artículo al que pertenece la
+  /// imagen.
+
+  Future<bool> guardarRegistroimagen(
+    Session session, {
+    required String nombre,
+    required String publicId,
+    required String url,
+    required int idArticulo,
+  }) async {
+    final imagen = ImagenArticulo(
+      url: url,
+      idArticulo: idArticulo,
+      nombreImagen: nombre,
+      publicId: publicId,
+      ultimaModificacion: DateTime.now(),
+      fechaCreacion: DateTime.now(),
+    );
+    await ImagenArticulo.insert(session, imagen);
+    return true;
+  }
 }

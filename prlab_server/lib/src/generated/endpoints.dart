@@ -117,31 +117,6 @@ class Endpoints extends _i1.EndpointDispatch {
             params['url'],
           ),
         ),
-        'subirImagenArticulo': _i1.MethodConnector(
-          name: 'subirImagenArticulo',
-          params: {
-            'path': _i1.ParameterDescription(
-              name: 'path',
-              type: _i1.getType<String>(),
-              nullable: false,
-            ),
-            'idArticulo': _i1.ParameterDescription(
-              name: 'idArticulo',
-              type: _i1.getType<int>(),
-              nullable: false,
-            ),
-          },
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
-              (endpoints['archivos'] as _i2.ArchivosEndpoint)
-                  .subirImagenArticulo(
-            session,
-            path: params['path'],
-            idArticulo: params['idArticulo'],
-          ),
-        ),
       },
     );
     connectors['articulo'] = _i1.EndpointConnector(
@@ -248,6 +223,31 @@ class Endpoints extends _i1.EndpointDispatch {
                   .actualizarArticulo(
             session,
             articulo: params['articulo'],
+          ),
+        ),
+        'guardarRegistroimagen': _i1.MethodConnector(
+          name: 'guardarRegistroimagen',
+          params: {
+            'path': _i1.ParameterDescription(
+              name: 'path',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'idArticulo': _i1.ParameterDescription(
+              name: 'idArticulo',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['articulo'] as _i3.ArticuloEndpoint)
+                  .guardarRegistroimagen(
+            session,
+            path: params['path'],
+            idArticulo: params['idArticulo'],
           ),
         ),
       },

@@ -3,42 +3,37 @@ import 'dart:io';
 import 'package:cloudinary/cloudinary.dart';
 import 'package:logging/logging.dart';
 import 'package:prlab_server/src/cloudinary.dart';
+import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:serverpod/server.dart';
 
 /// Odm para manejar archivos con el servicio de alojamiento Cloudinary.
 class OdmManejoArchivosCloudinary extends OdmCloudinary {
-  /// Sube una imagen a la nube. Requiere de la ruta del archivo, el nombre y
-  /// la carpeta donde se va a alojar.
-  Future<String> subirImagen(
+  
+  /// la funcion [guardarRegistroimagen] guarda un registro de la imagen en la
+  /// base de datos.
+  /// Args:
+  ///  [session] ([Session]): Un objeto de sesión que contiene información sobre
+  /// la conexión.
+  /// [nombre] ([String]): El nombre de la imagen.
+  /// [publicId] ([String]): El publicId de la imagen.
+  /// [url] ([String]): La url de la imagen.
+  /// [idArticulo] ([int]): El id del articulo al que pertenece la imagen.
+  Future<bool> guardarRegistroimagen(
     Session session, {
-    required String path,
-    required String fileName,
-    required String cloudinaryFolder,
+    required String nombre,
+    required String publicId,
+    required String url,
+    required int idArticulo,
   }) async {
-    final file = File(path);
-    try {
-      final response = await performOdmOperation(
-        session,
-        (session) => cloudinary.upload(
-          file: file.path,
-          fileBytes: file.readAsBytesSync(),
-          resourceType: CloudinaryResourceType.image,
-          folder: cloudinaryFolder,
-          fileName: fileName,
-          progressCallback: (count, total) {
-            print('Uploading image from file with progress: $count/$total');
-          },
-        ),
-      );
-
-      if (response.isSuccessful) {
-        print('Get your image from with ${response.secureUrl}');
-      }
-
-      return response.secureUrl!;
-    } catch (e) {
-      throw Exception(e);
-    }
+    final imagen = ImagenArticulo(
+      url: url,
+      nombreImagen: nombre,
+      publicId: publicId,
+      ultimaModificacion: DateTime.now(),
+      fechaCreacion: DateTime.now(),
+    );
+    await ImagenArticulo.insert(session, imagen);
+    return true;
   }
 
   /// Borra una imagen del alojamiento en la nube. Requiere de su public-id
@@ -49,7 +44,7 @@ class OdmManejoArchivosCloudinary extends OdmCloudinary {
     String url,
   ) async {
     try {
-      final response = await performOdmOperation(
+      final response = await ejecutarOperacionOdm(
         session,
         (session) => cloudinary.destroy(
           publicId,

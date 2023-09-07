@@ -33,13 +33,4 @@ class ArchivosEndpoint extends Endpoint {
   ) async {
     return await servicio.borrarImagen(session, publicId, url);
   }
-
-  Future<String> subirImagenArticulo(
-    Session session, {
-    required String path,
-    required int idArticulo,
-  }) async {
-    return await servicio.subirImagenArticulo(
-        session: session, path: path, idArticulo: idArticulo);
-  }
 }
