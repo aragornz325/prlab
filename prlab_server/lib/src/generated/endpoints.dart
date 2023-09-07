@@ -260,7 +260,44 @@ class Endpoints extends _i1.EndpointDispatch {
             session,
             params['datosDelCliente'],
           ),
-        )
+        ),
+        'comprobarKyc': _i1.MethodConnector(
+          name: 'comprobarKyc',
+          params: {
+            'idUsuario': _i1.ParameterDescription(
+              name: 'idUsuario',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['cliente'] as _i4.ClienteEndpoint).comprobarKyc(
+            session,
+            params['idUsuario'],
+          ),
+        ),
+        'listarUsuariosPorMarca': _i1.MethodConnector(
+          name: 'listarUsuariosPorMarca',
+          params: {
+            'idMarca': _i1.ParameterDescription(
+              name: 'idMarca',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['cliente'] as _i4.ClienteEndpoint)
+                  .listarUsuariosPorMarca(
+            session,
+            idMarca: params['idMarca'],
+          ),
+        ),
       },
     );
     connectors['mail'] = _i1.EndpointConnector(
@@ -300,8 +337,8 @@ class Endpoints extends _i1.EndpointDispatch {
         'crearMarca': _i1.MethodConnector(
           name: 'crearMarca',
           params: {
-            'payload': _i1.ParameterDescription(
-              name: 'payload',
+            'marca': _i1.ParameterDescription(
+              name: 'marca',
               type: _i1.getType<_i9.Marca>(),
               nullable: false,
             )
@@ -312,7 +349,7 @@ class Endpoints extends _i1.EndpointDispatch {
           ) async =>
               (endpoints['marca'] as _i6.MarcaEndpoint).crearMarca(
             session,
-            params['payload'],
+            params['marca'],
           ),
         ),
         'eliminarMarca': _i1.MethodConnector(
@@ -390,6 +427,31 @@ class Endpoints extends _i1.EndpointDispatch {
             idRol: params['idRol'],
           ),
         ),
+        'desvincularUsuarioDeMarca': _i1.MethodConnector(
+          name: 'desvincularUsuarioDeMarca',
+          params: {
+            'idMarca': _i1.ParameterDescription(
+              name: 'idMarca',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'idUsuario': _i1.ParameterDescription(
+              name: 'idUsuario',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['marca'] as _i6.MarcaEndpoint)
+                  .desvincularUsuarioDeMarca(
+            session,
+            idMarca: params['idMarca'],
+            idUsuario: params['idUsuario'],
+          ),
+        ),
         'listarMarcasPorUsuario': _i1.MethodConnector(
           name: 'listarMarcasPorUsuario',
           params: {
@@ -406,24 +468,6 @@ class Endpoints extends _i1.EndpointDispatch {
               (endpoints['marca'] as _i6.MarcaEndpoint).listarMarcasPorUsuario(
             session,
             idUsuario: params['idUsuario'],
-          ),
-        ),
-        'listarUsuariosPorMarca': _i1.MethodConnector(
-          name: 'listarUsuariosPorMarca',
-          params: {
-            'idMarca': _i1.ParameterDescription(
-              name: 'idMarca',
-              type: _i1.getType<int>(),
-              nullable: false,
-            )
-          },
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
-              (endpoints['marca'] as _i6.MarcaEndpoint).listarUsuariosPorMarca(
-            session,
-            idMarca: params['idMarca'],
           ),
         ),
       },
