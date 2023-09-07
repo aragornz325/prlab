@@ -81,6 +81,7 @@ class _FiltradorDePeriodistasState extends State<FiltradorDePeriodistas> {
             // ? fuese mas dinámico y no un valor en duro.
             height: 620.sh,
             child: PageView(
+              physics: const NeverScrollableScrollPhysics(),
               controller: _pageController,
               onPageChanged: (value) {
                 _itemSeleccionado = ItemMenuFiltros.values.firstWhere(

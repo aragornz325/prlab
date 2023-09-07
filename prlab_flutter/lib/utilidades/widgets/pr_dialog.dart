@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template TipoDialog}
@@ -44,6 +43,7 @@ class PRDialog extends StatelessWidget {
     super.key,
     this.height = 285,
     this.width = 455,
+    this.contentPadding,
   });
 
   /// `PRDialog.solicitudAccion` donde puede tener un contenido editable para
@@ -475,6 +475,9 @@ class PRDialog extends StatelessWidget {
   /// tipo de alertdialog [PRDialog].
   final TipoDialog tipo;
 
+  /// El padding que tiene el contenido del popup.
+  final EdgeInsets? contentPadding;
+
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
@@ -484,6 +487,7 @@ class PRDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.sw),
       ),
+      contentPadding: contentPadding,
       content: SizedBox(
         height: height.ph,
         width: width.pw,
@@ -499,8 +503,15 @@ class PRDialog extends StatelessWidget {
 /// {@endtemplate}
 class PRDialogErrorNoDisponible extends StatelessWidget {
   /// {@macro PRDialogErrorNoDisponible}
-
   const PRDialogErrorNoDisponible({super.key});
+
+  /// Stackea el componente en la pantalla donde se ejecute
+  /// esta función.
+  Future<void> show(BuildContext context) => showDialog(
+        context: context,
+        builder: (_) => this,
+      );
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;

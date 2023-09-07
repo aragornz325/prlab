@@ -612,6 +612,41 @@
     "@pageMediaDatabaseHorizontalFilterClearAll": {
         "description": "It is found in the journalist filters, the people menu, a message that expresses the intention of delete all the items from specific filter"
     },
+
+    "pageMediaDatabaseJournalistInformationDialogAnchorAt": "Anchor at {workplace}",
+    "@pageMediaDatabaseJournalistInformationDialogAnchorAt": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, it indicates where the journalist works",
+        "placeholders" :{
+            "workplace" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogGeneral": "General",
+    "@pageMediaDatabaseJournalistInformationDialogGeneral": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, its a one of the title for the journalist information items"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogSocial": "Social",
+    "@pageMediaDatabaseJournalistInformationDialogSocial": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, its a one of the title for the journalist information items"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogAddToList": "Agregar a la lista",
+    "@pageMediaDatabaseJournalistInformationDialogAddToList": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, expresses the addition of one of the journalist to our own list"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogReport": "Reportar",
+    "@pageMediaDatabaseJournalistInformationDialogReport": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, expresses the reporting of one of the journalist"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogSearchHintText": "Buscar palabras clave en artículos",
+    "@pageMediaDatabaseJournalistInformationDialogSearchHintText": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, expresses the reporting of one of the journalist"
+    },
     
     "commonPRLab": "PR lab",
     "@commonPRLab": {
