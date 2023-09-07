@@ -101,10 +101,16 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                 builder: (context, state) {
                   return PRTextFormField.fecha(
                     width: 359.pw,
-                    controller: controllerFechaDeNacimiento,
-                    hintText: state.fechaDeNacimiento == null
-                        ? l10n.commonDateHintText
-                        : state.etiquetaFechaNacimiento,
+                    controller: controllerFechaDeNacimiento
+                      ..addListener(() {
+                        if (state.fechaDeNacimiento != null) {
+                          controllerFechaDeNacimiento.text =
+                              state.etiquetaFechaNacimiento;
+                        }
+                      }),
+                    hintText: state.fechaDeNacimiento != null
+                        ? state.etiquetaFechaNacimiento
+                        : l10n.commonDateHintText,
                     context: context,
                     onTap: () {
                       showDialog<void>(

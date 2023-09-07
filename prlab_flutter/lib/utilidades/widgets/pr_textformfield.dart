@@ -31,6 +31,7 @@ class PRTextFormField extends StatefulWidget {
     this.cursorColor,
     this.decoration,
     this.onTap,
+    this.onEditingComplete,
     super.key,
   });
 
@@ -297,6 +298,9 @@ class PRTextFormField extends StatefulWidget {
     /// Funcion onChanged
     void Function(String)? onChanged,
 
+    /// Al completar el campo ejecuta esta accion
+    void Function()? onEditingComplete,
+
     /// Al apretar este campo ejecuta esta acción
     void Function()? onTap,
 
@@ -315,6 +319,7 @@ class PRTextFormField extends StatefulWidget {
     final l10n = context.l10n;
 
     return PRTextFormField(
+      onEditingComplete: onEditingComplete,
       esSoloLectura: esSoloLectura,
       usarColorSecundario: usarColorSecundario,
       onTap: onTap,
@@ -326,12 +331,13 @@ class PRTextFormField extends StatefulWidget {
       prefixIcon: prefixIcon,
       inputFormatters: [FormateadorDeFecha()],
       validator: (value) {
-        if (value?.isEmpty ?? false) {
-          return l10n.commonCompleteTheField;
-        } else if (!ExpresionRegular.dateTimeRegExp.hasMatch(value ?? '')) {
-          return l10n.commonInvalidCharacters;
-        }
-        return null;
+        // TODO(anyone) este validator anda mal arreglarlo
+        // if (value == null || value.isEmpty) {
+        //   return l10n.commonCompleteTheField;
+        // } else if (!ExpresionRegular.dateTimeRegExp.hasMatch(value)) {
+        //   return l10n.commonInvalidCharacters;
+        // }
+        // return null;
       },
     );
   }
@@ -388,8 +394,12 @@ class PRTextFormField extends StatefulWidget {
   /// Al Apretar el Campo ejecuta esta Accion.
   final void Function()? onTap;
 
-  /// Para usar el color secundario del icono
+  /// Para usar el color secundario del icono este color solamente se usa en el
+  /// icono
   final bool usarColorSecundario;
+
+  /// Al completar el campo ejecuta esta Accion
+  final void Function()? onEditingComplete;
 
   @override
   State<PRTextFormField> createState() => _PRTextFormFieldState();
@@ -403,6 +413,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
     return SizedBox(
       width: widget.width?.sw ?? 360.sw,
       child: TextFormField(
+        onEditingComplete: widget.onEditingComplete,
         onTap: widget.onTap,
         cursorColor: widget.cursorColor,
         maxLength: widget.maxLength,

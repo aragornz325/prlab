@@ -58,7 +58,7 @@ class PRDialog extends StatelessWidget {
     bool estaHabilitado = true,
     double? anchoDelBoton,
 
-    /// es la altura que separa entre el boton y el contenido que le vallas a
+    /// es la altura que separa entre el boton y el contenido que le vayas a
     /// pasar
     double? alturaEntreBotonYContenido,
     String? tituloDelBoton,
