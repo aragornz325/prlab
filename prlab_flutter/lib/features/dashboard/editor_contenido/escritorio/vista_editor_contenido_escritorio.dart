@@ -7,8 +7,8 @@ import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_edit
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popup_agregar_pagina.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popup_publicar.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/widgets.dart';
+import 'package:prlab_flutter/features/dashboard/widgets/encabezado_de_seccion.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/utilidades/widgets/encabezado_de_seccion.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template VistaEditorContenidoEscritorio}
