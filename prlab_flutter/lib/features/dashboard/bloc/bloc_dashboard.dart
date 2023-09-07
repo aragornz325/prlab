@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_client/prlab_client.dart';
+import 'package:prlab_flutter/utilidades/constantes/string_constants.dart';
 import 'package:prlab_flutter/utilidades/utilidades.dart';
 
 part 'bloc_dashboard_estado.dart';
@@ -28,6 +29,7 @@ class BlocDashboard extends Bloc<BlocDashboardEvento, BlocDashboardEstado> {
         Articulo(
           titulo: '${event.marca} article',
           idMarca: event.marca.id,
+          contenido: StringConstants.contenidoDeArticuloPorDefectoJson,
         ),
       );
 

@@ -78,7 +78,7 @@ class InformacionDeLaMarca extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '$cantidadArticulos',
+                  '$cantidadClippings',
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 10.pf,
