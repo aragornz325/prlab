@@ -1,6 +1,7 @@
 import 'package:prlab_server/src/cloudinary.dart';
 import 'package:prlab_server/src/odms/odm_cloudinary.dart';
 import 'package:prlab_server/src/servicio.dart';
+import 'package:prlab_server/src/servicios/servicio_articulo.dart';
 import 'package:serverpod/serverpod.dart';
 
 /// Servicio para manejo de archivos con almacenamiento en la nube.
@@ -8,7 +9,7 @@ class ServicioCloudinary extends Servicio<OdmCloudinary> {
   /// Instancia de ODM.
   @override
   final odmCloudinary = OdmManejoArchivosCloudinary();
-  final servicioArticulo = ServicioArticulo();
+  final servicioArticulo = ServicioArticulo(); 
 
   /// Sube una imagen a la nube. Requiere de la ruta del archivo, el nombre y
   /// la carpeta donde se va a alojar.
@@ -51,13 +52,15 @@ class ServicioCloudinary extends Servicio<OdmCloudinary> {
   }) async {
     logger.info('Subiendo imagen $path a la nube');
     final fileName = path.split('/').last;
-    return await performOperation(
+    final urlImagenSubida = await performOperation(
       () => odmCloudinary.subirImagen(session,
           path: path,
           fileName: fileName,
           cloudinaryFolder: 'cloudinaryCustomFolder'),
     );
+    
+  await performOperation(() => servicioArticulo.actualizarArticulo(session: session, articulo: articulo))
+  
   }
-
-
+  
 }
