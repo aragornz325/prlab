@@ -127,7 +127,8 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                         hintText: l10n.pageLoginPlaceholderPassword,
                         onChanged: (_) => _habilitarBotones(),
                       ),
-                    ), // TODO(anyone): Cuando se manejen errores de login agregar
+                    ),
+                    // TODO(anyone): Cuando se manejen errores de login agregar
                     // los errores abajo de los textfields
                     SizedBox(height: 10.ph),
                     OlvidasteTuPassword(

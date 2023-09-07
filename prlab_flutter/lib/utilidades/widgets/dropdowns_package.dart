@@ -452,7 +452,7 @@ class _PRDropdownState extends State<PRDropdown> {
             crossAxisUnconstrained: false,
             style: MenuStyle(
               fixedSize: MaterialStateProperty.resolveWith((states) {
-                return Size(modalWidth.pw, modalHeight.ph);
+                return Size(modalWidth, modalHeight.ph);
               }),
               padding: MaterialStateProperty.resolveWith((states) {
                 return EdgeInsets.zero;
