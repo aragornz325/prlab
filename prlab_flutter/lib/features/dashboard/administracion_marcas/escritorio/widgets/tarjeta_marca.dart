@@ -180,9 +180,7 @@ class TarjetaMarca extends StatelessWidget {
                             height: 10.ph,
                           );
                         },
-                        // TODO(Gon):
-                        // Consumir de la lista de articulos que trae el back.
-                        itemCount: ['NOTHING'].length,
+                        itemCount: marca.ultimosArticulos?.length ?? 0,
                         itemBuilder: (context, index) {
                           return Row(
                             children: [
@@ -197,15 +195,17 @@ class TarjetaMarca extends StatelessWidget {
                               SizedBox(width: 5.pw),
                               GestureDetector(
                                 onTap: () {
+                                  final idArticulo =
+                                      marca.ultimosArticulos?[index].id;
+
+                                  if (idArticulo == null) return;
+
                                   context.router.push(
-                                    RutaEditorContenido(idArticulo: 0),
-                                    // TODO(anyone): pasar el id correcto
+                                    RutaEditorContenido(idArticulo: idArticulo),
                                   );
                                 },
                                 child: Text(
-                                  // TODO(Gon):
-                                  // Consumir de la lista de articulos que trae el back.
-                                  ['NOTHING'][index],
+                                  marca.ultimosArticulos?[index].titulo ?? '',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14.pf,
