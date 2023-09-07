@@ -6,7 +6,6 @@
 // ignore_for_file: implementation_imports
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:prlab_client/src/manejo_de_errores/manejo_de_errores.dart';
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 
 class ExcepcionPrLab extends _i1.SerializableEntity
