@@ -18,6 +18,7 @@ class PrDialogFiltrarPorAutor extends StatefulWidget {
 }
 
 class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
+  int itemSeleccionado = -1;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -82,7 +83,6 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
         ),
       ),
     ];
-    var itemSeleccionado = -1;
     return PRDialog.solicitudAccion(
       tieneAlturaMinima: false,
       context: context,
