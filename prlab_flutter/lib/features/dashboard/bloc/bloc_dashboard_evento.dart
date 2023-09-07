@@ -13,9 +13,16 @@ abstract class BlocDashboardEvento {
 /// dentro de la db, este artículo tendría
 /// como autor el mismo usuario que lo crea.
 /// {@macro BlocDashboardCrearArticulo}
-class BlocDashboardCrearArticulo extends BlocDashboardEvento {
-  BlocDashboardCrearArticulo(this.marca);
+class BlocDashboardEventoCrearArticulo extends BlocDashboardEvento {
+  BlocDashboardEventoCrearArticulo(this.marca);
 
   /// La marca a la cual se le quiere crear un nuevo artículo.
   final Marca marca;
+}
+
+/// {@template BlocDashboardCrearArticulo}
+/// Evento que verifica si el usuario esta logueado.
+/// {@macro BlocDashboardCrearArticulo}
+class BlocDashboardEventoTraerInformacion extends BlocDashboardEvento {
+  BlocDashboardEventoTraerInformacion();
 }

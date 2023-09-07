@@ -130,7 +130,7 @@ class TarjetaMarca extends StatelessWidget {
                       onTap: () {
                         context
                             .read<BlocDashboard>()
-                            .add(BlocDashboardCrearArticulo(marca));
+                            .add(BlocDashboardEventoCrearArticulo(marca));
                       },
                       texto: l10n.commonCreate,
                       estaHabilitado: true,

@@ -39,6 +39,10 @@ class PaginaDashboard extends StatelessWidget {
               RutaEditorContenido(idArticulo: state.idArticulo),
             );
           }
+
+          if (state is BlocDashboardEstadoLogueoFallido) {
+            context.router.push(const RutaLogin());
+          }
         },
         child: AutoRouter(
           builder: (context, content) {
