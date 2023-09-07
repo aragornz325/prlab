@@ -363,6 +363,30 @@
         "description": "text in the popup Send via email,this edit text is displayed in a content management popup in an article, one of the options to choose from"
     },
 
+    "cardPeriodistaBotonDetails": "Detalles",
+    "@cardPeriodistaBotonDetails": {
+        "description": "Text in the card of the journalist to show details"
+    },
+
+    "cardPeriodistaBotonAdd": "Agregar a la lista",
+    "@cardPeriodistaBotonAdd": {
+        "description": "Text in the card of the journalist to add to list"
+    },
+
+    "cardPeriodistaAnchorAt": "Anclar a ",
+    "@cardPeriodistaAnchorAt": {
+        "description": "Text in the card of the journalist to identify with a brand"
+    },
+
+    "cardPeriodistaLocation": "Ubicación",
+    "@cardPeriodistaLocation": {
+        "description": "Text in the card of the journalist to indicate the location"
+    },
+
+    "cardPeriodistaTopicCovered": "Temas cubiertos",
+    "@cardPeriodistaTopicCovered": {
+        "description": "Text in the card of the journalist to indicate the topics covered"},
+
     "pageKYCAlertDialogCalendarTitleSelectYourBirthDate": "Selecciona tu fecha de nacimiento",
     "@pageKYCAlertDialogCalendarTitleSelectYourBirthDate": {
         "description": "Text in title of alertdialog/popup Select your birthdate,Usually use in el form Kyc."
@@ -798,5 +822,5 @@
     "@commonAll": {
         "description": "Text where a dropdown is used to filter by certain characteristics that an article has in general. Example, status or date."
     }
-
 }
+
