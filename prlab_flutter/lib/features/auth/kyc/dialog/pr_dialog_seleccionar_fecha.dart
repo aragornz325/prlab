@@ -8,12 +8,12 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_dialog.dart';
 import 'package:prlab_flutter/widgets/dialog_calendario/calendario.dart';
 
-/// {@template PRDialogFiltrarPorFecha}
-/// Dialog de filtro por una fecha en especifica y se abre el calendario de Pr
-/// lab y tiene un boton para aplicar el filtro
+/// {@template PRDialogSeleccionarFecha}
+/// Dialog de Seleccionar una fecha en especifica,Para Completar el KYC con la
+/// fecha de nacimiento del usuario
 /// {@endtemplate}
 class PRDialogSeleccionarFecha extends StatelessWidget {
-  /// {@macro PRDialogFiltrarPorFecha}
+  /// {@macro PRDialogSeleccionarFecha}
   PRDialogSeleccionarFecha({super.key});
 
   /// Fecha a ser modificada para ser seleccionada como fecha de nacimiento del

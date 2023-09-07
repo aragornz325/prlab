@@ -300,7 +300,10 @@ class PRTextFormField extends StatefulWidget {
     /// Al apretar este campo ejecuta esta acción
     void Function()? onTap,
 
-    /// hace referencia al ReadOnly/solo lectura o no podes escribir
+    /// Hace referencia a la variable [readOnly] del [TextField].
+    ///
+    /// Indica que el campo de texto no permite edición manual, solamente
+    /// se puede leer
     bool esSoloLectura = false,
 
     /// Ancho del campo de texto.
@@ -386,7 +389,7 @@ class PRTextFormField extends StatefulWidget {
   final void Function()? onTap;
 
   /// Para usar el color secundario del icono
-  final bool? usarColorSecundario;
+  final bool usarColorSecundario;
 
   @override
   State<PRTextFormField> createState() => _PRTextFormFieldState();
@@ -434,7 +437,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
                       widget.prefixIcon,
                       color: widget.controller.text.isEmpty
                           ? widget.esSoloLectura
-                              ? widget.usarColorSecundario!
+                              ? widget.usarColorSecundario
                                   ? colores.secondary
                                   : colores.secondaryBajaOpacidad
                               : colores.secondary

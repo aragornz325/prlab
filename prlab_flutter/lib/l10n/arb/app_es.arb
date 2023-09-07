@@ -368,6 +368,41 @@
         "description": "Text in title of alertdialog/popup Select your birthdate,Usually use in el form Kyc."
     },
 
+    "commonCalendarSUN": "DOM",
+    "@commonCalendarSUN": {
+        "description": "first three letters of Sunday,this text is in the calendar for the title of the days"
+    },
+
+    "commonCalendarMON": "LUN",
+    "@commonCalendarMON": {
+        "description": "first three letters of Monday,this text is in the calendar for the title of the days"
+    },
+
+    "commonCalendarTUE": "MAR",
+    "@commonCalendarTUE": {
+        "description": "first three letters of Tuesday,this text is in the calendar for the title of the days"
+    },
+
+    "commonCalendarWED": "MIÉ",
+    "@commonCalendarWED": {
+        "description": "first three letters of Wednesday,this text is in the calendar for the title of the days"
+    },
+
+    "commonCalendarTHU": "JUE",
+    "@commonCalendarTHU": {
+        "description": "first three letters of Thursday,this text is in the calendar for the title of the days"
+    },
+
+    "commonCalendarFRI": "VIE",
+    "@commonCalendarFRI": {
+        "description": "first three letters of Friday,this text is in the calendar for the title of the days"
+    },
+
+    "commonCalendarSAT": "SÁB",
+    "@commonCalendarSAT": {
+        "description": "first three letters of Saturday,this text is in the calendar for the title of the days"
+    },
+
     "commonApply": "Aplicar",
     "@commonApply": {
         "description": "Text shown on a popup/alertdialog that indicates to Apply a filters,Typically used to filter alert dialogs."

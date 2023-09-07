@@ -62,7 +62,7 @@ sealed class BlocKycEstado {
   bool get esFormularioCompletado =>
       nombre.isNotEmpty &&
       apellido.isNotEmpty &&
-      fechaDeNacimiento != DateTime.now() &&
+      fechaDeNacimiento != null &&
       nombreDeCompania.isNotEmpty &&
       localidad.isNotEmpty &&
       numeroContacto.isNotEmpty;

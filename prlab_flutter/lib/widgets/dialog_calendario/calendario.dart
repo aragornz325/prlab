@@ -1,12 +1,22 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
+import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
 
 /// {@template Calendario}
 /// Calendario general que va a ser usado en la app con el theme de pr lab.
-/// Este Calendario es para filtrar por algo o  solamente es para seleccionar
+/// Este Calendario es para filtrar por algo o solamente es para seleccionar
 /// una fecha en especifica.
+/// Tiene dos parámetros,al ejecutarse cuando el usuario hace click una nueva
+/// fecha.
+///
+/// `onValueChanged`, una función de devolución de llamada que se llama
+/// cuando cambian las fechas
+/// seleccionadas, y `singleDatePickerValueWithDefaultValue`, una lista de
+/// objetos `DateTime` que
+/// representan las fechas seleccionadas con un valor por defecto.
 /// {@endtemplate}
 class Calendario extends StatefulWidget {
   /// {@macro Calendario}
@@ -34,6 +44,8 @@ class _CalendarioState extends State<Calendario> {
 
   Widget _buildDefaultSingleDatePickerWithValue() {
     final colores = context.colores;
+
+    final l10n = context.l10n;
 
     // Configuracion del calendario
     final config = CalendarDatePicker2Config(
@@ -66,8 +78,8 @@ class _CalendarioState extends State<Calendario> {
       }) {
         return Center(
           child: Container(
-            height: 30,
-            width: 50,
+            height: 30.ph,
+            width: 50.pw,
             decoration: decoration,
             child: Center(
               child: Text(
@@ -132,14 +144,13 @@ class _CalendarioState extends State<Calendario> {
       calendarViewMode: DatePickerMode.day,
       selectedDayHighlightColor: colores.primary,
       weekdayLabels: [
-        // TODO(anyone): hacer l10n?
-        'SUN',
-        'MON',
-        'TUE',
-        'WED',
-        'THU',
-        'FRI',
-        'SAT',
+        l10n.commonCalendarSUN,
+        l10n.commonCalendarMON,
+        l10n.commonCalendarTUE,
+        l10n.commonCalendarWED,
+        l10n.commonCalendarTHU,
+        l10n.commonCalendarFRI,
+        l10n.commonCalendarSAT,
       ],
       weekdayLabelTextStyle: TextStyle(
         color: colores.secondary,
