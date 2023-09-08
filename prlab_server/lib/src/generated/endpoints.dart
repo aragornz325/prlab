@@ -7,7 +7,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import '../endpoints/archivos_endpoint.dart' as _i2;
+import '../endpoints/almacenamiento_archivos_nube_endpoint.dart' as _i2;
 import '../endpoints/articulo_endpoint.dart' as _i3;
 import '../endpoints/auth_endpoint.dart' as _i4;
 import '../endpoints/cliente_endpoint.dart' as _i5;
@@ -22,10 +22,10 @@ class Endpoints extends _i1.EndpointDispatch {
   @override
   void initializeEndpoints(_i1.Server server) {
     var endpoints = <String, _i1.Endpoint>{
-      'archivos': _i2.ArchivosEndpoint()
+      'almacenamientoArchivosNube': _i2.AlmacenamientoArchivosNubeEndpoint()
         ..initialize(
           server,
-          'archivos',
+          'almacenamientoArchivosNube',
           null,
         ),
       'articulo': _i3.ArticuloEndpoint()
@@ -59,25 +59,25 @@ class Endpoints extends _i1.EndpointDispatch {
           null,
         ),
     };
-    connectors['archivos'] = _i1.EndpointConnector(
-      name: 'archivos',
-      endpoint: endpoints['archivos']!,
+    connectors['almacenamientoArchivosNube'] = _i1.EndpointConnector(
+      name: 'almacenamientoArchivosNube',
+      endpoint: endpoints['almacenamientoArchivosNube']!,
       methodConnectors: {
         'subirImagen': _i1.MethodConnector(
           name: 'subirImagen',
           params: {
-            'path': _i1.ParameterDescription(
-              name: 'path',
+            'rutaImagen': _i1.ParameterDescription(
+              name: 'rutaImagen',
               type: _i1.getType<String>(),
               nullable: false,
             ),
-            'fileName': _i1.ParameterDescription(
-              name: 'fileName',
+            'nombreImagen': _i1.ParameterDescription(
+              name: 'nombreImagen',
               type: _i1.getType<String>(),
               nullable: false,
             ),
-            'cloudinaryFolder': _i1.ParameterDescription(
-              name: 'cloudinaryFolder',
+            'directorioNube': _i1.ParameterDescription(
+              name: 'directorioNube',
               type: _i1.getType<String>(),
               nullable: false,
             ),
@@ -86,11 +86,13 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['archivos'] as _i2.ArchivosEndpoint).subirImagen(
+              (endpoints['almacenamientoArchivosNube']
+                      as _i2.AlmacenamientoArchivosNubeEndpoint)
+                  .subirImagen(
             session,
-            path: params['path'],
-            fileName: params['fileName'],
-            cloudinaryFolder: params['cloudinaryFolder'],
+            rutaImagen: params['rutaImagen'],
+            nombreImagen: params['nombreImagen'],
+            directorioNube: params['directorioNube'],
           ),
         ),
         'borrarImagen': _i1.MethodConnector(
@@ -101,8 +103,8 @@ class Endpoints extends _i1.EndpointDispatch {
               type: _i1.getType<String>(),
               nullable: false,
             ),
-            'url': _i1.ParameterDescription(
-              name: 'url',
+            'urlImagen': _i1.ParameterDescription(
+              name: 'urlImagen',
               type: _i1.getType<String>(),
               nullable: false,
             ),
@@ -111,10 +113,12 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['archivos'] as _i2.ArchivosEndpoint).borrarImagen(
+              (endpoints['almacenamientoArchivosNube']
+                      as _i2.AlmacenamientoArchivosNubeEndpoint)
+                  .borrarImagen(
             session,
-            params['publicId'],
-            params['url'],
+            publicId: params['publicId'],
+            urlImagen: params['urlImagen'],
           ),
         ),
       },
@@ -225,11 +229,11 @@ class Endpoints extends _i1.EndpointDispatch {
             articulo: params['articulo'],
           ),
         ),
-        'guardarRegistroimagen': _i1.MethodConnector(
-          name: 'guardarRegistroimagen',
+        'subirImagenArticulo': _i1.MethodConnector(
+          name: 'subirImagenArticulo',
           params: {
-            'path': _i1.ParameterDescription(
-              name: 'path',
+            'rutaImagen': _i1.ParameterDescription(
+              name: 'rutaImagen',
               type: _i1.getType<String>(),
               nullable: false,
             ),
@@ -244,9 +248,9 @@ class Endpoints extends _i1.EndpointDispatch {
             Map<String, dynamic> params,
           ) async =>
               (endpoints['articulo'] as _i3.ArticuloEndpoint)
-                  .guardarRegistroimagen(
+                  .subirImagenArticulo(
             session,
-            path: params['path'],
+            rutaImagen: params['rutaImagen'],
             idArticulo: params['idArticulo'],
           ),
         ),

@@ -147,17 +147,20 @@ class ArticuloEndpoint extends Endpoint {
     }
   }
 
-  /// La función [guardarRegistroimagen] toma un objeto [Session] y un [path] 
+  /// La función [subirImagenArticulo] toma un objeto [Session] y un [rutaImagen]
   /// como parámetros, y devuelve un [Future] que se resuelve en un
   ///  objeto [String].
-  Future<String> guardarRegistroimagen(
+  Future<String> subirImagenArticulo(
     Session session, {
-    required String path,
+    required String rutaImagen,
     required int idArticulo,
   }) async {
     try {
-      return await servicioArticulo.subirImagenArticulo(session,
-          path: path, idArticulo: idArticulo);
+      return await servicioArticulo.subirImagenArticulo(
+        session,
+        rutaImagen: rutaImagen,
+        idArticulo: idArticulo,
+      );
     } on Exception catch (e) {
       rethrow;
     }

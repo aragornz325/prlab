@@ -16,41 +16,42 @@ import 'dart:io' as _i7;
 import 'protocol.dart' as _i8;
 
 /// Endpoints para manejo de archivos con almacenamiento en la nube.
-class _EndpointArchivos extends _i1.EndpointRef {
-  _EndpointArchivos(_i1.EndpointCaller caller) : super(caller);
+class _EndpointAlmacenamientoArchivosNube extends _i1.EndpointRef {
+  _EndpointAlmacenamientoArchivosNube(_i1.EndpointCaller caller)
+      : super(caller);
 
   @override
-  String get name => 'archivos';
+  String get name => 'almacenamientoArchivosNube';
 
   /// Sube una imagen a la nube. Requiere de la ruta del archivo, el nombre y
   /// la carpeta donde se va a alojar.
   _i2.Future<String> subirImagen({
-    required String path,
-    required String fileName,
-    required String cloudinaryFolder,
+    required String rutaImagen,
+    required String nombreImagen,
+    required String directorioNube,
   }) =>
       caller.callServerEndpoint<String>(
-        'archivos',
+        'almacenamientoArchivosNube',
         'subirImagen',
         {
-          'path': path,
-          'fileName': fileName,
-          'cloudinaryFolder': cloudinaryFolder,
+          'rutaImagen': rutaImagen,
+          'nombreImagen': nombreImagen,
+          'directorioNube': directorioNube,
         },
       );
 
   /// Borra una imagen del alojamiento en la nube. Requiere de su public-id
   /// (<carpeta>/<nombre-del-archivo-sin-extension>) y la url.
-  _i2.Future<bool> borrarImagen(
-    String publicId,
-    String url,
-  ) =>
-      caller.callServerEndpoint<bool>(
-        'archivos',
+  _i2.Future<String> borrarImagen({
+    required String publicId,
+    required String urlImagen,
+  }) =>
+      caller.callServerEndpoint<String>(
+        'almacenamientoArchivosNube',
         'borrarImagen',
         {
           'publicId': publicId,
-          'url': url,
+          'urlImagen': urlImagen,
         },
       );
 }
@@ -157,15 +158,18 @@ class _EndpointArticulo extends _i1.EndpointRef {
         {'articulo': articulo},
       );
 
-  _i2.Future<String> guardarRegistroimagen({
-    required String path,
+  /// La función [subirImagenArticulo] toma un objeto [Session] y un [rutaImagen]
+  /// como parámetros, y devuelve un [Future] que se resuelve en un
+  ///  objeto [String].
+  _i2.Future<String> subirImagenArticulo({
+    required String rutaImagen,
     required int idArticulo,
   }) =>
       caller.callServerEndpoint<String>(
         'articulo',
-        'guardarRegistroimagen',
+        'subirImagenArticulo',
         {
-          'path': path,
+          'rutaImagen': rutaImagen,
           'idArticulo': idArticulo,
         },
       );
@@ -434,7 +438,7 @@ class Client extends _i1.ServerpodClient {
           context: context,
           authenticationKeyManager: authenticationKeyManager,
         ) {
-    archivos = _EndpointArchivos(this);
+    almacenamientoArchivosNube = _EndpointAlmacenamientoArchivosNube(this);
     articulo = _EndpointArticulo(this);
     auth = _EndpointAuth(this);
     cliente = _EndpointCliente(this);
@@ -443,7 +447,7 @@ class Client extends _i1.ServerpodClient {
     modules = _Modules(this);
   }
 
-  late final _EndpointArchivos archivos;
+  late final _EndpointAlmacenamientoArchivosNube almacenamientoArchivosNube;
 
   late final _EndpointArticulo articulo;
 
@@ -459,7 +463,7 @@ class Client extends _i1.ServerpodClient {
 
   @override
   Map<String, _i1.EndpointRef> get endpointRefLookup => {
-        'archivos': archivos,
+        'almacenamientoArchivosNube': almacenamientoArchivosNube,
         'articulo': articulo,
         'auth': auth,
         'cliente': cliente,

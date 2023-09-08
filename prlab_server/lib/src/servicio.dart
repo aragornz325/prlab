@@ -15,7 +15,10 @@ abstract class Servicio<T extends ODM> {
   /// Instancia del logger.
   // ignore: always_specify_types
   final logger = Logger('Servicio');
-  final cloudinary = Cloudinary.signedConfig(
+
+  /// Instancia del servicio para almacenamiento en la nube 
+  /// (actualmente Cloudinary).
+  final almacenamientoNube = Cloudinary.signedConfig(
     apiKey: ConstantesPrLab.cloudinaryApiKey,
     apiSecret: ConstantesPrLab.cloudinaryApiSecret,
     cloudName: ConstantesPrLab.cloudinaryCloudName,
