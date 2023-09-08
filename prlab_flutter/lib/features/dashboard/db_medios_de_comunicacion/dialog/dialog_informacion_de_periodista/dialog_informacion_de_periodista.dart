@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/bloc/bloc_db_medios_de_comunicacion.dart';
+import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/topic_pr_card_periodista.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
@@ -17,11 +20,24 @@ part 'listado_de_articulos_del_periodista.dart';
 /// {@endtemplate}
 class DialogInformacionDePeriodista extends StatelessWidget {
   /// {@macro DialogInformacionDePeriodista}
-  const DialogInformacionDePeriodista({super.key});
+  const DialogInformacionDePeriodista({
+    required this.idPeriodista,
+    super.key,
+  });
+
+  final int idPeriodista;
 
   Future<void> show(BuildContext context) => showDialog(
         context: context,
-        builder: (_) => this,
+        builder: (_) => BlocProvider.value(
+          value: context.read<BlocDbMediosDeComunicacion>()
+            ..add(
+              BlocDbMediosDeComunicacionEventoObtenerDetallePeriodista(
+                idPeriodista,
+              ),
+            ),
+          child: this,
+        ),
       );
 
   @override

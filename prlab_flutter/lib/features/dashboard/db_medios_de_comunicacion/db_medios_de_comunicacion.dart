@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/bloc/bloc_db_medios_de_comunicacion.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/celular/vista_celular_db_medios_de_comunicacion.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/escritorio/vista_escritorio_db_medios_de_comunicacion.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
@@ -20,9 +22,12 @@ class PaginaDbMediosDeComunicacion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const FullResponsiveScreen(
-      mobile: VistaCelularDbMediosDeComunicacion(),
-      desktop: VistaEscritorioDbMediosDeComunicacion(),
+    return BlocProvider(
+      create: (context) => BlocDbMediosDeComunicacion(),
+      child: const FullResponsiveScreen(
+        mobile: VistaCelularDbMediosDeComunicacion(),
+        desktop: VistaEscritorioDbMediosDeComunicacion(),
+      ),
     );
   }
 }

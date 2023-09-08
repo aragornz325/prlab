@@ -12,160 +12,188 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO(Andre): cambiar por el modelo de manu.
-    final periodista = Periodista('');
-
     final colores = context.colores;
 
     final l10n = context.l10n;
 
-    return SizedBox(
-      width: 355.pw,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25.pw),
-            child: Column(
-              children: [
-                SizedBox(height: 40.ph),
-                CircleAvatar(
-                  foregroundImage: NetworkImage(
-                    periodista.valor,
-                  ),
-                  backgroundColor: colores.secondary,
-                  minRadius: 25.pw,
-                  maxRadius: 45.pw,
-                ),
-                SizedBox(height: 10.ph),
-                Text(
-                  periodista.valor,
-                  style: TextStyle(
-                    fontSize: 20.sf,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                SizedBox(height: 5.ph),
-                Text(
-                  l10n.pageMediaDatabaseJournalistInformationDialogAnchorAt(
-                    periodista.valor,
-                  ),
-                  style: TextStyle(
-                    fontSize: 15.sf,
-                    fontWeight: FontWeight.w500,
-                    color: colores.secondary,
-                  ),
-                ),
-                SizedBox(height: 20.ph),
-                Text(
-                  periodista.valor,
-                  style: TextStyle(
-                    color: colores.secondary,
-                  ),
-                ),
-                SizedBox(height: 20.ph),
-              ],
+    return BlocBuilder<BlocDbMediosDeComunicacion,
+        BlocDbMediosDeComunicacionEstado>(
+      builder: (context, state) {
+        if (state
+            is! BlocDbMediosDeComunicacionDetallePeriodistaEstadoExitoso) {
+          return SizedBox(
+            width: 355.pw,
+            child: const Center(
+              child: CircularProgressIndicator(),
             ),
-          ),
-          const Divider(height: 0),
-          SizedBox(
-            height: 380.ph,
-            child: SingleChildScrollView(
-              child: Padding(
+          );
+        }
+
+        return SizedBox(
+          width: 355.pw,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.pw),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // TODO(Andre): Aca van los topics
-                    SizedBox(height: 90.ph),
+                    SizedBox(height: 40.ph),
+                    CircleAvatar(
+                      foregroundImage: NetworkImage(
+                        state.periodista.urlDeImage,
+                      ),
+                      backgroundColor: colores.secondary,
+                      minRadius: 25.pw,
+                      maxRadius: 45.pw,
+                    ),
+                    SizedBox(height: 10.ph),
                     Text(
-                      l10n.pageMediaDatabaseJournalistInformationDialogGeneral,
+                      state.periodista.name,
                       style: TextStyle(
-                        color: colores.secondary,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 20.sf,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(height: 9.ph),
-                    IconoConDatoDePeriodista(
-                      icono: Icons.mail_outline_rounded,
-                      etiqueta: periodista.valor,
-                    ),
-                    IconoConDatoDePeriodista(
-                      icono: Icons.call_outlined,
-                      etiqueta: periodista.valor,
-                    ),
-                    IconoConDatoDePeriodista(
-                      icono: Icons.location_on_outlined,
-                      etiqueta: periodista.valor,
-                    ),
-                    IconoConDatoDePeriodista(
-                      icono: Icons.translate_rounded,
-                      etiqueta: periodista.valor,
-                    ),
-                    SizedBox(height: 9.ph),
+                    SizedBox(height: 5.ph),
                     Text(
-                      l10n.pageMediaDatabaseJournalistInformationDialogSocial,
+                      l10n.pageMediaDatabaseJournalistInformationDialogAnchorAt(
+                        state.periodista.anchor,
+                      ),
                       style: TextStyle(
-                        color: colores.secondary,
+                        fontSize: 15.sf,
                         fontWeight: FontWeight.w500,
+                        color: colores.secondary,
                       ),
                     ),
-                    SizedBox(height: 9.ph),
-                    IconoConDatoDePeriodista(
-                      icono: Icons.square,
-                      etiqueta: periodista.valor,
+                    SizedBox(height: 20.ph),
+                    Text(
+                      state.periodista.descripcion,
+                      style: TextStyle(
+                        color: colores.secondary,
+                      ),
                     ),
-                    IconoConDatoDePeriodista(
-                      icono: Icons.square,
-                      etiqueta: periodista.valor,
-                    ),
-                    IconoConDatoDePeriodista(
-                      icono: Icons.square,
-                      etiqueta: periodista.valor,
-                    ),
-                    IconoConDatoDePeriodista(
-                      icono: Icons.square,
-                      etiqueta: periodista.valor,
-                    ),
-                    SizedBox(height: 15.ph),
+                    SizedBox(height: 20.ph),
                   ],
                 ),
               ),
-            ),
-          ),
-          const Divider(height: 0),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 20.ph),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                PRBoton(
-                  // TODO(anyone): Agregarle funcionalidad
-                  onTap: () => const PRDialogErrorNoDisponible().show(context),
-                  texto: l10n
-                      .pageMediaDatabaseJournalistInformationDialogAddToList,
-                  estaHabilitado: true,
-                  width: 100.sw,
-                  height: 30.sh,
-                  fontSize: 15.pf,
-                  fontWeight: FontWeight.w500,
+              const Divider(height: 0),
+              SizedBox(
+                height: 380.ph,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25.pw),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 15.ph),
+                          child: Wrap(
+                            children: [
+                              ...state.periodista.topicCovered.map(
+                                (topic) => Padding(
+                                  padding: EdgeInsets.only(
+                                    right: 10.pw,
+                                    bottom: 10.ph,
+                                  ),
+                                  child: TopicPRCardPeriodista(topic: topic),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          l10n.pageMediaDatabaseJournalistInformationDialogGeneral,
+                          style: TextStyle(
+                            color: colores.secondary,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(height: 9.ph),
+                        IconoConDatoDePeriodista(
+                          icono: Icons.mail_outline_rounded,
+                          etiqueta: state.periodista.email,
+                        ),
+                        IconoConDatoDePeriodista(
+                          icono: Icons.call_outlined,
+                          etiqueta: state.periodista.telefono,
+                        ),
+                        IconoConDatoDePeriodista(
+                          icono: Icons.location_on_outlined,
+                          etiqueta: state.periodista.location,
+                        ),
+                        IconoConDatoDePeriodista(
+                          icono: Icons.translate_rounded,
+                          etiqueta: state.periodista.idioma,
+                        ),
+                        SizedBox(height: 9.ph),
+                        Text(
+                          l10n.pageMediaDatabaseJournalistInformationDialogSocial,
+                          style: TextStyle(
+                            color: colores.secondary,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(height: 9.ph),
+                        IconoConDatoDePeriodista(
+                          icono: Icons.square,
+                          etiqueta: state.periodista.facebook,
+                        ),
+                        IconoConDatoDePeriodista(
+                          icono: Icons.square,
+                          etiqueta: state.periodista.instagram,
+                        ),
+                        IconoConDatoDePeriodista(
+                          icono: Icons.square,
+                          etiqueta: state.periodista.twitter,
+                        ),
+                        IconoConDatoDePeriodista(
+                          icono: Icons.square,
+                          etiqueta: state.periodista.youtube,
+                        ),
+                        SizedBox(height: 15.ph),
+                      ],
+                    ),
+                  ),
                 ),
-                PRBoton.esOutlined(
-                  // TODO(anyone): Agregarle funcionalidad
-                  onTap: () => const PRDialogErrorNoDisponible().show(context),
-                  texto:
-                      l10n.pageMediaDatabaseJournalistInformationDialogReport,
-                  estaHabilitado: true,
-                  width: 100.sw,
-                  height: 30.sh,
-                  fontSize: 15.pf,
-                  fontWeight: FontWeight.w500,
+              ),
+              const Divider(height: 0),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 20.ph),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    PRBoton(
+                      // TODO(anyone): Agregarle funcionalidad
+                      onTap: () =>
+                          const PRDialogErrorNoDisponible().show(context),
+                      texto: l10n
+                          .pageMediaDatabaseJournalistInformationDialogAddToList,
+                      estaHabilitado: true,
+                      width: 100.sw,
+                      height: 30.sh,
+                      fontSize: 15.pf,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    PRBoton.esOutlined(
+                      // TODO(anyone): Agregarle funcionalidad
+                      onTap: () =>
+                          const PRDialogErrorNoDisponible().show(context),
+                      texto: l10n
+                          .pageMediaDatabaseJournalistInformationDialogReport,
+                      estaHabilitado: true,
+                      width: 100.sw,
+                      height: 30.sh,
+                      fontSize: 15.pf,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -212,10 +240,4 @@ class IconoConDatoDePeriodista extends StatelessWidget {
       ),
     );
   }
-}
-
-class Periodista {
-  Periodista(this.valor);
-
-  final String valor;
 }
