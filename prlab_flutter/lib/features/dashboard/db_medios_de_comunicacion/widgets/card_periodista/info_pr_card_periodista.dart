@@ -108,7 +108,7 @@ class InfoPRCardPeriodista extends StatelessWidget {
             ),
             SizedBox(
               height: 25.ph,
-              width: 370.pw,
+              width: 340.pw,
               child: ListView.separated(
                 separatorBuilder: (context, index) => SizedBox(width: 10.pw),
                 scrollDirection: Axis.horizontal,
