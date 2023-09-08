@@ -79,8 +79,7 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
                 ),
               ),
               const Divider(height: 0),
-              SizedBox(
-                height: max(380.ph, 380.sh),
+              Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25.pw),
@@ -162,7 +161,7 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
               ),
               const Divider(height: 0),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: max(9.ph, 9.sh)),
+                padding: EdgeInsets.symmetric(vertical: 15.ph),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -174,7 +173,7 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
                           .pageMediaDatabaseJournalistInformationDialogAddToList,
                       estaHabilitado: true,
                       width: 100.sw,
-                      height: 30.sh,
+                      height: max(30.ph, 30.sh),
                       fontSize: 15.pf,
                       fontWeight: FontWeight.w500,
                     ),
@@ -186,7 +185,7 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
                           .pageMediaDatabaseJournalistInformationDialogReport,
                       estaHabilitado: true,
                       width: 100.sw,
-                      height: 30.sh,
+                      height: max(30.ph, 30.sh),
                       fontSize: 15.pf,
                       fontWeight: FontWeight.w500,
                     ),
