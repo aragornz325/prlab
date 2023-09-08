@@ -372,7 +372,7 @@ class PRDialog extends StatelessWidget {
               l10n.commonSuccess,
               style: TextStyle(
                 fontSize: 20.pf,
-                color: colores.error,
+                color: colores.tertiary,
                 fontWeight: FontWeight.w600,
               ),
             ),
