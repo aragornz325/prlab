@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/drawer/drawer.dart';
+import 'package:prlab_flutter/utilidades/widgets/pr_dialog.dart';
 
 /// Enum utilizado para indexar cada item del drawer.
 enum DrawerPage {
@@ -38,19 +40,43 @@ class PRDrawerListaItems extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         PRDrawerItem(
-          onTap: () => onTap(DrawerPage.home),
+          onTap: () {
+            onTap(DrawerPage.home);
+          },
           icono: Icons.cottage_outlined,
           tituloItem: l10n.drawerHome,
           estaSeleccionado: enumDrawer.esHome,
         ),
+        SizedBox(
+          height: 10.ph,
+        ),
         PRDrawerItem(
-          onTap: () => onTap(DrawerPage.projects),
+          onTap: () {
+            // TODO(anyone): Descomentar cuando haya una page de projects
+            // onTap(DrawerPage.projects);
+
+            showDialog<void>(
+              context: context,
+              builder: (context) => const PRDialogErrorNoDisponible(),
+            );
+          },
           icono: Icons.folder_open_outlined,
           tituloItem: l10n.drawerProjects,
           estaSeleccionado: enumDrawer.esProjects,
         ),
+        SizedBox(
+          height: 10.ph,
+        ),
         PRDrawerItem(
-          onTap: () => onTap(DrawerPage.templates),
+          onTap: () {
+            // TODO(anyone): Descomentar cuando haya una page de templates
+            // onTap(DrawerPage.templates);
+
+            showDialog<void>(
+              context: context,
+              builder: (context) => const PRDialogErrorNoDisponible(),
+            );
+          },
           icono: Icons.space_dashboard_outlined,
           tituloItem: l10n.drawerTemplates,
           estaSeleccionado: enumDrawer.esTemplates,

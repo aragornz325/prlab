@@ -66,7 +66,7 @@ class VistaEditorContenidoEscritorio extends StatelessWidget {
                             },
                             texto: l10n.commonPreview,
                             estaHabilitado: true,
-                            width: 100.pw,
+                            width: 80.pw,
                             height: 30.ph,
                           ),
                           SizedBox(
@@ -84,7 +84,7 @@ class VistaEditorContenidoEscritorio extends StatelessWidget {
                             },
                             texto: l10n.commonShare,
                             estaHabilitado: true,
-                            width: 100.pw,
+                            width: 80.pw,
                             height: 30.ph,
                           ),
                         ],
