@@ -27,6 +27,8 @@ class DialogInformacionDePeriodista extends StatelessWidget {
     super.key,
   });
 
+  /// El identificador único con el que se guarda en la
+  /// base de datos el periodista.
   final int idPeriodista;
 
   Future<void> show(BuildContext context) => showDialog(

@@ -16,6 +16,8 @@ class PRCardPeriodista extends StatelessWidget {
     super.key,
   });
 
+  /// Modelo de periodista, contiene información que va a ser
+  /// mostrada en compontes interno de [PRCardPeriodista].
   final Periodista periodista;
 
   @override
@@ -27,7 +29,6 @@ class PRCardPeriodista extends StatelessWidget {
         horizontal: 20.pw,
       ),
       height: 300.ph,
-      width: 560.pw,
       decoration: BoxDecoration(
         color: colores.surfaceTint,
         boxShadow: [

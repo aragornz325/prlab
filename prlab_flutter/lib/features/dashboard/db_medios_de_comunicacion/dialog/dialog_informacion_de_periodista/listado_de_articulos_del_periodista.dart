@@ -68,6 +68,7 @@ class ListadoDeArticulosDelPeriodista extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(height: 20.ph),
           Expanded(
             child: ListView.builder(
               itemCount: 10,
@@ -132,6 +133,7 @@ class _TarjetaDeArticulo extends StatelessWidget {
               SizedBox(
                 width: 364.pw,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       titulo,

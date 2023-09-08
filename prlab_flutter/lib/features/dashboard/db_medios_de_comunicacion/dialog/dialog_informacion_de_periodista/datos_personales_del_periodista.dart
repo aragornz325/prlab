@@ -217,8 +217,19 @@ class _IconoConDatoDePeriodista extends StatelessWidget {
     required this.etiqueta,
   });
 
+  /// El icono representa el tema de la [etiqueta]
+  ///
+  /// Ej:
+  /// Si el dato a mostrar fuera el perfil de instagram del usuario
+  /// el icono sería el icono de instagram.
   final IconData icono;
 
+  /// La etiqueta representa el valor que se le quiere dar al tema
+  /// del dato.
+  ///
+  /// Ej:
+  /// Si el dato a mostrar fuera el perfil de instagram del usuario
+  /// la etiqueta seria @perfil_de_ejemplo
   final String etiqueta;
 
   @override
