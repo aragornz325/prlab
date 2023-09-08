@@ -49,5 +49,5 @@ class BlocKycEventoRecolectarInformacionDeKyc extends BlocKcyEvento {
   final String? localidadDeCompania;
 
   // Fecha de nacimiento del usuario.
-  final String? fechaDeNacimiento;
+  final DateTime? fechaDeNacimiento;
 }

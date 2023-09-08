@@ -53,3 +53,25 @@ class BlocDashboardFallido extends BlocDashboardEstado {
   /// {@macro BlocDashboardFallido}
   BlocDashboardFallido.desde() : super.desde();
 }
+
+/// {@template BlocDashboardEstadoLogueoExitoso}
+/// Este estado ocurre cuando la verificacion del logueo es exitosa
+/// {@endtemplate}
+class BlocDashboardEstadoLogueoExitoso extends BlocDashboardEstado {
+  /// {@macro BlocDashboardEstadoLogueoExitoso}
+  BlocDashboardEstadoLogueoExitoso.desde() : super.desde();
+}
+
+/// {@template BlocDashboardEstadoLogueoFallido}
+/// Este estado ocurre cuando la verificacion del logueo falla
+/// {@endtemplate}
+class BlocDashboardEstadoLogueoFallido extends BlocDashboardEstado {
+  /// {@macro BlocDashboardEstadoLogueoFallido}
+  BlocDashboardEstadoLogueoFallido.desde() : super.desde();
+}
+
+// TODO(Andre): Agregar documentacion
+class BlocDashboardEstadoFaltaCompletarKyc extends BlocDashboardEstado {
+  /// {@macro BlocDashboardEstadoLogueoFallido}
+  BlocDashboardEstadoFaltaCompletarKyc.desde() : super.desde();
+}

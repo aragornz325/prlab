@@ -588,6 +588,71 @@
         "description": "It is found in the journalist filters, the people menu, a message that expresses the intention of delete all the items from specific filter"
     },
     
+    "cardPeriodistaBotonDetails": "Details",
+    "@cardPeriodistaBotonDetails": {
+        "description": "Text in the card of the journalist to show details"
+    },
+
+    "cardPeriodistaBotonAdd": "Add to list",
+    "@cardPeriodistaBotonAdd": {
+        "description": "Text in the card of the journalist to add to list"
+    },
+
+    "cardPeriodistaAnchorAt": "Anchor at ",
+    "@cardPeriodistaAnchorAt": {
+        "description": "Text in the card of the journalist to identify with a brand"
+    },
+
+    "cardPeriodistaLocation": "Location",
+    "@cardPeriodistaLocation": {
+        "description": "Text in the card of the journalist to indicate the location"
+    },
+
+    "cardPeriodistaTopicCovered": "Topic covered",
+    "@cardPeriodistaTopicCovered": {
+        "description": "Text in the card of the journalist to indicate the topics covered"
+    },
+    
+    "pageKYCAlertDialogCalendarTitleSelectYourBirthDate": "Select your birthdate",
+    "@pageKYCAlertDialogCalendarTitleSelectYourBirthDate": {
+        "description": "Text in title of alertdialog/popup Select your birthdate,Usually use in el form Kyc."
+    },
+
+    "commonCalendarSUN": "SUN",
+    "@commonCalendarSUN": {
+        "description": "first three letters of Sunday,this text is in the calendar for the title of the days"
+    },
+
+    "commonCalendarMON": "MON",
+    "@commonCalendarMON": {
+        "description": "first three letters of Monday,this text is in the calendar for the title of the days"
+    },
+
+    "commonCalendarTUE": "TUE",
+    "@commonCalendarTUE": {
+        "description": "first three letters of Tuesday,this text is in the calendar for the title of the days"
+    },
+
+    "commonCalendarWED": "WED",
+    "@commonCalendarWED": {
+        "description": "first three letters of Wednesday,this text is in the calendar for the title of the days"
+    },
+
+    "commonCalendarTHU": "THU",
+    "@commonCalendarTHU": {
+        "description": "first three letters of Thursday,this text is in the calendar for the title of the days"
+    },
+
+    "commonCalendarFRI": "FRI",
+    "@commonCalendarFRI": {
+        "description": "first three letters of Friday,this text is in the calendar for the title of the days"
+    },
+
+    "commonCalendarSAT": "SAT",
+    "@commonCalendarSAT": {
+        "description": "first three letters of Saturday,this text is in the calendar for the title of the days"
+    },
+
     "commonApply": "Apply",
     "@commonApply": {
         "description": "Text shown on a popup/alertdialog that indicates to Apply a filters,Typically used to filter alert dialogs."
@@ -601,6 +666,12 @@
     "commonAlertDialogFilterByStatus": "Filter by Status",
     "@commonAlertDialogFilterByStatus": {
         "description": "Text in title of alertdialog/popup Filter by Status,Typically used to filter in title of alert dialogs."
+    },
+    
+
+    "commonAlertDialogFilterByDate": "Filter by Date",
+    "@commonAlertDialogFilterByDate": {
+        "description": "Text in title of alertdialog/popup Filter by date,Typically used to filter in title of alert dialogs."
     },
 
     "commonEdit": "Edit",

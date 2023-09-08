@@ -20,6 +20,9 @@ dependencies:
   serverpod_auth_email_flutter: ^1.1.1
   serverpod_auth_client:
 
+  #calendario
+  calendar_date_picker2: ^0.5.3
+  
   #data persistence
   isar: ^4.0.0-dev.9
   isar_flutter_libs: ^4.0.0-dev.9
