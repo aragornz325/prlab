@@ -204,14 +204,18 @@ class TarjetaMarca extends StatelessWidget {
                                     RutaEditorContenido(idArticulo: idArticulo),
                                   );
                                 },
-                                child: Text(
-                                  marca.ultimosArticulos?[index].titulo ?? '',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14.pf,
-                                    color: colores.primaryContainer,
-                                    decoration: TextDecoration.underline,
-                                    decorationColor: colores.primaryContainer,
+                                child: SizedBox(
+                                  width: 430.pw,
+                                  height: 25.ph,
+                                  child: Text(
+                                    marca.ultimosArticulos?[index].titulo ?? '',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14.pf,
+                                      color: colores.primaryContainer,
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: colores.primaryContainer,
+                                    ),
                                   ),
                                 ),
                               ),
