@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/widgets.dart';
+import 'package:prlab_flutter/features/dashboard/widgets/encabezado_de_seccion.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/utilidades/widgets/encabezado_de_seccion.dart';
 
 /// {@template VistaEscritorioDbMediosDeComunicacion}
 /// Vista de escritorio de búsqueda de medios de comunicación,

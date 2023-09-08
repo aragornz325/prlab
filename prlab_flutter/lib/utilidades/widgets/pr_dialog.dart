@@ -41,6 +41,7 @@ class PRDialog extends StatelessWidget {
   const PRDialog({
     required this.tipo,
     required this.content,
+    this.tieneAlturaMinima = true,
     super.key,
     this.height = 285,
     this.width = 455,
@@ -53,8 +54,9 @@ class PRDialog extends StatelessWidget {
     required Widget content,
     required BuildContext context,
     required VoidCallback onTap,
+    bool tieneAlturaMinima = true,
+    double? height = 285,
     double width = 455,
-    double height = 285,
     bool estaHabilitado = true,
     double? anchoDelBoton,
 
@@ -68,15 +70,18 @@ class PRDialog extends StatelessWidget {
     final colores = context.colores;
 
     return PRDialog(
-      height: height,
-      width: width,
+      tieneAlturaMinima: tieneAlturaMinima,
+      height: tieneAlturaMinima ? (height?.ph ?? 0) : null,
+      width: width.ph,
       tipo: TipoDialog.solicitudAccion,
       content: SingleChildScrollView(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
               width: 360.pw,
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   SizedBox(height: 40.ph),
                   Text(
@@ -475,13 +480,17 @@ class PRDialog extends StatelessWidget {
   final Widget content;
 
   /// height del alertdialog [PRDialog].(default: 285)
-  final double height;
+  final double? height;
 
   /// width del alertdialog [PRDialog].(default: 455)
   final double width;
 
   /// tipo de alertdialog [PRDialog].
   final TipoDialog tipo;
+
+  /// Se usa para saber si el dialog debe tener una altura minima o adaptarse a
+  /// su contenido
+  final bool tieneAlturaMinima;
 
   @override
   Widget build(BuildContext context) {
@@ -493,7 +502,7 @@ class PRDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(20.sw),
       ),
       content: SizedBox(
-        height: height.ph,
+        height: tieneAlturaMinima ? (height?.ph ?? 0) : null,
         width: width.pw,
         child: content,
       ),

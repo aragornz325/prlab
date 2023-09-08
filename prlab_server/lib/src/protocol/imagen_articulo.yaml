@@ -1,0 +1,10 @@
+class: ImagenArticulo
+table: imagen_articulo
+fields:
+  url: String
+  nombreImagen: String
+  publicId: String
+  idArticulo: int? parent=articulos
+  fechaEliminacion: DateTime?
+  ultimaModificacion: DateTime
+  fechaCreacion: DateTime

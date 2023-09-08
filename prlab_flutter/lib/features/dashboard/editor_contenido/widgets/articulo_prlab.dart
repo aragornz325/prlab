@@ -101,7 +101,7 @@ class ArticuloPRLab extends StatelessWidget {
             border: Border.all(
               color: colores.primary,
             ),
-            color: colores.primaryAltaOpacidad,
+            color: colores.primaryOpacidadVeinte,
           ),
           child: contenido,
         ),
