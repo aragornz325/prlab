@@ -1,18 +1,15 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prlab_flutter/theming/base.dart';
 
 /// {@template alcanza_dropdown}
 /// Dropdown widget used in the app.
 /// {@endtemplate}
-class AlcanzaDropdown<T> extends StatefulWidget {
+class PRDropdown<T> extends StatefulWidget {
   /// {@macro alcanza_dropdown}
-  const AlcanzaDropdown({
+  const PRDropdown({
     required this.isValid,
     required this.items,
     required this.hintText,
@@ -53,7 +50,7 @@ class AlcanzaDropdown<T> extends StatefulWidget {
   final T? value;
 
   /// The items to show in the dropdown.
-  final List<AlcanzaDropdownOption> items;
+  final List<PRDropdownOption> items;
 
   /// The hint text to show in the dropdown.
   final String hintText;
@@ -77,7 +74,7 @@ class AlcanzaDropdown<T> extends StatefulWidget {
   final Widget? preffixIcon;
 
   /// Add an option extra to the dropdown.
-  final AlcanzaDropdownOption? additionalOption;
+  final PRDropdownOption? additionalOption;
 
   /// The height of the dropdown.
   final double? height;
@@ -122,15 +119,15 @@ class AlcanzaDropdown<T> extends StatefulWidget {
   final double? width;
 
   @override
-  State<AlcanzaDropdown<T>> createState() => _AlcanzaDropdownState<T>();
+  State<PRDropdown<T>> createState() => _PRDropdownState<T>();
 }
 
-class _AlcanzaDropdownState<T> extends State<AlcanzaDropdown<T>> {
+class _PRDropdownState<T> extends State<PRDropdown<T>> {
   bool _isExpanded = false;
 
   final _controller = TextEditingController();
 
-  List<AlcanzaDropdownOption> items = [];
+  List<PRDropdownOption> items = [];
 
   @override
   void initState() {
@@ -384,9 +381,9 @@ class _AlcanzaDropdownState<T> extends State<AlcanzaDropdown<T>> {
 /// {@template alcanza_dropdown_option}
 /// This class is used to display the options of the dropdown.
 /// {@endtemplate}
-class AlcanzaDropdownOption<T> {
+class PRDropdownOption<T> {
   /// {@macro alcanza_dropdown_option}
-  const AlcanzaDropdownOption({
+  const PRDropdownOption({
     required this.title,
     required this.value,
     this.enabled = true,

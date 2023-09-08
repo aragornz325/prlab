@@ -781,7 +781,7 @@
         "description": "Text in screen create admin account in alertdialog in button, Ok"
     },
 
- "commonPublish": "Publish",
+    "commonPublish": "Publish",
     "@commonPublish": {
         "description": "Text shown on a button that indicates to publish"
     },
@@ -837,6 +837,11 @@
 
     "commonChooseFromTheList": "Choose from the list",
     "@commonChooseFromTheList": {
+        "description": "Text shown when the user hasn´t yet selected an item from a dropdown."
+    },
+
+    "commonChooseAnAuthor": "Choose an author",
+    "@commonChooseAnAuthor": {
         "description": "Text shown when the user hasn´t yet selected an item from a dropdown."
     }
 

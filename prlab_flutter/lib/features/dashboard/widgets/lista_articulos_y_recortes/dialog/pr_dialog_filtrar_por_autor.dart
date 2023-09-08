@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/utilidades/widgets/dropdowns_alcanza.dart';
+import 'package:prlab_flutter/utilidades/widgets/pr_dropdown.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template PrDialogFiltrarPorStatus}
@@ -24,9 +24,9 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
     final l10n = context.l10n;
 
     final colores = context.colores;
-
+    // TODO(anyone): Cambiar esta lista de ejemplo por la lista de datos reales
     final opcionesDropdown = [
-      AlcanzaDropdownOption<int>(
+      PRDropdownOption<int>(
         title: 'John Smith',
         value: 0,
         itemHeight: 35.ph,
@@ -40,7 +40,7 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
           size: 20.pf,
         ),
       ),
-      AlcanzaDropdownOption<int>(
+      PRDropdownOption<int>(
         title: 'Martin Clark',
         value: 1,
         itemHeight: 35.ph,
@@ -54,7 +54,7 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
           size: 20.pf,
         ),
       ),
-      AlcanzaDropdownOption<int>(
+      PRDropdownOption<int>(
         title: 'Guillermo Bianchi',
         value: 2,
         itemHeight: 35.ph,
@@ -68,7 +68,7 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
           size: 20.pf,
         ),
       ),
-      AlcanzaDropdownOption<int>(
+      PRDropdownOption<int>(
         title: 'Nicolás Rodsevich',
         value: 3,
         itemHeight: 35.ph,
@@ -95,10 +95,10 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
       },
       titulo: l10n.commonAlertDialogFilterByAuthor,
       // TODO(anyone): Hacer que se puedan seleccionar varios en el dropdown
-      content: AlcanzaDropdown<int>(
+      content: PRDropdown<int>(
         isValid: true,
         height: opcionesDropdown.length * 55.ph,
-        hintText: 'Choose an author',
+        hintText: l10n.commonChooseAnAuthor,
         hintStyle: TextStyle(
           color: colores.secondary,
           fontSize: 15.pf,
@@ -116,9 +116,7 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
         width: 412.pw,
         onChanged: (value) {
           itemSeleccionado = value;
-          setState(
-            () {},
-          );
+          setState(() {});
         },
         items: opcionesDropdown,
       ),

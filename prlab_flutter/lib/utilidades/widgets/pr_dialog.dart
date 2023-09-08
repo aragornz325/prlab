@@ -486,6 +486,8 @@ class PRDialog extends StatelessWidget {
   /// tipo de alertdialog [PRDialog].
   final TipoDialog tipo;
 
+  /// Se usa para saber si el dialog debe tener una altura minima o adaptarse a
+  /// su contenido
   final bool tieneAlturaMinima;
 
   @override

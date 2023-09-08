@@ -826,6 +826,11 @@
     "commonChooseFromTheList": "Selecciona de la lista",
     "@commonChooseFromTheList": {
         "description": "Text shown when the user hasn´t yet selected an item from a dropdown."
+    },
+
+    "commonChooseAnAuthor": "Choose an author",
+    "@commonChooseAnAuthor": {
+        "description": "Text shown when the user hasn´t yet selected an item from a dropdown."
     }
 }
 

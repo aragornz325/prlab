@@ -6,7 +6,7 @@ import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/dialog/pr_dialog_filtrar_por_autor.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
-import 'package:prlab_flutter/utilidades/widgets/dropdowns_package.dart';
+import 'package:prlab_flutter/utilidades/widgets/pr_dropdown_popup.dart';
 
 /// {@template TextFieldBusquedaFiltrado}
 /// Dos componentes uno es un textfield/campo de texto y el otro es un dropdown
@@ -57,7 +57,10 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
           ),
           SizedBox(
             width: 412.pw,
-            child: PRDropdown(
+            child: PRDropdownPopup(
+              // TODO(anyone): Mejorar este componente, preferentemente seria
+              // conveniente no usar un mapa para manejar esto, es mejor una
+              // clase
               list: const [
                 {'id': '0', 'label': 'All'},
                 {'id': '1', 'label': 'Author'},
@@ -71,8 +74,6 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
                 // TODO(anyone): Abrir los popups para cada categoria seleccionada
                 final id = newList[0]['id'];
                 switch (id) {
-                  case '0':
-                    return;
                   case '1':
                     showDialog<void>(
                       context: context,
@@ -80,8 +81,8 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
                         return const PrDialogFiltrarPorAutor();
                       },
                     );
+                  case '0':
                   case '2':
-                    return;
                   case '3':
                     return;
                 }

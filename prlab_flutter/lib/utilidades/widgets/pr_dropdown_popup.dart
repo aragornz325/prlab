@@ -6,9 +6,9 @@ const double tileHeight = 50;
 const double selectAllButtonHeight = 40;
 const double searchOptionHeight = 40;
 
-class PRDropdown extends StatefulWidget {
+class PRDropdownPopup extends StatefulWidget {
   /// Mutiple selection dropdown for List of Maps.
-  const PRDropdown({
+  const PRDropdownPopup({
     required this.list,
     required this.initiallySelected,
     required this.onChange,
@@ -39,7 +39,7 @@ class PRDropdown extends StatefulWidget {
   }) : isSimpleList = false;
 
   /// Mutiple selection dropdown for simple List.
-  const PRDropdown.simpleList({
+  const PRDropdownPopup.simpleList({
     required this.list,
     required this.initiallySelected,
     required this.onChange,
@@ -155,10 +155,10 @@ class PRDropdown extends StatefulWidget {
   final bool oneMinimumSelected;
 
   @override
-  State<PRDropdown> createState() => _PRDropdownState();
+  State<PRDropdownPopup> createState() => _PRDropdownPopupState();
 }
 
-class _PRDropdownState extends State<PRDropdown> {
+class _PRDropdownPopupState extends State<PRDropdownPopup> {
   late List<dynamic> selected = [...widget.initiallySelected];
   late final Decoration boxDecoration;
   List<dynamic> filteredOptions = [];
