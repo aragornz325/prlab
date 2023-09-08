@@ -41,8 +41,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
-    final theme = context.colores;
+    final colores = context.colores;
 
     return BlocConsumer<BlocLogin, BlocLoginEstado>(
       listener: (context, state) {
@@ -97,12 +96,11 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
             ),
           );
         }
-
         return Scaffold(
           body: Row(
             children: [
               Container(
-                color: theme.background,
+                color: colores.background,
                 width: 44.5.wp,
                 height: 100.hp,
                 child: Column(
