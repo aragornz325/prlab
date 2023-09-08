@@ -716,6 +716,11 @@
     "@pageMediaDatabaseJournalistInformationDialogSearchHintText": {
         "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, expresses the reporting of one of the journalist"
     },
+
+    "pageMediaDatabaseJournalistListTopLabel": "Puntuación de influencia",
+    "@pageMediaDatabaseJournalistListTopLabel": {
+        "description": "Indicates the influence in the media that the journalist has represented by a numerical score."
+    },
     
     "commonPRLab": "PR lab",
     "@commonPRLab": {

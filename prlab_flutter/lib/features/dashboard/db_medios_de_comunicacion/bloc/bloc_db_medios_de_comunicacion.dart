@@ -18,10 +18,15 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
     on<BlocDbMediosDeComunicacionEventoObtenerDetallePeriodista>(
       _obtenerDetallePeriodista,
     );
+    on<BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista>(
+      _obtenerArticulosDelPeriodista,
+    );
 
     add(BlocDbMediosDeComunicacionEventoObtenerPeriodistas());
   }
 
+  /// Trata de obtener la lista de periodistas que estan en la base
+  /// de datos.
   Future<void> _obtenerPeriodistas(
     BlocDbMediosDeComunicacionEventoObtenerPeriodistas event,
     Emitter<BlocDbMediosDeComunicacionEstado> emit,
@@ -29,6 +34,7 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
     emit(BlocDbMediosDeComunicacionEstadoCargando.desde(state));
 
     try {
+      // TODO(Andre): Cambiar por endpoint del backend.
       final periodistas = [
         Periodista(
           id: 1,
@@ -42,10 +48,12 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
             'Marketing',
           ],
           email: 'john@prlab.com',
-          avatar: 'UNKNOWN',
+          avatar:
+              'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png',
           valoracion: 50,
           estaSeleccionado: true,
-          urlDeImage: 'UNKNOWN',
+          urlDeImage:
+              'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png',
           idioma: 'English',
           telefono: '11 2485-2435',
           facebook: 'John John John John',
@@ -62,11 +70,13 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
           location: 'Argentina',
           topicCovered: ['Software'],
           email: 'julian@nidus.com',
-          avatar: 'UNKNOWN',
+          avatar:
+              'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png',
           valoracion: 90,
           estaSeleccionado: true,
-          urlDeImage: 'UNKNOWN',
-          idioma: 'Spanigh',
+          urlDeImage:
+              'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png',
+          idioma: 'Spanish',
           telefono: '11 4585-2435',
           facebook: 'Julian Julian Julian',
           instagram: '@julian_nidus',
@@ -82,31 +92,13 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
           location: 'Argentina',
           topicCovered: ['Software'],
           email: 'julian@nidus.com',
-          avatar: 'UNKNOWN',
+          avatar:
+              'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png',
           valoracion: 90,
           estaSeleccionado: true,
-          urlDeImage: 'UNKNOWN',
-          idioma: 'Spanigh',
-          telefono: '11 4585-2435',
-          facebook: 'Julian Julian Julian',
-          instagram: '@julian_nidus',
-          twitter: '@julian_nidus',
-          youtube: '@julian_nidus',
-          descripcion:
-              'This is a description This is a description This is a description This is a description This is a description This is a description This is a description This is a description',
-        ),
-        Periodista(
-          id: 4,
-          name: 'Julian Julian Julian Julian',
-          anchor: 'Nidus',
-          location: 'Argentina',
-          topicCovered: ['Software'],
-          email: 'julian@nidus.com',
-          avatar: 'UNKNOWN',
-          valoracion: 90,
-          estaSeleccionado: true,
-          urlDeImage: 'UNKNOWN',
-          idioma: 'Spanigh',
+          urlDeImage:
+              'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png',
+          idioma: 'Spanish',
           telefono: '11 4585-2435',
           facebook: 'Julian Julian Julian',
           instagram: '@julian_nidus',
@@ -128,6 +120,7 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
     }
   }
 
+  /// Trata información mas detallada de un periodista.
   Future<void> _obtenerDetallePeriodista(
     BlocDbMediosDeComunicacionEventoObtenerDetallePeriodista event,
     Emitter<BlocDbMediosDeComunicacionEstado> emit,
@@ -146,6 +139,25 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
           periodista,
         ),
       );
+    } catch (e) {
+      emit(BlocDbMediosDeComunicacionEstadoFallido.desde(state));
+    }
+  }
+
+  /// Trata de obtener la lista de articulos ya publicados por un periodista
+  /// a traves del `idPeriodista`.
+  Future<void> _obtenerArticulosDelPeriodista(
+    BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista event,
+    Emitter<BlocDbMediosDeComunicacionEstado> emit,
+  ) async {
+    emit(BlocDbMediosDeComunicacionEstadoCargando.desde(state));
+
+    try {
+      // TODO(Andre):
+      // Pedir modelo de este tipo de articulo que hace referencia
+      // a aquellos que fueron publicados por un periodista y terminar
+      // de manejar esta logica aca y mostrar la lista en el popup de
+      // detalle del periodista.
     } catch (e) {
       emit(BlocDbMediosDeComunicacionEstadoFallido.desde(state));
     }

@@ -3,7 +3,8 @@ part of 'bloc_db_medios_de_comunicacion.dart';
 /// {@template BlocDbMediosDeComunicacionEstado}
 /// Maneja los estados de los procesos que se manejan en
 /// la página que tiene la lista con filtrados de los
-/// periodistas.
+/// periodistas y el popup con los detalles de un periodista
+/// en especifico (se encuentra dentro de la misma página).
 /// {@endtemplate}
 class BlocDbMediosDeComunicacionEstado {
   /// {@macro BlocDbMediosDeComunicacionEstado}

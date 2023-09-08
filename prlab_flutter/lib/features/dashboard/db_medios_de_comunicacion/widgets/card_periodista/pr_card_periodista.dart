@@ -4,6 +4,7 @@ import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/dialog/dialog.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/card_periodista.dart';
 import 'package:prlab_flutter/theming/base.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template PRCardPeriodista}
 /// Tarjeta con la descripción y los detalles del periodista.
@@ -21,6 +22,10 @@ class PRCardPeriodista extends StatelessWidget {
   Widget build(BuildContext context) {
     final colores = context.colores;
     return Container(
+      margin: EdgeInsets.symmetric(
+        vertical: 20.ph,
+        horizontal: 20.pw,
+      ),
       height: 300.ph,
       width: 560.pw,
       decoration: BoxDecoration(
@@ -46,7 +51,7 @@ class PRCardPeriodista extends StatelessWidget {
             RowBotonesEmailPRCardPeriodista(
               periodista: periodista,
               // TODO(Anyone): dar funcionalidad cuando este definida
-              onTapAdd: () {},
+              onTapAdd: () => const PRDialogErrorNoDisponible().show(context),
               onTapDetails: () => DialogInformacionDePeriodista(
                 idPeriodista: periodista.id,
               ).show(context),

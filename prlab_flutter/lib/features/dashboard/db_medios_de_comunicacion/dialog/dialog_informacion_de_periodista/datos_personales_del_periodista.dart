@@ -38,16 +38,17 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 25.pw),
                 child: Column(
                   children: [
-                    SizedBox(height: 40.ph),
+                    SizedBox(height: max(40.ph, 40.sh)),
                     CircleAvatar(
                       foregroundImage: NetworkImage(
                         state.periodista.urlDeImage,
                       ),
                       backgroundColor: colores.secondary,
+                      foregroundColor: colores.secondary,
                       minRadius: 25.pw,
                       maxRadius: 45.pw,
                     ),
-                    SizedBox(height: 10.ph),
+                    SizedBox(height: max(10.ph, 10.sh)),
                     Text(
                       state.periodista.name,
                       style: TextStyle(
@@ -55,7 +56,7 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(height: 5.ph),
+                    SizedBox(height: max(5.ph, 5.sh)),
                     Text(
                       l10n.pageMediaDatabaseJournalistInformationDialogAnchorAt(
                         state.periodista.anchor,
@@ -66,20 +67,20 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
                         color: colores.secondary,
                       ),
                     ),
-                    SizedBox(height: 20.ph),
+                    SizedBox(height: max(20.ph, 20.sh)),
                     Text(
                       state.periodista.descripcion,
                       style: TextStyle(
                         color: colores.secondary,
                       ),
                     ),
-                    SizedBox(height: 20.ph),
+                    SizedBox(height: max(20.ph, 20.sh)),
                   ],
                 ),
               ),
               const Divider(height: 0),
               SizedBox(
-                height: 380.ph,
+                height: max(380.ph, 380.sh),
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25.pw),
@@ -87,7 +88,9 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.symmetric(vertical: 15.ph),
+                          padding: EdgeInsets.symmetric(
+                            vertical: max(15.ph, 15.sh),
+                          ),
                           child: Wrap(
                             children: [
                               ...state.periodista.topicCovered.map(
@@ -109,24 +112,24 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        SizedBox(height: 9.ph),
-                        IconoConDatoDePeriodista(
+                        SizedBox(height: max(9.ph, 9.sh)),
+                        _IconoConDatoDePeriodista(
                           icono: Icons.mail_outline_rounded,
                           etiqueta: state.periodista.email,
                         ),
-                        IconoConDatoDePeriodista(
+                        _IconoConDatoDePeriodista(
                           icono: Icons.call_outlined,
                           etiqueta: state.periodista.telefono,
                         ),
-                        IconoConDatoDePeriodista(
+                        _IconoConDatoDePeriodista(
                           icono: Icons.location_on_outlined,
                           etiqueta: state.periodista.location,
                         ),
-                        IconoConDatoDePeriodista(
+                        _IconoConDatoDePeriodista(
                           icono: Icons.translate_rounded,
                           etiqueta: state.periodista.idioma,
                         ),
-                        SizedBox(height: 9.ph),
+                        SizedBox(height: max(9.ph, 9.sh)),
                         Text(
                           l10n.pageMediaDatabaseJournalistInformationDialogSocial,
                           style: TextStyle(
@@ -134,24 +137,24 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        SizedBox(height: 9.ph),
-                        IconoConDatoDePeriodista(
+                        SizedBox(height: max(9.ph, 9.sh)),
+                        _IconoConDatoDePeriodista(
                           icono: Icons.square,
                           etiqueta: state.periodista.facebook,
                         ),
-                        IconoConDatoDePeriodista(
+                        _IconoConDatoDePeriodista(
                           icono: Icons.square,
                           etiqueta: state.periodista.instagram,
                         ),
-                        IconoConDatoDePeriodista(
+                        _IconoConDatoDePeriodista(
                           icono: Icons.square,
                           etiqueta: state.periodista.twitter,
                         ),
-                        IconoConDatoDePeriodista(
+                        _IconoConDatoDePeriodista(
                           icono: Icons.square,
                           etiqueta: state.periodista.youtube,
                         ),
-                        SizedBox(height: 15.ph),
+                        SizedBox(height: max(15.ph, 15.sh)),
                       ],
                     ),
                   ),
@@ -159,7 +162,7 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
               ),
               const Divider(height: 0),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 20.ph),
+                padding: EdgeInsets.symmetric(vertical: max(9.ph, 9.sh)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -208,12 +211,11 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
 ///
 /// Ej: [icono] Icons.email / [etiqueta] ejemplo@ejemplo.com
 /// {@endtemplate}
-class IconoConDatoDePeriodista extends StatelessWidget {
+class _IconoConDatoDePeriodista extends StatelessWidget {
   /// {@macro IconoConDatoDePeriodista}
-  const IconoConDatoDePeriodista({
+  const _IconoConDatoDePeriodista({
     required this.icono,
     required this.etiqueta,
-    super.key,
   });
 
   final IconData icono;
@@ -225,7 +227,7 @@ class IconoConDatoDePeriodista extends StatelessWidget {
     final colores = context.colores;
 
     return SizedBox(
-      height: 30.ph,
+      height: max(30.ph, 30.sh),
       child: Row(
         children: [
           Icon(icono, color: colores.primaryAltaOpacidad),

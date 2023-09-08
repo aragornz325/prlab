@@ -26,3 +26,17 @@ class BlocDbMediosDeComunicacionEventoObtenerDetallePeriodista
   /// detallada del mismo dentro de la base de datos.
   final int idPeriodista;
 }
+
+/// {@template BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista}
+/// Trata de obtener la lista de articulos ya publicados por un periodista
+/// a traves del [idPeriodista].
+/// {@endtemplate}
+class BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista
+    extends BlocDbMediosDeComunicacionEvento {
+  /// {@macro BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista}
+  BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista(
+    this.idPeriodista,
+  );
+
+  final String idPeriodista;
+}
