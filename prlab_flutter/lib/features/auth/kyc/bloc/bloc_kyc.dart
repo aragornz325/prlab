@@ -31,8 +31,7 @@ class BlocKyc extends Bloc<BlocKcyEvento, BlocKycEstado> {
         idUsuario: state.idUsuario,
         nombre: state.nombre,
         apellido: state.apellido,
-        // TODO(anyone): sacar esto y cambiar por el del calendario.
-        fechaDeNacimiento: DateTime.now(),
+        fechaDeNacimiento: state.fechaDeNacimiento ?? DateTime.now(),
         nombreDeOrganizacion: state.nombreDeCompania,
         domicilio: state.localidad,
         telefono: state.numeroContacto,

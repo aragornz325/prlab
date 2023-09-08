@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/features/dashboard/bloc/bloc_dashboard.dart';
+import 'package:prlab_flutter/utilidades/utilidades.dart';
 import 'package:prlab_flutter/utilidades/widgets/appbar/appbar.dart';
 import 'package:prlab_flutter/utilidades/widgets/drawer/bloc/bloc_drawer.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
@@ -37,6 +38,14 @@ class PaginaDashboard extends StatelessWidget {
           if (state is BlocDashboardExitoso) {
             context.router.push(
               RutaEditorContenido(idArticulo: state.idArticulo),
+            );
+          }
+
+          if (state is BlocDashboardEstadoFaltaCompletarKyc) {
+            context.router.push(
+              RutaKyc(
+                idUsuario: sessionManager.signedInUser?.id ?? 0,
+              ),
             );
           }
         },

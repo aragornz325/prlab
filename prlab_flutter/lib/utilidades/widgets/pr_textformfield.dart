@@ -20,6 +20,7 @@ class PRTextFormField extends StatefulWidget {
     this.esSoloLectura = false,
     this.esPassword = false,
     this.obscureText = false,
+    this.usarColorSecundario = false,
     this.prefixIconColor,
     this.suffixIcon,
     this.onChanged,
@@ -29,6 +30,8 @@ class PRTextFormField extends StatefulWidget {
     this.maxLength,
     this.cursorColor,
     this.decoration,
+    this.onTap,
+    this.onEditingComplete,
     super.key,
   });
 
@@ -295,12 +298,31 @@ class PRTextFormField extends StatefulWidget {
     /// Funcion onChanged
     void Function(String)? onChanged,
 
+    /// Al completar el campo ejecuta esta accion
+    void Function()? onEditingComplete,
+
+    /// Al apretar este campo ejecuta esta acción
+    void Function()? onTap,
+
+    /// Hace referencia a la variable [readOnly] del [TextField].
+    ///
+    /// Indica que el campo de texto no permite edición manual, solamente
+    /// se puede leer
+    bool esSoloLectura = false,
+
     /// Ancho del campo de texto.
     double? width,
+
+    /// para usar el color secundario en el icono
+    bool usarColorSecundario = true,
   }) {
     final l10n = context.l10n;
 
     return PRTextFormField(
+      onEditingComplete: onEditingComplete,
+      esSoloLectura: esSoloLectura,
+      usarColorSecundario: usarColorSecundario,
+      onTap: onTap,
       width: width,
       keyboardType: TextInputType.datetime,
       controller: controller,
@@ -309,12 +331,13 @@ class PRTextFormField extends StatefulWidget {
       prefixIcon: prefixIcon,
       inputFormatters: [FormateadorDeFecha()],
       validator: (value) {
-        if (value?.isEmpty ?? false) {
-          return l10n.commonCompleteTheField;
-        } else if (!ExpresionRegular.dateTimeRegExp.hasMatch(value ?? '')) {
-          return l10n.commonInvalidCharacters;
-        }
-        return null;
+        // TODO(anyone) este validator anda mal arreglarlo
+        // if (value == null || value.isEmpty) {
+        //   return l10n.commonCompleteTheField;
+        // } else if (!ExpresionRegular.dateTimeRegExp.hasMatch(value)) {
+        //   return l10n.commonInvalidCharacters;
+        // }
+        // return null;
       },
     );
   }
@@ -368,6 +391,16 @@ class PRTextFormField extends StatefulWidget {
   /// Decoración del textfield
   final InputDecoration? decoration;
 
+  /// Al Apretar el Campo ejecuta esta Accion.
+  final void Function()? onTap;
+
+  /// Para usar el color secundario del icono este color solamente se usa en el
+  /// icono
+  final bool usarColorSecundario;
+
+  /// Al completar el campo ejecuta esta Accion
+  final void Function()? onEditingComplete;
+
   @override
   State<PRTextFormField> createState() => _PRTextFormFieldState();
 }
@@ -380,6 +413,8 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
     return SizedBox(
       width: widget.width?.sw ?? 360.sw,
       child: TextFormField(
+        onEditingComplete: widget.onEditingComplete,
+        onTap: widget.onTap,
         cursorColor: widget.cursorColor,
         maxLength: widget.maxLength,
         keyboardType: widget.keyboardType ?? TextInputType.none,
@@ -413,7 +448,9 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
                       widget.prefixIcon,
                       color: widget.controller.text.isEmpty
                           ? widget.esSoloLectura
-                              ? colores.secondaryBajaOpacidad
+                              ? widget.usarColorSecundario
+                                  ? colores.secondary
+                                  : colores.secondaryBajaOpacidad
                               : colores.secondary
                           : widget.esSoloLectura
                               ? colores.primaryOpacidadSesenta
