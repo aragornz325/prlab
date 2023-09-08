@@ -38,5 +38,7 @@ class BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista
     this.idPeriodista,
   );
 
+  /// El identificador de un periodista, sirve para obtener la lista
+  /// de articulos vinculados a este periodista.
   final String idPeriodista;
 }

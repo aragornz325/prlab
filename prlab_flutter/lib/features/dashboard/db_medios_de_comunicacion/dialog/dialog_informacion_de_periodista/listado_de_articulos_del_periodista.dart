@@ -55,7 +55,10 @@ class ListadoDeArticulosDelPeriodista extends StatelessWidget {
               ),
               SizedBox(width: 20.pw),
               PRBoton(
-                onTap: () {},
+                onTap: () {
+                  // TODO(Andre): Agregarle funcionalidad.
+                  const PRDialogErrorNoDisponible().show(context);
+                },
                 texto: l10n.commonSearch,
                 estaHabilitado: true,
                 width: 100.sw,
@@ -69,8 +72,14 @@ class ListadoDeArticulosDelPeriodista extends StatelessWidget {
             child: ListView.builder(
               itemCount: 10,
               itemBuilder: (BuildContext context, int index) {
-                // TODO(Andre): consumir esto del bloc.
-                return const _TarjetaDeArticulo();
+                // TODO(Andre):
+                // consumir esto del bloc y pasarle los valores que corresponden
+                // a titulo y contenido.
+                return const _TarjetaDeArticulo(
+                  titulo: 'Aca va el titulo',
+                  contenido:
+                      'Aca va el contenido Aca va el contenido Aca va el contenido Aca va el contenido',
+                );
               },
             ),
           ),
@@ -86,7 +95,16 @@ class ListadoDeArticulosDelPeriodista extends StatelessWidget {
 /// {@endtemplate}
 class _TarjetaDeArticulo extends StatelessWidget {
   /// {@macro _TarjetaDeArticulo}
-  const _TarjetaDeArticulo();
+  const _TarjetaDeArticulo({
+    required this.contenido,
+    required this.titulo,
+  });
+
+  /// Titulo del articulo.
+  final String titulo;
+
+  /// Texto principal del articulo.
+  final String contenido;
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +134,7 @@ class _TarjetaDeArticulo extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'Fernández: “Lamento que no estén en la Cumbre de las Américas - CNN en Español.',
+                      titulo,
                       style: TextStyle(
                         fontSize: 20.sf,
                         fontWeight: FontWeight.w600,
@@ -125,7 +143,7 @@ class _TarjetaDeArticulo extends StatelessWidget {
                     ),
                     SizedBox(height: 20.ph),
                     Text(
-                      'Fernández: “Lamento que no estén en la Cumbre de las Américas - CNN en Español.Fernández: “Lamento que no estén en la Cumbre de las Américas - CNN en Español.Fernández: “Lamento que no estén en la Cumbre de las Américas - CNN en Español.',
+                      contenido,
                       style: TextStyle(
                         fontSize: 15.sf,
                         fontWeight: FontWeight.w400,
