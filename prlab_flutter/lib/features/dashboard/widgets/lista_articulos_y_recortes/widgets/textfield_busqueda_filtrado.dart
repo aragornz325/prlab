@@ -3,7 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/dialog/pr_dialog_filtrar_por_autor.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/theming/base.dart';
+import 'package:prlab_flutter/utilidades/widgets/pr_dropdown_popup.dart';
 
 /// {@template TextFieldBusquedaFiltrado}
 /// Dos componentes uno es un textfield/campo de texto y el otro es un dropdown
@@ -31,7 +34,7 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
             decoration: BoxDecoration(
               color: colores.surfaceTint,
               borderRadius: const BorderRadius.all(Radius.circular(10)),
-              border: Border.all(color: colores.secondary),
+              border: Border.all(color: colores.outline),
             ),
             child: Center(
               child: TextFormField(
@@ -52,38 +55,56 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
               ),
             ),
           ),
-          // TODO(anyone): hacer los dropdown
-          Container(
-            width: 410.pw,
-            height: max(50.ph, 50.sh),
-            padding: EdgeInsets.symmetric(horizontal: 5.pw),
-            decoration: BoxDecoration(
-              color: colores.surfaceTint,
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
-              border: Border.all(color: colores.secondary),
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.menu,
-                  color: colores.secondary,
-                  size: 20.pf,
-                ),
-                SizedBox(width: 10.pw),
-                Text(
-                  l10n.commonAll,
-                  style: TextStyle(
-                    color: colores.secondary,
-                    fontSize: 15.pf,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                const Spacer(),
-                Icon(
-                  Icons.arrow_drop_down,
-                  color: colores.secondary,
-                  size: 20.pf,
-                ),
+          SizedBox(
+            width: 412.pw,
+            child: PRDropdownPopup(
+              // TODO(anyone): Mejorar este componente, preferentemente seria
+              // conveniente no usar un mapa para manejar esto, es mejor una
+              // clase
+              list: const [
+                {'id': '0', 'label': 'All'},
+                {'id': '1', 'label': 'Author'},
+                {'id': '2', 'label': 'Status'},
+                {'id': '3', 'label': 'Dates'},
+              ],
+              initiallySelected: const [
+                {'id': '0', 'label': 'All'},
+              ],
+              onChange: (newList) {
+                // TODO(anyone): Abrir los popups para cada categoria seleccionada
+                final id = newList[0]['id'];
+                switch (id) {
+                  case '1':
+                    showDialog<void>(
+                      context: context,
+                      builder: (context) {
+                        return const PrDialogFiltrarPorAutor();
+                      },
+                    );
+                  case '0':
+                  case '2':
+                  case '3':
+                    return;
+                }
+              },
+              textStyle: TextStyle(
+                fontSize: 15.pf,
+                color: colores.secondary,
+              ),
+              oneMinimumSelected: true,
+              whenEmpty: l10n.commonChooseFromTheList,
+              iconsColor: colores.primary,
+              itemhaveIcons: true,
+              listTextStyle: TextStyle(
+                fontSize: 14.pf,
+                color: colores.tertiary,
+              ),
+              selectedItemColor: colores.primaryOpacidadVeinte,
+              itemsIconList: const [
+                Icons.menu,
+                Icons.person_outline,
+                Icons.checklist_rtl,
+                Icons.calendar_month,
               ],
             ),
           ),

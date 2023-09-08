@@ -6,8 +6,8 @@ import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popups.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/widgets.dart';
+import 'package:prlab_flutter/features/dashboard/widgets/encabezado_de_seccion.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/utilidades/widgets/encabezado_de_seccion.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template VistaRedaccionEdicionContenidoCelular}

@@ -26,36 +26,46 @@ class EncabezadoDeSeccion extends StatelessWidget {
   Widget build(BuildContext context) {
     final colores = context.colores;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Icon(
-              icono,
-              size: 40.pf,
-              color: colores.primary,
-            ),
-            SizedBox(width: 5.pw),
-            Text(
-              titulo,
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 30.pf,
-                color: colores.tertiary,
+    return SizedBox(
+      width: 770.pw,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                icono,
+                size: 40.pf,
+                color: colores.primary,
               ),
-            ),
-          ],
-        ),
-        Text(
-          descripcion,
-          style: TextStyle(
-            fontWeight: FontWeight.w400,
-            fontSize: 15.pf,
-            color: colores.secondary,
+              SizedBox(width: 5.pw),
+              SizedBox(
+                width: 725.pw,
+                child: Text(
+                  titulo,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 30.pf,
+                    color: colores.tertiary,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ),
-      ],
+          Text(
+            descripcion,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 15.pf,
+              color: colores.secondary,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
