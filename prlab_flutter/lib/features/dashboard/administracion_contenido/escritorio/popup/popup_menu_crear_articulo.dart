@@ -12,11 +12,20 @@ import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 /// opciones cuando el usuario lo toca y esas opciones son para crear un nuevo
 /// artículo como un solo articulo,por marca o por usar una plantilla
 /// {@endtemplate}
-class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
+class PopUpMenuOpcionesAlCrearArticulo extends StatefulWidget {
   /// {@macro PopUpMenuOpcionesAlCrearArticulo}
   const PopUpMenuOpcionesAlCrearArticulo({
     super.key,
   });
+
+  @override
+  State<PopUpMenuOpcionesAlCrearArticulo> createState() =>
+      _PopUpMenuOpcionesAlCrearArticuloState();
+}
+
+class _PopUpMenuOpcionesAlCrearArticuloState
+    extends State<PopUpMenuOpcionesAlCrearArticulo> {
+  bool estaDesplegado = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +34,16 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
     final l10n = context.l10n;
 
     return PopupMenuButton<int>(
+      onOpened: () {
+        setState(() {
+          estaDesplegado = true;
+        });
+      },
+      onCanceled: () {
+        setState(() {
+          estaDesplegado = false;
+        });
+      },
       offset: const Offset(-20, 35),
       color: colores.surfaceTint,
       shape: const ContinuousRectangleBorder(
@@ -143,7 +162,9 @@ class PopUpMenuOpcionesAlCrearArticulo extends StatelessWidget {
               ),
               child: Center(
                 child: Icon(
-                  Icons.arrow_drop_down_outlined,
+                  estaDesplegado
+                      ? Icons.arrow_drop_up_outlined
+                      : Icons.arrow_drop_down_outlined,
                   color: colores.surfaceTint,
                   size: 24.pf,
                 ),
