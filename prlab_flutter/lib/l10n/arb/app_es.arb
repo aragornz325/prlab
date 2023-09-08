@@ -502,6 +502,16 @@
         "description":"Text to redirect to the create article menu"
     },
 
+    "pageContentAdministrationPopupByBrand": "Por marca",
+    "@pageContentAdministrationPopupByBrand": {
+        "description":"text in the popup in the button create an article second options to choose"
+    },
+
+     "pageContentAdministrationPopupUseTemplate": "Usar plantilla",
+    "@pageContentAdministrationPopupUseTemplate": {
+        "description":"text in the popup in the button create an article third options to choose"
+    },
+
     "prAppBarCreateContentCreateReport":"Crear reporte",
     "@prAppBarCreateContentCreateReport":{
         "description":"Text to redirect to the create report menu"

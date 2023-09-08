@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -47,7 +49,7 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
 
     return PRDialog.solicitudAccion(
       width: 260.pw,
-      height: 260.ph,
+      height: max(260.ph, 260.sh),
       context: context,
       estaHabilitado: estadoLogin.codigo.length == 8,
       onTap: () {

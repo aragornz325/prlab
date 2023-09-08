@@ -1,5 +1,7 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -24,10 +26,9 @@ class PRDialogSeleccionarFecha extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return PRDialog.solicitudAccion(
-      // TODO(Mati): Fijarse que esto se adapte mejor a las pantallas.
-      height: 600.sh,
-      width: 200.pw,
-      anchoDelBoton: 265.pw,
+      height: max(450.ph, 450.sh),
+      width: 220.pw,
+      anchoDelBoton: 359.pw,
       alturaEntreBotonYContenido: 30.ph,
       context: context,
       titulo: l10n.pageKYCAlertDialogCalendarTitleSelectYourBirthDate,
@@ -35,7 +36,8 @@ class PRDialogSeleccionarFecha extends StatelessWidget {
       content: Column(
         children: [
           SizedBox(
-            width: 265.pw,
+            width: 359.pw,
+            height: max(300.ph, 300.sh),
             child: Calendario(
               onValueChanged: (date) {
                 fecha = date.first!;

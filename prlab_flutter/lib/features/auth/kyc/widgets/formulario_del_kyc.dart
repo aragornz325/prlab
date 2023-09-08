@@ -101,26 +101,12 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                 builder: (context, state) {
                   return PRTextFormField.fecha(
                     width: 359.pw,
-                    controller: controllerFechaDeNacimiento
-                      ..addListener(() {
-                        if (state.fechaDeNacimiento != null) {
-                          controllerFechaDeNacimiento.text =
-                              state.etiquetaFechaNacimiento;
-                        }
-                      }),
+                    controller: controllerFechaDeNacimiento,
                     hintText: state.fechaDeNacimiento != null
                         ? state.etiquetaFechaNacimiento
                         : l10n.commonDateHintText,
                     context: context,
-                    onTap: () {
-                      showDialog<void>(
-                        context: context,
-                        builder: (_) => BlocProvider.value(
-                          value: context.read<BlocKyc>(),
-                          child: PRDialogSeleccionarFecha(),
-                        ),
-                      );
-                    },
+                    onTap: () => _showDialogCalendario(context),
                     esSoloLectura: true,
                   );
                 },
@@ -170,6 +156,10 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                   if (state is BlocKycEstadoExitoso) {
                     _showSuccessDialog(context);
                   }
+                  if (state.fechaDeNacimiento != null) {
+                    controllerFechaDeNacimiento.text =
+                        state.etiquetaFechaNacimiento;
+                  }
                 },
                 builder: (context, state) {
                   return PRBoton(
@@ -183,6 +173,16 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  void _showDialogCalendario(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => BlocProvider.value(
+        value: context.read<BlocKyc>(),
+        child: PRDialogSeleccionarFecha(),
       ),
     );
   }

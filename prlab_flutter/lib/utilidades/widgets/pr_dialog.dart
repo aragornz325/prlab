@@ -71,35 +71,37 @@ class PRDialog extends StatelessWidget {
       height: height,
       width: width,
       tipo: TipoDialog.solicitudAccion,
-      content: Column(
-        children: [
-          SizedBox(
-            width: 360.pw,
-            child: Column(
-              children: [
-                SizedBox(height: 40.ph),
-                Text(
-                  titulo,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20.pf,
-                    fontWeight: FontWeight.w600,
-                    color: colores.tertiary,
+      content: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              width: 360.pw,
+              child: Column(
+                children: [
+                  SizedBox(height: 40.ph),
+                  Text(
+                    titulo,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20.pf,
+                      fontWeight: FontWeight.w600,
+                      color: colores.tertiary,
+                    ),
                   ),
-                ),
-                SizedBox(height: 40.ph),
-                content,
-                SizedBox(height: alturaEntreBotonYContenido ?? 40.ph),
-                PRBoton.esOutlined(
-                  width: anchoDelBoton ?? 360.pw,
-                  estaHabilitado: estaHabilitado,
-                  onTap: onTap,
-                  texto: tituloDelBoton ?? l10n.commonSend,
-                ),
-              ],
+                  SizedBox(height: 40.ph),
+                  content,
+                  SizedBox(height: alturaEntreBotonYContenido ?? 40.ph),
+                  PRBoton.esOutlined(
+                    width: anchoDelBoton ?? 360.pw,
+                    estaHabilitado: estaHabilitado,
+                    onTap: onTap,
+                    texto: tituloDelBoton ?? l10n.commonSend,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
