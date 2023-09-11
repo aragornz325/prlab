@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
@@ -17,10 +19,10 @@ class PRDialogFiltrarPorFecha extends StatelessWidget {
     final l10n = context.l10n;
 
     return PRDialog.solicitudAccion(
-      height: 450.ph,
+      height: max(400.ph, 400.sh),
       width: 300,
       anchoDelBoton: 265.pw,
-      alturaEntreBotonYContenido: 30.ph,
+      alturaEntreBotonYContenido: max(30.ph, 30.sh),
       context: context,
       titulo: l10n.commonAlertDialogFilterByDate,
       tituloDelBoton: l10n.commonApply,
