@@ -232,7 +232,10 @@ class _ListaDeItemsSeleccionablesDialogState<T>
         hintText: l10n.pageMediaDatabaseFilterTileFilterByPopupDropdownHintText(
           widget.titulo.toLowerCase(),
         ),
-        valueText: 'Choose an ${widget.titulo.toLowerCase()}',
+        valueText:
+            l10n.pageMediaDatabaseFilterTileFilterByPopupDropdownHintText(
+          widget.titulo.toLowerCase(),
+        ),
         onChanged: (value) {
           final item = _listaDeSeleccionables.firstWhere(
             (e) => e.valor == value,
