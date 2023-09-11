@@ -25,8 +25,8 @@ class PRAppBarRowIconos extends StatefulWidget {
 }
 
 class _PRAppBarRowIconosState extends State<PRAppBarRowIconos> {
-  bool opcionesDesplegado = false;
-  bool configuracionDesplegado = false;
+  bool estaListaDeOpcionesDesplegado = false;
+  bool estaConfiguracionDesplegada = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +39,12 @@ class _PRAppBarRowIconosState extends State<PRAppBarRowIconos> {
           PopupMenuButton<MenuDeOpciones>(
             onOpened: () {
               setState(() {
-                opcionesDesplegado = true;
+                estaListaDeOpcionesDesplegado = true;
               });
             },
             onCanceled: () {
               setState(() {
-                opcionesDesplegado = false;
+                estaListaDeOpcionesDesplegado = false;
               });
             },
             tooltip: '',
@@ -70,7 +70,7 @@ class _PRAppBarRowIconosState extends State<PRAppBarRowIconos> {
             ),
             child: CircleAvatar(
               radius: 26.sw,
-              backgroundColor: opcionesDesplegado
+              backgroundColor: estaListaDeOpcionesDesplegado
                   ? colores.primaryOpacidadVeinte
                   : colores.surfaceTint,
               child: Icon(
@@ -84,12 +84,12 @@ class _PRAppBarRowIconosState extends State<PRAppBarRowIconos> {
           PopupMenuButton<MenuDeOpciones>(
               onOpened: () {
                 setState(() {
-                  configuracionDesplegado = true;
+                  estaConfiguracionDesplegada = true;
                 });
               },
               onCanceled: () {
                 setState(() {
-                  configuracionDesplegado = false;
+                  estaConfiguracionDesplegada = false;
                 });
               },
               tooltip: '',
@@ -116,7 +116,7 @@ class _PRAppBarRowIconosState extends State<PRAppBarRowIconos> {
               ),
               child: CircleAvatar(
                 radius: 26.sw,
-                backgroundColor: configuracionDesplegado
+                backgroundColor: estaConfiguracionDesplegada
                     ? colores.primaryOpacidadVeinte
                     : colores.surfaceTint,
                 child: Icon(
