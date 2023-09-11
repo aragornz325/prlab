@@ -32,7 +32,6 @@ class PRWrapperNavegacion extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 PRAppBar(onTap: onTap),
-                SizedBox(height: 30.ph),
                 Expanded(child: body),
               ],
             ),

@@ -75,56 +75,59 @@ class _PrDrawerState extends State<PrDrawer> {
           ),
           SizedBox(
             height: 84.ph,
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: BlocConsumer<BlocDrawer, BlocDrawerEstado>(
-                listener: (context, state) {
-                  if (state.cerroSesion ?? false) {
-                    context.replaceRoute(
-                      const RutaLogin(),
-                    );
-                  }
-                },
-                builder: (context, state) {
-                  if (state is BlocDrawerEstadoCargando) {
-                    const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-
-                  return PRDrawerItem(
-                    onTap: () {
-                      showDialog<void>(
-                        context: context,
-                        builder: (_) => PRDialog.confirmar(
-                          titulo: l10n.drawerAlertDialogLogoutBack,
-                          tituloBotonPrimario: l10n.commonContinue,
-                          tituloBotonSecundario: l10n.commonBack,
-                          content: Text(
-                            l10n.drawerAlertDialogLogoutContentWarning,
-                            style: TextStyle(
-                              color: colores.secondary,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 15.pf,
-                            ),
-                          ),
-                          context: context,
-                          onTapBotonPrimario: () {
-                            context.read<BlocDrawer>().add(
-                                  BlocDrawerEventCerrarSesion(),
-                                );
-                          },
-                          onTapBotonSecundario: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                BlocConsumer<BlocDrawer, BlocDrawerEstado>(
+                  listener: (context, state) {
+                    if (state.cerroSesion ?? false) {
+                      context.replaceRoute(
+                        const RutaLogin(),
                       );
-                    },
-                    icono: Icons.logout_outlined,
-                    tituloItem: l10n.drawerLogOut,
-                  );
-                },
-              ),
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state is BlocDrawerEstadoCargando) {
+                      const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+
+                    return PRDrawerItem(
+                      onTap: () {
+                        showDialog<void>(
+                          context: context,
+                          builder: (_) => PRDialog.confirmar(
+                            titulo: l10n.drawerAlertDialogLogoutBack,
+                            tituloBotonPrimario: l10n.commonContinue,
+                            tituloBotonSecundario: l10n.commonBack,
+                            content: Text(
+                              l10n.drawerAlertDialogLogoutContentWarning,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: colores.secondary,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 15.pf,
+                              ),
+                            ),
+                            context: context,
+                            onTapBotonPrimario: () {
+                              context.read<BlocDrawer>().add(
+                                    BlocDrawerEventCerrarSesion(),
+                                  );
+                            },
+                            onTapBotonSecundario: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        );
+                      },
+                      icono: Icons.logout_outlined,
+                      tituloItem: l10n.drawerLogOut,
+                    );
+                  },
+                ),
+              ],
             ),
           ),
         ],

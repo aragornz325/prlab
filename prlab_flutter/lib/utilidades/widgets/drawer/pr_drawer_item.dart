@@ -30,40 +30,37 @@ class PRDrawerItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
-    return Padding(
-      padding: EdgeInsets.only(top: 20.ph),
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          width: 210.pw,
-          height: 40.ph,
-          decoration: BoxDecoration(
-            color: estaSeleccionado
-                ? colores.primaryOpacidadDiez
-                : colores.surfaceTint,
-          ),
-          child: Row(
-            children: [
-              if (estaSeleccionado) const DrawerIndicadorItemSeleccionado(),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: estaSeleccionado ? 0.pw : 30.pw,
-                ),
-                child: Icon(
-                  icono,
-                  color: colores.primary,
-                ),
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: 210.pw,
+        height: 40.ph,
+        decoration: BoxDecoration(
+          color: estaSeleccionado
+              ? colores.primaryOpacidadDiez
+              : colores.surfaceTint,
+        ),
+        child: Row(
+          children: [
+            if (estaSeleccionado) const DrawerIndicadorItemSeleccionado(),
+            Padding(
+              padding: EdgeInsets.only(
+                left: estaSeleccionado ? 0.pw : 30.pw,
               ),
-              SizedBox(width: 5.pw),
-              Text(
-                tituloItem,
-                style: TextStyle(
-                  color: colores.primary,
-                  fontSize: 16.pf,
-                ),
+              child: Icon(
+                icono,
+                color: colores.primary,
               ),
-            ],
-          ),
+            ),
+            SizedBox(width: 5.pw),
+            Text(
+              tituloItem,
+              style: TextStyle(
+                color: colores.primary,
+                fontSize: 16.pf,
+              ),
+            ),
+          ],
         ),
       ),
     );

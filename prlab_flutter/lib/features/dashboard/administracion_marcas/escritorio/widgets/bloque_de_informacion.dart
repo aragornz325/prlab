@@ -32,8 +32,8 @@ class BloqueDeInformacionDeMarca extends StatelessWidget {
       decoration: tieneBordes
           ? BoxDecoration(
               border: Border(
-                left: BorderSide(width: 1.pw, color: colores.secondary),
-                right: BorderSide(width: 1.pw, color: colores.secondary),
+                left: BorderSide(width: 1.pw, color: colores.outline),
+                right: BorderSide(width: 1.pw, color: colores.outline),
               ),
             )
           : null,

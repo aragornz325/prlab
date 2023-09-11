@@ -265,6 +265,9 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
             splashColor: widget.splashColor,
             textStyle: widget.listTextStyle,
           ),
+          SizedBox(
+            height: 5.ph,
+          ),
         ],
       );
     }
@@ -516,7 +519,7 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
                         controller.isOpen
                             ? Icons.arrow_drop_up
                             : Icons.arrow_drop_down_sharp,
-                        color: widget.iconsColor,
+                        color: const Color(0xff707070),
                       ),
                     ],
                   ),
@@ -621,7 +624,7 @@ class _CustomTile extends StatelessWidget {
         height: tileHeight.ph,
         child: Row(
           children: [
-            const SizedBox(width: 6),
+            const SizedBox(width: 9),
             if (hasAvatar)
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 2),
@@ -640,7 +643,7 @@ class _CustomTile extends StatelessWidget {
                       size: 20.pf,
                     )
                   : Container(),
-            const SizedBox(width: 5),
+            const SizedBox(width: 9),
             Expanded(
               child: Text(
                 title,
