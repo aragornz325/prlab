@@ -36,8 +36,8 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
         ),
         preffixIcon: Icon(
           Icons.circle,
-          color: colores.secondary,
-          size: 20.pf,
+          color: colores.outline,
+          size: 24.pf,
         ),
       ),
       PRDropdownOption<int>(
@@ -50,8 +50,8 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
         ),
         preffixIcon: Icon(
           Icons.circle,
-          color: colores.secondary,
-          size: 20.pf,
+          color: colores.outline,
+          size: 24.pf,
         ),
       ),
       PRDropdownOption<int>(
@@ -64,8 +64,8 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
         ),
         preffixIcon: Icon(
           Icons.circle,
-          color: colores.secondary,
-          size: 20.pf,
+          color: colores.outline,
+          size: 24.pf,
         ),
       ),
       PRDropdownOption<int>(
@@ -78,14 +78,15 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
         ),
         preffixIcon: Icon(
           Icons.circle,
-          color: colores.secondary,
-          size: 20.pf,
+          color: colores.outline,
+          size: 24.pf,
         ),
       ),
     ];
     return PRDialog.solicitudAccion(
+      tituloDelBoton: l10n.commonApply,
       tieneAlturaMinima: false,
-      context: context,
+      context: context, width: 214.pw,
       onTap: () {
         // TODO(anyone): agregarle funcionalidad.
         showDialog<void>(

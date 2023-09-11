@@ -98,8 +98,8 @@ class PopUpMenuOpcionesPublicar extends StatelessWidget {
         children: [
           SizedBox(
             width: max(
-              96.pw,
-              96.sw,
+              86.pw,
+              86.sw,
             ),
             child: Container(
               height: max(
@@ -134,8 +134,8 @@ class PopUpMenuOpcionesPublicar extends StatelessWidget {
           SizedBox(
             height: max(30.ph, 30.sh),
             width: max(
-              42.pw,
-              42.sw,
+              32.pw,
+              32.sw,
             ),
             child: Container(
               height: max(30.ph, 30.sh),

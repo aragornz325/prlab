@@ -355,9 +355,9 @@
         "description":"Text to redirect to the Product updates"
     },
 
-    "prAppBarSettingsAccountSettigns":"Account settigns",
+    "prAppBarSettingsAccountSettigns":"Account settings",
     "@prAppBarSettingsAccountSettigns":{
-        "description":"Text to redirect to the account settigns"
+        "description":"Text to redirect to the account settings"
     },
 
     "prAppBarSettingsPayments":"Payments",
