@@ -223,7 +223,9 @@ class PRTextFormField extends StatefulWidget {
       hintText: hintText,
       onChanged: onChanged,
       prefixIcon: prefixIcon,
-      inputFormatters: [FilteringTextInputFormatter.deny(RegExp('[0-9]'))],
+      inputFormatters: [
+        FilteringTextInputFormatter.deny(RegExp(r'^[^a-zA-ZÀ-ÿ\s]+$')),
+      ],
       validator: (value) {
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
@@ -266,7 +268,7 @@ class PRTextFormField extends StatefulWidget {
       controller: controller,
       prefixIcon: prefixIcon,
       onChanged: onChanged,
-      inputFormatters: [FilteringTextInputFormatter.deny(RegExp('[a-zA-Z]'))],
+      inputFormatters: [PhoneNumberFormatter()],
       validator: (value) {
         if (value?.isEmpty ?? false) {
           return l10n.commonCompleteTheField;
@@ -331,13 +333,12 @@ class PRTextFormField extends StatefulWidget {
       prefixIcon: prefixIcon,
       inputFormatters: [FormateadorDeFecha()],
       validator: (value) {
-        // TODO(anyone) este validator anda mal arreglarlo
-        // if (value == null || value.isEmpty) {
-        //   return l10n.commonCompleteTheField;
-        // } else if (!ExpresionRegular.dateTimeRegExp.hasMatch(value)) {
-        //   return l10n.commonInvalidCharacters;
-        // }
-        // return null;
+        if (value?.isEmpty ?? false) {
+          return l10n.commonCompleteTheField;
+        } else if (!ExpresionRegular.dateTimeRegExp.hasMatch(value ?? '')) {
+          return l10n.commonInvalidCharacters;
+        }
+        return null;
       },
     );
   }

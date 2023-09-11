@@ -1,12 +1,16 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/widgets/appbar/appbar.dart';
 
 /// {@template PRAppBarRowIconos}
 /// Componente de PRAppBar el cual contiene los items que se muestran con icono
 /// {@endtemplates}
-class PRAppBarRowIconos extends StatelessWidget {
+class PRAppBarRowIconos extends StatefulWidget {
   /// {@macro PRAppBarRowIconos}
   const PRAppBarRowIconos({
     required this.onTap,
@@ -17,22 +21,37 @@ class PRAppBarRowIconos extends StatelessWidget {
   final void Function(MenuDeOpciones value) onTap;
 
   @override
+  State<PRAppBarRowIconos> createState() => _PRAppBarRowIconosState();
+}
+
+class _PRAppBarRowIconosState extends State<PRAppBarRowIconos> {
+  bool estaListaDeOpcionesDesplegado = false;
+  bool estaConfiguracionDesplegada = false;
+
+  @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
     return Container(
       decoration: BoxDecoration(color: colores.surfaceTint),
       child: Row(
         children: [
           PopupMenuButton<MenuDeOpciones>(
-            icon: Icon(
-              Icons.more_vert,
-              color: colores.primary,
-              size: 30.pf,
-            ),
+            onOpened: () {
+              setState(() {
+                estaListaDeOpcionesDesplegado = true;
+              });
+            },
+            onCanceled: () {
+              setState(() {
+                estaListaDeOpcionesDesplegado = false;
+              });
+            },
+            tooltip: '',
             itemBuilder: (BuildContext context) {
               return MenuDeOpciones.opciones.map((enumOpciones) {
                 return PopupMenuItem<MenuDeOpciones>(
-                  onTap: () => onTap(enumOpciones),
+                  onTap: () => widget.onTap(enumOpciones),
                   value: enumOpciones,
                   child: Text(
                     enumOpciones.nombreItem(context),
@@ -49,35 +68,63 @@ class PRAppBarRowIconos extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
+            child: CircleAvatar(
+              radius: 26.sw,
+              backgroundColor: estaListaDeOpcionesDesplegado
+                  ? colores.primaryOpacidadVeinte
+                  : colores.surfaceTint,
+              child: Icon(
+                Icons.more_vert,
+                color: colores.primary,
+                size: 30.pf,
+              ),
+            ),
           ),
           SizedBox(width: 30.pw),
           PopupMenuButton<MenuDeOpciones>(
-            icon: Icon(
-              Icons.settings_outlined,
-              color: colores.primary,
-              size: 30.pf,
-            ),
-            itemBuilder: (BuildContext context) {
-              return MenuDeOpciones.configuraciones.map((enumConfiguraciones) {
-                return PopupMenuItem<MenuDeOpciones>(
-                  value: enumConfiguraciones,
-                  onTap: () => onTap(enumConfiguraciones),
-                  child: Text(
-                    enumConfiguraciones.nombreItem(context),
-                    style: TextStyle(
-                      fontSize: 14.pf,
-                      color: colores.tertiary,
+              onOpened: () {
+                setState(() {
+                  estaConfiguracionDesplegada = true;
+                });
+              },
+              onCanceled: () {
+                setState(() {
+                  estaConfiguracionDesplegada = false;
+                });
+              },
+              tooltip: '',
+              itemBuilder: (BuildContext context) {
+                return MenuDeOpciones.configuraciones
+                    .map((enumConfiguraciones) {
+                  return PopupMenuItem<MenuDeOpciones>(
+                    value: enumConfiguraciones,
+                    onTap: () => widget.onTap(enumConfiguraciones),
+                    child: Text(
+                      enumConfiguraciones.nombreItem(context),
+                      style: TextStyle(
+                        fontSize: 14.pf,
+                        color: colores.tertiary,
+                      ),
                     ),
-                  ),
-                );
-              }).toList();
-            },
-            constraints: BoxConstraints(minWidth: 180.pw),
-            position: PopupMenuPosition.under,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-          ),
+                  );
+                }).toList();
+              },
+              constraints: BoxConstraints(minWidth: 180.pw),
+              position: PopupMenuPosition.under,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: CircleAvatar(
+                radius: 26.sw,
+                backgroundColor: estaConfiguracionDesplegada
+                    ? colores.primaryOpacidadVeinte
+                    : colores.surfaceTint,
+                child: Icon(
+                  Icons.settings_outlined,
+                  color: colores.primary,
+                  size: 30.pf,
+                ),
+              )),
           SizedBox(width: 30.pw),
           PopupMenuButton<MenuDeOpciones>(
             itemBuilder: (BuildContext context) {
@@ -86,19 +133,23 @@ class PRAppBarRowIconos extends StatelessWidget {
                   enabled: false,
                   child: Row(
                     children: [
-                      Icon(
-                        Icons.apartment,
-                        color: colores.primary,
-                        size: 24.pf,
+                      SizedBox(
+                        width: 25.pw,
+                        height: max(25.ph, 25.sh),
+                        child: Image.asset(
+                          Assets.assets_icons_apartment_png,
+                        ),
                       ),
+                      SizedBox(width: 5.pw),
                       Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             // TODO(Anyone): datos de user
-
                             'PR Lab',
                             style: TextStyle(
+                              height: .7.ph,
                               fontSize: 14.pf,
                               color: colores.tertiary,
                             ),
@@ -119,7 +170,7 @@ class PRAppBarRowIconos extends StatelessWidget {
                 PopupMenuDivider(height: 0.5.ph),
                 ...MenuDeOpciones.perfil.map((enumPerfil) {
                   return PopupMenuItem<MenuDeOpciones>(
-                    onTap: () => onTap(enumPerfil),
+                    onTap: () => widget.onTap(enumPerfil),
                     value: enumPerfil,
                     child: Text(
                       enumPerfil.nombreItem(context),

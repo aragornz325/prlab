@@ -11,8 +11,8 @@ class ExpresionRegular {
       );
 
   /// Expresion regular que solo admite formato letras.
-  static RegExp get letrasRegExp => RegExp(r'^[a-zA-ZÀ-ÿ]+$');
+  static RegExp get letrasRegExp => RegExp(r'^[a-zA-ZÀ-ÿ\s]+$');
 
   /// Expresion regular que solo admite formato datetime.
-  static RegExp get dateTimeRegExp => RegExp(r'^[0-9/-]+$');
+  static RegExp get dateTimeRegExp => RegExp(r'^[0-9/-\s]+$');
 }

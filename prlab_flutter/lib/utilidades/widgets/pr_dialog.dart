@@ -74,37 +74,39 @@ class PRDialog extends StatelessWidget {
       height: tieneAlturaMinima ? (height?.ph ?? 0) : null,
       width: width.ph,
       tipo: TipoDialog.solicitudAccion,
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(
-            width: 360.pw,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(height: 40.ph),
-                Text(
-                  titulo,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20.pf,
-                    fontWeight: FontWeight.w600,
-                    color: colores.tertiary,
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              width: 360.pw,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(height: 40.ph),
+                  Text(
+                    titulo,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20.pf,
+                      fontWeight: FontWeight.w600,
+                      color: colores.tertiary,
+                    ),
                   ),
-                ),
-                SizedBox(height: 40.ph),
-                content,
-                SizedBox(height: alturaEntreBotonYContenido ?? 40.ph),
-                PRBoton.esOutlined(
-                  width: anchoDelBoton ?? 360.pw,
-                  estaHabilitado: estaHabilitado,
-                  onTap: onTap,
-                  texto: tituloDelBoton ?? l10n.commonSend,
-                ),
-              ],
+                  SizedBox(height: 40.ph),
+                  content,
+                  SizedBox(height: alturaEntreBotonYContenido ?? 40.ph),
+                  PRBoton.esOutlined(
+                    width: anchoDelBoton ?? 360.pw,
+                    estaHabilitado: estaHabilitado,
+                    onTap: onTap,
+                    texto: tituloDelBoton ?? l10n.commonSend,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -375,7 +377,7 @@ class PRDialog extends StatelessWidget {
               l10n.commonSuccess,
               style: TextStyle(
                 fontSize: 20.pf,
-                color: colores.error,
+                color: colores.tertiary,
                 fontWeight: FontWeight.w600,
               ),
             ),

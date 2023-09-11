@@ -1,8 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/bloc/bloc_lista_articulos_y_recortes.dart';
+import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/dialog/dialog.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/dialog/pr_dialog_filtrar_por_autor.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
@@ -81,9 +84,20 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
                         return const PrDialogFiltrarPorAutor();
                       },
                     );
-                  case '0':
                   case '2':
+                    showDialog<void>(
+                      context: context,
+                      builder: (_) => BlocProvider.value(
+                        value: context.read<BlocListaArticulosYRecortes>(),
+                        child: const PrDialogFiltrarPorStatus(),
+                      ),
+                    );
                   case '3':
+                    showDialog<void>(
+                      context: context,
+                      builder: (context) => const PRDialogFiltrarPorFecha(),
+                    );
+                  case '0':
                     return;
                 }
               },

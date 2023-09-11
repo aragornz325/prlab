@@ -7,7 +7,6 @@ import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/bloc/bloc_lista_articulos_y_recortes.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/widgets/widgets.dart';
-import 'package:prlab_flutter/l10n/l10n.dart';
 
 class ListaArticulosYRecortes extends StatelessWidget {
   const ListaArticulosYRecortes({
@@ -20,8 +19,6 @@ class ListaArticulosYRecortes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
-
-    final l10n = context.l10n;
 
     return BlocProvider<BlocListaArticulosYRecortes>(
       create: (context) => BlocListaArticulosYRecortes()
@@ -41,17 +38,12 @@ class ListaArticulosYRecortes extends StatelessWidget {
 
                 // si el index es 1 o recortes
                 if (state.index == 1)
-                  SizedBox(
-                    height: max(400.ph, 400.sh),
-                    child: Center(
-                      child: Text(
-                        l10n.commonFeatureNotAvailable,
-                        style: TextStyle(
-                          color: colores.secondary,
-                          fontSize: 15.pf,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+                  Center(
+                    child: SizedBox(
+                      height: max(400.ph, 400.sh),
+                      width: 200.pw,
+                      child:
+                          Image.asset(Assets.assets_images_nada_para_ver_png),
                     ),
                   )
                 else
@@ -72,7 +64,7 @@ class ListaArticulosYRecortes extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     ),
                   )
-                else if (state.articulos.isEmpty)
+                else if (state.index == 0 && state.articulos.isEmpty)
                   Center(
                     child: SizedBox(
                       height: max(300.ph, 300.sh),
@@ -81,7 +73,7 @@ class ListaArticulosYRecortes extends StatelessWidget {
                           Image.asset(Assets.assets_images_nada_para_ver_png),
                     ),
                   )
-                else
+                else if (state.index == 0 && state.articulos.isNotEmpty)
                   // si la lista de articulos tiene elementos
                   ListaDeArticulos(articulos: state.articulos),
               ],
