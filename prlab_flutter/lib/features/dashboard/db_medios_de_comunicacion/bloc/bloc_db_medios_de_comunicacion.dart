@@ -1,5 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/model_periodista.dart';
+import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/widgets.dart';
 
 part 'bloc_db_medios_de_comunicacion_estado.dart';
 part 'bloc_db_medios_de_comunicacion_evento.dart';
@@ -21,8 +23,13 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
     on<BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista>(
       _obtenerArticulosDelPeriodista,
     );
+    on<BlocDbMediosDeComunicacionEventoActualizarFiltros>(_actualizarFiltros);
+    on<BlocDbMediosDeComunicacionEventoObtenerListadoDeFiltros>(
+      _obtenerListadoDeFiltros,
+    );
 
     add(BlocDbMediosDeComunicacionEventoObtenerPeriodistas());
+    add(BlocDbMediosDeComunicacionEventoObtenerListadoDeFiltros());
   }
 
   /// Trata de obtener la lista de periodistas que estan en la base
@@ -65,28 +72,6 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
         ),
         Periodista(
           id: 2,
-          name: 'Julian Julian Julian Julian',
-          anchor: 'Nidus',
-          location: 'Argentina',
-          topicCovered: ['Software'],
-          email: 'julian@nidus.com',
-          avatar:
-              'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png',
-          valoracion: 90,
-          estaSeleccionado: true,
-          urlDeImage:
-              'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png',
-          idioma: 'Spanish',
-          telefono: '11 4585-2435',
-          facebook: 'Julian Julian Julian',
-          instagram: '@julian_nidus',
-          twitter: '@julian_nidus',
-          youtube: '@julian_nidus',
-          descripcion:
-              'This is a description This is a description This is a description This is a description This is a description This is a description This is a description This is a description',
-        ),
-        Periodista(
-          id: 3,
           name: 'Julian Julian Julian Julian',
           anchor: 'Nidus',
           location: 'Argentina',
@@ -162,4 +147,68 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
       emit(BlocDbMediosDeComunicacionEstadoFallido.desde(state));
     }
   }
+
+  Future<void> _actualizarFiltros(
+    BlocDbMediosDeComunicacionEventoActualizarFiltros event,
+    Emitter<BlocDbMediosDeComunicacionEstado> emit,
+  ) async {
+    emit(
+      BlocDbMediosDeComunicacionEstadoActualizandoFiltros.desde(
+        state,
+        paises: event.paises,
+        ciudades: event.ciudades,
+        lenguajes: event.lenguajes,
+        temas: event.temas,
+        roles: event.roles,
+        tipoDeMedio: event.tipoDeMedio,
+      ),
+    );
+  }
+
+  Future<void> _obtenerListadoDeFiltros(
+    BlocDbMediosDeComunicacionEventoObtenerListadoDeFiltros event,
+    Emitter<BlocDbMediosDeComunicacionEstado> emit,
+  ) async {
+    final list = [
+      const Filtro(etiqueta: 'Argentina', estaSeleccionado: true),
+      const Filtro(etiqueta: 'Paraguay', estaSeleccionado: true),
+      const Filtro(etiqueta: 'Chile', estaSeleccionado: true),
+      const Filtro(etiqueta: 'Bolivia', estaSeleccionado: true),
+      const Filtro(etiqueta: 'Peru', estaSeleccionado: true),
+      const Filtro(etiqueta: 'Uruguay', estaSeleccionado: true),
+    ];
+
+    emit(
+      BlocDbMediosDeComunicacionEstadoActualizandoFiltros.desde(
+        state,
+        paises: list,
+        ciudades: list,
+        lenguajes: list,
+        temas: list,
+        roles: list,
+        tipoDeMedio: list,
+      ),
+    );
+  }
+}
+
+// TODO(Andre):
+// Eliminar este modelo cuando se nos brinden los modelos del backend.
+///
+/// Componente provisional hasta que nos den los modelos
+/// de los filtros desde el backend
+class Filtro extends Equatable {
+  const Filtro({
+    required this.etiqueta,
+    required this.estaSeleccionado,
+  });
+
+  final String etiqueta;
+  final bool estaSeleccionado;
+
+  @override
+  List<Object?> get props => [
+        etiqueta,
+        estaSeleccionado,
+      ];
 }

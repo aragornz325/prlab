@@ -240,7 +240,7 @@ class _IconoConDatoDePeriodista extends StatelessWidget {
       height: max(30.ph, 30.sh),
       child: Row(
         children: [
-          Icon(icono, color: colores.primaryAltaOpacidad),
+          Icon(icono, color: colores.primaryOpacidadVeinte),
           SizedBox(width: 5.pw),
           Text(
             etiqueta,

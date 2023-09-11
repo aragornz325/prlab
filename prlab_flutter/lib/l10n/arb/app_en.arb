@@ -578,6 +578,11 @@
         "description": "It is found in the journalist filters, the people menu, a message that expresses a `Role` type of filter"
     },
 
+    "pageMediaDatabaseHorizontalFilterLabelMediaType": "Media type",
+    "@pageMediaDatabaseHorizontalFilterLabelMediaType": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Media type` type of filter"
+    },
+
     "pageMediaDatabaseHorizontalFilterButtomButton": "Save data",
     "@pageMediaDatabaseHorizontalFilterButtomButton": {
         "description": "It is found in the journalist filters, the people menu, its used to save the filter data, to use it in other opportunity"
@@ -586,6 +591,26 @@
     "pageMediaDatabaseHorizontalFilterClearAll": "Clear all",
     "@pageMediaDatabaseHorizontalFilterClearAll": {
         "description": "It is found in the journalist filters, the people menu, a message that expresses the intention of delete all the items from specific filter"
+    },
+
+    "pageMediaDatabaseFilterTileFilterByPopupTitle": "Filter by {something}",
+    "@pageMediaDatabaseFilterTileFilterByPopupTitle": {
+        "description": "It is found in the journalist filters, the people menu, the title in the popup that is shown when you want to modify the filters",
+        "placeholders" :{
+            "something" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageMediaDatabaseFilterTileFilterByPopupDropdownHintText": "Choose a {something}",
+    "@pageMediaDatabaseFilterTileFilterByPopupDropdownHintText": {
+        "description": "It is found in the journalist filters, the people menu,the hint text inside the dropdown in the popup that is shown when you want to modify the filters",
+        "placeholders" :{
+            "something" : {
+                "type": "String"
+            }
+        }
     },
 
     "pageMediaDatabaseJournalistInformationDialogAnchorAt": "Anchor at {workplace}",

@@ -12,11 +12,10 @@ part of 'filtrador_de_periodistas.dart';
 /// si se brindan las listas actualizadas cuando se instancia el mismo_
 ///
 /// Contiene además funcionalidades de la eliminación de
-/// ítems pre-seleccionados, aquellos que se encuentren en la lista
-/// de [listaDeSeleccionados].
+/// ítems pre-seleccionados, aquellos donde `estaSeleccionado` dentro del
+/// objeto [Item] lo tengan true.
 ///
-/// También la adhesión de nuevos [Item]s, obtenidos de [listaDeSeleccionables]
-/// a la lista de [listaDeSeleccionados] a través de un popup
+/// También la alteración de `estaSeleccionado` a través de un popup
 /// con la lista de [Item]s y respectivos checkboxes.
 /// {@endtemplate}
 class TileConCheckBoxes<T> extends StatelessWidget {
@@ -24,10 +23,9 @@ class TileConCheckBoxes<T> extends StatelessWidget {
   const TileConCheckBoxes({
     required this.titulo,
     required this.onTapEliminarTodo,
-    required this.onTapSeleccionarMasItems,
+    required this.onTapAplicarNuevaSeleccion,
     required this.onTapEliminarItem,
-    this.listaDeSeleccionables = const [],
-    this.listaDeSeleccionados = const [],
+    this.listaDeItems = const [],
     super.key,
   });
 
@@ -37,12 +35,9 @@ class TileConCheckBoxes<T> extends StatelessWidget {
   /// en la lista de [Item]s.
   final String titulo;
 
-  /// Aquellos ítems que fueron seleccionados.
-  final List<Item<T>> listaDeSeleccionados;
-
   /// Lista completa de ítems que pueden ser seleccionables o
   /// ya fueron seleccionados.
-  final List<Item<T>> listaDeSeleccionables;
+  final List<Item<T>> listaDeItems;
 
   /// Callback que devuelve la lista de ítems a ser eliminados
   /// para manejar un posible cómputo por fuera de este objeto.
@@ -52,11 +47,16 @@ class TileConCheckBoxes<T> extends StatelessWidget {
   /// para un posible cómputo por fuera de este objeto.
   final void Function(T itemParaEliminar) onTapEliminarItem;
 
-  /// Callback que devuelve la lista de ítems a ser adheridos
-  /// para manejar un posible cómputo por fuera de este objeto.
-  final void Function(List<T> itemsParaAdherir) onTapSeleccionarMasItems;
+  /// Callback que devuelve la lista de ítems con los respectivos
+  /// cambios de selección aplicados en el popup integrado del
+  /// [TileConCheckBoxes].
+  final void Function(List<Item<T>> itemsParaAdherir)
+      onTapAplicarNuevaSeleccion;
 
-  List<T> get itemValues => listaDeSeleccionados.map((e) => e.valor).toList();
+  List<Item<T>> get itemSeleccionados =>
+      listaDeItems.where((e) => e.estaSeleccionado).toList();
+
+  List<T> get itemValues => itemSeleccionados.map((e) => e.valor).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +81,7 @@ class TileConCheckBoxes<T> extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  if (listaDeSeleccionados.isNotEmpty)
+                  if (itemSeleccionados.isNotEmpty)
                     InkWell(
                       onTap: () => onTapEliminarTodo.call(itemValues),
                       child: Text(
@@ -94,11 +94,10 @@ class TileConCheckBoxes<T> extends StatelessWidget {
                   SizedBox(width: 10.pw),
                   InkWell(
                     onTap: () {
-                      ListaDeItemsSeleccionablesDialog(
+                      ListaDeItemsSeleccionablesDialog<T>(
                         titulo: titulo,
-                        listaDeSeleccionables: listaDeSeleccionables,
-                        listaDeSeleccionados: listaDeSeleccionados,
-                        onTapAplicar: onTapSeleccionarMasItems,
+                        listaDeSeleccionables: listaDeItems,
+                        onTapAplicar: onTapAplicarNuevaSeleccion,
                       ).show(context);
                     },
                     child: Icon(
@@ -109,8 +108,8 @@ class TileConCheckBoxes<T> extends StatelessWidget {
                   SizedBox(width: 20.pw),
                 ],
               ),
-              if (listaDeSeleccionados.isNotEmpty) SizedBox(height: 15.ph),
-              ...listaDeSeleccionados.map(
+              if (itemSeleccionados.isNotEmpty) SizedBox(height: 15.ph),
+              ...itemSeleccionados.map(
                 (e) => Row(
                   children: [
                     InkWell(
@@ -153,7 +152,6 @@ class ListaDeItemsSeleccionablesDialog<T> extends StatefulWidget {
   const ListaDeItemsSeleccionablesDialog({
     required this.titulo,
     required this.listaDeSeleccionables,
-    required this.listaDeSeleccionados,
     required this.onTapAplicar,
     super.key,
   });
@@ -168,15 +166,12 @@ class ListaDeItemsSeleccionablesDialog<T> extends StatefulWidget {
   /// ya fueron seleccionados.
   final List<Item<T>> listaDeSeleccionables;
 
-  /// Aquellos ítems que fueron seleccionados.
-  final List<Item<T>> listaDeSeleccionados;
-
   /// Al clickear en el boton de aplicar, se ejecuta
   /// esta funcion donde se devuelve la nueva lista de [T]s
   /// que fueron seleccionados, incluyendo los que previamente
   /// ya estaban seleccionados y no fueron destildados en los
   /// checkboxes.
-  final void Function(List<T>) onTapAplicar;
+  final void Function(List<Item<T>>) onTapAplicar;
 
   Future<void> show(BuildContext context) => showDialog(
         context: context,
@@ -190,42 +185,69 @@ class ListaDeItemsSeleccionablesDialog<T> extends StatefulWidget {
 
 class _ListaDeItemsSeleccionablesDialogState<T>
     extends State<ListaDeItemsSeleccionablesDialog<T>> {
-  List<Item<T>> itemsSeleccionados = [];
+  List<Item<T>> _listaDeSeleccionables = [];
 
-  List<T> get valorDeItems => itemsSeleccionados.map((e) => e.valor).toList();
+  @override
+  void initState() {
+    super.initState();
+    _listaDeSeleccionables = widget.listaDeSeleccionables;
+  }
 
-  // TODO(Andre):
-  // Cambiar al diseño que esta en figma
-  // ese es solo para mostrar la data.
   @override
   Widget build(BuildContext context) {
+    final colores = context.colores;
+
+    final l10n = context.l10n;
+
     return PRDialog.solicitudAccion(
       context: context,
-      titulo: 'Filter by ${widget.titulo}',
-      content: Column(
-        children: [
-          ...widget.listaDeSeleccionables.map(
-            (e) => InkWell(
-              onTap: () {
-                // TODO(Andre): Arreglar esto que solo agrega en proximo pr.
-                itemsSeleccionados.add(e);
-              },
-              child: Row(
-                children: [
-                  const Checkbox(
-                    value: true,
-                    // No requiere funcionamiento
-                    onChanged: null,
-                  ),
-                  SizedBox(width: 5.pw),
-                  Text(e.etiqueta),
-                ],
+      titulo: l10n.pageMediaDatabaseFilterTileFilterByPopupTitle(widget.titulo),
+      tituloDelBoton: l10n.commonApply,
+      tieneAlturaMinima: false,
+      content: PRDropdown<T>(
+        isValid: true,
+        valueColor: colores.primary,
+        hasSearchField: true,
+        items: _listaDeSeleccionables
+            .map(
+              (item) => PRDropdownOption<T>(
+                title: item.etiqueta,
+                value: item.valor,
+                textStyle: TextStyle(color: colores.tertiary),
+                checkBoxValue: item.estaSeleccionado,
+                checkBoxCallback: (value) {
+                  _listaDeSeleccionables =
+                      _listaDeSeleccionables.alternarSeleccion(
+                    item,
+                  );
+                  setState(() {});
+                },
               ),
-            ),
-          ),
-        ],
+            )
+            .toList(),
+        icon: Icon(
+          Icons.person_outline_rounded,
+          color: colores.primary,
+        ),
+        hintText: l10n.pageMediaDatabaseFilterTileFilterByPopupDropdownHintText(
+          widget.titulo.toLowerCase(),
+        ),
+        valueText: 'Choose an ${widget.titulo.toLowerCase()}',
+        onChanged: (value) {
+          final item = _listaDeSeleccionables.firstWhere(
+            (e) => e.valor == value,
+          );
+
+          _listaDeSeleccionables = _listaDeSeleccionables.alternarSeleccion(
+            item,
+          );
+          setState(() {});
+        },
       ),
-      onTap: () => widget.onTapAplicar.call(valorDeItems),
+      onTap: () {
+        widget.onTapAplicar.call(_listaDeSeleccionables);
+        Navigator.pop(context);
+      },
     );
   }
 }
@@ -233,13 +255,39 @@ class _ListaDeItemsSeleccionablesDialogState<T>
 /// Contiene los valores requeridos para poder renderizar
 /// un item de tipo [T] donde se utiliza la [etiqueta]
 /// para representarlo.
-class Item<T> {
-  Item({
+class Item<T> extends Equatable {
+  const Item({
     required this.etiqueta,
     required this.valor,
+    required this.estaSeleccionado,
   });
 
   final T valor;
 
   final String etiqueta;
+
+  final bool estaSeleccionado;
+
+  @override
+  List<Object?> get props => [
+        valor,
+        etiqueta,
+        estaSeleccionado,
+      ];
+}
+
+extension AlternarSeleccion<T> on List<Item<T>> {
+  List<Item<T>> alternarSeleccion(Item<T> item) {
+    return map((e) {
+      if (e == item) {
+        return Item(
+          etiqueta: item.etiqueta,
+          valor: item.valor,
+          estaSeleccionado: !item.estaSeleccionado,
+        );
+      }
+
+      return e;
+    }).toList();
+  }
 }

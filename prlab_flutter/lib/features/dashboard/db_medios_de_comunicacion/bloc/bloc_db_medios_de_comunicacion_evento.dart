@@ -8,13 +8,16 @@ abstract class BlocDbMediosDeComunicacionEvento {}
 /// {@template BlocDbMediosDeComunicacionEventoObtenerPeriodistas}
 /// Trata de obtener la lista de periodistas que estan en la base
 /// de datos.
-/// {@macro BlocDbMediosDeComunicacionEventoObtenerPeriodistas}
+/// {@endtemplate}
 class BlocDbMediosDeComunicacionEventoObtenerPeriodistas
-    extends BlocDbMediosDeComunicacionEvento {}
+    extends BlocDbMediosDeComunicacionEvento {
+  /// {@macro BlocDbMediosDeComunicacionEventoObtenerPeriodistas}
+  BlocDbMediosDeComunicacionEventoObtenerPeriodistas();
+}
 
 /// {@template BlocDbMediosDeComunicacionEventoObtenerDetallePeriodista}
 /// Trata información mas detallada de un periodista.
-/// {@macro BlocDbMediosDeComunicacionEventoObtenerPeriodistas}
+/// {@endtemplate}
 class BlocDbMediosDeComunicacionEventoObtenerDetallePeriodista
     extends BlocDbMediosDeComunicacionEvento {
   /// {@macro BlocDbMediosDeComunicacionEventoObtenerDetallePeriodista}
@@ -41,4 +44,34 @@ class BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista
   /// El identificador de un periodista, sirve para obtener la lista
   /// de articulos vinculados a este periodista.
   final String idPeriodista;
+}
+
+/// {@template BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista}
+/// {@endtemplate}
+class BlocDbMediosDeComunicacionEventoActualizarFiltros
+    extends BlocDbMediosDeComunicacionEvento {
+  /// {@macro BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista}
+  BlocDbMediosDeComunicacionEventoActualizarFiltros({
+    this.paises,
+    this.ciudades,
+    this.lenguajes,
+    this.temas,
+    this.roles,
+    this.tipoDeMedio,
+  });
+
+  final List<Filtro>? paises;
+  final List<Filtro>? ciudades;
+  final List<Filtro>? lenguajes;
+  final List<Filtro>? temas;
+  final List<Filtro>? tipoDeMedio;
+  final List<Filtro>? roles;
+}
+
+/// {@template BlocDbMediosDeComunicacionEventoObtenerListadoDeFiltros}
+/// {@endtemplate}
+class BlocDbMediosDeComunicacionEventoObtenerListadoDeFiltros
+    extends BlocDbMediosDeComunicacionEvento {
+  /// {@macro BlocDbMediosDeComunicacionEventoObtenerListadoDeFiltros}
+  BlocDbMediosDeComunicacionEventoObtenerListadoDeFiltros();
 }
