@@ -40,9 +40,7 @@ class PRDrawerListaItems extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         PRDrawerItem(
-          onTap: () {
-            onTap(DrawerPage.home);
-          },
+          onTap: () => onTap(DrawerPage.home),
           icono: Icons.cottage_outlined,
           tituloItem: l10n.drawerHome,
           estaSeleccionado: enumDrawer.esHome,
