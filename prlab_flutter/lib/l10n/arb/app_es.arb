@@ -691,7 +691,17 @@
     "@pageMediaDatabaseHorizontalFilterClearAll": {
         "description": "It is found in the journalist filters, the people menu, a message that expresses the intention of delete all the items from specific filter"
     },
-    
+
+    "pageHomeHeaderTitle": "Articulos Recientes",
+    "@pageHomeHeaderTitle": {
+        "description": "Text shown on the header of the home page"
+    },
+
+    "pageHomeHeaderDescription": "Puedes acceder a tus articulos mas recientes",
+    "@pageHomeHeaderDescription": {
+        "description": "Text shown under the title of the header on the home page"
+    },
+
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"

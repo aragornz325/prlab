@@ -58,7 +58,7 @@ class _PrDrawerState extends State<PrDrawer> {
               });
               switch (value) {
                 case DrawerPage.home:
-                  context.router.push(const RutaAdministracionMarcas());
+                  context.router.push(const RutaInicio());
                 case DrawerPage.projects:
                 case DrawerPage.templates:
                   showDialog<void>(
