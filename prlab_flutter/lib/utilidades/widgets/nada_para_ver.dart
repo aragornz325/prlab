@@ -15,7 +15,7 @@ class NadaParaVer extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(Assets.assets_images_nothing_to_see_png),
+        Image.asset(Assets.assets_images_nada_para_ver_png),
         Text(
           l10n.commonNothingToSee,
           style: TextStyle(
