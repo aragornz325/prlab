@@ -1,0 +1,1 @@
+export 'dialog_informacion_de_periodista/dialog_informacion_de_periodista.dart';

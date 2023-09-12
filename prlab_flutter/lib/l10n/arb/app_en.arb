@@ -578,6 +578,11 @@
         "description": "It is found in the journalist filters, the people menu, a message that expresses a `Role` type of filter"
     },
 
+    "pageMediaDatabaseHorizontalFilterLabelMediaType": "Media type",
+    "@pageMediaDatabaseHorizontalFilterLabelMediaType": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Media type` type of filter"
+    },
+
     "pageMediaDatabaseHorizontalFilterButtomButton": "Save data",
     "@pageMediaDatabaseHorizontalFilterButtomButton": {
         "description": "It is found in the journalist filters, the people menu, its used to save the filter data, to use it in other opportunity"
@@ -586,6 +591,66 @@
     "pageMediaDatabaseHorizontalFilterClearAll": "Clear all",
     "@pageMediaDatabaseHorizontalFilterClearAll": {
         "description": "It is found in the journalist filters, the people menu, a message that expresses the intention of delete all the items from specific filter"
+    },
+
+    "pageMediaDatabaseFilterTileFilterByPopupTitle": "Filter by {something}",
+    "@pageMediaDatabaseFilterTileFilterByPopupTitle": {
+        "description": "It is found in the journalist filters, the people menu, the title in the popup that is shown when you want to modify the filters",
+        "placeholders" :{
+            "something" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageMediaDatabaseFilterTileFilterByPopupDropdownHintText": "Choose a {something}",
+    "@pageMediaDatabaseFilterTileFilterByPopupDropdownHintText": {
+        "description": "It is found in the journalist filters, the people menu,the hint text inside the dropdown in the popup that is shown when you want to modify the filters",
+        "placeholders" :{
+            "something" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogAnchorAt": "Anchor at {workplace}",
+    "@pageMediaDatabaseJournalistInformationDialogAnchorAt": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, it indicates where the journalist works",
+        "placeholders" :{
+            "workplace" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogGeneral": "General",
+    "@pageMediaDatabaseJournalistInformationDialogGeneral": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, its a one of the title for the journalist information items"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogSocial": "Social",
+    "@pageMediaDatabaseJournalistInformationDialogSocial": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, its a one of the title for the journalist information items"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogAddToList": "Add to list",
+    "@pageMediaDatabaseJournalistInformationDialogAddToList": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, expresses the addition of one of the journalist to our own list"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogReport": "Report",
+    "@pageMediaDatabaseJournalistInformationDialogReport": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, expresses the reporting of one of the journalist"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogSearchHintText": "Search keywords in articles",
+    "@pageMediaDatabaseJournalistInformationDialogSearchHintText": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, expresses the reporting of one of the journalist"
+    },
+
+    "pageMediaDatabaseJournalistListTopLabel": "Influence score",
+    "@pageMediaDatabaseJournalistListTopLabel": {
+        "description": "Indicates the influence in the media that the journalist has represented by a numerical score."
     },
     
     "cardPeriodistaBotonDetails": "Details",

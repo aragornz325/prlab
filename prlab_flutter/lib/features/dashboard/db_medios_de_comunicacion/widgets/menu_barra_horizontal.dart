@@ -63,6 +63,7 @@ class _ContadorLimiteDeBusquedas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+    final l10n = context.l10n;
 
     return Row(
       children: [
@@ -82,7 +83,7 @@ class _ContadorLimiteDeBusquedas extends StatelessWidget {
               // TODO(Andre): Preguntarle a vir que va aca.
               PopupMenuItem<String>(
                 child: Text(
-                  'Completar con algo aca',
+                  l10n.commonFeatureNotAvailable,
                   style: TextStyle(
                     fontSize: 14.pf,
                     color: colores.secondary,

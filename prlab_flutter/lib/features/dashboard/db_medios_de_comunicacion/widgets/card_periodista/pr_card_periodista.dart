@@ -1,41 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/dialog/dialog.dart';
+import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/card_periodista.dart';
 import 'package:prlab_flutter/theming/base.dart';
-import 'package:prlab_flutter/utilidades/widgets/card_periodista/card_periodista.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template PRCardPeriodista}
 /// Tarjeta con la descripción y los detalles del periodista.
 /// {@endtemplate}
 class PRCardPeriodista extends StatelessWidget {
   /// {@macro PRCardPeriodista}
-  const PRCardPeriodista({super.key});
+  const PRCardPeriodista({
+    required this.periodista,
+    super.key,
+  });
+
+  /// Modelo de periodista, contiene información que va a ser
+  /// mostrada en compontes interno de [PRCardPeriodista].
+  final Periodista periodista;
 
   @override
   Widget build(BuildContext context) {
-    //! TODO: cambiar por modelo creado por el backend
-    final periodista = Periodista(
-      name: 'Javier Milei',
-      anchor: 'Presidente de Argentina',
-      location: 'Argentina',
-      topicCovered: [
-        'Politics',
-        'Economy',
-        'Libertarian',
-        'Humanity',
-        'blablablablablabla',
-      ],
-      email: 'javi_goalkeeper@yahoo.com',
-      avatar:
-          'https://upload.wikimedia.org/wikipedia/commons/d/da/Javier_Milei_VIVA22_%28cropped%29.jpg',
-      valoracion: 99,
-      estaSeleccionado: true,
-    );
-
     final colores = context.colores;
     return Container(
-      height: 290.ph,
-      width: 560.pw,
+      margin: EdgeInsets.symmetric(
+        vertical: 20.ph,
+        horizontal: 20.pw,
+      ),
+      height: 300.ph,
       decoration: BoxDecoration(
         color: colores.surfaceTint,
         boxShadow: [
@@ -59,8 +52,10 @@ class PRCardPeriodista extends StatelessWidget {
             RowBotonesEmailPRCardPeriodista(
               periodista: periodista,
               // TODO(Anyone): dar funcionalidad cuando este definida
-              onTapAdd: () {},
-              onTapDetails: () {},
+              onTapAdd: () => const PRDialogErrorNoDisponible().show(context),
+              onTapDetails: () => DialogInformacionDePeriodista(
+                idPeriodista: periodista.id,
+              ).show(context),
             ),
           ],
         ),
