@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/model_periodista.dart';
 import 'package:prlab_flutter/features/dashboard/inicio/bloc/bloc_inicio.dart';
 import 'package:prlab_flutter/features/dashboard/inicio/escritorio/widgets/widgets.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/encabezado_de_seccion.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/widgets/card_articulo_reciente.dart/pr_card_articulo_reciente.dart';
 
 /// {@template VistaEscritorioInicio}
 /// Vista de escritorio del Inicio del dashboard, seccion que el usuario ve
@@ -56,8 +58,44 @@ class VistaEscritorioInicio extends StatelessWidget {
                     // TODO(Gon): Cambiar cuando se traiga la lista del back
                     : SizedBox(
                         width: 1010.pw,
-                        height: 300.ph,
-                        child: const Text('Lista de articulos recientes'),
+                        height: 223.ph,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Row(
+                              children: [
+                                PRCardeArticuloReciente(
+                                  onTap: () {},
+                                  titulo: state.listaArticulos[index].titulo,
+                                  // TODO(Gon): Traer el modelo del back
+                                  periodista: Periodista(
+                                    name: 'name',
+                                    anchor: 'anchor',
+                                    location: 'location',
+                                    topicCovered: ['topicCovered'],
+                                    email: 'email',
+                                    avatar: 'avatar',
+                                    valoracion: 10,
+                                    estaSeleccionado: false,
+                                    urlDeImage: 'urlDeImage',
+                                    idioma: 'idioma',
+                                    telefono: 'telefono',
+                                    facebook: 'facebook',
+                                    instagram: 'instagram',
+                                    twitter: 'twitter',
+                                    youtube: 'youtube',
+                                    descripcion: 'descripcion',
+                                    id: 3,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 55.pw,
+                                ),
+                              ],
+                            );
+                          },
+                          itemCount: state.listaArticulos.length,
+                        ),
                       ),
               );
             },

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/dashboard/inicio/bloc/bloc_inicio.dart';
 import 'package:prlab_flutter/features/dashboard/inicio/escritorio/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
@@ -23,6 +25,16 @@ class ContainerBusqueda extends StatelessWidget {
     final colores = context.colores;
 
     final l10n = context.l10n;
+
+    final state = context.watch<BlocInicio>().state;
+
+    var estaCargando = false;
+
+    if (state is BlocInicioEstadoCargando) {
+      estaCargando = true;
+    } else {
+      estaCargando = false;
+    }
 
     return Container(
       width: 1010.pw,
@@ -89,33 +101,37 @@ class ContainerBusqueda extends StatelessWidget {
               ItemContainerBusqueda(
                 texto: l10n.pageHomeContainerBusquedaItemMediaDatabase,
                 icono: Icons.explore_outlined,
-                estaCargando: true,
+                estaCargando: estaCargando,
               ),
               ItemContainerBusqueda(
                 texto: l10n.pageHomeContainerBusquedaItemContacts,
                 icono: Icons.ballot_outlined,
-                estaCargando: true,
+                estaCargando: estaCargando,
               ),
               ItemContainerBusqueda(
                 texto: l10n.pageHomeContainerBusquedaItemOnlineNewsroom,
                 icono: Icons.telegram,
-                estaCargando: true,
+                estaCargando: estaCargando,
               ),
               ItemContainerBusqueda(
                 texto: l10n.pageHomeContainerBusquedaItemPRReports,
                 icono: Icons.donut_small,
+                estaCargando: estaCargando,
               ),
               ItemContainerBusqueda(
                 texto: l10n.pageHomeContainerBusquedaItemAnalytic,
                 icono: Icons.account_tree_outlined,
+                estaCargando: estaCargando,
               ),
               ItemContainerBusqueda(
                 texto: l10n.pageHomeContainerBusquedaItemMediaMonitoring,
                 icono: Icons.monitor_heart_outlined,
+                estaCargando: estaCargando,
               ),
               ItemContainerBusqueda(
                 texto: l10n.pageHomeContainerBusquedaItemStatistics,
                 icono: Icons.monitor,
+                estaCargando: estaCargando,
               ),
             ],
           ),

@@ -139,7 +139,7 @@ class PRCardeArticuloReciente extends StatelessWidget {
               ),
               Positioned(
                 left: 10.pw,
-                top: 95.ph,
+                top: 85.ph,
                 child: CircleAvatar(
                   radius: 30.sw,
                   backgroundImage: const NetworkImage(
