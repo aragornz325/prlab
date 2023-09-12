@@ -1,8 +1,12 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/bloc/bloc_db_medios_de_comunicacion.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/widgets/pr_dropdown.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 part 'campo_de_texto_filtrador.dart';
@@ -81,6 +85,7 @@ class _FiltradorDePeriodistasState extends State<FiltradorDePeriodistas> {
             // ? fuese mas dinámico y no un valor en duro.
             height: 620.sh,
             child: PageView(
+              physics: const NeverScrollableScrollPhysics(),
               controller: _pageController,
               onPageChanged: (value) {
                 _itemSeleccionado = ItemMenuFiltros.values.firstWhere(
