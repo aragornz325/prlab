@@ -1,3 +1,5 @@
+import 'package:prlab_flutter/utilidades/widgets/card_articulo_reciente.dart/modelo_articulo.dart';
+
 class Periodista {
   Periodista({
     required this.name,
@@ -35,4 +37,5 @@ class Periodista {
   String avatar;
   int valoracion;
   bool estaSeleccionado;
+  List<Articulo>? articulo;
 }
