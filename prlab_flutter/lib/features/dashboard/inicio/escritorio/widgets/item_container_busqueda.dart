@@ -4,7 +4,11 @@ import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/theming/base.dart';
 import 'package:shimmer/shimmer.dart';
 
+/// {@template ItemContainerBusqueda}
+/// Item de categoria en el container con barra de busqueda
+/// {@endtemplate}
 class ItemContainerBusqueda extends StatelessWidget {
+  /// {@macro ItemContainerBusqueda}
   const ItemContainerBusqueda({
     required this.texto,
     required this.icono,

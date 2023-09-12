@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 
+/// {@template TarjetaCargando}
+/// Tarjeta en estado de cargando, para mostrar mientras se recibe la
+/// informacion
+/// {@endtemplate}
 class TarjetaCargando extends StatelessWidget {
+  /// {@macro TarjetaCargando}
   const TarjetaCargando({
     super.key,
   });

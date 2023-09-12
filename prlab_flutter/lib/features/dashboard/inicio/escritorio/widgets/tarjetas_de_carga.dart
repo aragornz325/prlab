@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/features/dashboard/inicio/escritorio/widgets/widgets.dart';
 
+/// {@template TarjetasDeCarga}
+/// Row con tarjetas en estado de cargando para mostrar mientras se recibe la
+/// informacion del back
+/// {@endtemplate}
 class TarjetasDeCarga extends StatelessWidget {
+  /// {@macro TarjetasDeCarga}
   const TarjetasDeCarga({
     super.key,
   });

@@ -5,7 +5,11 @@ import 'package:prlab_flutter/features/dashboard/inicio/escritorio/widgets/widge
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
 
+/// {@template ContainerBusqueda}
+/// Seccion donde hay una barra de busqueda e items de categorias
+/// {@endtemplate}
 class ContainerBusqueda extends StatelessWidget {
+  /// {@macro ContainerBusqueda}
   const ContainerBusqueda({
     required this.nombreUsuario,
     super.key,

@@ -9,8 +9,8 @@ import 'package:prlab_flutter/features/dashboard/widgets/encabezado_de_seccion.d
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template VistaEscritorioInicio}
-/// Vista del Inicio del dashboard, seccion que el usuario ve cuando inicia
-/// sesión
+/// Vista de escritorio del Inicio del dashboard, seccion que el usuario ve
+/// cuando inicia sesión
 /// {@endtemplate}
 class VistaEscritorioInicio extends StatelessWidget {
   /// {@macro VistaEscritorioInicio}

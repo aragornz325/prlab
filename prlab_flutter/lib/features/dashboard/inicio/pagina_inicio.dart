@@ -6,6 +6,10 @@ import 'package:prlab_flutter/features/dashboard/inicio/celular/vista_inicio.dar
 import 'package:prlab_flutter/features/dashboard/inicio/escritorio/vista_inicio.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
 
+/// {@template PaginaInicio}
+/// Pagina del Inicio del dashboard, seccion que el usuario ve cuando inicia
+/// sesión
+/// {@endtemplate}
 @RoutePage()
 class PaginaInicio extends StatelessWidget {
   /// {@macro PaginaInicio}
