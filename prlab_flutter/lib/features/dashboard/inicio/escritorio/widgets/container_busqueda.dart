@@ -70,9 +70,13 @@ class ContainerBusqueda extends StatelessWidget {
                   child: Icon(
                     Icons.manage_search_outlined,
                     size: 25.pf,
+                    color: colores.secondary,
                   ),
                 ),
                 hintText: l10n.pageHomeContainerBusquedaPlaceholder,
+                hintStyle: TextStyle(
+                  color: colores.secondary,
+                ),
                 border: InputBorder.none,
               ),
               style: TextStyle(fontSize: 17.pf),

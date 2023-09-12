@@ -45,7 +45,9 @@ class ItemContainerBusqueda extends StatelessWidget {
                 ? SizedBox(
                     width: 20.sw,
                     height: 20.sh,
-                    child: const CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      color: colores.secondary,
+                    ),
                   )
                 : Icon(
                     icono,

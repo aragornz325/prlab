@@ -25,8 +25,8 @@ class TarjetaCargando extends StatelessWidget {
         ),
         color: colores.surfaceTint,
       ),
-      child: const Center(
-        child: CircularProgressIndicator(),
+      child: Center(
+        child: CircularProgressIndicator(color: colores.secondary),
       ),
     );
   }
