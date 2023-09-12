@@ -628,6 +628,56 @@
         "description": "Text shown under the title of the header on the home page"
     },
 
+    "pageHomeContainerBusquedaTitle": "Welcome back, {name}!",
+    "@pageHomeContainerBusquedaTitle": {
+        "description": "Gives the welcome to the user on the home page",
+        "placeholders" : {
+            "name" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageHomeContainerBusquedaPlaceholder": "Search articles, projects, brands, and more...",
+    "@pageHomeContainerBusquedaPlaceholder": {
+        "description": "Placeholder on the search textfield"
+    },
+
+    "pageHomeContainerBusquedaItemMediaDatabase": "Media Database",
+    "@pageHomeContainerBusquedaItemMediaDatabase": {
+        "description": "Item bellow the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemContacts": "Contacts",
+    "@pageHomeContainerBusquedaItemContacts": {
+        "description": "Item bellow the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemOnlineNewsroom": "Online Newsroom",
+    "@pageHomeContainerBusquedaItemOnlineNewsroom": {
+        "description": "Item bellow the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemPRReports": "PR Reports",
+    "@pageHomeContainerBusquedaItemPRReports": {
+        "description": "Item bellow the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemAnalytic": "Analytic",
+    "@pageHomeContainerBusquedaItemAnalytic": {
+        "description": "Item bellow the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemMediaMonitoring": "Media Monitoring",
+    "@pageHomeContainerBusquedaItemMediaMonitoring": {
+        "description": "Item bellow the search bar"
+    },
+    
+    "pageHomeContainerBusquedaItemStatistics": "Statistics",
+    "@pageHomeContainerBusquedaItemStatistics": {
+        "description": "Item bellow the search bar"
+    },
+
     "commonCalendarSUN": "SUN",
     "@commonCalendarSUN": {
         "description": "first three letters of Sunday,this text is in the calendar for the title of the days"

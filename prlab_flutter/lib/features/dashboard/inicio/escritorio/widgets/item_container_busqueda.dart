@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/theming/base.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ItemEncabezado extends StatelessWidget {
-  const ItemEncabezado({
+class ItemContainerBusqueda extends StatelessWidget {
+  const ItemContainerBusqueda({
     required this.texto,
     required this.icono,
     this.estaCargando = false,
@@ -56,12 +57,12 @@ class ItemEncabezado extends StatelessWidget {
             height: 10.ph,
             child: Shimmer.fromColors(
               period: const Duration(seconds: 2),
-              baseColor: const Color(0xffAF2336),
-              highlightColor: Colors.white.withOpacity(.7),
+              baseColor: colores.primary,
+              highlightColor: colores.surfaceTintOpacidadSetenta,
               child: Container(
                 width: 50.pw,
                 height: 10.ph,
-                color: Colors.white.withOpacity(.4),
+                color: colores.surfaceTintOpacidadCuarenta,
               ),
             ),
           )

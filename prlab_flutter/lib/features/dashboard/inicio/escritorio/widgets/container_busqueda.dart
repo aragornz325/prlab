@@ -2,26 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/inicio/escritorio/widgets/widgets.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/theming/base.dart';
 
-class EncabezadoInicio extends StatelessWidget {
-  const EncabezadoInicio({
+class ContainerBusqueda extends StatelessWidget {
+  const ContainerBusqueda({
+    required this.nombreUsuario,
     super.key,
   });
+
+  /// Nombre del usuario logeado
+  final String nombreUsuario;
 
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
 
+    final l10n = context.l10n;
+
     return Container(
       width: 1010.pw,
       height: 264.ph,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: <Color>[
-            Color(0xffEC351D),
-            Color(0xffA4213B),
+            colores.gradientContainerBusqueda,
+            colores.primary,
           ],
           tileMode: TileMode.mirror,
         ),
@@ -31,7 +39,7 @@ class EncabezadoInicio extends StatelessWidget {
         children: [
           SizedBox(height: 20.ph),
           Text(
-            'Welcome back, John!',
+            l10n.pageHomeContainerBusquedaTitle(nombreUsuario),
             style: TextStyle(
               fontSize: 30.pf,
               color: colores.background,
@@ -60,45 +68,45 @@ class EncabezadoInicio extends StatelessWidget {
                     size: 25.pf,
                   ),
                 ),
-                hintText: 'Search articles, projects, brands, and more...',
+                hintText: l10n.pageHomeContainerBusquedaPlaceholder,
                 border: InputBorder.none,
               ),
               style: TextStyle(fontSize: 17.pf),
             ),
           ),
           SizedBox(height: 15.ph),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ItemEncabezado(
-                texto: 'Media Database',
+              ItemContainerBusqueda(
+                texto: l10n.pageHomeContainerBusquedaItemMediaDatabase,
                 icono: Icons.explore_outlined,
                 estaCargando: true,
               ),
-              ItemEncabezado(
-                texto: 'Contacts',
+              ItemContainerBusqueda(
+                texto: l10n.pageHomeContainerBusquedaItemContacts,
                 icono: Icons.ballot_outlined,
                 estaCargando: true,
               ),
-              ItemEncabezado(
-                texto: 'Online Newsroom',
+              ItemContainerBusqueda(
+                texto: l10n.pageHomeContainerBusquedaItemOnlineNewsroom,
                 icono: Icons.telegram,
                 estaCargando: true,
               ),
-              ItemEncabezado(
-                texto: 'PR Reports',
+              ItemContainerBusqueda(
+                texto: l10n.pageHomeContainerBusquedaItemPRReports,
                 icono: Icons.donut_small,
               ),
-              ItemEncabezado(
-                texto: 'Analytic',
+              ItemContainerBusqueda(
+                texto: l10n.pageHomeContainerBusquedaItemAnalytic,
                 icono: Icons.account_tree_outlined,
               ),
-              ItemEncabezado(
-                texto: 'Media Monitoring',
+              ItemContainerBusqueda(
+                texto: l10n.pageHomeContainerBusquedaItemMediaMonitoring,
                 icono: Icons.monitor_heart_outlined,
               ),
-              ItemEncabezado(
-                texto: 'Statistics',
+              ItemContainerBusqueda(
+                texto: l10n.pageHomeContainerBusquedaItemStatistics,
                 icono: Icons.monitor,
               ),
             ],

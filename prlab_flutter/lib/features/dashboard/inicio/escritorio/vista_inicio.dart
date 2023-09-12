@@ -28,7 +28,9 @@ class VistaEscritorioInicio extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 30.ph),
-          const EncabezadoInicio(),
+
+          /// TODO(Gon): Cambiar al nombre del usuario logeado
+          const ContainerBusqueda(nombreUsuario: 'John'),
           SizedBox(height: 50.ph),
           EncabezadoDeSeccion(
             titulo: l10n.pageHomeHeaderTitle,

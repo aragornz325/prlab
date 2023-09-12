@@ -702,6 +702,56 @@
         "description": "Text shown under the title of the header on the home page"
     },
 
+    "pageHomeContainerBusquedaTitle": "Bienvenido de nuevo, {name}!",
+    "@pageHomeContainerBusquedaTitle": {
+        "description": "Text shown under the title of the header on the home page",
+        "placeholders" : {
+            "name" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageHomeContainerBusquedaPlaceholder": "Busca artículos, proyectos, marcas y más...",
+    "@pageHomeContainerBusquedaPlaceholder": {
+        "description": "Placeholder on the search textfield"
+    },
+
+    "pageHomeContainerBusquedaItemMediaDatabase": "Base de datos de medios",
+    "@pageHomeContainerBusquedaItemMediaDatabase": {
+        "description": "Item bellow the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemContacts": "Contactos",
+    "@pageHomeContainerBusquedaItemContacts": {
+        "description": "Item bellow the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemOnlineNewsroom": "Sala de prensa en línea",
+    "@pageHomeContainerBusquedaItemOnlineNewsroom": {
+        "description": "Item bellow the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemPRReports": "PR Reportes",
+    "@pageHomeContainerBusquedaItemPRReports": {
+        "description": "Item bellow the search bar"
+    },
+    
+    "pageHomeContainerBusquedaItemAnalytic": "Analisis",
+    "@pageHomeContainerBusquedaItemAnalytic": {
+        "description": "Item bellow the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemMediaMonitoring": "Monitoreo de medios",
+    "@pageHomeContainerBusquedaItemMediaMonitoring": {
+        "description": "Item bellow the search bar"
+    },
+    
+    "pageHomeContainerBusquedaItemStatistics": "Estadísticas",
+    "@pageHomeContainerBusquedaItemStatistics": {
+        "description": "Item bellow the search bar"
+    },
+
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
