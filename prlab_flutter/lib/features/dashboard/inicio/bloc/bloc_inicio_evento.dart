@@ -1,7 +1,7 @@
 part of 'bloc_inicio.dart';
 
 /// {@template BlocInicioEvento}
-/// Clase padre de los eventos de [Inicio]
+/// Clase padre de los eventos de 'Inicio'
 /// {@endtemplate}
 abstract class BlocInicioEvento extends Equatable {
   /// {@macro BlocInicioEvento}
@@ -11,6 +11,6 @@ abstract class BlocInicioEvento extends Equatable {
 }
 
 /// {@template BlocInicioEventoInicializar}
-/// Inicializa la pagina [Inicio]
+/// Inicializa la pagina 'Inicio'
 /// {@endtemplate}
 class BlocInicioEventoInicializar extends BlocInicioEvento {}
