@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/model_periodista.dart';
 import 'package:prlab_flutter/features/dashboard/inicio/bloc/bloc_inicio.dart';
@@ -9,6 +8,7 @@ import 'package:prlab_flutter/features/dashboard/inicio/escritorio/widgets/widge
 import 'package:prlab_flutter/features/dashboard/widgets/encabezado_de_seccion.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/card_articulo_reciente.dart/pr_card_articulo_reciente.dart';
+import 'package:prlab_flutter/utilidades/widgets/nada_para_ver.dart';
 
 /// {@template VistaEscritorioInicio}
 /// Vista de escritorio del Inicio del dashboard, seccion que el usuario ve
@@ -49,11 +49,7 @@ class VistaEscritorioInicio extends StatelessWidget {
                 height: 300.ph,
                 child: state.listaArticulos.isEmpty
                     ? Center(
-                        child: Image.asset(
-                          // TODO(Gon): Cambiar imagen por un widget que tenga la
-                          // imagen y el texto de nothing to see
-                          Assets.assets_images_nada_para_ver_png,
-                        ),
+                        child: NadaParaVer(),
                       )
                     // TODO(Gon): Cambiar cuando se traiga la lista del back
                     : SizedBox(

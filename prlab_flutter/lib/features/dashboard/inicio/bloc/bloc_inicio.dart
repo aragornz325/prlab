@@ -30,29 +30,28 @@ class BlocInicio extends Bloc<BlocInicioEvento, BlocInicioEstado> {
       // TODO(Gon): Traer los datos del back
       await Future.delayed(const Duration(seconds: 2), () {}).then(
         (value) => emit(
-          BlocInicioEstadoExitosoGeneral.desde(
-            state,
-            listaArticulos: [
-              Articulo(
-                titulo: '¡Flutter full-responsive package has been released! ',
+          BlocInicioEstadoExitosoGeneral.desde(state, listaArticulos: []
+              // listaArticulos: [
+              //   Articulo(
+              //     titulo: '¡Flutter full-responsive package has been released! ',
+              //   ),
+              //   Articulo(
+              //     titulo: '¡Flutter full-responsive package has been released! ',
+              //   ),
+              //   Articulo(
+              //     titulo: '¡Flutter full-responsive package has been released! ',
+              //   ),
+              //   Articulo(
+              //     titulo: '¡Flutter full-responsive package has been released! ',
+              //   ),
+              //   Articulo(
+              //     titulo: '¡Flutter full-responsive package has been released! ',
+              //   ),
+              //   Articulo(
+              //     titulo: '¡Flutter full-responsive package has been released! ',
+              //   ),
+              // ],
               ),
-              Articulo(
-                titulo: '¡Flutter full-responsive package has been released! ',
-              ),
-              Articulo(
-                titulo: '¡Flutter full-responsive package has been released! ',
-              ),
-              Articulo(
-                titulo: '¡Flutter full-responsive package has been released! ',
-              ),
-              Articulo(
-                titulo: '¡Flutter full-responsive package has been released! ',
-              ),
-              Articulo(
-                titulo: '¡Flutter full-responsive package has been released! ',
-              ),
-            ],
-          ),
         ),
       );
     } catch (e, st) {

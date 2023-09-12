@@ -964,6 +964,11 @@
     "commonChooseAnAuthor": "Choose an author",
     "@commonChooseAnAuthor": {
         "description": "Text shown when the user hasn´t yet selected an item from a dropdown."
+    },
+
+    "commonNothingToSee": "Nada para ver",
+    "@commonNothingToSee": {
+        "description": "Text shown when the data brought from the db is empty"
     }
 }
 

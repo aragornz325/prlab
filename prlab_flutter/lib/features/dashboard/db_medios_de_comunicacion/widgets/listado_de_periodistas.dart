@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/bloc/bloc_db_medios_de_comunicacion.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/card_periodista.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/widgets/nada_para_ver.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template ListadoDePeriodistas}
@@ -40,11 +40,9 @@ class ListadoDePeriodistas extends StatelessWidget {
           }
 
           if (state.periodistas.isEmpty) {
-            return SizedBox(
+            return const SizedBox(
               child: Center(
-                child: Image.asset(
-                  Assets.assets_images_nada_para_ver_png,
-                ),
+                child: NadaParaVer(),
               ),
             );
           }
