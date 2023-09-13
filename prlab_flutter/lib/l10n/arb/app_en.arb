@@ -972,7 +972,7 @@
     
     "commonNothingToSee": "Nothing to see",
     "@commonNothingToSee": {
-        "description": "Text shown when the data brought from the db is empty"
+        "description": "Text shown when the user doesn´t have any data to show"
     }
 
 }

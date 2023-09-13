@@ -1,4 +1,2 @@
-export 'container_busqueda.dart';
-export 'item_container_busqueda.dart';
-export 'tarjeta_cargando.dart';
+export 'contenedor_de_la_barra_de_busqueda.dart';
 export 'tarjetas_de_carga.dart';

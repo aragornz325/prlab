@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -29,11 +31,11 @@ class VistaEscritorioInicio extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 30.ph),
+          SizedBox(height: max(30.ph, 30.sh)),
 
           /// TODO(Gon): Cambiar al nombre del usuario logeado
-          const ContainerBusqueda(nombreUsuario: 'John'),
-          SizedBox(height: 50.ph),
+          const ContenedorDeLaBarraDeBusqueda(nombreUsuario: 'John'),
+          SizedBox(height: max(50.ph, 50.sh)),
           EncabezadoDeSeccion(
             titulo: l10n.pageHomeHeaderTitle,
             descripcion: l10n.pageHomeHeaderDescription,
@@ -46,52 +48,49 @@ class VistaEscritorioInicio extends StatelessWidget {
               }
               return SizedBox(
                 width: 1010.pw,
-                height: 300.ph,
+                height: max(300.ph, 300.sh),
                 child: state.listaArticulos.isEmpty
-                    ? Center(
+                    ? const Center(
                         child: NadaParaVer(),
                       )
                     // TODO(Gon): Cambiar cuando se traiga la lista del back
-                    : SizedBox(
-                        width: 1010.pw,
-                        height: 223.ph,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return Row(
-                              children: [
-                                PRCardeArticuloReciente(
-                                  onTap: () {},
-                                  titulo: state.listaArticulos[index].titulo,
-                                  // TODO(Gon): Traer el modelo del back
-                                  periodista: Periodista(
-                                    name: 'name',
-                                    anchor: 'anchor',
-                                    location: 'location',
-                                    topicCovered: ['topicCovered'],
-                                    email: 'email',
-                                    avatar: 'avatar',
-                                    valoracion: 10,
-                                    estaSeleccionado: false,
-                                    urlDeImage: 'urlDeImage',
-                                    idioma: 'idioma',
-                                    telefono: 'telefono',
-                                    facebook: 'facebook',
-                                    instagram: 'instagram',
-                                    twitter: 'twitter',
-                                    youtube: 'youtube',
-                                    descripcion: 'descripcion',
-                                    id: 3,
-                                  ),
+                    : ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Row(
+                            children: [
+                              PRCardeArticuloReciente(
+                                // TODO(Gon): Agregar pusheo a la ruta correspondiente
+                                onTap: () {},
+                                titulo: state.listaArticulos[index].titulo,
+                                // TODO(Gon): Traer el modelo del back
+                                periodista: Periodista(
+                                  name: 'name',
+                                  anchor: 'anchor',
+                                  location: 'location',
+                                  topicCovered: ['topicCovered'],
+                                  email: 'email',
+                                  avatar: 'avatar',
+                                  valoracion: 10,
+                                  estaSeleccionado: false,
+                                  urlDeImage: 'urlDeImage',
+                                  idioma: 'idioma',
+                                  telefono: 'telefono',
+                                  facebook: 'facebook',
+                                  instagram: 'instagram',
+                                  twitter: 'twitter',
+                                  youtube: 'youtube',
+                                  descripcion: 'descripcion',
+                                  id: 3,
                                 ),
-                                SizedBox(
-                                  width: 55.pw,
-                                ),
-                              ],
-                            );
-                          },
-                          itemCount: state.listaArticulos.length,
-                        ),
+                              ),
+                              SizedBox(
+                                width: 55.pw,
+                              ),
+                            ],
+                          );
+                        },
+                        itemCount: state.listaArticulos.length,
                       ),
               );
             },

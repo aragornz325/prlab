@@ -4,12 +4,17 @@ import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
+/// {@template NadaParaVer}
+/// Tiene una imagen y un texto que indica que no hay informacion que mostrar
+/// {@endtemplate}
 class NadaParaVer extends StatelessWidget {
+  /// {@macro NadaParaVer}
   const NadaParaVer({super.key});
 
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
     final l10n = context.l10n;
 
     return Column(

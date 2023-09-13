@@ -16,49 +16,51 @@ class BlocInicioEstado extends Equatable {
           listaArticulos: listaArticulos ?? otro.listaArticulos,
         );
 
-  /// Inicio
+  /// Lista de articulos a mostrar bajo el encabezado del inicio
   final List<Articulo> listaArticulos;
 
   @override
   List<Object> get props => [
         listaArticulos,
       ];
+
+  bool get estaEnEstadoCargando => this is BlocInicioEstadoCargando;
 }
 
-/// {@template BlocAdministracionMarcasEstadoInicial}
+/// {@template BlocInicioEstadoInicial}
 /// Estado inicial de los componentes de la pantalla 'Inicio'
 /// {@endtemplate}
 class BlocInicioEstadoInicial extends BlocInicioEstado {
-  /// {@macro BlocAdministracionMarcasEstadoInicial}
+  /// {@macro BlocInicioEstadoInicial}
   const BlocInicioEstadoInicial() : super._();
 }
 
-/// {@template BlocAdministracionMarcasEstadoCargando}
+/// {@template BlocInicioEstadoCargando}
 /// Estado de cargando de los componentes de la pantalla 'Inicio'
 /// {@endtemplate}
 class BlocInicioEstadoCargando extends BlocInicioEstado {
-  /// {@macro BlocAdministracionMarcasEstadoCargando}
+  /// {@macro BlocInicioEstadoCargando}
   BlocInicioEstadoCargando.desde(
     super.otro,
   ) : super.desde();
 }
 
-/// {@template BlocAdministracionMarcasEstadoExitosoGeneral}
+/// {@template BlocInicioEstadoExitosoGeneral}
 /// Estado exitoso general de los componentes de la pantalla 'Inicio'
 /// {@endtemplate}
 class BlocInicioEstadoExitosoGeneral extends BlocInicioEstado {
-  /// {@macro BlocAdministracionMarcasEstadoExitosoGeneral}
+  /// {@macro BlocInicioEstadoExitosoGeneral}
   BlocInicioEstadoExitosoGeneral.desde(
     super.otro, {
     required super.listaArticulos,
   }) : super.desde();
 }
 
-/// {@template BlocAdministracionMarcasEstadoError}
+/// {@template BlocInicioEstadoError}
 /// Estado de error de los componentes de la pantalla 'Inicio'
 /// {@endtemplate}
 class BlocInicioEstadoError extends BlocInicioEstado {
-  /// {@macro BlocAdministracionMarcasEstadoError}
+  /// {@macro BlocInicioEstadoError}
   BlocInicioEstadoError.desde(
     super.otro, {
     required this.mensajeDeError,
