@@ -83,7 +83,8 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                 ),
                 SizedBox(width: 5.pw),
                 Text(
-                  // TODO(mati): hacer l10n, pero todavia no esta del todo definido los estado a filtrar
+                  // TODO(mati): hacer l10n, pero todavia no esta del todo
+                  // definido los estado a filtrar
                   'Feedback',
                   style: TextStyle(
                     color: colores.tertiary,

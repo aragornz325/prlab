@@ -288,6 +288,14 @@
     "@pageEditContentEditArticleContainerButtonUploadLogo": {
         "description":"Text of the button to upload the main logo, when you are creating or editing an article"
     },
+      "pageEditContentEditArticleContainerButtonDeleteLogo" : "Estás seguro que quieres eliminar este logo? No podrás deshacer esta acción.",
+    "@pageEditContentEditArticleContainerButtonDeleteLogo": {
+        "description":"Text of the description of the alert dialog delete logo, when you are creating or editing an article"
+    },
+         "pageEditContentEditArticleContainerButtonDeletePage" : "Estás seguro que quieres eliminar esta página? No podrás deshacer esta acción.",
+    "@pageEditContentEditArticleContainerButtonDeletePage": {
+        "description":"Text of the description of the alert dialog delete Page, when you are creating or editing an article"
+    },
     "pageEditContentEditArticleContainerButtonUploadSecondaryLogo" : "Subir logo secundario",
     "@pageEditContentEditArticleContainerButtonUploadSecondaryLogo": {
         "description":"Text of the button to upload the secondary logo, when you are creating or editing an article"

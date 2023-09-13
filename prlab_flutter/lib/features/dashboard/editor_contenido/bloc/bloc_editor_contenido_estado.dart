@@ -12,34 +12,62 @@ sealed class BlocEditorContenidoEstado {
     this.logoSecundarioElegidoCelular,
     this.logoSecundarioElegidoWeb,
     this.articulo,
-    this.listaSeccionesArticulo = const [],
+    this.eliminarLogoPrimario = false,
+    this.eliminarLogoSecundario = false,
+    this.listaPaginasDeArticulo = const [],
   });
 
   BlocEditorContenidoEstado.desde(
     BlocEditorContenidoEstado otro, {
+    bool eliminarLogoPrimario = false,
+    bool eliminarLogoSecundario = false,
     File? logoElegidoCelular,
     Uint8List? logoElegidoWeb,
     File? logoSecundarioElegidoCelular,
     Uint8List? logoSecundarioElegidoWeb,
     Articulo? articulo,
-    List<Articulo>? listaSeccionesArticulo,
+    List<PaginaSeccionArticulo>? listaPaginasDeArticulo,
   }) : this._(
-          logoElegidoCelular: logoElegidoCelular ?? otro.logoElegidoCelular,
-          logoElegidoWeb: logoElegidoWeb ?? otro.logoElegidoWeb,
-          logoSecundarioElegidoCelular:
-              logoSecundarioElegidoCelular ?? otro.logoSecundarioElegidoCelular,
-          logoSecundarioElegidoWeb:
-              logoSecundarioElegidoWeb ?? otro.logoSecundarioElegidoWeb,
+          logoElegidoCelular: eliminarLogoPrimario
+              ? null
+              : logoElegidoCelular ?? otro.logoElegidoCelular,
+          logoElegidoWeb: eliminarLogoPrimario
+              ? null
+              : logoElegidoWeb ?? otro.logoElegidoWeb,
+          logoSecundarioElegidoCelular: eliminarLogoSecundario
+              ? null
+              : logoSecundarioElegidoCelular ??
+                  otro.logoSecundarioElegidoCelular,
+          logoSecundarioElegidoWeb: eliminarLogoSecundario
+              ? null
+              : logoSecundarioElegidoWeb ?? otro.logoSecundarioElegidoWeb,
           articulo: articulo ?? otro.articulo,
-          listaSeccionesArticulo:
-              listaSeccionesArticulo ?? otro.listaSeccionesArticulo,
+          listaPaginasDeArticulo:
+              listaPaginasDeArticulo ?? otro.listaPaginasDeArticulo,
         );
 
+  /// En caso de ser true permite eliminar el logo primario, convierte a null el
+  /// valor de logoPrimario de web y celular.
+
+  final bool eliminarLogoPrimario;
+
+  /// En caso de ser true permite eliminar el logo primario, convierte a null el
+  /// valor de logoPrimario de web y celular.
+  final bool eliminarLogoSecundario;
+
+  /// Logo primario de celular en su formato correspondiente
   final File? logoElegidoCelular;
+
+  /// Logo primario de web en su formato correspondiente
   final Uint8List? logoElegidoWeb;
+
+  /// Logo secundario de celular en su formato correspondiente
   final File? logoSecundarioElegidoCelular;
+
+  /// Logo secundario de web en su formato correspondiente
   final Uint8List? logoSecundarioElegidoWeb;
-  final List<Articulo> listaSeccionesArticulo;
+
+  final List<PaginaSeccionArticulo> listaPaginasDeArticulo;
 
   /// El articulo a ser editado en la página actual.
   final Articulo? articulo;
@@ -77,7 +105,9 @@ class BlocEditorContenidoEstadoRecolectandoDatos
     super.logoSecundarioElegidoCelular,
     super.logoSecundarioElegidoWeb,
     super.articulo,
-    super.listaSeccionesArticulo,
+    super.listaPaginasDeArticulo,
+    super.eliminarLogoPrimario,
+    super.eliminarLogoSecundario,
   }) : super.desde();
 }
 
@@ -93,7 +123,7 @@ class BlocEditorContenidoEstadoExitoso extends BlocEditorContenidoEstado {
     super.logoElegidoWeb,
     super.logoSecundarioElegidoCelular,
     super.logoSecundarioElegidoWeb,
-    super.listaSeccionesArticulo,
+    super.listaPaginasDeArticulo,
   }) : super.desde(
           articulo: articulo,
         );

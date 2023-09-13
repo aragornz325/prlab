@@ -90,7 +90,7 @@ class PRBoton extends StatelessWidget {
               : estaHabilitado && !muestraEstadoDeCarga
                   ? colores.primary
                   : colores.primaryOpacidadSesenta,
-          borderRadius: BorderRadius.circular(100),
+          borderRadius: BorderRadius.circular(100.sw),
           border: esOutlined
               ? Border.all(
                   width: borderWidth?.pw ?? 1.pw,

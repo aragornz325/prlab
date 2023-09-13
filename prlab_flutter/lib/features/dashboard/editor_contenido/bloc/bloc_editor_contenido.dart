@@ -2,7 +2,10 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:prlab_client/prlab_client.dart';
+import 'package:prlab_flutter/assets.dart';
+
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/bloc/bloc_administracion_marcas.dart';
 import 'package:prlab_flutter/utilidades/utilidades.dart';
 
@@ -21,9 +24,34 @@ class BlocEditorContenido
     on<BlocEditorContenidoEventoObtenerArticulo>(_onObtenerArticulo);
     on<BlocEditorContenidoEventoAgregarImagen>(_onAgregarImagen);
     on<BlocEditorContenidoActualizarArticulo>(_onActualizarArticulo);
+    on<BlocEditorContenidoEliminarPaginaArticulo>(_onEliminarPaginaArticulo);
+    on<BlocEditorContenidoEventoEliminarImagen>(_onEliminarImagen);
 
     add(BlocEditorContenidoEventoObtenerArticulo(idArticulo: idArticulo));
   }
+
+  List<PaginaSeccionArticulo> listaPaginasDeArticulo = <PaginaSeccionArticulo>[
+    // TODO(SAM): Luego remover
+
+    PaginaSeccionArticulo(
+      icono: Assets.assets_icons_otras_casas_png,
+      titulo: 'Home page', //  l10n.pageEditContentArticleTitleHomePage
+      contenido: 'content 1',
+      id: 1,
+    ),
+    PaginaSeccionArticulo(
+      icono: Assets.assets_icons_leaderboard_png,
+      titulo: 'Metrics page', // l10n.pageEditContentArticleTitleMetricsPage,
+      contenido: 'content 2',
+      id: 2,
+    ),
+    PaginaSeccionArticulo(
+      icono: Assets.assets_icons_link_png,
+      titulo: 'Coverage page', //l10n.pageEditContentArticleTitleCoveragePage,
+      contenido: 'content 3',
+      id: 3,
+    ),
+  ];
 
   /// Se encarga principalmente de traer los datos del
   /// artículo que va a ser editado.
@@ -41,18 +69,7 @@ class BlocEditorContenido
         BlocEditorContenidoEstadoExitoso.desde(
           state,
           articulo: respuesta,
-          listaSeccionesArticulo: [
-            Articulo(
-              titulo: 'Title',
-              contenido: 'content',
-              id: 2,
-            ),
-            Articulo(
-              titulo: 'Title2',
-              contenido: 'content3',
-              id: 3,
-            ),
-          ],
+          listaPaginasDeArticulo: listaPaginasDeArticulo,
         ),
       );
     } catch (e) {
@@ -82,6 +99,22 @@ class BlocEditorContenido
             state.logoSecundarioElegidoCelular,
         logoSecundarioElegidoWeb:
             event.logoSecundarioElegidoWeb ?? state.logoSecundarioElegidoWeb,
+      ),
+    );
+  }
+
+  /// Permite eliminar las imagenes de ambos logos en la vista
+  /// editar contenido y actualiza los datos en el
+  /// estado del [BlocEditorContenido].
+  Future<void> _onEliminarImagen(
+    BlocEditorContenidoEventoEliminarImagen event,
+    Emitter<BlocEditorContenidoEstado> emit,
+  ) async {
+    emit(
+      BlocEditorContenidoEstadoRecolectandoDatos.desde(
+        state,
+        eliminarLogoPrimario: event.esLogoPrimario,
+        eliminarLogoSecundario: event.esLogoSecundario,
       ),
     );
   }
@@ -137,4 +170,52 @@ class BlocEditorContenido
       );
     }
   }
+
+  Future<void> _onEliminarPaginaArticulo(
+    BlocEditorContenidoEliminarPaginaArticulo event,
+    Emitter<BlocEditorContenidoEstado> emit,
+  ) async {
+    emit(BlocEditorContenidoEstadoCargando.desde(state));
+    try {
+      // TODO(SAM): cambiar por  endpoint del back
+
+      listaPaginasDeArticulo
+          .removeWhere((pagina) => pagina.id == event.idPagina);
+
+      emit(
+        BlocEditorContenidoEstadoExitoso.desde(
+          state,
+          articulo: state.articulo!,
+          listaPaginasDeArticulo: listaPaginasDeArticulo,
+        ),
+      );
+    } catch (e) {
+      emit(
+        BlocEditorContenidoEstadoError.desde(
+          state,
+          mensajeDeError: MensajesDeErrorDeAdministracionMarcas.unknown,
+        ),
+      );
+    }
+  }
+}
+
+/// Clase provisoria que simula una pagina de un articulo, que vendria del back
+/// que puede ser home, metricas, coverage o alguna otra que se agregue.
+class PaginaSeccionArticulo extends Entregable {
+  // TODO(SAM): Remover cuando venga la informacion del back.
+  PaginaSeccionArticulo({
+    required this.titulo,
+    required this.contenido,
+    required this.id,
+    required this.icono,
+  });
+  final String titulo;
+  final String contenido;
+  final int id;
+  final String icono;
+}
+
+abstract class Entregable {
+  // TODO(SAM): Definir los campos de Entregable
 }

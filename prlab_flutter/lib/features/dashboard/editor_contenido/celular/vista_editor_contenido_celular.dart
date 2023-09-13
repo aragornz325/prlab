@@ -110,7 +110,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                           children: [
                             PaginasDelArticulo(
                               listaSeccionesDeArticulos:
-                                  state.listaSeccionesArticulo,
+                                  state.listaPaginasDeArticulo,
                             ),
                             SizedBox(
                               width: 10.pw,
