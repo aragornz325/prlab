@@ -23,8 +23,6 @@ class AdministradorSerializacion extends SerializationManager {
       return data;
     } else if (t == DateTime || t == getType<DateTime?>()) {
       return DateTime.tryParse(data.toString()) as T;
-    } else if (t == getType<DateTime?>()) {
-      return DateTime.tryParse(data ?? '')?.toUtc() as T;
     } else if (t == ByteData) {
       return (data as String).base64DecodedByteData()! as T;
     } else if (t == getType<ByteData?>()) {
