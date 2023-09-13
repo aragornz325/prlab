@@ -757,6 +757,36 @@
         "description": "Indicates the influence in the media that the journalist has represented by a numerical score."
     },
     
+    "projectMetricsLabelPositive": "Positivas",
+    "@projectMetricsLabelPositive": {
+        "description": "Text on the project metrics label indicating positive interactions"
+    },
+
+    "projectMetricsLabelNegative": "Negativas",
+    "@projectMetricsLabelNegative": {
+        "description": "Text on the project metrics label indicating negative interactions"
+    },
+
+    "projectMetricsLabelNeutral": "Neutrales",
+    "@projectMetricsLabelNeutral": {
+        "description": "Text on the project metrics label indicating neutral interactions"
+    },
+
+    "projectMetricsLabelTier": "Niveles",
+    "@projectMetricsLabelTier": {
+        "description": "Text on the project metrics label indicating the tier"
+    },
+
+    "projectMetricsLabelMentions": "Menciones",
+    "@projectMetricsLabelMentions": {
+        "description": "Text on the project metrics label indicating the mentions"
+    },
+
+    "projectMetricsLabelBacklinks": "Vínculos",
+    "@projectMetricsLabelBacklinks": {
+        "description": "Text on the project metrics label indicating the backlinks"
+    },
+
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
