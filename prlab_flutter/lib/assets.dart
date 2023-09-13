@@ -30,6 +30,16 @@ class Assets {
   static const String prlab_flutter$assets_icons_logo_png =
       'packages/prlab_flutter/assets/icons/logo.png';
 
+  static const String assets_icons_tacho_de_basura_png =
+      'assets/icons/tacho_de_basura.png';
+  static const String prlab_flutter$assets_icons_tacho_de_basura_png =
+      'packages/prlab_flutter/assets/icons/tacho_de_basura.png';
+
+  static const String assets_icons_otras_casas_png =
+      'assets/icons/otras_casas.png';
+  static const String prlab_flutter$assets_icons_otras_casas_png =
+      'packages/prlab_flutter/assets/icons/otras_casas.png';
+
   static const String assets_images_avion_de_papel_png =
       'assets/images/avion_de_papel.png';
   static const String prlab_flutter$assets_images_avion_de_papel_png =

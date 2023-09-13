@@ -432,6 +432,15 @@
     "@pageEditContentEditArticleContainerButtonUploadSecondaryLogo": {
         "description":"Text of the button to upload the secondary logo, when you are creating or editing an article"
     },
+  "pageEditContentEditArticleContainerButtonDeleteLogo" : "Are you sure you want to delete this logo? You will not be able to undo this step.",
+    "@pageEditContentEditArticleContainerButtonDeleteLogo": {
+        "description":"Text of the description of the alert dialog delete logo, when you are creating or editing an article"
+    },
+      "pageEditContentEditArticleContainerButtonDeletePage" : "Are you sure you want to delete this page? You will not be able to undo this step.",
+    "@pageEditContentEditArticleContainerButtonDeletePage": {
+        "description":"Text of the description of the alert dialog delete Page, when you are creating or editing an article"
+    },
+
       "pageEditContentEditArticleContainerHintTitle" : "Enter article title",
     "@pageEditContentEditArticleContainerHintTitle": {
         "description":"Hint text of the article title, when you are creating or editing an article"
@@ -741,6 +750,35 @@
     "pageHomeContainerBusquedaItemStatistics": "Statistics",
     "@pageHomeContainerBusquedaItemStatistics": {
         "description": "Item below the search bar"
+    },
+    "projectMetricsLabelPositive": "Positive",
+    "@projectMetricsLabelPositive": {
+        "description": "Text on the project metrics label indicating positive interactions"
+    },
+
+    "projectMetricsLabelNegative": "Negative",
+    "@projectMetricsLabelNegative": {
+        "description": "Text on the project metrics label indicating negative interactions"
+    },
+
+    "projectMetricsLabelNeutral": "Neutrales",
+    "@projectMetricsLabelNeutral": {
+        "description": "Text on the project metrics label indicating neutral interactions"
+    },
+
+    "projectMetricsLabelTier": "Tier",
+    "@projectMetricsLabelTier": {
+        "description": "Text on the project metrics label indicating the tier"
+    },
+
+    "projectMetricsLabelMentions": "Mentions",
+    "@projectMetricsLabelMentions": {
+        "description": "Text on the project metrics label indicating the mentions"
+    },
+
+    "projectMetricsLabelBacklinks": "Backlinks",
+    "@projectMetricsLabelBacklinks": {
+        "description": "Text on the project metrics label indicating the backlinks"
     },
 
     "commonCalendarSUN": "SUN",

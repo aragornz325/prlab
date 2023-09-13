@@ -40,7 +40,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
             ..ultimaModificacion = DateTime.now(),
         ),
       );
-    } on Exception catch (e) {
+    } on Exception {
       rethrow;
     }
   }
@@ -62,7 +62,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
           session: session,
         ),
       );
-    } on Exception catch (e) {
+    } on Exception {
       rethrow;
     }
   }
@@ -108,7 +108,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
           idMarca: idMarca,
         ),
       );
-    } on Exception catch (e) {
+    } on Exception {
       rethrow;
     }
   }
