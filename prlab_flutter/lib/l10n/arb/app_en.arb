@@ -683,6 +683,36 @@
         "description": "Text in title of alertdialog/popup Select your birthdate,Usually use in el form Kyc."
     },
 
+    "projectMetricsLabelPositive": "Positive",
+    "@projectMetricsLabelPositive": {
+        "description": "Text on the project metrics label indicating positive interactions"
+    },
+
+    "projectMetricsLabelNegative": "Negative",
+    "@projectMetricsLabelNegative": {
+        "description": "Text on the project metrics label indicating negative interactions"
+    },
+
+    "projectMetricsLabelNeutral": "Neutrales",
+    "@projectMetricsLabelNeutral": {
+        "description": "Text on the project metrics label indicating neutral interactions"
+    },
+
+    "projectMetricsLabelTier": "Tier",
+    "@projectMetricsLabelTier": {
+        "description": "Text on the project metrics label indicating the tier"
+    },
+
+    "projectMetricsLabelMentions": "Mentions",
+    "@projectMetricsLabelMentions": {
+        "description": "Text on the project metrics label indicating the mentions"
+    },
+
+    "projectMetricsLabelBacklinks": "Backlinks",
+    "@projectMetricsLabelBacklinks": {
+        "description": "Text on the project metrics label indicating the backlinks"
+    },
+
     "commonCalendarSUN": "SUN",
     "@commonCalendarSUN": {
         "description": "first three letters of Sunday,this text is in the calendar for the title of the days"
