@@ -100,15 +100,18 @@ class PRCardeArticuloReciente extends StatelessWidget {
                               Icon(
                                 Icons.link_outlined,
                                 color: colores.secondary,
-                                size: 15.sw,
+                                size: 15.pf,
                               ),
                               SizedBox(width: 5.pw),
-                              Text(
-                                // TODO(Manu): Reemplazar por link del articulo o como defina guille
-                                'https://www.callofduty.com/content/',
-                                style: TextStyle(
-                                  color: colores.secondary,
-                                  overflow: TextOverflow.ellipsis,
+                              SizedBox(
+                                width: 190.pw,
+                                child: Text(
+                                  // TODO(Manu): Reemplazar por link del articulo o como defina guille
+                                  'https://www.callofduty.com/content/',
+                                  style: TextStyle(
+                                    color: colores.secondary,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                               ),
                             ],
@@ -119,7 +122,7 @@ class PRCardeArticuloReciente extends StatelessWidget {
                               Icon(
                                 Icons.schedule_outlined,
                                 color: colores.secondary,
-                                size: 15.sw,
+                                size: 15.pf,
                               ),
                               SizedBox(width: 5.pw),
                               Text(
@@ -127,6 +130,7 @@ class PRCardeArticuloReciente extends StatelessWidget {
                                 '01 Aug 23',
                                 style: TextStyle(
                                   color: colores.secondary,
+                                  fontSize: 10.pf,
                                 ),
                               ),
                             ],
@@ -141,7 +145,7 @@ class PRCardeArticuloReciente extends StatelessWidget {
                 left: 10.pw,
                 top: 85.ph,
                 child: CircleAvatar(
-                  radius: 30.sw,
+                  radius: 25.sw,
                   backgroundImage: const NetworkImage(
                     // TODO(Manu): Reemplazar por avatar de periodista o marca
                     'https://i0.wp.com/www.gamerfocus.co/wp-content/uploads/2021/05/ghost_call_of_duty_controversia.jpg?w=1280&ssl=1',

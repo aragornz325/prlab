@@ -33,13 +33,18 @@ class VistaEscritorioAdministracionMarcas extends StatelessWidget {
           SizedBox(height: 20.pw),
           BlocBuilder<BlocAdministracionMarcas, BlocAdministracionMarcasEstado>(
             builder: (context, state) {
-              if (state is BlocAdministracionMarcasEstadoCargando) {
+              if (state.estaEnEstadoCargando) {
                 return SizedBox(
                   width: 1000.pw,
                   height: 510.ph,
                   child: const Center(
                     child: CircularProgressIndicator(),
                   ),
+                );
+              } else if (state.estaEnEstadoError) {
+                // TODO(Gon): Manejar el error
+                return const Center(
+                  child: Text('Error'),
                 );
               } else {
                 if (state.marcas.isNotEmpty) {

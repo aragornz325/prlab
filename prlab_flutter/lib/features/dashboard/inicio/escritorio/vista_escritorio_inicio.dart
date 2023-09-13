@@ -28,74 +28,76 @@ class VistaEscritorioInicio extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: colores.background,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: max(30.ph, 30.sh)),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: max(20.ph, 20.sh)),
 
-          /// TODO(Gon): Cambiar al nombre del usuario logeado
-          const ContenedorDeLaBarraDeBusqueda(nombreUsuario: 'John'),
-          SizedBox(height: max(50.ph, 50.sh)),
-          EncabezadoDeSeccion(
-            titulo: l10n.pageHomeHeaderTitle,
-            descripcion: l10n.pageHomeHeaderDescription,
-            icono: Icons.folder_open_outlined,
-          ),
-          BlocBuilder<BlocInicio, BlocInicioEstado>(
-            builder: (context, state) {
-              if (state is BlocInicioEstadoCargando) {
-                return const TarjetasDeCarga();
-              }
-              return SizedBox(
-                width: 1010.pw,
-                height: max(300.ph, 300.sh),
-                child: state.listaArticulos.isEmpty
-                    ? const Center(
-                        child: NadaParaVer(),
-                      )
-                    // TODO(Gon): Cambiar cuando se traiga la lista del back
-                    : ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return Row(
-                            children: [
-                              PRCardeArticuloReciente(
-                                // TODO(Gon): Agregar pusheo a la ruta correspondiente
-                                onTap: () {},
-                                titulo: state.listaArticulos[index].titulo,
-                                // TODO(Gon): Traer el modelo del back
-                                periodista: Periodista(
-                                  name: 'name',
-                                  anchor: 'anchor',
-                                  location: 'location',
-                                  topicCovered: ['topicCovered'],
-                                  email: 'email',
-                                  avatar: 'avatar',
-                                  valoracion: 10,
-                                  estaSeleccionado: false,
-                                  urlDeImage: 'urlDeImage',
-                                  idioma: 'idioma',
-                                  telefono: 'telefono',
-                                  facebook: 'facebook',
-                                  instagram: 'instagram',
-                                  twitter: 'twitter',
-                                  youtube: 'youtube',
-                                  descripcion: 'descripcion',
-                                  id: 3,
+            /// TODO(Gon): Cambiar al nombre del usuario logeado
+            const ContenedorDeLaBarraDeBusqueda(nombreUsuario: 'John'),
+            SizedBox(height: max(50.ph, 50.sh)),
+            EncabezadoDeSeccion(
+              titulo: l10n.pageHomeHeaderTitle,
+              descripcion: l10n.pageHomeHeaderDescription,
+              icono: Icons.folder_open_outlined,
+            ),
+            BlocBuilder<BlocInicio, BlocInicioEstado>(
+              builder: (context, state) {
+                if (state is BlocInicioEstadoCargando) {
+                  return const TarjetasDeCarga();
+                }
+                return SizedBox(
+                  width: 1010.pw,
+                  height: max(300.ph, 300.sh),
+                  child: state.listaArticulos.isEmpty
+                      ? const Center(
+                          child: NadaParaVer(),
+                        )
+                      // TODO(Gon): Cambiar cuando se traiga la lista del back
+                      : ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Row(
+                              children: [
+                                PRCardeArticuloReciente(
+                                  // TODO(Gon): Agregar pusheo a la ruta correspondiente
+                                  onTap: () {},
+                                  titulo: state.listaArticulos[index].titulo,
+                                  // TODO(Gon): Traer el modelo del back
+                                  periodista: Periodista(
+                                    name: 'name',
+                                    anchor: 'anchor',
+                                    location: 'location',
+                                    topicCovered: ['topicCovered'],
+                                    email: 'email',
+                                    avatar: 'avatar',
+                                    valoracion: 10,
+                                    estaSeleccionado: false,
+                                    urlDeImage: 'urlDeImage',
+                                    idioma: 'idioma',
+                                    telefono: 'telefono',
+                                    facebook: 'facebook',
+                                    instagram: 'instagram',
+                                    twitter: 'twitter',
+                                    youtube: 'youtube',
+                                    descripcion: 'descripcion',
+                                    id: 3,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 55.pw,
-                              ),
-                            ],
-                          );
-                        },
-                        itemCount: state.listaArticulos.length,
-                      ),
-              );
-            },
-          ),
-        ],
+                                SizedBox(
+                                  width: 55.pw,
+                                ),
+                              ],
+                            );
+                          },
+                          itemCount: state.listaArticulos.length,
+                        ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

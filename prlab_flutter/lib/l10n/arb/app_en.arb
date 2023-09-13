@@ -710,37 +710,37 @@
 
     "pageHomeContainerBusquedaItemMediaDatabase": "Media Database",
     "@pageHomeContainerBusquedaItemMediaDatabase": {
-        "description": "Item bellow the search bar"
+        "description": "Item below the search bar"
     },
 
     "pageHomeContainerBusquedaItemContacts": "Contacts",
     "@pageHomeContainerBusquedaItemContacts": {
-        "description": "Item bellow the search bar"
+        "description": "Item below the search bar"
     },
 
     "pageHomeContainerBusquedaItemOnlineNewsroom": "Online Newsroom",
     "@pageHomeContainerBusquedaItemOnlineNewsroom": {
-        "description": "Item bellow the search bar"
+        "description": "Item below the search bar"
     },
 
     "pageHomeContainerBusquedaItemPRReports": "PR Reports",
     "@pageHomeContainerBusquedaItemPRReports": {
-        "description": "Item bellow the search bar"
+        "description": "Item below the search bar"
     },
 
     "pageHomeContainerBusquedaItemAnalytic": "Analytic",
     "@pageHomeContainerBusquedaItemAnalytic": {
-        "description": "Item bellow the search bar"
+        "description": "Item below the search bar"
     },
 
     "pageHomeContainerBusquedaItemMediaMonitoring": "Media Monitoring",
     "@pageHomeContainerBusquedaItemMediaMonitoring": {
-        "description": "Item bellow the search bar"
+        "description": "Item below the search bar"
     },
     
     "pageHomeContainerBusquedaItemStatistics": "Statistics",
     "@pageHomeContainerBusquedaItemStatistics": {
-        "description": "Item bellow the search bar"
+        "description": "Item below the search bar"
     },
 
     "commonCalendarSUN": "SUN",

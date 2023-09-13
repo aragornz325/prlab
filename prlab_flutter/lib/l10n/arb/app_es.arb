@@ -733,22 +733,22 @@
 
     "pageHomeContainerBusquedaItemMediaDatabase": "Base de datos de medios",
     "@pageHomeContainerBusquedaItemMediaDatabase": {
-        "description": "Item bellow the search bar"
+        "description": "Item below the search bar"
     },
 
     "pageHomeContainerBusquedaItemContacts": "Contactos",
     "@pageHomeContainerBusquedaItemContacts": {
-        "description": "Item bellow the search bar"
+        "description": "Item below the search bar"
     },
 
     "pageHomeContainerBusquedaItemOnlineNewsroom": "Sala de prensa en línea",
     "@pageHomeContainerBusquedaItemOnlineNewsroom": {
-        "description": "Item bellow the search bar"
+        "description": "Item below the search bar"
     },
 
     "pageHomeContainerBusquedaItemPRReports": "PR Reportes",
     "@pageHomeContainerBusquedaItemPRReports": {
-        "description": "Item bellow the search bar"
+        "description": "Item below the search bar"
         },
     "pageMediaDatabaseFilterTileFilterByPopupTitle": "Filtrar por {something}",
     "@pageMediaDatabaseFilterTileFilterByPopupTitle": {
@@ -802,17 +802,17 @@
     
     "pageHomeContainerBusquedaItemAnalytic": "Análisis",
     "@pageHomeContainerBusquedaItemAnalytic": {
-        "description": "Item bellow the search bar"
+        "description": "Item below the search bar"
     },
 
     "pageHomeContainerBusquedaItemMediaMonitoring": "Monitoreo de medios",
     "@pageHomeContainerBusquedaItemMediaMonitoring": {
-        "description": "Item bellow the search bar"
+        "description": "Item below the search bar"
     },
     
     "pageHomeContainerBusquedaItemStatistics": "Estadísticas",
     "@pageHomeContainerBusquedaItemStatistics": {
-        "description": "Item bellow the search bar"
+        "description": "Item below the search bar"
     },
 
     "commonPRLab": "PR lab",
