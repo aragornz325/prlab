@@ -800,7 +800,7 @@
         "description": "Indicates the influence in the media that the journalist has represented by a numerical score."
     },
     
-    "pageHomeContainerBusquedaItemAnalytic": "Analisis",
+    "pageHomeContainerBusquedaItemAnalytic": "Análisis",
     "@pageHomeContainerBusquedaItemAnalytic": {
         "description": "Item bellow the search bar"
     },
