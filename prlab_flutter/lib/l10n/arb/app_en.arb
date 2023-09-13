@@ -692,6 +692,65 @@
         "description": "Text in title of alertdialog/popup Select your birthdate,Usually use in el form Kyc."
     },
 
+    "pageHomeHeaderTitle": "Recent Articles",
+    "@pageHomeHeaderTitle": {
+        "description": "Text shown on the header of the home page"
+    },
+
+    "pageHomeHeaderDescription": "You can access your most recent articles",
+    "@pageHomeHeaderDescription": {
+        "description": "Text shown under the title of the header on the home page"
+    },
+
+    "pageHomeContainerBusquedaTitle": "Welcome back, {name}!",
+    "@pageHomeContainerBusquedaTitle": {
+        "description": "Gives the welcome to the user on the home page",
+        "placeholders" : {
+            "name" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageHomeContainerBusquedaPlaceholder": "Search articles, projects, brands, and more...",
+    "@pageHomeContainerBusquedaPlaceholder": {
+        "description": "Placeholder on the search textfield"
+    },
+
+    "pageHomeContainerBusquedaItemMediaDatabase": "Media Database",
+    "@pageHomeContainerBusquedaItemMediaDatabase": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemContacts": "Contacts",
+    "@pageHomeContainerBusquedaItemContacts": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemOnlineNewsroom": "Online Newsroom",
+    "@pageHomeContainerBusquedaItemOnlineNewsroom": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemPRReports": "PR Reports",
+    "@pageHomeContainerBusquedaItemPRReports": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemAnalytic": "Analytic",
+    "@pageHomeContainerBusquedaItemAnalytic": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemMediaMonitoring": "Media Monitoring",
+    "@pageHomeContainerBusquedaItemMediaMonitoring": {
+        "description": "Item below the search bar"
+    },
+    
+    "pageHomeContainerBusquedaItemStatistics": "Statistics",
+    "@pageHomeContainerBusquedaItemStatistics": {
+        "description": "Item below the search bar"
+    },
     "projectMetricsLabelPositive": "Positive",
     "@projectMetricsLabelPositive": {
         "description": "Text on the project metrics label indicating positive interactions"
@@ -947,6 +1006,11 @@
     "commonChooseAnAuthor": "Choose an author",
     "@commonChooseAnAuthor": {
         "description": "Text shown when the user hasn´t yet selected an item from a dropdown."
+    },
+    
+    "commonNothingToSee": "Nothing to see",
+    "@commonNothingToSee": {
+        "description": "Text shown when the user doesn´t have any data to show"
     }
 
 }

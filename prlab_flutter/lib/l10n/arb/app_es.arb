@@ -705,6 +705,25 @@
         "description": "It is found in the journalist filters, the people menu, a message that expresses the intention of delete all the items from specific filter"
     },
 
+    "pageHomeHeaderTitle": "Articulos Recientes",
+    "@pageHomeHeaderTitle": {
+        "description": "Text shown on the header of the home page"
+    },
+
+    "pageHomeHeaderDescription": "Puedes acceder a tus articulos mas recientes",
+    "@pageHomeHeaderDescription": {
+        "description": "Text shown under the title of the header on the home page"
+    },
+
+    "pageHomeContainerBusquedaTitle": "Bienvenido de nuevo, {name}!",
+    "@pageHomeContainerBusquedaTitle": {
+        "description": "Text shown under the title of the header on the home page",
+        "placeholders" : {
+            "name" : {
+                "type": "String"
+            }
+        }
+    },
     "pageMediaDatabaseJournalistInformationDialogAnchorAt": "Anchor at {workplace}",
     "@pageMediaDatabaseJournalistInformationDialogAnchorAt": {
         "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, it indicates where the journalist works",
@@ -715,6 +734,30 @@
         }
     },
 
+    "pageHomeContainerBusquedaPlaceholder": "Busca artículos, proyectos, marcas y más...",
+    "@pageHomeContainerBusquedaPlaceholder": {
+        "description": "Placeholder on the search textfield"
+    },
+
+    "pageHomeContainerBusquedaItemMediaDatabase": "Base de datos de medios",
+    "@pageHomeContainerBusquedaItemMediaDatabase": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemContacts": "Contactos",
+    "@pageHomeContainerBusquedaItemContacts": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemOnlineNewsroom": "Sala de prensa en línea",
+    "@pageHomeContainerBusquedaItemOnlineNewsroom": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemPRReports": "PR Reportes",
+    "@pageHomeContainerBusquedaItemPRReports": {
+        "description": "Item below the search bar"
+        },
     "pageMediaDatabaseFilterTileFilterByPopupTitle": "Filtrar por {something}",
     "@pageMediaDatabaseFilterTileFilterByPopupTitle": {
         "description": "It is found in the journalist filters, the people menu, the title in the popup that is shown when you want to modify the filters",
@@ -765,6 +808,20 @@
         "description": "Indicates the influence in the media that the journalist has represented by a numerical score."
     },
     
+    "pageHomeContainerBusquedaItemAnalytic": "Análisis",
+    "@pageHomeContainerBusquedaItemAnalytic": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemMediaMonitoring": "Monitoreo de medios",
+    "@pageHomeContainerBusquedaItemMediaMonitoring": {
+        "description": "Item below the search bar"
+    },
+    
+    "pageHomeContainerBusquedaItemStatistics": "Estadísticas",
+    "@pageHomeContainerBusquedaItemStatistics": {
+        "description": "Item below the search bar"
+    },
     "projectMetricsLabelPositive": "Positivas",
     "@projectMetricsLabelPositive": {
         "description": "Text on the project metrics label indicating positive interactions"
@@ -944,6 +1001,11 @@
     "commonChooseAnAuthor": "Choose an author",
     "@commonChooseAnAuthor": {
         "description": "Text shown when the user hasn´t yet selected an item from a dropdown."
+    },
+
+    "commonNothingToSee": "Nada para ver",
+    "@commonNothingToSee": {
+        "description": "Text shown when the data brought from the db is empty"
     }
 }
 

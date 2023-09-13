@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popups.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/widgets.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/encabezado_de_seccion.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/widgets/nada_para_ver.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template VistaRedaccionEdicionContenidoCelular}
@@ -123,10 +123,8 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                       return SizedBox(
                         width: 1000.pw,
                         height: 508.ph,
-                        child: Center(
-                          child: Image.asset(
-                            Assets.assets_images_nada_para_ver_png,
-                          ),
+                        child: const Center(
+                          child: NadaParaVer(),
                         ),
                       );
                     }

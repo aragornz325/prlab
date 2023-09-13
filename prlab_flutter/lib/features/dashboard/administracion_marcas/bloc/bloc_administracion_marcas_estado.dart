@@ -22,6 +22,10 @@ class BlocAdministracionMarcasEstado extends Equatable {
   List<Object> get props => [
         marcas,
       ];
+
+  bool get estaEnEstadoCargando =>
+      this is BlocAdministracionMarcasEstadoCargando;
+  bool get estaEnEstadoError => this is BlocAdministracionMarcasEstadoError;
 }
 
 /// {@template BlocAdministracionMarcasEstadoInicial}
