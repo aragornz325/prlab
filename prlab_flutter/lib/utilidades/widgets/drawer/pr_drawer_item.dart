@@ -52,6 +52,7 @@ class PRDrawerItem extends StatelessWidget {
               child: Icon(
                 icono,
                 color: colores.primary,
+                size: 24.pw,
               ),
             ),
             SizedBox(width: 5.pw),
