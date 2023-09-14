@@ -63,11 +63,11 @@ class BlocEditorContenido
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
     emit(BlocEditorContenidoEstadoCargando.desde(state));
+
     try {
       final respuesta = await client.articulo.obtenerArticulo(
         event.idArticulo,
       );
-
       emit(
         BlocEditorContenidoEstadoExitoso.desde(
           state,
@@ -92,11 +92,13 @@ class BlocEditorContenido
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
     emit(BlocEditorContenidoEstadoCargando.desde(state));
+
     try {
       if (state.articulo != null) {
         await client.articulo.actualizarArticulo(
           articulo: state.articulo!,
         );
+
         emit(
           BlocEditorContenidoEstadoActualizandoDescripcion.desde(
             state,

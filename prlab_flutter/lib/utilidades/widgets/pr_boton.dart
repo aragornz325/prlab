@@ -32,6 +32,7 @@ class PRBoton extends StatelessWidget {
     double? height,
     double? fontSize,
     FontWeight? fontWeight,
+    bool muestraEstadoDeCarga = false,
   }) {
     return PRBoton(
       onTap: onTap,
@@ -43,6 +44,7 @@ class PRBoton extends StatelessWidget {
       fontSize: fontSize,
       fontWeight: fontWeight,
       borderWidth: borderWidth,
+      muestraEstadoDeCarga: muestraEstadoDeCarga,
     );
   }
 
@@ -102,21 +104,17 @@ class PRBoton extends StatelessWidget {
         child: Center(
           child: muestraEstadoDeCarga
               ? const CircularProgressIndicator()
-              : Row(
-                  children: [
-                    Text(
-                      texto,
-                      style: TextStyle(
-                        fontSize: fontSize ?? 16.pf,
-                        fontWeight: fontWeight ?? FontWeight.w600,
-                        color: esOutlined
-                            ? estaHabilitado
-                                ? colores.primary
-                                : colores.primaryOpacidadSesenta
-                            : colores.background,
-                      ),
-                    ),
-                  ],
+              : Text(
+                  texto,
+                  style: TextStyle(
+                    fontSize: fontSize ?? 16.pf,
+                    fontWeight: fontWeight ?? FontWeight.w600,
+                    color: esOutlined
+                        ? estaHabilitado
+                            ? colores.primary
+                            : colores.primaryOpacidadSesenta
+                        : colores.background,
+                  ),
                 ),
         ),
       ),
