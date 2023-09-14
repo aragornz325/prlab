@@ -252,7 +252,7 @@ class ListaDeArticulos extends StatelessWidget {
         // botones
         Columna(
           widthDeLaColumna: 150.pw,
-          lista: articulos.map((e) => e.titulo).toList(),
+          lista: articulos.map((e) => e.id).toList(),
           nombreColumna: '',
           celdaEncabezadoColumna: (value) => SizedBox(
             width: 150.pw,
@@ -293,7 +293,7 @@ class ListaDeArticulos extends StatelessWidget {
                             color: colores.primary,
                           ),
                         ),
-                        const PopUpMenuOpcionesArticulo(),
+                        PopUpMenuOpcionesArticulo(idArticulo: value!),
                         SizedBox(width: 10.pw),
                       ],
                     ),

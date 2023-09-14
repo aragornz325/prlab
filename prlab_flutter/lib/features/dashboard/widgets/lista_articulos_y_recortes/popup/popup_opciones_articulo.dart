@@ -2,8 +2,10 @@
 
 import 'dart:math';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
@@ -14,7 +16,13 @@ import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 /// artículo como un solo articulo,por marca o por usar una plantilla
 /// {@endtemplate}
 class PopUpMenuOpcionesArticulo extends StatefulWidget {
-  const PopUpMenuOpcionesArticulo({super.key});
+  const PopUpMenuOpcionesArticulo({
+    required this.idArticulo,
+    super.key,
+  });
+
+  /// Id del articulo seleccionado
+  final int idArticulo;
 
   @override
   _PopUpMenuOpcionesArticuloState createState() =>
@@ -25,6 +33,8 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
   // TODO(anyone): pasarla la key de la vista de administracion
   final GlobalKey _menuKey = GlobalKey();
   void _showMenu(BuildContext context) {
+    final colores = context.colores;
+
     final l10n = context.l10n;
 
     final button = _menuKey.currentContext!.findRenderObject()! as RenderBox;
@@ -47,26 +57,34 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
       context: context,
       position: position,
       shape: RoundedRectangleBorder(
-        borderRadius:
-            BorderRadius.circular(10), // Ajusta el radio según lo desees
+        borderRadius: BorderRadius.circular(10),
       ),
       items: [
         PopupMenuItem(
           height: max(30.ph, 30.sh),
           value: 1,
-          child: Text(l10n.commonEdit),
+          child: Text(
+            l10n.commonEdit,
+            style: TextStyle(
+              color: colores.tertiary,
+              fontSize: 14.pf,
+            ),
+          ),
           onTap: () {
-            // TODO(anyone): agregarle funcionalidad
-            showDialog<void>(
-              context: context,
-              builder: (context) => const PRDialogErrorNoDisponible(),
-            );
+            context.router
+                .replace(RutaEditorContenido(idArticulo: widget.idArticulo));
           },
         ),
         PopupMenuItem(
           height: max(30.ph, 30.sh),
           value: 2,
-          child: Text(l10n.commonDuplicate),
+          child: Text(
+            l10n.commonDuplicate,
+            style: TextStyle(
+              color: colores.tertiary,
+              fontSize: 14.pf,
+            ),
+          ),
           onTap: () {
             // TODO(anyone): agregarle funcionalidad
             showDialog<void>(
@@ -78,7 +96,13 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
         PopupMenuItem(
           height: max(30.ph, 30.sh),
           value: 3,
-          child: Text(l10n.commonPreview),
+          child: Text(
+            l10n.commonPreview,
+            style: TextStyle(
+              color: colores.tertiary,
+              fontSize: 14.pf,
+            ),
+          ),
           onTap: () {
             // TODO(anyone): agregarle funcionalidad
             showDialog<void>(
@@ -90,7 +114,13 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
         PopupMenuItem(
           height: max(30.ph, 30.sh),
           value: 4,
-          child: Text(l10n.commonShare),
+          child: Text(
+            l10n.commonShare,
+            style: TextStyle(
+              color: colores.tertiary,
+              fontSize: 14.pf,
+            ),
+          ),
           onTap: () {
             // TODO(anyone): agregarle funcionalidad
             showDialog<void>(
@@ -102,7 +132,13 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
         PopupMenuItem(
           height: max(30.ph, 30.sh),
           value: 5,
-          child: Text(l10n.pageContentAdministrationPopupSendViaMail),
+          child: Text(
+            l10n.pageContentAdministrationPopupSendViaMail,
+            style: TextStyle(
+              color: colores.tertiary,
+              fontSize: 14.pf,
+            ),
+          ),
           onTap: () {
             // TODO(anyone): agregarle funcionalidad
             showDialog<void>(
@@ -114,7 +150,13 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
         PopupMenuItem(
           height: max(30.ph, 30.sh),
           value: 6,
-          child: Text(l10n.commonDelete),
+          child: Text(
+            l10n.commonDelete,
+            style: TextStyle(
+              color: colores.tertiary,
+              fontSize: 14.pf,
+            ),
+          ),
           onTap: () {
             // TODO(anyone): agregarle funcionalidad
             showDialog<void>(
