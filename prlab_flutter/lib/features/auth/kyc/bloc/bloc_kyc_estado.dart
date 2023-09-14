@@ -67,6 +67,7 @@ sealed class BlocKycEstado {
       localidad.isNotEmpty &&
       numeroContacto.isNotEmpty;
 
+  // TODO(anyone): Documentar
   String get etiquetaFechaNacimiento => '${fechaDeNacimiento?.day}/'
       '${fechaDeNacimiento?.month}/'
       '${fechaDeNacimiento?.year}';

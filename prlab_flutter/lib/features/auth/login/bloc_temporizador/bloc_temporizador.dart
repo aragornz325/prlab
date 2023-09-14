@@ -20,7 +20,7 @@ class BlocTemporizador
     on<BlocTemporizadorEventoReiniciar>(_resetearCronometro);
     on<BlocTemporizadorEventoCortarEjecucion>(_cortarEjecucion);
   }
-
+  // TODO(anyone): Documentar
   static const int _duracion = 60;
   late Timer _timer;
 

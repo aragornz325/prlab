@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +37,7 @@ class CuerpoVistaRegistroPRLab extends StatelessWidget {
         color: colores.background,
         width: 44.5.wp,
         height: 100.hp,
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.symmetric(horizontal: 20.pw, vertical: 20.ph),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -67,7 +69,7 @@ class CuerpoVistaRegistroPRLab extends StatelessWidget {
             ),
             SizedBox(
               width: 90.pw,
-              height: 60.ph,
+              height: max(60.ph, 60.sh),
             ),
             BlocConsumer<BlocRegistro, BlocRegistroEstado>(
               listener: (context, state) {
@@ -82,7 +84,7 @@ class CuerpoVistaRegistroPRLab extends StatelessWidget {
                 if (state is BlocRegistroEstadoCargando) {
                   return SizedBox(
                     width: 50.pw,
-                    height: 50.ph,
+                    height: max(50.ph, 50.sh),
                     child: const Center(
                       child: CircularProgressIndicator(),
                     ),

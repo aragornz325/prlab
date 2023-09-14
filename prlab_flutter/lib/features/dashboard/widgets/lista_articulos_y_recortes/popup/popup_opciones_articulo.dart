@@ -57,7 +57,7 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
       context: context,
       position: position,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.sw),
       ),
       items: [
         PopupMenuItem(
@@ -178,7 +178,7 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
       onPressed: () => _showMenu(context),
       icon: Icon(
         Icons.more_vert_outlined,
-        size: 18.pf,
+        size: 18.pw,
         color: colores.primary,
       ),
     );

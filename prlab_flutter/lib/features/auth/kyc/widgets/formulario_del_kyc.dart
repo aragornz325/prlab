@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -63,7 +65,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
       child: Form(
         key: _formKey,
         child: Container(
-          margin: EdgeInsets.only(top: 90.sh),
+          margin: EdgeInsets.only(top: 90.ph),
           color: colores.background,
           width: widget.width,
           child: Column(
@@ -81,7 +83,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                       ),
                     ),
               ),
-              SizedBox(height: 40.sh),
+              SizedBox(height: max(40.ph, 40.sh)),
               PRTextFormField.soloLetras(
                 width: 359.pw,
                 controller: controllerApellido,
@@ -94,7 +96,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                       ),
                     ),
               ),
-              SizedBox(height: 40.sh),
+              SizedBox(height: max(40.ph, 40.sh)),
               // TODO(anyone): cambiar esto a el showpicker del calendario y que
               // se le pase la fecha seleccionada al bloc
               BlocBuilder<BlocKyc, BlocKycEstado>(
@@ -111,7 +113,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                   );
                 },
               ),
-              SizedBox(height: 40.sh),
+              SizedBox(height: max(40.ph, 40.sh)),
               PRTextFormField.soloLetras(
                 width: 359.pw,
                 controller: controllerNombreDeCompania,
@@ -124,7 +126,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                       ),
                     ),
               ),
-              SizedBox(height: 40.sh),
+              SizedBox(height: max(40.ph, 40.sh)),
               PRTextFormField.soloLetras(
                 width: 359.pw,
                 controller: controllerLocalidad,
@@ -137,7 +139,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                       ),
                     ),
               ),
-              SizedBox(height: 40.sh),
+              SizedBox(height: max(40.ph, 40.sh)),
               PRTextFormField.soloNumeros(
                 width: 359.pw,
                 controller: controllerNumeroContacto,
@@ -150,7 +152,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                       ),
                     ),
               ),
-              SizedBox(height: 50.sh),
+              SizedBox(height: max(50.ph, 50.sh)),
               BlocConsumer<BlocKyc, BlocKycEstado>(
                 listener: (context, state) {
                   if (state is BlocKycEstadoExitoso) {
@@ -169,7 +171,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                   );
                 },
               ),
-              SizedBox(height: 80.sh),
+              SizedBox(height: max(80.ph, 80.sh)),
             ],
           ),
         ),

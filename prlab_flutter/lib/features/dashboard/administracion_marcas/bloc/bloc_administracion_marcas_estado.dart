@@ -16,6 +16,7 @@ class BlocAdministracionMarcasEstado extends Equatable {
           marcas: marcas ?? otro.marcas,
         );
 
+  /// Lista de marcas a renderizar en la vista
   final List<Marca> marcas;
 
   @override
@@ -23,8 +24,11 @@ class BlocAdministracionMarcasEstado extends Equatable {
         marcas,
       ];
 
+  /// Indica si el state es cargando
   bool get estaEnEstadoCargando =>
       this is BlocAdministracionMarcasEstadoCargando;
+
+  /// Indica si el state es error
   bool get estaEnEstadoError => this is BlocAdministracionMarcasEstadoError;
 }
 

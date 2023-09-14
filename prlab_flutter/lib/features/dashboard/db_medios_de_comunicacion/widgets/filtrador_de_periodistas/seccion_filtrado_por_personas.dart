@@ -42,8 +42,7 @@ class _SeccionFiltradoPorPersonasState
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    // TODO(Andre):
-                    // Cuando este el bloc de la feature agregarle
+                    // TODO(Andre): Cuando este el bloc de la feature agregarle
                     // funcionalidad a todos estos campos y tiles.
                     _CampoDeTextoFiltrador(
                       controller: _nombrePeriodistaController,
@@ -232,14 +231,14 @@ class _SeccionFiltradoPorPersonasState
             ),
             const Divider(height: 0),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 15.sh),
+              padding: EdgeInsets.symmetric(vertical: 15.ph),
               child: PRBoton.esOutlined(
                 onTap: () => const PRDialogErrorNoDisponible().show(context),
                 texto: l10n.pageMediaDatabaseHorizontalFilterButtomButton,
                 fontSize: 15.pf,
                 fontWeight: FontWeight.w500,
                 estaHabilitado: true,
-                height: 30.sh,
+                height: max(30.ph, 30.sh),
                 width: 100.pw,
               ),
             ),

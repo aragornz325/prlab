@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -25,7 +27,7 @@ class PRPopUpMenuRowTitulo extends StatelessWidget {
     final colores = context.colores;
     return Container(
       decoration: BoxDecoration(color: colores.surfaceTint),
-      height: 30.ph,
+      height: max(30.ph, 30.sh),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5.pw),
         child: Row(
@@ -45,7 +47,7 @@ class PRPopUpMenuRowTitulo extends StatelessWidget {
                   ? Icons.arrow_drop_up_rounded
                   : Icons.arrow_drop_down_rounded,
               color: colores.tertiary,
-              size: 24.pf,
+              size: 24.pw,
             ),
           ],
         ),

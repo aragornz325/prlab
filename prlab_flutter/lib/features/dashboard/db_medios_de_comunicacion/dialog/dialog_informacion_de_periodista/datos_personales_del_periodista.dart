@@ -88,16 +88,14 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(
-                            vertical: max(15.ph, 15.sh),
+                            vertical: 15.ph,
                           ),
                           child: Wrap(
                             children: [
                               ...state.periodista.topicCovered.map(
                                 (topic) => Padding(
-                                  padding: EdgeInsets.only(
-                                    right: 10.pw,
-                                    bottom: 10.ph,
-                                  ),
+                                  padding:
+                                      EdgeInsets.symmetric(vertical: 10.ph),
                                   child: TopicPRCardPeriodista(topic: topic),
                                 ),
                               ),

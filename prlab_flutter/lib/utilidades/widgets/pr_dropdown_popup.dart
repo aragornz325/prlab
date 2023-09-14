@@ -477,11 +477,11 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
                       const EdgeInsets.symmetric(horizontal: 12),
                   decoration: BoxDecoration(
                     borderRadius: controller.isOpen
-                        ? const BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            topLeft: Radius.circular(10),
+                        ? BorderRadius.only(
+                            topRight: Radius.circular(10.sw),
+                            topLeft: Radius.circular(10.sw),
                           )
-                        : const BorderRadius.all(Radius.circular(10)),
+                        : BorderRadius.all(Radius.circular(10.sw)),
                     border: Border.all(
                       color: const Color(0xffd9d9d9d9),
                     ),
@@ -640,7 +640,7 @@ class _CustomTile extends StatelessWidget {
                   ? Icon(
                       itemsIconList![index],
                       color: iconsColor,
-                      size: 20.pf,
+                      size: 20.pw,
                     )
                   : Container(),
             const SizedBox(width: 9),

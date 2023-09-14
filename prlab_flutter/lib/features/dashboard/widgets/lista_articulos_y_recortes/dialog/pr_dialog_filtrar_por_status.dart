@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -22,7 +24,7 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
 
     return PRDialog.informacion(
       context: context,
-      height: 350,
+      height: max(350.ph, 350.sh),
       onTap: () {
         // TODO(anyone): agregarle funcionalidad.
         Navigator.of(context).pop();
@@ -181,11 +183,11 @@ class _PRLabCheckboxState extends State<PRLabCheckbox> {
       },
       child: Container(
         width: 20.pw,
-        height: 20.pw,
+        height: max(20.ph, 20.sh),
         decoration: BoxDecoration(
           border: Border.all(color: widget.colorBorde, width: 2),
           color: _isChecked ? widget.colorMarcado : widget.colorDesmarcado,
-          borderRadius: BorderRadius.circular(2.5),
+          borderRadius: BorderRadius.circular(2.5.sw),
         ),
         child: _isChecked
             ? Icon(

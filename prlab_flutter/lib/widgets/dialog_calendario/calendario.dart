@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -56,7 +58,7 @@ class _CalendarioState extends State<Calendario> {
       ),
       centerAlignModePicker: true,
       calendarType: CalendarDatePicker2Type.single,
-      dayBorderRadius: BorderRadius.circular(5),
+      dayBorderRadius: BorderRadius.circular(5.sw),
       lastMonthIcon: Icon(
         Icons.arrow_left_rounded,
         color: colores.primary,
@@ -65,8 +67,8 @@ class _CalendarioState extends State<Calendario> {
         Icons.arrow_right_rounded,
         color: colores.primary,
       ),
-      yearBorderRadius: const BorderRadius.all(
-        Radius.circular(5),
+      yearBorderRadius: BorderRadius.all(
+        Radius.circular(5.sw),
       ),
       yearBuilder: ({
         decoration,
@@ -78,7 +80,7 @@ class _CalendarioState extends State<Calendario> {
       }) {
         return Center(
           child: Container(
-            height: 30.ph,
+            height: max(30.ph, 30.sh),
             width: 50.pw,
             decoration: decoration,
             child: Center(
@@ -102,7 +104,7 @@ class _CalendarioState extends State<Calendario> {
           return Center(
             child: Container(
               width: 30,
-              height: 30,
+              height: max(30.ph, 30.sh),
               decoration: decoration,
               child: Center(
                 child: Text(
@@ -120,7 +122,7 @@ class _CalendarioState extends State<Calendario> {
         return Center(
           child: Container(
             width: 30,
-            height: 30,
+            height: max(30.ph, 30.sh),
             decoration: decoration,
             child: Center(
               child: Text(

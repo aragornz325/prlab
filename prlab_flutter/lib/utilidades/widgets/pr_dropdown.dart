@@ -203,7 +203,7 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(8.pw),
+                  borderRadius: BorderRadius.circular(8.sw),
                   boxShadow: widget.boxShadow ??
                       [
                         BoxShadow(
@@ -274,7 +274,7 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
                             setState(() => _isExpanded = false);
                           },
                         ),
-                        SizedBox(height: 6.ph),
+                        SizedBox(height: max(6.ph, 6.sh)),
                       ],
                     ],
                   ),
@@ -307,7 +307,7 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.pw),
+                    borderRadius: BorderRadius.circular(8.sw),
                     border: widget.isValid
                         ? null
                         : Border.all(
@@ -546,7 +546,7 @@ class _AlcanzaDropdownOptionWidget<T> extends StatelessWidget {
                 Icon(
                   traillingIcon,
                   color: colores.primary,
-                  size: 20.pf,
+                  size: 20.pw,
                 ),
               if (checkBoxValue != null)
                 Theme(

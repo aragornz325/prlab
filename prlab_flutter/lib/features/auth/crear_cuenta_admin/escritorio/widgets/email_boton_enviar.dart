@@ -39,12 +39,12 @@ class _PrLabEmailYBotonEnviarState extends State<PrLabEmailYBotonEnviar> {
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: 40.pw,
-          vertical: 40.sh,
+          vertical: 40.ph,
         ),
         decoration: BoxDecoration(
           color: colores.background,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(15),
+          borderRadius: BorderRadius.all(
+            Radius.circular(15.sw),
           ),
           boxShadow: [
             BoxShadow(
@@ -69,7 +69,7 @@ class _PrLabEmailYBotonEnviarState extends State<PrLabEmailYBotonEnviar> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(height: 10.sh),
+              SizedBox(height: max(10.ph, 10.sh)),
               Text(
                 l10n.pageCreateAdminLeadingPRAgency,
                 style: TextStyle(
@@ -78,12 +78,12 @@ class _PrLabEmailYBotonEnviarState extends State<PrLabEmailYBotonEnviar> {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              SizedBox(height: 50.sh),
+              SizedBox(height: max(50.ph, 50.sh)),
               BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
                 builder: (context, state) {
                   return Center(
                     child: SizedBox(
-                      height: 40.sh,
+                      height: max(40.ph, 40.sh),
                       width: 782.pw,
                       child: PRTextFormField.email(
                         controller: widget.controller,
@@ -94,21 +94,21 @@ class _PrLabEmailYBotonEnviarState extends State<PrLabEmailYBotonEnviar> {
                   );
                 },
               ),
-              SizedBox(height: 50.sh),
+              SizedBox(height: max(50.ph, 50.sh)),
               BlocBuilder<BlocCrearCuentaAdmin, BlocCrearCuentaAdminEstado>(
                 builder: (context, state) {
                   if (state is BlocCrearCuentaAdminEstadoCargando) {
                     return Center(
                       child: Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
+                          borderRadius: BorderRadius.circular(25.sw),
                           color: colores.primary,
                         ),
-                        height: 50.ph,
+                        height: max(50.ph, 50.sh),
                         width: 782.pw,
                         child: Center(
                           child: SizedBox(
-                            height: 30.sh,
+                            height: max(30.ph, 30.sh),
                             width: 30.sw,
                             child: CircularProgressIndicator(
                               color: colores.background,

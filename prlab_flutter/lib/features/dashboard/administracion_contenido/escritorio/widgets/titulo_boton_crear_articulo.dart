@@ -27,7 +27,7 @@ class TituloBotonCrearArticulo extends StatelessWidget {
       children: [
         Icon(
           Icons.article_outlined,
-          size: 40.pf,
+          size: 40.pw,
           color: colores.primary,
         ),
         SizedBox(

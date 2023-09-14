@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -19,7 +21,7 @@ class SeccionTarjetasDeMarca extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 510.ph,
+          height: max(510.ph, 510.sh),
           width: 1040.pw,
           child: BlocBuilder<BlocAdministracionMarcas,
               BlocAdministracionMarcasEstado>(
@@ -43,7 +45,7 @@ class SeccionTarjetasDeMarca extends StatelessWidget {
                       TarjetaMarca(
                         marca: state.marcas[index],
                       ),
-                      SizedBox(height: 30.ph),
+                      SizedBox(height: max(30.ph, 30.sh)),
                       InformacionDeLaMarca(
                         cantidadArticulos:
                             state.marcas[index].ultimosArticulos?.length ?? 0,

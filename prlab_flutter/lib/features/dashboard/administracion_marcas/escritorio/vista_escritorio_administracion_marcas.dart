@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -30,13 +32,13 @@ class VistaEscritorioAdministracionMarcas extends StatelessWidget {
             titulo: l10n.pageBrandAdministrationTitle,
             descripcion: l10n.pageBrandAdministrationDescription,
           ),
-          SizedBox(height: 20.pw),
+          SizedBox(height: max(20.ph, 20.sh)),
           BlocBuilder<BlocAdministracionMarcas, BlocAdministracionMarcasEstado>(
             builder: (context, state) {
               if (state.estaEnEstadoCargando) {
                 return SizedBox(
                   width: 1000.pw,
-                  height: 510.ph,
+                  height: max(510.ph, 510.sh),
                   child: const Center(
                     child: CircularProgressIndicator(),
                   ),
@@ -52,7 +54,7 @@ class VistaEscritorioAdministracionMarcas extends StatelessWidget {
                 }
                 return SizedBox(
                   width: 1000.pw,
-                  height: 510.ph,
+                  height: max(510.ph, 510.sh),
                   child: const Center(
                     child: NadaParaVer(),
                   ),
@@ -88,7 +90,7 @@ class VistaEscritorioAdministracionMarcas extends StatelessWidget {
                       horizontal: 1.pw,
                     ),
                     child: SizedBox(
-                      height: 40.ph,
+                      height: max(40.ph, 40.sh),
                       width: 800.pw,
                     ),
                   ),

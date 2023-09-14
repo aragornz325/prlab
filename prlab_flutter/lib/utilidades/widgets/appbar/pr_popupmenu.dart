@@ -63,7 +63,7 @@ class _PRPopUpMenuState extends State<PRPopUpMenu> {
       constraints: BoxConstraints(minWidth: 185.pw),
       position: PopupMenuPosition.under,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.sw),
       ),
       child: PRPopUpMenuRowTitulo(
         tituloMenu: widget.tituloMenu,

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class HoverDeleteIconConImagen extends StatefulWidget {
     this.imagenCelular,
     this.imagenWeb, // TODO(SAM): Extraer luego widget de imagenes.
   });
+  // TODO(Anyone): Documentar
   final bool condicionVisibility;
   final void Function()? onTap;
   final File? imagenCelular;
@@ -68,7 +70,7 @@ class _HoverDeleteIconConImagenState extends State<HoverDeleteIconConImagen> {
                 children: [
                   Icon(
                     Icons.file_upload_outlined,
-                    size: 24.pf,
+                    size: 24.pw,
                   ),
                   SizedBox(
                     width: 64.pw,
@@ -96,7 +98,7 @@ class _HoverDeleteIconConImagenState extends State<HoverDeleteIconConImagen> {
                   _esLogoPrincipal!,
               child: SizedBox(
                 width: 32.pw,
-                height: 38.ph,
+                height: max(38.ph, 38.sh),
                 child: InkWell(
                   hoverColor: Colors.transparent,
                   onTap: widget.onTap,

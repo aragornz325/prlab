@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/widgets.dart';
@@ -30,9 +32,9 @@ class VistaEscritorioDbMediosDeComunicacion extends StatelessWidget {
             titulo: l10n.pageMediaDatabaseTitle,
             descripcion: l10n.pageMediaDatabaseDescription,
           ),
-          SizedBox(height: 20.ph),
+          SizedBox(height: max(20.ph, 20.sh)),
           const MenuBarraHorizontal(),
-          SizedBox(height: 30.ph),
+          SizedBox(height: max(30.ph, 30.sh)),
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +43,7 @@ class VistaEscritorioDbMediosDeComunicacion extends StatelessWidget {
               ListadoDePeriodistas(),
             ],
           ),
-          SizedBox(height: 85.ph),
+          SizedBox(height: max(85.ph, 85.sh)),
         ],
       ),
     );

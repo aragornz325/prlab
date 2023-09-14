@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:full_responsive/full_responsive.dart';
 
 class EfectoBlurPRLab extends CustomPainter {
   const EfectoBlurPRLab({
@@ -14,7 +15,7 @@ class EfectoBlurPRLab extends CustomPainter {
         color.withOpacity(0.1),
       ],
       stops: const [0.4, 1.0],
-      radius: 0.7,
+      radius: 0.7.sw,
     );
 
     final paint = Paint()

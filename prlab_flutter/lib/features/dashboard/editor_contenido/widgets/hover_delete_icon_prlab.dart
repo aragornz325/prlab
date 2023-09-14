@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -37,6 +39,7 @@ class HoverDeleteIconPRLab extends StatefulWidget {
 
   /// Widget que es el cuerpo, el contenido donde va a aparecer el hover icon.
   final Widget? contenido;
+
   @override
   State<HoverDeleteIconPRLab> createState() => _HoverDeleteIconPRLabState();
 }
@@ -101,7 +104,7 @@ class _HoverDeleteIconPRLabState extends State<HoverDeleteIconPRLab> {
               visible: _mouseEncima && widget.condicionVisibility,
               child: SizedBox(
                 width: 32.pw,
-                height: 38.ph,
+                height: max(38.ph, 38.sh),
                 child: InkWell(
                   hoverColor: Colors.transparent,
                   onTap: widget.onTapEliminar,

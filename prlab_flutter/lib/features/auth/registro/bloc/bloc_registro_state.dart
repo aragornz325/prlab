@@ -34,6 +34,7 @@ class BlocRegistroEstado extends Equatable {
           idUsuario: idUsuario ?? otro.idUsuario,
         );
 
+// TODO(anyone): Documentar
   final bool terminosAceptados;
 
   final String email;

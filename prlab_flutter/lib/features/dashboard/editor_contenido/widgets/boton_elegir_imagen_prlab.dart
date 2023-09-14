@@ -15,6 +15,7 @@ class BotonElegirImagenPRLab extends StatelessWidget {
     required this.descripcionBoton,
     super.key,
   });
+  // TODO(Anyone): Documentar
   final void Function()? onTap;
   final IconData icon;
   final String descripcionBoton;
@@ -27,7 +28,7 @@ class BotonElegirImagenPRLab extends StatelessWidget {
         children: [
           Icon(
             Icons.file_upload_outlined,
-            size: 24.pf,
+            size: 24.pw,
           ),
           Text(
             descripcionBoton,

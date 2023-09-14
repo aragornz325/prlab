@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -84,9 +86,9 @@ class _VistaEscritorioCrearCuentaAdminState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const LogoPrLabAgencia(),
-              SizedBox(height: 100.sh),
+              SizedBox(height: max(100.ph, 100.sh)),
               PrLabEmailYBotonEnviar(controller: controllerEmail),
-              SizedBox(height: 100.sh),
+              SizedBox(height: max(100.ph, 100.sh)),
               Center(
                 child: PRBoton.esOutlined(
                   width: 196.pw,

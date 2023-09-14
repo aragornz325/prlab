@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class SeccionLogoYEslogan extends StatelessWidget {
       child: Stack(
         children: [
           SizedBox(
-            height: 832.ph,
+            height: max(832.ph, 832.sh),
             child: Image.asset(
               Assets.assets_images_diario_png,
               fit: BoxFit.cover,
@@ -33,7 +34,7 @@ class SeccionLogoYEslogan extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 832.ph,
+            height: max(832.ph, 832.sh),
             child: Image.asset(
               Assets.assets_images_opacidad_png,
               fit: BoxFit.cover,
@@ -55,7 +56,7 @@ class SeccionLogoYEslogan extends StatelessWidget {
                 Image.asset(
                   Assets.assets_icons_logo_png,
                   fit: BoxFit.cover,
-                  height: 170.ph,
+                  height: max(170.ph, 170.sh),
                 ),
                 SizedBox(
                   width: 550.pw,
@@ -75,7 +76,7 @@ class SeccionLogoYEslogan extends StatelessWidget {
                     Image.asset(
                       Assets.assets_images_subrayado_png,
                       width: 300.pw,
-                      height: 30.ph,
+                      height: max(30.ph, 30.sh),
                     ),
                     SizedBox(
                       width: 100.pw,
@@ -83,7 +84,7 @@ class SeccionLogoYEslogan extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 150.ph,
+                  height: max(150.ph, 150.sh),
                 ),
               ],
             ),

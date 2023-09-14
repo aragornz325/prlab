@@ -18,6 +18,7 @@ class BlocRecuperarPasswordEventoRecolectarData
     this.passwordRepetida,
   });
 
+  // TODO(anyone): Documentar
   final String? password;
 
   final String? passwordRepetida;

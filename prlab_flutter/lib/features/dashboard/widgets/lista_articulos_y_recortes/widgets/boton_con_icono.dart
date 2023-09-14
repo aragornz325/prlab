@@ -39,7 +39,7 @@ class BotonConIcono extends StatelessWidget {
         children: [
           Icon(
             icono,
-            size: 18.pf,
+            size: 18.pw,
             color: colorIcono,
           ),
           SizedBox(width: 5.pw),
