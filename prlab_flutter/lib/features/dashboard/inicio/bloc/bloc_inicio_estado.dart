@@ -24,7 +24,11 @@ class BlocInicioEstado extends Equatable {
         listaArticulos,
       ];
 
+  /// Indica si el state es cargando
   bool get estaEnEstadoCargando => this is BlocInicioEstadoCargando;
+
+  /// Indica si el state es error
+  bool get estaEnEstadoError => this is BlocInicioEstadoError;
 }
 
 /// {@template BlocInicioEstadoInicial}

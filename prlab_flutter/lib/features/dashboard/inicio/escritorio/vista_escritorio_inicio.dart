@@ -44,8 +44,12 @@ class VistaEscritorioInicio extends StatelessWidget {
             ),
             BlocBuilder<BlocInicio, BlocInicioEstado>(
               builder: (context, state) {
-                if (state is BlocInicioEstadoCargando) {
+                if (state.estaEnEstadoCargando) {
                   return const TarjetasDeCarga();
+                }
+                if (state.estaEnEstadoError) {
+                  // TODO(anyone): Mostrar algun tipo de error message
+                  return const Text('Error');
                 }
                 return SizedBox(
                   width: 1010.pw,
