@@ -288,6 +288,14 @@
     "@pageEditContentEditArticleContainerButtonUploadLogo": {
         "description":"Text of the button to upload the main logo, when you are creating or editing an article"
     },
+      "pageEditContentEditArticleContainerButtonDeleteLogo" : "Estás seguro que quieres eliminar este logo? No podrás deshacer esta acción.",
+    "@pageEditContentEditArticleContainerButtonDeleteLogo": {
+        "description":"Text of the description of the alert dialog delete logo, when you are creating or editing an article"
+    },
+         "pageEditContentEditArticleContainerButtonDeletePage" : "Estás seguro que quieres eliminar esta página? No podrás deshacer esta acción.",
+    "@pageEditContentEditArticleContainerButtonDeletePage": {
+        "description":"Text of the description of the alert dialog delete Page, when you are creating or editing an article"
+    },
     "pageEditContentEditArticleContainerButtonUploadSecondaryLogo" : "Subir logo secundario",
     "@pageEditContentEditArticleContainerButtonUploadSecondaryLogo": {
         "description":"Text of the button to upload the secondary logo, when you are creating or editing an article"
@@ -682,6 +690,11 @@
         "description": "It is found in the journalist filters, the people menu, a message that expresses a `Role` type of filter"
     },
 
+    "pageMediaDatabaseHorizontalFilterLabelMediaType": "Tipo de medio",
+    "@pageMediaDatabaseHorizontalFilterLabelMediaType": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Media type` type of filter"
+    },
+
     "pageMediaDatabaseHorizontalFilterButtomButton": "Guardar datos",
     "@pageMediaDatabaseHorizontalFilterButtomButton": {
         "description": "It is found in the journalist filters, the people menu, its used to save the filter data, to use it in other opportunity"
@@ -691,7 +704,154 @@
     "@pageMediaDatabaseHorizontalFilterClearAll": {
         "description": "It is found in the journalist filters, the people menu, a message that expresses the intention of delete all the items from specific filter"
     },
+
+    "pageHomeHeaderTitle": "Articulos Recientes",
+    "@pageHomeHeaderTitle": {
+        "description": "Text shown on the header of the home page"
+    },
+
+    "pageHomeHeaderDescription": "Puedes acceder a tus articulos mas recientes",
+    "@pageHomeHeaderDescription": {
+        "description": "Text shown under the title of the header on the home page"
+    },
+
+    "pageHomeContainerBusquedaTitle": "Bienvenido de nuevo, {name}!",
+    "@pageHomeContainerBusquedaTitle": {
+        "description": "Text shown under the title of the header on the home page",
+        "placeholders" : {
+            "name" : {
+                "type": "String"
+            }
+        }
+    },
+    "pageMediaDatabaseJournalistInformationDialogAnchorAt": "Anchor at {workplace}",
+    "@pageMediaDatabaseJournalistInformationDialogAnchorAt": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, it indicates where the journalist works",
+        "placeholders" :{
+            "workplace" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageHomeContainerBusquedaPlaceholder": "Busca artículos, proyectos, marcas y más...",
+    "@pageHomeContainerBusquedaPlaceholder": {
+        "description": "Placeholder on the search textfield"
+    },
+
+    "pageHomeContainerBusquedaItemMediaDatabase": "Base de datos de medios",
+    "@pageHomeContainerBusquedaItemMediaDatabase": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemContacts": "Contactos",
+    "@pageHomeContainerBusquedaItemContacts": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemOnlineNewsroom": "Sala de prensa en línea",
+    "@pageHomeContainerBusquedaItemOnlineNewsroom": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemPRReports": "PR Reportes",
+    "@pageHomeContainerBusquedaItemPRReports": {
+        "description": "Item below the search bar"
+        },
+    "pageMediaDatabaseFilterTileFilterByPopupTitle": "Filtrar por {something}",
+    "@pageMediaDatabaseFilterTileFilterByPopupTitle": {
+        "description": "It is found in the journalist filters, the people menu, the title in the popup that is shown when you want to modify the filters",
+        "placeholders" :{
+            "something" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageMediaDatabaseFilterTileFilterByPopupDropdownHintText": "Elegir {something}",
+    "@pageMediaDatabaseFilterTileFilterByPopupDropdownHintText": {
+        "description": "It is found in the journalist filters, the people menu,the hint text inside the dropdown in the popup that is shown when you want to modify the filters",
+        "placeholders" :{
+            "something" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogGeneral": "General",
+    "@pageMediaDatabaseJournalistInformationDialogGeneral": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, its a one of the title for the journalist information items"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogSocial": "Social",
+    "@pageMediaDatabaseJournalistInformationDialogSocial": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, its a one of the title for the journalist information items"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogAddToList": "Agregar a la lista",
+    "@pageMediaDatabaseJournalistInformationDialogAddToList": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, expresses the addition of one of the journalist to our own list"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogReport": "Reportar",
+    "@pageMediaDatabaseJournalistInformationDialogReport": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, expresses the reporting of one of the journalist"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogSearchHintText": "Buscar palabras clave en artículos",
+    "@pageMediaDatabaseJournalistInformationDialogSearchHintText": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, expresses the reporting of one of the journalist"
+    },
+
+    "pageMediaDatabaseJournalistListTopLabel": "Puntuación de influencia",
+    "@pageMediaDatabaseJournalistListTopLabel": {
+        "description": "Indicates the influence in the media that the journalist has represented by a numerical score."
+    },
     
+    "pageHomeContainerBusquedaItemAnalytic": "Análisis",
+    "@pageHomeContainerBusquedaItemAnalytic": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemMediaMonitoring": "Monitoreo de medios",
+    "@pageHomeContainerBusquedaItemMediaMonitoring": {
+        "description": "Item below the search bar"
+    },
+    
+    "pageHomeContainerBusquedaItemStatistics": "Estadísticas",
+    "@pageHomeContainerBusquedaItemStatistics": {
+        "description": "Item below the search bar"
+    },
+    "projectMetricsLabelPositive": "Positivas",
+    "@projectMetricsLabelPositive": {
+        "description": "Text on the project metrics label indicating positive interactions"
+    },
+
+    "projectMetricsLabelNegative": "Negativas",
+    "@projectMetricsLabelNegative": {
+        "description": "Text on the project metrics label indicating negative interactions"
+    },
+
+    "projectMetricsLabelNeutral": "Neutrales",
+    "@projectMetricsLabelNeutral": {
+        "description": "Text on the project metrics label indicating neutral interactions"
+    },
+
+    "projectMetricsLabelTier": "Niveles",
+    "@projectMetricsLabelTier": {
+        "description": "Text on the project metrics label indicating the tier"
+    },
+
+    "projectMetricsLabelMentions": "Menciones",
+    "@projectMetricsLabelMentions": {
+        "description": "Text on the project metrics label indicating the mentions"
+    },
+
+    "projectMetricsLabelBacklinks": "Vínculos",
+    "@projectMetricsLabelBacklinks": {
+        "description": "Text on the project metrics label indicating the backlinks"
+    },
+
     "commonPRLab": "PR lab",
     "@commonPRLab": {
         "description": "Text PR lab in title of screen"
@@ -841,6 +1001,11 @@
     "commonChooseAnAuthor": "Choose an author",
     "@commonChooseAnAuthor": {
         "description": "Text shown when the user hasn´t yet selected an item from a dropdown."
+    },
+
+    "commonNothingToSee": "Nada para ver",
+    "@commonNothingToSee": {
+        "description": "Text shown when the data brought from the db is empty"
     }
 }
 

@@ -1,3 +1,5 @@
+// ignore_for_file: inference_failure_on_untyped_parameter
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -284,14 +286,14 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
       } else {
         searchText = searchText.toLowerCase();
         if (widget.isSimpleList) {
-          List<dynamic> newList = widget.list.where((text) {
+          final newList = widget.list.where((text) {
             return '$text'.toLowerCase().contains(searchText);
           }).toList();
           setState(() {
             filteredOptions = newList;
           });
         } else {
-          List<dynamic> newList = widget.list.where((objData) {
+          final newList = widget.list.where((objData) {
             return '${objData[widget.label]}'
                 .toLowerCase()
                 .contains(searchText);
@@ -369,7 +371,7 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
   }
 
   double getModalHeight() {
-    double height = filteredOptions.length > 4
+    var height = filteredOptions.length > 4
         ? widget.isLarge
             ? filteredOptions.length > 6
                 ? 7 * tileHeight
@@ -406,16 +408,16 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
     // }
 
     if (widget.isSimpleList) {
-      final int itemsToShow = selected.length;
-      String finalString = "";
-      for (int i = 0; i < itemsToShow; i++) {
+      final itemsToShow = selected.length;
+      var finalString = '';
+      for (var i = 0; i < itemsToShow; i++) {
         finalString = '$finalString ${selected[i]}, ';
       }
       return finalString.substring(0, finalString.length - 2);
     } else {
-      final int itemsToShow = selected.length;
-      String finalString = "";
-      for (int i = 0; i < itemsToShow; i++) {
+      final itemsToShow = selected.length;
+      var finalString = '';
+      for (var i = 0; i < itemsToShow; i++) {
         finalString = '$finalString ${selected[i][widget.label]}, ';
       }
       return finalString.substring(0, finalString.length - 2);
@@ -481,7 +483,7 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
                           )
                         : const BorderRadius.all(Radius.circular(10)),
                     border: Border.all(
-                      color: Color(0xffd9d9d9d9),
+                      color: const Color(0xffd9d9d9d9),
                     ),
                     color: Colors.white,
                   ),
@@ -529,9 +531,7 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
             menuChildren: [
               if (widget.includeSearch) buildSearchOption(),
               if (widget.includeSelectAll) buildSelectAllButton(),
-              ...filteredOptions.map((data) {
-                return buildTile(data);
-              }).toList(),
+              ...filteredOptions.map(buildTile),
             ],
           ),
         );

@@ -59,7 +59,10 @@ class PopUpMenuAgregarPagina extends StatelessWidget {
       itemBuilder: (context) => [
         PopupMenuItem(
           value: 1, // TODO(SAM): Analizar de cambiar a enum
-          height: max(40.ph, 40.sh),
+          height: max(
+            40.ph,
+            40.sh,
+          ),
           child: Text(
             l10n.pageEditContentArticleTitleCoveragePage,
             style: TextStyle(

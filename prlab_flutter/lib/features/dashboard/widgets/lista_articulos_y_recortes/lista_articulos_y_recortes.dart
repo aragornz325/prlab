@@ -3,10 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/bloc/bloc_lista_articulos_y_recortes.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/widgets/widgets.dart';
+import 'package:prlab_flutter/utilidades/widgets/nada_para_ver.dart';
 
 class ListaArticulosYRecortes extends StatelessWidget {
   const ListaArticulosYRecortes({
@@ -42,8 +42,7 @@ class ListaArticulosYRecortes extends StatelessWidget {
                     child: SizedBox(
                       height: max(400.ph, 400.sh),
                       width: 200.pw,
-                      child:
-                          Image.asset(Assets.assets_images_nada_para_ver_png),
+                      child: const NadaParaVer(),
                     ),
                   )
                 else
@@ -69,8 +68,7 @@ class ListaArticulosYRecortes extends StatelessWidget {
                     child: SizedBox(
                       height: max(300.ph, 300.sh),
                       width: 200.pw,
-                      child:
-                          Image.asset(Assets.assets_images_nada_para_ver_png),
+                      child: const NadaParaVer(),
                     ),
                   )
                 else if (state.index == 0 && state.articulos.isNotEmpty)

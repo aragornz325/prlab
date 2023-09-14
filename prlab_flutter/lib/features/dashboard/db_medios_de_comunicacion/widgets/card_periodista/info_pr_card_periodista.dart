@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/card_periodista.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/utilidades/widgets/card_periodista/card_periodista.dart';
 
 /// {@template InfoPRCardPeriodista}
 /// Aquí tendremos toda la información del periodista
@@ -108,7 +108,7 @@ class InfoPRCardPeriodista extends StatelessWidget {
             ),
             SizedBox(
               height: 25.ph,
-              width: 370.pw,
+              width: 340.pw,
               child: ListView.separated(
                 separatorBuilder: (context, index) => SizedBox(width: 10.pw),
                 scrollDirection: Axis.horizontal,

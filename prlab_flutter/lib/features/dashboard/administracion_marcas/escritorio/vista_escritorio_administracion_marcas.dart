@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/bloc/bloc_administracion_marcas.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/escritorio/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/widgets/nada_para_ver.dart';
 
 /// {@template VistaEscritorioAdministracionMarcas}
 /// Vista del dashboard en la seccion de administracion de marcas
@@ -33,13 +33,18 @@ class VistaEscritorioAdministracionMarcas extends StatelessWidget {
           SizedBox(height: 20.pw),
           BlocBuilder<BlocAdministracionMarcas, BlocAdministracionMarcasEstado>(
             builder: (context, state) {
-              if (state is BlocAdministracionMarcasEstadoCargando) {
+              if (state.estaEnEstadoCargando) {
                 return SizedBox(
                   width: 1000.pw,
                   height: 510.ph,
                   child: const Center(
                     child: CircularProgressIndicator(),
                   ),
+                );
+              } else if (state.estaEnEstadoError) {
+                // TODO(Gon): Manejar el error
+                return const Center(
+                  child: Text('Error'),
                 );
               } else {
                 if (state.marcas.isNotEmpty) {
@@ -48,12 +53,8 @@ class VistaEscritorioAdministracionMarcas extends StatelessWidget {
                 return SizedBox(
                   width: 1000.pw,
                   height: 510.ph,
-                  child: Center(
-                    child: Image.asset(
-                      // TODO(Gon): Cambiar imagen por un widget que tenga la
-                      // imagen y el texto de nothing to see
-                      Assets.assets_images_nada_para_ver_png,
-                    ),
+                  child: const Center(
+                    child: NadaParaVer(),
                   ),
                 );
               }

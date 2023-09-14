@@ -18,11 +18,38 @@ class BlocEditorContenidoEventoAgregarImagen extends BlocEditorContenidoEvento {
     this.logoSecundarioElegidoCelular,
     this.logoSecundarioElegidoWeb,
   });
-// TODO(SAM): Agregar docu
+
+  /// Logo primario que fue seleccionado de celular.
   final File? logoElegidoCelular;
+
+  /// Logo primario que fue seleccionado de web.
   final Uint8List? logoElegidoWeb;
+
+  /// Logo secundario que fue seleccionado de celular.
   final File? logoSecundarioElegidoCelular;
+
+  /// Logo secundario que fue seleccionado de web.
   final Uint8List? logoSecundarioElegidoWeb;
+}
+
+/// {@template BlocEditorContenidoEventoEliminarImagen}
+/// Elimina la imagen, el logo seleccionado.
+/// {@endtemplate}
+class BlocEditorContenidoEventoEliminarImagen
+    extends BlocEditorContenidoEvento {
+  /// {@macro BlocEditorContenidoEventoEliminarImagen}
+  BlocEditorContenidoEventoEliminarImagen({
+    this.esLogoPrimario = false,
+    this.esLogoSecundario = false,
+  });
+
+  /// Especifica si es el logo primario para que en la funcion del
+  /// evento se elimine.
+  final bool esLogoPrimario;
+
+  /// Especifica si es el logo secundario para que en la funcion del
+  /// evento se elimine.
+  final bool esLogoSecundario;
 }
 
 /// {@template BlocEditorContenidoEventoObtenerArticulo}
@@ -59,4 +86,17 @@ class BlocEditorContenidoActualizarArticulo extends BlocEditorContenidoEvento {
 
   /// El título del articulo.
   final String? titulo;
+}
+
+/// {@template BlocEditorContenidoEliminarPaginaArticulo}
+/// Elimina una pagina del articulo de acuerdo al id que recibe.
+/// {@endtemplate}
+class BlocEditorContenidoEliminarPaginaArticulo
+    extends BlocEditorContenidoEvento {
+  ///{@macro BlocEditorContenidoEliminarPaginaArticulo}
+  BlocEditorContenidoEliminarPaginaArticulo({
+    required this.idPagina,
+  });
+
+  final int idPagina;
 }

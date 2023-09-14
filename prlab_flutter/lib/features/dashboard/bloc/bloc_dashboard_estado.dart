@@ -70,8 +70,15 @@ class BlocDashboardEstadoLogueoFallido extends BlocDashboardEstado {
   BlocDashboardEstadoLogueoFallido.desde() : super.desde();
 }
 
-// TODO(Andre): Agregar documentacion
+/// {@template BlocDashboardEstadoFaltaCompletarKyc}
+/// Este estado ocurre cuando se ingresa en el dashboard,
+/// se averigua si en la db el usuario actual ya completo el
+/// kcy, en caso de no ser así se emite este estado.
+///
+/// Si este estado es emitido, se redirige al usuario a completar
+/// el kyc.
+/// {@endtemplate}
 class BlocDashboardEstadoFaltaCompletarKyc extends BlocDashboardEstado {
-  /// {@macro BlocDashboardEstadoLogueoFallido}
+  /// {@macro BlocDashboardEstadoFaltaCompletarKyc}
   BlocDashboardEstadoFaltaCompletarKyc.desde() : super.desde();
 }

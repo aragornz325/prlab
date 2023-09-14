@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/bloc/bloc_administracion_marcas.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/escritorio/widgets/widgets.dart';
+import 'package:prlab_flutter/utilidades/widgets/nada_para_ver.dart';
 
 /// {@template SeccionTarjetasDeMarca}
 /// Seccion de la vista donde se muestran las marcas y su respectiva informacion
@@ -29,8 +29,8 @@ class SeccionTarjetasDeMarca extends StatelessWidget {
               }
 
               if (state is BlocAdministracionMarcasEstadoError) {
-                return Center(
-                  child: Image.asset(Assets.assets_images_nada_para_ver_png),
+                return const Center(
+                  child: NadaParaVer(),
                 );
               }
 

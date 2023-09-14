@@ -1,8 +1,12 @@
+// ignore_for_file: strict_raw_type
+
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/theming/base.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template alcanza_dropdown}
 /// Dropdown widget used in the app.
@@ -25,7 +29,6 @@ class PRDropdown<T> extends StatefulWidget {
     this.preffixIcon,
     this.height,
     this.boxShadow,
-    // this.hasSearchField = kIsWeb ? false : true,
     this.hasSearchField = false,
     this.physics,
     this.showIcon = true,
@@ -50,7 +53,7 @@ class PRDropdown<T> extends StatefulWidget {
   final T? value;
 
   /// The items to show in the dropdown.
-  final List<PRDropdownOption> items;
+  final List<PRDropdownOption<T>> items;
 
   /// The hint text to show in the dropdown.
   final String hintText;
@@ -74,7 +77,7 @@ class PRDropdown<T> extends StatefulWidget {
   final Widget? preffixIcon;
 
   /// Add an option extra to the dropdown.
-  final PRDropdownOption? additionalOption;
+  final PRDropdownOption<T>? additionalOption;
 
   /// The height of the dropdown.
   final double? height;
@@ -127,7 +130,7 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
 
   final _controller = TextEditingController();
 
-  List<PRDropdownOption> items = [];
+  List<PRDropdownOption<T>> items = [];
 
   @override
   void initState() {
@@ -222,7 +225,11 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
                               Padding(
                                 padding: EdgeInsets.all(11.pw)
                                     .copyWith(bottom: 5.ph),
-                                child: Icon(Icons.abc),
+                                child: PRTextFormField(
+                                  controller: _controller,
+                                  prefixIcon: Icons.search,
+                                  hintText: 'Escribir ..',
+                                ),
                               ),
                             ...items.map((option) {
                               return _AlcanzaDropdownOptionWidget<T>(
@@ -230,7 +237,7 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
                                 color: option.color,
                                 enabled: option.enabled,
                                 title: option.title,
-                                value: option.value as T,
+                                value: option.value,
                                 textStyle: option.textStyle,
                                 checkBoxCallback: option.checkBoxCallback,
                                 checkBoxValue: option.checkBoxValue,
@@ -238,9 +245,11 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
                                 itemHeight: option.itemHeight,
                                 traillingIcon: option.traillingIcon,
                                 callback: () {
-                                  widget.onChanged.call(option.value as T);
+                                  widget.onChanged.call(option.value);
                                   option.callback?.call();
-                                  setState(() => _isExpanded = false);
+                                  if (option.checkBoxValue == null) {
+                                    setState(() => _isExpanded = false);
+                                  }
                                 },
                               );
                             }),
@@ -252,7 +261,7 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
                         Divider(color: colores.onSecondary),
                         _AlcanzaDropdownOptionWidget(
                           title: widget.additionalOption!.title,
-                          value: widget.additionalOption!.value as T,
+                          value: widget.additionalOption!.value,
                           traillingIcon: widget.additionalOption!.traillingIcon,
                           checkBoxCallback:
                               widget.additionalOption!.checkBoxCallback,
@@ -358,8 +367,8 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
                           duration: const Duration(milliseconds: 150),
                           turns: _isExpanded ? 0.5 : 0,
                           child: Icon(
-                            Icons.arrow_drop_down,
-                            size: 16.pf,
+                            Icons.arrow_drop_down_rounded,
+                            size: 24.pw,
                             color: (widget.enabled ?? false)
                                 ? colores.secondary
                                 : const Color(0xff4F4F4F).withOpacity(0.2),
@@ -486,7 +495,7 @@ class _AlcanzaDropdownOptionWidget<T> extends StatelessWidget {
   final double? itemHeight;
 
   /// The method to call when the option is tapped.
-  final void Function(bool?)? checkBoxCallback;
+  final void Function(bool? value)? checkBoxCallback;
 
   /// The icon on the rigth side of the option.
   final IconData? traillingIcon;
@@ -498,16 +507,14 @@ class _AlcanzaDropdownOptionWidget<T> extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 6.ph),
       height: itemHeight ?? 30.ph,
+      color: checkBoxValue != null
+          ? (checkBoxValue ?? false ? colores.primaryOpacidadVeinte : null)
+          : color,
       child: MaterialButton(
         onPressed: enabled ? callback : () {},
-        // splashColor: const Color(0xffEB4090).withOpacity(0.2),
-        // minWidth: double.infinity,
         highlightColor: colores.primaryOpacidadVeinte,
-        padding: preffixIcon != null ? null : EdgeInsets.only(left: 23.pw),
+        padding: preffixIcon != null ? null : null,
         child: Container(
-          // width: double.infinity,
-          color: color,
-          // padding: padding,
           alignment: Alignment.centerLeft,
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -544,121 +551,19 @@ class _AlcanzaDropdownOptionWidget<T> extends StatelessWidget {
               if (checkBoxValue != null)
                 Theme(
                   data: ThemeData(
-                    unselectedWidgetColor: Colors.amber,
+                    unselectedWidgetColor: colores.secondary,
                   ),
                   child: Checkbox(
                     value: checkBoxValue,
                     onChanged: checkBoxCallback,
                     activeColor: colores.primary,
+                    hoverColor: Colors.transparent,
                   ),
                 ),
               if (icon != null) icon!,
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-/// {@template alcanza_purpose_dropdown_icon}
-/// This class is used to display the icon of the purpose in a dropdown.
-/// {@endtemplate}
-class AlcanzaPurposeDropdownIcon extends StatelessWidget {
-  /// {@macro alcanza_purpose_dropdown_icon}
-  const AlcanzaPurposeDropdownIcon({
-    required this.size,
-    required this.iconPath,
-    required this.iconLabel,
-    this.imagePath,
-    this.labelWidth,
-    this.imageScale,
-    this.iconWidth,
-    super.key,
-  });
-
-  /// General size of the icon and text.
-  final double size;
-
-  /// Path to the icon.
-  final String iconPath;
-
-  /// Label of the icon.
-  final String iconLabel;
-
-  /// Image of the icon.
-  final String? imagePath;
-
-  /// Width of the label. If null, it takes the [size] value.
-  final double? labelWidth;
-
-  /// Size of the image. If null, it will be 1.
-  final double? imageScale;
-
-  /// Width of the icon.
-  final double? iconWidth;
-
-  @override
-  Widget build(BuildContext context) {
-    final isEmergency = iconLabel == 'emergency';
-    final isHome = iconLabel == 'tu home';
-    final isVacations = iconLabel == 'vacaciones';
-    final colores = context.colores;
-    return SizedBox(
-      height: size,
-      width: iconWidth,
-      child: Stack(
-        children: [
-          Align(
-            child: Padding(
-              padding: isEmergency || isHome || isVacations
-                  ? EdgeInsets.only(
-                      bottom: 8.ph,
-                    )
-                  : EdgeInsets.zero,
-              child: imagePath != null && (imagePath?.isNotEmpty ?? false)
-                  ? SizedBox(
-                      width: 49.pw,
-                      height: 49.ph,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12.pw),
-                        child: Image.network(
-                          imagePath!,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    )
-                  : Image.asset(
-                      'icons/casa.png',
-                      width: isEmergency ? size * 0.75 : size,
-                      height: isEmergency || isVacations
-                          ? size * 0.75
-                          : size * 0.83,
-                    ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              width: size * 0.9,
-              padding: EdgeInsets.only(
-                bottom: isEmergency || isVacations ? size * 0.03 : size * 0.06,
-              ),
-              child: Text(
-                iconLabel,
-                style: TextStyle(
-                  color: colores.primary,
-                  fontFamily: 'RobotoCondensed',
-                  fontSize: size * 0.135,
-                  fontWeight: FontWeight.w700,
-                  height:
-                      isEmergency || isVacations ? size * 0.018 : size * 0.0095,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

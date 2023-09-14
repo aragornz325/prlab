@@ -34,8 +34,11 @@ class VistaEscritorioDbMediosDeComunicacion extends StatelessWidget {
           const MenuBarraHorizontal(),
           SizedBox(height: 30.ph),
           const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               FiltradorDePeriodistas(),
+              ListadoDePeriodistas(),
             ],
           ),
           SizedBox(height: 85.ph),

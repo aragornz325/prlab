@@ -432,6 +432,15 @@
     "@pageEditContentEditArticleContainerButtonUploadSecondaryLogo": {
         "description":"Text of the button to upload the secondary logo, when you are creating or editing an article"
     },
+  "pageEditContentEditArticleContainerButtonDeleteLogo" : "Are you sure you want to delete this logo? You will not be able to undo this step.",
+    "@pageEditContentEditArticleContainerButtonDeleteLogo": {
+        "description":"Text of the description of the alert dialog delete logo, when you are creating or editing an article"
+    },
+      "pageEditContentEditArticleContainerButtonDeletePage" : "Are you sure you want to delete this page? You will not be able to undo this step.",
+    "@pageEditContentEditArticleContainerButtonDeletePage": {
+        "description":"Text of the description of the alert dialog delete Page, when you are creating or editing an article"
+    },
+
       "pageEditContentEditArticleContainerHintTitle" : "Enter article title",
     "@pageEditContentEditArticleContainerHintTitle": {
         "description":"Hint text of the article title, when you are creating or editing an article"
@@ -578,6 +587,11 @@
         "description": "It is found in the journalist filters, the people menu, a message that expresses a `Role` type of filter"
     },
 
+    "pageMediaDatabaseHorizontalFilterLabelMediaType": "Media type",
+    "@pageMediaDatabaseHorizontalFilterLabelMediaType": {
+        "description": "It is found in the journalist filters, the people menu, a message that expresses a `Media type` type of filter"
+    },
+
     "pageMediaDatabaseHorizontalFilterButtomButton": "Save data",
     "@pageMediaDatabaseHorizontalFilterButtomButton": {
         "description": "It is found in the journalist filters, the people menu, its used to save the filter data, to use it in other opportunity"
@@ -586,6 +600,66 @@
     "pageMediaDatabaseHorizontalFilterClearAll": "Clear all",
     "@pageMediaDatabaseHorizontalFilterClearAll": {
         "description": "It is found in the journalist filters, the people menu, a message that expresses the intention of delete all the items from specific filter"
+    },
+
+    "pageMediaDatabaseFilterTileFilterByPopupTitle": "Filter by {something}",
+    "@pageMediaDatabaseFilterTileFilterByPopupTitle": {
+        "description": "It is found in the journalist filters, the people menu, the title in the popup that is shown when you want to modify the filters",
+        "placeholders" :{
+            "something" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageMediaDatabaseFilterTileFilterByPopupDropdownHintText": "Choose a {something}",
+    "@pageMediaDatabaseFilterTileFilterByPopupDropdownHintText": {
+        "description": "It is found in the journalist filters, the people menu,the hint text inside the dropdown in the popup that is shown when you want to modify the filters",
+        "placeholders" :{
+            "something" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogAnchorAt": "Anchor at {workplace}",
+    "@pageMediaDatabaseJournalistInformationDialogAnchorAt": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, it indicates where the journalist works",
+        "placeholders" :{
+            "workplace" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogGeneral": "General",
+    "@pageMediaDatabaseJournalistInformationDialogGeneral": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, its a one of the title for the journalist information items"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogSocial": "Social",
+    "@pageMediaDatabaseJournalistInformationDialogSocial": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, its a one of the title for the journalist information items"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogAddToList": "Add to list",
+    "@pageMediaDatabaseJournalistInformationDialogAddToList": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, expresses the addition of one of the journalist to our own list"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogReport": "Report",
+    "@pageMediaDatabaseJournalistInformationDialogReport": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, expresses the reporting of one of the journalist"
+    },
+
+    "pageMediaDatabaseJournalistInformationDialogSearchHintText": "Search keywords in articles",
+    "@pageMediaDatabaseJournalistInformationDialogSearchHintText": {
+        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, expresses the reporting of one of the journalist"
+    },
+
+    "pageMediaDatabaseJournalistListTopLabel": "Influence score",
+    "@pageMediaDatabaseJournalistListTopLabel": {
+        "description": "Indicates the influence in the media that the journalist has represented by a numerical score."
     },
     
     "cardPeriodistaBotonDetails": "Details",
@@ -616,6 +690,95 @@
     "pageKYCAlertDialogCalendarTitleSelectYourBirthDate": "Select your birthdate",
     "@pageKYCAlertDialogCalendarTitleSelectYourBirthDate": {
         "description": "Text in title of alertdialog/popup Select your birthdate,Usually use in el form Kyc."
+    },
+
+    "pageHomeHeaderTitle": "Recent Articles",
+    "@pageHomeHeaderTitle": {
+        "description": "Text shown on the header of the home page"
+    },
+
+    "pageHomeHeaderDescription": "You can access your most recent articles",
+    "@pageHomeHeaderDescription": {
+        "description": "Text shown under the title of the header on the home page"
+    },
+
+    "pageHomeContainerBusquedaTitle": "Welcome back, {name}!",
+    "@pageHomeContainerBusquedaTitle": {
+        "description": "Gives the welcome to the user on the home page",
+        "placeholders" : {
+            "name" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageHomeContainerBusquedaPlaceholder": "Search articles, projects, brands, and more...",
+    "@pageHomeContainerBusquedaPlaceholder": {
+        "description": "Placeholder on the search textfield"
+    },
+
+    "pageHomeContainerBusquedaItemMediaDatabase": "Media Database",
+    "@pageHomeContainerBusquedaItemMediaDatabase": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemContacts": "Contacts",
+    "@pageHomeContainerBusquedaItemContacts": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemOnlineNewsroom": "Online Newsroom",
+    "@pageHomeContainerBusquedaItemOnlineNewsroom": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemPRReports": "PR Reports",
+    "@pageHomeContainerBusquedaItemPRReports": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemAnalytic": "Analytic",
+    "@pageHomeContainerBusquedaItemAnalytic": {
+        "description": "Item below the search bar"
+    },
+
+    "pageHomeContainerBusquedaItemMediaMonitoring": "Media Monitoring",
+    "@pageHomeContainerBusquedaItemMediaMonitoring": {
+        "description": "Item below the search bar"
+    },
+    
+    "pageHomeContainerBusquedaItemStatistics": "Statistics",
+    "@pageHomeContainerBusquedaItemStatistics": {
+        "description": "Item below the search bar"
+    },
+    "projectMetricsLabelPositive": "Positive",
+    "@projectMetricsLabelPositive": {
+        "description": "Text on the project metrics label indicating positive interactions"
+    },
+
+    "projectMetricsLabelNegative": "Negative",
+    "@projectMetricsLabelNegative": {
+        "description": "Text on the project metrics label indicating negative interactions"
+    },
+
+    "projectMetricsLabelNeutral": "Neutrales",
+    "@projectMetricsLabelNeutral": {
+        "description": "Text on the project metrics label indicating neutral interactions"
+    },
+
+    "projectMetricsLabelTier": "Tier",
+    "@projectMetricsLabelTier": {
+        "description": "Text on the project metrics label indicating the tier"
+    },
+
+    "projectMetricsLabelMentions": "Mentions",
+    "@projectMetricsLabelMentions": {
+        "description": "Text on the project metrics label indicating the mentions"
+    },
+
+    "projectMetricsLabelBacklinks": "Backlinks",
+    "@projectMetricsLabelBacklinks": {
+        "description": "Text on the project metrics label indicating the backlinks"
     },
 
     "commonCalendarSUN": "SUN",
@@ -843,6 +1006,11 @@
     "commonChooseAnAuthor": "Choose an author",
     "@commonChooseAnAuthor": {
         "description": "Text shown when the user hasn´t yet selected an item from a dropdown."
+    },
+    
+    "commonNothingToSee": "Nothing to see",
+    "@commonNothingToSee": {
+        "description": "Text shown when the user doesn´t have any data to show"
     }
 
 }

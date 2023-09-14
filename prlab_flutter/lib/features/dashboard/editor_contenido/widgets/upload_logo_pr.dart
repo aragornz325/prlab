@@ -9,22 +9,31 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/boton_elegir_imagen_prlab.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/hover_delete_icon_con_imagen.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+
+import 'package:prlab_flutter/utilidades/widgets/pr_dialog.dart';
 
 /// {@template UploadLogoPR}
 /// Boton para subir logos o imagenes principales y secundarias de la vista de
 ///  edicion de articulos [UploadLogoPR].
 /// {@endtemplate}
-class UploadLogoPR extends StatelessWidget {
+class UploadLogoPR extends StatefulWidget {
   /// {@macro UploadLogoPR}
   const UploadLogoPR({
     super.key,
   });
 
   @override
+  State<UploadLogoPR> createState() => _UploadLogoPRState();
+}
+
+class _UploadLogoPRState extends State<UploadLogoPR> {
+  @override
   Widget build(BuildContext context) {
-    final colores = context.colores;
     final l10n = context.l10n;
+
     return SizedBox(
       height: 64.ph,
       child: Row(
@@ -35,63 +44,24 @@ class UploadLogoPR extends StatelessWidget {
             ),
             child: BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
               builder: (context, state) {
-                if (state.logoElegidoWeb != null ||
-                    state.logoElegidoCelular != null) {
-                  return InkWell(
-                    // TODO(SAM): Carry over/Agregar hoover para poder borrar.
-                    onTap: () => _elegirImagenLogo(
-                      true,
-                      context,
-                    ),
-                    child: Center(
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.file_upload_outlined,
-                            size: 24.pf,
-                          ),
-                          SizedBox(
-                            width: 64.pw,
-                            height: 64.ph,
-                            child: kIsWeb
-                                ? Image.memory(
-                                    state.logoElegidoWeb!,
-                                    fit: BoxFit.fill,
-                                  )
-                                : Image.file(
-                                    state.logoElegidoCelular!,
-                                    fit: BoxFit.fill,
-                                  ),
-                          ),
-                        ],
-                      ),
-                    ),
+                final imagenLogoPrimarioElegidoWeb = state.logoElegidoWeb;
+
+                final imagenLogoPrimarioElegidoCelular =
+                    state.logoElegidoCelular;
+
+                if (imagenLogoPrimarioElegidoWeb != null ||
+                    imagenLogoPrimarioElegidoCelular != null) {
+                  return HoverDeleteIconConImagen(
+                    onTap: () => _eliminarLogoDialog(esLogoPrimario: true),
+                    imagenCelular: imagenLogoPrimarioElegidoCelular,
+                    imagenWeb: imagenLogoPrimarioElegidoWeb,
                   );
                 }
-                return InkWell(
-                  // TODO(SAM): Carry over/ Agregar hoover para poder borrar.
-                  onTap: () => _elegirImagenLogo(
-                    true,
-                    context,
-                  ),
-                  child: Center(
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.file_upload_outlined,
-                          size: 24.pf,
-                        ),
-                        Text(
-                          l10n.pageEditContentEditArticleContainerButtonUploadLogo,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 15.pf,
-                            color: colores.tertiary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                return BotonElegirImagenPRLab(
+                  onTap: () => _elegirImagenLogo(true, context),
+                  icon: Icons.file_upload_outlined,
+                  descripcionBoton:
+                      l10n.pageEditContentEditArticleContainerButtonUploadLogo,
                 );
               },
             ),
@@ -100,64 +70,79 @@ class UploadLogoPR extends StatelessWidget {
             padding: EdgeInsets.only(left: 30.pw),
             child: BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
               builder: (context, state) {
-                if (state.logoSecundarioElegidoWeb != null ||
-                    state.logoSecundarioElegidoCelular != null) {
-                  return InkWell(
-                    // TODO(SAM): Agregar hoover para poder borrar.
-                    onTap: () => _elegirImagenLogo(
-                      false,
-                      context,
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.file_upload_outlined,
-                          size: 24.pf,
-                        ),
-                        SizedBox(
-                          width: 64.pw,
-                          height: 64.ph,
-                          child: kIsWeb
-                              ? Image.memory(
-                                  state.logoSecundarioElegidoWeb!,
-                                  fit: BoxFit.fill,
-                                )
-                              : Image.file(
-                                  state.logoSecundarioElegidoCelular!,
-                                  fit: BoxFit.fill,
-                                ),
-                        ),
-                      ],
-                    ),
+                final imagenLogoSecundarioElegidoWeb =
+                    state.logoSecundarioElegidoWeb;
+
+                final imagenLogoSecundarioElegidoCelular =
+                    state.logoSecundarioElegidoCelular;
+
+                if (imagenLogoSecundarioElegidoWeb != null ||
+                    imagenLogoSecundarioElegidoCelular != null) {
+                  return HoverDeleteIconConImagen(
+                    onTap: () => _eliminarLogoDialog(esLogoSecundario: true),
+                    imagenCelular: imagenLogoSecundarioElegidoCelular,
+                    imagenWeb: imagenLogoSecundarioElegidoWeb,
                   );
                 }
-                return InkWell(
-                  // TODO(SAM): Agregar hoover para poder borrar.
-                  onTap: () => _elegirImagenLogo(
-                    false,
-                    context,
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.file_upload_outlined,
-                        size: 24.pf,
-                      ),
-                      Text(
-                        l10n.pageEditContentEditArticleContainerButtonUploadSecondaryLogo,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15.pf,
-                          color: colores.tertiary,
-                        ),
-                      ),
-                    ],
-                  ),
+                return BotonElegirImagenPRLab(
+                  onTap: () => _elegirImagenLogo(false, context),
+                  icon: Icons.file_upload_outlined,
+                  descripcionBoton: l10n
+                      .pageEditContentEditArticleContainerButtonUploadSecondaryLogo,
                 );
               },
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  /// Muestra un alert dialog al momento de apretar el boton icono de eliminar
+  /// logo primario o secundario, para preguntarle por una confirmacion al usuario
+  /// y una breve descripcion y de lo que va a hacer.
+  Future<void> _eliminarLogoDialog({
+    bool esLogoPrimario = false,
+    bool esLogoSecundario = false,
+  }) {
+    final l10n = context.l10n;
+    final colores = context.colores;
+    return showDialog<void>(
+      context: context,
+      builder: (_) => PRDialog.confirmar(
+        titulo: l10n.commonDelete,
+        tituloBotonPrimario: l10n.commonContinue,
+        tituloBotonSecundario: l10n.commonBack,
+        content: Text(
+          l10n.pageEditContentEditArticleContainerButtonDeleteLogo,
+          style: TextStyle(
+            color: colores.secondary,
+            fontWeight: FontWeight.w400,
+            fontSize: 15.pf,
+          ),
+        ),
+        context: context,
+        onTapBotonPrimario: () {
+          if (esLogoPrimario) {
+            context.read<BlocEditorContenido>().add(
+                  BlocEditorContenidoEventoEliminarImagen(
+                    esLogoPrimario: true,
+                  ),
+                );
+          }
+          if (esLogoSecundario) {
+            context.read<BlocEditorContenido>().add(
+                  BlocEditorContenidoEventoEliminarImagen(
+                    esLogoSecundario: true,
+                  ),
+                );
+          }
+
+          Navigator.of(_).pop();
+        },
+        onTapBotonSecundario: () {
+          Navigator.of(_).pop();
+        },
       ),
     );
   }
