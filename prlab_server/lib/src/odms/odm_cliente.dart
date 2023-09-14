@@ -1,6 +1,6 @@
 import 'package:prlab_server/src/generated/cliente.dart';
+import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/odm.dart';
-import 'package:prlab_server/utils/serialization.dart';
 import 'package:serverpod/database.dart';
 import 'package:serverpod/server.dart';
 
@@ -51,7 +51,7 @@ class OdmCliente extends ODM {
   }
 
   /// Obtiene los usuarios asignados a una marca.
-  Future<List<Cliente>> listarUsuariosPorMarca(
+  Future<List> listarUsuariosPorMarca(
     Session session, {
     required int idMarca,
   }) async {
@@ -76,25 +76,28 @@ class OdmCliente extends ODM {
     final responseMaps = await ejecutarConsultaSql(
       session,
       '''
-          SELECT "id", "nombre", "apellido", "fechaDeNacimiento", "nombreDeOrganizacion", "domicilio", "telefono", "idUsuario", "idOrganizacion", "contacto", "fechaEliminacion", "ultimaModificacion", "fechaCreacion" FROM "clientes" 
+          SELECT "id", "nombre", "apellido", "fechaDeNacimiento", "nombreDeOrganizacion", "domicilio", "telefono", "idUsuario", "idOrganizacion", "contacto", "ultimaModificacion", "fechaCreacion" FROM "clientes" 
           WHERE "idUsuario" IN (${queryListaDeIdUsuarios.join(',')});
         ''',
-      clavesMapaModeloDb: Cliente(
+      clavesMapaModeloDb: (Cliente(
         nombre: 'nombre',
         apellido: 'apellido',
         fechaDeNacimiento: DateTime.now(),
         nombreDeOrganizacion: 'nombreDeOrganizacion',
         ultimaModificacion: DateTime.now(),
         fechaCreacion: DateTime.now(),
-      ).toJsonForDatabase().keys,
+      ).toJsonForDatabase()..remove('activo')).keys,
     );
+    // print('ODM3');
 
-    final responseSerializado = responseMaps
-        .map(
-          (e) => Cliente.fromJson(e, AdministradorSerializacion()),
-        )
-        .toList();
+    // final responseSerializado = responseMaps
+    //     .map(
+    //       (e) => Cliente.fromJson(e, Protocol()),
+    //     )
+    //     .toList();
 
-    return responseSerializado;
+    // print('ODM4');
+
+    return responseMaps;
   }
 }
