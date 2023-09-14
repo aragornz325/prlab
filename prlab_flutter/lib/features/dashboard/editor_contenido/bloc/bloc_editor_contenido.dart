@@ -23,8 +23,11 @@ class BlocEditorContenido
       : super(const BlocEditorContenidoEstadoInicial()) {
     on<BlocEditorContenidoEventoObtenerArticulo>(_onObtenerArticulo);
     on<BlocEditorContenidoEventoAgregarImagen>(_onAgregarImagen);
-    on<BlocEditorContenidoActualizarArticulo>(_onActualizarArticulo);
-    on<BlocEditorContenidoEliminarPaginaArticulo>(_onEliminarPaginaArticulo);
+    on<BlocEditorContenidoEventoActualizarArticulo>(_onActualizarArticulo);
+    on<BlocEditorContenidoEventoGuardarDatosArticulo>(_onGuardarDatosArticulo);
+    on<BlocEditorContenidoEventoEliminarPaginaArticulo>(
+      _onEliminarPaginaArticulo,
+    );
     on<BlocEditorContenidoEventoEliminarImagen>(_onEliminarImagen);
 
     add(BlocEditorContenidoEventoObtenerArticulo(idArticulo: idArticulo));
@@ -82,6 +85,36 @@ class BlocEditorContenido
     }
   }
 
+  /// Se encarga principalmente de guardar los datos del
+  /// artículo que fue editado.
+  Future<void> _onGuardarDatosArticulo(
+    BlocEditorContenidoEventoGuardarDatosArticulo event,
+    Emitter<BlocEditorContenidoEstado> emit,
+  ) async {
+    emit(BlocEditorContenidoEstadoCargando.desde(state));
+    try {
+      if (state.articulo != null) {
+        await client.articulo.actualizarArticulo(
+          articulo: state.articulo!,
+        );
+        emit(
+          BlocEditorContenidoEstadoActualizandoDescripcion.desde(
+            state,
+            descripcionDeArticulo: state.articulo?.contenido ?? '',
+            tituloArticulo: state.articulo?.titulo ?? '',
+          ),
+        );
+      }
+    } catch (e) {
+      emit(
+        BlocEditorContenidoEstadoError.desde(
+          state,
+          mensajeDeError: MensajesDeErrorDeAdministracionMarcas.internalError,
+        ),
+      );
+    }
+  }
+
   /// Permite agregar y guardar las imagenes de ambos logos en la vista
   /// editar contenido  y actualiza los datos en el
   /// estado del [BlocEditorContenido].
@@ -123,7 +156,7 @@ class BlocEditorContenido
   /// Refresca la descripción y el título del artículo que se esta
   /// editando dentro del estado de [BlocEditorContenidoEstado].
   Future<void> _onActualizarArticulo(
-    BlocEditorContenidoActualizarArticulo event,
+    BlocEditorContenidoEventoActualizarArticulo event,
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
     final articulo = state.articulo;
@@ -158,9 +191,6 @@ class BlocEditorContenido
           ),
         );
       }
-      await client.articulo.actualizarArticulo(
-        articulo: articuloActualizado,
-      );
     } catch (e) {
       emit(
         BlocEditorContenidoEstadoError.desde(
@@ -172,7 +202,7 @@ class BlocEditorContenido
   }
 
   Future<void> _onEliminarPaginaArticulo(
-    BlocEditorContenidoEliminarPaginaArticulo event,
+    BlocEditorContenidoEventoEliminarPaginaArticulo event,
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
     emit(BlocEditorContenidoEstadoCargando.desde(state));

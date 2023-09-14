@@ -79,7 +79,7 @@ class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
           controller: controller
             ..addListener(() {
               context.read<BlocEditorContenido>().add(
-                    BlocEditorContenidoActualizarArticulo(
+                    BlocEditorContenidoEventoActualizarArticulo(
                       titulo: controller.text,
                     ),
                   );
