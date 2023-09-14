@@ -97,8 +97,6 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                     ),
               ),
               SizedBox(height: max(40.ph, 40.sh)),
-              // TODO(anyone): cambiar esto a el showpicker del calendario y que
-              // se le pase la fecha seleccionada al bloc
               BlocBuilder<BlocKyc, BlocKycEstado>(
                 builder: (context, state) {
                   return PRTextFormField.fecha(

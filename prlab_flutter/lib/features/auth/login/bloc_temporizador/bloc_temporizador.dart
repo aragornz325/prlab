@@ -20,8 +20,11 @@ class BlocTemporizador
     on<BlocTemporizadorEventoReiniciar>(_resetearCronometro);
     on<BlocTemporizadorEventoCortarEjecucion>(_cortarEjecucion);
   }
-  // TODO(anyone): Documentar
+
+  /// Duracion inicial del temporizador
   static const int _duracion = 60;
+
+  /// Timer del temporizador
   late Timer _timer;
 
   /// El tiempo actual faltante para que se termine el cronometro.
