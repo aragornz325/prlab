@@ -80,7 +80,6 @@ class PRBoton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
-
     return GestureDetector(
       onTap: estaHabilitado ? onTap : null,
       child: Container(
@@ -105,17 +104,21 @@ class PRBoton extends StatelessWidget {
         child: Center(
           child: muestraEstadoDeCarga
               ? const CircularProgressIndicator()
-              : Text(
-                  texto,
-                  style: TextStyle(
-                    fontSize: fontSize ?? 16.pf,
-                    fontWeight: fontWeight ?? FontWeight.w600,
-                    color: esOutlined
-                        ? estaHabilitado
-                            ? colores.primary
-                            : colores.primaryOpacidadSesenta
-                        : colores.background,
-                  ),
+              : Row(
+                  children: [
+                    Text(
+                      texto,
+                      style: TextStyle(
+                        fontSize: fontSize ?? 16.pf,
+                        fontWeight: fontWeight ?? FontWeight.w600,
+                        color: esOutlined
+                            ? estaHabilitado
+                                ? colores.primary
+                                : colores.primaryOpacidadSesenta
+                            : colores.background,
+                      ),
+                    ),
+                  ],
                 ),
         ),
       ),

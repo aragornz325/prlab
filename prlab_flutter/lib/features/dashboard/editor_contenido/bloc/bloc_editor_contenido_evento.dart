@@ -71,9 +71,10 @@ class BlocEditorContenidoEventoObtenerArticulo
 /// articulo a medida que se vayan ejecutando cambios dentro
 /// del mismo
 /// {@endtemplate}
-class BlocEditorContenidoActualizarArticulo extends BlocEditorContenidoEvento {
+class BlocEditorContenidoEventoActualizarArticulo
+    extends BlocEditorContenidoEvento {
   ///{@macro BlocEditorContenidoActualizarDescripcion}
-  BlocEditorContenidoActualizarArticulo({
+  BlocEditorContenidoEventoActualizarArticulo({
     this.descripcionDeArticulo,
     this.titulo,
   });
@@ -88,13 +89,23 @@ class BlocEditorContenidoActualizarArticulo extends BlocEditorContenidoEvento {
   final String? titulo;
 }
 
+/// {@template BlocEditorContenidoGuardarDatosArticulo}
+/// Guarda los datos de la descripcion y titulo del articulo en la base de
+///  datos.
+/// {@endtemplate}
+class BlocEditorContenidoEventoGuardarDatosArticulo
+    extends BlocEditorContenidoEvento {
+  ///{@macro BlocEditorContenidoGuardarDatosArticulo}
+  BlocEditorContenidoEventoGuardarDatosArticulo();
+}
+
 /// {@template BlocEditorContenidoEliminarPaginaArticulo}
 /// Elimina una pagina del articulo de acuerdo al id que recibe.
 /// {@endtemplate}
-class BlocEditorContenidoEliminarPaginaArticulo
+class BlocEditorContenidoEventoEliminarPaginaArticulo
     extends BlocEditorContenidoEvento {
   ///{@macro BlocEditorContenidoEliminarPaginaArticulo}
-  BlocEditorContenidoEliminarPaginaArticulo({
+  BlocEditorContenidoEventoEliminarPaginaArticulo({
     required this.idPagina,
   });
 

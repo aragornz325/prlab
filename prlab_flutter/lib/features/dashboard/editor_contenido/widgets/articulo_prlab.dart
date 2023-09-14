@@ -139,7 +139,7 @@ class _PaginaDeArticuloPRLabState extends State<PaginaDeArticuloPRLab> {
         context: context,
         onTapBotonPrimario: () {
           context.read<BlocEditorContenido>().add(
-                BlocEditorContenidoEliminarPaginaArticulo(
+                BlocEditorContenidoEventoEliminarPaginaArticulo(
                   idPagina: widget.idPagina,
                 ),
               );

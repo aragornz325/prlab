@@ -126,17 +126,22 @@ class _EditorDeDescripcionDeContenidoState
                       _jsonString = Future.value(
                         jsonEncode(editorState.document.toJson()),
                       );
-
                       context.read<BlocEditorContenido>().add(
-                            BlocEditorContenidoActualizarArticulo(
+                            BlocEditorContenidoEventoGuardarDatosArticulo(),
+                          );
+                      context.read<BlocEditorContenido>().add(
+                            BlocEditorContenidoEventoActualizarArticulo(
                               descripcionDeArticulo: jsonEncode(
                                 await _jsonString,
                               ),
                             ),
                           );
                     },
+                    // TODO(Anyone): Agregar funcionalidad para mostrarle al
+                    // usuario que se guardo la informacion correctamente.
+                    // TODO(Andre): Agregar funcionalidad del boton.
                     // No tiene traduc porque es temporal.
-                    texto: 'Save description',
+                    texto: 'Save',
                     estaHabilitado: true,
                     width: 139.pw,
                     height: max(30.ph, 30.sh),
