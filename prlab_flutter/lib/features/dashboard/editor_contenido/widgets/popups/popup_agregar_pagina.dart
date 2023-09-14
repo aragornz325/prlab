@@ -26,9 +26,9 @@ class PopUpMenuAgregarPagina extends StatelessWidget {
     return PopupMenuButton<int>(
       offset: const Offset(-7, -165),
       color: colores.onPrimary,
-      shape: const ContinuousRectangleBorder(
+      shape: ContinuousRectangleBorder(
         borderRadius: BorderRadius.all(
-          Radius.circular(20),
+          Radius.circular(20.sw),
         ),
       ),
       onSelected: (value) {
@@ -59,10 +59,7 @@ class PopUpMenuAgregarPagina extends StatelessWidget {
       itemBuilder: (context) => [
         PopupMenuItem(
           value: 1, // TODO(SAM): Analizar de cambiar a enum
-          height: max(
-            40.ph,
-            40.sh,
-          ),
+          height: max(40.ph, 40.sh),
           child: Text(
             l10n.pageEditContentArticleTitleCoveragePage,
             style: TextStyle(
@@ -86,10 +83,7 @@ class PopUpMenuAgregarPagina extends StatelessWidget {
         ),
         PopupMenuItem(
           value: 3,
-          height: max(
-            40.ph,
-            40.sh,
-          ),
+          height: max(40.ph, 40.sh),
           child: Text(
             l10n.pageEditContentArticleTitlePerformancePage,
             style: TextStyle(
@@ -103,15 +97,12 @@ class PopUpMenuAgregarPagina extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            width: max(
-              86.pw,
-              86.sw,
-            ),
+            width: max(86.pw, 86.sw),
             child: Container(
               height: max(30.ph, 30.sh),
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.horizontal(
-                  left: Radius.circular(100),
+                borderRadius: BorderRadius.horizontal(
+                  left: Radius.circular(100.sw),
                 ),
                 color: colores.primary,
               ),
@@ -130,30 +121,18 @@ class PopUpMenuAgregarPagina extends StatelessWidget {
           ),
           Container(
             width: 1.pw,
-            height: max(
-              30.ph,
-              30.sh,
-            ),
+            height: max(30.ph, 30.sh),
             // TODO(anyone): sacar linea blanca
             color: colores.tertiaryContainer,
           ),
           SizedBox(
-            height: max(
-              30.ph,
-              30.sh,
-            ),
-            width: max(
-              32.pw,
-              32.sw,
-            ),
+            height: max(30.ph, 30.sh),
+            width: max(32.pw, 32.sw),
             child: Container(
-              height: max(
-                30.ph,
-                30.sh,
-              ),
+              height: max(30.ph, 30.sh),
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.horizontal(
-                  right: Radius.circular(100),
+                borderRadius: BorderRadius.horizontal(
+                  right: Radius.circular(100.sw),
                 ),
                 color: colores.primary,
               ),
@@ -161,7 +140,7 @@ class PopUpMenuAgregarPagina extends StatelessWidget {
                 child: Icon(
                   Icons.arrow_drop_down_rounded,
                   color: colores.onPrimary,
-                  size: 24.pf,
+                  size: 24.pw,
                 ),
               ),
             ),

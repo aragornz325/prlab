@@ -37,7 +37,7 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
         preffixIcon: Icon(
           Icons.circle,
           color: colores.outline,
-          size: 24.pf,
+          size: 24.pw,
         ),
       ),
       PRDropdownOption<int>(
@@ -51,7 +51,7 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
         preffixIcon: Icon(
           Icons.circle,
           color: colores.outline,
-          size: 24.pf,
+          size: 24.pw,
         ),
       ),
       PRDropdownOption<int>(
@@ -65,7 +65,7 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
         preffixIcon: Icon(
           Icons.circle,
           color: colores.outline,
-          size: 24.pf,
+          size: 24.pw,
         ),
       ),
       PRDropdownOption<int>(
@@ -79,7 +79,7 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
         preffixIcon: Icon(
           Icons.circle,
           color: colores.outline,
-          size: 24.pf,
+          size: 24.pw,
         ),
       ),
     ];
@@ -107,7 +107,7 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
         icon: Icon(
           Icons.person_outline,
           color: colores.primary,
-          size: 20.pf,
+          size: 20.pw,
         ),
         value: itemSeleccionado,
         valueText: itemSeleccionado == -1

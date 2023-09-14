@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
@@ -25,7 +27,7 @@ class LogoPrLabAgencia extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            height: 82.ph,
+            height: max(82.ph, 82.sh),
             width: 67.pw,
             child: Image.asset(Assets.assets_icons_logo_png),
           ),

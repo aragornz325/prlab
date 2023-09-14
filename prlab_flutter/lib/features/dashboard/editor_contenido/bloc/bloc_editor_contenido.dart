@@ -154,7 +154,9 @@ class BlocEditorContenido
     );
   }
 
-  // TODO(ANDRE): Revisar la logica de esta funcion, puede mejorar.
+  // TODO(ANDRE): Revisar la logica de esta funcion, puede
+  // mejorar.
+
   /// Refresca la descripción y el título del artículo que se esta
   /// editando dentro del estado de [BlocEditorContenidoEstado].
   Future<void> _onActualizarArticulo(

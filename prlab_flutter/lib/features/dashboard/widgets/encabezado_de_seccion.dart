@@ -20,6 +20,7 @@ class EncabezadoDeSeccion extends StatelessWidget {
   /// Descripcion del encabezado
   final String descripcion;
 
+  /// TODO(Anyone): Documentar
   final IconData icono;
 
   @override
@@ -35,7 +36,7 @@ class EncabezadoDeSeccion extends StatelessWidget {
             children: [
               Icon(
                 icono,
-                size: 40.pf,
+                size: 40.pw,
                 color: colores.primary,
               ),
               SizedBox(width: 5.pw),

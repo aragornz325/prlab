@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -16,12 +18,12 @@ class DrawerIndicadorItemSeleccionado extends StatelessWidget {
       padding: EdgeInsets.only(right: 22.pw),
       child: Container(
         width: 8.pw,
-        height: 40.ph,
+        height: max(40.ph, 40.sh),
         decoration: BoxDecoration(
           color: colores.primary,
-          borderRadius: const BorderRadius.only(
-            topRight: Radius.circular(20),
-            bottomRight: Radius.circular(20),
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20.sw),
+            bottomRight: Radius.circular(20.sw),
           ),
         ),
       ),

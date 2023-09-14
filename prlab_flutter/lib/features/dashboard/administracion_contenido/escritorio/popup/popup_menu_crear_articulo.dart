@@ -46,9 +46,9 @@ class _PopUpMenuOpcionesAlCrearArticuloState
       },
       offset: const Offset(-20, 35),
       color: colores.surfaceTint,
-      shape: const ContinuousRectangleBorder(
+      shape: ContinuousRectangleBorder(
         borderRadius: BorderRadius.all(
-          Radius.circular(20),
+          Radius.circular(20.sw),
         ),
       ),
       onSelected: (value) {
@@ -60,6 +60,7 @@ class _PopUpMenuOpcionesAlCrearArticuloState
               builder: (context) => const PRDialogErrorNoDisponible(),
             );
           case 2:
+            // TODO(anyone): agregarle funcionalidad
             showDialog<void>(
               context: context,
               builder: (context) => const PRDialogErrorNoDisponible(),
@@ -126,8 +127,8 @@ class _PopUpMenuOpcionesAlCrearArticuloState
             child: Container(
               height: max(30.ph, 30.sh),
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.horizontal(
-                  left: Radius.circular(100),
+                borderRadius: BorderRadius.horizontal(
+                  left: Radius.circular(100.sw),
                 ),
                 color: colores.primary,
               ),
@@ -155,8 +156,8 @@ class _PopUpMenuOpcionesAlCrearArticuloState
             child: Container(
               height: max(30.ph, 30.sh),
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.horizontal(
-                  right: Radius.circular(100),
+                borderRadius: BorderRadius.horizontal(
+                  right: Radius.circular(100.sw),
                 ),
                 color: colores.primary,
               ),
@@ -166,7 +167,7 @@ class _PopUpMenuOpcionesAlCrearArticuloState
                       ? Icons.arrow_drop_up_outlined
                       : Icons.arrow_drop_down_outlined,
                   color: colores.surfaceTint,
-                  size: 24.pf,
+                  size: 24.pw,
                 ),
               ),
             ),

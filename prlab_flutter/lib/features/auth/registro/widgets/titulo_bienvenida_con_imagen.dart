@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
@@ -20,7 +22,7 @@ class TituloBienvenidaConImagen extends StatelessWidget {
     final l10n = context.l10n;
     final colores = context.colores;
     return SizedBox(
-      height: 150.ph,
+      height: max(150.ph, 150.sh),
       width: 300.pw,
       child: Stack(
         children: [

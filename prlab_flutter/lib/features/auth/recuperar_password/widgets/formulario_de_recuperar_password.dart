@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -85,7 +87,7 @@ class _FormularioDeRecuperarPasswordState
                         ),
                       ),
                 ),
-                SizedBox(height: 40.ph),
+                SizedBox(height: max(40.ph, 40.sh)),
                 PRTextFormFieldPassword(
                   width: 359.pw,
                   controller: controllerPasswordRepetida,
@@ -97,7 +99,7 @@ class _FormularioDeRecuperarPasswordState
                         ),
                       ),
                 ),
-                SizedBox(height: 50.ph),
+                SizedBox(height: max(50.ph, 50.sh)),
                 BlocBuilder<BlocRecuperarPassword, BlocRecuperarPasswordEstado>(
                   builder: (context, state) {
                     return PRBoton(
@@ -107,7 +109,7 @@ class _FormularioDeRecuperarPasswordState
                     );
                   },
                 ),
-                SizedBox(height: 270.sh),
+                SizedBox(height: max(27.ph, 270.sh)),
               ],
             ),
           ),

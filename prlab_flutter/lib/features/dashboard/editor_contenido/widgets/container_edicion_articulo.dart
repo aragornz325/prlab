@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -22,7 +24,7 @@ class ContainerEdicionArticulo extends StatelessWidget {
 
     return Container(
       width: 839.pw,
-      height: 508.ph,
+      height: max(508.ph, 508.sh),
       color: colores.surfaceTint,
       child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -69,7 +71,7 @@ class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
     final l10n = context.l10n;
 
     return SizedBox(
-      height: 90.ph,
+      height: max(90.ph, 90.sh),
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: 24.pw,

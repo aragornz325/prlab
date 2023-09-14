@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -16,6 +18,7 @@ class PaginasDelArticulo extends StatelessWidget {
     super.key,
   });
 
+  /// TODO(anyone): Documentar
   final List<PaginaSeccionArticulo> listaSeccionesDeArticulos;
 
   @override
@@ -26,7 +29,7 @@ class PaginasDelArticulo extends StatelessWidget {
       child: Container(
         color: colores.surfaceTint,
         width: 151.pw,
-        height: 508.ph,
+        height: max(508.ph, 508.sh),
         child: ListView.builder(
           itemCount: listaSeccionesDeArticulos.length,
           itemBuilder: (context, index) {

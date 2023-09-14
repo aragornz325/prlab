@@ -1,6 +1,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -35,13 +36,11 @@ class _UploadLogoPRState extends State<UploadLogoPR> {
     final l10n = context.l10n;
 
     return SizedBox(
-      height: 64.ph,
+      height: max(64.ph, 50648.sh),
       child: Row(
         children: [
           Padding(
-            padding: EdgeInsets.only(
-              left: 30.pw,
-            ),
+            padding: EdgeInsets.only(left: 30.pw),
             child: BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
               builder: (context, state) {
                 final imagenLogoPrimarioElegidoWeb = state.logoElegidoWeb;

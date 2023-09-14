@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
@@ -29,14 +31,14 @@ class TextoBienvenida extends StatelessWidget {
           child: SizedBox(
             child: Image.asset(
               Assets.assets_images_mano_saludando_png,
-              height: 280.ph,
+              height: max(280.ph, 280.sh),
               width: 110.pw,
               fit: BoxFit.contain,
             ),
           ),
         ),
         SizedBox(
-          height: 200.ph,
+          height: max(200.ph, 200.sh),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -51,7 +53,7 @@ class TextoBienvenida extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 10.ph),
+              SizedBox(height: max(10.ph, 10.sh)),
               Text(
                 l10n.pageLoginLogInTo,
                 style: TextStyle(
@@ -60,7 +62,7 @@ class TextoBienvenida extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              SizedBox(height: 20.ph),
+              SizedBox(height: max(20.ph, 20.sh)),
             ],
           ),
         ),

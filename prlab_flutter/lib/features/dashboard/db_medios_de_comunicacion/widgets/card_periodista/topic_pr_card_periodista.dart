@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -22,10 +24,10 @@ class TopicPRCardPeriodista extends StatelessWidget {
     final colores = context.colores;
 
     return Container(
-      height: 25.ph,
+      height: max(25.ph, 25.sh),
       decoration: BoxDecoration(
         color: colores.primaryOpacidadDiez,
-        borderRadius: BorderRadius.circular(10.pw),
+        borderRadius: BorderRadius.circular(10.sw),
       ),
       padding: EdgeInsets.symmetric(horizontal: 10.pw),
       child: Text(

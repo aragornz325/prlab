@@ -7,11 +7,6 @@ class BlocLoginEstado extends Equatable {
   /// {@macro BlocLoginEstado}
   const BlocLoginEstado._({
     this.botonLoginHabilitado = false,
-    // TODO(Anyone): Si el condicional
-    // de que estos botones esten habilitados o no es que el mail
-    // sea valido y la variable esta en el estado, es mejor hacer un getter
-    // desde el estado, asi tenes que mantener menos variables, inclusive
-    // creo que te ahorrarias un evento para modificar este valor
     this.botonOlvidePasswordHabilitado = false,
     this.estaIniciandoSesion = false,
     this.duracionTimer = 60,
@@ -65,6 +60,8 @@ class BlocLoginEstado extends Equatable {
   bool get estaCargandoInicioDeSesion =>
       estaIniciandoSesion && this is BlocLoginEstadoCargando;
 
+  /// Getter que verifica si el estado actual es el estado error y el error es
+  /// unknown
   bool get esEstadoErroneo =>
       this is BlocLoginEstadoErrorGeneral &&
       (this as BlocLoginEstadoErrorGeneral).mensajeDeError ==

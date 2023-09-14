@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -122,8 +124,8 @@ class PRTextFormField extends StatefulWidget {
                         vertical: 10.ph,
                       ),
                       decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.sw),
                         ),
                         color: colores.tertiary,
                       ),
@@ -137,7 +139,7 @@ class PRTextFormField extends StatefulWidget {
                       child: Icon(
                         Icons.info,
                         color: colores.tertiary,
-                        size: 12.5.pf,
+                        size: 12.5.pw,
                       ),
                     ),
                 ],
@@ -456,13 +458,13 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
                           : widget.esSoloLectura
                               ? colores.primaryOpacidadSesenta
                               : colores.primary,
-                      size: 25.pf,
+                      size: 25.pw,
                     ),
                     SizedBox(
                       width: 5.ph,
                     ),
                     Container(
-                      height: 31.5.ph,
+                      height: max(31.5.ph, 31.5.sh),
                       width: 1.pw,
                       decoration: BoxDecoration(color: colores.outlineVariant),
                     ),
@@ -528,12 +530,12 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
             ? Icon(
                 Icons.visibility_off_outlined,
                 color: colores.primary,
-                size: 25.pf,
+                size: 25.pw,
               )
             : Icon(
                 Icons.visibility_outlined,
                 color: colores.primary,
-                size: 25.pf,
+                size: 25.pw,
               ),
         onPressed: () {
           setState(() {

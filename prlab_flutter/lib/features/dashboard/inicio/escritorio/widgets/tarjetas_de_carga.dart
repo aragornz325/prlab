@@ -18,7 +18,7 @@ class TarjetasDeCarga extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 1010.pw,
-      height: 300.ph,
+      height: max(300.ph, 300.sh),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [

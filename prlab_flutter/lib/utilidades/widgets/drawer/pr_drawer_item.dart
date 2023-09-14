@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -17,7 +19,7 @@ class PRDrawerItem extends StatelessWidget {
     this.estaSeleccionado = false,
     super.key,
   });
-
+  // TODO(anyone): Documentar
   final VoidCallback onTap;
   final String tituloItem;
 
@@ -34,7 +36,7 @@ class PRDrawerItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: 210.pw,
-        height: 40.ph,
+        height: max(40.ph, 40.sh),
         decoration: BoxDecoration(
           color: estaSeleccionado
               ? colores.primaryOpacidadDiez
@@ -50,6 +52,7 @@ class PRDrawerItem extends StatelessWidget {
               child: Icon(
                 icono,
                 color: colores.primary,
+                size: 24.pw,
               ),
             ),
             SizedBox(width: 5.pw),

@@ -73,7 +73,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   padding: EdgeInsets.only(left: 5.pw),
                   child: Icon(
                     Icons.manage_search_outlined,
-                    size: 25.pf,
+                    size: 25.pw,
                     color: colores.secondary,
                   ),
                 ),
@@ -204,7 +204,7 @@ class _ItemContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                     )
                   : Icon(
                       icono,
-                      size: 25.pf,
+                      size: 25.pw,
                       color: colores.primary,
                     ),
             ),

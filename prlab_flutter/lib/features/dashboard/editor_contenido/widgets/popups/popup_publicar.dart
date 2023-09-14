@@ -26,9 +26,9 @@ class PopUpMenuOpcionesPublicar extends StatelessWidget {
     return PopupMenuButton<int>(
       offset: const Offset(7, -165),
       color: colores.onPrimary,
-      shape: const ContinuousRectangleBorder(
+      shape: ContinuousRectangleBorder(
         borderRadius: BorderRadius.all(
-          Radius.circular(20),
+          Radius.circular(20.sw),
         ),
       ),
       onSelected: (value) {
@@ -97,18 +97,12 @@ class PopUpMenuOpcionesPublicar extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            width: max(
-              86.pw,
-              86.sw,
-            ),
+            width: max(86.pw, 86.sw),
             child: Container(
-              height: max(
-                30.ph,
-                30.sh,
-              ),
+              height: max(30.ph, 30.sh),
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.horizontal(
-                  left: Radius.circular(100),
+                borderRadius: BorderRadius.horizontal(
+                  left: Radius.circular(100.sw),
                 ),
                 color: colores.primary,
               ),
@@ -133,15 +127,12 @@ class PopUpMenuOpcionesPublicar extends StatelessWidget {
           ),
           SizedBox(
             height: max(30.ph, 30.sh),
-            width: max(
-              32.pw,
-              32.sw,
-            ),
+            width: max(32.pw, 32.sw),
             child: Container(
               height: max(30.ph, 30.sh),
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.horizontal(
-                  right: Radius.circular(100),
+                borderRadius: BorderRadius.horizontal(
+                  right: Radius.circular(100.sw),
                 ),
                 color: colores.primary,
               ),
@@ -149,7 +140,7 @@ class PopUpMenuOpcionesPublicar extends StatelessWidget {
                 child: Icon(
                   Icons.arrow_drop_down_rounded,
                   color: colores.onPrimary,
-                  size: 24.pf,
+                  size: 24.pw,
                 ),
               ),
             ),

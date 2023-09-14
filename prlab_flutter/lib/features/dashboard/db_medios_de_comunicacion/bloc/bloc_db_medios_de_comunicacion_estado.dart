@@ -37,6 +37,7 @@ class BlocDbMediosDeComunicacionEstado {
           tipoDeMedio: tipoDeMedio ?? otro.tipoDeMedio,
         );
 
+  // TODO(anyone): Documentar
   final List<Periodista> periodistas;
 
   // ----- Lista de filtros -----

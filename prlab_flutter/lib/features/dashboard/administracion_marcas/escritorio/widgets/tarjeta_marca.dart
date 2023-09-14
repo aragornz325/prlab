@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,12 +32,12 @@ class TarjetaMarca extends StatelessWidget {
 
     return Container(
       width: 485.pw,
-      height: 398.ph,
+      height: max(398.ph, 398.sh),
       color: colores.surfaceTint,
       child: Column(
         children: [
           Container(
-            height: 64.ph,
+            height: max(64.ph, 64.sh),
             padding: EdgeInsets.symmetric(
               vertical: 20.ph,
               horizontal: 20.pw,
@@ -48,7 +50,7 @@ class TarjetaMarca extends StatelessWidget {
                     Icon(
                       Icons.language,
                       color: colores.tertiary,
-                      size: 20.pf,
+                      size: 20.pw,
                     ),
                     SizedBox(width: 5.pw),
                     GestureDetector(
@@ -77,7 +79,7 @@ class TarjetaMarca extends StatelessWidget {
                   child: Icon(
                     Icons.settings_outlined,
                     color: colores.primary,
-                    size: 24.pf,
+                    size: 24.pw,
                   ),
                 ),
               ],
@@ -85,11 +87,11 @@ class TarjetaMarca extends StatelessWidget {
           ),
           Divider(
             thickness: .2,
-            height: 1,
+            height: 1.sh,
             color: colores.secondary,
           ),
           Container(
-            height: 90.ph,
+            height: max(90.ph, 90.sh),
             padding: EdgeInsets.symmetric(
               vertical: 20.ph,
               horizontal: 20.pw,
@@ -121,7 +123,7 @@ class TarjetaMarca extends StatelessWidget {
                       texto: l10n.commonList,
                       estaHabilitado: true,
                       width: 100.pw,
-                      height: 30.ph,
+                      height: max(30.ph, 30.sh),
                       fontSize: 15.pf,
                       fontWeight: FontWeight.w500,
                     ),
@@ -135,7 +137,7 @@ class TarjetaMarca extends StatelessWidget {
                       texto: l10n.commonCreate,
                       estaHabilitado: true,
                       width: 100.pw,
-                      height: 30.ph,
+                      height: max(30.ph, 30.sh),
                       fontSize: 15.pf,
                       fontWeight: FontWeight.w500,
                     ),
@@ -146,11 +148,11 @@ class TarjetaMarca extends StatelessWidget {
           ),
           Divider(
             thickness: .2,
-            height: 1,
+            height: 1.sh,
             color: colores.secondary,
           ),
           Container(
-            height: 205.ph,
+            height: max(205.ph, 205.sh),
             padding: EdgeInsets.symmetric(
               vertical: 20.ph,
               horizontal: 20.pw,
@@ -173,11 +175,11 @@ class TarjetaMarca extends StatelessWidget {
                     ),
                     SizedBox(
                       width: 445.pw,
-                      height: 135.ph,
+                      height: max(135.ph, 135.sh),
                       child: ListView.separated(
                         separatorBuilder: (context, index) {
                           return SizedBox(
-                            height: 10.ph,
+                            height: max(10.ph, 10.sh),
                           );
                         },
                         itemCount: marca.ultimosArticulos?.length ?? 0,
@@ -186,7 +188,7 @@ class TarjetaMarca extends StatelessWidget {
                             children: [
                               Container(
                                 width: 10.pw,
-                                height: 10.ph,
+                                height: max(10.ph, 10.sh),
                                 decoration: BoxDecoration(
                                   color: colores.secondary,
                                   shape: BoxShape.circle,
@@ -206,7 +208,7 @@ class TarjetaMarca extends StatelessWidget {
                                 },
                                 child: SizedBox(
                                   width: 430.pw,
-                                  height: 25.ph,
+                                  height: max(25.ph, 25.sh),
                                   child: Text(
                                     marca.ultimosArticulos?[index].titulo ?? '',
                                     style: TextStyle(

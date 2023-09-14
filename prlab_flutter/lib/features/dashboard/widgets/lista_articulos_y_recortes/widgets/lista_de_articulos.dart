@@ -42,7 +42,7 @@ class ListaDeArticulos extends StatelessWidget {
           nombreColumna: l10n.commonArticles,
           celdaEncabezadoColumna: (value) => Padding(
             padding: EdgeInsets.symmetric(
-              vertical: max(10.ph, 10.sh),
+              vertical: 10.ph,
             ),
             child: SizedBox(
               width: 400.pw,
@@ -130,8 +130,8 @@ class ListaDeArticulos extends StatelessWidget {
                         height: max(35.ph, 35.sh),
                         decoration: BoxDecoration(
                           color: colores.secondary,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(100),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(100.sw),
                           ),
                         ),
                         child: Center(
@@ -233,10 +233,10 @@ class ListaDeArticulos extends StatelessWidget {
                     height: max(50.ph, 50.sh),
                     child: Center(
                       child: CircleAvatar(
-                        radius: 15.pf,
+                        radius: 15.sw,
                         backgroundColor: colores.outlineVariant,
                         child: CircleAvatar(
-                          radius: 15.pf,
+                          radius: 15.sw,
                           backgroundColor: colores.outlineVariant,
                         ),
                       ),
@@ -289,7 +289,7 @@ class ListaDeArticulos extends StatelessWidget {
                           },
                           icon: Icon(
                             Icons.share_outlined,
-                            size: 18.pf,
+                            size: 18.pw,
                             color: colores.primary,
                           ),
                         ),

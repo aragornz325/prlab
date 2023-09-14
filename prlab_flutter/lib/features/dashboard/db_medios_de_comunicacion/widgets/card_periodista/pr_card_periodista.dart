@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -28,7 +30,7 @@ class PRCardPeriodista extends StatelessWidget {
         vertical: 20.ph,
         horizontal: 20.pw,
       ),
-      height: 300.ph,
+      height: max(300.ph, 300.sh),
       decoration: BoxDecoration(
         color: colores.surfaceTint,
         boxShadow: [

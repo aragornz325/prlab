@@ -192,9 +192,9 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
   }
 }
 
-// TODO(Andre):
-// Eliminar este modelo cuando se nos brinden los modelos del backend.
-///
+// TODO(Andre):  Eliminar este modelo cuando se nos brinden los modelos
+// del backend.
+
 /// Componente provisional hasta que nos den los modelos
 /// de los filtros desde el backend
 class Filtro extends Equatable {

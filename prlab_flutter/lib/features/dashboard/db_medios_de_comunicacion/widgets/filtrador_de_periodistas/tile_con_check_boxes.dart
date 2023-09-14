@@ -66,7 +66,7 @@ class TileConCheckBoxes<T> extends StatelessWidget {
 
     return Column(
       children: [
-        SizedBox(height: 20.ph),
+        SizedBox(height: max(20.ph, 20.sh)),
         Padding(
           padding: EdgeInsets.only(left: 20.pw),
           child: Column(
@@ -130,7 +130,7 @@ class TileConCheckBoxes<T> extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 20.ph),
+              SizedBox(height: max(20.ph, 20.sh)),
             ],
           ),
         ),
@@ -264,7 +264,7 @@ class Item<T> extends Equatable {
     required this.valor,
     required this.estaSeleccionado,
   });
-
+// TODO(anyone): Documentar
   final T valor;
 
   final String etiqueta;

@@ -18,8 +18,10 @@ class BlocRecuperarPasswordEventoRecolectarData
     this.passwordRepetida,
   });
 
+  /// Contraseña del campo password
   final String? password;
 
+  /// Contraseña del campo repetir password para luego verificar si son iguales
   final String? passwordRepetida;
 }
 

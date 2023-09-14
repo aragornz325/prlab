@@ -50,7 +50,7 @@ class PaginaDeArticuloPRLab extends StatefulWidget {
       contenido: Row(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.symmetric(horizontal: 8.pw, vertical: 8.ph),
             child: Center(
               child: SizedBox(
                 height: 30.ph,
@@ -88,6 +88,7 @@ class PaginaDeArticuloPRLab extends StatefulWidget {
       ),
     );
   }
+  // TODO(Anyone): Documentar
   final String titulo;
   final String contenidoArticulo;
   final int idPagina;
