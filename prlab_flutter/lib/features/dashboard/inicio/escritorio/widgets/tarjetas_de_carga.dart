@@ -16,7 +16,9 @@ class TarjetasDeCarga extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      width: 1010.pw,
+      height: 300.ph,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [

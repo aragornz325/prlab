@@ -155,13 +155,14 @@ class BlocEditorContenidoEstadoActualizandoDescripcion
   BlocEditorContenidoEstadoActualizandoDescripcion.desde(
     super.otro, {
     required String descripcionDeArticulo,
+    required String tituloArticulo,
   }) : super.desde(
           // TODO(anyone):
           // Cuando esten los modelos hechos con mappable,
           // hacer esto con copyWith.
           articulo: Articulo(
             id: otro.articulo?.id,
-            titulo: otro.articulo?.titulo ?? '',
+            titulo: tituloArticulo,
             contenido: descripcionDeArticulo,
             idProyecto: otro.articulo?.idProyecto,
             idMarca: otro.articulo?.idMarca,

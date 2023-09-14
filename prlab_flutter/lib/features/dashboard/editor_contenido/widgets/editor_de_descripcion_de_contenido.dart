@@ -135,8 +135,9 @@ class _EditorDeDescripcionDeContenidoState
                             ),
                           );
                     },
+                    // TODO(Andre): Agregar funcionalidad del boton.
                     // No tiene traduc porque es temporal.
-                    texto: 'Save description',
+                    texto: 'Save',
                     estaHabilitado: true,
                     width: 139.pw,
                     height: 30.ph,

@@ -149,18 +149,18 @@ class BlocEditorContenido
       ..titulo = event.titulo ?? state.articulo?.titulo ?? '';
 
     try {
-      await client.articulo.actualizarArticulo(
-        articulo: articuloActualizado,
-      );
-
-      if (event.descripcionDeArticulo != null) {
+      if (event.descripcionDeArticulo != null || event.titulo != null) {
         emit(
           BlocEditorContenidoEstadoActualizandoDescripcion.desde(
             state,
             descripcionDeArticulo: descripcionDeArticulo ?? '',
+            tituloArticulo: event.titulo ?? articuloActualizado.titulo,
           ),
         );
       }
+      await client.articulo.actualizarArticulo(
+        articulo: articuloActualizado,
+      );
     } catch (e) {
       emit(
         BlocEditorContenidoEstadoError.desde(
