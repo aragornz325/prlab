@@ -159,14 +159,12 @@ CREATE TABLE "periodistas" (
   "nombres" text,
   "apellidos" text,
   "idRol" integer,
-  "medio" integer,
+  "idMedio" integer,
   "bio" text,
-  "temas" json,
   "email" text,
   "telefono" text,
   "idCiudad" integer,
   "idPais" integer,
-  "idiomas" json,
   "redesSociales" text
 );
 

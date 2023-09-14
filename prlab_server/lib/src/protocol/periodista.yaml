@@ -4,17 +4,15 @@ fields:
   urlImagen: String?
   nombres: String?
   apellidos: String?
+  rol: String?, api
   idRol: int?
-  medio: int?
+  medio: String?, api
+  idMedio: int?
   bio: String?
-  temas: List<int>?
   email: String?
   telefono: String?
+  ciudad: String?, api 
   idCiudad: int?
+  pais: String?, api
   idPais: int?
-  idiomas: List<int>?
   redesSociales: String?
-  nombreCiudad: String?, api 
-  nombrePais: String?, api
-  nombreTemas: List<String>?, api
-  nombreIdiomas : List<String>?, api
