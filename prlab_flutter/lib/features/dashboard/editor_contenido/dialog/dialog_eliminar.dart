@@ -42,7 +42,7 @@ class PrDialogEliminar extends StatelessWidget {
       tituloBotonPrimario: l10n.commonBack,
       tituloBotonSecundario: l10n.commonContinue,
       onTapBotonPrimario: () {
-        // TODO (anyone): agregarle funcionalidad
+        // TODO(anyone): agregarle funcionalidad
         Navigator.of(context).pop();
         showDialog<void>(
           context: context,
@@ -50,7 +50,7 @@ class PrDialogEliminar extends StatelessWidget {
         );
       },
       onTapBotonSecundario: () {
-        // TODO (anyone): agregarle funcionalidad
+        // TODO(anyone): agregarle funcionalidad
         Navigator.of(context).pop();
         showDialog<void>(
           context: context,

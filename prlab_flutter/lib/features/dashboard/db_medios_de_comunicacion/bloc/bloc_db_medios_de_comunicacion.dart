@@ -142,10 +142,9 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
     emit(BlocDbMediosDeComunicacionEstadoCargando.desde(state));
 
     try {
-      // TODO(Andre):
-      // Pedir modelo de este tipo de articulo que hace referencia
-      // a aquellos que fueron publicados por un periodista y terminar
-      // de manejar esta lógica aca y mostrar la lista en el popup de
+      // TODO(Andre): Pedir modelo de este tipo de articulo que hace
+      // referencia a aquellos que fueron publicados por un periodista y
+      // terminar/ de manejar esta lógica aca y mostrar la lista en el popup de
       // detalle del periodista.
     } catch (e) {
       emit(BlocDbMediosDeComunicacionEstadoFallido.desde(state));

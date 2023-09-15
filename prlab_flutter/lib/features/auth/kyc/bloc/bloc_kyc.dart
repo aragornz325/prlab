@@ -38,7 +38,8 @@ class BlocKyc extends Bloc<BlocKcyEvento, BlocKycEstado> {
         // fechaCreacion: DateTime.now(),
         // ultimaModificacion: DateTime.now(),
 
-        // TODO(Anyone): Volver a agregar cuando se agreguen en el back de nuevo.
+        // TODO(Anyone): Volver a agregar cuando se agreguen en el back de
+        // nuevo.
       );
       await client.cliente.completarKyc(cliente);
 

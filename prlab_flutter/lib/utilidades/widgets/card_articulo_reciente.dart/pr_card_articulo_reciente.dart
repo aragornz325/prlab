@@ -14,8 +14,8 @@ class PRCardeArticuloReciente extends StatelessWidget {
     super.key,
   });
 
-  //! TODO(): Reemplazar por modelo del back
-  /// Modelo de periodista traido del backend.
+  // TODO(anyone): Reemplazar por modelo del back Modelo de periodista traido
+  // del backend.
   final Periodista periodista;
 
   /// Titulo del articulo
@@ -83,7 +83,8 @@ class PRCardeArticuloReciente extends StatelessWidget {
                     width: 300.pw,
                     height: max(110.ph, 110.sh),
                     child: Image.network(
-                      // TODO(Manu): Reemplazar por portada del articulo cuando este definitivo
+                      // TODO(Manu): Reemplazar por portada del articulo cuando
+                      // este definitivo
                       'https://fotografias-neox.atresmedia.com/clipping/cmsimages02/2021/05/28/1E611BEC-B0D2-4054-96A3-175FC03D5164/98.jpg?crop=1920,1080,x0,y0&width=1900&height=1069&optimize=high&format=webply',
                       fit: BoxFit.cover,
                     ),

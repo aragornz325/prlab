@@ -5,6 +5,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/theming/base.dart';
+import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 import 'package:prlab_flutter/utilidades/widgets/appbar/appbar.dart';
 
 /// {@template PRAppBarRowIconos}
@@ -155,8 +156,8 @@ class _PRAppBarRowIconosState extends State<PRAppBarRowIconos> {
                             ),
                           ),
                           Text(
-                            // TODO(Anyone): datos de user
-                            'John Smith - Owner',
+                            '${sessionManager.signedInUser?.userName ?? 'John'}'
+                            ' - Owner',
                             style: TextStyle(
                               fontSize: 14.pf,
                               color: colores.secondary,

@@ -41,8 +41,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                       BlocBuilder<BlocEditorContenido,
                           BlocEditorContenidoEstado>(
                         builder: (context, state) {
-                          if (state
-                              is BlocEditorContenidoEstadoActualizandoDescripcion) {
+                          if (state.estaEnEstadoDeActualizacion) {
                             return EncabezadoDeSeccion(
                               icono: Icons.add,
                               titulo: state.articulo!.titulo,
