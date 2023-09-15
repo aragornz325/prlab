@@ -169,7 +169,8 @@ class BlocEditorContenidoEstadoActualizandoDescripcion
             idAutor: otro.articulo?.idAutor,
             idStatus: otro.articulo?.idStatus,
             // fechaEliminacion: otro.articulo?.fechaEliminacion,
-            // ultimaModificacion: otro.articulo?.ultimaModificacion,
+            ultimaModificacion:
+                otro.articulo?.ultimaModificacion ?? DateTime.now(),
             // fechaCreacion: otro.articulo?.fechaCreacion,
             // TODO(Anyone): Volver a agregar cuando se agreguen en el back de nuevo.
           ),
