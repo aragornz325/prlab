@@ -35,21 +35,27 @@ class BlocInicio extends Bloc<BlocInicioEvento, BlocInicioEstado> {
             listaArticulos: [
               Articulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
+                ultimaModificacion: DateTime.now(),
               ),
               Articulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
+                ultimaModificacion: DateTime.now(),
               ),
               Articulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
+                ultimaModificacion: DateTime.now(),
               ),
               Articulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
+                ultimaModificacion: DateTime.now(),
               ),
               Articulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
+                ultimaModificacion: DateTime.now(),
               ),
               Articulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
+                ultimaModificacion: DateTime.now(),
               ),
             ],
           ),

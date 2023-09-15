@@ -30,6 +30,7 @@ class BlocDashboard extends Bloc<BlocDashboardEvento, BlocDashboardEstado> {
           titulo: '${event.marca.nombre} article',
           idMarca: event.marca.id,
           contenido: StringConstants.contenidoDeArticuloPorDefectoJson,
+          ultimaModificacion: DateTime.now(),
         ),
       );
 

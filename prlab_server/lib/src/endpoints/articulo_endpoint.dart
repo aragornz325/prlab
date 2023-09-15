@@ -1,4 +1,3 @@
-import 'package:logging/logging.dart';
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/servicios/servicio_articulo.dart';
 import 'package:serverpod/server.dart';
@@ -29,7 +28,7 @@ class ArticuloEndpoint extends Endpoint {
         session,
         articulo: articulo,
       );
-    } on Exception catch (e) {
+    } on Exception {
       rethrow;
     }
   }
@@ -47,7 +46,7 @@ class ArticuloEndpoint extends Endpoint {
       return await servicioArticulo.listarArticulos(
         session,
       );
-    } on Exception catch (e) {
+    } on Exception {
       rethrow;
     }
   }
@@ -69,7 +68,7 @@ class ArticuloEndpoint extends Endpoint {
         session,
         id: id,
       );
-    } on Exception catch (e) {
+    } on Exception {
       rethrow;
     }
   }
@@ -92,7 +91,7 @@ class ArticuloEndpoint extends Endpoint {
         session,
         idArticulo: id,
       );
-    } on Exception catch (e) {
+    } on Exception {
       rethrow;
     }
   }
@@ -118,7 +117,7 @@ class ArticuloEndpoint extends Endpoint {
         session,
         idMarca: idMarca,
       );
-    } on Exception catch (e) {
+    } on Exception {
       rethrow;
     }
   }
@@ -142,7 +141,7 @@ class ArticuloEndpoint extends Endpoint {
         session,
         articulo: articulo,
       );
-    } on Exception catch (e) {
+    } on Exception {
       rethrow;
     }
   }
@@ -161,7 +160,7 @@ class ArticuloEndpoint extends Endpoint {
         rutaImagen: rutaImagen,
         idArticulo: idArticulo,
       );
-    } on Exception catch (e) {
+    } on Exception {
       rethrow;
     }
   }

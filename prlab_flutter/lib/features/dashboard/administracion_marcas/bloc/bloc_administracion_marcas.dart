@@ -6,7 +6,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/utilidades/utilidades.dart';
-import 'package:serverpod_client/serverpod_client.dart' as i1;
 
 part 'bloc_administracion_marcas_estado.dart';
 part 'bloc_administracion_marcas_evento.dart';
