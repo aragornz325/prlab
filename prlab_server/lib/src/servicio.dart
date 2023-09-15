@@ -28,8 +28,6 @@ abstract class Servicio<T extends ODM> {
   Future<T> ejecutarOperacion<T>(Future<T> Function() operacion) async {
     try {
       return operacion();
-    } on ExcepcionPrLab catch (e) {
-      throw e.errorType;
     } on Exception catch (e, st) {
       logger.severe(
         'Unidentified error: $e \n$st',
