@@ -458,7 +458,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
                           : widget.esSoloLectura
                               ? colores.primaryOpacidadSesenta
                               : colores.primary,
-                      size: 25.pw,
+                      size: 25.sw,
                     ),
                     SizedBox(
                       width: 5.ph,

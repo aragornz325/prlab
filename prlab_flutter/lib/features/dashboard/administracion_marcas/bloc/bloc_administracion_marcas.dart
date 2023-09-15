@@ -53,7 +53,7 @@ class BlocAdministracionMarcas extends Bloc<BlocAdministracionMarcasEvento,
       emit(
         BlocAdministracionMarcasEstadoExitosoGeneral.desde(
           state,
-          marcas: respuesta,
+          marcas: respuesta as List<Marca>?,
         ),
       );
     } catch (e, st) {

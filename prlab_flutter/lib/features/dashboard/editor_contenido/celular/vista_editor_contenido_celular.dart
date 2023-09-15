@@ -41,7 +41,6 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                       BlocBuilder<BlocEditorContenido,
                           BlocEditorContenidoEstado>(
                         builder: (context, state) {
-                          print(state.articulo!.titulo);
                           if (state
                               is BlocEditorContenidoEstadoActualizandoDescripcion) {
                             return EncabezadoDeSeccion(
@@ -102,7 +101,9 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: max(20.ph, 20.sh)),
+                SizedBox(
+                  height: max(20.ph, 20.sh),
+                ),
                 BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
                   builder: (context, state) {
                     if (state is BlocEditorContenidoEstadoCargando) {

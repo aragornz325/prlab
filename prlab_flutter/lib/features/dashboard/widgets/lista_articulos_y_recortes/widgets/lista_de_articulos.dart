@@ -159,7 +159,10 @@ class ListaDeArticulos extends StatelessWidget {
         // Fecha
         Columna(
           widthDeLaColumna: 150.pw,
-          lista: articulos.map((e) => e.ultimaModificacion).toList(),
+          // lista: articulos.map((e) => e.ultimaModificacion).toList(),
+          // TODO(ANYONE): volver a agregar cuando este fixeados los
+          //modelos del back
+          lista: articulos.map((e) => e.id).toList(),
           nombreColumna: l10n.pageContentAdministrationBarInformationLastUpdate,
           celdaEncabezadoColumna: (value) => SizedBox(
             width: 150.pw,
@@ -185,7 +188,9 @@ class ListaDeArticulos extends StatelessWidget {
                     height: max(50.ph, 50.sh),
                     child: Center(
                       child: Text(
-                        DateFormat('d MMM y').format(value!),
+                        'Fecha',
+                        //  DateFormat('d MMM y').format(value!),
+                        // TODO(ANYONE): volver a agregar cuando este lo del back.
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.start,
