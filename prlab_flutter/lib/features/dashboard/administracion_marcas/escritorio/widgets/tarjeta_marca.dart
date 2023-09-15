@@ -179,22 +179,27 @@ class TarjetaMarca extends StatelessWidget {
                       child: ListView.separated(
                         separatorBuilder: (context, index) {
                           return SizedBox(
-                            height: max(10.ph, 10.sh),
+                            height: max(1.ph, 1.sh),
                           );
                         },
                         itemCount: marca.ultimosArticulos?.length ?? 0,
                         itemBuilder: (context, index) {
                           return Row(
                             children: [
-                              Container(
-                                width: 10.pw,
-                                height: max(10.ph, 10.sh),
-                                decoration: BoxDecoration(
-                                  color: colores.secondary,
-                                  shape: BoxShape.circle,
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  bottom: 5.ph,
+                                  right: 2.pw,
+                                ),
+                                child: Container(
+                                  width: 10.pw,
+                                  height: max(10.ph, 10.sh),
+                                  decoration: BoxDecoration(
+                                    color: colores.secondary,
+                                    shape: BoxShape.circle,
+                                  ),
                                 ),
                               ),
-                              SizedBox(width: 5.pw),
                               GestureDetector(
                                 onTap: () {
                                   final idArticulo =
@@ -211,11 +216,13 @@ class TarjetaMarca extends StatelessWidget {
                                   height: max(25.ph, 25.sh),
                                   child: Text(
                                     marca.ultimosArticulos?[index].titulo ?? '',
+                                    maxLines: 1,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 14.pf,
                                       color: colores.primaryContainer,
                                       decoration: TextDecoration.underline,
+                                      overflow: TextOverflow.ellipsis,
                                       decorationColor: colores.primaryContainer,
                                     ),
                                   ),
