@@ -35,21 +35,8 @@ class PopUpMenuOpcionesPublicar extends StatelessWidget {
         switch (value) {
           // TODO(anyone): agregarle funcionalidad
           case 1:
-            showDialog<void>(
-              context: context,
-              builder: (context) => const PRDialogErrorNoDisponible(),
-            );
           case 2:
-            showDialog<void>(
-              context: context,
-              builder: (context) => const PRDialogErrorNoDisponible(),
-            );
           case 3:
-            showDialog<void>(
-              context: context,
-              builder: (context) => const PRDialogErrorNoDisponible(),
-            );
-          default:
             showDialog<void>(
               context: context,
               builder: (context) => const PRDialogErrorNoDisponible(),

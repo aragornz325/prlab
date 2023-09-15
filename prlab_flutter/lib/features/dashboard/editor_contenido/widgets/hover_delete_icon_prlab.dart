@@ -26,15 +26,15 @@ class HoverDeleteIconPRLab extends StatefulWidget {
   final void Function()? onTapEliminar;
 
   /// Selecciona el componente sobre el que esta el usuario y ejecuta la
-  /// funcion.
+  /// función.
   final void Function()? onTapSeleccionar;
 
-  /// Es la condicion para mostrar el widget hover con el icono. En caso de ser
+  /// Es la condición para mostrar el widget hover con el icono. En caso de ser
   /// true lo va a mostrar.
   final bool condicionVisibility;
 
   /// Indica si el item, el widget esta seleccionado para poder cambiar el color
-  /// del hover u alguna otra caracteristica.
+  /// del hover u alguna otra característica.
   final bool itemEstaSeleccionado;
 
   /// Widget que es el cuerpo, el contenido donde va a aparecer el hover icon.
@@ -46,12 +46,12 @@ class HoverDeleteIconPRLab extends StatefulWidget {
 
 class _HoverDeleteIconPRLabState extends State<HoverDeleteIconPRLab> {
   /// Indica si la pagina tiene el mouse del usuario encima o no, para agregar
-  /// el tacho de basura permitiendole poder borrarla.
+  /// el tacho de basura permitiéndole poder borrarla.
   bool _mouseEncima = false;
 
   /// Indica si el componente tiene el mouse del
   /// usuario encima o no, para agregar
-  /// el tacho de basura permitiendole poder borrarlo.
+  /// el tacho de basura permitiéndole poder borrarlo.
   void _cursorEncima(
     bool isHovered,
   ) {
@@ -61,8 +61,8 @@ class _HoverDeleteIconPRLabState extends State<HoverDeleteIconPRLab> {
   }
 
 // TODO(SAM): En algun momento hacer factory de componente hover.
-//  TODO(SAM): Pasar colores para evitar la variable  final bool
-//  itemEstaSeleccionado;
+// TODO(SAM): Pasar colores para evitar la variable final bool
+// itemEstaSeleccionado;
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;

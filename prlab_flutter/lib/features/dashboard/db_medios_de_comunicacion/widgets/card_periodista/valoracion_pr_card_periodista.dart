@@ -14,7 +14,7 @@ class ValoracionPrCardPeriodista extends StatelessWidget {
     super.key,
   });
 
-//! TODO: Cambiar por modelo del backend
+  //! TODO: Cambiar por modelo del backend
   /// Modelo utilizado para recolectar la informacion del periodista y armar
   /// la tarjeta con su información
   final Periodista periodista;

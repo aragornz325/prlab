@@ -15,12 +15,14 @@ class AlmacenamientoArchivosNubeEndpoint extends Endpoint {
     required String nombreImagen,
     required String directorioNube,
   }) async {
-    return await servicio.subirImagen(
-      session,
-      rutaImagen: rutaImagen,
-      nombreImagen: nombreImagen,
-      directorioNube: directorioNube,
-    ).toString();
+    return servicio
+        .subirImagen(
+          session,
+          rutaImagen: rutaImagen,
+          nombreImagen: nombreImagen,
+          directorioNube: directorioNube,
+        )
+        .toString();
   }
 
   /// Borra una imagen del alojamiento en la nube. Requiere de su public-id
@@ -30,10 +32,12 @@ class AlmacenamientoArchivosNubeEndpoint extends Endpoint {
     required String publicId,
     required String urlImagen,
   }) async {
-    return await servicio.borrarImagen(
-      session,
-      publicId: publicId,
-      urlImagen: urlImagen,
-    ).toString();
+    return servicio
+        .borrarImagen(
+          session,
+          publicId: publicId,
+          urlImagen: urlImagen,
+        )
+        .toString();
   }
 }

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/assets.dart';
 
@@ -63,11 +62,11 @@ class BlocEditorContenido
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
     emit(BlocEditorContenidoEstadoCargando.desde(state));
+
     try {
       final respuesta = await client.articulo.obtenerArticulo(
         event.idArticulo,
       );
-
       emit(
         BlocEditorContenidoEstadoExitoso.desde(
           state,
@@ -92,11 +91,13 @@ class BlocEditorContenido
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
     emit(BlocEditorContenidoEstadoCargando.desde(state));
+
     try {
       if (state.articulo != null) {
         await client.articulo.actualizarArticulo(
           articulo: state.articulo!,
         );
+
         emit(
           BlocEditorContenidoEstadoActualizandoDescripcion.desde(
             state,

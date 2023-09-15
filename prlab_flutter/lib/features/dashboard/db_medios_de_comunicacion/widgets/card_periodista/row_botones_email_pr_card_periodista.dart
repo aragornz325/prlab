@@ -22,7 +22,7 @@ class RowBotonesEmailPRCardPeriodista extends StatelessWidget {
     super.key,
   });
 
-//! TODO: pasar modelo definitivo
+  //! TODO: pasar modelo definitivo
   /// Modelo utilizado para recolectar la información del periodista y armar
   /// la tarjeta
   final Periodista periodista;

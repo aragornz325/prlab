@@ -19,8 +19,12 @@ class PRDrawerItem extends StatelessWidget {
     this.estaSeleccionado = false,
     super.key,
   });
-  // TODO(anyone): Documentar
+
+  /// Se utiliza para definir la acción que se debe realizar cuando el usuario
+  /// hace clic o toca el elemento.
   final VoidCallback onTap;
+
+  /// Titulo del item para los items del drawers
   final String tituloItem;
 
   /// Icono izquierdo del item

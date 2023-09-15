@@ -3,7 +3,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 
 /// {@template EncabezadoDeSeccion}
-/// Encabezado de la seccion del dashboard
+/// Encabezado de la sección del dashboard
 /// {@endtemplate}
 class EncabezadoDeSeccion extends StatelessWidget {
   /// {@macro EncabezadoDeSeccion}
@@ -20,7 +20,7 @@ class EncabezadoDeSeccion extends StatelessWidget {
   /// Descripcion del encabezado
   final String descripcion;
 
-  /// TODO(Anyone): Documentar
+  /// Icono del encabezado
   final IconData icono;
 
   @override

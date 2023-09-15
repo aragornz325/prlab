@@ -82,6 +82,7 @@ class BlocAdministracionMarcasEstadoError
 }
 
 // TODO(anyone): Verificar si es necesario y que excepciones pueden
+// manejo de errores
 // llegar a ocurrir
 
 /// Tipos de errores de  administración de marcas a mostrar

@@ -1,7 +1,6 @@
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/odm.dart';
 import 'package:prlab_server/utils/manejo_de_errores/manejo_de_errores.dart';
-import 'package:prlab_server/utils/serialization.dart';
 import 'package:serverpod/server.dart';
 
 /// La clase [OdmMarca] es una clase Dart que proporciona funciones para crear
@@ -209,12 +208,11 @@ class OdmMarca extends ODM {
       WHERE "id" IN (${queryListaDeIdMarcas.join(',')});
       ''',
       clavesMapaModeloDb: (Marca(
-                  nombre: '',
-                  sitioWeb: '',
-                  fechaCreacion: DateTime.now(),
-                  ultimaModificacion: DateTime.now(),
-                  )
-              .toJsonForDatabase()
+        nombre: '',
+        sitioWeb: '',
+        fechaCreacion: DateTime.now(),
+        ultimaModificacion: DateTime.now(),
+      ).toJsonForDatabase()
             ..remove('activo'))
           .keys,
     );
