@@ -126,7 +126,7 @@ class OdmMarca extends ODM {
       );
       if (marca == null) {
         const error = ErrorPrLab.errorElementoNoEncontrado;
-        throw ExcepcionPrLab(mensaje: error.mensaje, errorType: error);
+        throw Exception('mensaje: ${error.mensaje}, errorType: $error');
       }
       logger.fine('Marca con id: $id encontrada');
       return marca;
@@ -181,7 +181,7 @@ class OdmMarca extends ODM {
   }
 
   /// Obtiene las marcas a las que se encuentra asignado un usuario.
-  Future<List> listarMarcasPorUsuario(
+  Future<List<Marca>> listarMarcasPorUsuario(
     Session session, {
     required int idUsuario,
   }) async {
@@ -217,11 +217,17 @@ class OdmMarca extends ODM {
           .keys,
     );
 
-    // final responseSerializado = responseMaps
-    //     .map(
-    //       (e) => Marca.fromJson(e, AdministradorSerializacion()),
-    //     )
-    //     .toList();
-    return responseMaps;
+    final responseSerializado = responseMaps
+        .map(
+          (e) => Marca.fromJson(
+            e
+              ..['ultimaModificacion'] = e['ultimaModificacion'].toString()
+              ..['fechaCreacion'] = e['fechaCreacion'].toString(),
+            Protocol(),
+          ),
+        )
+        .toList();
+
+    return responseSerializado;
   }
 }
