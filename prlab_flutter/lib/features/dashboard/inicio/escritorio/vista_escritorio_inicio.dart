@@ -33,7 +33,7 @@ class VistaEscritorioInicio extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: max(20.ph, 20.sh)),
+            SizedBox(height: max(40.ph, 40.sh)),
             ContenedorDeLaBarraDeBusqueda(
               nombreUsuario: sessionManager.signedInUser?.userName ?? 'john',
             ),

@@ -27,6 +27,7 @@ class VistaEscritorioDbMediosDeComunicacion extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: max(40.ph, 40.sh)),
           EncabezadoDeSeccion(
             icono: Icons.manage_search_rounded,
             titulo: l10n.pageMediaDatabaseTitle,
