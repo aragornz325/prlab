@@ -14,7 +14,7 @@ class PRCardeArticuloReciente extends StatelessWidget {
     super.key,
   });
 
-//! TODO(): Reemplazar por modelo del back
+  //! TODO(): Reemplazar por modelo del back
   /// Modelo de periodista traido del backend.
   final Periodista periodista;
 
@@ -108,7 +108,8 @@ class PRCardeArticuloReciente extends StatelessWidget {
                               SizedBox(
                                 width: 190.pw,
                                 child: Text(
-                                  // TODO(Manu): Reemplazar por link del articulo o como defina guille
+                                  // TODO(Manu): Reemplazar por link del
+                                  // articulo o como defina guille
                                   'https://www.callofduty.com/content/',
                                   style: TextStyle(
                                     color: colores.secondary,
@@ -128,7 +129,8 @@ class PRCardeArticuloReciente extends StatelessWidget {
                               ),
                               SizedBox(width: 5.pw),
                               Text(
-                                // TODO(Manu): reemplazar por datetime cuando este hecho el modelo
+                                // TODO(Manu): reemplazar por datetime
+                                // cuando este hecho el modelo
                                 '01 Aug 23',
                                 style: TextStyle(
                                   color: colores.secondary,

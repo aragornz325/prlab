@@ -74,7 +74,8 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
               ],
               dropdownButtonIcon: Icons.menu_outlined,
               onChange: (newList) {
-                // TODO(anyone): Abrir los popups para cada categoria seleccionada
+                // TODO(anyone): Abrir los popups para cada categoria
+                // seleccionada
                 final id = newList[0]['id'];
                 switch (id) {
                   case '1':

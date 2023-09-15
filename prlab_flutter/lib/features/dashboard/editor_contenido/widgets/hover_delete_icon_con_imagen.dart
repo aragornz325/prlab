@@ -22,13 +22,24 @@ class HoverDeleteIconConImagen extends StatefulWidget {
     super.key,
     this.condicionVisibility = true,
     this.imagenCelular,
-    this.imagenWeb, // TODO(SAM): Extraer luego widget de imagenes.
+    this.imagenWeb,
   });
-  // TODO(Anyone): Documentar
+
+  /// Es un valor booleano que determina si el icono de eliminación debe ser
+  /// visible o no. Si se establece en true, el icono de eliminación
+  /// será visible cuando se pase el mouse sobre el componente.
   final bool condicionVisibility;
+
+  /// Función de devolución de llamada que se llama cuando el
+  /// usuario toca el widget ejecuta cierta Accion.
   final void Function()? onTap;
+
+  /// Se utiliza para almacenar el archivo de imagen para la plataforma móvil.
   final File? imagenCelular;
+
+  /// Se utiliza para almacenar el archivo de imagen para la plataforma web.
   final Uint8List? imagenWeb;
+
   @override
   State<HoverDeleteIconConImagen> createState() =>
       _HoverDeleteIconConImagenState();

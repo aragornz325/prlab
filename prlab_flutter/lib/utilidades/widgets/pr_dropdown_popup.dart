@@ -1,4 +1,4 @@
-// ignore_for_file: inference_failure_on_untyped_parameter
+// ignore_for_file: inference_failure_on_untyped_parameter, avoid_dynamic_calls
 
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -168,7 +168,7 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
   late final TextEditingController filterController;
   Timer? debounce;
 
-  bool isSelected(data) {
+  bool isSelected(dynamic data) {
     if (widget.isSimpleList) {
       return selected.contains(data);
     } else {
@@ -181,7 +181,10 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
     }
   }
 
-  void handleOnChange({required bool newValue, required dynamic data}) {
+  void handleOnChange({
+    required bool newValue,
+    required dynamic data,
+  }) {
     if (newValue) {
       setState(() {
         selected.add(data);
@@ -208,11 +211,11 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
     widget.onChange(selected);
   }
 
-  int getIndex(data) {
+  int getIndex(dynamic data) {
     return widget.list.indexWhere((obj) => obj[widget.id] == data[widget.id]);
   }
 
-  Widget buildTile(data) {
+  Widget buildTile(dynamic data) {
     if (widget.isSimpleList) {
       return Column(
         children: [

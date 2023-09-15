@@ -58,7 +58,6 @@ class _UploadLogoPRState extends State<UploadLogoPR> {
                 }
                 return BotonElegirImagenPRLab(
                   onTap: () => _elegirImagenLogo(true, context),
-                  icon: Icons.file_upload_outlined,
                   descripcionBoton:
                       l10n.pageEditContentEditArticleContainerButtonUploadLogo,
                 );
@@ -85,7 +84,6 @@ class _UploadLogoPRState extends State<UploadLogoPR> {
                 }
                 return BotonElegirImagenPRLab(
                   onTap: () => _elegirImagenLogo(false, context),
-                  icon: Icons.file_upload_outlined,
                   descripcionBoton: l10n
                       .pageEditContentEditArticleContainerButtonUploadSecondaryLogo,
                 );
@@ -197,10 +195,10 @@ class _UploadLogoPRState extends State<UploadLogoPR> {
                 ),
               );
       } else {
-        //Alert dialog, no se pickeo una imagen
+        // TODO(SAM): Alert dialog, no se pickeo una imagen (no hay diseño)
       }
     } else {
-      // TODO(SAM): Alert dialog, algo salio mal
+      // TODO(SAM): Alert dialog, algo salio mal (no hay diseño)
     }
   }
 }

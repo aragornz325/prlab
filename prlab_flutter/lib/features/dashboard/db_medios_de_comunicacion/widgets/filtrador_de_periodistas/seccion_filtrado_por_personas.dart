@@ -33,6 +33,9 @@ class _SeccionFiltradoPorPersonasState
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
+    final textoContactLanguage =
+        l10n.pageMediaDatabaseHorizontalFilterLabelContactLanguage;
+
     return BlocBuilder<BlocDbMediosDeComunicacion,
         BlocDbMediosDeComunicacionEstado>(
       builder: (context, state) {
@@ -114,8 +117,7 @@ class _SeccionFiltradoPorPersonasState
                       },
                     ),
                     TileConCheckBoxes<Filtro>(
-                      titulo: l10n
-                          .pageMediaDatabaseHorizontalFilterLabelContactLanguage,
+                      titulo: textoContactLanguage,
                       listaDeItems: state.itemLenguajes,
                       onTapEliminarTodo: (value) {
                         context.read<BlocDbMediosDeComunicacion>().add(

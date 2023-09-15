@@ -30,12 +30,14 @@ class PRBoton extends StatelessWidget {
     required String texto,
     required bool estaHabilitado,
     required double width,
+    bool muestraEstadoDeCarga = false,
     double? borderWidth,
     double? height,
     double? fontSize,
     FontWeight? fontWeight,
   }) {
     return PRBoton(
+      muestraEstadoDeCarga: muestraEstadoDeCarga,
       onTap: onTap,
       texto: texto,
       estaHabilitado: estaHabilitado,
@@ -104,21 +106,18 @@ class PRBoton extends StatelessWidget {
         child: Center(
           child: muestraEstadoDeCarga
               ? const CircularProgressIndicator()
-              : Row(
-                  children: [
-                    Text(
-                      texto,
-                      style: TextStyle(
-                        fontSize: fontSize ?? 16.pf,
-                        fontWeight: fontWeight ?? FontWeight.w600,
-                        color: esOutlined
-                            ? estaHabilitado
-                                ? colores.primary
-                                : colores.primaryOpacidadSesenta
-                            : colores.background,
-                      ),
-                    ),
-                  ],
+              : Text(
+                  texto,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: fontSize ?? 16.pf,
+                    fontWeight: fontWeight ?? FontWeight.w600,
+                    color: esOutlined
+                        ? estaHabilitado
+                            ? colores.primary
+                            : colores.primaryOpacidadSesenta
+                        : colores.background,
+                  ),
                 ),
         ),
       ),
