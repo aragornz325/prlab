@@ -167,7 +167,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
   /// Args:
   /// [idUsuario] ([int]): ID del usuario (ID de usuario de Serverpod, que está 
   /// como FK en su registro de Cliente). 
-  Future<List> listarMarcasPorUsuario(
+  Future<List<Marca>> listarMarcasPorUsuario(
     Session session, {
     required int idUsuario,
   }) async {
@@ -175,7 +175,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
       'Recuperando marcas del usuario $idUsuario...',
     );
 
-    List marcas = await ejecutarOperacion(
+    List<Marca> marcas = await ejecutarOperacion(
       () => odm.listarMarcasPorUsuario(
         session,
         idUsuario: idUsuario,
@@ -198,39 +198,39 @@ class ServicioMarca extends Servicio<OdmMarca> {
       final listaUsuarios = await ejecutarOperacion(
         () => odmCliente.listarUsuariosPorMarca(
           session,
-          idMarca: marca['id']!,
+          idMarca: marca.id!,
         ),
       );
 
       logger.finest(
-        'Recuperado(s) ${listaUsuarios.length} usuarios pertenecientes a la marca ${marca['id']}',
+        'Recuperado(s) ${listaUsuarios.length} usuarios pertenecientes a la marca ${marca.id}',
       );
 
       final listaArticulos = await ejecutarOperacion(
         () => odmArticulo.listarUltimosTresArticulosPorMarca(
           session,
-          idMarca: marca['id']!,
+          idMarca: marca.id!,
         ),
       );
 
       logger.finest(
-        'Recuperado(s) ${listaArticulos.length} articulos pertenecientes a la marca ${marca['id']}',
+        'Recuperado(s) ${listaArticulos.length} articulos pertenecientes a la marca ${marca.id}',
       );
 
-      final cantidadArticulos = await odmArticulo.contarArticulosDeMarca(session, idMarca: marca['id']!);
+      final cantidadArticulos = await odmArticulo.contarArticulosDeMarca(session, idMarca: marca.id!);
 
-      listasUsuarios[marca['id']] = listaUsuarios;
-      listasArticulos[marca['id']] = listaArticulos;
-      cantidadesDeArticulos[marca['id']] = cantidadArticulos;
+      listasUsuarios[marca.id] = listaUsuarios;
+      listasArticulos[marca.id] = listaArticulos;
+      cantidadesDeArticulos[marca.id] = cantidadArticulos;
     }
 
     final response = marcas
         .map(
           (e) => e
-            ..['staff'] = listasUsuarios[e['id']]
-            ..['ultimosArticulos'] = listasArticulos[e['id']]
-            ..['cantidadArticulos'] = cantidadesDeArticulos[e['id']]
-            ..['cantidadClippings'] = 0,
+            ..staff = listasUsuarios[e.id]
+            ..ultimosArticulos = listasArticulos[e.id]
+            ..cantidadArticulos = cantidadesDeArticulos[e.id]
+            ..cantidadClippings = 0,
             )
         .toList();
 

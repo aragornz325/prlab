@@ -102,10 +102,7 @@ class OdmArticulo extends ODM {
     );
     if (articulo == null) {
       const error = ErrorPrLab.errorElementoNoEncontrado;
-      throw ExcepcionPrLab(
-        mensaje: error.mensaje,
-        errorType: error,
-      );
+      throw Exception('mensaje: ${error.mensaje}, errorType: $error');
     }
     logger.finest(
       'Articulo con id: $id encontrado',

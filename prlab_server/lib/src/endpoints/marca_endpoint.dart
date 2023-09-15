@@ -113,7 +113,7 @@ class MarcaEndpoint extends Endpoint {
   }
 
   /// Obtiene las marcas a las que se encuentra asignado un usuario.
-  Future<List> listarMarcasPorUsuario(
+  Future<List<Marca>> listarMarcasPorUsuario(
     Session session, {
     required int idUsuario,
   }) async {

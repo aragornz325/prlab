@@ -51,7 +51,7 @@ class OdmCliente extends ODM {
   }
 
   /// Obtiene los usuarios asignados a una marca.
-  Future<List> listarUsuariosPorMarca(
+  Future<List<Cliente>> listarUsuariosPorMarca(
     Session session, {
     required int idMarca,
   }) async {
@@ -86,18 +86,23 @@ class OdmCliente extends ODM {
         nombreDeOrganizacion: 'nombreDeOrganizacion',
         ultimaModificacion: DateTime.now(),
         fechaCreacion: DateTime.now(),
-      ).toJsonForDatabase()..remove('activo')).keys,
+      ).toJsonForDatabase()
+            ..remove('activo'))
+          .keys,
     );
-    // print('ODM3');
 
-    // final responseSerializado = responseMaps
-    //     .map(
-    //       (e) => Cliente.fromJson(e, Protocol()),
-    //     )
-    //     .toList();
+    final responseSerializado = responseMaps
+        .map(
+          (e) => Cliente.fromJson(
+            e
+              ..['fechaDeNacimiento'] = e['fechaDeNacimiento'].toString()
+              ..['ultimaModificacion'] = e['ultimaModificacion'].toString()
+              ..['fechaCreacion'] = e['fechaCreacion'].toString(),
+            Protocol(),
+          ),
+        )
+        .toList();
 
-    // print('ODM4');
-
-    return responseMaps;
+    return responseSerializado;
   }
 }
