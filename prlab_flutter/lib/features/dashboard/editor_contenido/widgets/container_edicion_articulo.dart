@@ -77,34 +77,36 @@ class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
           horizontal: 24.pw,
           vertical: 15.ph,
         ),
-        child: TextField(
-          controller: controller
-            ..addListener(() {
-              context.read<BlocEditorContenido>().add(
-                    BlocEditorContenidoEventoActualizarArticulo(
-                      titulo: controller.text,
-                    ),
-                  );
-            }),
-          style: TextStyle(
-            height: 1,
-            fontWeight: FontWeight.w500,
-            fontSize: 25.pf,
-            color: colores.secondary,
-          ),
-          decoration: InputDecoration(
-            hintText: l10n.pageEditContentEditArticleContainerHintTitle,
-            hintMaxLines: 1,
-            hintStyle: TextStyle(
+        child: Center(
+          child: TextField(
+            controller: controller
+              ..addListener(() {
+                context.read<BlocEditorContenido>().add(
+                      BlocEditorContenidoEventoActualizarArticulo(
+                        titulo: controller.text,
+                      ),
+                    );
+              }),
+            style: TextStyle(
+              height: 1,
               fontWeight: FontWeight.w500,
               fontSize: 25.pf,
               color: colores.secondary,
             ),
-            enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide.none,
-            ),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide.none,
+            decoration: InputDecoration(
+              hintText: l10n.pageEditContentEditArticleContainerHintTitle,
+              hintMaxLines: 1,
+              hintStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 25.pf,
+                color: colores.secondary,
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide.none,
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide.none,
+              ),
             ),
           ),
         ),
