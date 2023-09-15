@@ -27,6 +27,7 @@ class VistaEscritorioAdministracionMarcas extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: max(20.ph, 20.sh)),
           EncabezadoDeSeccion(
             icono: Icons.beenhere_outlined,
             titulo: l10n.pageBrandAdministrationTitle,
