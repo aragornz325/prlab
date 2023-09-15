@@ -486,7 +486,7 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
                           )
                         : BorderRadius.all(Radius.circular(10.sw)),
                     border: Border.all(
-                      color: const Color(0xffd9d9d9d9),
+                      color: const Color(0xFFD9D9D9),
                     ),
                     color: Colors.white,
                   ),
@@ -617,10 +617,10 @@ class _CustomTile extends StatelessWidget {
           color: value ? selectedItemColor : Colors.white,
           border: const Border(
             left: BorderSide(
-              color: Color(0xffd9d9d9d9),
+              color: Color(0xFFD9D9D9),
             ),
             right: BorderSide(
-              color: Color(0xffd9d9d9d9),
+              color: Color(0xFFD9D9D9),
             ),
           ),
         ),

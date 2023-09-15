@@ -71,6 +71,9 @@ sealed class BlocEditorContenidoEstado {
 
   /// El articulo a ser editado en la página actual.
   final Articulo? articulo;
+
+  bool get estaEnEstadoDeActualizacion =>
+      this is BlocEditorContenidoEstadoActualizandoDescripcion;
 }
 
 /// {@template BlocEditorContenidoEstadoInicial}
@@ -157,8 +160,7 @@ class BlocEditorContenidoEstadoActualizandoDescripcion
     required String descripcionDeArticulo,
     required String tituloArticulo,
   }) : super.desde(
-          // TODO(anyone):
-          // Cuando esten los modelos hechos con mappable,
+          // TODO(anyone): Cuando esten los modelos hechos con mappable,
           // hacer esto con copyWith.
           articulo: Articulo(
             id: otro.articulo?.id,
@@ -172,7 +174,8 @@ class BlocEditorContenidoEstadoActualizandoDescripcion
             ultimaModificacion:
                 otro.articulo?.ultimaModificacion ?? DateTime.now(),
             // fechaCreacion: otro.articulo?.fechaCreacion,
-            // TODO(Anyone): Volver a agregar cuando se agreguen en el back de nuevo.
+            // TODO(Anyone): Volver a agregar cuando se agreguen en el back
+            // de nuevo.
           ),
         );
 }

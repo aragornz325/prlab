@@ -308,7 +308,7 @@ class PRTextFormField extends StatefulWidget {
     /// Al apretar este campo ejecuta esta acción
     void Function()? onTap,
 
-    /// Hace referencia a la variable [readOnly] del [TextField].
+    /// Hace referencia a la variable 'readOnly' del [TextField].
     ///
     /// Indica que el campo de texto no permite edición manual, solamente
     /// se puede leer

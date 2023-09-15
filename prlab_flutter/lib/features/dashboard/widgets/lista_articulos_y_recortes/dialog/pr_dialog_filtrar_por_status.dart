@@ -117,8 +117,8 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                 ),
                 SizedBox(width: 5.pw),
                 Text(
-                  // TODO(anyone): hacer l10n, pero todavia no esta
-                  // del todo definido los estado a filtrar
+                  // TODO(anyone): Hacer l10n, pero todavia no esta del todo
+                  // definido los estado a filtrar
                   'Complete',
                   style: TextStyle(
                     color: colores.tertiary,
