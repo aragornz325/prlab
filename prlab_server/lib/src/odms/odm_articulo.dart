@@ -32,7 +32,8 @@ class OdmArticulo extends ODM {
               articulo
                 ..idAutor = await session.auth.authenticatedUserId ?? 0
                 ..fechaCreacion = DateTime.now()
-                ..ultimaModificacion = DateTime.now(),
+                ..ultimaModificacion = DateTime.now()
+                ..activo = true,
             );
             final response = (await Articulo.findSingleRow(
               session,
