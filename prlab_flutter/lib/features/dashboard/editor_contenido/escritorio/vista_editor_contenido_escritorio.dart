@@ -28,12 +28,15 @@ class VistaEditorContenidoEscritorio extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          // TODO(SAM): Probar eliminar esta columna
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: max(40.ph, 40.sh)),
+                SizedBox(
+                  height: max(40.ph, 40.sh),
+                ),
                 SizedBox(
                   width: 1000.pw,
                   child: Row(
