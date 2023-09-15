@@ -1,7 +1,6 @@
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/odm.dart';
 import 'package:prlab_server/utils/manejo_de_errores/manejo_de_errores.dart';
-import 'package:prlab_server/utils/serialization.dart';
 import 'package:serverpod/server.dart';
 
 /// La clase [OdmMarca] es una clase Dart que proporciona funciones para crear
@@ -49,7 +48,7 @@ class OdmMarca extends ODM {
         session,
         (session) => Marca.find(
           session,
-          where: (t) => t.fechaEliminacion.equals(null),
+          where: (t) => t.activo.equals(true),
         ),
       );
     } on Exception catch (e) {
@@ -57,7 +56,7 @@ class OdmMarca extends ODM {
     }
   }
 
-  /// La función [eliminarMarcaBorradoFisico] elimina un registro de la base de 
+  /// La función [eliminarMarcaBorradoFisico] elimina un registro de la base de
   /// datos según el ID proporcionado. BORRADO FÍSICO.
   /// Args:
   ///   [session] (Session): El parámetro de sesión es de tipo Sesión y es
@@ -99,8 +98,8 @@ class OdmMarca extends ODM {
         session,
         (Session session) => session.db.query('''
             UPDATE "articulos" 
-            SET "fechaEliminacion" = ${DateTime.now().toIso8601String()}
-            WHERE "id" = $idMarca AND "fechaEliminacion" IS NULL;
+            SET "activo" = false
+            WHERE "id" = $idMarca AND "activo" = true;
           '''),
       );
       logger.finest(
@@ -182,7 +181,7 @@ class OdmMarca extends ODM {
   }
 
   /// Obtiene las marcas a las que se encuentra asignado un usuario.
-  Future<List<Marca>> listarMarcasPorUsuario(
+  Future<List> listarMarcasPorUsuario(
     Session session, {
     required int idUsuario,
   }) async {
@@ -204,18 +203,25 @@ class OdmMarca extends ODM {
     final responseMaps = await ejecutarConsultaSql(
       session,
       '''
-      SELECT "id", "nombre", "sitioWeb", "fechaCreacion", "ultimaModificacion", "fechaEliminacion" FROM "marcas" 
+      SELECT "id", "nombre", "sitioWeb", "fechaCreacion", "ultimaModificacion" 
+      FROM "marcas" 
       WHERE "id" IN (${queryListaDeIdMarcas.join(',')});
       ''',
-      clavesMapaModeloDb:
-          Marca(nombre: '', sitioWeb: '').toJsonForDatabase().keys,
+      clavesMapaModeloDb: (Marca(
+        nombre: '',
+        sitioWeb: '',
+        fechaCreacion: DateTime.now(),
+        ultimaModificacion: DateTime.now(),
+      ).toJsonForDatabase()
+            ..remove('activo'))
+          .keys,
     );
 
-    final responseSerializado = responseMaps
-        .map(
-          (e) => Marca.fromJson(e, AdministradorSerializacion()),
-        )
-        .toList();
-    return responseSerializado;
+    // final responseSerializado = responseMaps
+    //     .map(
+    //       (e) => Marca.fromJson(e, AdministradorSerializacion()),
+    //     )
+    //     .toList();
+    return responseMaps;
   }
 }

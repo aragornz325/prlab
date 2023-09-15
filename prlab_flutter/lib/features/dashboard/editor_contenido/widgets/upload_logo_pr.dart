@@ -36,7 +36,7 @@ class _UploadLogoPRState extends State<UploadLogoPR> {
     final l10n = context.l10n;
 
     return SizedBox(
-      height: max(64.ph, 50648.sh),
+      height: max(64.ph, 64.sh),
       child: Row(
         children: [
           Padding(

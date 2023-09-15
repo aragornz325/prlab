@@ -101,7 +101,9 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: max(20.ph, 20.sh)),
+                SizedBox(
+                  height: max(20.ph, 20.sh),
+                ),
                 BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
                   builder: (context, state) {
                     if (state is BlocEditorContenidoEstadoCargando) {
