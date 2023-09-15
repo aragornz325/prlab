@@ -126,6 +126,8 @@ class _EditorDeDescripcionDeContenidoState
                       _jsonString = Future.value(
                         jsonEncode(editorState.document.toJson()),
                       );
+                      // TODO(Anyone): Fixear cuando se apreta el boton save
+                      // hay error de parse.
                       context.read<BlocEditorContenido>().add(
                             BlocEditorContenidoEventoGuardarDatosArticulo(),
                           );
