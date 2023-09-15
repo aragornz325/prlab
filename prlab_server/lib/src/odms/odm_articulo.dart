@@ -69,7 +69,7 @@ class OdmArticulo extends ODM {
         session,
         (session) => Articulo.find(
           session,
-          where: (t) => t.fechaEliminacion.equals(null),
+          where: (t) => t.activo.equals(true),
         ),
       );
     } on Exception catch (e) {
@@ -154,8 +154,8 @@ class OdmArticulo extends ODM {
         session,
         (Session session) => session.db.query('''
             UPDATE "articulos" 
-            SET "fechaEliminacion" = ${DateTime.now().toIso8601String()}
-            WHERE "id" = $idArticulo AND "fechaEliminacion" IS NULL;
+            SET "activo" = false
+            WHERE "id" = $idArticulo AND "activo" = true;
           '''),
       );
       logger.finest(
@@ -216,7 +216,7 @@ class OdmArticulo extends ODM {
       (session) => Articulo.find(
         session,
         where: (t) =>
-            (t.idMarca.equals(idMarca)) & (t.fechaEliminacion.equals(null)),
+            (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
         orderBy: ArticuloTable().ultimaModificacion,
         orderDescending: true,
         limit: 3,
@@ -274,7 +274,7 @@ class OdmArticulo extends ODM {
       (session) => Articulo.count(
         session,
         where: (t) =>
-            (t.idMarca.equals(idMarca)) & (t.fechaEliminacion.equals(null)),
+            (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
       ),
     );
   }

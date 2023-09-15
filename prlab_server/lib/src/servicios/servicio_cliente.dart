@@ -44,7 +44,7 @@ class ServicioCliente extends Servicio<OdmCliente> {
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
   ///   [idMarca] ([int]): ID de la Marca a la que pertenecen los usuarios.
-  Future<List<Cliente>> listarUsuariosPorMarca(
+  Future<List> listarUsuariosPorMarca(
     Session session, {
     required int idMarca,
   }) async {
