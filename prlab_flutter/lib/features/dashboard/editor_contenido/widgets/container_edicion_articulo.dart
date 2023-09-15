@@ -88,7 +88,7 @@ class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
                     );
               }),
             style: TextStyle(
-              height: 1,
+              height: max(1.ph, 1.sh),
               fontWeight: FontWeight.w500,
               fontSize: 25.pf,
               color: colores.secondary,
