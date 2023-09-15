@@ -50,7 +50,7 @@ class PaginaDeArticuloPRLab extends StatefulWidget {
       contenido: Row(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.symmetric(horizontal: 8.pw, vertical: 8.ph),
             child: Center(
               child: SizedBox(
                 height: 30.ph,
@@ -88,10 +88,24 @@ class PaginaDeArticuloPRLab extends StatefulWidget {
       ),
     );
   }
+
+  /// Representa el título de la página del artículo.
   final String titulo;
+
+  /// Se utiliza para representar el contenido del artículo.
   final String contenidoArticulo;
+
+  /// Se utiliza para representar el ID de la página del artículo.
   final int idPagina;
+
+  ///  Le permite definir un comportamiento personalizado cuando se presiona
+  /// el widget. Si no se proporciona ninguna devolución de llamada, el
+  /// widget no responderá a los toques.
   final VoidCallback? onTap;
+
+  /// Se utiliza para personalizar el contenido del widget.
+  /// Si no se proporciona ningún valor,
+  /// se mostrará el contenido predeterminado.
   final Widget? contenido;
 
   /// Indica si la pagina esta seleccionada por el usuario o no, para cambiar su
@@ -138,7 +152,7 @@ class _PaginaDeArticuloPRLabState extends State<PaginaDeArticuloPRLab> {
         context: context,
         onTapBotonPrimario: () {
           context.read<BlocEditorContenido>().add(
-                BlocEditorContenidoEliminarPaginaArticulo(
+                BlocEditorContenidoEventoEliminarPaginaArticulo(
                   idPagina: widget.idPagina,
                 ),
               );

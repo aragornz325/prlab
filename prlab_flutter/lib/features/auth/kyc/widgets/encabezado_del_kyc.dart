@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -33,7 +35,7 @@ class EncabezadoDelKyc extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 10.ph),
+        SizedBox(height: max(10.ph, 10.sh)),
         Text(
           l10n.pageKycSubtitle,
           style: TextStyle(
@@ -42,7 +44,7 @@ class EncabezadoDelKyc extends StatelessWidget {
             fontWeight: FontWeight.w400,
           ),
         ),
-        SizedBox(height: 50.ph),
+        SizedBox(height: max(50.ph, 50.sh)),
       ],
     );
   }

@@ -73,7 +73,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   padding: EdgeInsets.only(left: 5.pw),
                   child: Icon(
                     Icons.manage_search_outlined,
-                    size: 25.pf,
+                    size: 25.pw,
                     color: colores.secondary,
                   ),
                 ),
@@ -96,50 +96,57 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                     texto: l10n.pageHomeContainerBusquedaItemMediaDatabase,
                     icono: Icons.explore_outlined,
                     estaCargando: state.estaEnEstadoCargando,
-                    // TODO(Gon): Agregar pusheo a la ruta correspondiente
-                    onTap: () {},
+                    onTap: () {
+                      // TODO(Gon): Agregar pusheo a la ruta correspondiente
+                    },
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemContacts,
                     icono: Icons.ballot_outlined,
                     estaCargando: state.estaEnEstadoCargando,
-                    // TODO(Gon): Agregar pusheo a la ruta correspondiente
-                    onTap: () {},
+                    onTap: () {
+                      // TODO(Gon): Agregar pusheo a la ruta correspondiente
+                    },
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemOnlineNewsroom,
                     icono: Icons.telegram,
                     estaCargando: state.estaEnEstadoCargando,
-                    // TODO(Gon): Agregar pusheo a la ruta correspondiente
-                    onTap: () {},
+                    onTap: () {
+                      // TODO(Gon): Agregar pusheo a la ruta correspondiente
+                    },
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemPRReports,
                     icono: Icons.donut_small,
                     estaCargando: state.estaEnEstadoCargando,
-                    // TODO(Gon): Agregar pusheo a la ruta correspondiente
-                    onTap: () {},
+                    onTap: () {
+                      // TODO(Gon): Agregar pusheo a la ruta correspondiente
+                    },
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemAnalytic,
                     icono: Icons.account_tree_outlined,
                     estaCargando: state.estaEnEstadoCargando,
-                    // TODO(Gon): Agregar pusheo a la ruta correspondiente
-                    onTap: () {},
+                    onTap: () {
+                      // TODO(Gon): Agregar pusheo a la ruta correspondiente
+                    },
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemMediaMonitoring,
                     icono: Icons.monitor_heart_outlined,
                     estaCargando: state.estaEnEstadoCargando,
-                    // TODO(Gon): Agregar pusheo a la ruta correspondiente
-                    onTap: () {},
+                    onTap: () {
+                      // TODO(Gon): Agregar pusheo a la ruta correspondiente
+                    },
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemStatistics,
                     icono: Icons.monitor,
                     estaCargando: state.estaEnEstadoCargando,
-                    // TODO(Gon): Agregar pusheo a la ruta correspondiente
-                    onTap: () {},
+                    onTap: () {
+                      // TODO(Gon): Agregar pusheo a la ruta correspondiente
+                    },
                   ),
                 ],
               );
@@ -204,7 +211,7 @@ class _ItemContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                     )
                   : Icon(
                       icono,
-                      size: 25.pf,
+                      size: 25.pw,
                       color: colores.primary,
                     ),
             ),

@@ -37,6 +37,10 @@ class BlocDbMediosDeComunicacionEstado {
           tipoDeMedio: tipoDeMedio ?? otro.tipoDeMedio,
         );
 
+  ///  Representa la `lista de periodistas` que
+  /// actualmente se muestran o filtran en la interfaz de usuario.
+  /// Se utiliza para almacenar y gestionar
+  /// los datos relacionados con los periodistas en el estado.
   final List<Periodista> periodistas;
 
   // ----- Lista de filtros -----

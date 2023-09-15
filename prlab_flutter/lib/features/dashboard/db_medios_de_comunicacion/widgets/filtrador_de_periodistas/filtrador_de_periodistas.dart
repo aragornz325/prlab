@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -83,7 +85,7 @@ class _FiltradorDePeriodistasState extends State<FiltradorDePeriodistas> {
           SizedBox(
             // ? Esto funcionaría mejor para la PageView si
             // ? fuese mas dinámico y no un valor en duro.
-            height: 620.sh,
+            height: max(620.ph, 620.sh),
             child: PageView(
               physics: const NeverScrollableScrollPhysics(),
               controller: _pageController,
@@ -148,7 +150,7 @@ class _ContenedorItemMenuFiltros extends StatelessWidget {
     return InkWell(
       onTap: () => onSeleccionado.call(itemMenuFiltros),
       child: SizedBox(
-        height: 65.sh,
+        height: max(65.ph, 65.sh),
         child: Center(
           child: Text(
             itemMenuFiltros.nombreItem(context),

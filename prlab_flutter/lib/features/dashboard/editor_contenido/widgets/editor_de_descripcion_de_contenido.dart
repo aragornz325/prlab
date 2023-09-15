@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +56,7 @@ class _EditorDeDescripcionDeContenidoState
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 352.ph,
+      height: max(352.ph, 352.sh),
       child: BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
         builder: (context, state) {
           return FutureBuilder<String>(
@@ -96,7 +97,7 @@ class _EditorDeDescripcionDeContenidoState
               return Column(
                 children: [
                   SizedBox(
-                    height: 310.ph,
+                    height: max(310.ph, 310.sh),
                     child: FloatingToolbar(
                       items: [
                         paragraphItem,
@@ -118,28 +119,34 @@ class _EditorDeDescripcionDeContenidoState
                       ),
                     ),
                   ),
-                  // TODO(anyone):
-                  // Cuando el editor se maneje con streams
-                  // eliminar este boton.
+                  // TODO(anyone): Cuando el editor se maneje con
+                  // streams eliminar este boton.
                   PRBoton.esOutlined(
                     onTap: () async {
                       _jsonString = Future.value(
                         jsonEncode(editorState.document.toJson()),
                       );
-
+                      // TODO(Anyone): Fixear cuando se apreta el boton save
+                      // hay error de parse.
                       context.read<BlocEditorContenido>().add(
-                            BlocEditorContenidoActualizarArticulo(
+                            BlocEditorContenidoEventoGuardarDatosArticulo(),
+                          );
+                      context.read<BlocEditorContenido>().add(
+                            BlocEditorContenidoEventoActualizarArticulo(
                               descripcionDeArticulo: jsonEncode(
                                 await _jsonString,
                               ),
                             ),
                           );
                     },
+                    // TODO(Anyone): Agregar funcionalidad para mostrarle al
+                    // usuario que se guardo la informacion correctamente.
+                    // TODO(Andre): Agregar funcionalidad del boton.
                     // No tiene traduc porque es temporal.
-                    texto: 'Save description',
+                    texto: 'Save',
                     estaHabilitado: true,
                     width: 139.pw,
-                    height: 30.ph,
+                    height: max(30.ph, 30.sh),
                   ),
                 ],
               );

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
@@ -33,7 +35,7 @@ class InformacionDeLaMarca extends StatelessWidget {
 
     return Container(
       width: 485.pw,
-      height: 80.ph,
+      height: max(80.ph, 80.sh),
       color: colores.surfaceTint,
       child: Row(
         children: [
@@ -91,7 +93,7 @@ class InformacionDeLaMarca extends StatelessWidget {
           BloqueDeInformacionDeMarca(
             icono: Icons.group,
             cuerpo: SizedBox(
-              height: 30.ph,
+              height: max(30.ph, 30.sh),
               width: 70.pw,
               child: ListView.builder(
                 padding: EdgeInsets.symmetric(horizontal: 3.pw),

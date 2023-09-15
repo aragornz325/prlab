@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/assets.dart';
 
@@ -23,8 +22,11 @@ class BlocEditorContenido
       : super(const BlocEditorContenidoEstadoInicial()) {
     on<BlocEditorContenidoEventoObtenerArticulo>(_onObtenerArticulo);
     on<BlocEditorContenidoEventoAgregarImagen>(_onAgregarImagen);
-    on<BlocEditorContenidoActualizarArticulo>(_onActualizarArticulo);
-    on<BlocEditorContenidoEliminarPaginaArticulo>(_onEliminarPaginaArticulo);
+    on<BlocEditorContenidoEventoActualizarArticulo>(_onActualizarArticulo);
+    on<BlocEditorContenidoEventoGuardarDatosArticulo>(_onGuardarDatosArticulo);
+    on<BlocEditorContenidoEventoEliminarPaginaArticulo>(
+      _onEliminarPaginaArticulo,
+    );
     on<BlocEditorContenidoEventoEliminarImagen>(_onEliminarImagen);
 
     add(BlocEditorContenidoEventoObtenerArticulo(idArticulo: idArticulo));
@@ -60,11 +62,11 @@ class BlocEditorContenido
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
     emit(BlocEditorContenidoEstadoCargando.desde(state));
+
     try {
       final respuesta = await client.articulo.obtenerArticulo(
         event.idArticulo,
       );
-
       emit(
         BlocEditorContenidoEstadoExitoso.desde(
           state,
@@ -72,6 +74,38 @@ class BlocEditorContenido
           listaPaginasDeArticulo: listaPaginasDeArticulo,
         ),
       );
+    } catch (e) {
+      emit(
+        BlocEditorContenidoEstadoError.desde(
+          state,
+          mensajeDeError: MensajesDeErrorDeAdministracionMarcas.internalError,
+        ),
+      );
+    }
+  }
+
+  /// Se encarga principalmente de guardar los datos del
+  /// artículo que fue editado.
+  Future<void> _onGuardarDatosArticulo(
+    BlocEditorContenidoEventoGuardarDatosArticulo event,
+    Emitter<BlocEditorContenidoEstado> emit,
+  ) async {
+    emit(BlocEditorContenidoEstadoCargando.desde(state));
+
+    try {
+      if (state.articulo != null) {
+        await client.articulo.actualizarArticulo(
+          articulo: state.articulo!,
+        );
+
+        emit(
+          BlocEditorContenidoEstadoActualizandoDescripcion.desde(
+            state,
+            descripcionDeArticulo: state.articulo?.contenido ?? '',
+            tituloArticulo: state.articulo?.titulo ?? '',
+          ),
+        );
+      }
     } catch (e) {
       emit(
         BlocEditorContenidoEstadoError.desde(
@@ -119,11 +153,13 @@ class BlocEditorContenido
     );
   }
 
-  // TODO(ANDRE): Revisar la logica de esta funcion, puede mejorar.
+  // TODO(ANDRE): Revisar la logica de esta funcion, puede
+  // mejorar.
+
   /// Refresca la descripción y el título del artículo que se esta
   /// editando dentro del estado de [BlocEditorContenidoEstado].
   Future<void> _onActualizarArticulo(
-    BlocEditorContenidoActualizarArticulo event,
+    BlocEditorContenidoEventoActualizarArticulo event,
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
     final articulo = state.articulo;
@@ -149,15 +185,12 @@ class BlocEditorContenido
       ..titulo = event.titulo ?? state.articulo?.titulo ?? '';
 
     try {
-      await client.articulo.actualizarArticulo(
-        articulo: articuloActualizado,
-      );
-
-      if (event.descripcionDeArticulo != null) {
+      if (event.descripcionDeArticulo != null || event.titulo != null) {
         emit(
           BlocEditorContenidoEstadoActualizandoDescripcion.desde(
             state,
             descripcionDeArticulo: descripcionDeArticulo ?? '',
+            tituloArticulo: event.titulo ?? articuloActualizado.titulo,
           ),
         );
       }
@@ -172,7 +205,7 @@ class BlocEditorContenido
   }
 
   Future<void> _onEliminarPaginaArticulo(
-    BlocEditorContenidoEliminarPaginaArticulo event,
+    BlocEditorContenidoEventoEliminarPaginaArticulo event,
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
     emit(BlocEditorContenidoEstadoCargando.desde(state));

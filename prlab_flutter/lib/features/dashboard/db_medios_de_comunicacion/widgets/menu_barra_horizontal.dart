@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -30,7 +32,7 @@ class _MenuBarraHorizontalState extends State<MenuBarraHorizontal> {
     final colores = context.colores;
 
     return Container(
-      height: 64.sh,
+      height: max(64.ph, 64.sh),
       color: colores.surfaceTint,
       padding: EdgeInsets.symmetric(horizontal: 30.pw),
       margin: EdgeInsets.only(right: 30.pw),
@@ -96,7 +98,7 @@ class _ContadorLimiteDeBusquedas extends StatelessWidget {
           constraints: BoxConstraints(minWidth: 185.pw),
           position: PopupMenuPosition.under,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20.sw),
           ),
           child: Icon(
             Icons.help_outline_rounded,

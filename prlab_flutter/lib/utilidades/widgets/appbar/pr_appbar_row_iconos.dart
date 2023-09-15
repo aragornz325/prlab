@@ -5,6 +5,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/theming/base.dart';
+import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 import 'package:prlab_flutter/utilidades/widgets/appbar/appbar.dart';
 
 /// {@template PRAppBarRowIconos}
@@ -66,7 +67,7 @@ class _PRAppBarRowIconosState extends State<PRAppBarRowIconos> {
             constraints: BoxConstraints(minWidth: 180.pw),
             position: PopupMenuPosition.under,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.sw),
             ),
             child: CircleAvatar(
               radius: 26.sw,
@@ -76,55 +77,55 @@ class _PRAppBarRowIconosState extends State<PRAppBarRowIconos> {
               child: Icon(
                 Icons.more_vert,
                 color: colores.primary,
-                size: 30.pf,
+                size: 30.pw,
               ),
             ),
           ),
           SizedBox(width: 30.pw),
           PopupMenuButton<MenuDeOpciones>(
-              onOpened: () {
-                setState(() {
-                  estaConfiguracionDesplegada = true;
-                });
-              },
-              onCanceled: () {
-                setState(() {
-                  estaConfiguracionDesplegada = false;
-                });
-              },
-              tooltip: '',
-              itemBuilder: (BuildContext context) {
-                return MenuDeOpciones.configuraciones
-                    .map((enumConfiguraciones) {
-                  return PopupMenuItem<MenuDeOpciones>(
-                    value: enumConfiguraciones,
-                    onTap: () => widget.onTap(enumConfiguraciones),
-                    child: Text(
-                      enumConfiguraciones.nombreItem(context),
-                      style: TextStyle(
-                        fontSize: 14.pf,
-                        color: colores.tertiary,
-                      ),
+            onOpened: () {
+              setState(() {
+                estaConfiguracionDesplegada = true;
+              });
+            },
+            onCanceled: () {
+              setState(() {
+                estaConfiguracionDesplegada = false;
+              });
+            },
+            tooltip: '',
+            itemBuilder: (BuildContext context) {
+              return MenuDeOpciones.configuraciones.map((enumConfiguraciones) {
+                return PopupMenuItem<MenuDeOpciones>(
+                  value: enumConfiguraciones,
+                  onTap: () => widget.onTap(enumConfiguraciones),
+                  child: Text(
+                    enumConfiguraciones.nombreItem(context),
+                    style: TextStyle(
+                      fontSize: 14.pf,
+                      color: colores.tertiary,
                     ),
-                  );
-                }).toList();
-              },
-              constraints: BoxConstraints(minWidth: 180.pw),
-              position: PopupMenuPosition.under,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                  ),
+                );
+              }).toList();
+            },
+            constraints: BoxConstraints(minWidth: 180.pw),
+            position: PopupMenuPosition.under,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.sw),
+            ),
+            child: CircleAvatar(
+              radius: 26.sw,
+              backgroundColor: estaConfiguracionDesplegada
+                  ? colores.primaryOpacidadVeinte
+                  : colores.surfaceTint,
+              child: Icon(
+                Icons.settings_outlined,
+                color: colores.primary,
+                size: 30.pw,
               ),
-              child: CircleAvatar(
-                radius: 26.sw,
-                backgroundColor: estaConfiguracionDesplegada
-                    ? colores.primaryOpacidadVeinte
-                    : colores.surfaceTint,
-                child: Icon(
-                  Icons.settings_outlined,
-                  color: colores.primary,
-                  size: 30.pf,
-                ),
-              )),
+            ),
+          ),
           SizedBox(width: 30.pw),
           PopupMenuButton<MenuDeOpciones>(
             itemBuilder: (BuildContext context) {
@@ -155,8 +156,8 @@ class _PRAppBarRowIconosState extends State<PRAppBarRowIconos> {
                             ),
                           ),
                           Text(
-                            // TODO(Anyone): datos de user
-                            'John Smith - Owner',
+                            '${sessionManager.signedInUser?.userName ?? 'John'}'
+                            ' - Owner',
                             style: TextStyle(
                               fontSize: 14.pf,
                               color: colores.secondary,
@@ -167,7 +168,7 @@ class _PRAppBarRowIconosState extends State<PRAppBarRowIconos> {
                     ],
                   ),
                 ),
-                PopupMenuDivider(height: 0.5.ph),
+                PopupMenuDivider(height: max(.5.ph, .5.sh)),
                 ...MenuDeOpciones.perfil.map((enumPerfil) {
                   return PopupMenuItem<MenuDeOpciones>(
                     onTap: () => widget.onTap(enumPerfil),
@@ -186,7 +187,7 @@ class _PRAppBarRowIconosState extends State<PRAppBarRowIconos> {
             constraints: BoxConstraints(minWidth: 180.pw),
             position: PopupMenuPosition.under,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.sw),
             ),
             child: CircleAvatar(
               maxRadius: 20.pw,

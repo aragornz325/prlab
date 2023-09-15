@@ -1,6 +1,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -35,13 +36,11 @@ class _UploadLogoPRState extends State<UploadLogoPR> {
     final l10n = context.l10n;
 
     return SizedBox(
-      height: 64.ph,
+      height: max(64.ph, 64.sh),
       child: Row(
         children: [
           Padding(
-            padding: EdgeInsets.only(
-              left: 30.pw,
-            ),
+            padding: EdgeInsets.only(left: 30.pw),
             child: BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
               builder: (context, state) {
                 final imagenLogoPrimarioElegidoWeb = state.logoElegidoWeb;
@@ -59,7 +58,6 @@ class _UploadLogoPRState extends State<UploadLogoPR> {
                 }
                 return BotonElegirImagenPRLab(
                   onTap: () => _elegirImagenLogo(true, context),
-                  icon: Icons.file_upload_outlined,
                   descripcionBoton:
                       l10n.pageEditContentEditArticleContainerButtonUploadLogo,
                 );
@@ -86,7 +84,6 @@ class _UploadLogoPRState extends State<UploadLogoPR> {
                 }
                 return BotonElegirImagenPRLab(
                   onTap: () => _elegirImagenLogo(false, context),
-                  icon: Icons.file_upload_outlined,
                   descripcionBoton: l10n
                       .pageEditContentEditArticleContainerButtonUploadSecondaryLogo,
                 );
@@ -198,10 +195,10 @@ class _UploadLogoPRState extends State<UploadLogoPR> {
                 ),
               );
       } else {
-        //Alert dialog, no se pickeo una imagen
+        // TODO(SAM): Alert dialog, no se pickeo una imagen (no hay diseño)
       }
     } else {
-      // TODO(SAM): Alert dialog, algo salio mal
+      // TODO(SAM): Alert dialog, algo salio mal (no hay diseño)
     }
   }
 }

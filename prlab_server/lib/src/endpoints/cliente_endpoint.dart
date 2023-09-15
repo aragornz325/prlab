@@ -4,7 +4,6 @@ import 'package:serverpod/serverpod.dart';
 
 /// Endpoints de la entidad Cliente.
 class ClienteEndpoint extends Endpoint {
-
   /// Instancia del Servicio para Cliente.
   final servicioCliente = ServicioCliente();
 
@@ -19,6 +18,7 @@ class ClienteEndpoint extends Endpoint {
         session,
         datosDelCliente: datosDelCliente,
       );
+      // ignore: unused_catch_clause
     } on Exception catch (e) {
       rethrow;
     }

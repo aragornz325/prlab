@@ -1,3 +1,7 @@
+// ignore_for_file: library_private_types_in_public_api
+
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -22,7 +26,7 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
 
     return PRDialog.informacion(
       context: context,
-      height: 350,
+      height: max(350.ph, 350.sh),
       onTap: () {
         // TODO(anyone): agregarle funcionalidad.
         Navigator.of(context).pop();
@@ -43,7 +47,8 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 PRLabCheckbox(
-                  // TODO(anyone): pasar todo esto a un enum para manejar mejor los distintos estados
+                  // TODO(anyone): pasar todo esto a un enum para manejar
+                  // mejor los distintos estados
                   estaMarcado: state.borrador,
                   onChanged: (value) {
                     context.read<BlocListaArticulosYRecortes>().add(
@@ -58,7 +63,8 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                 ),
                 SizedBox(width: 5.pw),
                 Text(
-                  // TODO(mati): hacer l10n, pero todavia no esta del todo definido los estado a filtrar
+                  // TODO(mati): hacer l10n, pero todavia no esta del todo
+                  // definido los estado a filtrar
                   'Draft',
                   style: TextStyle(
                     color: colores.tertiary,
@@ -68,7 +74,8 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                 ),
                 SizedBox(width: 20.pw),
                 PRLabCheckbox(
-                  // TODO(anyone): pasar todo esto a un enum para manejar mejor los distintos estados
+                  // TODO(anyone): pasar todo esto a un enum para manejar
+                  // mejor los distintos estados
                   estaMarcado: state.comentario,
                   onChanged: (value) {
                     context.read<BlocListaArticulosYRecortes>().add(
@@ -94,7 +101,8 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                 ),
                 SizedBox(width: 20.pw),
                 PRLabCheckbox(
-                  // TODO(anyone): pasar todo esto a un enum para manejar mejor los distintos estados
+                  // TODO(anyone): pasar todo esto a un enum para manejar
+                  // mejor los distintos estados
                   estaMarcado: state.completo,
                   onChanged: (value) {
                     context.read<BlocListaArticulosYRecortes>().add(
@@ -109,7 +117,8 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                 ),
                 SizedBox(width: 5.pw),
                 Text(
-                  // TODO(mati): hacer l10n, pero todavia no esta del todo definido los estado a filtrar
+                  // TODO(anyone): Hacer l10n, pero todavia no esta del todo
+                  // definido los estado a filtrar
                   'Complete',
                   style: TextStyle(
                     color: colores.tertiary,
@@ -181,11 +190,11 @@ class _PRLabCheckboxState extends State<PRLabCheckbox> {
       },
       child: Container(
         width: 20.pw,
-        height: 20.pw,
+        height: max(20.ph, 20.sh),
         decoration: BoxDecoration(
           border: Border.all(color: widget.colorBorde, width: 2),
           color: _isChecked ? widget.colorMarcado : widget.colorDesmarcado,
-          borderRadius: BorderRadius.circular(2.5),
+          borderRadius: BorderRadius.circular(2.5.sw),
         ),
         child: _isChecked
             ? Icon(

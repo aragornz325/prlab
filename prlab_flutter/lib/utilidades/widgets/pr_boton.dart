@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -32,8 +34,10 @@ class PRBoton extends StatelessWidget {
     double? height,
     double? fontSize,
     FontWeight? fontWeight,
+    bool muestraEstadoDeCarga = false,
   }) {
     return PRBoton(
+      muestraEstadoDeCarga: muestraEstadoDeCarga,
       onTap: onTap,
       texto: texto,
       estaHabilitado: estaHabilitado,
@@ -78,12 +82,11 @@ class PRBoton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
-
     return GestureDetector(
       onTap: estaHabilitado ? onTap : null,
       child: Container(
         width: width ?? 359.pw,
-        height: height ?? 50.ph,
+        height: height ?? max(50.ph, 50.sh),
         decoration: BoxDecoration(
           color: esOutlined
               ? colores.background

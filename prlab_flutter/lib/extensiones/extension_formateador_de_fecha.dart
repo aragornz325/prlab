@@ -74,7 +74,7 @@ class PhoneNumberFormatter extends TextInputFormatter {
   ) {
     if (newValue.text.length > oldValue.text.length) {
       // Elimina todos los caracteres que no son dígitos
-      var cleanedText = newValue.text.replaceAll(RegExp(r'[^\d]'), '');
+      final cleanedText = newValue.text.replaceAll(RegExp(r'[^\d]'), '');
 
       // Formatea el número telefónico
       final formattedText = formatPhoneNumber(cleanedText);
@@ -88,9 +88,9 @@ class PhoneNumberFormatter extends TextInputFormatter {
     return newValue;
   }
 
-  String formatPhoneNumber(String phoneNumber) {
+  String formatPhoneNumber(String numeroTelefono) {
     // Elimina espacios en blanco
-    phoneNumber = phoneNumber.replaceAll(' ', '');
+    final phoneNumber = numeroTelefono.replaceAll(' ', '');
 
     // Formato: NNNNNNNNNN
     final length = phoneNumber.length;
@@ -99,10 +99,16 @@ class PhoneNumberFormatter extends TextInputFormatter {
     } else if (length <= 6) {
       return '${phoneNumber.substring(0, 3)} ${phoneNumber.substring(3)}';
     } else if (length <= 9) {
-      return '${phoneNumber.substring(0, 3)} ${phoneNumber.substring(3, 6)} ${phoneNumber.substring(6)}';
+      // ignore: lines_longer_than_80_chars
+      return '${phoneNumber.substring(0, 3)} '
+          '${phoneNumber.substring(3, 6)} '
+          '${phoneNumber.substring(6)}';
     }
 
     // Si el número es muy largo, no hace nada
-    return '${phoneNumber.substring(0, 3)} ${phoneNumber.substring(3, 6)} ${phoneNumber.substring(6, 9)} ${phoneNumber.substring(9)}';
+    return '${phoneNumber.substring(0, 3)} '
+        '${phoneNumber.substring(3, 6)} '
+        '${phoneNumber.substring(6, 9)} '
+        '${phoneNumber.substring(9)}';
   }
 }

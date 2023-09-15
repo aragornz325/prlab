@@ -38,7 +38,7 @@ class _CampoDeTextoFiltrador extends StatelessWidget {
           ),
           hintText: hintText,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.pw),
+            borderRadius: BorderRadius.circular(10.sw),
           ),
         ),
       ),

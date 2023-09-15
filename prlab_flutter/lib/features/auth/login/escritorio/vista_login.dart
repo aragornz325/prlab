@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -107,10 +109,10 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const TextoBienvenida(),
-                    SizedBox(height: 90.ph),
+                    SizedBox(height: max(90.ph, 90.sh)),
                     SizedBox(
                       width: 360.pw,
-                      height: 40.ph,
+                      height: max(40.ph, 40.sh),
                       child: PRTextFormField.email(
                         context: context,
                         controller: controllerEmail,
@@ -118,10 +120,10 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                         hintText: l10n.pageLoginPlaceholderEmail,
                       ),
                     ),
-                    SizedBox(height: 40.ph),
+                    SizedBox(height: max(40.ph, 40.sh)),
                     SizedBox(
                       width: 360.pw,
-                      height: 40.ph,
+                      height: max(40.ph, 40.sh),
                       child: PRTextFormFieldPassword(
                         controller: controllerPassword,
                         hintText: l10n.pageLoginPlaceholderPassword,
@@ -130,14 +132,14 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     ),
                     // TODO(anyone): Cuando se manejen errores de login agregar
                     // los errores abajo de los textfields
-                    SizedBox(height: 10.ph),
+                    SizedBox(height: max(10.ph, 10.sh)),
                     OlvidasteTuPassword(
                       cargoElMail: state.botonOlvidePasswordHabilitado,
                       password: controllerPassword.text,
                       controllerCodigo: controllerCodigo,
                     ),
                     SizedBox(
-                      height: 50.ph,
+                      height: max(50.ph, 50.sh),
                     ),
                     PRBoton(
                       estaHabilitado: state.botonLoginHabilitado,
@@ -146,7 +148,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       texto: l10n.pageLoginButtonText,
                     ),
                     SizedBox(
-                      height: 120.ph,
+                      height: max(120.ph, 120.sh),
                     ),
                   ],
                 ),

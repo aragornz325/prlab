@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -24,31 +26,32 @@ class HoverDeleteIconPRLab extends StatefulWidget {
   final void Function()? onTapEliminar;
 
   /// Selecciona el componente sobre el que esta el usuario y ejecuta la
-  /// funcion.
+  /// función.
   final void Function()? onTapSeleccionar;
 
-  /// Es la condicion para mostrar el widget hover con el icono. En caso de ser
+  /// Es la condición para mostrar el widget hover con el icono. En caso de ser
   /// true lo va a mostrar.
   final bool condicionVisibility;
 
   /// Indica si el item, el widget esta seleccionado para poder cambiar el color
-  /// del hover u alguna otra caracteristica.
+  /// del hover u alguna otra característica.
   final bool itemEstaSeleccionado;
 
   /// Widget que es el cuerpo, el contenido donde va a aparecer el hover icon.
   final Widget? contenido;
+
   @override
   State<HoverDeleteIconPRLab> createState() => _HoverDeleteIconPRLabState();
 }
 
 class _HoverDeleteIconPRLabState extends State<HoverDeleteIconPRLab> {
   /// Indica si la pagina tiene el mouse del usuario encima o no, para agregar
-  /// el tacho de basura permitiendole poder borrarla.
+  /// el tacho de basura permitiéndole poder borrarla.
   bool _mouseEncima = false;
 
   /// Indica si el componente tiene el mouse del
   /// usuario encima o no, para agregar
-  /// el tacho de basura permitiendole poder borrarlo.
+  /// el tacho de basura permitiéndole poder borrarlo.
   void _cursorEncima(
     bool isHovered,
   ) {
@@ -58,8 +61,8 @@ class _HoverDeleteIconPRLabState extends State<HoverDeleteIconPRLab> {
   }
 
 // TODO(SAM): En algun momento hacer factory de componente hover.
-//  TODO(SAM): Pasar colores para evitar la variable  final bool
-//  itemEstaSeleccionado;
+// TODO(SAM): Pasar colores para evitar la variable final bool
+// itemEstaSeleccionado;
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
@@ -101,7 +104,7 @@ class _HoverDeleteIconPRLabState extends State<HoverDeleteIconPRLab> {
               visible: _mouseEncima && widget.condicionVisibility,
               child: SizedBox(
                 width: 32.pw,
-                height: 38.ph,
+                height: max(38.ph, 38.sh),
                 child: InkWell(
                   hoverColor: Colors.transparent,
                   onTap: widget.onTapEliminar,

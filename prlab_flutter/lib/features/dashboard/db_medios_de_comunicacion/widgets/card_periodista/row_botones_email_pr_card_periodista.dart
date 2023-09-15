@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -20,7 +22,7 @@ class RowBotonesEmailPRCardPeriodista extends StatelessWidget {
     super.key,
   });
 
-//! TODO: pasar modelo definitivo
+  // TODO(anyone): pasar modelo definitivo
   /// Modelo utilizado para recolectar la información del periodista y armar
   /// la tarjeta
   final Periodista periodista;
@@ -42,7 +44,7 @@ class RowBotonesEmailPRCardPeriodista extends StatelessWidget {
           texto: l10n.cardPeriodistaBotonDetails,
           estaHabilitado: true,
           width: 100.pw,
-          height: 30.ph,
+          height: max(30.ph, 30.sh),
           fontSize: 15.pf,
           fontWeight: FontWeight.w500,
         ),
@@ -65,7 +67,7 @@ class RowBotonesEmailPRCardPeriodista extends StatelessWidget {
           onTap: onTapAdd,
           texto: l10n.cardPeriodistaBotonAdd,
           estaHabilitado: true,
-          height: 30.ph,
+          height: max(30.ph, 30.sh),
           width: 100.pw,
           fontSize: 15.pf,
           fontWeight: FontWeight.w500,

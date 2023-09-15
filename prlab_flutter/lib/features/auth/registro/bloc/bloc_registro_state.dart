@@ -34,20 +34,29 @@ class BlocRegistroEstado extends Equatable {
           idUsuario: idUsuario ?? otro.idUsuario,
         );
 
+  /// Verifica si el usuario acepto los terminos y condiciones de la app.
   final bool terminosAceptados;
 
+  /// Email del usuario
   final String email;
 
+  /// Password del usuario
   final String password;
 
+  /// Es la password confirmada por el usuario
   final String passwordConfirmada;
 
+  /// id del usuario para validar la cuenta
   final int idUsuario;
 
+  /// getter que indica si el estado inicial del bloc
   bool get isEstadoInicial => this is BlocRegistroEstadoInicial;
 
+  /// getter en caso del que el estado del bloc sea exitoso
   bool get isEstadoExitoso => this is BlocRegistroEstadoExitoso;
 
+  /// getter que indica que esta cargando.
+  /// normalmente para mostrar que esta cargando
   bool get isEstadoCargando => this is BlocRegistroEstadoCargando;
 
   /// Getter del BlocRegistro para ver si esta en estado inicial,

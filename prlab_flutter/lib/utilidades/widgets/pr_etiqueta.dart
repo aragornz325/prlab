@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -130,7 +132,7 @@ class PREtiqueta extends StatelessWidget {
 
     return Container(
       width: 160.pw,
-      height: 60.ph,
+      height: max(60.ph, 60.sh),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100.sw),
         color: color.withOpacity(0.2),
@@ -142,7 +144,7 @@ class PREtiqueta extends StatelessWidget {
             children: [
               Icon(
                 icono,
-                size: 45.sw,
+                size: 45.pw,
                 color: color,
               ),
               SizedBox(width: 10.pw),

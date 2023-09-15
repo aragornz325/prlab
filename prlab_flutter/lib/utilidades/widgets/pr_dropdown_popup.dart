@@ -1,4 +1,4 @@
-// ignore_for_file: inference_failure_on_untyped_parameter
+// ignore_for_file: inference_failure_on_untyped_parameter, avoid_dynamic_calls
 
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -168,7 +168,7 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
   late final TextEditingController filterController;
   Timer? debounce;
 
-  bool isSelected(data) {
+  bool isSelected(dynamic data) {
     if (widget.isSimpleList) {
       return selected.contains(data);
     } else {
@@ -181,7 +181,10 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
     }
   }
 
-  void handleOnChange({required bool newValue, required dynamic data}) {
+  void handleOnChange({
+    required bool newValue,
+    required dynamic data,
+  }) {
     if (newValue) {
       setState(() {
         selected.add(data);
@@ -208,11 +211,11 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
     widget.onChange(selected);
   }
 
-  int getIndex(data) {
+  int getIndex(dynamic data) {
     return widget.list.indexWhere((obj) => obj[widget.id] == data[widget.id]);
   }
 
-  Widget buildTile(data) {
+  Widget buildTile(dynamic data) {
     if (widget.isSimpleList) {
       return Column(
         children: [
@@ -477,13 +480,13 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
                       const EdgeInsets.symmetric(horizontal: 12),
                   decoration: BoxDecoration(
                     borderRadius: controller.isOpen
-                        ? const BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            topLeft: Radius.circular(10),
+                        ? BorderRadius.only(
+                            topRight: Radius.circular(10.sw),
+                            topLeft: Radius.circular(10.sw),
                           )
-                        : const BorderRadius.all(Radius.circular(10)),
+                        : BorderRadius.all(Radius.circular(10.sw)),
                     border: Border.all(
-                      color: const Color(0xffd9d9d9d9),
+                      color: const Color(0xFFD9D9D9),
                     ),
                     color: Colors.white,
                   ),
@@ -614,10 +617,10 @@ class _CustomTile extends StatelessWidget {
           color: value ? selectedItemColor : Colors.white,
           border: const Border(
             left: BorderSide(
-              color: Color(0xffd9d9d9d9),
+              color: Color(0xFFD9D9D9),
             ),
             right: BorderSide(
-              color: Color(0xffd9d9d9d9),
+              color: Color(0xFFD9D9D9),
             ),
           ),
         ),
@@ -640,7 +643,7 @@ class _CustomTile extends StatelessWidget {
                   ? Icon(
                       itemsIconList![index],
                       color: iconsColor,
-                      size: 20.pf,
+                      size: 20.pw,
                     )
                   : Container(),
             const SizedBox(width: 9),

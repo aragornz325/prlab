@@ -83,7 +83,7 @@ class PRDialog extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(height: 40.ph),
+                  SizedBox(height: max(40.ph, 40.sh)),
                   Text(
                     titulo,
                     textAlign: TextAlign.center,
@@ -93,9 +93,11 @@ class PRDialog extends StatelessWidget {
                       color: colores.tertiary,
                     ),
                   ),
-                  SizedBox(height: 40.ph),
+                  SizedBox(height: max(40.ph, 40.sh)),
                   content,
-                  SizedBox(height: alturaEntreBotonYContenido ?? 40.ph),
+                  SizedBox(
+                    height: alturaEntreBotonYContenido ?? max(40.ph, 40.sh),
+                  ),
                   PRBoton.esOutlined(
                     width: anchoDelBoton ?? 360.pw,
                     estaHabilitado: estaHabilitado,
@@ -141,7 +143,7 @@ class PRDialog extends StatelessWidget {
             width: 360.pw,
             child: Column(
               children: [
-                SizedBox(height: 40.ph),
+                SizedBox(height: max(40.ph, 40.sh)),
                 Text(
                   titulo,
                   textAlign: TextAlign.center,
@@ -151,9 +153,9 @@ class PRDialog extends StatelessWidget {
                     color: colores.tertiary,
                   ),
                 ),
-                SizedBox(height: 40.ph),
+                SizedBox(height: max(40.ph, 40.sh)),
                 Center(child: content),
-                SizedBox(height: 40.ph),
+                SizedBox(height: max(40.ph, 40.sh)),
                 Row(
                   children: [
                     PRBoton.esOutlined(
@@ -209,7 +211,7 @@ class PRDialog extends StatelessWidget {
       content: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(height: 20.ph),
+          SizedBox(height: max(20.ph, 20.sh)),
           Text(
             titulo,
             style: TextStyle(
@@ -218,9 +220,9 @@ class PRDialog extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: 30.ph),
+          SizedBox(height: max(30.ph, 30.sh)),
           content,
-          SizedBox(height: 30.ph),
+          SizedBox(height: max(30.ph, 30.sh)),
           Center(
             child: PRBoton.esOutlined(
               onTap: onTap,
@@ -256,7 +258,7 @@ class PRDialog extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(height: 20.ph),
+            SizedBox(height: max(20.ph, 20.sh)),
             Text(
               titulo,
               style: TextStyle(
@@ -265,7 +267,7 @@ class PRDialog extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 20.ph),
+            SizedBox(height: max(20.ph, 20.sh)),
             SizedBox(
               width: 360.pw,
               child: Text(
@@ -278,7 +280,7 @@ class PRDialog extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20.ph),
+            SizedBox(height: max(20.ph, 20.sh)),
             Center(
               child: SizedBox(
                 width: 360.pw,
@@ -318,7 +320,7 @@ class PRDialog extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(height: 20.ph),
+            SizedBox(height: max(20.ph, 20.sh)),
             Text(
               l10n.commonError,
               style: TextStyle(
@@ -327,12 +329,12 @@ class PRDialog extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 30.ph),
+            SizedBox(height: max(30.ph, 30.sh)),
             SizedBox(
               width: 360.pw,
               child: contenido,
             ),
-            SizedBox(height: 30.ph),
+            SizedBox(height: max(30.ph, 30.sh)),
             Center(
               child: SizedBox(
                 width: 360.pw,
@@ -372,7 +374,7 @@ class PRDialog extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(height: 20.ph),
+            SizedBox(height: max(20.ph, 20.sh)),
             Text(
               l10n.commonSuccess,
               style: TextStyle(
@@ -381,7 +383,7 @@ class PRDialog extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 30.ph),
+            SizedBox(height: max(30.ph, 30.sh)),
             SizedBox(
               width: 360.pw,
               child: Text(
@@ -394,7 +396,7 @@ class PRDialog extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 30.ph),
+            SizedBox(height: max(30.ph, 30.sh)),
             Center(
               child: SizedBox(
                 width: 360.pw,
@@ -438,7 +440,7 @@ class PRDialog extends StatelessWidget {
             width: 360.pw,
             child: Column(
               children: [
-                SizedBox(height: 40.ph),
+                SizedBox(height: max(40.ph, 40.sh)),
                 Text(
                   titulo,
                   textAlign: TextAlign.center,
@@ -448,9 +450,9 @@ class PRDialog extends StatelessWidget {
                     color: colores.tertiary,
                   ),
                 ),
-                SizedBox(height: 40.ph),
+                SizedBox(height: max(40.ph, 40.sh)),
                 content,
-                SizedBox(height: 40.ph),
+                SizedBox(height: max(40.ph, 40.sh)),
                 Row(
                   children: [
                     PRBoton.esOutlined(

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -18,7 +20,11 @@ class PRDrawerItem extends StatelessWidget {
     super.key,
   });
 
+  /// Se utiliza para definir la acción que se debe realizar cuando el usuario
+  /// hace clic o toca el elemento.
   final VoidCallback onTap;
+
+  /// Titulo del item para los items del drawers
   final String tituloItem;
 
   /// Icono izquierdo del item
@@ -34,7 +40,7 @@ class PRDrawerItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: 210.pw,
-        height: 40.ph,
+        height: max(40.ph, 40.sh),
         decoration: BoxDecoration(
           color: estaSeleccionado
               ? colores.primaryOpacidadDiez
@@ -50,6 +56,7 @@ class PRDrawerItem extends StatelessWidget {
               child: Icon(
                 icono,
                 color: colores.primary,
+                size: 24.pw,
               ),
             ),
             SizedBox(width: 5.pw),

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -27,7 +29,7 @@ class VistaEscritorioAdministracionDeUnaMarca extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 40.ph),
+          SizedBox(height: max(40.ph, 40.sh)),
           BlocBuilder<BlocAdministracionDeUnaMarca,
               BlocAdministracionDeUnaMarcaEstado>(
             builder: (context, state) {
@@ -37,7 +39,7 @@ class VistaEscritorioAdministracionDeUnaMarca extends StatelessWidget {
                   titulo: '',
                   descripcion: l10n.pageBrandAdministrationDescription,
                 );
-              } 
+              }
 
               final titulo =
                   '${state.marca?.nombre} ${l10n.commonArticles.toLowerCase()}';
@@ -49,7 +51,7 @@ class VistaEscritorioAdministracionDeUnaMarca extends StatelessWidget {
               );
             },
           ),
-          SizedBox(height: 5.ph),
+          SizedBox(height: max(5.ph, 5.sh)),
           ListaArticulosYRecortes(
             idMarca: context.read<BlocAdministracionDeUnaMarca>().state.idMarca,
           ),
