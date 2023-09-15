@@ -32,8 +32,8 @@ class PRDialogFiltrarPorFecha extends StatelessWidget {
             width: 265.pw,
             child: Calendario(
               onValueChanged: (date) {
-                // TODO(anyone): funcion de guardar la fecha seleccionada y filtrar
-                // por esa fecha.
+                // TODO(anyone): funcion de guardar la fecha seleccionada y
+                // filtrar por esa fecha.
               },
               singleDatePickerValueWithDefaultValue: [
                 DateTime.now(),
@@ -43,7 +43,7 @@ class PRDialogFiltrarPorFecha extends StatelessWidget {
         ],
       ),
       onTap: () {
-        // TODO(mati): agregarle funcionalidad
+        // TODO(anyone): agregarle funcionalidad
         Navigator.of(context).pop();
         showDialog<void>(
           context: context,

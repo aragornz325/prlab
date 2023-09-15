@@ -37,6 +37,7 @@ class PRBoton extends StatelessWidget {
     bool muestraEstadoDeCarga = false,
   }) {
     return PRBoton(
+      muestraEstadoDeCarga: muestraEstadoDeCarga,
       onTap: onTap,
       texto: texto,
       estaHabilitado: estaHabilitado,
@@ -46,7 +47,6 @@ class PRBoton extends StatelessWidget {
       fontSize: fontSize,
       fontWeight: fontWeight,
       borderWidth: borderWidth,
-      muestraEstadoDeCarga: muestraEstadoDeCarga,
     );
   }
 

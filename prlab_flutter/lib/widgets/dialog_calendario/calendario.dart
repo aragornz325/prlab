@@ -128,7 +128,6 @@ class _CalendarioState extends State<Calendario> {
               child: Text(
                 date.day.toString(),
                 style: TextStyle(
-                  // TODO(anyone): cambiar en el theme
                   color: colores.letrasDelCalendario,
                   fontWeight: FontWeight.w400,
                   fontSize: 14,

@@ -25,6 +25,7 @@ class _PrDialogFiltrarPorAutorState extends State<PrDialogFiltrarPorAutor> {
 
     final colores = context.colores;
     // TODO(anyone): Cambiar esta lista de ejemplo por la lista de datos reales
+    // lista de usuarios por la cual se pueda filtrar
     final opcionesDropdown = [
       PRDropdownOption<int>(
         title: 'John Smith',

@@ -145,7 +145,7 @@ class TileConCheckBoxes<T> extends StatelessWidget {
 /// esto permite adherirlos o eliminarlos de una lista de [T],
 /// una vez que el usuario le da a aplicar los cambios, esto devuelve
 /// un callback [onTapAplicar] con la nueva lista deseada de
-/// [listaDeSeleccionados].
+/// [listaDeSeleccionables].
 /// {@endtemplate}
 class ListaDeItemsSeleccionablesDialog<T> extends StatefulWidget {
   /// {@macro ListaDeItemsSeleccionablesDialog}
@@ -264,11 +264,14 @@ class Item<T> extends Equatable {
     required this.valor,
     required this.estaSeleccionado,
   });
-// TODO(anyone): Documentar
+
+  /// valor con el que representa cada item. Ej: String = Item<String>
   final T valor;
 
+  /// Representa una etiqueta o nombre asociado con el artículo.
   final String etiqueta;
 
+  /// Indica si el item esta seleccionado, por defecto es false.
   final bool estaSeleccionado;
 
   @override

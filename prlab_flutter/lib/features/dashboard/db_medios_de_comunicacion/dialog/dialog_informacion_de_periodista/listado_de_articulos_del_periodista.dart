@@ -77,8 +77,8 @@ class ListadoDeArticulosDelPeriodista extends StatelessWidget {
                 // corresponden a titulo y contenido.
                 return const _TarjetaDeArticulo(
                   titulo: 'Aca va el titulo',
-                  contenido:
-                      'Aca va el contenido Aca va el contenido Aca va el contenido Aca va el contenido',
+                  contenido: 'Aca va el contenido Aca va el contenido Aca va el'
+                      ' contenido Aca va el contenido',
                 );
               },
             ),

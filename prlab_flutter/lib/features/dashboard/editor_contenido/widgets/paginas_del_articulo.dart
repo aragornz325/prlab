@@ -18,7 +18,8 @@ class PaginasDelArticulo extends StatelessWidget {
     super.key,
   });
 
-  /// TODO(anyone): Documentar
+  /// Lista de las Paginas de los articulos con la cual vos podes navegar
+  /// para acceder a la informacion del articulo y modificarla.
   final List<PaginaSeccionArticulo> listaSeccionesDeArticulos;
 
   @override
@@ -36,7 +37,6 @@ class PaginasDelArticulo extends StatelessWidget {
             return Column(
               children: [
                 // TODO(SAM): agregar item seleccionado en rojo feature
-
                 // callback para saber a cual pagina estoy apuntando y manejarlo
                 PaginaDeArticuloPRLab.listTile(
                   paginaSeccionArticulo: listaSeccionesDeArticulos[index],

@@ -67,8 +67,10 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
           instagram: '@john_prlab',
           twitter: '@john_prlab',
           youtube: '@john_prlab',
-          descripcion:
-              'This is a description This is a description This is a description This is a description This is a description This is a description This is a description This is a description',
+          descripcion: 'This is a description This is a description This is a '
+              'description This is a description This is a description '
+              'This is a description This is a description'
+              ' This is a description',
         ),
         Periodista(
           id: 2,
@@ -89,8 +91,10 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
           instagram: '@julian_nidus',
           twitter: '@julian_nidus',
           youtube: '@julian_nidus',
-          descripcion:
-              'This is a description This is a description This is a description This is a description This is a description This is a description This is a description This is a description',
+          descripcion: 'This is a description This is a description This'
+              ' is a description This is a description This is a '
+              'description This is a description This is a description'
+              ' This is a description',
         ),
       ];
 
@@ -130,7 +134,7 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
   }
 
   /// Trata de obtener la lista de articulos ya publicados por un periodista
-  /// a traves del `idPeriodista`.
+  /// a través del `idPeriodista`.
   Future<void> _obtenerArticulosDelPeriodista(
     BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista event,
     Emitter<BlocDbMediosDeComunicacionEstado> emit,
@@ -138,10 +142,9 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
     emit(BlocDbMediosDeComunicacionEstadoCargando.desde(state));
 
     try {
-      // TODO(Andre):
-      // Pedir modelo de este tipo de articulo que hace referencia
-      // a aquellos que fueron publicados por un periodista y terminar
-      // de manejar esta logica aca y mostrar la lista en el popup de
+      // TODO(Andre): Pedir modelo de este tipo de articulo que hace
+      // referencia a aquellos que fueron publicados por un periodista y
+      // terminar/ de manejar esta lógica aca y mostrar la lista en el popup de
       // detalle del periodista.
     } catch (e) {
       emit(BlocDbMediosDeComunicacionEstadoFallido.desde(state));

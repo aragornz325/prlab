@@ -41,8 +41,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                       BlocBuilder<BlocEditorContenido,
                           BlocEditorContenidoEstado>(
                         builder: (context, state) {
-                          if (state
-                              is BlocEditorContenidoEstadoActualizandoDescripcion) {
+                          if (state.estaEnEstadoDeActualizacion) {
                             return EncabezadoDeSeccion(
                               icono: Icons.add,
                               titulo: state.articulo!.titulo,
@@ -153,7 +152,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                         SizedBox(
                           child: Text(
                             'Showing page 1 of 1 <      >',
-                            // TODO(SAM): cambiar luego por widget
+                            // TODO(SAM): cambiar luego por widget del footer
                             // correspondiente
                             style: TextStyle(
                               fontWeight: FontWeight.w400,

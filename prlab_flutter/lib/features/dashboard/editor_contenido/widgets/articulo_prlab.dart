@@ -88,11 +88,24 @@ class PaginaDeArticuloPRLab extends StatefulWidget {
       ),
     );
   }
-  // TODO(Anyone): Documentar
+
+  /// Representa el título de la página del artículo.
   final String titulo;
+
+  /// Se utiliza para representar el contenido del artículo.
   final String contenidoArticulo;
+
+  /// Se utiliza para representar el ID de la página del artículo.
   final int idPagina;
+
+  ///  Le permite definir un comportamiento personalizado cuando se presiona
+  /// el widget. Si no se proporciona ninguna devolución de llamada, el
+  /// widget no responderá a los toques.
   final VoidCallback? onTap;
+
+  /// Se utiliza para personalizar el contenido del widget.
+  /// Si no se proporciona ningún valor,
+  /// se mostrará el contenido predeterminado.
   final Widget? contenido;
 
   /// Indica si la pagina esta seleccionada por el usuario o no, para cambiar su

@@ -6,7 +6,6 @@ import 'package:prlab_flutter/features/dashboard/administracion_de_una_marca.dar
 import 'package:prlab_flutter/features/dashboard/administracion_de_una_marca.dart/escritorio/vista_administracion_de_una_marca.dart';
 import 'package:prlab_flutter/src/full_responsive/full_responsive_screen.g.dart';
 
-// TODO(anyone): DEFINIR SI [AdministracionDeUnaMarca] ES EL NOMBRE CORRECTO
 /// {@template PaginaAdministracionDeUnaMarca}
 /// Pagina de administracion de una marca donde el usuario puede los articulos
 /// de sus marcas e informacion de los mismas
