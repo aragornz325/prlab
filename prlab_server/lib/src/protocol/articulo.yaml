@@ -7,6 +7,6 @@ fields:
   idMarca: int? parent=marcas
   idAutor: int?
   idStatus: int?
+  ultimaModificacion: DateTime
   fechaCreacion: DateTime, database
-  ultimaModificacion: DateTime, database
   activo: bool?, database

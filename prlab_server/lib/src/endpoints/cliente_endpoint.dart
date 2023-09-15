@@ -30,7 +30,7 @@ class ClienteEndpoint extends Endpoint {
   }
 
   /// Obtiene los usuarios asignados a una marca.
-  Future<List> listarUsuariosPorMarca(
+  Future<List<Cliente>> listarUsuariosPorMarca(
     Session session, {
     required int idMarca,
   }) async {
