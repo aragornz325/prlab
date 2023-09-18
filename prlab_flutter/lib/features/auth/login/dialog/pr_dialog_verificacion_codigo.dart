@@ -112,7 +112,7 @@ class PRDialogVerificacionCodigo extends StatelessWidget {
             },
           ),
           SizedBox(
-            height: 5.ph,
+            height: max(5.ph, 5.sh),
           ),
           SizedBox(
             width: 360.pw,

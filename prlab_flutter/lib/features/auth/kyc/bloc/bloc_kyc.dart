@@ -35,8 +35,11 @@ class BlocKyc extends Bloc<BlocKcyEvento, BlocKycEstado> {
         nombreDeOrganizacion: state.nombreDeCompania,
         domicilio: state.localidad,
         telefono: state.numeroContacto,
-        fechaCreacion: DateTime.now(),
-        ultimaModificacion: DateTime.now(),
+        // fechaCreacion: DateTime.now(),
+        // ultimaModificacion: DateTime.now(),
+
+        // TODO(Anyone): Volver a agregar cuando se agreguen en el back de
+        // nuevo.
       );
       await client.cliente.completarKyc(cliente);
 

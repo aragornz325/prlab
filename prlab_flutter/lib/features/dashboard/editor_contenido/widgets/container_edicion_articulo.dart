@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -22,7 +24,7 @@ class ContainerEdicionArticulo extends StatelessWidget {
 
     return Container(
       width: 839.pw,
-      height: 508.ph,
+      height: max(508.ph, 508.sh),
       color: colores.surfaceTint,
       child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -69,40 +71,42 @@ class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
     final l10n = context.l10n;
 
     return SizedBox(
-      height: 90.ph,
+      height: max(90.ph, 90.sh),
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: 24.pw,
           vertical: 15.ph,
         ),
-        child: TextField(
-          controller: controller
-            ..addListener(() {
-              context.read<BlocEditorContenido>().add(
-                    BlocEditorContenidoActualizarArticulo(
-                      titulo: controller.text,
-                    ),
-                  );
-            }),
-          style: TextStyle(
-            height: 1,
-            fontWeight: FontWeight.w500,
-            fontSize: 25.pf,
-            color: colores.secondary,
-          ),
-          decoration: InputDecoration(
-            hintText: l10n.pageEditContentEditArticleContainerHintTitle,
-            hintMaxLines: 1,
-            hintStyle: TextStyle(
+        child: Center(
+          child: TextField(
+            controller: controller
+              ..addListener(() {
+                context.read<BlocEditorContenido>().add(
+                      BlocEditorContenidoEventoActualizarArticulo(
+                        titulo: controller.text,
+                      ),
+                    );
+              }),
+            style: TextStyle(
+              height: max(1.ph, 1.sh),
               fontWeight: FontWeight.w500,
               fontSize: 25.pf,
               color: colores.secondary,
             ),
-            enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide.none,
-            ),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide.none,
+            decoration: InputDecoration(
+              hintText: l10n.pageEditContentEditArticleContainerHintTitle,
+              hintMaxLines: 1,
+              hintStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 25.pf,
+                color: colores.secondary,
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide.none,
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide.none,
+              ),
             ),
           ),
         ),

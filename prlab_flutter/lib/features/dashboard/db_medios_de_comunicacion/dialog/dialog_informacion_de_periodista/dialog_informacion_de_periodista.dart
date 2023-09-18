@@ -56,7 +56,7 @@ class DialogInformacionDePeriodista extends StatelessWidget {
           ListadoDeArticulosDelPeriodista(),
         ],
       ),
-      height: 830.ph,
+      height: max(830.ph, 830.sh),
       width: 790.pw,
     );
   }

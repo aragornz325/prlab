@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 /// muestra una lista de `journalists` para eventualmente
 /// seleccionar en el contacto y sacar los datos del
 /// periodista.
-///
 /// Contiene una variedad de filtros de búsqueda
 /// como países, cuidades, entre otras cosas.
 /// {@endtemplate}

@@ -21,7 +21,10 @@ class BlocTemporizador
     on<BlocTemporizadorEventoCortarEjecucion>(_cortarEjecucion);
   }
 
+  /// Duracion inicial del temporizador
   static const int _duracion = 60;
+
+  /// Timer del temporizador
   late Timer _timer;
 
   /// El tiempo actual faltante para que se termine el cronometro.

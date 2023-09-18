@@ -4,7 +4,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:intl/intl.dart';
 import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/popup/popup.dart';
@@ -42,7 +41,7 @@ class ListaDeArticulos extends StatelessWidget {
           nombreColumna: l10n.commonArticles,
           celdaEncabezadoColumna: (value) => Padding(
             padding: EdgeInsets.symmetric(
-              vertical: max(10.ph, 10.sh),
+              vertical: 10.ph,
             ),
             child: SizedBox(
               width: 400.pw,
@@ -130,8 +129,8 @@ class ListaDeArticulos extends StatelessWidget {
                         height: max(35.ph, 35.sh),
                         decoration: BoxDecoration(
                           color: colores.secondary,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(100),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(100.sw),
                           ),
                         ),
                         child: Center(
@@ -159,7 +158,10 @@ class ListaDeArticulos extends StatelessWidget {
         // Fecha
         Columna(
           widthDeLaColumna: 150.pw,
-          lista: articulos.map((e) => e.ultimaModificacion).toList(),
+          // lista: articulos.map((e) => e.ultimaModificacion).toList(),
+          // TODO(ANYONE): volver a agregar cuando este fixeados los
+          //modelos del back
+          lista: articulos.map((e) => e.id).toList(),
           nombreColumna: l10n.pageContentAdministrationBarInformationLastUpdate,
           celdaEncabezadoColumna: (value) => SizedBox(
             width: 150.pw,
@@ -185,7 +187,10 @@ class ListaDeArticulos extends StatelessWidget {
                     height: max(50.ph, 50.sh),
                     child: Center(
                       child: Text(
-                        DateFormat('d MMM y').format(value!),
+                        'Fecha',
+                        //  DateFormat('d MMM y').format(value!),
+                        // TODO(ANYONE): volver a agregar cuando este lo del
+                        // back.
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.start,
@@ -233,10 +238,10 @@ class ListaDeArticulos extends StatelessWidget {
                     height: max(50.ph, 50.sh),
                     child: Center(
                       child: CircleAvatar(
-                        radius: 15.pf,
+                        radius: 15.sw,
                         backgroundColor: colores.outlineVariant,
                         child: CircleAvatar(
-                          radius: 15.pf,
+                          radius: 15.sw,
                           backgroundColor: colores.outlineVariant,
                         ),
                       ),
@@ -252,7 +257,7 @@ class ListaDeArticulos extends StatelessWidget {
         // botones
         Columna(
           widthDeLaColumna: 150.pw,
-          lista: articulos.map((e) => e.titulo).toList(),
+          lista: articulos.map((e) => e.id).toList(),
           nombreColumna: '',
           celdaEncabezadoColumna: (value) => SizedBox(
             width: 150.pw,
@@ -289,11 +294,11 @@ class ListaDeArticulos extends StatelessWidget {
                           },
                           icon: Icon(
                             Icons.share_outlined,
-                            size: 18.pf,
+                            size: 18.pw,
                             color: colores.primary,
                           ),
                         ),
-                        const PopUpMenuOpcionesArticulo(),
+                        PopUpMenuOpcionesArticulo(idArticulo: value!),
                         SizedBox(width: 10.pw),
                       ],
                     ),

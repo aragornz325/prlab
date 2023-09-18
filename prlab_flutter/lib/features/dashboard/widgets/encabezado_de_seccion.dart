@@ -3,7 +3,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 
 /// {@template EncabezadoDeSeccion}
-/// Encabezado de la seccion del dashboard
+/// Encabezado de la sección del dashboard
 /// {@endtemplate}
 class EncabezadoDeSeccion extends StatelessWidget {
   /// {@macro EncabezadoDeSeccion}
@@ -20,6 +20,7 @@ class EncabezadoDeSeccion extends StatelessWidget {
   /// Descripcion del encabezado
   final String descripcion;
 
+  /// Icono del encabezado
   final IconData icono;
 
   @override
@@ -35,7 +36,7 @@ class EncabezadoDeSeccion extends StatelessWidget {
             children: [
               Icon(
                 icono,
-                size: 40.pf,
+                size: 40.pw,
                 color: colores.primary,
               ),
               SizedBox(width: 5.pw),

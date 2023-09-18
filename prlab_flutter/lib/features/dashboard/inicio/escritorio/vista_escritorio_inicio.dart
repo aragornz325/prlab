@@ -9,6 +9,7 @@ import 'package:prlab_flutter/features/dashboard/inicio/bloc/bloc_inicio.dart';
 import 'package:prlab_flutter/features/dashboard/inicio/escritorio/widgets/widgets.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/encabezado_de_seccion.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 import 'package:prlab_flutter/utilidades/widgets/card_articulo_reciente.dart/pr_card_articulo_reciente.dart';
 import 'package:prlab_flutter/utilidades/widgets/nada_para_ver.dart';
 
@@ -32,10 +33,10 @@ class VistaEscritorioInicio extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: max(20.ph, 20.sh)),
-
-            /// TODO(Gon): Cambiar al nombre del usuario logeado
-            const ContenedorDeLaBarraDeBusqueda(nombreUsuario: 'John'),
+            SizedBox(height: max(40.ph, 40.sh)),
+            ContenedorDeLaBarraDeBusqueda(
+              nombreUsuario: sessionManager.signedInUser?.userName ?? 'john',
+            ),
             SizedBox(height: max(50.ph, 50.sh)),
             EncabezadoDeSeccion(
               titulo: l10n.pageHomeHeaderTitle,
@@ -44,8 +45,12 @@ class VistaEscritorioInicio extends StatelessWidget {
             ),
             BlocBuilder<BlocInicio, BlocInicioEstado>(
               builder: (context, state) {
-                if (state is BlocInicioEstadoCargando) {
+                if (state.estaEnEstadoCargando) {
                   return const TarjetasDeCarga();
+                }
+                if (state.estaEnEstadoError) {
+                  // TODO(anyone): Mostrar algun tipo de error message
+                  return const Text('Error');
                 }
                 return SizedBox(
                   width: 1010.pw,
@@ -61,10 +66,12 @@ class VistaEscritorioInicio extends StatelessWidget {
                             return Row(
                               children: [
                                 PRCardeArticuloReciente(
-                                  // TODO(Gon): Agregar pusheo a la ruta correspondiente
-                                  onTap: () {},
+                                  onTap: () {
+                                    // TODO(Gon): Agregar pusheo a la ruta
+                                    // correspondiente
+                                  },
                                   titulo: state.listaArticulos[index].titulo,
-                                  // TODO(Gon): Traer el modelo del back
+                                  // TODO(Gon): cambiar por el modelo del back
                                   periodista: Periodista(
                                     name: 'name',
                                     anchor: 'anchor',

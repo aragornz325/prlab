@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -30,7 +32,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 40.ph),
+                SizedBox(height: max(40.ph, 40.sh)),
                 SizedBox(
                   width: 1000.pw,
                   child: Row(
@@ -39,6 +41,13 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                       BlocBuilder<BlocEditorContenido,
                           BlocEditorContenidoEstado>(
                         builder: (context, state) {
+                          if (state.estaEnEstadoDeActualizacion) {
+                            return EncabezadoDeSeccion(
+                              icono: Icons.add,
+                              titulo: state.articulo!.titulo,
+                              descripcion: l10n.pageEditContentSubtitle,
+                            );
+                          }
                           if (state.articulo != null) {
                             return EncabezadoDeSeccion(
                               icono: Icons.add,
@@ -66,7 +75,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                             texto: l10n.commonPreview,
                             estaHabilitado: true,
                             width: 100.pw,
-                            height: 30.ph,
+                            height: max(30.ph, 30.sh),
                           ),
                           SizedBox(
                             width: 20.pw,
@@ -84,20 +93,22 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                             texto: l10n.commonShare,
                             estaHabilitado: true,
                             width: 100.pw,
-                            height: 30.ph,
+                            height: max(30.ph, 30.sh),
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 20.ph),
+                SizedBox(
+                  height: max(20.ph, 20.sh),
+                ),
                 BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
                   builder: (context, state) {
                     if (state is BlocEditorContenidoEstadoCargando) {
                       return SizedBox(
                         width: 1000.pw,
-                        height: 508.ph,
+                        height: max(508.ph, 508.sh),
                         child: const Center(
                           child: CircularProgressIndicator(),
                         ),
@@ -105,7 +116,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                     } else if (state.articulo != null) {
                       return SizedBox(
                         width: 1000.pw,
-                        height: 508.ph,
+                        height: max(508.ph, 508.sh),
                         child: Row(
                           children: [
                             PaginasDelArticulo(
@@ -122,7 +133,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                     } else {
                       return SizedBox(
                         width: 1000.pw,
-                        height: 508.ph,
+                        height: max(508.ph, 508.sh),
                         child: const Center(
                           child: NadaParaVer(),
                         ),
@@ -141,7 +152,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                         SizedBox(
                           child: Text(
                             'Showing page 1 of 1 <      >',
-                            // TODO(SAM): cambiar luego por widget
+                            // TODO(SAM): cambiar luego por widget del footer
                             // correspondiente
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
@@ -158,7 +169,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                             horizontal: 1.pw,
                           ),
                           child: SizedBox(
-                            height: 40.ph,
+                            height: max(40.ph, 40.sh),
                             width: 800.pw,
                             child: const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,

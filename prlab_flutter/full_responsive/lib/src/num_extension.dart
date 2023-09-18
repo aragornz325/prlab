@@ -38,7 +38,10 @@ extension NumExtension on num {
   /// Proportional Font Size: The font size will adapt to the current screen size
   /// Syntactic sugar for applying the same logic of .pw but for fonts
   /// (use always this approach though: maybe in a future the algorithm changes)
-  double get pf => FullResponsive().proportionalWidth(this);
+
+  // TODO(anyone): Arreglar getter
+  // double get pf => FullResponsive().proportionalWidth(this);
+  double get pf => toDouble();
 
   /// Static Font Size: The font size won't change no matter the current screen size
   /// Syntactic sugar for applying the same logic of .sw but for fonts

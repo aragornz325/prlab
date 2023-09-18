@@ -8,5 +8,5 @@ fields:
   idAutor: int?
   idStatus: int?
   ultimaModificacion: DateTime
-  fechaCreacion: DateTime, database
+  fechaCreacion: DateTime?, database
   activo: bool?, database

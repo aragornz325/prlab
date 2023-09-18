@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -16,6 +18,8 @@ class PaginasDelArticulo extends StatelessWidget {
     super.key,
   });
 
+  /// Lista de las Paginas de los articulos con la cual vos podes navegar
+  /// para acceder a la informacion del articulo y modificarla.
   final List<PaginaSeccionArticulo> listaSeccionesDeArticulos;
 
   @override
@@ -26,14 +30,13 @@ class PaginasDelArticulo extends StatelessWidget {
       child: Container(
         color: colores.surfaceTint,
         width: 151.pw,
-        height: 508.ph,
+        height: max(508.ph, 508.sh),
         child: ListView.builder(
           itemCount: listaSeccionesDeArticulos.length,
           itemBuilder: (context, index) {
             return Column(
               children: [
                 // TODO(SAM): agregar item seleccionado en rojo feature
-
                 // callback para saber a cual pagina estoy apuntando y manejarlo
                 PaginaDeArticuloPRLab.listTile(
                   paginaSeccionArticulo: listaSeccionesDeArticulos[index],

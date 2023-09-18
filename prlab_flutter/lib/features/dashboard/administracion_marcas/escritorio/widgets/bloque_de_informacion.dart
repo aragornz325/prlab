@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
@@ -32,20 +34,26 @@ class BloqueDeInformacionDeMarca extends StatelessWidget {
       decoration: tieneBordes
           ? BoxDecoration(
               border: Border(
-                left: BorderSide(width: 1.pw, color: colores.outline),
-                right: BorderSide(width: 1.pw, color: colores.outline),
+                left: BorderSide(
+                  width: 1.pw,
+                  color: colores.outline,
+                ),
+                right: BorderSide(
+                  width: 1.pw,
+                  color: colores.outline,
+                ),
               ),
             )
           : null,
       width: 160.pw,
-      height: 80.ph,
+      height: max(80.ph, 80.sh),
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               icono,
-              size: 40.pf,
+              size: 40.pw,
               color: colores.secondary,
             ),
             SizedBox(width: 5.pw),

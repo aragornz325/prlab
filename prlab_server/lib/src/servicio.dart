@@ -3,7 +3,6 @@
 import 'package:cloudinary/cloudinary.dart';
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:logging/logging.dart';
-import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/odm.dart';
 import 'package:prlab_server/utils/config/constants.dart';
 
@@ -16,7 +15,7 @@ abstract class Servicio<T extends ODM> {
   // ignore: always_specify_types
   final logger = Logger('Servicio');
 
-  /// Instancia del servicio para almacenamiento en la nube 
+  /// Instancia del servicio para almacenamiento en la nube
   /// (actualmente Cloudinary).
   final almacenamientoNube = Cloudinary.signedConfig(
     apiKey: ConstantesPrLab.cloudinaryApiKey,

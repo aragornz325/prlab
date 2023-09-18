@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -76,7 +78,7 @@ class ListadoDePeriodistas extends StatelessWidget {
               ),
               const Divider(height: 0),
               SizedBox(
-                height: 624.ph,
+                height: max(624.ph, 624.sh),
                 width: 560.pw,
                 child: ListView.builder(
                   itemCount: state.periodistas.length,

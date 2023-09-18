@@ -7,6 +7,7 @@ abstract class BlocInicioEvento extends Equatable {
   /// {@macro BlocInicioEvento}
   const BlocInicioEvento();
 
+  @override
   List<Object> get props => [];
 }
 

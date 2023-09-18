@@ -34,6 +34,7 @@ class ContenidoPrincipal extends StatelessWidget {
       color: colores.background,
       child: Column(
         children: [
+          SizedBox(height: max(40.ph, 40.sh)),
           TituloBotonCrearArticulo(nombreArticulo: tituloArticulo),
           DescripcionArticulo(descripcionArticulo: descripcionArticulo),
           SizedBox(height: max(20.ph, 20.sh)),

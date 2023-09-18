@@ -46,33 +46,17 @@ class _PopUpMenuOpcionesAlCrearArticuloState
       },
       offset: const Offset(-20, 35),
       color: colores.surfaceTint,
-      shape: const ContinuousRectangleBorder(
+      shape: ContinuousRectangleBorder(
         borderRadius: BorderRadius.all(
-          Radius.circular(20),
+          Radius.circular(20.sw),
         ),
       ),
       onSelected: (value) {
         switch (value) {
           // TODO(anyone): agregarle funcionalidad
           case 1:
-            showDialog<void>(
-              context: context,
-              builder: (context) => const PRDialogErrorNoDisponible(),
-            );
           case 2:
-            showDialog<void>(
-              context: context,
-              builder: (context) => const PRDialogErrorNoDisponible(),
-            );
-          case 3: // TODO(Anyone): mala practica usar switch,
-            //usar enum extensible
-            showDialog<void>(
-              context: context,
-              builder: (context) => const PRDialogErrorNoDisponible(),
-            );
-          default: // No es la idea que se use, se deberian handlear
-            // todos los casos, el linter se da cuenta
-            // si se checkeo todo lo del enum (by Nico)
+          case 3:
             showDialog<void>(
               context: context,
               builder: (context) => const PRDialogErrorNoDisponible(),
@@ -126,8 +110,8 @@ class _PopUpMenuOpcionesAlCrearArticuloState
             child: Container(
               height: max(30.ph, 30.sh),
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.horizontal(
-                  left: Radius.circular(100),
+                borderRadius: BorderRadius.horizontal(
+                  left: Radius.circular(100.sw),
                 ),
                 color: colores.primary,
               ),
@@ -155,8 +139,8 @@ class _PopUpMenuOpcionesAlCrearArticuloState
             child: Container(
               height: max(30.ph, 30.sh),
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.horizontal(
-                  right: Radius.circular(100),
+                borderRadius: BorderRadius.horizontal(
+                  right: Radius.circular(100.sw),
                 ),
                 color: colores.primary,
               ),
@@ -166,7 +150,7 @@ class _PopUpMenuOpcionesAlCrearArticuloState
                       ? Icons.arrow_drop_up_outlined
                       : Icons.arrow_drop_down_outlined,
                   color: colores.surfaceTint,
-                  size: 24.pf,
+                  size: 24.pw,
                 ),
               ),
             ),

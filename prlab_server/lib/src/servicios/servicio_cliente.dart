@@ -10,14 +10,14 @@ class ServicioCliente extends Servicio<OdmCliente> {
 
   /// Guarda los datos personales del [Cliente] insertados en el formulario de
   /// registro.
-  /// 
+  ///
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
-  ///   [datosDelCliente] ([Cliente]): Objeto con los datos personales que se 
+  ///   [datosDelCliente] ([Cliente]): Objeto con los datos personales que se
   /// van a insertar en la tabla de clientes de la Base de Datos.
   Future<bool> completarKyc(
-    Session session,{
+    Session session, {
     required Cliente datosDelCliente,
   }) async {
     try {
@@ -28,18 +28,19 @@ class ServicioCliente extends Servicio<OdmCliente> {
           datosDelCliente: datosDelCliente,
         ),
       );
+      // ignore: unused_catch_clause
     } on Exception catch (e) {
       rethrow;
     }
   }
 
   /// Comprueba si un usuario completó la fase de registro.
-  Future<bool> comprobarKyc(Session session,{required int idUsuario}) async {
+  Future<bool> comprobarKyc(Session session, {required int idUsuario}) async {
     return await odm.comprobarKyc(session, idUsuario: idUsuario);
   }
 
   /// Obtiene los usuarios asignados a una Marca.
-  /// 
+  ///
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.

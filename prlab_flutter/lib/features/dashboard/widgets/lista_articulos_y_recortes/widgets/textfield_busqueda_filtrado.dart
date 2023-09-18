@@ -6,7 +6,6 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/bloc/bloc_lista_articulos_y_recortes.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/dialog/dialog.dart';
-import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/dialog/pr_dialog_filtrar_por_autor.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_dropdown_popup.dart';
@@ -26,7 +25,7 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
     final l10n = context.l10n;
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: max(20.ph, 20.sh)),
+      padding: EdgeInsets.symmetric(vertical: 20.ph),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -36,7 +35,7 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 5.pw),
             decoration: BoxDecoration(
               color: colores.surfaceTint,
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              borderRadius: BorderRadius.all(Radius.circular(10.sw)),
               border: Border.all(color: colores.outline),
             ),
             child: Center(
@@ -52,7 +51,7 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
                   prefixIcon: Icon(
                     Icons.manage_search,
                     color: colores.secondary,
-                    size: 20.pf,
+                    size: 20.pw,
                   ),
                 ),
               ),
@@ -73,8 +72,10 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
               initiallySelected: const [
                 {'id': '0', 'label': 'All'},
               ],
+              dropdownButtonIcon: Icons.menu_outlined,
               onChange: (newList) {
-                // TODO(anyone): Abrir los popups para cada categoria seleccionada
+                // TODO(anyone): Abrir los popups para cada categoria
+                // seleccionada
                 final id = newList[0]['id'];
                 switch (id) {
                   case '1':

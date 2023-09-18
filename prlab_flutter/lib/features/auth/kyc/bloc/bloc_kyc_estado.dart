@@ -67,6 +67,7 @@ sealed class BlocKycEstado {
       localidad.isNotEmpty &&
       numeroContacto.isNotEmpty;
 
+  /// Formatea la fecha de nacimiento del usuario.
   String get etiquetaFechaNacimiento => '${fechaDeNacimiento?.day}/'
       '${fechaDeNacimiento?.month}/'
       '${fechaDeNacimiento?.year}';
@@ -80,6 +81,9 @@ class BlocKycEstadoInicial extends BlocKycEstado {
   const BlocKycEstadoInicial(this.idUsuario) : super._(idUsuario: idUsuario);
 
   /// id del usuario
+  @override
+  // TODO(anyone): Averiguar por que salta error si no lo ignoras
+  // ignore: overridden_fields
   final int idUsuario;
 }
 

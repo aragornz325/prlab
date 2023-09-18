@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,14 +32,14 @@ class _PrDrawerState extends State<PrDrawer> {
     final colores = context.colores;
     final l10n = context.l10n;
     return Container(
-      height: 832.ph,
+      height: max(832.ph, 832.sh),
       width: 210.pw,
       decoration: BoxDecoration(color: colores.surfaceTint),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 140.ph,
+            height: max(140.ph, 140.sh),
             child: Center(
               child: Image.asset(
                 Assets.assets_icons_logo_png,
@@ -70,11 +72,11 @@ class _PrDrawerState extends State<PrDrawer> {
           ),
           const Spacer(),
           Container(
-            height: 1.ph,
+            height: max(1.ph, 1.sh),
             decoration: BoxDecoration(color: colores.outlineVariant),
           ),
           SizedBox(
-            height: 84.ph,
+            height: max(84.ph, 84.sh),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

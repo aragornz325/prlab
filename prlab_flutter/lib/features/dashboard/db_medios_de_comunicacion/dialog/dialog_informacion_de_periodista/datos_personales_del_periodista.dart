@@ -16,6 +16,15 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
 
     final l10n = context.l10n;
 
+    final descripcionDeGeneral =
+        l10n.pageMediaDatabaseJournalistInformationDialogGeneral;
+
+    final descripcionDeSocial =
+        l10n.pageMediaDatabaseJournalistInformationDialogSocial;
+
+    final descripcionDeAgregarLista =
+        l10n.pageMediaDatabaseJournalistInformationDialogAddToList;
+
     return BlocBuilder<BlocDbMediosDeComunicacion,
         BlocDbMediosDeComunicacionEstado>(
       builder: (context, state) {
@@ -88,16 +97,14 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(
-                            vertical: max(15.ph, 15.sh),
+                            vertical: 15.ph,
                           ),
                           child: Wrap(
                             children: [
                               ...state.periodista.topicCovered.map(
                                 (topic) => Padding(
-                                  padding: EdgeInsets.only(
-                                    right: 10.pw,
-                                    bottom: 10.ph,
-                                  ),
+                                  padding:
+                                      EdgeInsets.symmetric(vertical: 10.ph),
                                   child: TopicPRCardPeriodista(topic: topic),
                                 ),
                               ),
@@ -105,7 +112,7 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          l10n.pageMediaDatabaseJournalistInformationDialogGeneral,
+                          descripcionDeGeneral,
                           style: TextStyle(
                             color: colores.secondary,
                             fontWeight: FontWeight.w500,
@@ -130,7 +137,7 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
                         ),
                         SizedBox(height: max(9.ph, 9.sh)),
                         Text(
-                          l10n.pageMediaDatabaseJournalistInformationDialogSocial,
+                          descripcionDeSocial,
                           style: TextStyle(
                             color: colores.secondary,
                             fontWeight: FontWeight.w500,
@@ -169,8 +176,7 @@ class DatosPersonalesDelPeriodista extends StatelessWidget {
                       // TODO(anyone): Agregarle funcionalidad
                       onTap: () =>
                           const PRDialogErrorNoDisponible().show(context),
-                      texto: l10n
-                          .pageMediaDatabaseJournalistInformationDialogAddToList,
+                      texto: descripcionDeAgregarLista,
                       estaHabilitado: true,
                       width: 100.sw,
                       height: max(30.ph, 30.sh),

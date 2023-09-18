@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -25,7 +23,7 @@ class BotonesArticulosYRecorte extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 30.pw,
-        vertical: max(20.ph, 20.sh),
+        vertical: 20.ph,
       ),
       child: BlocBuilder<BlocListaArticulosYRecortes,
           BlocListaArticulosYRecortesEstado>(

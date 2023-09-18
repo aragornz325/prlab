@@ -20,7 +20,7 @@ class ListadoDeArticulosDelPeriodista extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 40.ph),
+          SizedBox(height: max(40.ph, 40.sh)),
           Padding(
             padding: EdgeInsets.only(left: 20.pw),
             child: Text(
@@ -32,7 +32,7 @@ class ListadoDeArticulosDelPeriodista extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 20.ph),
+          SizedBox(height: max(20.ph, 20.sh)),
           Row(
             children: [
               SizedBox(width: 20.pw),
@@ -48,7 +48,7 @@ class ListadoDeArticulosDelPeriodista extends StatelessWidget {
                     hintText: l10n
                         .pageMediaDatabaseJournalistFilterSearchByKeywordsItem,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.pw),
+                      borderRadius: BorderRadius.circular(10.sw),
                     ),
                   ),
                 ),
@@ -62,24 +62,23 @@ class ListadoDeArticulosDelPeriodista extends StatelessWidget {
                 texto: l10n.commonSearch,
                 estaHabilitado: true,
                 width: 100.sw,
-                height: 30.sh,
+                height: max(30.ph, 30.sh),
                 fontSize: 15.pf,
                 fontWeight: FontWeight.w500,
               ),
             ],
           ),
-          SizedBox(height: 20.ph),
+          SizedBox(height: max(20.ph, 20.sh)),
           Expanded(
             child: ListView.builder(
               itemCount: 10,
               itemBuilder: (BuildContext context, int index) {
-                // TODO(Andre):
-                // consumir esto del bloc y pasarle los valores que corresponden
-                // a titulo y contenido.
+                // TODO(Andre): Consumir esto del bloc y pasarle los valores que
+                // corresponden a titulo y contenido.
                 return const _TarjetaDeArticulo(
                   titulo: 'Aca va el titulo',
-                  contenido:
-                      'Aca va el contenido Aca va el contenido Aca va el contenido Aca va el contenido',
+                  contenido: 'Aca va el contenido Aca va el contenido Aca va el'
+                      ' contenido Aca va el contenido',
                 );
               },
             ),
@@ -122,11 +121,11 @@ class _TarjetaDeArticulo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 72.pw,
+                height: max(72.ph, 72.sh),
                 width: 72.pw,
                 decoration: BoxDecoration(
                   color: colores.secondary,
-                  borderRadius: BorderRadius.circular(10.sh),
+                  borderRadius: BorderRadius.circular(10.sw),
                 ),
               ),
               SizedBox(width: 20.pw),
@@ -143,7 +142,7 @@ class _TarjetaDeArticulo extends StatelessWidget {
                         color: colores.tertiary,
                       ),
                     ),
-                    SizedBox(height: 20.ph),
+                    SizedBox(height: max(20.ph, 20.sh)),
                     Text(
                       contenido,
                       style: TextStyle(

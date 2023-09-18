@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
@@ -46,7 +48,7 @@ class PRDrawerListaItems extends StatelessWidget {
           estaSeleccionado: enumDrawer.esHome,
         ),
         SizedBox(
-          height: 10.ph,
+          height: max(10.ph, 10.sh),
         ),
         PRDrawerItem(
           onTap: () {
@@ -63,7 +65,7 @@ class PRDrawerListaItems extends StatelessWidget {
           estaSeleccionado: enumDrawer.esProjects,
         ),
         SizedBox(
-          height: 10.ph,
+          height: max(10.ph, 10.sh),
         ),
         PRDrawerItem(
           onTap: () {

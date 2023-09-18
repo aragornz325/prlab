@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -21,12 +22,24 @@ class HoverDeleteIconConImagen extends StatefulWidget {
     super.key,
     this.condicionVisibility = true,
     this.imagenCelular,
-    this.imagenWeb, // TODO(SAM): Extraer luego widget de imagenes.
+    this.imagenWeb,
   });
+
+  /// Es un valor booleano que determina si el icono de eliminación debe ser
+  /// visible o no. Si se establece en true, el icono de eliminación
+  /// será visible cuando se pase el mouse sobre el componente.
   final bool condicionVisibility;
+
+  /// Función de devolución de llamada que se llama cuando el
+  /// usuario toca el widget ejecuta cierta Accion.
   final void Function()? onTap;
+
+  /// Se utiliza para almacenar el archivo de imagen para la plataforma móvil.
   final File? imagenCelular;
+
+  /// Se utiliza para almacenar el archivo de imagen para la plataforma web.
   final Uint8List? imagenWeb;
+
   @override
   State<HoverDeleteIconConImagen> createState() =>
       _HoverDeleteIconConImagenState();
@@ -68,7 +81,7 @@ class _HoverDeleteIconConImagenState extends State<HoverDeleteIconConImagen> {
                 children: [
                   Icon(
                     Icons.file_upload_outlined,
-                    size: 24.pf,
+                    size: 24.pw,
                   ),
                   SizedBox(
                     width: 64.pw,
@@ -96,7 +109,7 @@ class _HoverDeleteIconConImagenState extends State<HoverDeleteIconConImagen> {
                   _esLogoPrincipal!,
               child: SizedBox(
                 width: 32.pw,
-                height: 38.ph,
+                height: max(38.ph, 38.sh),
                 child: InkWell(
                   hoverColor: Colors.transparent,
                   onTap: widget.onTap,

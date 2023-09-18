@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -92,7 +94,7 @@ class InfoPRCardPeriodista extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20.ph),
+            SizedBox(height: max(20.ph, 20.sh)),
             Text(
               l10n.cardPeriodistaLocation,
               style: estiloTitulo,
@@ -101,13 +103,13 @@ class InfoPRCardPeriodista extends StatelessWidget {
               periodista.location,
               style: estiloSubtitulo,
             ),
-            SizedBox(height: 20.ph),
+            SizedBox(height: max(20.ph, 20.sh)),
             Text(
               l10n.cardPeriodistaTopicCovered,
               style: estiloTitulo,
             ),
             SizedBox(
-              height: 25.ph,
+              height: max(25.ph, 25.sh),
               width: 340.pw,
               child: ListView.separated(
                 separatorBuilder: (context, index) => SizedBox(width: 10.pw),

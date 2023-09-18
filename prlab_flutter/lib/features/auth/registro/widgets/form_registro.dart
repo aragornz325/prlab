@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -75,7 +77,7 @@ class _FormRegistroState extends State<FormRegistro> {
               soloLectura: true,
             ),
           ),
-          SizedBox(height: 40.ph),
+          SizedBox(height: max(40.ph, 40.sh)),
           SizedBox(
             width: 359.pw,
             child: PRTextFormFieldPassword(
@@ -92,7 +94,7 @@ class _FormRegistroState extends State<FormRegistro> {
               },
             ),
           ),
-          SizedBox(height: 40.ph),
+          SizedBox(height: max(40.ph, 40.sh)),
           SizedBox(
             width: 359.pw,
             child: PRTextFormFieldPassword(
@@ -109,12 +111,12 @@ class _FormRegistroState extends State<FormRegistro> {
               },
             ),
           ),
-          SizedBox(height: 30.ph),
+          SizedBox(height: max(30.ph, 30.sh)),
           const TerminosCondicionesPRLab(),
-          SizedBox(height: 40.ph),
+          SizedBox(height: max(40.ph, 40.sh)),
           ClipRRect(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(100),
+            borderRadius: BorderRadius.all(
+              Radius.circular(100.sw),
             ),
             child: BlocBuilder<BlocRegistro, BlocRegistroEstado>(
               builder: (context, state) {
