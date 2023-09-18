@@ -1,27 +1,27 @@
 import 'package:prlab_server/src/generated/protocol.dart';
-import 'package:prlab_server/src/odms/odm_articulo.dart';
+import 'package:prlab_server/src/odms/odm_entregable_articulo.dart';
 import 'package:prlab_server/src/odms/odm_imagen_articulo.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:prlab_server/src/servicios/servicio_almacenamiento_archivos_nube.dart';
 import 'package:serverpod/server.dart';
 
 /// Servicio para administración de artículos.
-class ServicioArticulo extends Servicio<OdmArticulo> {
+class ServicioEntregableArticulo extends Servicio<OdmEntregableArticulo> {
   @override
-  final odm = OdmArticulo();
+  final odm = OdmEntregableArticulo();
   final servicioAlmacenamientoNube = ServicioAlmacenamientoArchivosNube();
   final odmImagenArticulo = OdmImagenArticulo();
 
-  /// Crea un [Articulo].
+  /// Crea un [EntregableArticulo].
   ///
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.<br>
-  /// [articulo] ([Articulo]): Un objeto que contiene datos del artículo a
+  /// [articulo] ([EntregableArticulo]): Un objeto que contiene datos del artículo a
   /// crearse. No debe contener id, ni fechas de creación o modificación.
   Future<int> crearArticulo(
     Session session, {
-    required Articulo articulo,
+    required EntregableArticulo articulo,
   }) async {
     try {
       return await ejecutarOperacion(
@@ -40,7 +40,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
   /// Args:
   ///  [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
-  Future<List<Articulo>> listarArticulos(
+  Future<List<EntregableArticulo>> listarArticulos(
     Session session,
   ) async {
     try {
@@ -54,13 +54,13 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     }
   }
 
-  /// Recupera los datos de un [Articulo] por su [id].
+  /// Recupera los datos de un [EntregableArticulo] por su [id].
   ///
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
   ///   [id] ([int]): El ID del artículo consultado.
-  Future<Articulo> obtenerArticulo(
+  Future<EntregableArticulo> obtenerArticulo(
     Session session, {
     required int id,
   }) async {
@@ -76,7 +76,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     }
   }
 
-  /// Elimina un [Articulo] de forma permanente.
+  /// Elimina un [EntregableArticulo] de forma permanente.
   ///
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
@@ -106,7 +106,7 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
   /// contiene datos de la conexión.
   ///   [idMarca] ([int]): El ID de la [Marca] a la que pertenecen los
   /// artículos.
-  Future<List<Articulo>> listarArticulosPorMarca(
+  Future<List<EntregableArticulo>> listarArticulosPorMarca(
     Session session, {
     required int idMarca,
   }) async {
@@ -122,16 +122,16 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
     }
   }
 
-  /// Actualiza el registro de un [Articulo].
+  /// Actualiza el registro de un [EntregableArticulo].
   ///
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
-  ///   [articulo] ([Articulo]): El objeto del artículo a actualizar. Necesita
+  ///   [articulo] ([EntregableArticulo]): El objeto del artículo a actualizar. Necesita
   /// contener el id del mismo.
   Future<bool> actualizarArticulo(
     Session session, {
-    required Articulo articulo,
+    required EntregableArticulo articulo,
   }) async {
     try {
       logger.info('Se va a actualizar el articulo con id: ${articulo.id}');

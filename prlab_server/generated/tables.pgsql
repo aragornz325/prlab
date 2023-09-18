@@ -68,9 +68,9 @@ CREATE TABLE "marcas" (
   "id" serial,
   "nombre" text NOT NULL,
   "sitioWeb" text NOT NULL,
-  "fechaCreacion" timestamp without time zone,
-  "ultimaModificacion" timestamp without time zone,
-  "fechaEliminacion" timestamp without time zone
+  "fechaCreacion" timestamp without time zone NOT NULL,
+  "ultimaModificacion" timestamp without time zone NOT NULL,
+  "activo" boolean
 );
 
 ALTER TABLE ONLY "marcas"
@@ -130,9 +130,9 @@ CREATE TABLE "clientes" (
   "idUsuario" integer,
   "idOrganizacion" integer,
   "contacto" integer,
-  "fechaEliminacion" timestamp without time zone,
+  "fechaCreacion" timestamp without time zone NOT NULL,
   "ultimaModificacion" timestamp without time zone NOT NULL,
-  "fechaCreacion" timestamp without time zone NOT NULL
+  "activo" boolean
 );
 
 ALTER TABLE ONLY "clientes"
@@ -198,7 +198,7 @@ ALTER TABLE ONLY "proyectos"
         ON DELETE CASCADE;
 
 --
--- Class Articulo as table articulos
+-- Class EntregableArticulo as table articulos
 --
 
 CREATE TABLE "articulos" (
@@ -209,9 +209,9 @@ CREATE TABLE "articulos" (
   "idMarca" integer,
   "idAutor" integer,
   "idStatus" integer,
-  "fechaEliminacion" timestamp without time zone,
-  "ultimaModificacion" timestamp without time zone,
-  "fechaCreacion" timestamp without time zone
+  "ultimaModificacion" timestamp without time zone NOT NULL,
+  "fechaCreacion" timestamp without time zone,
+  "activo" boolean
 );
 
 ALTER TABLE ONLY "articulos"

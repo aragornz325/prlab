@@ -1,11 +1,11 @@
 import 'package:prlab_server/src/generated/protocol.dart';
-import 'package:prlab_server/src/servicios/servicio_articulo.dart';
+import 'package:prlab_server/src/servicios/servicio_entregable_articulo.dart';
 import 'package:serverpod/server.dart';
 
-/// Endpoints centrados en la entidad [Articulo].
-class ArticuloEndpoint extends Endpoint {
-  /// Instancia del servicio para la entidad [Articulo].
-  final servicioArticulo = ServicioArticulo();
+/// Endpoints centrados en la entidad [EntregableArticulo].
+class EntregableArticuloEndpoint extends Endpoint {
+  /// Instancia del servicio para la entidad [EntregableArticulo].
+  final servicioArticulo = ServicioEntregableArticulo();
 
   @override
   final requireLogin = false;
@@ -17,11 +17,11 @@ class ArticuloEndpoint extends Endpoint {
   ///   [session] ([Session]): Un objeto de sesión que representa la sesión del
   /// usuario actual. Puede contener información como el token de autenticación
   /// del usuario u otros datos relacionados con la sesión.
-  ///   [articulo] ([Articulo]): El parámetro "articulo" es un objeto de tipo
+  ///   [articulo] ([EntregableArticulo]): El parámetro "articulo" es un objeto de tipo
   /// "Articulo" que contiene los datos necesarios para crear un artículo.
   Future<int> crearArticulo(
     Session session,
-    Articulo articulo,
+    EntregableArticulo articulo,
   ) async {
     try {
       return await servicioArticulo.crearArticulo(
@@ -39,7 +39,7 @@ class ArticuloEndpoint extends Endpoint {
   /// Args:
   ///   [session] ([Session]): El parámetro [sesión] es de tipo "Sesión" y es
   ///   obligatorio.
-  Future<List<Articulo>> listarArticulos(
+  Future<List<EntregableArticulo>> listarArticulos(
     Session session,
   ) async {
     try {
@@ -53,13 +53,13 @@ class ArticuloEndpoint extends Endpoint {
 
   /// La función [obtenerArticulo] es una función asincrónica de Dart que toma
   /// un objeto [Session] y un [id] entero como parámetros, y devuelve un
-  ///  [Future] que se resuelve en un objeto [Articulo].
+  ///  [Future] que se resuelve en un objeto [EntregableArticulo].
   ///
   /// Args:
   ///   [session] ([Session]): Un objeto de sesión que contiene información sobre
   ///   la sesión del usuario. id (int): El parámetro [id] es un número entero
   ///   que representa el identificador único del artículo que desea obtener.
-  Future<Articulo> obtenerArticulo(
+  Future<EntregableArticulo> obtenerArticulo(
     Session session,
     int id,
   ) async {
@@ -108,7 +108,7 @@ class ArticuloEndpoint extends Endpoint {
   ///
   /// Returns:
   ///   Un objeto futuro que se resuelve en una lista de objetos Articulo.
-  Future<List<Articulo>> listarArticulosPorMarca(
+  Future<List<EntregableArticulo>> listarArticulosPorMarca(
     Session session,
     int idMarca,
   ) async {
@@ -130,11 +130,11 @@ class ArticuloEndpoint extends Endpoint {
   ///   [session] ([Session]): Un objeto de sesión que representa la sesión del
   /// usuario actual.
   ///
-  /// [articulo] ([Articulo]): El parámetro [articulo] es de tipo "Articulo" y es
+  /// [articulo] ([EntregableArticulo]): El parámetro [articulo] es de tipo "Articulo" y es
   /// obligatorio.
   Future<bool> actualizarArticulo(
     Session session, {
-    required Articulo articulo,
+    required EntregableArticulo articulo,
   }) async {
     try {
       return await servicioArticulo.actualizarArticulo(

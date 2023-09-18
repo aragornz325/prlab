@@ -1,5 +1,5 @@
 import 'package:prlab_server/src/generated/marca.dart';
-import 'package:prlab_server/src/odms/odm_articulo.dart';
+import 'package:prlab_server/src/odms/odm_entregable_articulo.dart';
 import 'package:prlab_server/src/odms/odm_cliente.dart';
 import 'package:prlab_server/src/odms/odm_marca.dart';
 import 'package:prlab_server/src/servicio.dart';
@@ -14,7 +14,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
   final odmCliente = OdmCliente();
 
   /// Instancia del ODM para la administracion de articulos
-  final odmArticulo = OdmArticulo();
+  final odmArticulo = OdmEntregableArticulo();
 
   /// Crea una nueva marca y devuelve un booleano que indica si la operación
   /// fue exitosa.

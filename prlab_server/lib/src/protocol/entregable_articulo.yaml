@@ -1,4 +1,4 @@
-class: Articulo
+class: EntregableArticulo
 table: articulos
 fields:
   titulo: String

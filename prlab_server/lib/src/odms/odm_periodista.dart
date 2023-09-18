@@ -1,6 +1,5 @@
-import 'package:prlab_server/src/generated/periodista.dart';
+import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/odm.dart';
-import 'package:prlab_server/utils/serialization.dart';
 import 'package:serverpod/serverpod.dart';
 
 class OdmPeriodista extends ODM {
@@ -15,9 +14,9 @@ class OdmPeriodista extends ODM {
     List<int> idTiposDeMedio = const [],
     List<int> idRoles = const [],
   }) async {
-    // TODO(anyone): Continuar desarrollo.
-
-    final queryNombre = nombresApellidos != '' ? '(j."nombres" LIKE \'%$nombresApellidos%\')' : '';
+    final queryNombre = nombresApellidos != ''
+        ? '(j."nombres" LIKE \'%$nombresApellidos%\')'
+        : '';
     final queryNombreDeMedio =
         nombreDeMedio != '' ? 'm."medio" LIKE \'%$nombreDeMedio%\'' : '';
     final queryPaises =
@@ -27,9 +26,9 @@ class OdmPeriodista extends ODM {
         : '';
     // final queryTemas = idTemas.isNotEmpty ? '"idTema" IN (${idTemas.join(',')})' : '';
     // final queryIdiomas = idIdiomas.isNotEmpty ? '"idIdioma" IN (${idIdiomas.join(',')})' : '';
-    // final queryTiposDeMedio = idTiposDeMedio.isNotEmpty
-    //     ? '"idTipoDeMedio" IN (${idTiposDeMedio.join(',')})'
-    //     : '';
+    final queryTiposDeMedio = idTiposDeMedio.isNotEmpty
+        ? 'm."idTipoDeMedio" IN (${idTiposDeMedio.join(',')})'
+        : '';
     final queryRoles =
         idRoles.isNotEmpty ? 'j."idRol" IN (${idRoles.join(',')})' : '';
 
@@ -38,9 +37,10 @@ class OdmPeriodista extends ODM {
       queryNombreDeMedio,
       queryPaises,
       queryCiudades,
-      queryRoles
+      queryRoles,
+      queryTiposDeMedio,
     ].where((element) => (element != '' && element != [])).toList();
-    
+
     var whereBuffer = StringBuffer();
 
     if (listaWheres.isNotEmpty) {
@@ -74,8 +74,6 @@ FROM
       consulta,
       clavesMapaModeloDb: modeloApi.keys,
     );
-    return response
-        .map((e) => Periodista.fromJson(e, AdministradorSerializacion()))
-        .toList();
+    return response.map((e) => Periodista.fromJson(e, Protocol())).toList();
   }
 }
