@@ -213,8 +213,7 @@ class OdmArticulo extends ODM {
       session,
       (session) => Articulo.find(
         session,
-        where: (t) =>
-            (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
+        where: (t) => (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
         orderBy: ArticuloTable().ultimaModificacion,
         orderDescending: true,
         limit: 3,
@@ -271,9 +270,20 @@ class OdmArticulo extends ODM {
       session,
       (session) => Articulo.count(
         session,
-        where: (t) =>
-            (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
+        where: (t) => (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
       ),
     );
+  }
+
+  Future<List<Articulo>> traerArticulosPorUsuario(
+      {required Session session}) async {
+    return ejecutarOperacionOdm(session, (session) async {
+      logger.finer('buscando en la db los articulos del usuario');
+      final idAutor = await session.auth.authenticatedUserId;
+      final articulos = await Articulo.find(session,
+          where: (t) => t.idAutor.equals(idAutor) & t.activo.equals(true));
+      logger.fine('articulos encontrados: ${articulos.length}');
+      return articulos;
+    });
   }
 }
