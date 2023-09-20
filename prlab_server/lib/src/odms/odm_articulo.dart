@@ -278,9 +278,11 @@ class OdmArticulo extends ODM {
   Future<List<Articulo>> traerArticulosPorUsuario(
       {required Session session}) async {
     return ejecutarOperacionOdm(session, (session) async {
+      logger.finer('buscando en la db los articulos del usuario');
       final idAutor = await session.auth.authenticatedUserId;
       final articulos = await Articulo.find(session,
           where: (t) => t.idAutor.equals(idAutor) & t.activo.equals(true));
+      logger.fine('articulos encontrados: ${articulos.length}');
       return articulos;
     });
   }
