@@ -230,8 +230,8 @@ class ServicioArticulo extends Servicio<OdmArticulo> {
   Future<List<Articulo>> traerArticulosPorUsuario({
     required Session session,
   }) async {
-    logger.info(
-        'Se van a traer los articulos del usuario ${session.auth.authenticatedUserId}');
+    final idUsario = await session.auth.authenticatedUserId;
+    logger.info('Se van a traer los articulos del usuario $idUsario');
     return await ejecutarOperacion(
       () => odm.traerArticulosPorUsuario(
         session: session,
