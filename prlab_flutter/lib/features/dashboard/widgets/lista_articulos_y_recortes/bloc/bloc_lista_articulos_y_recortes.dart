@@ -190,20 +190,18 @@ class BlocListaArticulosYRecortes extends Bloc<
     try {
       final listaArticulos = List<Articulo>.from(state.articulosFiltrados);
 
-      if (event.idArticulo != null) {
-        listaArticulos.removeWhere((e) => e.id == event.idArticulo);
-        final response = await client.articulo.eliminarArticulo(
-          event.idArticulo ?? 0,
-        );
-        if (response) {
-          emit(
-            BlocListaArticulosYRecortesEstadoExitoso.desde(
-              state,
-              articulosFiltrados: listaArticulos,
-            ),
-          );
-        }
-      }
+      listaArticulos.removeWhere((e) => e.id == event.idArticulo);
+
+      await client.articulo.eliminarArticulo(
+        event.idArticulo,
+      );
+
+      emit(
+        BlocListaArticulosYRecortesEstadoExitoso.desde(
+          state,
+          articulosFiltrados: listaArticulos,
+        ),
+      );
     } catch (e, st) {
       emit(
         BlocListaArticulosYRecortesEstadoFallido.desde(

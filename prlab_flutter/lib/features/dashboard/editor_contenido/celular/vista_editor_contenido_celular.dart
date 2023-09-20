@@ -127,7 +127,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                               width: 10.pw,
                             ),
                             ContainerEdicionArticulo(
-                              titulo: state.articulo!.titulo,
+                              titulo: state.articulo?.titulo ?? '',
                             ),
                           ],
                         ),

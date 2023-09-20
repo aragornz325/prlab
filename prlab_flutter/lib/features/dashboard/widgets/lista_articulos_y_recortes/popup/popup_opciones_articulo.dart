@@ -29,7 +29,7 @@ class PopUpMenuOpcionesArticulo extends StatefulWidget {
   final int idArticulo;
 
   @override
-  State<PopUpMenuOpcionesArticulo> createState() =>
+  _PopUpMenuOpcionesArticuloState createState() =>
       _PopUpMenuOpcionesArticuloState();
 }
 
@@ -162,7 +162,7 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
             // TODO(anyone): agregarle funcionalidad
             context.read<BlocListaArticulosYRecortes>().add(
                   BlocListaArticulosYRecortesEventoEliminarArticulo(
-                    idArticulo: widget.idArticulo,
+                    widget.idArticulo,
                   ),
                 );
           },

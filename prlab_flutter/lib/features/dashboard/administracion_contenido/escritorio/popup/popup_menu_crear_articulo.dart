@@ -56,6 +56,7 @@ class _PopUpMenuOpcionesAlCrearArticuloState
       onSelected: (value) {
         switch (value) {
           // TODO(anyone): agregarle funcionalidad
+          // TODO(anyone): manejar esto por tipos de enum
           case 1:
             context
                 .read<BlocDashboard>()

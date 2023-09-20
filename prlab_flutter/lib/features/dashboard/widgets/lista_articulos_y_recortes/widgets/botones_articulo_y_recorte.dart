@@ -54,10 +54,7 @@ class BotonesArticulosYRecorte extends StatelessWidget {
                     state.esRecortes ? colores.primary : colores.secondary,
                 icono: Icons.image_outlined,
                 onTap: () {
-                  showDialog<void>(
-                    context: context,
-                    builder: (context) => const PRDialogErrorNoDisponible(),
-                  );
+                  const PRDialogErrorNoDisponible().show(context);
 
                   // TODO(anyone): descomentar cuando tenga funcion lo de clippings
                   /*

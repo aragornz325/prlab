@@ -87,7 +87,7 @@ class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
           vertical: 15.ph,
         ),
         child: Center(
-          child: TextFormField(
+          child: TextField(
             controller: controller
               ..addListener(() {
                 context.read<BlocEditorContenido>().add(

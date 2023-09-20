@@ -25,11 +25,12 @@ class BlocDashboard extends Bloc<BlocDashboardEvento, BlocDashboardEstado> {
   ) async {
     emit(BlocDashboardCargando.desde());
     try {
-      if (event.marca != null) {
+      final marca = event.marca;
+      if (marca != null) {
         final idArticulo = await client.articulo.crearArticulo(
           Articulo(
-            titulo: '${event.marca!.nombre} article',
-            idMarca: event.marca!.id,
+            titulo: '${marca.nombre} article',
+            idMarca: marca.id,
             contenido: StringConstants.contenidoDeArticuloPorDefectoJson,
             ultimaModificacion: DateTime.now(),
           ),

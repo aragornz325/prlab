@@ -145,8 +145,7 @@ class _EditorDeDescripcionDeContenidoState
                     // No tiene traduc porque es temporal.
                     texto: 'Save',
                     estaHabilitado: true,
-                    muestraEstadoDeCarga:
-                        state is BlocEditorContenidoEstadoCargando,
+                    estaCargando: state is BlocEditorContenidoEstadoCargando,
                     width: 139.pw,
                     height: max(30.ph, 30.sh),
                   ),

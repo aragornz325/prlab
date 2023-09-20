@@ -88,15 +88,17 @@ class BlocListaArticulosYRecortesEventoEliminarArticulo
     extends BlocListaArticulosYRecortesEvento {
   /// {@macro BlocListaArticulosYRecortesEventoEliminarArticulo}
   @override
-  const BlocListaArticulosYRecortesEventoEliminarArticulo({
+  const BlocListaArticulosYRecortesEventoEliminarArticulo(
     this.idArticulo,
-  });
+  );
 
-  final int? idArticulo;
+  /// id del articulo del cual va a eliminarse
+  final int idArticulo;
 }
 
 /// {@template BlocListaArticulosYRecortesEventoFiltrarBuscador}
-/// TODO(mati): Documentar
+/// Filtra por el nombre del articulo y devuelve una lista de todos los que
+/// coincidan con ese nombre/titulo
 /// {@endtemplate}
 class BlocListaArticulosYRecortesEventoFiltrarBuscador
     extends BlocListaArticulosYRecortesEvento {
@@ -106,5 +108,6 @@ class BlocListaArticulosYRecortesEventoFiltrarBuscador
     this.nombreDelArticuloAFiltrar,
   });
 
+  /// nombre del articulo a filtrar por ese nombre/titulo
   final String? nombreDelArticuloAFiltrar;
 }
