@@ -53,7 +53,7 @@ class BlocListaArticulosYRecortes extends Bloc<
           idMarca,
         );
       } else {
-        articulos = await client.articulo.listarArticulos();
+        articulos = await client.articulo.traerArticulosPorUsuario();
       }
 
       emit(
