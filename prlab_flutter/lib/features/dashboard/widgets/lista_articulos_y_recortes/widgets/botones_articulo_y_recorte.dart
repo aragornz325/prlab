@@ -5,6 +5,7 @@ import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/bloc/bloc_lista_articulos_y_recortes.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
+import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template BotonesArticulosYRecorte}
 /// Son dos botones de `artículos` y `recorte` donde se tendría que navegar
@@ -53,11 +54,19 @@ class BotonesArticulosYRecorte extends StatelessWidget {
                     state.esRecortes ? colores.primary : colores.secondary,
                 icono: Icons.image_outlined,
                 onTap: () {
+                  showDialog<void>(
+                    context: context,
+                    builder: (context) => const PRDialogErrorNoDisponible(),
+                  );
+
+                  // TODO(anyone): descomentar cuando tenga funcion lo de clippings
+                  /*
                   context.read<BlocListaArticulosYRecortes>().add(
                         const BlocListaArticulosYRecortesEventoSeleccion(
                           index: 1,
                         ),
                       );
+                  */
                 },
                 textoBoton:
                     l10n.pageContentAdministrationButtonNavegationClippings,

@@ -28,6 +28,12 @@ class BlocListaArticulosYRecortes extends Bloc<
     on<BlocListaArticulosYRecortesEventoFiltradoPorEstado>(
       _onFiltradoPorEstado,
     );
+    on<BlocListaArticulosYRecortesEventoEliminarArticulo>(
+      _onEliminacionDeArticulo,
+    );
+    on<BlocListaArticulosYRecortesEventoFiltrarBuscador>(
+      _onFiltrarBuscadorDeArticulo,
+    );
   }
 
   /// Trae la lista de los articulos
@@ -54,6 +60,7 @@ class BlocListaArticulosYRecortes extends Bloc<
         BlocListaArticulosYRecortesEstadoExitoso.desde(
           state,
           articulos: articulos,
+          articulosFiltrados: articulos,
         ),
       );
     } catch (e, st) {
@@ -110,6 +117,93 @@ class BlocListaArticulosYRecortes extends Bloc<
           index: event.index,
         ),
       );
+    } catch (e, st) {
+      emit(
+        BlocListaArticulosYRecortesEstadoFallido.desde(
+          state,
+          errorMessage: e.toString(),
+        ),
+      );
+
+      if (kDebugMode) {
+        debugger();
+        throw UnimplementedError('Implementa un error para esto: $e $st');
+      }
+    }
+  }
+
+  /// Elimina un articulo en específico
+  Future<void> _onFiltrarBuscadorDeArticulo(
+    BlocListaArticulosYRecortesEventoFiltrarBuscador event,
+    Emitter<BlocListaArticulosYRecortesEstado> emit,
+  ) async {
+    emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
+
+    try {
+      // TODO(anyone):revisar codigo seguramente se pueda mejorar
+      // TODO(anyone):el buscador lo tiene que manejar el back por la paginacion
+      final articulos = List<Articulo>.from(state.articulos);
+
+      var articulosFiltrados = List<Articulo>.from(state.articulosFiltrados);
+
+      if (event.nombreDelArticuloAFiltrar != null &&
+          event.nombreDelArticuloAFiltrar != '') {
+        articulosFiltrados = articulos
+            .where(
+              (articulo) => articulo.titulo.toLowerCase().contains(
+                    event.nombreDelArticuloAFiltrar!.toLowerCase(),
+                  ),
+            )
+            .toList();
+      } else {
+        articulosFiltrados = state.articulos;
+      }
+
+      emit(
+        BlocListaArticulosYRecortesEstadoExitoso.desde(
+          state,
+          articulosFiltrados: articulosFiltrados,
+        ),
+      );
+    } catch (e, st) {
+      emit(
+        BlocListaArticulosYRecortesEstadoFallido.desde(
+          state,
+          errorMessage: e.toString(),
+        ),
+      );
+
+      if (kDebugMode) {
+        debugger();
+        throw UnimplementedError('Implementa un error para esto: $e $st');
+      }
+    }
+  }
+
+  /// Elimina un articulo en específico
+  Future<void> _onEliminacionDeArticulo(
+    BlocListaArticulosYRecortesEventoEliminarArticulo event,
+    Emitter<BlocListaArticulosYRecortesEstado> emit,
+  ) async {
+    emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
+
+    try {
+      final listaArticulos = List<Articulo>.from(state.articulosFiltrados);
+
+      if (event.idArticulo != null) {
+        listaArticulos.removeWhere((e) => e.id == event.idArticulo);
+        final response = await client.articulo.eliminarArticulo(
+          event.idArticulo ?? 0,
+        );
+        if (response) {
+          emit(
+            BlocListaArticulosYRecortesEstadoExitoso.desde(
+              state,
+              articulosFiltrados: listaArticulos,
+            ),
+          );
+        }
+      }
     } catch (e, st) {
       emit(
         BlocListaArticulosYRecortesEstadoFallido.desde(

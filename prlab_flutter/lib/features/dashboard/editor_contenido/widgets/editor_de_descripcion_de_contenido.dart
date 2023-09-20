@@ -129,14 +129,14 @@ class _EditorDeDescripcionDeContenidoState
                       // TODO(Anyone): Fixear cuando se apreta el boton save
                       // hay error de parse.
                       context.read<BlocEditorContenido>().add(
-                            BlocEditorContenidoEventoGuardarDatosArticulo(),
-                          );
-                      context.read<BlocEditorContenido>().add(
                             BlocEditorContenidoEventoActualizarArticulo(
                               descripcionDeArticulo: jsonEncode(
                                 await _jsonString,
                               ),
                             ),
+                          );
+                      context.read<BlocEditorContenido>().add(
+                            BlocEditorContenidoEventoGuardarDatosArticulo(),
                           );
                     },
                     // TODO(Anyone): Agregar funcionalidad para mostrarle al
@@ -145,6 +145,8 @@ class _EditorDeDescripcionDeContenidoState
                     // No tiene traduc porque es temporal.
                     texto: 'Save',
                     estaHabilitado: true,
+                    muestraEstadoDeCarga:
+                        state is BlocEditorContenidoEstadoCargando,
                     width: 139.pw,
                     height: max(30.ph, 30.sh),
                   ),

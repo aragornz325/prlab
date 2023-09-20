@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/dashboard/bloc/bloc_dashboard.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
@@ -55,6 +57,9 @@ class _PopUpMenuOpcionesAlCrearArticuloState
         switch (value) {
           // TODO(anyone): agregarle funcionalidad
           case 1:
+            context
+                .read<BlocDashboard>()
+                .add(BlocDashboardEventoCrearArticulo());
           case 2:
           case 3:
             showDialog<void>(

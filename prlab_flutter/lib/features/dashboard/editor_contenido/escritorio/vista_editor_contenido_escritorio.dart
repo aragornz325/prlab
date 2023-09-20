@@ -121,7 +121,9 @@ class VistaEditorContenidoEscritorio extends StatelessWidget {
                             SizedBox(
                               width: 10.pw,
                             ),
-                            const ContainerEdicionArticulo(),
+                            ContainerEdicionArticulo(
+                              titulo: state.articulo!.titulo,
+                            ),
                           ],
                         ),
                       );

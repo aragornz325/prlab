@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:intl/intl.dart';
 import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/popup/popup.dart';
@@ -158,10 +159,7 @@ class ListaDeArticulos extends StatelessWidget {
         // Fecha
         Columna(
           widthDeLaColumna: 150.pw,
-          // lista: articulos.map((e) => e.ultimaModificacion).toList(),
-          // TODO(ANYONE): volver a agregar cuando este fixeados los
-          //modelos del back
-          lista: articulos.map((e) => e.id).toList(),
+          lista: articulos.map((e) => e.ultimaModificacion).toList(),
           nombreColumna: l10n.pageContentAdministrationBarInformationLastUpdate,
           celdaEncabezadoColumna: (value) => SizedBox(
             width: 150.pw,
@@ -187,10 +185,7 @@ class ListaDeArticulos extends StatelessWidget {
                     height: max(50.ph, 50.sh),
                     child: Center(
                       child: Text(
-                        'Fecha',
-                        //  DateFormat('d MMM y').format(value!),
-                        // TODO(ANYONE): volver a agregar cuando este lo del
-                        // back.
+                        DateFormat('d MMM y').format(value),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.start,

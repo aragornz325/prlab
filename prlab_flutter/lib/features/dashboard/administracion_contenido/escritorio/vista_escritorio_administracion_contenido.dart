@@ -33,10 +33,41 @@ class VistaEscritorioAdministracionContenido extends StatelessWidget {
                       'Lorem ipsum dolor sit amet consectetur. Mattis'
                       ' dolor sapien pulvinar sed.',
                 ),
-                // TODO(anyone): cambiar por el footer con el paginado
                 SizedBox(
-                  height: max(90.ph, 90.sh),
-                  width: 1000.pw,
+                  width: 1040.pw,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 20.ph,
+                    ),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          child: Text(
+                            'Showing page 1 of 1 <      >',
+                            // TODO(SAM): cambiar luego por widget del footer
+                            // correspondiente
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 15.pf,
+                              color: colores.secondary,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20.pw,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 1.pw,
+                          ),
+                          child: SizedBox(
+                            height: max(40.ph, 40.sh),
+                            width: 800.pw,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),

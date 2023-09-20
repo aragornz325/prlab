@@ -80,3 +80,31 @@ class BlocListaArticulosYRecortesEventoFiltradoPorEstado
   /// cambia los valores en el popup con el check box de completo
   final bool? completo;
 }
+
+/// {@template BlocListaArticulosYRecortesEventoEliminarArticulo}
+/// Elimina un articulo en específico
+/// {@endtemplate}
+class BlocListaArticulosYRecortesEventoEliminarArticulo
+    extends BlocListaArticulosYRecortesEvento {
+  /// {@macro BlocListaArticulosYRecortesEventoEliminarArticulo}
+  @override
+  const BlocListaArticulosYRecortesEventoEliminarArticulo({
+    this.idArticulo,
+  });
+
+  final int? idArticulo;
+}
+
+/// {@template BlocListaArticulosYRecortesEventoFiltrarBuscador}
+/// TODO(mati): Documentar
+/// {@endtemplate}
+class BlocListaArticulosYRecortesEventoFiltrarBuscador
+    extends BlocListaArticulosYRecortesEvento {
+  /// {@macro BlocListaArticulosYRecortesEventoFiltrarBuscador}
+  @override
+  const BlocListaArticulosYRecortesEventoFiltrarBuscador({
+    this.nombreDelArticuloAFiltrar,
+  });
+
+  final String? nombreDelArticuloAFiltrar;
+}
