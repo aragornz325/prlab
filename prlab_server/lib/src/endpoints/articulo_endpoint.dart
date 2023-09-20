@@ -164,4 +164,14 @@ class ArticuloEndpoint extends Endpoint {
       rethrow;
     }
   }
+
+  Future<List<Articulo>> traerArticulosPorUsuario(Session session) {
+    try {
+      return servicioArticulo.traerArticulosPorUsuario(
+        session: session,
+      );
+    } on Exception {
+      rethrow;
+    }
+  }
 }
