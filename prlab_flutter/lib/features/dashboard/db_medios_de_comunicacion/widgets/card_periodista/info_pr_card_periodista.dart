@@ -124,8 +124,6 @@ class InfoPRCardPeriodista extends StatelessWidget {
             ),
           ],
         ),
-        const Spacer(),
-        ValoracionPrCardPeriodista(periodista: periodista),
       ],
     );
   }

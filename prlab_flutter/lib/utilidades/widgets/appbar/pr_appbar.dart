@@ -23,7 +23,6 @@ class PRAppBar extends StatelessWidget {
     final colores = context.colores;
 
     return Container(
-      width: 1040.pw,
       height: max(100.ph, 100.sh),
       decoration: BoxDecoration(color: colores.surfaceTint),
       child: Padding(

@@ -32,7 +32,6 @@ class _PrDrawerState extends State<PrDrawer> {
     final colores = context.colores;
     final l10n = context.l10n;
     return Container(
-      height: max(832.ph, 832.sh),
       width: 210.pw,
       decoration: BoxDecoration(color: colores.surfaceTint),
       child: Column(

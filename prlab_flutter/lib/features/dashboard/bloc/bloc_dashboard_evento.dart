@@ -14,10 +14,10 @@ abstract class BlocDashboardEvento {
 /// como autor el mismo usuario que lo crea.
 /// {@macro BlocDashboardCrearArticulo}
 class BlocDashboardEventoCrearArticulo extends BlocDashboardEvento {
-  BlocDashboardEventoCrearArticulo(this.marca);
+  BlocDashboardEventoCrearArticulo({this.marca});
 
   /// La marca a la cual se le quiere crear un nuevo artículo.
-  final Marca marca;
+  final Marca? marca;
 }
 
 /// {@template BlocDashboardCrearArticulo}
