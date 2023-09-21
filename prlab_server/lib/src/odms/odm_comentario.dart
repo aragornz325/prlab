@@ -38,7 +38,7 @@ class OdmComentario extends ODM {
   ///
   /// Returns:
   ///   un `Futuro<bool>`.
-  Future<bool> elimiinarComentario(
+  Future<bool> eliminarComentario(
     Session session,
     int idComentario,
   ) async {
