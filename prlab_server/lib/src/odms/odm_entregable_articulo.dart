@@ -271,9 +271,20 @@ class OdmEntregableArticulo extends ODM {
       session,
       (session) => EntregableArticulo.count(
         session,
-        where: (t) =>
-            (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
+        where: (t) => (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
       ),
     );
+  }
+
+  Future<List<EntregableArticulo>> traerArticulosPorUsuario(
+      {required Session session}) async {
+    return ejecutarOperacionOdm(session, (session) async {
+      logger.finer('buscando en la db los articulos del usuario');
+      final idAutor = await session.auth.authenticatedUserId;
+      final articulos = await EntregableArticulo.find(session,
+          where: (t) => t.idAutor.equals(idAutor) & t.activo.equals(true));
+      logger.fine('articulos encontrados: ${articulos.length}');
+      return articulos;
+    });
   }
 }

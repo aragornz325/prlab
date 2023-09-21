@@ -226,4 +226,16 @@ class ServicioEntregableArticulo extends Servicio<OdmEntregableArticulo> {
       ),
     );
   }
+
+  Future<List<EntregableArticulo>> traerArticulosPorUsuario({
+    required Session session,
+  }) async {
+    final idUsario = await session.auth.authenticatedUserId;
+    logger.info('Se van a traer los articulos del usuario $idUsario');
+    return await ejecutarOperacion(
+      () => odm.traerArticulosPorUsuario(
+        session: session,
+      ),
+    );
+  }
 }

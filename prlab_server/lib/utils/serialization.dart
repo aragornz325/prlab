@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:prlab_server/src/generated/articulo.dart' as i15;
+import 'package:prlab_server/src/generated/entregable_articulo.dart' as i15;
 import 'package:prlab_server/src/generated/marca.dart' as i16;
 import 'package:prlab_server/src/generated/protocol.dart' as i14;
 import 'package:serverpod/serverpod.dart';

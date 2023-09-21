@@ -164,4 +164,14 @@ class EntregableArticuloEndpoint extends Endpoint {
       rethrow;
     }
   }
+
+  Future<List<EntregableArticulo>> traerArticulosPorUsuario(Session session) {
+    try {
+      return servicioArticulo.traerArticulosPorUsuario(
+        session: session,
+      );
+    } on Exception {
+      rethrow;
+    }
+  }
 }
