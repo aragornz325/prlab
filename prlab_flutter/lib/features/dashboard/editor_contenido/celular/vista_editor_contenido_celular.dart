@@ -105,6 +105,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                 ),
                 BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
                   builder: (context, state) {
+                    final articulo = state.articulo;
                     if (state is BlocEditorContenidoEstadoCargando) {
                       return SizedBox(
                         width: 1000.pw,
@@ -113,7 +114,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                           child: CircularProgressIndicator(),
                         ),
                       );
-                    } else if (state.articulo != null) {
+                    } else if (articulo != null) {
                       return SizedBox(
                         width: 1000.pw,
                         height: max(508.ph, 508.sh),
@@ -127,7 +128,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                               width: 10.pw,
                             ),
                             ContainerEdicionArticulo(
-                              titulo: state.articulo?.titulo ?? '',
+                              titulo: articulo.titulo,
                             ),
                           ],
                         ),

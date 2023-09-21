@@ -188,9 +188,8 @@ class BlocListaArticulosYRecortes extends Bloc<
     emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
 
     try {
-      final listaArticulos = List<Articulo>.from(state.articulosFiltrados);
-
-      listaArticulos.removeWhere((e) => e.id == event.idArticulo);
+      final listaArticulos = List<Articulo>.from(state.articulosFiltrados)
+        ..removeWhere((e) => e.id == event.idArticulo);
 
       await client.articulo.eliminarArticulo(
         event.idArticulo,

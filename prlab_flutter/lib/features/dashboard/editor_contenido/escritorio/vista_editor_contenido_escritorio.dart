@@ -100,6 +100,7 @@ class VistaEditorContenidoEscritorio extends StatelessWidget {
                 SizedBox(height: 20.ph),
                 BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
                   builder: (context, state) {
+                    final articulo = state.articulo;
                     if (state is BlocEditorContenidoEstadoCargando) {
                       return SizedBox(
                         width: 1000.pw,
@@ -108,7 +109,7 @@ class VistaEditorContenidoEscritorio extends StatelessWidget {
                           child: CircularProgressIndicator(),
                         ),
                       );
-                    } else if (state.articulo != null) {
+                    } else if (articulo != null) {
                       return SizedBox(
                         width: 1000.pw,
                         height: max(508.ph, 508.sh),
@@ -122,7 +123,7 @@ class VistaEditorContenidoEscritorio extends StatelessWidget {
                               width: 10.pw,
                             ),
                             ContainerEdicionArticulo(
-                              titulo: state.articulo?.titulo ?? '',
+                              titulo: articulo.titulo,
                             ),
                           ],
                         ),
@@ -141,9 +142,7 @@ class VistaEditorContenidoEscritorio extends StatelessWidget {
                 SizedBox(
                   width: 1040.pw,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 20.ph,
-                    ),
+                    padding: EdgeInsets.symmetric(vertical: 20.ph),
                     child: Row(
                       children: [
                         SizedBox(
@@ -158,9 +157,7 @@ class VistaEditorContenidoEscritorio extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: 20.pw,
-                        ),
+                        SizedBox(width: 20.pw),
                         Padding(
                           padding: EdgeInsets.symmetric(
                             horizontal: 1.pw,
