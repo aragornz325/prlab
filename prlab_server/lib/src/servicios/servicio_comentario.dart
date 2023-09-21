@@ -15,7 +15,36 @@ class ServicioComentario extends Servicio<OdmComentario> {
         ));
   }
 
+  Future<bool> eliminarComentario({
+    required Session session,
+    required int idArticulo,
+  }) async {
+    logger.finer('Eliminando Comentario');
+    return await ejecutarOperacion(() => odm.eliminarComentario(
+          session,
+          idArticulo,
+        ));
+  }
 
+  Future<bool> crearComentario({
+    required Session session,
+    required Comentario comentario,
+  }) async {
+    logger.finer('Creando Comentario');
+    return await ejecutarOperacion(() => odm.crearComentario(
+          session,
+          comentario: comentario,
+        ));
+  }
 
-
+  Future<bool> modificarComentario({
+    required Session session,
+    required Comentario comentario,
+  }) async {
+    logger.finer('Modificando Comentario');
+    return await ejecutarOperacion(() => odm.modificarComentario(
+          session,
+          comentario: comentario,
+        ));
+  }
 }

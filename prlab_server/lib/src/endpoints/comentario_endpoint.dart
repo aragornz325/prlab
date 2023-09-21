@@ -19,4 +19,46 @@ class ComentarioEndpoint extends Endpoint {
       rethrow;
     }
   }
+
+  Future<bool> eliminarComentario(
+    Session session, {
+    required int idArticulo,
+  }) async {
+    try {
+      return servicioComentario.eliminarComentario(
+        session: session,
+        idArticulo: idArticulo,
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<bool> crearComentario(
+    Session session, {
+    required Comentario comentario,
+  }) async {
+    try {
+      return servicioComentario.crearComentario(
+        session: session,
+        comentario: comentario,
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<bool> modificarComentario(
+    Session session, {
+    required Comentario comentario,
+  }) async {
+    try {
+      return servicioComentario.modificarComentario(
+        session: session,
+        comentario: comentario,
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
