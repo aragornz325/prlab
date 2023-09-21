@@ -2,8 +2,7 @@ class: Periodista
 table: periodistas
 fields:
   urlImagen: String?
-  nombres: String?
-  apellidos: String?
+  nombreCompleto: String?
   rol: String?, api
   idRol: int?
   medio: String?, api

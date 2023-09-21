@@ -5,7 +5,7 @@ import 'package:serverpod/serverpod.dart';
 class OdmPeriodista extends ODM {
   Future<List<Periodista>> listarPeriodistas(
     Session session, {
-    String nombresApellidos = '',
+    String nombreCompleto = '',
     String nombreDeMedio = '',
     List<int> idPaises = const [],
     List<int> idCiudades = const [],
@@ -14,8 +14,8 @@ class OdmPeriodista extends ODM {
     List<int> idTiposDeMedio = const [],
     List<int> idRoles = const [],
   }) async {
-    final queryNombre = nombresApellidos != ''
-        ? '(j."nombres" LIKE \'%$nombresApellidos%\')'
+    final queryNombreCompleto = nombreCompleto != ''
+        ? '(j."nombreCompleto" LIKE \'%$nombreCompleto%\')'
         : '';
     final queryNombreDeMedio =
         nombreDeMedio != '' ? 'm."medio" LIKE \'%$nombreDeMedio%\'' : '';
@@ -33,7 +33,7 @@ class OdmPeriodista extends ODM {
         idRoles.isNotEmpty ? 'j."idRol" IN (${idRoles.join(',')})' : '';
 
     final listaWheres = [
-      queryNombre,
+      queryNombreCompleto,
       queryNombreDeMedio,
       queryPaises,
       queryCiudades,
@@ -61,7 +61,7 @@ class OdmPeriodista extends ODM {
       ..remove('idPais');
 
     var consulta = '''
-SELECT j."id", j."urlImagen", j."nombres", j."apellidos", r."rol", m."medio", j."bio", j."email", j."telefono", c."ciudad", n."pais", j."redesSociales"
+SELECT j."id", j."urlImagen", j."nombreCompleto", r."rol", m."medio", j."bio", j."email", j."telefono", c."ciudad", n."pais", j."redesSociales"
 FROM
   periodistas j
   INNER JOIN roles r ON j."idRol" = r.id

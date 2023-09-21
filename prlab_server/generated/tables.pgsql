@@ -156,8 +156,7 @@ ALTER TABLE ONLY "clientes"
 CREATE TABLE "periodistas" (
   "id" serial,
   "urlImagen" text,
-  "nombres" text,
-  "apellidos" text,
+  "nombreCompleto" text,
   "idRol" integer,
   "idMedio" integer,
   "bio" text,

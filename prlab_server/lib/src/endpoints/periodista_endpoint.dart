@@ -14,26 +14,26 @@ class PeriodistaEndpoint extends Endpoint {
 
   Future<List<Periodista>> listarPeriodistas(
     Session session, {
-    String nombresApellidos = '',
-    String nombreDeMedio = '',
-    List<int> idPaises = const [],
-    List<int> idCiudades = const [],
-    List<int> idTemas = const [],
-    List<int> idIdiomas = const [],
-    List<int> idTiposDeMedio = const [],
-    List<int> idRoles = const [],
+    String? nombreCompleto,
+    String? nombreDeMedio,
+    List<int>? idPaises,
+    List<int>? idCiudades,
+    List<int>? idTemas,
+    List<int>? idIdiomas,
+    List<int>? idTiposDeMedio,
+    List<int>? idRoles,
     SortBy
   }) async {
     return servicioPeriodista.listarPeriodistas(
       session,
-      nombresApellidos: nombresApellidos,
-      nombreDeMedio: nombreDeMedio,
-      idPaises: idPaises,
-      idCiudades: idCiudades,
-      idTemas: idTemas,
-      idIdiomas: idIdiomas,
-      idTiposDeMedio: idTiposDeMedio,
-      idRoles: idRoles,
+      nombreCompleto: nombreCompleto ?? '',
+      nombreDeMedio: nombreDeMedio ?? '',
+      idPaises: idPaises ?? const [],
+      idCiudades: idCiudades ?? const [],
+      idTemas: idTemas ?? const [],
+      idIdiomas: idIdiomas ?? const [],
+      idTiposDeMedio: idTiposDeMedio ?? const [],
+      idRoles: idRoles ?? const [],
     );
   }
 }

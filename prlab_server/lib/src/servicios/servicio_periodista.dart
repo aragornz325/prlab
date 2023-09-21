@@ -9,7 +9,7 @@ class ServicioPeriodista extends Servicio<OdmPeriodista> {
 
   Future<List<Periodista>> listarPeriodistas(
     Session session, {
-    String nombresApellidos = '',
+    String nombreCompleto = '',
     String nombreDeMedio = '',
     List<int> idPaises = const [],
     List<int> idCiudades = const [],
@@ -20,7 +20,7 @@ class ServicioPeriodista extends Servicio<OdmPeriodista> {
   }) async {
     return odm.listarPeriodistas(
       session,
-      nombresApellidos: nombresApellidos,
+      nombreCompleto: nombreCompleto,
       nombreDeMedio: nombreDeMedio,
       idPaises: idPaises,
       idCiudades: idCiudades,
