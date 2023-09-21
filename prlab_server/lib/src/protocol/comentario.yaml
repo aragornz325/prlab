@@ -7,3 +7,6 @@ fields:
   fechaEliminacion: DateTime?
   ultimaModificacion: DateTime
   fechaCreacion: DateTime
+  completado: bool?
+  idAutorCompletado: int?
+  fechaCompletado: DateTime?
