@@ -3,10 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
-import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popup_agregar_pagina.dart';
-import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popup_publicar.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/widgets.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/encabezado_de_seccion.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
@@ -23,8 +20,8 @@ class VistaEditorContenidoEscritorio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colores = context.colores;
     final l10n = context.l10n;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -139,44 +136,9 @@ class VistaEditorContenidoEscritorio extends StatelessWidget {
                     }
                   },
                 ),
+                // TODO(anyone): cambiar luego por widget del footer
                 SizedBox(
-                  width: 1040.pw,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20.ph),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          child: Text(
-                            'Showing page 1 of 1 <      >',
-                            // TODO(SAM): cambiar luego por widget del footer
-                            // correspondiente
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 15.pf,
-                              color: colores.secondary,
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 20.pw),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 1.pw,
-                          ),
-                          child: SizedBox(
-                            height: max(40.ph, 40.sh),
-                            width: 800.pw,
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                PopUpMenuAgregarPagina(),
-                                PopUpMenuOpcionesPublicar(),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  height: max(50.ph, 50.sh),
                 ),
               ],
             ),

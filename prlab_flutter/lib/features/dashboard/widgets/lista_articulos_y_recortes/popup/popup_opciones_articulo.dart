@@ -158,7 +158,6 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
             ),
           ),
           onTap: () {
-            // TODO(anyone): agregarle funcionalidad
             showDialog<void>(
               context: context,
               builder: (context) => PrDialogConfirmarAlEliminarArticulo(
