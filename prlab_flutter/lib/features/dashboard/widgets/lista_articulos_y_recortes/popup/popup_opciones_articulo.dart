@@ -4,11 +4,10 @@ import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/bloc/bloc_lista_articulos_y_recortes.dart';
+import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/dialog/dialog.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
@@ -160,11 +159,12 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
           ),
           onTap: () {
             // TODO(anyone): agregarle funcionalidad
-            context.read<BlocListaArticulosYRecortes>().add(
-                  BlocListaArticulosYRecortesEventoEliminarArticulo(
-                    widget.idArticulo,
-                  ),
-                );
+            showDialog<void>(
+              context: context,
+              builder: (context) => PrDialogConfirmarAlEliminarArticulo(
+                idArticulo: widget.idArticulo,
+              ),
+            );
           },
         ),
       ],
