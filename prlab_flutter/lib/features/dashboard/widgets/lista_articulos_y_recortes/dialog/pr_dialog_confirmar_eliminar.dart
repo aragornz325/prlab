@@ -1,17 +1,25 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/extensiones/extension_tema.dart';
+import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/bloc/bloc_lista_articulos_y_recortes.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
+import 'package:prlab_flutter/utilidades/widgets/pr_dialog.dart';
 
 /// {@template PaginaEditorContenido}
-/// Dialog de preguntar al usuario si quiere eliminar el articulo escrito
+/// Dialog de preguntar al usuario si quiere eliminar el articulo seleccionado
 /// {@endtemplate}
-class PrDialogEliminar extends StatelessWidget {
+class PrDialogConfirmarAlEliminarArticulo extends StatelessWidget {
   /// {@macro PaginaEditorContenido}
-  const PrDialogEliminar({super.key});
+  const PrDialogConfirmarAlEliminarArticulo({
+    super.key,
+    required this.idArticulo,
+  });
+
+  /// id del articulo a eliminar
+  final int idArticulo;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +36,7 @@ class PrDialogEliminar extends StatelessWidget {
           SizedBox(
             height: max(80.ph, 80.sh),
             child: Text(
-              l10n.commonDialogDescriptionDelete(l10n.commonPage),
+              l10n.commonDialogDescriptionDelete(l10n.commonArticles),
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: colores.secondary,
@@ -42,20 +50,15 @@ class PrDialogEliminar extends StatelessWidget {
       tituloBotonPrimario: l10n.commonBack,
       tituloBotonSecundario: l10n.commonContinue,
       onTapBotonPrimario: () {
-        // TODO(anyone): agregarle funcionalidad
         Navigator.of(context).pop();
-        showDialog<void>(
-          context: context,
-          builder: (context) => const PRDialogErrorNoDisponible(),
-        );
       },
       onTapBotonSecundario: () {
-        // TODO(anyone): agregarle funcionalidad
         Navigator.of(context).pop();
-        showDialog<void>(
-          context: context,
-          builder: (context) => const PRDialogErrorNoDisponible(),
-        );
+        context.read<BlocListaArticulosYRecortes>().add(
+              BlocListaArticulosYRecortesEventoEliminarArticulo(
+                idArticulo,
+              ),
+            );
       },
     );
   }

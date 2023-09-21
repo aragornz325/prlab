@@ -14,9 +14,23 @@ import 'package:prlab_flutter/utilidades/widgets/pr_dropdown_popup.dart';
 /// Dos componentes uno es un textfield/campo de texto y el otro es un dropdown
 /// para filtrar la lista articulos, por estado o fecha
 /// {@endtemplate}
-class TextFieldBusquedaFiltrado extends StatelessWidget {
+class TextFieldBusquedaFiltrado extends StatefulWidget {
   /// {@macro TextFieldBusquedaFiltrado}
   const TextFieldBusquedaFiltrado({super.key});
+
+  @override
+  State<TextFieldBusquedaFiltrado> createState() =>
+      _TextFieldBusquedaFiltradoState();
+}
+
+class _TextFieldBusquedaFiltradoState extends State<TextFieldBusquedaFiltrado> {
+  final controllerFiltradoNombre = TextEditingController();
+
+  @override
+  void dispose() {
+    controllerFiltradoNombre.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +54,18 @@ class TextFieldBusquedaFiltrado extends StatelessWidget {
             ),
             child: Center(
               child: TextFormField(
+                controller: controllerFiltradoNombre,
                 style: TextStyle(
                   color: colores.primary,
                   fontSize: 15.pf,
                   fontWeight: FontWeight.w400,
                 ),
+                onChanged: (value) =>
+                    context.read<BlocListaArticulosYRecortes>().add(
+                          BlocListaArticulosYRecortesEventoFiltrarBuscador(
+                            nombreDelArticuloAFiltrar: value,
+                          ),
+                        ),
                 decoration: InputDecoration(
                   hintText: l10n.commonSearch,
                   border: InputBorder.none,

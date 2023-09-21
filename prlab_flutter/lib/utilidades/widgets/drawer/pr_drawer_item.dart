@@ -51,7 +51,7 @@ class PRDrawerItem extends StatelessWidget {
             if (estaSeleccionado) const DrawerIndicadorItemSeleccionado(),
             Padding(
               padding: EdgeInsets.only(
-                left: estaSeleccionado ? 0.pw : 30.pw,
+                left: estaSeleccionado ? 22.pw : 30.pw,
               ),
               child: Icon(
                 icono,

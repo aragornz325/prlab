@@ -57,35 +57,42 @@ class AppRouter extends $AppRouter {
           page: RutaRecuperarPassword.page,
           guards: [initialGuard],
         ),
-        AutoRoute(
+        CustomRoute(
           path: '/dashboard',
           page: RutaDashboard.page,
           guards: [authGuard],
+          transitionsBuilder: TransitionsBuilders.noTransition,
           children: [
-            AutoRoute(
+            CustomRoute(
               path: 'home',
               page: RutaInicio.page,
               initial: true,
+              transitionsBuilder: TransitionsBuilders.noTransition,
             ),
-            AutoRoute(
+            CustomRoute(
               path: 'brands-administration',
               page: RutaAdministracionMarcas.page,
+              transitionsBuilder: TransitionsBuilders.noTransition,
             ),
-            AutoRoute(
+            CustomRoute(
               path: 'brand-administration/:idMarca',
               page: RutaAdministracionDeUnaMarca.page,
+              transitionsBuilder: TransitionsBuilders.noTransition,
             ),
-            AutoRoute(
+            CustomRoute(
               path: 'edit-content/:id',
               page: RutaEditorContenido.page,
+              transitionsBuilder: TransitionsBuilders.noTransition,
             ),
-            AutoRoute(
+            CustomRoute(
               page: RutaAdministracionContenido.page,
               path: 'content-management',
+              transitionsBuilder: TransitionsBuilders.noTransition,
             ),
-            AutoRoute(
+            CustomRoute(
               page: RutaDbMediosDeComunicacion.page,
               path: 'media-database',
+              transitionsBuilder: TransitionsBuilders.noTransition,
             ),
           ],
         ),

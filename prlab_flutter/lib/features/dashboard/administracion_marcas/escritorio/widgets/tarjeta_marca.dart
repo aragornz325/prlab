@@ -130,9 +130,11 @@ class TarjetaMarca extends StatelessWidget {
                     SizedBox(width: 20.pw),
                     PRBoton(
                       onTap: () {
-                        context
-                            .read<BlocDashboard>()
-                            .add(BlocDashboardEventoCrearArticulo(marca));
+                        context.read<BlocDashboard>().add(
+                              BlocDashboardEventoCrearArticulo(
+                                marca: marca,
+                              ),
+                            );
                       },
                       texto: l10n.commonCreate,
                       estaHabilitado: true,
@@ -220,10 +222,10 @@ class TarjetaMarca extends StatelessWidget {
                                     style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 14.pf,
-                                      color: colores.primaryContainer,
+                                      color: colores.primary,
                                       decoration: TextDecoration.underline,
                                       overflow: TextOverflow.ellipsis,
-                                      decorationColor: colores.primaryContainer,
+                                      decorationColor: colores.primary,
                                     ),
                                   ),
                                 ),

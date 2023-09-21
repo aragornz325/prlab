@@ -73,7 +73,9 @@ class ListaArticulosYRecortes extends StatelessWidget {
                   )
                 else if (state.index == 0 && state.articulos.isNotEmpty)
                   // si la lista de articulos tiene elementos
-                  ListaDeArticulos(articulos: state.articulos),
+                  ListaDeArticulos(
+                    articulos: state.articulosFiltrados,
+                  ),
               ],
             ),
           );

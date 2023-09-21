@@ -7,7 +7,7 @@ import 'package:prlab_flutter/features/dashboard/administracion_marcas/escritori
 import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template InformacionDeLaMarca}
-/// Seccion de los 3 bloques de informacion de la marca
+/// Sección de los 3 bloques de informacion de la marca
 /// {@endtemplate}
 class InformacionDeLaMarca extends StatelessWidget {
   /// {@macro InformacionDeLaMarca}

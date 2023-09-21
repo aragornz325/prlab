@@ -66,8 +66,6 @@ class Grilla<T> extends StatelessWidget {
                               ...columna.lista.map((e) => columna.celda(e)),
                             if (columna is Columna<int?>)
                               ...columna.lista.map((e) => columna.celda(e)),
-                            if (columna is Columna<DateTime?>)
-                              ...columna.lista.map((e) => columna.celda(e)),
                             const SizedBox.shrink(),
                           ],
                         ),

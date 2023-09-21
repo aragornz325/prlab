@@ -264,9 +264,14 @@
         "description":"This message corresponds to a situation where the registration of the user is successful. This is shown in the button of the alert dialog after pressing continue button in KYC."
     },
 
-    "commonDialogDescriptionDelete" : "Are you sure you want to delete this\n page? you will not be able to undo this\n step.",
+    "commonDialogDescriptionDelete" : "Are you sure you want to delete this\n {something}? you will not be able to undo this\n step.",
     "@commonDialogDescriptionDelete": {
-        "description":"This description corresponds to a situation where the user wants to delete a page. This is shown in the alert dialog."
+        "description":"This description corresponds to a situation where the user wants to delete a page. This is shown in the alert dialog.",
+        "placeholders" :{
+            "something" : {
+                "type": "String"
+            }
+        }
     },
     
     "drawerHome":"Home",
@@ -842,6 +847,10 @@
         "description": "Text shown on a button that indicates to edit,this edit text is displayed in a content management popup one of the options to choose from"
     },
     
+    "commonPage": "Page",
+    "@commonPage": {
+        "description": "Text shown on dialog when deleting this article,for confirm user to delete this article"
+    },
 
     "commonDuplicate": "Duplicate",
     "@commonDuplicate": {

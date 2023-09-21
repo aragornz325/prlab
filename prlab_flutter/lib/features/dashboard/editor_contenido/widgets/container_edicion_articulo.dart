@@ -16,7 +16,9 @@ class ContainerEdicionArticulo extends StatelessWidget {
   /// {@macro ContainerEdicionArticulo}
   const ContainerEdicionArticulo({
     super.key,
+    required this.titulo,
   });
+  final String titulo;
 
   @override
   Widget build(BuildContext context) {
@@ -26,23 +28,23 @@ class ContainerEdicionArticulo extends StatelessWidget {
       width: 839.pw,
       height: max(508.ph, 508.sh),
       color: colores.surfaceTint,
-      child: const Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Column(
+          const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               UploadLogoPR(),
             ],
           ),
-          Divider(
+          const Divider(
             height: 0,
           ),
-          _CampoDeTextoTitulo(),
-          Divider(
+          _CampoDeTextoTitulo(titulo: titulo),
+          const Divider(
             height: 0,
           ),
-          EditorDeDescripcionDeContenido(),
+          const EditorDeDescripcionDeContenido(),
         ],
       ),
     );
@@ -50,7 +52,8 @@ class ContainerEdicionArticulo extends StatelessWidget {
 }
 
 class _CampoDeTextoTitulo extends StatefulWidget {
-  const _CampoDeTextoTitulo();
+  const _CampoDeTextoTitulo({required this.titulo});
+  final String titulo;
 
   @override
   State<_CampoDeTextoTitulo> createState() => _CampoDeTextoTituloState();
@@ -58,6 +61,12 @@ class _CampoDeTextoTitulo extends StatefulWidget {
 
 class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
   final controller = TextEditingController();
+
+  @override
+  void initState() {
+    controller.text = widget.titulo;
+    super.initState();
+  }
 
   @override
   void dispose() {

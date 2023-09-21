@@ -18,7 +18,7 @@ class PRBoton extends StatelessWidget {
     this.width,
     this.height,
     this.esOutlined = false,
-    this.muestraEstadoDeCarga = false,
+    this.estaCargando = false,
     this.fontWeight,
     this.borderWidth,
     super.key,
@@ -34,10 +34,10 @@ class PRBoton extends StatelessWidget {
     double? height,
     double? fontSize,
     FontWeight? fontWeight,
-    bool muestraEstadoDeCarga = false,
+    bool estaCargando = false,
   }) {
     return PRBoton(
-      muestraEstadoDeCarga: muestraEstadoDeCarga,
+      estaCargando: estaCargando,
       onTap: onTap,
       texto: texto,
       estaHabilitado: estaHabilitado,
@@ -78,7 +78,8 @@ class PRBoton extends StatelessWidget {
   final FontWeight? fontWeight;
 
   /// Si es true muestra un circular progress indicator dentro del boton.
-  final bool muestraEstadoDeCarga;
+  final bool estaCargando;
+
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
@@ -90,7 +91,7 @@ class PRBoton extends StatelessWidget {
         decoration: BoxDecoration(
           color: esOutlined
               ? colores.background
-              : estaHabilitado && !muestraEstadoDeCarga
+              : estaHabilitado && !estaCargando
                   ? colores.primary
                   : colores.primaryOpacidadSesenta,
           borderRadius: BorderRadius.circular(100.sw),
@@ -104,7 +105,7 @@ class PRBoton extends StatelessWidget {
               : null,
         ),
         child: Center(
-          child: muestraEstadoDeCarga
+          child: estaCargando
               ? const CircularProgressIndicator()
               : Text(
                   texto,
