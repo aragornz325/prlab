@@ -27,6 +27,23 @@ class OdmComentario extends ODM {
     );
   }
 
+  ///Lita todos los comentarios de la db
+  Future<List<Comentario>> listarTodosComentarios(
+    Session session,
+  ) async {
+    return await Comentario.find(
+      session,
+    );
+  }
+
+  Future<Comentario?>obtenerComentario (
+    Session session, {
+    required int idComentario,
+  }) async {
+    return await Comentario.findById(session, idComentario);
+    
+  }
+
   /// La función `eliminarComentario` elimina un comentario con un ID
   /// determinado de una sesión.
   ///

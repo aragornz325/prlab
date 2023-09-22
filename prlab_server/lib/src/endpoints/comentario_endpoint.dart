@@ -20,14 +20,40 @@ class ComentarioEndpoint extends Endpoint {
     }
   }
 
+  Future<List<Comentario>> listarTodosComentarios(
+    Session session,
+  ) async {
+    try {
+      return servicioComentario.listarTodosComentarios(
+        session: session,
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Comentario> obtenerComentario(
+    Session session, {
+    required int idComentario,
+  }) async {
+    try {
+      return servicioComentario.obtenerComentario(
+        session: session,
+        idComentario: idComentario,
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<bool> eliminarComentario(
     Session session, {
-    required int idArticulo,
+    required int idComentario,
   }) async {
     try {
       return servicioComentario.eliminarComentario(
         session: session,
-        idArticulo: idArticulo,
+        idComentario: idComentario,
       );
     } catch (e) {
       rethrow;

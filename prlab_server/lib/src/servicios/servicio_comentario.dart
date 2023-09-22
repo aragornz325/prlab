@@ -4,6 +4,7 @@ import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/serverpod.dart';
 
 class ServicioComentario extends Servicio<OdmComentario> {
+  final odm = OdmComentario();
   Future<List<Comentario>> listarComentariosPorArticulo({
     required Session session,
     required int idArticulo,
@@ -15,14 +16,40 @@ class ServicioComentario extends Servicio<OdmComentario> {
         ));
   }
 
+  ///servicio que devuelve todos los comentarios en la db
+  Future<List<Comentario>> listarTodosComentarios({
+    required Session session,
+  }) async {
+    logger.finer('Listando Todos los Comentarios');
+    return await ejecutarOperacion(() => odm.listarTodosComentarios(
+          session,
+        ));
+  }
+
+  Future<Comentario> obtenerComentario({
+    required Session session,
+    required int idComentario,
+  }) async {
+    logger.finer('Obteniendo Comentario');
+    final comentario = await ejecutarOperacion(() => odm.obtenerComentario(
+          session,
+          idComentario: idComentario,
+        ));
+        if (comentario == null) {
+          throw Exception('Comentario no encontrado');
+        }
+        return comentario;
+  }
+
+
   Future<bool> eliminarComentario({
     required Session session,
-    required int idArticulo,
+    required int idComentario,
   }) async {
     logger.finer('Eliminando Comentario');
     return await ejecutarOperacion(() => odm.eliminarComentario(
           session,
-          idArticulo,
+          idComentario,
         ));
   }
 
