@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/drawer/drawer.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_dialog.dart';
@@ -9,12 +10,16 @@ import 'package:prlab_flutter/utilidades/widgets/pr_dialog.dart';
 /// Enum utilizado para indexar cada item del drawer.
 enum DrawerPage {
   home,
-  projects,
-  templates;
+  brands,
+  articles,
+  mediaDatabase,
+  metrics;
 
   bool get esHome => this == DrawerPage.home;
-  bool get esProjects => this == DrawerPage.projects;
-  bool get esTemplates => this == DrawerPage.templates;
+  bool get esBrands => this == DrawerPage.brands;
+  bool get esArticles => this == DrawerPage.articles;
+  bool get esMediaDatabase => this == DrawerPage.mediaDatabase;
+  bool get esMetrics => this == DrawerPage.metrics;
 }
 
 /// {@template PRDrawerListaItems}
@@ -51,35 +56,48 @@ class PRDrawerListaItems extends StatelessWidget {
           height: max(10.ph, 10.sh),
         ),
         PRDrawerItem(
-          onTap: () {
-            // TODO(anyone): Descomentar cuando haya una page de projects
-            // onTap(DrawerPage.projects);
-
-            showDialog<void>(
-              context: context,
-              builder: (context) => const PRDialogErrorNoDisponible(),
-            );
-          },
-          icono: Icons.folder_open_outlined,
-          tituloItem: l10n.drawerProjects,
-          estaSeleccionado: enumDrawer.esProjects,
+          onTap: () => onTap(DrawerPage.brands),
+          // TODO(anyone): El icono del diseño no esta en flutter
+          iconImage: Assets.assets_icons_conocimiento_de_la_marca_png,
+          tituloItem: l10n.commonBrand,
+          estaSeleccionado: enumDrawer.esBrands,
+        ),
+        SizedBox(
+          height: max(10.ph, 10.sh),
+        ),
+        PRDrawerItem(
+          onTap: () => onTap(DrawerPage.articles),
+          // TODO(anyone): El icono del diseño no esta en flutter
+          iconImage: Assets.assets_icons_contrato_png,
+          tituloItem: l10n.commonArticles,
+          estaSeleccionado: enumDrawer.esArticles,
+        ),
+        SizedBox(
+          height: max(10.ph, 10.sh),
+        ),
+        PRDrawerItem(
+          onTap: () => onTap(DrawerPage.mediaDatabase),
+          // TODO(anyone): El icono del diseño no esta en flutter
+          iconImage: Assets.assets_icons_base_de_datos_png,
+          tituloItem: l10n.prAppBarCoverageMediaDbMedia,
+          estaSeleccionado: enumDrawer.esMediaDatabase,
         ),
         SizedBox(
           height: max(10.ph, 10.sh),
         ),
         PRDrawerItem(
           onTap: () {
-            // TODO(anyone): Descomentar cuando haya una page de templates
-            // onTap(DrawerPage.templates);
-
+            // TODO(anyone): Descomentar cuando este la page de metricas
+            // onTap(DrawerPage.metrics);
             showDialog<void>(
               context: context,
               builder: (context) => const PRDialogErrorNoDisponible(),
             );
           },
-          icono: Icons.space_dashboard_outlined,
-          tituloItem: l10n.drawerTemplates,
-          estaSeleccionado: enumDrawer.esTemplates,
+          // TODO(anyone): El icono del diseño no esta en flutter
+          iconImage: Assets.assets_icons_metricas_png,
+          tituloItem: l10n.commonMetrics,
+          estaSeleccionado: enumDrawer.esMetrics,
         ),
       ],
     );

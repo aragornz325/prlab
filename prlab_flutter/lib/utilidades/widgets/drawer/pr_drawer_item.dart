@@ -14,8 +14,9 @@ class PRDrawerItem extends StatelessWidget {
   /// {@macro PRDrawerItem}
   const PRDrawerItem({
     required this.onTap,
-    required this.icono,
     required this.tituloItem,
+    this.icono,
+    this.iconImage,
     this.estaSeleccionado = false,
     super.key,
   });
@@ -28,7 +29,10 @@ class PRDrawerItem extends StatelessWidget {
   final String tituloItem;
 
   /// Icono izquierdo del item
-  final IconData icono;
+  final IconData? icono;
+
+  /// Path de la imagen a usar como icono
+  final String? iconImage;
 
   /// Utilizable para confirmar el uso del indicador izquierdo
   final bool estaSeleccionado;
@@ -53,11 +57,19 @@ class PRDrawerItem extends StatelessWidget {
               padding: EdgeInsets.only(
                 left: estaSeleccionado ? 22.pw : 30.pw,
               ),
-              child: Icon(
-                icono,
-                color: colores.primary,
-                size: 24.pw,
-              ),
+              child: icono != null
+                  ? Icon(
+                      icono,
+                      color: colores.primary,
+                      size: 24.pw,
+                    )
+                  : iconImage != null
+                      ? Image.asset(
+                          iconImage!,
+                          fit: BoxFit.cover,
+                          height: max(30.ph, 30.sh),
+                        )
+                      : Container(),
             ),
             SizedBox(width: 5.pw),
             Text(

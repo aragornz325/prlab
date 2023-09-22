@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/inicio/bloc/bloc_inicio.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
@@ -110,7 +111,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemOnlineNewsroom,
-                    icono: Icons.telegram,
+                    iconImage: Assets.assets_icons_contrato_png,
                     estaCargando: state.estaEnEstadoCargando,
                     onTap: () {
                       // TODO(Gon): Agregar pusheo a la ruta correspondiente
@@ -134,7 +135,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemMediaMonitoring,
-                    icono: Icons.monitor_heart_outlined,
+                    iconImage: Assets.assets_icons_signos_vitales_png,
                     estaCargando: state.estaEnEstadoCargando,
                     onTap: () {
                       // TODO(Gon): Agregar pusheo a la ruta correspondiente
@@ -142,7 +143,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemStatistics,
-                    icono: Icons.monitor,
+                    iconImage: Assets.assets_icons_metricas_png,
                     estaCargando: state.estaEnEstadoCargando,
                     onTap: () {
                       // TODO(Gon): Agregar pusheo a la ruta correspondiente
@@ -166,8 +167,9 @@ class _ItemContenedorDeLaBarraDeBusqueda extends StatelessWidget {
   /// {@macro ItemContainerBusqueda}
   const _ItemContenedorDeLaBarraDeBusqueda({
     required this.texto,
-    required this.icono,
     required this.onTap,
+    this.icono,
+    this.iconImage,
     this.estaCargando = false,
   });
 
@@ -175,7 +177,10 @@ class _ItemContenedorDeLaBarraDeBusqueda extends StatelessWidget {
   final String texto;
 
   /// Icono dentro del container
-  final IconData icono;
+  final IconData? icono;
+
+  // Path de la imagen a usar como icono dentro del container
+  final String? iconImage;
 
   /// Indica si esta cargando para mostrar un CircularProgressIndicator
   final bool estaCargando;
@@ -193,7 +198,7 @@ class _ItemContenedorDeLaBarraDeBusqueda extends StatelessWidget {
           onTap: onTap,
           child: Container(
             width: 60.sw,
-            height: max(60.ph, 60.sh),
+            height: 60.sh,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(
                 Radius.circular(10.sw),
@@ -209,11 +214,19 @@ class _ItemContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                         color: colores.secondary,
                       ),
                     )
-                  : Icon(
-                      icono,
-                      size: 25.pw,
-                      color: colores.primary,
-                    ),
+                  : icono != null
+                      ? Icon(
+                          icono,
+                          size: 25.pw,
+                          color: colores.primary,
+                        )
+                      : iconImage != null
+                          ? Image.asset(
+                              iconImage!,
+                              fit: BoxFit.cover,
+                              height: max(30.ph, 30.sh),
+                            )
+                          : Container(),
             ),
           ),
         ),
