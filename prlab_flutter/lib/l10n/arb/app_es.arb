@@ -847,11 +847,16 @@
         "description": "Text on the project metrics label indicating the mentions"
     },
 
-    
     "projectMetricsLabelBacklinks": "Vínculos",
     "@projectMetricsLabelBacklinks": {
         "description": "Text on the project metrics label indicating the backlinks"
     },
+    
+    "pageEditContentCommentsHintText": "Añade tu comentario aquí",
+    "@pageEditContentCommentsHintText": {
+        "description": "Text on view edit content pulled apart comment,hint text in text field for add new comments"
+    },
+
     "commonPage": "Página",
     "@commonPage": {
         "description": "Text shown on dialog when deleting this article,for confirm user to delete this article"
@@ -912,10 +917,23 @@
     },
     "commonEmail": "Email",
     "@commonEmail":{
-        "description": "text to indicate that you must enter your email"},
+        "description": "text to indicate that you must enter your email"
+    },
+
     "commonInvalidCharacters": "Caracteres invalidos",
     "@commonInvalidCharacters":{
-        "description":"Text indicating that invalid characters were used"},
+        "description":"Text indicating that invalid characters were used"
+    },
+
+    "commonCancel" : "Cancelar",
+    "@commonCancel": {
+        "description": "An cancel for closed dialog,or when cancel a run"
+    },
+
+    "commonPost" : "Postear",
+    "@commonPost": {
+        "description": "when a user wants to add a new comment"
+    },
 
     "commonError" : "¡Error!",
     "@commonError": {

@@ -786,6 +786,11 @@
         "description": "Text on the project metrics label indicating the backlinks"
     },
 
+    "pageEditContentCommentsHintText": "Add your comment here",
+    "@pageEditContentCommentsHintText": {
+        "description": "Text on view edit content pulled apart comment,hint text in text field for add new comments"
+    },
+
     "commonCalendarSUN": "SUN",
     "@commonCalendarSUN": {
         "description": "first three letters of Sunday,this text is in the calendar for the title of the days"
@@ -995,6 +1000,16 @@
     "commonClippings" : "Clippings",
     "@commonClippings": {
         "description": "An article cut"
+    },
+
+    "commonCancel" : "Cancel",
+    "@commonCancel": {
+        "description": "An cancel for closed dialog,or when cancel a run"
+    },
+
+    "commonPost" : "Post",
+    "@commonPost": {
+        "description": "when a user wants to add a new comment"
     },
 
     "commonSearch": "Search",
