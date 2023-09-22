@@ -57,7 +57,6 @@ class PRDrawerListaItems extends StatelessWidget {
         ),
         PRDrawerItem(
           onTap: () => onTap(DrawerPage.brands),
-          // TODO(anyone): El icono del diseño no esta en flutter
           iconImage: Assets.assets_icons_conocimiento_de_la_marca_png,
           tituloItem: l10n.commonBrand,
           estaSeleccionado: enumDrawer.esBrands,
@@ -67,7 +66,6 @@ class PRDrawerListaItems extends StatelessWidget {
         ),
         PRDrawerItem(
           onTap: () => onTap(DrawerPage.articles),
-          // TODO(anyone): El icono del diseño no esta en flutter
           iconImage: Assets.assets_icons_contrato_png,
           tituloItem: l10n.commonArticles,
           estaSeleccionado: enumDrawer.esArticles,
@@ -77,7 +75,6 @@ class PRDrawerListaItems extends StatelessWidget {
         ),
         PRDrawerItem(
           onTap: () => onTap(DrawerPage.mediaDatabase),
-          // TODO(anyone): El icono del diseño no esta en flutter
           iconImage: Assets.assets_icons_base_de_datos_png,
           tituloItem: l10n.prAppBarCoverageMediaDbMedia,
           estaSeleccionado: enumDrawer.esMediaDatabase,
@@ -94,7 +91,6 @@ class PRDrawerListaItems extends StatelessWidget {
               builder: (context) => const PRDialogErrorNoDisponible(),
             );
           },
-          // TODO(anyone): El icono del diseño no esta en flutter
           iconImage: Assets.assets_icons_metricas_png,
           tituloItem: l10n.commonMetrics,
           estaSeleccionado: enumDrawer.esMetrics,

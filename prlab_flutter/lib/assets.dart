@@ -15,8 +15,8 @@ class Assets {
   static const String assets_icons_base_de_datos_png = 'assets/icons/base_de_datos.png';
   static const String prlab_flutter$assets_icons_base_de_datos_png = 'packages/prlab_flutter/assets/icons/base_de_datos.png';
 
-  static const String assets_icons_conocimiento_de_la_marca_png = 'assets/icons/conocimiento de la marca.png';
-  static const String prlab_flutter$assets_icons_conocimiento_de_la_marca_png = 'packages/prlab_flutter/assets/icons/conocimiento de la marca.png';
+  static const String assets_icons_conocimiento_de_la_marca_png = 'assets/icons/conocimiento_de_la_marca.png';
+  static const String prlab_flutter$assets_icons_conocimiento_de_la_marca_png = 'packages/prlab_flutter/assets/icons/conocimiento_de_la_marca.png';
 
   static const String assets_icons_contrato_png = 'assets/icons/contrato.png';
   static const String prlab_flutter$assets_icons_contrato_png = 'packages/prlab_flutter/assets/icons/contrato.png';
