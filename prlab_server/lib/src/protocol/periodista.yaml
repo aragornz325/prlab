@@ -1,0 +1,8 @@
+class: Periodista
+table: periodista
+fields:
+  nombre: String
+  apellido: String
+  fechaDeCreacion: DateTime, database
+  ultimaModificacion: DateTime, database
+  activo: bool?, database
