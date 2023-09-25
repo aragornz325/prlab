@@ -160,7 +160,6 @@ FROM
       }
       whereBuffer.writeln();
     }
-    print(listaWheres);
     String consulta = '''
 -- Recuento de países
 SELECT
@@ -327,7 +326,6 @@ FROM
 GROUP BY
     r.id, r."rol";
 ''';
-  print(consulta);
     final query = await ejecutarConsultaSql(
       session,
       consulta,
