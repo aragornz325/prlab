@@ -22,7 +22,6 @@ class PeriodistaEndpoint extends Endpoint {
     List<int>? idIdiomas,
     List<int>? idTiposDeMedio,
     List<int>? idRoles,
-    SortBy
   }) async {
     return servicioPeriodista.listarPeriodistas(
       session,
@@ -32,6 +31,26 @@ class PeriodistaEndpoint extends Endpoint {
       idCiudades: idCiudades ?? const [],
       idTemas: idTemas ?? const [],
       idIdiomas: idIdiomas ?? const [],
+      idTiposDeMedio: idTiposDeMedio ?? const [],
+      idRoles: idRoles ?? const [],
+    );
+  }
+
+  Future<Map> obtenerListaDeFiltrosConRecuento(
+    Session session, {
+    List<int>? idPaises,
+    List<int>? idCiudades = const [],
+    List<int>? idIdiomas = const [],
+    List<int>? idTemas = const [],
+    List<int>? idTiposDeMedio = const [],
+    List<int>? idRoles = const [],
+  }) async {
+    return await servicioPeriodista.obtenerListaDeFiltrosConRecuento(
+      session,
+      idPaises: idPaises ?? const [],
+      idCiudades: idCiudades ?? const [],
+      idIdiomas: idIdiomas ?? const [],
+      idTemas: idTemas ?? const [],
       idTiposDeMedio: idTiposDeMedio ?? const [],
       idRoles: idRoles ?? const [],
     );

@@ -18,16 +18,40 @@ class ServicioPeriodista extends Servicio<OdmPeriodista> {
     List<int> idTiposDeMedio = const [],
     List<int> idRoles = const [],
   }) async {
-    return odm.listarPeriodistas(
-      session,
-      nombreCompleto: nombreCompleto,
-      nombreDeMedio: nombreDeMedio,
-      idPaises: idPaises,
-      idCiudades: idCiudades,
-      idTemas: idTemas,
-      idIdiomas: idIdiomas,
-      idTiposDeMedio: idTiposDeMedio,
-      idRoles: idRoles,
+    return await ejecutarOperacion(
+      () => odm.listarPeriodistas(
+        session,
+        nombreCompleto: nombreCompleto,
+        nombreDeMedio: nombreDeMedio,
+        idPaises: idPaises,
+        idCiudades: idCiudades,
+        idTemas: idTemas,
+        idIdiomas: idIdiomas,
+        idTiposDeMedio: idTiposDeMedio,
+        idRoles: idRoles,
+      ),
+    );
+  }
+
+  Future<Map> obtenerListaDeFiltrosConRecuento(
+    Session session, {
+    List<int> idPaises = const [],
+    List<int> idCiudades = const [],
+    List<int> idIdiomas = const [],
+    List<int> idTemas = const [],
+    List<int> idTiposDeMedio = const [],
+    List<int> idRoles = const [],
+  }) async {
+    return await ejecutarOperacion(
+      () => odm.obtenerListaDeFiltrosConRecuento(
+        session,
+        idPaises: idPaises,
+        idCiudades: idCiudades,
+        idIdiomas: idIdiomas,
+        idTemas: idTemas,
+        idTiposDeMedio: idTiposDeMedio,
+        idRoles: idRoles,
+      ),
     );
   }
 }
