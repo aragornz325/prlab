@@ -3,9 +3,6 @@ import 'package:prlab_server/src/orms/orm_periodista.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/serverpod.dart';
 import 'package:prlab_server/src/generated/periodista.dart';
-import 'package:prlab_server/src/orms/orm_periodista.dart';
-import 'package:prlab_server/src/servicio.dart';
-import 'package:serverpod/serverpod.dart';
 
 class ServicioPeriodista extends Servicio<OrmPeriodista> {
   @override

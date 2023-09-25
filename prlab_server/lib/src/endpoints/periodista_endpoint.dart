@@ -2,8 +2,6 @@ import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/servicios/servicio_periodista.dart';
 import 'package:serverpod/serverpod.dart';
 import 'package:prlab_server/src/generated/periodista.dart';
-import 'package:prlab_server/src/servicios/servicio_periodista.dart';
-import 'package:serverpod/serverpod.dart';
 
 class PeriodistaEndpoint extends Endpoint {
   final servicioPeriodista = ServicioPeriodista();
@@ -45,10 +43,6 @@ class PeriodistaEndpoint extends Endpoint {
       periodista: periodista,
     );
   }
-
-  /// Endpoints pertenecientes a [Periodista].
-
-  /// Instancia del servicio de [Periodista].
 
   /// Recupera una lista de [Periodista] de acuerdo a diferentes filtros.
   Future<List<Periodista>> listarPeriodistas(
