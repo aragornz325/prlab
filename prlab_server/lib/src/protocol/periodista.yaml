@@ -17,3 +17,6 @@ fields:
   idPais: int?
   idiomas: List<String>?, api
   redesSociales: String?
+  ultimaModificacion: DateTime?
+  activo: bool?
+  fechaCreacion: DateTime?

@@ -164,7 +164,10 @@ CREATE TABLE "periodistas" (
   "telefono" text,
   "idCiudad" integer,
   "idPais" integer,
-  "redesSociales" text
+  "redesSociales" text,
+  "ultimaModificacion" timestamp without time zone,
+  "activo" boolean,
+  "fechaCreacion" timestamp without time zone
 );
 
 ALTER TABLE ONLY "periodistas"
