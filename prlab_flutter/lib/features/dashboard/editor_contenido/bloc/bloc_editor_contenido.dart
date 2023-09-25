@@ -1,13 +1,10 @@
 import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:prlab_client/prlab_client.dart';
-import 'package:prlab_flutter/assets.dart';
-
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/bloc/bloc_administracion_marcas.dart';
 import 'package:prlab_flutter/utilidades/utilidades.dart';
-
 part 'bloc_editor_contenido_estado.dart';
 part 'bloc_editor_contenido_evento.dart';
 
@@ -36,19 +33,20 @@ class BlocEditorContenido
     // TODO(SAM): Luego remover
 
     PaginaSeccionArticulo(
-      icono: Assets.assets_icons_otras_casas_png,
+      // TODO(anyone): Este icono no es 100% igual al figma
+      icono: Icons.home_outlined,
       titulo: 'Home page', //  l10n.pageEditContentArticleTitleHomePage
       contenido: 'content 1',
       id: 1,
     ),
     PaginaSeccionArticulo(
-      icono: Assets.assets_icons_leaderboard_png,
+      icono: Icons.leaderboard_outlined,
       titulo: 'Metrics page', // l10n.pageEditContentArticleTitleMetricsPage,
       contenido: 'content 2',
       id: 2,
     ),
     PaginaSeccionArticulo(
-      icono: Assets.assets_icons_link_png,
+      icono: Icons.link,
       titulo: 'Coverage page', //l10n.pageEditContentArticleTitleCoveragePage,
       contenido: 'content 3',
       id: 3,
@@ -257,7 +255,7 @@ class PaginaSeccionArticulo extends Entregable {
   final String titulo;
   final String contenido;
   final int id;
-  final String icono;
+  final IconData icono;
 }
 
 abstract class Entregable {

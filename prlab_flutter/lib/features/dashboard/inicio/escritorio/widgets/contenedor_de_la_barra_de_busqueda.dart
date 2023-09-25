@@ -135,7 +135,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemMediaMonitoring,
-                    pathImagenIcono: Assets.assets_icons_signos_vitales_png,
+                    icono: Icons.subscriptions_outlined,
                     estaCargando: state.estaEnEstadoCargando,
                     onTap: () {
                       // TODO(Gon): Agregar pusheo a la ruta correspondiente
@@ -143,7 +143,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemStatistics,
-                    pathImagenIcono: Assets.assets_icons_metricas_png,
+                    icono: Icons.leaderboard_outlined,
                     estaCargando: state.estaEnEstadoCargando,
                     onTap: () {
                       // TODO(Gon): Agregar pusheo a la ruta correspondiente
