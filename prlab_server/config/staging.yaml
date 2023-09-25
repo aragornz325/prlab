@@ -5,12 +5,12 @@ apiServer:
   publicScheme: http
 insightsServer: 
   port: 8081
-  publicHost: localhost
+  publicHost: 127.0.0.1
   publicPort: 8081
   publicScheme: http
 webServer: 
   port: 8082
-  publicHost: localhost
+  publicHost: 127.0.0.2
   publicPort: 8082
   publicScheme: http
 database: 

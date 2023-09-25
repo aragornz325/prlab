@@ -5,5 +5,8 @@ fields:
   textoComentario: String
   idAutor: int?
   fechaEliminacion: DateTime?
-  ultimaModificacion: DateTime
-  fechaCreacion: DateTime
+  ultimaModificacion: DateTime?
+  fechaCreacion: DateTime?
+  completado: bool?
+  idAutorCompletado: int?
+  fechaCompletado: DateTime?
