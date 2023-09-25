@@ -1,8 +1,22 @@
 class: Periodista
-table: periodista
+table: periodistas
 fields:
-  nombre: String
-  apellido: String
-  fechaDeCreacion: DateTime, database
-  ultimaModificacion: DateTime, database
-  activo: bool?, database
+  urlImagen: String?
+  nombreCompleto: String?
+  rol: String?, api
+  idRol: int?
+  medio: String?, api
+  idMedio: int?
+  bio: String?
+  temas: List<String>?, api
+  email: String?
+  telefono: String?
+  ciudad: String?, api 
+  idCiudad: int?
+  pais: String?, api
+  idPais: int?
+  idiomas: List<String>?, api
+  redesSociales: String?
+  ultimaModificacion: DateTime?
+  activo: bool?
+  fechaCreacion: DateTime?
