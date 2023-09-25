@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/assets.dart';
-
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/bloc/bloc_administracion_marcas.dart';
 import 'package:prlab_flutter/utilidades/utilidades.dart';
 
@@ -23,7 +22,6 @@ class BlocEditorContenido
     on<BlocEditorContenidoEventoObtenerArticulo>(_onObtenerArticulo);
     on<BlocEditorContenidoEventoAgregarImagen>(_onAgregarImagen);
     on<BlocEditorContenidoEventoActualizarArticulo>(_onActualizarArticulo);
-    on<BlocEditorContenidoEventoGuardarDatosArticulo>(_onGuardarDatosArticulo);
     on<BlocEditorContenidoEventoEliminarPaginaArticulo>(
       _onEliminarPaginaArticulo,
     );
@@ -84,49 +82,6 @@ class BlocEditorContenido
     }
   }
 
-  /// Se encarga principalmente de guardar los datos del
-  /// artículo que fue editado.
-  Future<void> _onGuardarDatosArticulo(
-    BlocEditorContenidoEventoGuardarDatosArticulo event,
-    Emitter<BlocEditorContenidoEstado> emit,
-  ) async {
-    emit(BlocEditorContenidoEstadoCargando.desde(state));
-
-    try {
-      final articulo = state.articulo;
-      final descripcionDeArticulo =
-          state.articulo?.contenido?.replaceAll(r'\', '');
-
-      final articuloActualizado = articulo
-        ?..contenido = descripcionDeArticulo?.substring(
-              1,
-              descripcionDeArticulo.length - 1,
-            ) ??
-            state.articulo?.contenido;
-
-      if (articuloActualizado != null) {
-        await client.articulo.actualizarArticulo(
-          articulo: articuloActualizado,
-        );
-
-        emit(
-          BlocEditorContenidoEstadoActualizandoDescripcion.desde(
-            state,
-            descripcionDeArticulo: state.articulo?.contenido ?? '',
-            tituloArticulo: state.articulo?.titulo ?? '',
-          ),
-        );
-      }
-    } catch (e) {
-      emit(
-        BlocEditorContenidoEstadoError.desde(
-          state,
-          mensajeDeError: MensajesDeErrorDeAdministracionMarcas.internalError,
-        ),
-      );
-    }
-  }
-
   /// Permite agregar y guardar las imagenes de ambos logos en la vista
   /// editar contenido  y actualiza los datos en el
   /// estado del [BlocEditorContenido].
@@ -164,9 +119,6 @@ class BlocEditorContenido
     );
   }
 
-  // TODO(ANDRE): Revisar la logica de esta funcion, puede
-  // mejorar.
-
   /// Refresca la descripción y el título del artículo que se esta
   /// editando dentro del estado de [BlocEditorContenidoEstado].
   Future<void> _onActualizarArticulo(
@@ -174,7 +126,7 @@ class BlocEditorContenido
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
     final articulo = state.articulo;
-    //TODO:(mati): hacer estado de cargando cuando se guardan los datos
+
     if (articulo == null) {
       return emit(
         BlocEditorContenidoEstadoError.desde(
@@ -184,15 +136,19 @@ class BlocEditorContenido
       );
     }
 
-    final descripcionDeArticulo =
-        event.descripcionDeArticulo?.replaceAll(r'\', '');
+    if (event.seActualizaDesdeStream) {
+      return emit(
+        BlocEditorContenidoEstadoActualizandoDesdeStream.desde(
+          state,
+          descripcionDeArticulo:
+              event.descripcionDeArticulo ?? articulo.contenido ?? '',
+          tituloArticulo: event.titulo ?? articulo.titulo,
+        ),
+      );
+    }
 
     final articuloActualizado = articulo
-      ..contenido = descripcionDeArticulo?.substring(
-            1,
-            descripcionDeArticulo.length - 1,
-          ) ??
-          state.articulo?.contenido
+      ..contenido = event.descripcionDeArticulo ?? articulo.contenido ?? ''
       ..titulo = event.titulo ?? state.articulo?.titulo ?? '';
 
     try {
@@ -200,9 +156,13 @@ class BlocEditorContenido
         emit(
           BlocEditorContenidoEstadoActualizandoDescripcion.desde(
             state,
-            descripcionDeArticulo: descripcionDeArticulo ?? '',
-            tituloArticulo: event.titulo ?? articuloActualizado.titulo,
+            descripcionDeArticulo: articuloActualizado.contenido ?? '',
+            tituloArticulo: articuloActualizado.titulo,
           ),
+        );
+
+        await client.articulo.sendStreamMessage(
+          articuloActualizado,
         );
       }
     } catch (e) {

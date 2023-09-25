@@ -1,6 +1,8 @@
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/servicios/servicio_articulo.dart';
-import 'package:serverpod/server.dart';
+import 'package:serverpod/serverpod.dart';
+
+const _canalDeArticulo = 'canal_de_articulo';
 
 /// Endpoints centrados en la entidad [Articulo].
 class ArticuloEndpoint extends Endpoint {
@@ -143,6 +145,25 @@ class ArticuloEndpoint extends Endpoint {
       );
     } on Exception {
       rethrow;
+    }
+  }
+
+  @override
+  Future<void> streamOpened(StreamingSession session) async {
+    session.messages.addListener(_canalDeArticulo, (update) async {
+      await sendStreamMessage(session, update);
+    });
+  }
+
+  @override
+  Future<void> handleStreamMessage(
+    StreamingSession session,
+    SerializableEntity message,
+  ) async {
+    if (message is Articulo) {
+      await actualizarArticulo(session, articulo: message);
+
+      session.messages.postMessage(_canalDeArticulo, message);
     }
   }
 

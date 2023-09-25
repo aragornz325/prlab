@@ -70,6 +70,9 @@ class BlocEditorContenidoEventoObtenerArticulo
 /// Actualiza el contenido dentro de la descripción de un
 /// articulo a medida que se vayan ejecutando cambios dentro
 /// del mismo
+///
+/// Guarda los datos de la descripcion y titulo del articulo en la base de
+/// datos.
 /// {@endtemplate}
 class BlocEditorContenidoEventoActualizarArticulo
     extends BlocEditorContenidoEvento {
@@ -77,6 +80,7 @@ class BlocEditorContenidoEventoActualizarArticulo
   BlocEditorContenidoEventoActualizarArticulo({
     this.descripcionDeArticulo,
     this.titulo,
+    this.seActualizaDesdeStream = false,
   });
 
   /// El core de el artículo, acá se encuentra toda la información
@@ -87,16 +91,17 @@ class BlocEditorContenidoEventoActualizarArticulo
 
   /// El título del articulo.
   final String? titulo;
-}
 
-/// {@template BlocEditorContenidoGuardarDatosArticulo}
-/// Guarda los datos de la descripcion y titulo del articulo en la base de
-///  datos.
-/// {@endtemplate}
-class BlocEditorContenidoEventoGuardarDatosArticulo
-    extends BlocEditorContenidoEvento {
-  ///{@macro BlocEditorContenidoGuardarDatosArticulo}
-  BlocEditorContenidoEventoGuardarDatosArticulo();
+  /// Si el evento esta siendo llamado o no desde el listener
+  /// de la conexión abierta de stream.
+  ///
+  /// Si la información viene actualizada del stream, se
+  /// actualiza el [Articulo] dentro del estado, en caso de que el
+  /// evento se ejecute a medida que el cliente actual actualice el
+  /// [Articulo], unicamente se actualizara en la db para que el resto
+  /// de los clientes que esten escuchando se les actualice el articulo
+  /// en sus clientes.
+  final bool seActualizaDesdeStream;
 }
 
 /// {@template BlocEditorContenidoEliminarPaginaArticulo}

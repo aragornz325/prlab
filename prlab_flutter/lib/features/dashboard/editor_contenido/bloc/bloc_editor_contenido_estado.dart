@@ -92,6 +92,37 @@ class BlocEditorContenidoEstadoCargando extends BlocEditorContenidoEstado {
   BlocEditorContenidoEstadoCargando.desde(super.otro) : super.desde();
 }
 
+/// {@template BlocEditorContenidoEstadoActualizandoDesdeStream}
+/// TODO(Andre): Agregar docu.
+/// {@endtemplate}
+class BlocEditorContenidoEstadoActualizandoDesdeStream
+    extends BlocEditorContenidoEstado {
+  /// {@macro BlocEditorContenidoEstadoActualizandoDesdeStream}
+  BlocEditorContenidoEstadoActualizandoDesdeStream.desde(
+    super.otro, {
+    required String descripcionDeArticulo,
+    required String tituloArticulo,
+  }) : super.desde(
+          // TODO(anyone): Cuando esten los modelos hechos con mappable,
+          // hacer esto con copyWith.
+          articulo: Articulo(
+            id: otro.articulo?.id,
+            titulo: tituloArticulo,
+            contenido: descripcionDeArticulo,
+            idProyecto: otro.articulo?.idProyecto,
+            idMarca: otro.articulo?.idMarca,
+            idAutor: otro.articulo?.idAutor,
+            idStatus: otro.articulo?.idStatus,
+            ultimaModificacion:
+                otro.articulo?.ultimaModificacion ?? DateTime.now(),
+            // fechaEliminacion: otro.articulo?.fechaEliminacion,
+            // fechaCreacion: otro.articulo?.fechaCreacion,
+            // TODO(Anyone): Volver a agregar cuando se agreguen en el back
+            // de nuevo.
+          ),
+        );
+}
+
 /// {@template BlocEditorContenidoEstadoRecolectandoDatos}
 /// Recolecta del [BlocEditorContenido]
 /// A medida que el usuario va completando el kyc
