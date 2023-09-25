@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/drawer/drawer.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_dialog.dart';
@@ -66,7 +65,7 @@ class PRDrawerListaItems extends StatelessWidget {
         ),
         PRDrawerItem(
           onTap: () => onTap(DrawerPage.articles),
-          pathImagenIcono: Assets.assets_icons_contrato_png,
+          icono: Icons.article_outlined,
           tituloItem: l10n.commonArticles,
           estaSeleccionado: enumDrawer.esArticles,
         ),
@@ -75,7 +74,7 @@ class PRDrawerListaItems extends StatelessWidget {
         ),
         PRDrawerItem(
           onTap: () => onTap(DrawerPage.mediaDatabase),
-          pathImagenIcono: Assets.assets_icons_base_de_datos_png,
+          icono: Icons.explore_outlined,
           tituloItem: l10n.prAppBarCoverageMediaDbMedia,
           estaSeleccionado: enumDrawer.esMediaDatabase,
         ),
@@ -86,12 +85,10 @@ class PRDrawerListaItems extends StatelessWidget {
           onTap: () {
             // TODO(anyone): Descomentar cuando este la page de metricas
             // onTap(DrawerPage.metrics);
-            showDialog<void>(
-              context: context,
-              builder: (context) => const PRDialogErrorNoDisponible(),
-            );
+
+            const PRDialogErrorNoDisponible().show(context);
           },
-          pathImagenIcono: Assets.assets_icons_metricas_png,
+          icono: Icons.leaderboard_outlined,
           tituloItem: l10n.commonMetrics,
           estaSeleccionado: enumDrawer.esMetrics,
         ),

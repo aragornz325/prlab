@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/assets.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/inicio/bloc/bloc_inicio.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
@@ -111,7 +110,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemOnlineNewsroom,
-                    pathImagenIcono: Assets.assets_icons_contrato_png,
+                    icono: Icons.newspaper_outlined,
                     estaCargando: state.estaEnEstadoCargando,
                     onTap: () {
                       // TODO(Gon): Agregar pusheo a la ruta correspondiente
@@ -119,7 +118,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemPRReports,
-                    icono: Icons.donut_small,
+                    icono: Icons.donut_small_outlined,
                     estaCargando: state.estaEnEstadoCargando,
                     onTap: () {
                       // TODO(Gon): Agregar pusheo a la ruta correspondiente

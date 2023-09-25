@@ -33,8 +33,7 @@ class BlocEditorContenido
     // TODO(SAM): Luego remover
 
     PaginaSeccionArticulo(
-      // TODO(anyone): Este icono no es 100% igual al figma
-      icono: Icons.home_outlined,
+      icono: Icons.cottage_outlined,
       titulo: 'Home page', //  l10n.pageEditContentArticleTitleHomePage
       contenido: 'content 1',
       id: 1,
