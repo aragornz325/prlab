@@ -333,19 +333,30 @@ GROUP BY
     );
 
     Map response = {}
-      ..['paises'] =
-          query.where((element) => element['categoria'] == 'País').toList()
-      ..['ciudades'] =
-          query.where((element) => element['categoria'] == 'Ciudad').toList()
-      ..['idiomas'] =
-          query.where((element) => element['categoria'] == 'Idioma').toList()
-      ..['temas'] =
-          query.where((element) => element['categoria'] == 'Tema').toList()
+      ..['paises'] = query
+          .where((element) => element['categoria'] == 'País')
+          .map((value) => value..remove('categoria'))
+          .toList()
+      ..['ciudades'] = query
+          .where((element) => element['categoria'] == 'Ciudad')
+          .map((value) => value..remove('categoria'))
+          .toList()
+      ..['idiomas'] = query
+          .where((element) => element['categoria'] == 'Idioma')
+          .map((value) => value..remove('categoria'))
+          .toList()
+      ..['temas'] = query
+          .where((element) => element['categoria'] == 'Tema')
+          .map((value) => value..remove('categoria'))
+          .toList()
       ..['tiposDeMedio'] = query
           .where((element) => element['categoria'] == 'Tipo de Medio')
+          .map((value) => value..remove('categoria'))
           .toList()
-      ..['roles'] =
-          query.where((element) => element['categoria'] == 'Rol').toList();
+      ..['roles'] = query
+          .where((element) => element['categoria'] == 'Rol')
+          .map((value) => value..remove('categoria'))
+          .toList();
 
     return response;
   }

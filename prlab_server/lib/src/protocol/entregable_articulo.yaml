@@ -3,6 +3,7 @@ table: articulos
 fields:
   titulo: String
   contenido: String?
+  contenidoHtml: String?
   idProyecto: int? parent=proyectos
   idMarca: int? parent=marcas
   idAutor: int?

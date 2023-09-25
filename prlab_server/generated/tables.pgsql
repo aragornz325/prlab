@@ -207,6 +207,7 @@ CREATE TABLE "articulos" (
   "id" serial,
   "titulo" text NOT NULL,
   "contenido" text,
+  "contenidoHtml" text,
   "idProyecto" integer,
   "idMarca" integer,
   "idAutor" integer,
