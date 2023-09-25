@@ -61,7 +61,7 @@ class BlocEditorContenido
     emit(BlocEditorContenidoEstadoCargando.desde(state));
 
     try {
-      final respuesta = await client.articulo.obtenerArticulo(
+      final respuesta = await client.entregableArticulo.obtenerArticulo(
         event.idArticulo,
       );
       emit(
@@ -102,7 +102,7 @@ class BlocEditorContenido
             state.articulo?.contenido;
 
       if (articuloActualizado != null) {
-        await client.articulo.actualizarArticulo(
+        await client.entregableArticulo.actualizarArticulo(
           articulo: articuloActualizado,
         );
 

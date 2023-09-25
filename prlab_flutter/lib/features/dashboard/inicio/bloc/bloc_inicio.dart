@@ -33,29 +33,35 @@ class BlocInicio extends Bloc<BlocInicioEvento, BlocInicioEstado> {
           BlocInicioEstadoExitosoGeneral.desde(
             state,
             listaArticulos: [
-              Articulo(
+              EntregableArticulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
                 ultimaModificacion: DateTime.now(),
+                fechaLanzamiento: DateTime.now(),
               ),
-              Articulo(
+              EntregableArticulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
                 ultimaModificacion: DateTime.now(),
+                fechaLanzamiento: DateTime.now(),
               ),
-              Articulo(
+              EntregableArticulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
                 ultimaModificacion: DateTime.now(),
+                fechaLanzamiento: DateTime.now(),
               ),
-              Articulo(
+              EntregableArticulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
                 ultimaModificacion: DateTime.now(),
+                fechaLanzamiento: DateTime.now(),
               ),
-              Articulo(
+              EntregableArticulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
                 ultimaModificacion: DateTime.now(),
+                fechaLanzamiento: DateTime.now(),
               ),
-              Articulo(
+              EntregableArticulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
                 ultimaModificacion: DateTime.now(),
+                fechaLanzamiento: DateTime.now(),
               ),
             ],
           ),
