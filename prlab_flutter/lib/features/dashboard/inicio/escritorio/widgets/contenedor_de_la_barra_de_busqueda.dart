@@ -110,7 +110,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemOnlineNewsroom,
-                    icono: Icons.telegram,
+                    icono: Icons.newspaper_outlined,
                     estaCargando: state.estaEnEstadoCargando,
                     onTap: () {
                       // TODO(Gon): Agregar pusheo a la ruta correspondiente
@@ -118,7 +118,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemPRReports,
-                    icono: Icons.donut_small,
+                    icono: Icons.donut_small_outlined,
                     estaCargando: state.estaEnEstadoCargando,
                     onTap: () {
                       // TODO(Gon): Agregar pusheo a la ruta correspondiente
@@ -134,7 +134,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemMediaMonitoring,
-                    icono: Icons.monitor_heart_outlined,
+                    icono: Icons.subscriptions_outlined,
                     estaCargando: state.estaEnEstadoCargando,
                     onTap: () {
                       // TODO(Gon): Agregar pusheo a la ruta correspondiente
@@ -142,7 +142,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemStatistics,
-                    icono: Icons.monitor,
+                    icono: Icons.leaderboard_outlined,
                     estaCargando: state.estaEnEstadoCargando,
                     onTap: () {
                       // TODO(Gon): Agregar pusheo a la ruta correspondiente
@@ -166,16 +166,22 @@ class _ItemContenedorDeLaBarraDeBusqueda extends StatelessWidget {
   /// {@macro ItemContainerBusqueda}
   const _ItemContenedorDeLaBarraDeBusqueda({
     required this.texto,
-    required this.icono,
     required this.onTap,
+    this.icono,
+    this.pathImagenIcono,
     this.estaCargando = false,
   });
 
   /// Texto bajo el container con icono
   final String texto;
 
+  // TODO(anyone): Hacer un assert para que te pida un icono o un path para la imagen
+
   /// Icono dentro del container
-  final IconData icono;
+  final IconData? icono;
+
+  // Path de la imagen a usar como icono dentro del container
+  final String? pathImagenIcono;
 
   /// Indica si esta cargando para mostrar un CircularProgressIndicator
   final bool estaCargando;
@@ -193,7 +199,7 @@ class _ItemContenedorDeLaBarraDeBusqueda extends StatelessWidget {
           onTap: onTap,
           child: Container(
             width: 60.sw,
-            height: max(60.ph, 60.sh),
+            height: 60.sh,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(
                 Radius.circular(10.sw),
@@ -209,11 +215,19 @@ class _ItemContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                         color: colores.secondary,
                       ),
                     )
-                  : Icon(
-                      icono,
-                      size: 25.pw,
-                      color: colores.primary,
-                    ),
+                  : icono != null
+                      ? Icon(
+                          icono,
+                          size: 25.pw,
+                          color: colores.primary,
+                        )
+                      : pathImagenIcono != null
+                          ? Image.asset(
+                              pathImagenIcono!,
+                              fit: BoxFit.cover,
+                              height: max(30.ph, 30.sh),
+                            )
+                          : Container(),
             ),
           ),
         ),
