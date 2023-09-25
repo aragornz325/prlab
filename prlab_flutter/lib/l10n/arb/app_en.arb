@@ -791,6 +791,11 @@
         "description": "Text on view edit content pulled apart comment,hint text in text field for add new comments"
     },
 
+    "commonComment" : "Comment",
+    "@commonComment": {
+        "description": "when a user wants to add a new comment,in the title of button that the user press to add a new comment"
+    },
+    
     "commonCalendarSUN": "SUN",
     "@commonCalendarSUN": {
         "description": "first three letters of Sunday,this text is in the calendar for the title of the days"

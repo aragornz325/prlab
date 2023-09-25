@@ -935,6 +935,11 @@
         "description": "when a user wants to add a new comment"
     },
 
+    "commonComment" : "Comentar",
+    "@commonComment": {
+        "description": "when a user wants to add a new comment,in the title of button that the user press to add a new comment"
+    },
+    
     "commonError" : "¡Error!",
     "@commonError": {
         "description":"text in alertdialog title, Error"

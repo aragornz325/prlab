@@ -2,8 +2,11 @@
 
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/bloc/bloc_caja_comentarios.dart';
+import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/dialog/dialog.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
 
@@ -65,10 +68,19 @@ class _PopUpOpcionesComentarioState extends State<PopUpOpcionesComentario> {
             ),
           ),
           onTap: () {
-            //TODO(anyone): agregarle funcionalidad de eliminar
             setState(() {
               estaDesplegado = false;
             });
+
+            showDialog<void>(
+              context: context,
+              builder: (_) => BlocProvider.value(
+                value: context.read<BlocCajaComentarios>(),
+                child: PrDialogConfirmarEliminarComentario(
+                  idComentario: widget.idComentario,
+                ),
+              ),
+            );
           },
         ),
       ],

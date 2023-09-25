@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/widgets/widgets.dart';
 
 /// {@template ListaDeComentarios}
@@ -6,21 +7,24 @@ import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/widget
 /// {@endtemplate}
 class ListaDeComentarios extends StatelessWidget {
   /// {@macro ListaDeComentarios}
-  const ListaDeComentarios({super.key});
+  const ListaDeComentarios({
+    required this.comentarios,
+    super.key,
+  });
+
+  /// lista de comentarios a mostrar
+  final List<Comentario> comentarios;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
       flex: 30,
       child: ListView.builder(
-        itemCount: 5,
-        itemBuilder: (context, index) => PRComentario(
-          comentario: Comentario(
-            linkDeImagen: '',
-            apellido: 'Completo',
-            estaAprobado: false,
-            fechaDeComentarioEnviado: DateTime.now(),
-            nombre: 'Nombre',
-            nombreDeLaCompania: 'flutter',
+        itemCount: comentarios.length,
+        itemBuilder: (context, index) => Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.pw),
+          child: PRComentario(
+            comentario: comentarios[index],
           ),
         ),
       ),

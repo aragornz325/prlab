@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/extensiones/extensiones.dart';
 
 /// {@template BlocListaArticulosYRecortes}
 /// Muestra el nombre del articulo seleccionado y el icono de cerrar para que
@@ -17,6 +18,8 @@ class PRNombreArticuloYIconCerrar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colores = context.colores;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -29,16 +32,18 @@ class PRNombreArticuloYIconCerrar extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 25.pf,
+              color: colores.secondary,
             ),
           ),
         ),
         IconButton(
           onPressed: () {
-            //TODO(anyone): agregarle funcionalidad
+            Navigator.of(context).pop();
           },
           icon: Icon(
             Icons.close,
             size: 24.pw,
+            color: colores.secondary,
           ),
         ),
       ],

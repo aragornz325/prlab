@@ -1,7 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/bloc/bloc_caja_comentarios.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/widgets/widgets.dart';
 
 /// {@template PRCajaDeComentario}
@@ -13,16 +16,15 @@ class PRCajaDeComentario extends StatefulWidget {
   /// {@macro PRCajaDeComentario}
   const PRCajaDeComentario({
     required this.nombreDelArticulo,
-    required this.imagenDelAutor,
+    required this.idArticulo,
     super.key,
   });
 
   /// Nombre del articulo por el cual se están haciendo dichos comentarios
   final String nombreDelArticulo;
 
-  /// imagen del autor para mostrar del usuario que va a crear el nuevo
-  /// comentario
-  final String imagenDelAutor;
+  /// id del articulo con el cual leer los comentarios
+  final int idArticulo;
 
   @override
   State<PRCajaDeComentario> createState() => _PRCajaDeComentarioState();
@@ -45,32 +47,72 @@ class _PRCajaDeComentarioState extends State<PRCajaDeComentario> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 617.pw,
-      height: max(685.ph, 685.sh),
-      padding: EdgeInsets.symmetric(horizontal: 20.pw),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          PRNombreArticuloYIconCerrar(
-            nombreDelArticulo: widget.nombreDelArticulo,
+    final colores = context.colores;
+    return BlocProvider(
+      create: (context) => BlocCajaComentarios()
+        ..add(
+          BlocCajaComentariosEventoTraerComentarios(
+            idArticulo: widget.idArticulo,
           ),
-          SizedBox(height: max(45.ph, 45.sh)),
-          PRTextfieldComentario(
-            controllerComentario: controllerComentario,
-            focusDelComentario: focusDelComentario,
-            imagenDelAutor: '',
+        ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Container(
+          color: colores.background,
+          width: 617.pw,
+          margin: EdgeInsets.only(
+            top: max(100.ph, 100.sh),
+            bottom: max(20.ph, 20.sh),
           ),
-          SizedBox(height: max(27.ph, 27.sh)),
-          if (estaDesplegado) const BotonesCancelarYPostear(),
-          SizedBox(height: max(20.ph, 20.sh)),
-          Divider(
-            height: max(1.ph, 1.sh),
-            color: const Color(0xffefefef),
+          padding: EdgeInsets.symmetric(
+            horizontal: 20.pw,
+            vertical: max(10.ph, 10.sh),
           ),
-          SizedBox(height: max(5.ph, 5.sh)),
-          const ListaDeComentarios(),
-        ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              PRNombreArticuloYIconCerrar(
+                nombreDelArticulo: widget.nombreDelArticulo,
+              ),
+              SizedBox(height: max(45.ph, 45.sh)),
+              PRTextfieldComentario(
+                controllerComentario: controllerComentario,
+                focusDelComentario: focusDelComentario,
+                imagenDelAutor: '',
+              ),
+              SizedBox(height: max(27.ph, 27.sh)),
+              BlocConsumer<BlocCajaComentarios, BlocCajaComentariosEstado>(
+                listener: (context, state) {
+                  if (state
+                      is BlocCajaComentariosEstadoComentarioCreadoExitosamente) {
+                    controllerComentario.clear();
+                  }
+                },
+                builder: (context, state) {
+                  if (state.desplegarComentario) {
+                    return const BotonesCancelarYPostear();
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
+              SizedBox(height: max(20.ph, 20.sh)),
+              Divider(
+                height: max(1.ph, 1.sh),
+
+                /// TODO(anyone): agregar color al theme
+                color: const Color(0xffefefef),
+              ),
+              SizedBox(height: max(5.ph, 5.sh)),
+              BlocBuilder<BlocCajaComentarios, BlocCajaComentariosEstado>(
+                builder: (context, state) {
+                  return ListaDeComentarios(
+                    comentarios: state.comentarios,
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

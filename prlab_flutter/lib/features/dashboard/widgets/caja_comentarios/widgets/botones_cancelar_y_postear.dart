@@ -1,7 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/bloc/bloc_caja_comentarios.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
@@ -19,8 +21,9 @@ class BotonesCancelarYPostear extends StatelessWidget {
     final l10n = context.l10n;
 
     return Padding(
-      padding: EdgeInsets.only(left: 30.pw),
+      padding: EdgeInsets.only(right: 25.pw),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           PRBoton.esOutlined(
             onTap: () {
@@ -29,19 +32,26 @@ class BotonesCancelarYPostear extends StatelessWidget {
             texto: l10n.commonCancel,
             estaHabilitado:
                 true, // TODO(anyone): verificar que haya algo en el textfield
-            width: 100.pw,
+            width: 100,
             height: max(30.ph, 30.sh),
           ),
           SizedBox(width: 20.pw),
-          PRBoton(
-            onTap: () {
-              //TODO(anyone): agregarle funcionalidad
+          BlocBuilder<BlocCajaComentarios, BlocCajaComentariosEstado>(
+            builder: (context, state) {
+              return PRBoton(
+                onTap: () {
+                  if (state.comentario.isNotEmpty) {
+                    context.read<BlocCajaComentarios>().add(
+                          const BlocCajaComentariosEventoCrearComentario(),
+                        );
+                  }
+                },
+                texto: l10n.commonPost,
+                estaHabilitado: state.comentario.isNotEmpty,
+                width: 100,
+                height: max(30.ph, 30.sh),
+              );
             },
-            texto: l10n.commonPost,
-            estaHabilitado:
-                true, // TODO(anyone): verificar que haya algo en el textfield
-            width: 100.pw,
-            height: max(30.ph, 30.sh),
           ),
         ],
       ),
