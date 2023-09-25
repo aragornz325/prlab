@@ -23,28 +23,23 @@ class PRAppBarRowTitulosConIconos extends StatelessWidget {
     final l10n = context.l10n;
     return Row(
       children: [
-        // TODO(anyone): Descomentar cuando se use el drawer
-        // PRPopUpMenu(
-        //   onTap: onTap,
-        //   tituloMenu: l10n.prAppBarCreateContent,
-        //   enumItemsMenu: MenuDeOpciones.crearContenido,
-        // ),
-        // TODO(anyone): Eliminar cuando se use el drawer
+        // TODO(anyone): Descomentar cuando se use el appbar
+        /* PRPopUpMenu(
+          onTap: onTap,
+          tituloMenu: l10n.prAppBarCreateContent,
+          enumItemsMenu: MenuDeOpciones.crearContenido,
+         ),*/
+        // TODO(anyone): Eliminar cuando se use el appbar
         GestureDetector(
-          onTap: () {
-            showDialog<void>(
-              context: context,
-              builder: (context) {
-                return const PRDialogErrorNoDisponible();
-              },
-            );
-          },
+          onTap: () => const PRDialogErrorNoDisponible().show(context),
           child: Row(
             children: [
               Text(
                 l10n.prAppBarCreateContent,
-                style:
-                    TextStyle(color: context.colores.tertiary, fontSize: 16.pf),
+                style: TextStyle(
+                  color: context.colores.tertiary,
+                  fontSize: 16.pf,
+                ),
               ),
               Icon(
                 Icons.arrow_drop_down_rounded,
@@ -55,22 +50,15 @@ class PRAppBarRowTitulosConIconos extends StatelessWidget {
           ),
         ),
         SizedBox(width: 40.pw),
-        // TODO(anyone): Descomentar cuando se use el drawer
-        // PRPopUpMenu(
-        //   onTap: onTap,
-        //   tituloMenu: l10n.prAppBarDistributionContent,
-        //   enumItemsMenu: MenuDeOpciones.distribucionDeContenido,
-        // ),
-        // TODO(anyone): Eliminar cuando se use el drawer
+        // TODO(anyone): Descomentar cuando se use el appbar
+        /* PRPopUpMenu(
+           onTap: onTap,
+           tituloMenu: l10n.prAppBarDistributionContent,
+           enumItemsMenu: MenuDeOpciones.distribucionDeContenido,
+         ),*/
+        // TODO(anyone): Eliminar cuando se use el appbar
         GestureDetector(
-          onTap: () {
-            showDialog<void>(
-              context: context,
-              builder: (context) {
-                return const PRDialogErrorNoDisponible();
-              },
-            );
-          },
+          onTap: () => const PRDialogErrorNoDisponible().show(context),
           child: Row(
             children: [
               Text(
@@ -87,22 +75,15 @@ class PRAppBarRowTitulosConIconos extends StatelessWidget {
           ),
         ),
         SizedBox(width: 40.pw),
-        // TODO(anyone): Descomentar cuando se use el drawer
-        // PRPopUpMenu(
-        //   onTap: onTap,
-        //   tituloMenu: l10n.prAppBarCoverageMedia,
-        //   enumItemsMenu: MenuDeOpciones.coberturaMedia,
-        // ),
-        // TODO(anyone): Eliminar cuando se use el drawer
+        // TODO(anyone): Descomentar cuando se use el appbar
+        /*  PRPopUpMenu(
+           onTap: onTap,
+           tituloMenu: l10n.prAppBarCoverageMedia,
+           enumItemsMenu: MenuDeOpciones.coberturaMedia,
+         ),*/
+        // TODO(anyone): Eliminar cuando se use el appbar
         GestureDetector(
-          onTap: () {
-            showDialog<void>(
-              context: context,
-              builder: (context) {
-                return const PRDialogErrorNoDisponible();
-              },
-            );
-          },
+          onTap: () => const PRDialogErrorNoDisponible().show(context),
           child: Row(
             children: [
               Text(

@@ -16,7 +16,7 @@ class PRDrawerItem extends StatelessWidget {
     required this.onTap,
     required this.tituloItem,
     this.icono,
-    this.iconImage,
+    this.pathImagenIcono,
     this.estaSeleccionado = false,
     super.key,
   });
@@ -28,11 +28,13 @@ class PRDrawerItem extends StatelessWidget {
   /// Titulo del item para los items del drawers
   final String tituloItem;
 
+  // TODO(anyone): Hacer un assert para que te pida un icono o un path para la imagen
+
   /// Icono izquierdo del item
   final IconData? icono;
 
   /// Path de la imagen a usar como icono
-  final String? iconImage;
+  final String? pathImagenIcono;
 
   /// Utilizable para confirmar el uso del indicador izquierdo
   final bool estaSeleccionado;
@@ -63,9 +65,9 @@ class PRDrawerItem extends StatelessWidget {
                       color: colores.primary,
                       size: 24.pw,
                     )
-                  : iconImage != null
+                  : pathImagenIcono != null
                       ? Image.asset(
-                          iconImage!,
+                          pathImagenIcono!,
                           fit: BoxFit.cover,
                           height: max(30.ph, 30.sh),
                         )

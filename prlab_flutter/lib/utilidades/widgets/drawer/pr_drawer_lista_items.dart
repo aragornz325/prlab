@@ -57,7 +57,7 @@ class PRDrawerListaItems extends StatelessWidget {
         ),
         PRDrawerItem(
           onTap: () => onTap(DrawerPage.brands),
-          iconImage: Assets.assets_icons_conocimiento_de_la_marca_png,
+          pathImagenIcono: Assets.assets_icons_conocimiento_de_la_marca_png,
           tituloItem: l10n.commonBrand,
           estaSeleccionado: enumDrawer.esBrands,
         ),
@@ -66,7 +66,7 @@ class PRDrawerListaItems extends StatelessWidget {
         ),
         PRDrawerItem(
           onTap: () => onTap(DrawerPage.articles),
-          iconImage: Assets.assets_icons_contrato_png,
+          pathImagenIcono: Assets.assets_icons_contrato_png,
           tituloItem: l10n.commonArticles,
           estaSeleccionado: enumDrawer.esArticles,
         ),
@@ -75,7 +75,7 @@ class PRDrawerListaItems extends StatelessWidget {
         ),
         PRDrawerItem(
           onTap: () => onTap(DrawerPage.mediaDatabase),
-          iconImage: Assets.assets_icons_base_de_datos_png,
+          pathImagenIcono: Assets.assets_icons_base_de_datos_png,
           tituloItem: l10n.prAppBarCoverageMediaDbMedia,
           estaSeleccionado: enumDrawer.esMediaDatabase,
         ),
@@ -91,7 +91,7 @@ class PRDrawerListaItems extends StatelessWidget {
               builder: (context) => const PRDialogErrorNoDisponible(),
             );
           },
-          iconImage: Assets.assets_icons_metricas_png,
+          pathImagenIcono: Assets.assets_icons_metricas_png,
           tituloItem: l10n.commonMetrics,
           estaSeleccionado: enumDrawer.esMetrics,
         ),

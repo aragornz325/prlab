@@ -111,7 +111,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemOnlineNewsroom,
-                    iconImage: Assets.assets_icons_contrato_png,
+                    pathImagenIcono: Assets.assets_icons_contrato_png,
                     estaCargando: state.estaEnEstadoCargando,
                     onTap: () {
                       // TODO(Gon): Agregar pusheo a la ruta correspondiente
@@ -135,7 +135,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemMediaMonitoring,
-                    iconImage: Assets.assets_icons_signos_vitales_png,
+                    pathImagenIcono: Assets.assets_icons_signos_vitales_png,
                     estaCargando: state.estaEnEstadoCargando,
                     onTap: () {
                       // TODO(Gon): Agregar pusheo a la ruta correspondiente
@@ -143,7 +143,7 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                   ),
                   _ItemContenedorDeLaBarraDeBusqueda(
                     texto: l10n.pageHomeContainerBusquedaItemStatistics,
-                    iconImage: Assets.assets_icons_metricas_png,
+                    pathImagenIcono: Assets.assets_icons_metricas_png,
                     estaCargando: state.estaEnEstadoCargando,
                     onTap: () {
                       // TODO(Gon): Agregar pusheo a la ruta correspondiente
@@ -169,18 +169,20 @@ class _ItemContenedorDeLaBarraDeBusqueda extends StatelessWidget {
     required this.texto,
     required this.onTap,
     this.icono,
-    this.iconImage,
+    this.pathImagenIcono,
     this.estaCargando = false,
   });
 
   /// Texto bajo el container con icono
   final String texto;
 
+  // TODO(anyone): Hacer un assert para que te pida un icono o un path para la imagen
+
   /// Icono dentro del container
   final IconData? icono;
 
   // Path de la imagen a usar como icono dentro del container
-  final String? iconImage;
+  final String? pathImagenIcono;
 
   /// Indica si esta cargando para mostrar un CircularProgressIndicator
   final bool estaCargando;
@@ -220,9 +222,9 @@ class _ItemContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                           size: 25.pw,
                           color: colores.primary,
                         )
-                      : iconImage != null
+                      : pathImagenIcono != null
                           ? Image.asset(
-                              iconImage!,
+                              pathImagenIcono!,
                               fit: BoxFit.cover,
                               height: max(30.ph, 30.sh),
                             )
