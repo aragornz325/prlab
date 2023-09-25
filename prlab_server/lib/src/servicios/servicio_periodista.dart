@@ -93,10 +93,6 @@ class ServicioPeriodista extends Servicio<OrmPeriodista> {
     );
   }
 
-  /// Servicio para administrar operaciones de entidad [Periodista].
-
-  /// Instancia del ORM de [Periodista].
-
   /// Recupera una lista de [Periodista] de acuerdo a diferentes filtros.
   Future<List<Periodista>> listarPeriodistas(
     Session session, {
