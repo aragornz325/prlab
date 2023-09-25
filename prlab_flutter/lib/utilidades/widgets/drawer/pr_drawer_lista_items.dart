@@ -57,7 +57,7 @@ class PRDrawerListaItems extends StatelessWidget {
         ),
         PRDrawerItem(
           onTap: () => onTap(DrawerPage.brands),
-          pathImagenIcono: Assets.assets_icons_conocimiento_de_la_marca_png,
+          icono: Icons.workspace_premium_outlined,
           tituloItem: l10n.commonBrand,
           estaSeleccionado: enumDrawer.esBrands,
         ),

@@ -19,7 +19,10 @@ class PRDrawerItem extends StatelessWidget {
     this.pathImagenIcono,
     this.estaSeleccionado = false,
     super.key,
-  });
+  }) : assert(
+          icono != null || pathImagenIcono != null,
+          'Either icono or pathImagenIcono must be provided.',
+        );
 
   /// Se utiliza para definir la acción que se debe realizar cuando el usuario
   /// hace clic o toca el elemento.
