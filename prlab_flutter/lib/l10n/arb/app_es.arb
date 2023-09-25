@@ -464,6 +464,12 @@
     "@drawerAlertDialogLogoutContentWarning": {
         "description": "Content text shown in the center of the alert dialog logout in the drawer, that warns the user that if he presses continue he will be logged out."
     },
+
+    "drawerAddANewClientButton": "Añade un nuevo cliente",
+    "@drawerAddANewClientButton": {
+        "description": "Text shown on a button that leads to the create account page"
+    },
+
     "commonEdit": "Editar",
     "@commonEdit": {
         "description": "Text shown on a button that indicates to edit,this edit text is displayed in a content management popup one of the options to choose from"
@@ -894,7 +900,17 @@
     "@commonCompleteTheField": {
         "description": "text to indicate that the field must be completed"
     },
-    
+
+    "commonBrand": "Marcas",
+    "@commonBrand": {
+        "description": "Text shown on a button that leads to Your Brands page"
+    },
+
+    "commonMetrics": "Metricas",
+    "@commonMetrics": {
+        "description": "Text shown on a button that leads to Metrics page"
+    },
+
     "commonEnterValidEmail": "Ingrese un email valido",
     "@commonEnterValidEmail" : {
         "descripcion": "text to indicate that a valid email must be entered"
