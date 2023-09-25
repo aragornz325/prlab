@@ -207,11 +207,15 @@ CREATE TABLE "articulos" (
   "id" serial,
   "titulo" text NOT NULL,
   "contenido" text,
+  "contenidoHtml" text,
   "idProyecto" integer,
   "idMarca" integer,
   "idAutor" integer,
   "idStatus" integer,
   "ultimaModificacion" timestamp without time zone NOT NULL,
+  "fechaLanzamiento" timestamp without time zone NOT NULL,
+  "fechaPublicacion" timestamp without time zone,
+  "idPlataforma" integer,
   "fechaCreacion" timestamp without time zone,
   "activo" boolean
 );
