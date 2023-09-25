@@ -2,16 +2,16 @@
 // ignore_for_file: unnecessary_await_in_return, avoid_dynamic_calls, overridden_fields
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
-import 'package:prlab_server/src/odms/odm_auth.dart';
+import 'package:prlab_server/src/orms/orm_auth.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:prlab_server/utils/config/constants.dart';
 import 'package:serverpod/serverpod.dart';
 
 /// La clase [ServicioAuth] es responsable de manejar la funcionalidad 
 /// relacionada con la autenticación.
-class ServicioAuth extends Servicio<OdmAuth> {
+class ServicioAuth extends Servicio<OrmAuth> {
   @override
-  final odm = OdmAuth();
+  final orm = OrmAuth();
 
   /// Retorna el código de validación asociado a una dirección de [email].
   ///
@@ -25,7 +25,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
   }) async {
     logger.info('Se obtendra el codigo de validacion para $email');
     return await ejecutarOperacion(
-      () => odm.getValidationCode(
+      () => orm.getValidationCode(
         session: session,
         email: email,
       ),
@@ -48,7 +48,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
 
       logger.finest('Buscando token en db');
       final String tokenDb = await ejecutarOperacion(
-        () => odm.traerTokenPorEmail(session: session, email: emailToken),
+        () => orm.traerTokenPorEmail(session: session, email: emailToken),
       );
 
       if (tokenDb.isEmpty) {
@@ -89,7 +89,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
   }) async {
     try {
       final List<dynamic> validarEnDb = await ejecutarOperacion(
-        () => odm.validarCodigoResetPassword(
+        () => orm.validarCodigoResetPassword(
           session: session,
           codigo: codigo,
         ),
@@ -119,7 +119,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
       logger.info('Eliminando código OTP $codigo...');
 
       final bool checkearCodigoOTP = await ejecutarOperacion(
-        () => odm.checkearCodigoOTP(
+        () => orm.checkearCodigoOTP(
           session: session,
           codigo: codigo,
         ),
@@ -131,7 +131,7 @@ class ServicioAuth extends Servicio<OdmAuth> {
       }
 
       await ejecutarOperacion(
-        () => odm.eliminarOTPResetPassword(
+        () => orm.eliminarOTPResetPassword(
           session: session,
           codigo: codigo,
         ),

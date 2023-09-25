@@ -1,5 +1,5 @@
 // ignore_for_file: avoid_escaping_inner_quotes, lines_longer_than_80_chars
-import 'package:prlab_server/src/odm.dart';
+import 'package:prlab_server/src/orm.dart';
 import 'package:prlab_server/utils/manejo_de_errores/manejo_de_errores.dart';
 import 'package:serverpod/database.dart';
 import 'package:serverpod/server.dart';
@@ -7,7 +7,7 @@ import 'package:serverpod/server.dart';
 /// La clase AuthRepository es responsable de manejar las operaciones contra la
 /// DB relacionadas con la autenticación.
 
-class OdmAuth extends ODM {
+class OrmAuth extends ORM {
   /// La función [getValidationCode] recupera el código de verificación
   /// asociado con un correo electrónico determinado de la tabla
   /// serverpod_email_create_request de la base de datos.
@@ -24,7 +24,7 @@ class OdmAuth extends ODM {
     required Session session,
     required String email,
   }) async {
-    final result = await ejecutarOperacionOdm(
+    final result = await ejecutarOperacionOrm(
       session,
       (Session session) => session.db.query(
         'SELECT "verificationCode" FROM serverpod_email_create_request WHERE email = \'$email\'',
@@ -59,7 +59,7 @@ class OdmAuth extends ODM {
     required String email,
     required int tipoDeInvitacion,
   }) async {
-    await ejecutarOperacionOdm(
+    await ejecutarOperacionOrm(
       session,
       (Session session) => session.db.transaction((Transaction txn) async {
         final checkearToken = await session.db
@@ -94,7 +94,7 @@ class OdmAuth extends ODM {
     required Session session,
     required String email,
   }) async {
-    final List<List<dynamic>> result = await ejecutarOperacionOdm(
+    final List<List<dynamic>> result = await ejecutarOperacionOrm(
       session,
       (Session session) => session.db
           .query('SELECT token FROM invitaciones WHERE email = \'$email\''),
@@ -122,7 +122,7 @@ class OdmAuth extends ODM {
     required Session session,
     required String codigo,
   }) async {
-    final result = await ejecutarOperacionOdm(
+    final result = await ejecutarOperacionOrm(
       session,
       (Session session) => session.db.query(
         'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
@@ -151,7 +151,7 @@ class OdmAuth extends ODM {
     required Session session,
     required String codigo,
   }) async =>
-      ejecutarOperacionOdm(
+      ejecutarOperacionOrm(
         session,
         (Session session) => session.db.query(
           'DELETE FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
@@ -171,7 +171,7 @@ class OdmAuth extends ODM {
     required Session session,
     required String codigo,
   }) async {
-    final codigoEnDb = await ejecutarOperacionOdm(
+    final codigoEnDb = await ejecutarOperacionOrm(
       session,
       (Session session) => session.db.query(
         'SELECT * FROM serverpod_email_reset WHERE "verificationCode" = \'$codigo\'',
