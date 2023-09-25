@@ -1,0 +1,9 @@
+enum: TipoEndpointExcepcion
+values:
+  - sinConexion
+  - noAutorizado
+  - noEncontrado
+  - prohibido
+  - solicitudIncorrecta
+  - parseo
+  - desconocido

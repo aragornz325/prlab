@@ -1,0 +1,6 @@
+exception: ExcepcionDeEndpoint
+fields:
+  titulo: String
+  mensaje: String
+  tipoDeError: TipoEndpointExcepcion
+  stackTrace: String

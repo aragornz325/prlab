@@ -1,3 +1,4 @@
+import 'package:prlab_server/src/excepciones/excepcion_endpoint.dart';
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/servicios/servicio_articulo.dart';
 import 'package:serverpod/server.dart';
@@ -23,14 +24,23 @@ class ArticuloEndpoint extends Endpoint {
     Session session,
     Articulo articulo,
   ) async {
-    try {
-      return await servicioArticulo.crearArticulo(
-        session,
-        articulo: articulo,
-      );
-    } on Exception {
-      rethrow;
-    }
+    throw ExcepcionEndpoint.desconocido(
+      mensaje: 'Error desconocido',
+      stackTrace: 'STACK-TRACE',
+    );
+
+    // TODO(Andre):
+    // Descomentar cuando termine las pruebas del error handler.
+    /*
+     try {
+        return await servicioArticulo.crearArticulo(
+          session,
+          articulo: articulo,
+        );
+      } on Exception {
+        rethrow;
+      }
+    */
   }
 
   /// La función [listarArticulos] recupera una lista de artículos usando un
