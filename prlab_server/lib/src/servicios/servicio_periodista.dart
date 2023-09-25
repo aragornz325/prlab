@@ -8,9 +8,8 @@ import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/serverpod.dart';
 
 class ServicioPeriodista extends Servicio<OrmPeriodista> {
- @override
+  @override
   final orm = OrmPeriodista();
-
 
   /// La función `crearPeriodista` crea un periodista llamando al método `orm.crearPeriodista` con los
   /// parámetros de sesión y periodista proporcionados.
@@ -32,22 +31,6 @@ class ServicioPeriodista extends Servicio<OrmPeriodista> {
       periodista: periodista,
     );
   }
-
-  /// La función `listarPeriodistas` devuelve un Futuro que se resuelve en una lista de objetos
-  /// Periodista, usando la sesión proporcionada.
-  ///
-  /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio.
-  ///
-  /// Returns:
-  ///   un objeto `Futuro` que se resuelve en una `Lista` de objetos `Periodista`.
-  // Future<List<Periodista>> listarPeriodistas({
-  //   required Session session,
-  // }) async {
-  //   return await orm.listarPeriodistas(
-  //     session: session,
-  //   );
-  // }
 
   /// La función `eliminarPeriodistaBorradoFisico` elimina un registro de periodista de la base de datos
   /// mediante un borrado físico.
@@ -116,7 +99,6 @@ class ServicioPeriodista extends Servicio<OrmPeriodista> {
   /// Servicio para administrar operaciones de entidad [Periodista].
 
   /// Instancia del ORM de [Periodista].
- 
 
   /// Recupera una lista de [Periodista] de acuerdo a diferentes filtros.
   Future<List<Periodista>> listarPeriodistas(

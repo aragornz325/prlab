@@ -16,12 +16,6 @@ class PeriodistaEndpoint extends Endpoint {
         session: session, periodista: periodista);
   }
 
-  // Future<List<Periodista>> listarPeriodistas(
-  //   Session session,
-  // ) async {
-  //   return await servicioPeriodista.listarPeriodistas(session: session);
-  // }
-
   Future<bool> eliminarPeriodistaBorradoFisico(
     Session session, {
     required int id,

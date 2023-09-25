@@ -375,31 +375,6 @@ GROUP BY
     }
   }
 
-  /// La función `listarPeriodistas` recupera una lista de periodistas activos usando un ODM y una
-  /// sesión.
-  ///
-  /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. Se utiliza para
-  /// realizar operaciones en la sesión de la base de datos.
-  ///
-  /// Returns:
-  ///   El método devuelve un objeto Futuro que se resuelve en una Lista de objetos Periodista.
-  // Future<List<Periodista>> listarPeriodistas({
-  //   required Session session,
-  // }) async {
-  //   try {
-  //     return await ejecutarOperacionOrm(
-  //       session,
-  //       (session) => Periodista.find(
-  //         session,
-  //         where: (t) => t.activo.equals(true),
-  //       ),
-  //     );
-  //   } on Exception catch (e) {
-  //     throw Exception('$e');
-  //   }
-  // }
-
   /// La función `eliminarPeriodistaBorradoFisico` elimina a un periodista de la base de datos mediante
   /// un método de eliminación física.
   ///
