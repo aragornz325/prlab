@@ -1,11 +1,11 @@
 import 'package:prlab_server/src/generated/protocol.dart';
-import 'package:prlab_server/src/odm.dart';
+import 'package:prlab_server/src/orm.dart';
 import 'package:prlab_server/utils/manejo_de_errores/manejo_de_errores.dart';
 import 'package:serverpod/server.dart';
 
-/// La clase [OdmMarca] es una clase Dart que proporciona funciones para crear
+/// La clase [OrmMarca] es una clase Dart que proporciona funciones para crear
 /// borrar, modificar y listar objetos `Marca` usando una operación ODM.
-class OdmMarca extends ODM {
+class OrmMarca extends ORM {
   /// La función [crearMarca] es una función de Dart que crea un nuevo objeto
   /// `Marca` en una base de datos mediante una operación ODM.
 
@@ -19,7 +19,7 @@ class OdmMarca extends ODM {
     required Marca marca,
   }) async {
     try {
-      await ejecutarOperacionOdm(
+      await ejecutarOperacionOrm(
         session,
         (Session session) {
           logger.info('Creando marca: ${marca.nombre}');
@@ -44,7 +44,7 @@ class OdmMarca extends ODM {
     required Session session,
   }) async {
     try {
-      return await ejecutarOperacionOdm(
+      return await ejecutarOperacionOrm(
         session,
         (session) => Marca.find(
           session,
@@ -68,7 +68,7 @@ class OdmMarca extends ODM {
     required int idMarca,
   }) async {
     try {
-      await ejecutarOperacionOdm(
+      await ejecutarOperacionOrm(
         session,
         (Session session) => Marca.delete(
           session,
@@ -94,7 +94,7 @@ class OdmMarca extends ODM {
   }) async {
     try {
       logger.info('Se va a eliminar la marca con id: $idMarca');
-      await ejecutarOperacionOdm(
+      await ejecutarOperacionOrm(
         session,
         (Session session) => session.db.query('''
             UPDATE "articulos" 
@@ -117,7 +117,7 @@ class OdmMarca extends ODM {
     required int id,
   }) async {
     try {
-      final marca = await ejecutarOperacionOdm(
+      final marca = await ejecutarOperacionOrm(
         session,
         (Session session) {
           logger.info('Buscando marca con id: $id');
@@ -138,7 +138,7 @@ class OdmMarca extends ODM {
   /// Actualiza un registro de Marca. El objeto pasado en el parametro debe
   /// tener el id en la Base de Datos.
   Future<bool> actualizarMarca(Session session, {required Marca marca}) async {
-    return await ejecutarOperacionOdm(
+    return await ejecutarOperacionOrm(
       session,
       (session) => Marca.update(
         session,
@@ -154,7 +154,7 @@ class OdmMarca extends ODM {
     required int idUsuario,
     required int idRol,
   }) async {
-    return await ejecutarOperacionOdm(
+    return await ejecutarOperacionOrm(
       session,
       (session) => session.db.query('''
       INSERT INTO "marcas_staff" ("idMarca", "idStaff", "idRol") 
@@ -170,7 +170,7 @@ class OdmMarca extends ODM {
     required int idMarca,
     required int idUsuario,
   }) async {
-    return await ejecutarOperacionOdm(
+    return await ejecutarOperacionOrm(
       session,
       (session) => session.db.query('''
       UPDATE "marcas_staff"
@@ -185,7 +185,7 @@ class OdmMarca extends ODM {
     Session session, {
     required int idUsuario,
   }) async {
-    final queryListaDeIdMarcas = await ejecutarOperacionOdm(
+    final queryListaDeIdMarcas = await ejecutarOperacionOrm(
       session,
       (session) async {
         final query = await session.db.query(

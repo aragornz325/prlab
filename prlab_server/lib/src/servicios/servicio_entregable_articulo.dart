@@ -1,16 +1,16 @@
 import 'package:prlab_server/src/generated/protocol.dart';
-import 'package:prlab_server/src/odms/odm_entregable_articulo.dart';
-import 'package:prlab_server/src/odms/odm_imagen_articulo.dart';
+import 'package:prlab_server/src/orms/orm_entregable_articulo.dart';
+import 'package:prlab_server/src/orms/orm_imagen_articulo.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:prlab_server/src/servicios/servicio_almacenamiento_archivos_nube.dart';
 import 'package:serverpod/server.dart';
 
 /// Servicio para administración de artículos.
-class ServicioEntregableArticulo extends Servicio<OdmEntregableArticulo> {
+class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
   @override
-  final odm = OdmEntregableArticulo();
+  final orm = OrmEntregableArticulo();
   final servicioAlmacenamientoNube = ServicioAlmacenamientoArchivosNube();
-  final odmImagenArticulo = OdmImagenArticulo();
+  final odmImagenArticulo = OrmImagenArticulo();
 
   /// Crea un [EntregableArticulo].
   ///
@@ -25,7 +25,7 @@ class ServicioEntregableArticulo extends Servicio<OdmEntregableArticulo> {
   }) async {
     try {
       return await ejecutarOperacion(
-        () => odm.crearArticulo(
+        () => orm.crearArticulo(
           session: session,
           articulo: articulo,
         ),
@@ -45,7 +45,7 @@ class ServicioEntregableArticulo extends Servicio<OdmEntregableArticulo> {
   ) async {
     try {
       return await ejecutarOperacion(
-        () => odm.listarArticulos(
+        () => orm.listarArticulos(
           session: session,
         ),
       );
@@ -66,7 +66,7 @@ class ServicioEntregableArticulo extends Servicio<OdmEntregableArticulo> {
   }) async {
     try {
       return await ejecutarOperacion(
-        () => odm.obtenerArticuloPorId(
+        () => orm.obtenerArticuloPorId(
           session: session,
           id: id,
         ),
@@ -88,7 +88,7 @@ class ServicioEntregableArticulo extends Servicio<OdmEntregableArticulo> {
   }) async {
     try {
       await ejecutarOperacion(
-        () => odm.eliminarArticulo(
+        () => orm.eliminarArticulo(
           session: session,
           idArticulo: idArticulo,
         ),
@@ -112,7 +112,7 @@ class ServicioEntregableArticulo extends Servicio<OdmEntregableArticulo> {
   }) async {
     try {
       return await ejecutarOperacion(
-        () => odm.listarArticulosPorMarca(
+        () => orm.listarArticulosPorMarca(
           session: session,
           idMarca: idMarca,
         ),
@@ -138,7 +138,7 @@ class ServicioEntregableArticulo extends Servicio<OdmEntregableArticulo> {
 
       final articuloFinal = await ejecutarOperacion(
         () {
-          return odm.obtenerArticuloPorId(
+          return orm.obtenerArticuloPorId(
             session: session,
             id: articulo.id!,
           );
@@ -160,7 +160,7 @@ class ServicioEntregableArticulo extends Servicio<OdmEntregableArticulo> {
       logger.finest('Articulo ${articulo.id} actualizado');
       await ejecutarOperacion(
         () {
-          return odm.actualizarArticulo(
+          return orm.actualizarArticulo(
             session: session,
             articulo: articuloFinal,
           );
@@ -233,7 +233,7 @@ class ServicioEntregableArticulo extends Servicio<OdmEntregableArticulo> {
     final idUsario = await session.auth.authenticatedUserId;
     logger.info('Se van a traer los articulos del usuario $idUsario');
     return await ejecutarOperacion(
-      () => odm.traerArticulosPorUsuario(
+      () => orm.traerArticulosPorUsuario(
         session: session,
       ),
     );

@@ -1,12 +1,16 @@
 import 'package:prlab_server/src/generated/periodista.dart';
-import 'package:prlab_server/src/odms/odm_periodista.dart';
+import 'package:prlab_server/src/orms/orm_periodista.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/serverpod.dart';
 
-class ServicioPeriodista extends Servicio<OdmPeriodista> {
-  @override
-  final odm = OdmPeriodista();
+/// Servicio para administrar operaciones de entidad [Periodista].
+class ServicioPeriodista extends Servicio<OrmPeriodista> {
 
+  /// Instancia del ORM de [Periodista].
+  @override
+  final orm = OrmPeriodista();
+
+  /// Recupera una lista de [Periodista] de acuerdo a diferentes filtros.
   Future<List<Periodista>> listarPeriodistas(
     Session session, {
     String nombreCompleto = '',
@@ -19,7 +23,7 @@ class ServicioPeriodista extends Servicio<OdmPeriodista> {
     List<int> idRoles = const [],
   }) async {
     return await ejecutarOperacion(
-      () => odm.listarPeriodistas(
+      () => orm.listarPeriodistas(
         session,
         nombreCompleto: nombreCompleto,
         nombreDeMedio: nombreDeMedio,
@@ -33,6 +37,8 @@ class ServicioPeriodista extends Servicio<OdmPeriodista> {
     );
   }
 
+  /// Obtiene las categorías de filtrado de [Periodista] con su nombre, id y 
+  /// recuento de acuerdo a los filtros.
   Future<Map> obtenerListaDeFiltrosConRecuento(
     Session session, {
     List<int> idPaises = const [],
@@ -43,7 +49,7 @@ class ServicioPeriodista extends Servicio<OdmPeriodista> {
     List<int> idRoles = const [],
   }) async {
     return await ejecutarOperacion(
-      () => odm.obtenerListaDeFiltrosConRecuento(
+      () => orm.obtenerListaDeFiltrosConRecuento(
         session,
         idPaises: idPaises,
         idCiudades: idCiudades,

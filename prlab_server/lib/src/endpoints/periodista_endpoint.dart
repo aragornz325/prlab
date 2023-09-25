@@ -2,16 +2,13 @@ import 'package:prlab_server/src/generated/periodista.dart';
 import 'package:prlab_server/src/servicios/servicio_periodista.dart';
 import 'package:serverpod/serverpod.dart';
 
+/// Endpoints pertenecientes a [Periodista].
 class PeriodistaEndpoint extends Endpoint {
+
+  /// Instancia del servicio de [Periodista].
   final servicioPeriodista = ServicioPeriodista();
 
-  // Future<bool> crearPeriodista(
-  //   Session session, {
-  //   required Periodista periodista,
-  // }) async {
-
-  // }
-
+  /// Recupera una lista de [Periodista] de acuerdo a diferentes filtros.
   Future<List<Periodista>> listarPeriodistas(
     Session session, {
     String? nombreCompleto,
@@ -36,6 +33,8 @@ class PeriodistaEndpoint extends Endpoint {
     );
   }
 
+  /// Obtiene las categorías de filtrado de [Periodista] con su nombre, id y 
+  /// recuento de acuerdo a los filtros.
   Future<Map> obtenerListaDeFiltrosConRecuento(
     Session session, {
     List<int>? idPaises,

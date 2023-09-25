@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:prlab_server/src/generated/protocol.dart';
-import 'package:prlab_server/src/odm.dart';
+import 'package:prlab_server/src/orm.dart';
 import 'package:prlab_server/utils/manejo_de_errores/manejo_de_errores.dart';
 import 'package:serverpod/server.dart';
 
 /// ODM para administracion de articulos.
-class OdmEntregableArticulo extends ODM {
+class OrmEntregableArticulo extends ORM {
   /// La función [crearArticulo] crea un nuevo artículo insertándolo en una base
   ///  de datos mediante una operación ODM.
   ///
@@ -20,7 +20,7 @@ class OdmEntregableArticulo extends ODM {
     required EntregableArticulo articulo,
   }) async {
     try {
-      return await ejecutarOperacionOdm(
+      return await ejecutarOperacionOrm(
         session,
         (session) => session.db.transaction(
           (transaction) async {
@@ -66,7 +66,7 @@ class OdmEntregableArticulo extends ODM {
   }) async {
     try {
       logger.info('Listando artículos');
-      return await ejecutarOperacionOdm(
+      return await ejecutarOperacionOrm(
         session,
         (session) => EntregableArticulo.find(
           session,
@@ -94,7 +94,7 @@ class OdmEntregableArticulo extends ODM {
     logger.info(
       'Obteniendo artículo con id: $id',
     );
-    final articulo = await ejecutarOperacionOdm(
+    final articulo = await ejecutarOperacionOrm(
       session,
       (Session session) => EntregableArticulo.findById(
         session,
@@ -125,7 +125,7 @@ class OdmEntregableArticulo extends ODM {
   }) async {
     try {
       logger.info('Se va a eliminar el articulo con id: $id');
-      await ejecutarOperacionOdm(
+      await ejecutarOperacionOrm(
         session,
         (Session session) => EntregableArticulo.delete(
           session,
@@ -148,7 +148,7 @@ class OdmEntregableArticulo extends ODM {
   }) async {
     try {
       logger.info('Se va a eliminar el articulo con id: $idArticulo');
-      await ejecutarOperacionOdm(
+      await ejecutarOperacionOrm(
         session,
         (Session session) => session.db.query('''
             UPDATE "articulos" 
@@ -178,7 +178,7 @@ class OdmEntregableArticulo extends ODM {
     required int idMarca,
   }) async {
     try {
-      return await ejecutarOperacionOdm(
+      return await ejecutarOperacionOrm(
         session,
         (Session session) {
           logger.info(
@@ -209,7 +209,7 @@ class OdmEntregableArticulo extends ODM {
     Session session, {
     required int idMarca,
   }) async {
-    return await ejecutarOperacionOdm(
+    return await ejecutarOperacionOrm(
       session,
       (session) => EntregableArticulo.find(
         session,
@@ -240,7 +240,7 @@ class OdmEntregableArticulo extends ODM {
       logger.info(
         'Se va a actualizar el articulo en la BD con id ${articulo.id}...',
       );
-      await ejecutarOperacionOdm(
+      await ejecutarOperacionOrm(
         session,
         (Session session) => EntregableArticulo.update(
           session,
@@ -267,7 +267,7 @@ class OdmEntregableArticulo extends ODM {
     Session session, {
     required int idMarca,
   }) async {
-    return await ejecutarOperacionOdm(
+    return await ejecutarOperacionOrm(
       session,
       (session) => EntregableArticulo.count(
         session,
@@ -278,7 +278,7 @@ class OdmEntregableArticulo extends ODM {
 
   Future<List<EntregableArticulo>> traerArticulosPorUsuario(
       {required Session session}) async {
-    return ejecutarOperacionOdm(session, (session) async {
+    return ejecutarOperacionOrm(session, (session) async {
       logger.finer('buscando en la db los articulos del usuario');
       final idAutor = await session.auth.authenticatedUserId;
       final articulos = await EntregableArticulo.find(session,

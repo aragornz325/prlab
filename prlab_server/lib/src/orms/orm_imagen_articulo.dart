@@ -1,9 +1,9 @@
 import 'package:prlab_server/src/generated/protocol.dart';
-import 'package:prlab_server/src/odm.dart';
+import 'package:prlab_server/src/orm.dart';
 import 'package:serverpod/server.dart';
 
 /// Odm para manejar archivos con el servicio de alojamiento Cloudinary.
-class OdmImagenArticulo extends ODM {
+class OrmImagenArticulo extends ORM {
   /// la funcion [guardarRegistroimagen] guarda un registro de la imagen en la
   /// base de datos.
   /// Args:
@@ -36,7 +36,7 @@ class OdmImagenArticulo extends ODM {
     Session session, {
     required int idArticulo,
   }) async {
-    return await ejecutarOperacionOdm(
+    return await ejecutarOperacionOrm(
       session,
       (session) => ImagenArticulo.find(
         session,
@@ -53,7 +53,7 @@ class OdmImagenArticulo extends ODM {
     required int idImagenArticulo,
   }) async {
     try {
-      await ejecutarOperacionOdm(
+      await ejecutarOperacionOrm(
         session,
         (session) => ImagenArticulo.delete(
           session,
@@ -72,7 +72,7 @@ class OdmImagenArticulo extends ODM {
     required ImagenArticulo imagenArticulo,
   }) async {
     try {
-      await ejecutarOperacionOdm(
+      await ejecutarOperacionOrm(
         session,
         (session) => ImagenArticulo.update(
           session,

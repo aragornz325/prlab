@@ -1,20 +1,20 @@
 import 'package:prlab_server/src/generated/marca.dart';
-import 'package:prlab_server/src/odms/odm_entregable_articulo.dart';
-import 'package:prlab_server/src/odms/odm_cliente.dart';
-import 'package:prlab_server/src/odms/odm_marca.dart';
+import 'package:prlab_server/src/orms/orm_entregable_articulo.dart';
+import 'package:prlab_server/src/orms/orm_cliente.dart';
+import 'package:prlab_server/src/orms/orm_marca.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/server.dart';
 
 /// Servicio para administrar aspectos de la entidad Marca.
-class ServicioMarca extends Servicio<OdmMarca> {
+class ServicioMarca extends Servicio<OrmMarca> {
   @override
-  final odm = OdmMarca();
+  final orm = OrmMarca();
 
   /// Instancia del ODM para la administracion de clientes.
-  final odmCliente = OdmCliente();
+  final odmCliente = OrmCliente();
 
   /// Instancia del ODM para la administracion de articulos
-  final odmArticulo = OdmEntregableArticulo();
+  final odmArticulo = OrmEntregableArticulo();
 
   /// Crea una nueva marca y devuelve un booleano que indica si la operación
   /// fue exitosa.
@@ -33,7 +33,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
         'Creando Marca ${marca.nombre}',
       );
       return await ejecutarOperacion(
-        () => odm.crearMarca(
+        () => orm.crearMarca(
           session: session,
           marca: marca
             ..fechaCreacion = DateTime.now()
@@ -58,7 +58,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
         'Listando Marcas',
       );
       return await ejecutarOperacion(
-        () => odm.listarMarcas(
+        () => orm.listarMarcas(
           session: session,
         ),
       );
@@ -78,7 +78,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
     required int idMarca,
   }) async {
     return await ejecutarOperacion(
-      () => odm.obtenerMarcaPorId(
+      () => orm.obtenerMarcaPorId(
         session: session,
         id: idMarca,
       ),
@@ -103,7 +103,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
         'Eliminando marca',
       );
       return await ejecutarOperacion(
-        () => odm.eliminarMarca(
+        () => orm.eliminarMarca(
           session: session,
           idMarca: idMarca,
         ),
@@ -130,7 +130,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
     required int idRol,
   }) async {
     return await ejecutarOperacion(
-      () => odm.asignarUsuarioAMarca(
+      () => orm.asignarUsuarioAMarca(
         session,
         idMarca: idMarca,
         idUsuario: idUsuario,
@@ -154,7 +154,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
     required int idUsuario,
   }) async {
     return await ejecutarOperacion(
-      () => odm.desvincularUsuarioDeMarca(
+      () => orm.desvincularUsuarioDeMarca(
         session,
         idMarca: idMarca,
         idUsuario: idUsuario,
@@ -176,7 +176,7 @@ class ServicioMarca extends Servicio<OdmMarca> {
     );
 
     List<Marca> marcas = await ejecutarOperacion(
-      () => odm.listarMarcasPorUsuario(
+      () => orm.listarMarcasPorUsuario(
         session,
         idUsuario: idUsuario,
       ),

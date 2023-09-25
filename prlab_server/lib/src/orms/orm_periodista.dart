@@ -1,8 +1,11 @@
 import 'package:prlab_server/src/generated/protocol.dart';
-import 'package:prlab_server/src/odm.dart';
+import 'package:prlab_server/src/orm.dart';
 import 'package:serverpod/serverpod.dart';
 
-class OdmPeriodista extends ODM {
+/// Operaciones de consulta en la base de datos relacionadas a [Periodista]
+class OrmPeriodista extends ORM {
+
+  /// Recupera una lista de [Periodista] de acuerdo a diferentes filtros.
   Future<List<Periodista>> listarPeriodistas(
     Session session, {
     String nombreCompleto = '',
@@ -43,7 +46,7 @@ class OdmPeriodista extends ODM {
       queryIdiomas,
       queryTiposDeMedio,
       queryRoles,
-    ].where((element) => (element != '' && element != [])).toList();
+    ].where((element) => element != '').toList();
 
     var whereBuffer = StringBuffer();
 
@@ -110,6 +113,8 @@ FROM
     return response.map((e) => Periodista.fromJson(e, Protocol())).toList();
   }
 
+  /// Obtiene las categorías de filtrado de [Periodista] con su nombre, id y 
+  /// recuento de acuerdo a los filtros.
   Future<Map> obtenerListaDeFiltrosConRecuento(
     Session session, {
     List<int> idPaises = const [],
