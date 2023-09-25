@@ -1,9 +1,9 @@
 import 'package:prlab_server/src/generated/protocol.dart';
-import 'package:prlab_server/src/odm.dart';
+import 'package:prlab_server/src/orm.dart';
 import 'package:serverpod/serverpod.dart';
 
 /// La clase OdmCommentario es una subclase de ODM.
-class OdmComentario extends ODM {
+class OrmComentario extends ORM {
   /// La función `listarComentariosPorArticulo` recupera una lista de
   /// comentarios para un ID de artículo determinado utilizando una sesión
   /// proporcionada.
@@ -36,12 +36,11 @@ class OdmComentario extends ODM {
     );
   }
 
-  Future<Comentario?>obtenerComentario (
+  Future<Comentario?> obtenerComentario(
     Session session, {
     required int idComentario,
   }) async {
     return await Comentario.findById(session, idComentario);
-    
   }
 
   /// La función `eliminarComentario` elimina un comentario con un ID

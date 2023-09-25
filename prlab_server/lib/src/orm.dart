@@ -6,16 +6,16 @@ typedef FuncionServerpodDb<T> = Future<T> Function(Session session);
 
 /// Objeto de session de Serverpod.
 
-/// Clase abstracta de ODM con metodo performOperation.
-abstract class ODM {
+/// Clase abstracta de ORM con metodo performOperation.
+abstract class ORM {
   /// Sesion (clase de Serverpod).
   late Session? session;
 
   /// Instancia del logger.
-  final logger = Logger('ODM');
+  final logger = Logger('ORM');
 
-  /// Metodo para ejecutar las operaciones de los ODM y manejar errores.
-  Future<T> ejecutarOperacionOdm<T>(
+  /// Metodo para ejecutar las operaciones de los ORM y manejar errores.
+  Future<T> ejecutarOperacionOrm<T>(
     Session session,
     FuncionServerpodDb<T> funcion,
   ) async {
