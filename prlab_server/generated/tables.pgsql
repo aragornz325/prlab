@@ -212,6 +212,9 @@ CREATE TABLE "articulos" (
   "idAutor" integer,
   "idStatus" integer,
   "ultimaModificacion" timestamp without time zone NOT NULL,
+  "fechaLanzamiento" timestamp without time zone NOT NULL,
+  "fechaPublicacion" timestamp without time zone,
+  "idPlataforma" integer,
   "fechaCreacion" timestamp without time zone,
   "activo" boolean
 );

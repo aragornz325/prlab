@@ -8,5 +8,8 @@ fields:
   idAutor: int?
   idStatus: int?
   ultimaModificacion: DateTime
+  fechaLanzamiento: DateTime
+  fechaPublicacion: DateTime?
+  idPlataforma: int?
   fechaCreacion: DateTime?, database
   activo: bool?, database
