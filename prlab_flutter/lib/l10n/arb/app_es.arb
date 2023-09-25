@@ -847,9 +847,14 @@
         "description": "Text on the project metrics label indicating the mentions"
     },
 
+    
     "projectMetricsLabelBacklinks": "Vínculos",
     "@projectMetricsLabelBacklinks": {
         "description": "Text on the project metrics label indicating the backlinks"
+    },
+    "commonPage": "Página",
+    "@commonPage": {
+        "description": "Text shown on dialog when deleting this article,for confirm user to delete this article"
     },
 
     "commonPRLab": "PR lab",

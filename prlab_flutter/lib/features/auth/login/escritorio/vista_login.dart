@@ -143,7 +143,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     ),
                     PRBoton(
                       estaHabilitado: state.botonLoginHabilitado,
-                      muestraEstadoDeCarga: state.estaCargandoInicioDeSesion,
+                      estaCargando: state.estaCargandoInicioDeSesion,
                       onTap: _onTapBotonIniciarSesion,
                       texto: l10n.pageLoginButtonText,
                     ),

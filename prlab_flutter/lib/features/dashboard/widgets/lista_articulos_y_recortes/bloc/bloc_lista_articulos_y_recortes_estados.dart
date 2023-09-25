@@ -10,6 +10,7 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
   @override
   const BlocListaArticulosYRecortesEstado._({
     this.articulos = const [],
+    this.articulosFiltrados = const [],
     this.index = 0,
     this.borrador = false,
     this.comentario = false,
@@ -19,6 +20,7 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
   BlocListaArticulosYRecortesEstado.desde(
     BlocListaArticulosYRecortesEstado otro, {
     List<Articulo>? articulos,
+    List<Articulo>? articulosFiltrados,
     int? index,
     bool? borrador,
     bool? comentario,
@@ -29,9 +31,14 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
           borrador: borrador ?? otro.borrador,
           comentario: comentario ?? otro.comentario,
           completo: completo ?? otro.completo,
+          articulosFiltrados: articulosFiltrados ?? otro.articulosFiltrados,
         );
 
+  /// Lista de los articulos
   final List<Articulo> articulos;
+
+  /// Lista de los articulos para filtrar
+  final List<Articulo> articulosFiltrados;
 
   /// Index de la vista seleccionada
   final int index;
@@ -57,6 +64,7 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
   @override
   List<Object> get props => [
         articulos,
+        articulosFiltrados,
         index,
         borrador,
         comentario,
@@ -100,6 +108,7 @@ final class BlocListaArticulosYRecortesEstadoExitoso
     super.borrador,
     super.comentario,
     super.completo,
+    super.articulosFiltrados,
   }) : super.desde();
 }
 

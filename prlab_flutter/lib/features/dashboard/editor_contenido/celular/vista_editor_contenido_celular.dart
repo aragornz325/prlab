@@ -3,9 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
-import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popups.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/widgets.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/encabezado_de_seccion.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
@@ -22,8 +20,8 @@ class VistaEditorContenidoCelular extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colores = context.colores;
     final l10n = context.l10n;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -105,6 +103,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                 ),
                 BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
                   builder: (context, state) {
+                    final articulo = state.articulo;
                     if (state is BlocEditorContenidoEstadoCargando) {
                       return SizedBox(
                         width: 1000.pw,
@@ -113,7 +112,7 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                           child: CircularProgressIndicator(),
                         ),
                       );
-                    } else if (state.articulo != null) {
+                    } else if (articulo != null) {
                       return SizedBox(
                         width: 1000.pw,
                         height: max(508.ph, 508.sh),
@@ -126,7 +125,9 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                             SizedBox(
                               width: 10.pw,
                             ),
-                            const ContainerEdicionArticulo(),
+                            ContainerEdicionArticulo(
+                              titulo: articulo.titulo,
+                            ),
                           ],
                         ),
                       );
@@ -141,48 +142,9 @@ class VistaEditorContenidoCelular extends StatelessWidget {
                     }
                   },
                 ),
+                // TODO(anyone): cambiar luego por widget del footer
                 SizedBox(
-                  width: 1040.pw,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 20.ph,
-                    ),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          child: Text(
-                            'Showing page 1 of 1 <      >',
-                            // TODO(SAM): cambiar luego por widget del footer
-                            // correspondiente
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 15.pf,
-                              color: colores.secondary,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20.pw,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 1.pw,
-                          ),
-                          child: SizedBox(
-                            height: max(40.ph, 40.sh),
-                            width: 800.pw,
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                PopUpMenuAgregarPagina(),
-                                PopUpMenuOpcionesPublicar(),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  height: max(50.ph, 50.sh),
                 ),
               ],
             ),

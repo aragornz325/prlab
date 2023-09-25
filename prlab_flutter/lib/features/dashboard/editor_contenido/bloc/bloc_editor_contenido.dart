@@ -93,9 +93,20 @@ class BlocEditorContenido
     emit(BlocEditorContenidoEstadoCargando.desde(state));
 
     try {
-      if (state.articulo != null) {
+      final articulo = state.articulo;
+      final descripcionDeArticulo =
+          state.articulo?.contenido?.replaceAll(r'\', '');
+
+      final articuloActualizado = articulo
+        ?..contenido = descripcionDeArticulo?.substring(
+              1,
+              descripcionDeArticulo.length - 1,
+            ) ??
+            state.articulo?.contenido;
+
+      if (articuloActualizado != null) {
         await client.articulo.actualizarArticulo(
-          articulo: state.articulo!,
+          articulo: articuloActualizado,
         );
 
         emit(
@@ -163,7 +174,7 @@ class BlocEditorContenido
     Emitter<BlocEditorContenidoEstado> emit,
   ) async {
     final articulo = state.articulo;
-
+    //TODO:(mati): hacer estado de cargando cuando se guardan los datos
     if (articulo == null) {
       return emit(
         BlocEditorContenidoEstadoError.desde(

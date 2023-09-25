@@ -80,3 +80,34 @@ class BlocListaArticulosYRecortesEventoFiltradoPorEstado
   /// cambia los valores en el popup con el check box de completo
   final bool? completo;
 }
+
+/// {@template BlocListaArticulosYRecortesEventoEliminarArticulo}
+/// Elimina un articulo en específico
+/// {@endtemplate}
+class BlocListaArticulosYRecortesEventoEliminarArticulo
+    extends BlocListaArticulosYRecortesEvento {
+  /// {@macro BlocListaArticulosYRecortesEventoEliminarArticulo}
+  @override
+  const BlocListaArticulosYRecortesEventoEliminarArticulo(
+    this.idArticulo,
+  );
+
+  /// id del articulo del cual va a eliminarse
+  final int idArticulo;
+}
+
+/// {@template BlocListaArticulosYRecortesEventoFiltrarBuscador}
+/// Filtra por el nombre del articulo y devuelve una lista de todos los que
+/// coincidan con ese nombre/titulo
+/// {@endtemplate}
+class BlocListaArticulosYRecortesEventoFiltrarBuscador
+    extends BlocListaArticulosYRecortesEvento {
+  /// {@macro BlocListaArticulosYRecortesEventoFiltrarBuscador}
+  @override
+  const BlocListaArticulosYRecortesEventoFiltrarBuscador({
+    this.nombreDelArticuloAFiltrar,
+  });
+
+  /// nombre del articulo a filtrar por ese nombre/titulo
+  final String? nombreDelArticuloAFiltrar;
+}
