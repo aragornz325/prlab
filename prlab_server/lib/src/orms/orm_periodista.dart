@@ -65,7 +65,10 @@ class OrmPeriodista extends ORM {
       ..remove('idRol')
       ..remove('idMedio')
       ..remove('idCiudad')
-      ..remove('idPais');
+      ..remove('idPais')
+      ..remove('ultimaModificacion')
+      ..remove('activo')
+      ..remove('fechaCreacion');
 
     var consulta = '''
 SELECT 
