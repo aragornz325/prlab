@@ -1,38 +1,50 @@
+
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:similar_web/similar_web.dart';
 
 class ServicioMetrica extends Servicio {
-  Future<TotalVisitsResponse> getTotalVisits(String domainName) async {
+  Future<TotalVisitsResponse> getTotalVisits(String domainName, {
+  DateTime? startDate,
+  DateTime? endDate,
+  String? country = 'world',
+  Granularity? granularity = Granularity.monthly,
+  bool? mainDomainOnly = false,
+  Format? format = Format.json,
+  bool? showVerified = false,
+  bool? mtd = false,
+  bool? engagedOnly = false,
+}) async {
     similarWeb.response = Response(
       requestOptions: RequestOptions(),
       data: jsonEncode({
         'meta': {
           'request': {
-            'granularity': 'daily',
-            'mainDomainOnly': true,
-            'mtd': true,
-            'showVerified': true,
+            'granularity': granularity,
+            'mainDomainOnly': mainDomainOnly,
+            'mtd': mtd,
+            'showVerified': showVerified,
             'state': 'state',
-            'format': 'json',
+            'format': format,
             'domain': domainName,
-            'startDate': DateTime(1998, 03, 25).toUtc(),
-            'endDate': DateTime(2023, 03, 25).toUtc(),
-            'country': 'ar',
+            'startDate': startDate.toString(),
+            'endDate': endDate.toString(),
+            'country': country,
           },
           'status': 'Complete!',
-          'lastUpdated': DateTime(2023, 04, 25).toUtc(),
+          'lastUpdated': endDate!.add(Duration(days: 900)).toString(),
         },
         'visits': [
           {
-            'date': DateTime(1998, 03, 25).toUtc(),
-            'visits': 3.141516,
+            'date': startDate.toString(),
+            'visits': pi,
           },
           {
-            'date': DateTime(2023, 03, 25).toUtc(),
-            'visits': 2.7182,
+            'date': endDate.toString(),
+            'visits': e,
           }
         ],
       }),
