@@ -1,4 +1,4 @@
-enum: TipoEndpointExcepcion
+enum: TipoExcepcion
 values:
   - sinConexion
   - noAutorizado
