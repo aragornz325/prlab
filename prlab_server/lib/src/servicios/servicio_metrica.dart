@@ -23,27 +23,28 @@ class ServicioMetrica extends Servicio {
       data: jsonEncode({
         'meta': {
           'request': {
-            'granularity': granularity,
+            'granularity': granularity.name,
             'mainDomainOnly': mainDomainOnly,
             'mtd': mtd,
             'showVerified': showVerified,
             'state': 'state',
             'format': format,
             'domain': domainName,
-            'startDate': startDate.toString(),
-            'endDate': endDate.toString(),
+            'startDate': startDate?.toString(),
+            'endDate': endDate?.toString(),
             'country': country,
           },
           'status': 'Complete!',
-          'lastUpdated': endDate!.add(Duration(days: 900)).toString(),
+          'lastUpdated': endDate?.add(const Duration(days: 900)).toString(),
         },
         'visits': [
           {
-            'date': startDate.toString(),
+            'date': startDate?.toString() ??
+                DateTime.now().subtract(const Duration(days: 900)).toString(),
             'visits': pi,
           },
           {
-            'date': endDate.toString(),
+            'date': endDate?.toString() ?? DateTime.now().toString(),
             'visits': e,
           }
         ],
@@ -62,7 +63,7 @@ class ServicioMetrica extends Servicio {
       format: format,
       showVerified: showVerified,
       mtd: mtd,
-      engagedOnly: engagedOnly
+      engagedOnly: engagedOnly,
     );
   }
 }
