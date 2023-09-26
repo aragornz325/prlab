@@ -12,7 +12,6 @@ import 'package:prlab_flutter/features/auth/login/escritorio/widgets/texto_bienv
 import 'package:prlab_flutter/features/auth/recuperar_password/dialog/dialog.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
-import 'package:prlab_flutter/widgets/barra_periodo/pr_barra_seleccion_periodo.dart';
 
 /// Vista de escritorio de la pantalla login donde el usuario
 /// puede iniciar sesion
@@ -154,8 +153,7 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                   ],
                 ),
               ),
-              PRBarraSeleccionPeriodo(),
-              // const SeccionLogoYEslogan(),
+              const SeccionLogoYEslogan(),
             ],
           ),
         );
