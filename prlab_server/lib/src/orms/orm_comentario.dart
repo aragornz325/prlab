@@ -23,12 +23,62 @@ class OrmComentario extends ORM {
   }) async {
     final respuesta = await ejecutarConsultaSql(session, '''
     SELECT c."textoComentario",
+           c."id",
+           c."idEntregable",
+           c."idAutorCompletado",
+           c."completado",
+           c."fechaCreacion",
+           c."ultimaModificacion",
+           c."fechaCompletado",
+           c."fechaEliminacion",
+           c."idAutor",
            cl."nombre",
            cl."apellido"
     FROM 
         comentarios c
-    JOIN clientes cl ON c."idAutor" = cl."id"
+    JOIN clientes cl ON c."idAutor" = cl."idUsuario"
     WHERE c."idEntregable" = $idArticulo
+     
+    ''', clavesMapaModeloDb: [
+      'textoComentario',
+      'id',
+      'idEntregable',
+      'idAutorCompletado',
+      'completado',
+      'fechaCreacion',
+      'ultimaModificacion',
+      'fechaCompletado',
+      'fechaEliminacion',
+      'idAutor',
+      'nombre',
+      'apellido',
+    ]);
+
+    return respuesta
+        .map(
+          (e) => Comentario.fromJson(
+            e
+              ..['ultimaModificacion'] = e['ultimaModificacion'].toString()
+              ..['fechaCreacion'] = e['fechaCreacion'].toString()
+              ..['fechaCompletado'] = e['fechaCompletado'].toString()
+              ..['fechaEliminacion'] = e['fechaEliminacion'].toString(),
+            Protocol(),
+          ),
+        )
+        .toList();
+  }
+
+  ///Lita todos los comentarios de la db
+  Future<List<Comentario>> listarTodosComentarios(
+    Session session,
+  ) async {
+    final respuesta = await ejecutarConsultaSql(session, '''
+    SELECT c."textoComentario",
+           cl."nombre",
+           cl."apellido"
+    FROM 
+        comentarios c
+    JOIN clientes cl ON c."idAutor" = cl."idUsuario"
      
     ''', clavesMapaModeloDb: [
       'textoComentario',
@@ -37,15 +87,6 @@ class OrmComentario extends ORM {
     ]);
 
     return respuesta.map((e) => Comentario.fromJson(e, Protocol())).toList();
-  }
-
-  ///Lita todos los comentarios de la db
-  Future<List<Comentario>> listarTodosComentarios(
-    Session session,
-  ) async {
-    return await Comentario.find(
-      session,
-    );
   }
 
   Future<Comentario?> obtenerComentario(
@@ -87,7 +128,7 @@ class OrmComentario extends ORM {
   /// de datos. Si la inserción es exitosa, devuelve "verdadero". Si se produce
   /// una excepción durante la inserción, genera una excepción con el mensaje
   /// de error.
-  Future<Comentario?> crearComentario(
+  Future<Comentario> crearComentario(
     Session session, {
     required Comentario comentario,
   }) async {
@@ -96,7 +137,8 @@ class OrmComentario extends ORM {
         session,
         comentario
           ..fechaCreacion = DateTime.now()
-          ..ultimaModificacion = DateTime.now(),
+          ..ultimaModificacion = DateTime.now()
+          ..idAutor = await session.auth.authenticatedUserId!,
       );
       final response = await Comentario.findSingleRow(
         session,
@@ -105,10 +147,51 @@ class OrmComentario extends ORM {
         orderDescending: true,
       );
 
-      logger.finest(
-        'comentario ID: "${comentario.id}" creado exitosamente.',
-      );
-      return response;
+      final respuesta = await ejecutarConsultaSql(session, '''
+    SELECT c."textoComentario",
+           c."id",
+           c."idEntregable",
+           c."idAutorCompletado",
+           c."completado",
+           c."fechaCreacion",
+           c."ultimaModificacion",
+           c."fechaCompletado",
+           c."fechaEliminacion",
+           c."idAutor",
+           cl."nombre",
+           cl."apellido"
+    FROM 
+        comentarios c
+    JOIN clientes cl ON c."idAutor" = cl."idUsuario"
+    WHERE c."id" = ${response!.id}
+     
+    ''', clavesMapaModeloDb: [
+        'textoComentario',
+        'id',
+        'idEntregable',
+        'idAutorCompletado',
+        'completado',
+        'fechaCreacion',
+        'ultimaModificacion',
+        'fechaCompletado',
+        'fechaEliminacion',
+        'idAutor',
+        'nombre',
+        'apellido',
+      ]);
+
+      return respuesta
+          .map(
+            (e) => Comentario.fromJson(
+              e
+                ..['ultimaModificacion'] = e['ultimaModificacion'].toString()
+                ..['fechaCreacion'] = e['fechaCreacion'].toString()
+                ..['fechaCompletado'] = e['fechaCompletado'].toString()
+                ..['fechaEliminacion'] = e['fechaEliminacion'].toString(),
+              Protocol(),
+            ),
+          )
+          .first;
     } on Exception catch (e) {
       throw Exception('$e');
     }

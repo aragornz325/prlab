@@ -25,7 +25,7 @@ sealed class BlocEditorContenidoEstado {
     Uint8List? logoElegidoWeb,
     File? logoSecundarioElegidoCelular,
     Uint8List? logoSecundarioElegidoWeb,
-    Articulo? articulo,
+    EntregableArticulo? articulo,
     List<PaginaSeccionArticulo>? listaPaginasDeArticulo,
   }) : this._(
           logoElegidoCelular: eliminarLogoPrimario
@@ -70,7 +70,7 @@ sealed class BlocEditorContenidoEstado {
   final List<PaginaSeccionArticulo> listaPaginasDeArticulo;
 
   /// El articulo a ser editado en la página actual.
-  final Articulo? articulo;
+  final EntregableArticulo? articulo;
 
   bool get estaEnEstadoDeActualizacion =>
       this is BlocEditorContenidoEstadoActualizandoDescripcion;
@@ -90,6 +90,38 @@ class BlocEditorContenidoEstadoInicial extends BlocEditorContenidoEstado {
 class BlocEditorContenidoEstadoCargando extends BlocEditorContenidoEstado {
   /// {@macro BlocEditorContenidoEstadoCargando}
   BlocEditorContenidoEstadoCargando.desde(super.otro) : super.desde();
+}
+
+/// {@template BlocEditorContenidoEstadoActualizandoDesdeStream}
+/// TODO(Andre): Agregar docu.
+/// {@endtemplate}
+class BlocEditorContenidoEstadoActualizandoDesdeStream
+    extends BlocEditorContenidoEstado {
+  /// {@macro BlocEditorContenidoEstadoActualizandoDesdeStream}
+  BlocEditorContenidoEstadoActualizandoDesdeStream.desde(
+    super.otro, {
+    required String descripcionDeArticulo,
+    required String tituloArticulo,
+  }) : super.desde(
+          // TODO(anyone): Cuando esten los modelos hechos con mappable,
+          // hacer esto con copyWith.
+          articulo: EntregableArticulo(
+            id: otro.articulo?.id,
+            titulo: tituloArticulo,
+            contenido: descripcionDeArticulo,
+            idProyecto: otro.articulo?.idProyecto,
+            idMarca: otro.articulo?.idMarca,
+            idAutor: otro.articulo?.idAutor,
+            idStatus: otro.articulo?.idStatus,
+            ultimaModificacion:
+                otro.articulo?.ultimaModificacion ?? DateTime.now(),
+            fechaLanzamiento: DateTime.now(),
+            // fechaEliminacion: otro.articulo?.fechaEliminacion,
+            // fechaCreacion: otro.articulo?.fechaCreacion,
+            // TODO(Anyone): Volver a agregar cuando se agreguen en el back
+            // de nuevo.
+          ),
+        );
 }
 
 /// {@template BlocEditorContenidoEstadoRecolectandoDatos}
@@ -121,15 +153,13 @@ class BlocEditorContenidoEstadoExitoso extends BlocEditorContenidoEstado {
   /// {@macro BlocEditorContenidoEstadoExitoso}
   BlocEditorContenidoEstadoExitoso.desde(
     super.otro, {
-    required Articulo articulo,
+    required super.articulo,
     super.logoElegidoCelular,
     super.logoElegidoWeb,
     super.logoSecundarioElegidoCelular,
     super.logoSecundarioElegidoWeb,
     super.listaPaginasDeArticulo,
-  }) : super.desde(
-          articulo: articulo,
-        );
+  }) : super.desde();
 }
 
 /// {@template BlocEditorContenidoEstadoError}
@@ -162,7 +192,7 @@ class BlocEditorContenidoEstadoActualizandoDescripcion
   }) : super.desde(
           // TODO(anyone): Cuando esten los modelos hechos con mappable,
           // hacer esto con copyWith.
-          articulo: Articulo(
+          articulo: EntregableArticulo(
             id: otro.articulo?.id,
             titulo: tituloArticulo,
             contenido: descripcionDeArticulo,
@@ -172,6 +202,7 @@ class BlocEditorContenidoEstadoActualizandoDescripcion
             idStatus: otro.articulo?.idStatus,
             ultimaModificacion:
                 otro.articulo?.ultimaModificacion ?? DateTime.now(),
+            fechaLanzamiento: DateTime.now(),
             // fechaEliminacion: otro.articulo?.fechaEliminacion,
             // fechaCreacion: otro.articulo?.fechaCreacion,
             // TODO(Anyone): Volver a agregar cuando se agreguen en el back
