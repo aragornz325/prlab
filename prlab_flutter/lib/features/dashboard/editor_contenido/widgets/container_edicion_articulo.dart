@@ -9,63 +9,29 @@ import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/widgets.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/utilidades/utilidades.dart';
+import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 
 /// {@template ContainerEdicionArticulo}
 /// Permite la edicion del titulo, descripcion del articulo, agregar logos,
 /// [ContainerEdicionArticulo].
 /// {@endtemplate}
-class ContainerEdicionArticulo extends StatelessWidget {
+class ContainerEdicionArticulo extends StatefulWidget {
   /// {@macro ContainerEdicionArticulo}
   const ContainerEdicionArticulo({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    final colores = context.colores;
-
-    return Container(
-      width: 839.pw,
-      height: max(508.ph, 508.sh),
-      color: colores.surfaceTint,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              UploadLogoPR(),
-            ],
-          ),
-          const Divider(
-            height: 0,
-          ),
-          BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
-            builder: (context, state) {
-              return _CampoDeTextoTitulo(titulo: state.articulo?.titulo ?? '');
-            },
-          ),
-          const Divider(
-            height: 0,
-          ),
-          const EditorDeDescripcionDeContenido(),
-        ],
-      ),
-    );
-  }
+  State<ContainerEdicionArticulo> createState() =>
+      _ContainerEdicionArticuloState();
 }
 
-class _CampoDeTextoTitulo extends StatefulWidget {
-  const _CampoDeTextoTitulo({required this.titulo});
-  final String titulo;
-
-  @override
-  State<_CampoDeTextoTitulo> createState() => _CampoDeTextoTituloState();
-}
-
-class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
+class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
   final controller = TextEditingController();
+
+  // Nos ayuda a mantener una conexión persistente y
+  // se reconecta automáticamente si perdemos la conexión con el servidor.
+  late final StreamingConnectionHandler connectionHandler;
 
   /// A medida que el usuario va escribiendo el titulo del [Articulo]
   /// se va guardando en la lista las versiones anteriores del mismo.
@@ -78,6 +44,17 @@ class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
   /// Lista : [`h`, `ho`, `hol`, `hola`].
   final List<String> versionesDelTitulo = [];
 
+  /// A medida que el usuario va escribiendo el contenido del [Articulo]
+  /// se va guardando en la lista las versiones anteriores del mismo.
+  ///
+  /// Esto permite condicionar si la información que llega del stream fue
+  /// o no escrita por el usuario actual, para no pisar los datos del estado.
+  ///
+  /// Ej:
+  /// Se escribe `hola`
+  /// Lista : [`h`, `ho`, `hol`, `hola`].
+  final List<String> versionesDelContenido = [];
+
   /// Genera una espera antes guardar la nueva data del titulo
   /// en la db para mejorar la performance.
   Timer? _debounce;
@@ -86,9 +63,17 @@ class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
   void initState() {
     super.initState();
 
-    _actualizarTitulo();
+    // Configura nuestro controlador de conexión y abre una conexión
+    // de streaming al servidor. El [StreamingConnectionHandler] intentará
+    // volver a conectarse hasta que se llama al método `close`.
+    connectionHandler = StreamingConnectionHandler(
+      client: client,
+      listener: (_) {},
+    );
 
-    controller.text = widget.titulo;
+    connectionHandler.connect();
+
+    _actualizarTitulo();
   }
 
   @override
@@ -115,6 +100,17 @@ class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
                 ),
               );
         }
+
+        if (!versionesDelContenido.contains(actualizado.contenido)) {
+          versionesDelContenido.clear();
+
+          context.read<BlocEditorContenido>().add(
+                BlocEditorContenidoEventoActualizarArticulo(
+                  descripcionDeArticulo: actualizado.contenido,
+                  seActualizaDesdeStream: true,
+                ),
+              );
+        }
       }
     }
   }
@@ -135,6 +131,70 @@ class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
+    return Container(
+      width: 839.pw,
+      height: max(508.ph, 508.sh),
+      color: colores.surfaceTint,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              UploadLogoPR(),
+            ],
+          ),
+          const Divider(
+            height: 0,
+          ),
+          BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
+            builder: (context, state) {
+              return _CampoDeTextoTitulo(
+                titulo: state.articulo?.titulo ?? '',
+                controller: controller,
+                onChanged: _onChanged,
+              );
+            },
+          ),
+          const Divider(
+            height: 0,
+          ),
+          EditorDeDescripcionDeContenido(
+            onChanged: versionesDelContenido.add,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CampoDeTextoTitulo extends StatefulWidget {
+  const _CampoDeTextoTitulo({
+    required this.titulo,
+    required this.controller,
+    required this.onChanged,
+  });
+  final String titulo;
+
+  final TextEditingController controller;
+
+  final void Function(String value) onChanged;
+
+  @override
+  State<_CampoDeTextoTitulo> createState() => _CampoDeTextoTituloState();
+}
+
+class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
+  @override
+  void initState() {
+    widget.controller.text = widget.titulo;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colores = context.colores;
     final l10n = context.l10n;
 
     return SizedBox(
@@ -148,12 +208,13 @@ class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
           child: BlocListener<BlocEditorContenido, BlocEditorContenidoEstado>(
             listener: (context, state) {
               if (state is BlocEditorContenidoEstadoActualizandoDesdeStream) {
-                controller.text = state.articulo?.titulo ?? controller.text;
+                widget.controller.text =
+                    state.articulo?.titulo ?? widget.controller.text;
               }
             },
             child: TextField(
-              controller: controller,
-              onChanged: _onChanged,
+              controller: widget.controller,
+              onChanged: widget.onChanged,
               style: TextStyle(
                 height: max(1.ph, 1.sh),
                 fontWeight: FontWeight.w500,
