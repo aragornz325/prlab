@@ -27,6 +27,7 @@ class ContainerEdicionArticulo extends StatefulWidget {
 }
 
 class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
+  /// Controlador del título de [EntregableArticulo].
   final controller = TextEditingController();
 
   // Nos ayuda a mantener una conexión persistente y
@@ -73,7 +74,7 @@ class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
 
     connectionHandler.connect();
 
-    _actualizarTitulo();
+    _actualizarArticulo();
   }
 
   @override
@@ -87,7 +88,7 @@ class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
   ///
   /// Si un [EntregableArticulo] fue actualizado por otro cliente, se actualiza
   /// dentro del [Bloc].
-  Future<void> _actualizarTitulo() async {
+  Future<void> _actualizarArticulo() async {
     await for (final actualizado in client.entregableArticulo.stream) {
       if (actualizado is EntregableArticulo) {
         if (!versionesDelTitulo.contains(actualizado.titulo)) {
@@ -115,6 +116,8 @@ class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
     }
   }
 
+  /// Actualiza el titulo en el estado y llama al stream
+  /// para actualizar los otros clientes.
   void _onChanged(String value) {
     versionesDelTitulo.add(value);
 
@@ -175,10 +178,15 @@ class _CampoDeTextoTitulo extends StatefulWidget {
     required this.controller,
     required this.onChanged,
   });
+
+  /// Título de [EntregableArticulo].
   final String titulo;
 
+  /// Controlador del título de [EntregableArticulo].
   final TextEditingController controller;
 
+  /// Se ejecuta cuando se genera un cambio en el título del
+  /// articulo y devuelve el nuevo valor del mismo.
   final void Function(String value) onChanged;
 
   @override

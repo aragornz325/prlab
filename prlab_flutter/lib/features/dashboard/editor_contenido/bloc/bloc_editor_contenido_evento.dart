@@ -99,8 +99,7 @@ class BlocEditorContenidoEventoActualizarArticulo
   /// actualiza el [Articulo] dentro del estado, en caso de que el
   /// evento se ejecute a medida que el cliente actual actualice el
   /// [Articulo], unicamente se actualizara en la db para que el resto
-  /// de los clientes que esten escuchando se les actualice el articulo
-  /// en sus clientes.
+  /// de los clientes que esten escuchando se les actualice el articulo.
   final bool seActualizaDesdeStream;
 }
 

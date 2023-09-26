@@ -21,6 +21,8 @@ class EditorDeDescripcionDeContenido extends StatefulWidget {
     super.key,
   });
 
+  /// Se ejecuta cuando se genera un cambio en el contenido del
+  /// articulo y devuelve el nuevo valor del mismo.
   final void Function(String value) onChanged;
 
   @override
@@ -34,7 +36,7 @@ class _EditorDeDescripcionDeContenidoState
 
   late String _jsonDelContenido;
 
-  /// Genera una espera antes guardar la nueva data del contenido
+  /// Genera una espera antes de guardar la nueva data del contenido
   /// en la db para mejorar la performance.
   Timer? _debounce;
 
