@@ -8,8 +8,11 @@ CREATE TABLE "comentarios" (
   "textoComentario" text NOT NULL,
   "idAutor" integer,
   "fechaEliminacion" timestamp without time zone,
-  "ultimaModificacion" timestamp without time zone NOT NULL,
-  "fechaCreacion" timestamp without time zone NOT NULL
+  "ultimaModificacion" timestamp without time zone,
+  "fechaCreacion" timestamp without time zone,
+  "completado" boolean,
+  "idAutorCompletado" integer,
+  "fechaCompletado" timestamp without time zone
 );
 
 ALTER TABLE ONLY "comentarios"

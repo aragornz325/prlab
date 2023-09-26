@@ -25,7 +25,7 @@ class ListaDeArticulos extends StatelessWidget {
 
   // hacer el init que filtre por un enum de filtro
   /// Lista de los artículos para mostrar sus propiedades
-  final List<Articulo> articulos;
+  final List<EntregableArticulo> articulos;
 
   @override
   Widget build(BuildContext context) {
