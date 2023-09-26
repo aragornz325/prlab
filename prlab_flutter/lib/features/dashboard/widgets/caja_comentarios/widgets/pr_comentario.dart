@@ -61,12 +61,12 @@ class PRComentario extends StatelessWidget {
                           child: Row(
                             children: [
                               SizedBox(
+                                width: 300.pw,
                                 child: Row(
                                   children: [
                                     Text(
-                                      // TODO(anyone) : reemplazar por el nombre y apellido del usuario
-                                      '${comentario.textoComentario}'
-                                      ' ${comentario.textoComentario}',
+                                      '${comentario.nombre}'
+                                      ' ${comentario.apellido}',
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
