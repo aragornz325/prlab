@@ -1,12 +1,12 @@
 import 'package:prlab_server/src/generated/cliente.dart';
-import 'package:prlab_server/src/odms/odm_cliente.dart';
+import 'package:prlab_server/src/orms/orm_cliente.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/server.dart';
 
 /// Servicio para datos de [Cliente].
-class ServicioCliente extends Servicio<OdmCliente> {
+class ServicioCliente extends Servicio<OrmCliente> {
   @override
-  final odm = OdmCliente();
+  final orm = OrmCliente();
 
   /// Guarda los datos personales del [Cliente] insertados en el formulario de
   /// registro.
@@ -23,7 +23,7 @@ class ServicioCliente extends Servicio<OdmCliente> {
     try {
       logger.info('Completando KYC para ${datosDelCliente.nombre}');
       return await ejecutarOperacion(
-        () => odm.completarKyc(
+        () => orm.completarKyc(
           session: session,
           datosDelCliente: datosDelCliente,
         ),
@@ -36,7 +36,7 @@ class ServicioCliente extends Servicio<OdmCliente> {
 
   /// Comprueba si un usuario completó la fase de registro.
   Future<bool> comprobarKyc(Session session, {required int idUsuario}) async {
-    return await odm.comprobarKyc(session, idUsuario: idUsuario);
+    return await orm.comprobarKyc(session, idUsuario: idUsuario);
   }
 
   /// Obtiene los usuarios asignados a una Marca.
@@ -51,7 +51,7 @@ class ServicioCliente extends Servicio<OdmCliente> {
   }) async {
     logger.info('Recuperando usuarios relacionados a la marca $idMarca...');
     return await ejecutarOperacion(
-      () => odm.listarUsuariosPorMarca(
+      () => orm.listarUsuariosPorMarca(
         session,
         idMarca: idMarca,
       ),

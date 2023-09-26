@@ -1,0 +1,16 @@
+class: EntregableArticulo
+table: articulos
+fields:
+  titulo: String
+  contenido: String?
+  contenidoHtml: String?
+  idProyecto: int? parent=proyectos
+  idMarca: int? parent=marcas
+  idAutor: int?
+  idStatus: int?
+  ultimaModificacion: DateTime
+  fechaLanzamiento: DateTime
+  fechaPublicacion: DateTime?
+  idPlataforma: int?
+  fechaCreacion: DateTime?, database
+  activo: bool?, database

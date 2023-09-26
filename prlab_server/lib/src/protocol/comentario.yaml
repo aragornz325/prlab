@@ -4,6 +4,11 @@ fields:
   idEntregable: int? 
   textoComentario: String
   idAutor: int?
+  nombre: String?, api
+  apellido: String?, api
   fechaEliminacion: DateTime?
-  ultimaModificacion: DateTime
-  fechaCreacion: DateTime
+  ultimaModificacion: DateTime?
+  fechaCreacion: DateTime?
+  completado: bool?
+  idAutorCompletado: int?
+  fechaCompletado: DateTime?

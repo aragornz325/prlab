@@ -9,12 +9,16 @@ import 'package:prlab_flutter/utilidades/widgets/pr_dialog.dart';
 /// Enum utilizado para indexar cada item del drawer.
 enum DrawerPage {
   home,
-  projects,
-  templates;
+  brands,
+  articles,
+  mediaDatabase,
+  metrics;
 
   bool get esHome => this == DrawerPage.home;
-  bool get esProjects => this == DrawerPage.projects;
-  bool get esTemplates => this == DrawerPage.templates;
+  bool get esBrands => this == DrawerPage.brands;
+  bool get esArticles => this == DrawerPage.articles;
+  bool get esMediaDatabase => this == DrawerPage.mediaDatabase;
+  bool get esMetrics => this == DrawerPage.metrics;
 }
 
 /// {@template PRDrawerListaItems}
@@ -51,35 +55,42 @@ class PRDrawerListaItems extends StatelessWidget {
           height: max(10.ph, 10.sh),
         ),
         PRDrawerItem(
-          onTap: () {
-            // TODO(anyone): Descomentar cuando haya una page de projects
-            // onTap(DrawerPage.projects);
-
-            showDialog<void>(
-              context: context,
-              builder: (context) => const PRDialogErrorNoDisponible(),
-            );
-          },
-          icono: Icons.folder_open_outlined,
-          tituloItem: l10n.drawerProjects,
-          estaSeleccionado: enumDrawer.esProjects,
+          onTap: () => onTap(DrawerPage.brands),
+          icono: Icons.workspace_premium_outlined,
+          tituloItem: l10n.commonBrand,
+          estaSeleccionado: enumDrawer.esBrands,
+        ),
+        SizedBox(
+          height: max(10.ph, 10.sh),
+        ),
+        PRDrawerItem(
+          onTap: () => onTap(DrawerPage.articles),
+          icono: Icons.article_outlined,
+          tituloItem: l10n.commonArticles,
+          estaSeleccionado: enumDrawer.esArticles,
+        ),
+        SizedBox(
+          height: max(10.ph, 10.sh),
+        ),
+        PRDrawerItem(
+          onTap: () => onTap(DrawerPage.mediaDatabase),
+          icono: Icons.explore_outlined,
+          tituloItem: l10n.prAppBarCoverageMediaDbMedia,
+          estaSeleccionado: enumDrawer.esMediaDatabase,
         ),
         SizedBox(
           height: max(10.ph, 10.sh),
         ),
         PRDrawerItem(
           onTap: () {
-            // TODO(anyone): Descomentar cuando haya una page de templates
-            // onTap(DrawerPage.templates);
+            // TODO(anyone): Descomentar cuando este la page de metricas
+            // onTap(DrawerPage.metrics);
 
-            showDialog<void>(
-              context: context,
-              builder: (context) => const PRDialogErrorNoDisponible(),
-            );
+            const PRDialogErrorNoDisponible().show(context);
           },
-          icono: Icons.space_dashboard_outlined,
-          tituloItem: l10n.drawerTemplates,
-          estaSeleccionado: enumDrawer.esTemplates,
+          icono: Icons.leaderboard_outlined,
+          tituloItem: l10n.commonMetrics,
+          estaSeleccionado: enumDrawer.esMetrics,
         ),
       ],
     );
