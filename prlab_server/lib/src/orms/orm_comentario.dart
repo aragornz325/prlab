@@ -36,7 +36,7 @@ class OrmComentario extends ORM {
            cl."apellido"
     FROM 
         comentarios c
-    JOIN clientes cl ON c."idAutor" = cl."id"
+    JOIN clientes cl ON c."idAutor" = cl."idUsuario"
     WHERE c."idEntregable" = $idArticulo
      
     ''', clavesMapaModeloDb: [
@@ -78,7 +78,7 @@ class OrmComentario extends ORM {
            cl."apellido"
     FROM 
         comentarios c
-    JOIN clientes cl ON c."idAutor" = cl."id"
+    JOIN clientes cl ON c."idAutor" = cl."idUsuario"
      
     ''', clavesMapaModeloDb: [
       'textoComentario',
@@ -162,7 +162,7 @@ class OrmComentario extends ORM {
            cl."apellido"
     FROM 
         comentarios c
-    JOIN clientes cl ON c."idAutor" = cl."id"
+    JOIN clientes cl ON c."idAutor" = cl."idUsuario"
     WHERE c."id" = ${response!.id}
      
     ''', clavesMapaModeloDb: [
