@@ -1,11 +1,11 @@
 import 'package:prlab_server/src/generated/cliente.dart';
 import 'package:prlab_server/src/generated/protocol.dart';
-import 'package:prlab_server/src/odm.dart';
+import 'package:prlab_server/src/orm.dart';
 import 'package:serverpod/database.dart';
 import 'package:serverpod/server.dart';
 
 /// ODM para manejo de información de Usuario.
-class OdmCliente extends ODM {
+class OrmCliente extends ORM {
   /// Guarda los datos personales del cliente insertados en el formulario de
   /// registro.
   Future<bool> completarKyc({
@@ -13,7 +13,7 @@ class OdmCliente extends ODM {
     required Cliente datosDelCliente,
   }) async {
     try {
-      await ejecutarOperacionOdm(
+      await ejecutarOperacionOrm(
         session,
         (Session session) =>
             session.db.transaction((Transaction transaction) async {
@@ -39,7 +39,7 @@ class OdmCliente extends ODM {
 
   /// Comprueba si un usuario completó la fase de registro.
   Future<bool> comprobarKyc(Session session, {required int idUsuario}) async {
-    final query = await ejecutarOperacionOdm(
+    final query = await ejecutarOperacionOrm(
       session,
       (session) => Cliente.findSingleRow(
         session,
@@ -55,7 +55,7 @@ class OdmCliente extends ODM {
     Session session, {
     required int idMarca,
   }) async {
-    final queryListaDeIdUsuarios = await ejecutarOperacionOdm(
+    final queryListaDeIdUsuarios = await ejecutarOperacionOrm(
       session,
       (session) async {
         final query = await session.db.query(

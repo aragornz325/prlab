@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:prlab_server/src/generated/protocol.dart';
-import 'package:prlab_server/src/odm.dart';
+import 'package:prlab_server/src/orm.dart';
 import 'package:prlab_server/utils/manejo_de_errores/manejo_de_errores.dart';
 import 'package:serverpod/server.dart';
 
 /// ODM para administracion de articulos.
-class OdmArticulo extends ODM {
+class OrmEntregableArticulo extends ORM {
   /// La función [crearArticulo] crea un nuevo artículo insertándolo en una base
   ///  de datos mediante una operación ODM.
   ///
@@ -17,17 +17,17 @@ class OdmArticulo extends ODM {
   ///   representa los datos del artículo que se debe crear.
   Future<int> crearArticulo({
     required Session session,
-    required Articulo articulo,
+    required EntregableArticulo articulo,
   }) async {
     try {
-      return await ejecutarOperacionOdm(
+      return await ejecutarOperacionOrm(
         session,
         (session) => session.db.transaction(
           (transaction) async {
             logger.info(
               'Creando artículo: "${articulo.titulo}"...',
             );
-            await Articulo.insert(
+            await EntregableArticulo.insert(
               session,
               articulo
                 ..idAutor = await session.auth.authenticatedUserId ?? 0
@@ -35,10 +35,10 @@ class OdmArticulo extends ODM {
                 ..ultimaModificacion = DateTime.now()
                 ..activo = true,
             );
-            final response = (await Articulo.findSingleRow(
+            final response = (await EntregableArticulo.findSingleRow(
               session,
               where: (t) => t.idAutor.equals(articulo.idAutor),
-              orderBy: ArticuloTable().fechaCreacion,
+              orderBy: EntregableArticuloTable().fechaCreacion,
               orderDescending: true,
             ))!
                 .id;
@@ -61,14 +61,14 @@ class OdmArticulo extends ODM {
   /// Args:
   ///   [session] (Session): El parámetro [sesión] es de tipo "Sesión" y es
   ///   obligatorio.
-  Future<List<Articulo>> listarArticulos({
+  Future<List<EntregableArticulo>> listarArticulos({
     required Session session,
   }) async {
     try {
       logger.info('Listando artículos');
-      return await ejecutarOperacionOdm(
+      return await ejecutarOperacionOrm(
         session,
-        (session) => Articulo.find(
+        (session) => EntregableArticulo.find(
           session,
           where: (t) => t.activo.equals(true),
         ),
@@ -87,16 +87,16 @@ class OdmArticulo extends ODM {
   ///   obligatorio.
   ///   [id] (int): El parámetro [id] es un número entero que representa el
   ///   identificador único del artículo que debe recuperarse.
-  Future<Articulo> obtenerArticuloPorId({
+  Future<EntregableArticulo> obtenerArticuloPorId({
     required Session session,
     required int id,
   }) async {
     logger.info(
       'Obteniendo artículo con id: $id',
     );
-    final articulo = await ejecutarOperacionOdm(
+    final articulo = await ejecutarOperacionOrm(
       session,
-      (Session session) => Articulo.findById(
+      (Session session) => EntregableArticulo.findById(
         session,
         id,
       ),
@@ -125,9 +125,9 @@ class OdmArticulo extends ODM {
   }) async {
     try {
       logger.info('Se va a eliminar el articulo con id: $id');
-      await ejecutarOperacionOdm(
+      await ejecutarOperacionOrm(
         session,
-        (Session session) => Articulo.delete(
+        (Session session) => EntregableArticulo.delete(
           session,
           where: (t) => t.id.equals(id),
         ),
@@ -148,7 +148,7 @@ class OdmArticulo extends ODM {
   }) async {
     try {
       logger.info('Se va a eliminar el articulo con id: $idArticulo');
-      await ejecutarOperacionOdm(
+      await ejecutarOperacionOrm(
         session,
         (Session session) => session.db.query('''
             UPDATE "articulos" 
@@ -173,21 +173,21 @@ class OdmArticulo extends ODM {
   ///   obligatorio.
   ///   [idMarca] ([int]): este parametro es un número entero que representa
   ///   el ID de una marca específica.
-  Future<List<Articulo>> listarArticulosPorMarca({
+  Future<List<EntregableArticulo>> listarArticulosPorMarca({
     required Session session,
     required int idMarca,
   }) async {
     try {
-      return await ejecutarOperacionOdm(
+      return await ejecutarOperacionOrm(
         session,
         (Session session) {
           logger.info(
             'Buscando los articulos segun marca con id: $idMarca',
           );
-          return Articulo.find(
+          return EntregableArticulo.find(
             session,
             where: (t) => t.idMarca.equals(idMarca),
-            orderBy: ArticuloTable().ultimaModificacion,
+            orderBy: EntregableArticuloTable().ultimaModificacion,
             orderDescending: true,
           );
         },
@@ -205,16 +205,17 @@ class OdmArticulo extends ODM {
   ///   obligatorio.
   ///   [idMarca] ([int]): este parametro es un número entero que representa
   ///   el ID de una marca específica.
-  Future<List<Articulo>> listarUltimosTresArticulosPorMarca(
+  Future<List<EntregableArticulo>> listarUltimosTresArticulosPorMarca(
     Session session, {
     required int idMarca,
   }) async {
-    return await ejecutarOperacionOdm(
+    return await ejecutarOperacionOrm(
       session,
-      (session) => Articulo.find(
+      (session) => EntregableArticulo.find(
         session,
-        where: (t) => (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
-        orderBy: ArticuloTable().ultimaModificacion,
+        where: (t) =>
+            (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
+        orderBy: EntregableArticuloTable().ultimaModificacion,
         orderDescending: true,
         limit: 3,
       ),
@@ -228,20 +229,20 @@ class OdmArticulo extends ODM {
   /// Args:
   ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y es
   /// obligatorio.
-  ///   [articulo] ([Articulo]): El parámetro "articulo" es un objeto de tipo
+  ///   [articulo] ([EntregableArticulo]): El parámetro "articulo" es un objeto de tipo
   /// "Articulo" que representa un artículo. Es necesario para la función y
   /// contiene la información del artículo que necesita ser actualizado.
   Future<bool> actualizarArticulo({
     required Session session,
-    required Articulo articulo,
+    required EntregableArticulo articulo,
   }) async {
     try {
       logger.info(
         'Se va a actualizar el articulo en la BD con id ${articulo.id}...',
       );
-      await ejecutarOperacionOdm(
+      await ejecutarOperacionOrm(
         session,
-        (Session session) => Articulo.update(
+        (Session session) => EntregableArticulo.update(
           session,
           articulo..ultimaModificacion = DateTime.now(),
         ),
@@ -266,21 +267,21 @@ class OdmArticulo extends ODM {
     Session session, {
     required int idMarca,
   }) async {
-    return await ejecutarOperacionOdm(
+    return await ejecutarOperacionOrm(
       session,
-      (session) => Articulo.count(
+      (session) => EntregableArticulo.count(
         session,
         where: (t) => (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
       ),
     );
   }
 
-  Future<List<Articulo>> traerArticulosPorUsuario(
+  Future<List<EntregableArticulo>> traerArticulosPorUsuario(
       {required Session session}) async {
-    return ejecutarOperacionOdm(session, (session) async {
+    return ejecutarOperacionOrm(session, (session) async {
       logger.finer('buscando en la db los articulos del usuario');
       final idAutor = await session.auth.authenticatedUserId;
-      final articulos = await Articulo.find(session,
+      final articulos = await EntregableArticulo.find(session,
           where: (t) => t.idAutor.equals(idAutor) & t.activo.equals(true));
       logger.fine('articulos encontrados: ${articulos.length}');
       return articulos;

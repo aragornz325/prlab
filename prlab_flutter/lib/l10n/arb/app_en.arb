@@ -400,7 +400,7 @@
         "description":"Text to sign out"
     },
 
-    "prAppBarCoverageMediaDbMedia": "Database Media",
+    "prAppBarCoverageMediaDbMedia": "Media Database",
     "@prAppBarCoverageMediaDbMedia":{
         "description":"Text to redirect to database media page"
     },
@@ -521,7 +521,11 @@
         "description": "Content text shown in the center of the alert dialog logout in the drawer, that warns the user that if he presses continue he will be logged out."
     },
 
-    
+    "drawerAddANewClientButton": "Add a new client",
+    "@drawerAddANewClientButton": {
+        "description": "Text shown on a button that leads to the create account page"
+    },
+
     "pageMediaDatabaseTitle": "Find media database",
     "@pageMediaDatabaseTitle": {
         "description": "Title found at the top of the page, refers to the search through the media database"
@@ -826,6 +830,15 @@
         "description": "Text shown on a popup/alertdialog that indicates to Apply a filters,Typically used to filter alert dialogs."
     },
 
+    "commonBrand": "Brand",
+    "@commonBrand": {
+        "description": "Text shown on a button that leads to Your Brands page"
+    },
+
+    "commonMetrics": "Metrics",
+    "@commonMetrics": {
+        "description": "Text shown on a button that leads to Metrics page"
+    },
     "commonAlertDialogFilterByAuthor": "Filter by author",
     "@commonAlertDialogFilterByAuthor": {
         "description": "Text in title of alertdialog/popup Filter by author,Typically used to filter in title of alert dialogs."

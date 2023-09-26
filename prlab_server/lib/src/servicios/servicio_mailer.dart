@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_dynamic_calls
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
-import 'package:prlab_server/src/odms/odm_auth.dart';
+import 'package:prlab_server/src/orms/orm_auth.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:prlab_server/utils/config/constants.dart';
 import 'package:prlab_server/utils/mailer/mailer.dart';
@@ -9,10 +9,10 @@ import 'package:prlab_server/utils/mailer/templates.dart';
 import 'package:serverpod/server.dart';
 
 /// La clase [ServicioMailer] se utiliza para enviar correos electrónicos.
-class ServicioMailer extends Servicio<OdmAuth> {
+class ServicioMailer extends Servicio<OrmAuth> {
 
   /// Instancia de la clase del odm.
-  final authRepository = OdmAuth();
+  final authRepository = OrmAuth();
 
   /// Instancia de la clase con las plantillas para mailing.
   final plantillasCorreo = PlantillasCorreo();

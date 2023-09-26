@@ -60,8 +60,13 @@ class _PrDrawerState extends State<PrDrawer> {
               switch (value) {
                 case DrawerPage.home:
                   context.router.push(const RutaInicio());
-                case DrawerPage.projects:
-                case DrawerPage.templates:
+                case DrawerPage.brands:
+                  context.router.push(const RutaAdministracionMarcas());
+                case DrawerPage.articles:
+                  context.router.push(const RutaAdministracionContenido());
+                case DrawerPage.mediaDatabase:
+                  context.router.push(const RutaDbMediosDeComunicacion());
+                case DrawerPage.metrics:
                   showDialog<void>(
                     context: context,
                     builder: (context) => const PRDialogErrorNoDisponible(),
@@ -70,6 +75,21 @@ class _PrDrawerState extends State<PrDrawer> {
             },
           ),
           const Spacer(),
+          Center(
+            child: PRBoton(
+              onTap: () => showDialog<void>(
+                context: context,
+                builder: (context) => const PRDialogErrorNoDisponible(),
+              ),
+              texto: l10n.drawerAddANewClientButton,
+              estaHabilitado: true,
+              width: 160.pw,
+              height: 30.ph,
+            ),
+          ),
+          Container(
+            height: max(20.ph, 20.sh),
+          ),
           Container(
             height: max(1.ph, 1.sh),
             decoration: BoxDecoration(color: colores.outlineVariant),
