@@ -61,7 +61,7 @@ class OrmPeriodista extends ORM {
       whereBuffer.writeln();
     }
 
-    final modeloApi = Periodista().toJson()
+    final modeloApi = Periodista(nombreCompleto: '', email: '').toJson()
       ..remove('idRol')
       ..remove('idMedio')
       ..remove('idCiudad')
