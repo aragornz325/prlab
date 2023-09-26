@@ -90,7 +90,9 @@ class _PRCajaDeComentarioState extends State<PRCajaDeComentario> {
                 },
                 builder: (context, state) {
                   if (state.desplegarComentario) {
-                    return const BotonesCancelarYPostear();
+                    return BotonesCancelarYPostear(
+                      idArticulo: widget.idArticulo,
+                    );
                   }
                   return const SizedBox.shrink();
                 },

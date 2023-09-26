@@ -49,7 +49,7 @@ class _PopUpOpcionesComentarioState extends State<PopUpOpcionesComentario> {
           estaDesplegado = false;
         });
       },
-      offset: const Offset(-70, 45),
+      offset: const Offset(0, 45),
       color: colores.surfaceTint,
       shape: ContinuousRectangleBorder(
         borderRadius: BorderRadius.all(

@@ -106,7 +106,7 @@ class PRComentario extends StatelessWidget {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            SizedBox(width: 20.pw),
+                            SizedBox(width: 5.pw),
                             IconButton(
                               onPressed: () {
                                 context.read<BlocCajaComentarios>().add(
@@ -126,7 +126,7 @@ class PRComentario extends StatelessWidget {
                                     : colores.secondary,
                               ),
                             ),
-                            SizedBox(width: 10.pw),
+                            SizedBox(width: 5.pw),
                             PopUpOpcionesComentario(
                               idComentario: comentario.id ?? 0,
                             ),
@@ -150,6 +150,7 @@ class PRComentario extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(height: max(10.ph, 10.sh)),
           Divider(
             height: max(1.ph, 1.sh),
 

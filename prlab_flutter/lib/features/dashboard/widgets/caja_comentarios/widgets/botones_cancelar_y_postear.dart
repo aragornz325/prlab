@@ -14,7 +14,13 @@ import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 /// {@endtemplate}
 class BotonesCancelarYPostear extends StatelessWidget {
   /// {@macro BotonesCancelarYPostear}
-  const BotonesCancelarYPostear({super.key});
+  const BotonesCancelarYPostear({
+    required this.idArticulo,
+    super.key,
+  });
+
+  /// Id del articulo para crear un nuevo comentario
+  final int idArticulo;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +47,9 @@ class BotonesCancelarYPostear extends StatelessWidget {
                 onTap: () {
                   if (state.comentario.isNotEmpty) {
                     context.read<BlocCajaComentarios>().add(
-                          const BlocCajaComentariosEventoCrearComentario(),
+                          BlocCajaComentariosEventoCrearComentario(
+                            idArticulo: idArticulo,
+                          ),
                         );
                   }
                 },

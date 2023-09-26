@@ -35,7 +35,10 @@ class BlocCajaComentariosEventoCrearComentario
     extends BlocCajaComentariosEvento {
   /// {@macro BlocCajaComentariosEventoCrearComentario}
   @override
-  const BlocCajaComentariosEventoCrearComentario();
+  const BlocCajaComentariosEventoCrearComentario({required this.idArticulo});
+
+  /// id del articulo al cual agregar el comentario
+  final int idArticulo;
 }
 
 /// {@template BlocCajaComentariosEventoCrearComentario}

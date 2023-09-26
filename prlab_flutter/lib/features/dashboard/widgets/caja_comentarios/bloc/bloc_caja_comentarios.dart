@@ -37,7 +37,6 @@ class BlocCajaComentarios
   ) async {
     emit(BlocCajaComentariosEstadoCargando.desde(state));
     try {
-      //!  verificar que anduve bien
       final comentarios = await client.comentario
           .listarComentariosPorArticulo(idArticulo: event.idArticulo)
         ..sort(
@@ -73,8 +72,10 @@ class BlocCajaComentarios
   ) async {
     emit(BlocCajaComentariosEstadoCargando.desde(state));
     try {
-      // !  verificar que anduve bien
-      final nuevoComentario = Comentario(textoComentario: state.comentario);
+      final nuevoComentario = Comentario(
+        textoComentario: state.comentario,
+        idEntregable: event.idArticulo,
+      );
 
       final respuesta =
           await client.comentario.crearComentario(comentario: nuevoComentario);
@@ -118,7 +119,6 @@ class BlocCajaComentarios
   ) async {
     emit(BlocCajaComentariosEstadoCargando.desde(state));
     try {
-      //! verificar que anduve bien
       final respuesta = await client.comentario
           .eliminarComentario(idComentario: event.idComentario);
 
@@ -162,21 +162,12 @@ class BlocCajaComentarios
 
       comentario.completado = !(comentario.completado ?? false);
 
-      //! todo verificar que anduve bien
       final respuesta = await client.comentario.modificarComentario(
         comentario: comentario,
       );
 
       if (respuesta) {
         final comentarios = List<Comentario>.from(state.comentarios);
-
-        for (int i = 0; i < comentarios.length; i++) {
-          if (comentarios[i].id == event.idComentario) {
-            comentarios[i] = comentarios[i]
-              ..completado = !(comentarios[i].completado ?? false);
-            break;
-          }
-        }
 
         emit(
           BlocCajaComentariosEstadoExitoso.desde(
