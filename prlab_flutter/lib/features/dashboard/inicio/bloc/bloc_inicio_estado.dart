@@ -11,13 +11,13 @@ class BlocInicioEstado extends Equatable {
 
   BlocInicioEstado.desde(
     BlocInicioEstado otro, {
-    List<Articulo>? listaArticulos,
+    List<EntregableArticulo>? listaArticulos,
   }) : this._(
           listaArticulos: listaArticulos ?? otro.listaArticulos,
         );
 
   /// Lista de articulos a mostrar bajo el encabezado del inicio
-  final List<Articulo> listaArticulos;
+  final List<EntregableArticulo> listaArticulos;
 
   @override
   List<Object> get props => [
