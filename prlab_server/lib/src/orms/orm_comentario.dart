@@ -75,16 +75,28 @@ class OrmComentario extends ORM {
   /// de datos. Si la inserción es exitosa, devuelve "verdadero". Si se produce
   /// una excepción durante la inserción, genera una excepción con el mensaje
   /// de error.
-  Future<bool> crearComentario(
+  Future<Comentario?> crearComentario(
     Session session, {
     required Comentario comentario,
   }) async {
     try {
       await Comentario.insert(
         session,
-        comentario,
+        comentario
+          ..fechaCreacion = DateTime.now()
+          ..ultimaModificacion = DateTime.now(),
       );
-      return true;
+      final response = await Comentario.findSingleRow(
+        session,
+        where: (t) => t.idAutor.equals(comentario.idAutor),
+        orderBy: ComentarioTable().ultimaModificacion,
+        orderDescending: true,
+      );
+
+      logger.finest(
+        'comentario ID: "${comentario.id}" creado exitosamente.',
+      );
+      return response;
     } on Exception catch (e) {
       throw Exception('$e');
     }
