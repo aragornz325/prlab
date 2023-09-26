@@ -12,25 +12,29 @@ import 'cliente.dart' as _i2;
 import 'comentario.dart' as _i3;
 import 'entregable.dart' as _i4;
 import 'entregable_articulo.dart' as _i5;
-import 'imagen_articulo.dart' as _i6;
-import 'informacion_de_contacto.dart' as _i7;
-import 'marca.dart' as _i8;
-import 'mensaje_registro.dart' as _i9;
-import 'organizacion.dart' as _i10;
-import 'periodista.dart' as _i11;
-import 'proyecto.dart' as _i12;
-import 'publicacion.dart' as _i13;
-import 'protocol.dart' as _i14;
-import 'package:prlab_client/src/protocol/cliente.dart' as _i15;
-import 'package:prlab_client/src/protocol/comentario.dart' as _i16;
-import 'package:prlab_client/src/protocol/entregable_articulo.dart' as _i17;
-import 'package:prlab_client/src/protocol/marca.dart' as _i18;
-import 'package:prlab_client/src/protocol/periodista.dart' as _i19;
-import 'package:serverpod_auth_client/module.dart' as _i20;
+import 'excepcion_de_endpoint.dart' as _i6;
+import 'excepciones/tipo_excepcion.dart' as _i7;
+import 'imagen_articulo.dart' as _i8;
+import 'informacion_de_contacto.dart' as _i9;
+import 'marca.dart' as _i10;
+import 'mensaje_registro.dart' as _i11;
+import 'organizacion.dart' as _i12;
+import 'periodista.dart' as _i13;
+import 'proyecto.dart' as _i14;
+import 'publicacion.dart' as _i15;
+import 'protocol.dart' as _i16;
+import 'package:prlab_client/src/protocol/cliente.dart' as _i17;
+import 'package:prlab_client/src/protocol/comentario.dart' as _i18;
+import 'package:prlab_client/src/protocol/entregable_articulo.dart' as _i19;
+import 'package:prlab_client/src/protocol/marca.dart' as _i20;
+import 'package:prlab_client/src/protocol/periodista.dart' as _i21;
+import 'package:serverpod_auth_client/module.dart' as _i22;
 export 'cliente.dart';
 export 'comentario.dart';
 export 'entregable.dart';
 export 'entregable_articulo.dart';
+export 'excepcion_de_endpoint.dart';
+export 'excepciones/tipo_excepcion.dart';
 export 'imagen_articulo.dart';
 export 'informacion_de_contacto.dart';
 export 'marca.dart';
@@ -71,29 +75,35 @@ class Protocol extends _i1.SerializationManager {
     if (t == _i5.EntregableArticulo) {
       return _i5.EntregableArticulo.fromJson(data, this) as T;
     }
-    if (t == _i6.ImagenArticulo) {
-      return _i6.ImagenArticulo.fromJson(data, this) as T;
+    if (t == _i6.ExcepcionCustom) {
+      return _i6.ExcepcionCustom.fromJson(data, this) as T;
     }
-    if (t == _i7.InformacionDeContacto) {
-      return _i7.InformacionDeContacto.fromJson(data, this) as T;
+    if (t == _i7.TipoExcepcion) {
+      return _i7.TipoExcepcion.fromJson(data) as T;
     }
-    if (t == _i8.Marca) {
-      return _i8.Marca.fromJson(data, this) as T;
+    if (t == _i8.ImagenArticulo) {
+      return _i8.ImagenArticulo.fromJson(data, this) as T;
     }
-    if (t == _i9.MensajeRegistro) {
-      return _i9.MensajeRegistro.fromJson(data, this) as T;
+    if (t == _i9.InformacionDeContacto) {
+      return _i9.InformacionDeContacto.fromJson(data, this) as T;
     }
-    if (t == _i10.Organizacion) {
-      return _i10.Organizacion.fromJson(data, this) as T;
+    if (t == _i10.Marca) {
+      return _i10.Marca.fromJson(data, this) as T;
     }
-    if (t == _i11.Periodista) {
-      return _i11.Periodista.fromJson(data, this) as T;
+    if (t == _i11.MensajeRegistro) {
+      return _i11.MensajeRegistro.fromJson(data, this) as T;
     }
-    if (t == _i12.Proyecto) {
-      return _i12.Proyecto.fromJson(data, this) as T;
+    if (t == _i12.Organizacion) {
+      return _i12.Organizacion.fromJson(data, this) as T;
     }
-    if (t == _i13.Publicacion) {
-      return _i13.Publicacion.fromJson(data, this) as T;
+    if (t == _i13.Periodista) {
+      return _i13.Periodista.fromJson(data, this) as T;
+    }
+    if (t == _i14.Proyecto) {
+      return _i14.Proyecto.fromJson(data, this) as T;
+    }
+    if (t == _i15.Publicacion) {
+      return _i15.Publicacion.fromJson(data, this) as T;
     }
     if (t == _i1.getType<_i2.Cliente?>()) {
       return (data != null ? _i2.Cliente.fromJson(data, this) : null) as T;
@@ -108,44 +118,51 @@ class Protocol extends _i1.SerializationManager {
       return (data != null ? _i5.EntregableArticulo.fromJson(data, this) : null)
           as T;
     }
-    if (t == _i1.getType<_i6.ImagenArticulo?>()) {
-      return (data != null ? _i6.ImagenArticulo.fromJson(data, this) : null)
+    if (t == _i1.getType<_i6.ExcepcionCustom?>()) {
+      return (data != null ? _i6.ExcepcionCustom.fromJson(data, this) : null)
           as T;
     }
-    if (t == _i1.getType<_i7.InformacionDeContacto?>()) {
+    if (t == _i1.getType<_i7.TipoExcepcion?>()) {
+      return (data != null ? _i7.TipoExcepcion.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i8.ImagenArticulo?>()) {
+      return (data != null ? _i8.ImagenArticulo.fromJson(data, this) : null)
+          as T;
+    }
+    if (t == _i1.getType<_i9.InformacionDeContacto?>()) {
       return (data != null
-          ? _i7.InformacionDeContacto.fromJson(data, this)
+          ? _i9.InformacionDeContacto.fromJson(data, this)
           : null) as T;
     }
-    if (t == _i1.getType<_i8.Marca?>()) {
-      return (data != null ? _i8.Marca.fromJson(data, this) : null) as T;
+    if (t == _i1.getType<_i10.Marca?>()) {
+      return (data != null ? _i10.Marca.fromJson(data, this) : null) as T;
     }
-    if (t == _i1.getType<_i9.MensajeRegistro?>()) {
-      return (data != null ? _i9.MensajeRegistro.fromJson(data, this) : null)
+    if (t == _i1.getType<_i11.MensajeRegistro?>()) {
+      return (data != null ? _i11.MensajeRegistro.fromJson(data, this) : null)
           as T;
     }
-    if (t == _i1.getType<_i10.Organizacion?>()) {
-      return (data != null ? _i10.Organizacion.fromJson(data, this) : null)
+    if (t == _i1.getType<_i12.Organizacion?>()) {
+      return (data != null ? _i12.Organizacion.fromJson(data, this) : null)
           as T;
     }
-    if (t == _i1.getType<_i11.Periodista?>()) {
-      return (data != null ? _i11.Periodista.fromJson(data, this) : null) as T;
+    if (t == _i1.getType<_i13.Periodista?>()) {
+      return (data != null ? _i13.Periodista.fromJson(data, this) : null) as T;
     }
-    if (t == _i1.getType<_i12.Proyecto?>()) {
-      return (data != null ? _i12.Proyecto.fromJson(data, this) : null) as T;
+    if (t == _i1.getType<_i14.Proyecto?>()) {
+      return (data != null ? _i14.Proyecto.fromJson(data, this) : null) as T;
     }
-    if (t == _i1.getType<_i13.Publicacion?>()) {
-      return (data != null ? _i13.Publicacion.fromJson(data, this) : null) as T;
+    if (t == _i1.getType<_i15.Publicacion?>()) {
+      return (data != null ? _i15.Publicacion.fromJson(data, this) : null) as T;
     }
-    if (t == _i1.getType<List<_i14.Cliente>?>()) {
+    if (t == _i1.getType<List<_i16.Cliente>?>()) {
       return (data != null
-          ? (data as List).map((e) => deserialize<_i14.Cliente>(e)).toList()
+          ? (data as List).map((e) => deserialize<_i16.Cliente>(e)).toList()
           : null) as dynamic;
     }
-    if (t == _i1.getType<List<_i14.EntregableArticulo>?>()) {
+    if (t == _i1.getType<List<_i16.EntregableArticulo>?>()) {
       return (data != null
           ? (data as List)
-              .map((e) => deserialize<_i14.EntregableArticulo>(e))
+              .map((e) => deserialize<_i16.EntregableArticulo>(e))
               .toList()
           : null) as dynamic;
     }
@@ -159,21 +176,21 @@ class Protocol extends _i1.SerializationManager {
           ? (data as List).map((e) => deserialize<String>(e)).toList()
           : null) as dynamic;
     }
-    if (t == List<_i15.Cliente>) {
-      return (data as List).map((e) => deserialize<_i15.Cliente>(e)).toList()
+    if (t == List<_i17.Cliente>) {
+      return (data as List).map((e) => deserialize<_i17.Cliente>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i16.Comentario>) {
-      return (data as List).map((e) => deserialize<_i16.Comentario>(e)).toList()
+    if (t == List<_i18.Comentario>) {
+      return (data as List).map((e) => deserialize<_i18.Comentario>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i17.EntregableArticulo>) {
+    if (t == List<_i19.EntregableArticulo>) {
       return (data as List)
-          .map((e) => deserialize<_i17.EntregableArticulo>(e))
+          .map((e) => deserialize<_i19.EntregableArticulo>(e))
           .toList() as dynamic;
     }
-    if (t == List<_i18.Marca>) {
-      return (data as List).map((e) => deserialize<_i18.Marca>(e)).toList()
+    if (t == List<_i20.Marca>) {
+      return (data as List).map((e) => deserialize<_i20.Marca>(e)).toList()
           as dynamic;
     }
     if (t == List<List<dynamic>>) {
@@ -184,8 +201,8 @@ class Protocol extends _i1.SerializationManager {
       return (data as List).map((e) => deserialize<dynamic>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i19.Periodista>) {
-      return (data as List).map((e) => deserialize<_i19.Periodista>(e)).toList()
+    if (t == List<_i21.Periodista>) {
+      return (data as List).map((e) => deserialize<_i21.Periodista>(e)).toList()
           as dynamic;
     }
     if (t == _i1.getType<List<int>?>()) {
@@ -254,7 +271,7 @@ class Protocol extends _i1.SerializationManager {
           : null) as dynamic;
     }
     try {
-      return _i20.Protocol().deserialize<T>(data, t);
+      return _i22.Protocol().deserialize<T>(data, t);
     } catch (_) {}
     return super.deserialize<T>(data, t);
   }
@@ -262,7 +279,7 @@ class Protocol extends _i1.SerializationManager {
   @override
   String? getClassNameForObject(Object data) {
     String? className;
-    className = _i20.Protocol().getClassNameForObject(data);
+    className = _i22.Protocol().getClassNameForObject(data);
     if (className != null) {
       return 'serverpod_auth.$className';
     }
@@ -278,28 +295,34 @@ class Protocol extends _i1.SerializationManager {
     if (data is _i5.EntregableArticulo) {
       return 'EntregableArticulo';
     }
-    if (data is _i6.ImagenArticulo) {
+    if (data is _i6.ExcepcionCustom) {
+      return 'ExcepcionCustom';
+    }
+    if (data is _i7.TipoExcepcion) {
+      return 'TipoExcepcion';
+    }
+    if (data is _i8.ImagenArticulo) {
       return 'ImagenArticulo';
     }
-    if (data is _i7.InformacionDeContacto) {
+    if (data is _i9.InformacionDeContacto) {
       return 'InformacionDeContacto';
     }
-    if (data is _i8.Marca) {
+    if (data is _i10.Marca) {
       return 'Marca';
     }
-    if (data is _i9.MensajeRegistro) {
+    if (data is _i11.MensajeRegistro) {
       return 'MensajeRegistro';
     }
-    if (data is _i10.Organizacion) {
+    if (data is _i12.Organizacion) {
       return 'Organizacion';
     }
-    if (data is _i11.Periodista) {
+    if (data is _i13.Periodista) {
       return 'Periodista';
     }
-    if (data is _i12.Proyecto) {
+    if (data is _i14.Proyecto) {
       return 'Proyecto';
     }
-    if (data is _i13.Publicacion) {
+    if (data is _i15.Publicacion) {
       return 'Publicacion';
     }
     return super.getClassNameForObject(data);
@@ -309,7 +332,7 @@ class Protocol extends _i1.SerializationManager {
   dynamic deserializeByClassName(Map<String, dynamic> data) {
     if (data['className'].startsWith('serverpod_auth.')) {
       data['className'] = data['className'].substring(15);
-      return _i20.Protocol().deserializeByClassName(data);
+      return _i22.Protocol().deserializeByClassName(data);
     }
     if (data['className'] == 'Cliente') {
       return deserialize<_i2.Cliente>(data['data']);
@@ -323,29 +346,35 @@ class Protocol extends _i1.SerializationManager {
     if (data['className'] == 'EntregableArticulo') {
       return deserialize<_i5.EntregableArticulo>(data['data']);
     }
+    if (data['className'] == 'ExcepcionCustom') {
+      return deserialize<_i6.ExcepcionCustom>(data['data']);
+    }
+    if (data['className'] == 'TipoExcepcion') {
+      return deserialize<_i7.TipoExcepcion>(data['data']);
+    }
     if (data['className'] == 'ImagenArticulo') {
-      return deserialize<_i6.ImagenArticulo>(data['data']);
+      return deserialize<_i8.ImagenArticulo>(data['data']);
     }
     if (data['className'] == 'InformacionDeContacto') {
-      return deserialize<_i7.InformacionDeContacto>(data['data']);
+      return deserialize<_i9.InformacionDeContacto>(data['data']);
     }
     if (data['className'] == 'Marca') {
-      return deserialize<_i8.Marca>(data['data']);
+      return deserialize<_i10.Marca>(data['data']);
     }
     if (data['className'] == 'MensajeRegistro') {
-      return deserialize<_i9.MensajeRegistro>(data['data']);
+      return deserialize<_i11.MensajeRegistro>(data['data']);
     }
     if (data['className'] == 'Organizacion') {
-      return deserialize<_i10.Organizacion>(data['data']);
+      return deserialize<_i12.Organizacion>(data['data']);
     }
     if (data['className'] == 'Periodista') {
-      return deserialize<_i11.Periodista>(data['data']);
+      return deserialize<_i13.Periodista>(data['data']);
     }
     if (data['className'] == 'Proyecto') {
-      return deserialize<_i12.Proyecto>(data['data']);
+      return deserialize<_i14.Proyecto>(data['data']);
     }
     if (data['className'] == 'Publicacion') {
-      return deserialize<_i13.Publicacion>(data['data']);
+      return deserialize<_i15.Publicacion>(data['data']);
     }
     return super.deserializeByClassName(data);
   }
