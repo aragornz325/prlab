@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:intl/intl.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/bloc/bloc_caja_comentarios.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/popup/popup_opciones_comentario.dart';
@@ -39,7 +40,7 @@ class PRComentario extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: max(5.ph, 5.sh)),
                 child: CircleAvatar(
                   foregroundImage: NetworkImage(
-                    comentario.linkDeImagen,
+                    comentario.idAutor.toString(),
                   ),
                   backgroundColor: colores.secondary,
                   foregroundColor: colores.secondary,
@@ -63,8 +64,9 @@ class PRComentario extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Text(
-                                      '${comentario.nombre}'
-                                      ' ${comentario.apellido}',
+                                      // TODO(anyone) : reemplazar por el nombre y apellido del usuario
+                                      '${comentario.textoComentario}'
+                                      ' ${comentario.textoComentario}',
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
@@ -75,7 +77,9 @@ class PRComentario extends StatelessWidget {
                                     ),
                                     SizedBox(width: 5.pw),
                                     Text(
-                                      comentario.nombreDeLaCompania,
+                                      // TODO(anyone) : reemplazar por la
+                                      // compania del autor del comentario
+                                      '(Company)',
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       textAlign: TextAlign.start,
@@ -94,8 +98,8 @@ class PRComentario extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              DateFormat("dd/MM/yyyy, HH:mm")
-                                  .format(comentario.fechaDeComentarioEnviado),
+                              DateFormat("dd/MM/yyyy, HH:mm").format(
+                                  comentario.fechaCreacion ?? DateTime.now()),
                               style: TextStyle(
                                 color: colores.secondary,
                                 fontSize: 12.pf,
@@ -107,15 +111,15 @@ class PRComentario extends StatelessWidget {
                               onPressed: () {
                                 context.read<BlocCajaComentarios>().add(
                                       BlocCajaComentariosEventoAlternarAprobacionComentario(
-                                        idComentario: comentario.idComentario,
+                                        idComentario: comentario.id ?? 0,
                                       ),
                                     );
                               },
                               icon: Icon(
-                                comentario.estaAprobado
+                                (comentario.completado ?? false)
                                     ? Icons.thumb_up
                                     : Icons.thumb_up_outlined,
-                                color: comentario.estaAprobado
+                                color: (comentario.completado ?? false)
 
                                     /// TODO(anyone): agregar color al theme
                                     ? const Color(0xff1fde00)
@@ -124,7 +128,7 @@ class PRComentario extends StatelessWidget {
                             ),
                             SizedBox(width: 10.pw),
                             PopUpOpcionesComentario(
-                              idComentario: comentario.idComentario,
+                              idComentario: comentario.id ?? 0,
                             ),
                           ],
                         ),
@@ -134,7 +138,7 @@ class PRComentario extends StatelessWidget {
                   SizedBox(
                     width: 451.pw,
                     child: Text(
-                      comentario.comentario,
+                      comentario.textoComentario,
                       style: TextStyle(
                         color: colores.tertiary,
                         fontSize: 12.pf,
@@ -149,64 +153,11 @@ class PRComentario extends StatelessWidget {
           Divider(
             height: max(1.ph, 1.sh),
 
-            /// TODO(anyone): agregar color al theme
+            // TODO(anyone): agregar color al theme
             color: const Color(0xffefefef),
           ),
         ],
       ),
-    );
-  }
-}
-
-/// TODO(anyone): borrar es un modelo de ejemplo
-class Comentario {
-  const Comentario({
-    required this.linkDeImagen,
-    required this.nombre,
-    required this.apellido,
-    required this.nombreDeLaCompania,
-    required this.fechaDeComentarioEnviado,
-    required this.estaAprobado,
-    required this.idComentario,
-    required this.comentario,
-  });
-
-  final int idComentario;
-
-  final String linkDeImagen;
-
-  final String nombre;
-
-  final String apellido;
-
-  final String nombreDeLaCompania;
-
-  final DateTime fechaDeComentarioEnviado;
-
-  final bool estaAprobado;
-
-  final String comentario;
-
-  Comentario copyWith({
-    int? idComentario,
-    String? linkDeImagen,
-    String? nombre,
-    String? apellido,
-    String? nombreDeLaCompania,
-    DateTime? fechaDeComentarioEnviado,
-    bool? estaAprobado,
-    String? comentario,
-  }) {
-    return Comentario(
-      idComentario: idComentario ?? this.idComentario,
-      linkDeImagen: linkDeImagen ?? this.linkDeImagen,
-      nombre: nombre ?? this.nombre,
-      apellido: apellido ?? this.apellido,
-      nombreDeLaCompania: nombreDeLaCompania ?? this.nombreDeLaCompania,
-      fechaDeComentarioEnviado:
-          fechaDeComentarioEnviado ?? this.fechaDeComentarioEnviado,
-      estaAprobado: estaAprobado ?? this.estaAprobado,
-      comentario: comentario ?? this.comentario,
     );
   }
 }

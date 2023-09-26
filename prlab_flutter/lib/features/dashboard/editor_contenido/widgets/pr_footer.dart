@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
+import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popups.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/caja_comentario.dart';
 
 /// {@template PRFooter}
@@ -25,6 +26,7 @@ class PRFooter extends StatelessWidget {
         if (articulo != null) {
           return SizedBox(
             height: max(50.ph, 50.sh),
+            width: 1000.pw,
             child: Row(
               children: [
                 InkWell(
@@ -162,6 +164,8 @@ class PRFooter extends StatelessWidget {
                     ],
                   ),
                 ),
+                const Spacer(),
+                const PopUpMenuOpcionesPublicar(),
               ],
             ),
           );

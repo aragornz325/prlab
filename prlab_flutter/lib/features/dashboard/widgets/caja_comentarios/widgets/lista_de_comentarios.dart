@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/widgets/widgets.dart';
 
 /// {@template ListaDeComentarios}

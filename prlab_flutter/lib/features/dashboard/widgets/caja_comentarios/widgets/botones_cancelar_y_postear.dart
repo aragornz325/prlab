@@ -30,8 +30,7 @@ class BotonesCancelarYPostear extends StatelessWidget {
               //TODO(anyone): agregarle funcionalidad
             },
             texto: l10n.commonCancel,
-            estaHabilitado:
-                true, // TODO(anyone): verificar que haya algo en el textfield
+            estaHabilitado: true,
             width: 100,
             height: max(30.ph, 30.sh),
           ),

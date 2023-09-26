@@ -3,8 +3,9 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/widgets/pr_comentario.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:meta/meta.dart';
+import 'package:prlab_flutter/utilidades/utilidades.dart';
 
 part 'bloc_caja_comentarios_estado.dart';
 part 'bloc_caja_comentarios_evento.dart';
@@ -36,79 +37,13 @@ class BlocCajaComentarios
   ) async {
     emit(BlocCajaComentariosEstadoCargando.desde(state));
     try {
-      /// TODO(anyone): sacar y reemplazar por el llamado al back
-      final comentarios = <Comentario>[
-        Comentario(
-            linkDeImagen: '',
-            apellido: 'Completo',
-            estaAprobado: false,
-            fechaDeComentarioEnviado: DateTime.now(),
-            nombre: 'Nombre',
-            nombreDeLaCompania: 'flutter',
-            idComentario: 1,
-            comentario: ''),
-        Comentario(
-            linkDeImagen: '',
-            apellido: 'Completo',
-            estaAprobado: false,
-            fechaDeComentarioEnviado: DateTime.now(),
-            nombre: 'Nombre',
-            nombreDeLaCompania: 'flutter',
-            idComentario: 2,
-            comentario: ''),
-        Comentario(
-            linkDeImagen: '',
-            apellido: 'Completo',
-            estaAprobado: false,
-            fechaDeComentarioEnviado: DateTime.now(),
-            nombre: 'Nombre',
-            nombreDeLaCompania: 'flutter',
-            idComentario: 3,
-            comentario: ''),
-        Comentario(
-            linkDeImagen: '',
-            apellido: 'Completo',
-            estaAprobado: false,
-            fechaDeComentarioEnviado: DateTime.now(),
-            nombre: 'Nombre',
-            nombreDeLaCompania: 'flutter',
-            idComentario: 4,
-            comentario: ''),
-        Comentario(
-            linkDeImagen: '',
-            apellido: 'Completo',
-            estaAprobado: false,
-            fechaDeComentarioEnviado: DateTime.now(),
-            nombre: 'Nombre',
-            nombreDeLaCompania: 'flutter',
-            idComentario: 5,
-            comentario: ''),
-        Comentario(
-            linkDeImagen: '',
-            apellido: 'Completo',
-            estaAprobado: true,
-            fechaDeComentarioEnviado: DateTime.now(),
-            nombre: 'Nombre',
-            nombreDeLaCompania: 'flutter',
-            idComentario: 6,
-            comentario:
-                'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.'),
-        Comentario(
-            linkDeImagen: '',
-            apellido: 'Completo',
-            estaAprobado: true,
-            fechaDeComentarioEnviado: DateTime.now(),
-            nombre: 'Nombre',
-            nombreDeLaCompania: 'flutter',
-            idComentario: 7,
-            comentario:
-                'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.'),
-      ]..sort(
-          (a, b) =>
-              a.fechaDeComentarioEnviado.compareTo(b.fechaDeComentarioEnviado),
+      //!  verificar que anduve bien
+      final comentarios = await client.comentario
+          .listarComentariosPorArticulo(idArticulo: event.idArticulo)
+        ..sort(
+          (a, b) => (a.fechaCreacion ?? DateTime.now())
+              .compareTo(b.fechaCreacion ?? DateTime.now()),
         );
-
-      // TODO(anyone): hacer funcion para traer todos los comentario
 
       emit(
         BlocCajaComentariosEstadoExitoso.desde(
@@ -138,33 +73,28 @@ class BlocCajaComentarios
   ) async {
     emit(BlocCajaComentariosEstadoCargando.desde(state));
     try {
-      // TODO(anyone): hacer funcion para crear un nuevo comentario
-      // decirle al back que retorne el comentario para reemplazar por los
-      // parámetros del nuevo comentario
+      // !  verificar que anduve bien
+      final nuevoComentario = Comentario(textoComentario: state.comentario);
 
-      final nuevoComentario = Comentario(
-        idComentario: 0,
-        linkDeImagen: '',
-        nombre: 'Nombre',
-        apellido: 'Apellido',
-        nombreDeLaCompania: 'Flutter',
-        fechaDeComentarioEnviado: DateTime.now(),
-        estaAprobado: false,
-        comentario: state.comentario,
-      );
-      final comentarios = <Comentario>[
-        nuevoComentario,
-        ...state.comentarios,
-      ];
+      final respuesta =
+          await client.comentario.crearComentario(comentario: nuevoComentario);
+      if (respuesta) {
+        final comentarios = <Comentario>[
+          nuevoComentario,
+          ...state.comentarios,
+        ];
 
-      emit(BlocCajaComentariosEstadoComentarioCreadoExitosamente.desde(state));
+        emit(
+          BlocCajaComentariosEstadoComentarioCreadoExitosamente.desde(state),
+        );
 
-      emit(
-        BlocCajaComentariosEstadoExitoso.desde(
-          state,
-          comentarios: comentarios,
-        ),
-      );
+        emit(
+          BlocCajaComentariosEstadoExitoso.desde(
+            state,
+            comentarios: comentarios,
+          ),
+        );
+      }
     } catch (e, st) {
       emit(
         BlocCajaComentariosEstadoFallido.desde(
@@ -187,18 +117,23 @@ class BlocCajaComentarios
   ) async {
     emit(BlocCajaComentariosEstadoCargando.desde(state));
     try {
-      // TODO(anyone): hacer funcion para eliminar un nuevo comentario
-      final comentarios = List<Comentario>.from(state.comentarios)
-        ..removeWhere(
-          (c) => c.idComentario == event.idComentario,
-        );
+      //! verificar que anduve bien
+      final respuesta = await client.comentario
+          .eliminarComentario(idComentario: event.idComentario);
 
-      emit(
-        BlocCajaComentariosEstadoExitoso.desde(
-          state,
-          comentarios: comentarios,
-        ),
-      );
+      if (respuesta) {
+        final comentarios = List<Comentario>.from(state.comentarios)
+          ..removeWhere(
+            (c) => c.id == event.idComentario,
+          );
+
+        emit(
+          BlocCajaComentariosEstadoExitoso.desde(
+            state,
+            comentarios: comentarios,
+          ),
+        );
+      }
     } catch (e, st) {
       emit(
         BlocCajaComentariosEstadoFallido.desde(
@@ -221,25 +156,34 @@ class BlocCajaComentarios
   ) async {
     emit(BlocCajaComentariosEstadoCargando.desde(state));
     try {
-      // TODO(anyone): hacer funcion para aprobar un nuevo comentario
-      // decirle al back que hagan un copywith de comentario
+      final comentario = List<Comentario>.from(state.comentarios)
+          .firstWhere((c) => c.id == event.idComentario);
 
-      final comentarios = List<Comentario>.from(state.comentarios);
-      // TODO(anyone): se puede mejorar de otra forma no me anduvo jeje
-      for (int i = 0; i < comentarios.length; i++) {
-        if (comentarios[i].idComentario == event.idComentario) {
-          comentarios[i] = comentarios[i]
-              .copyWith(estaAprobado: !comentarios[i].estaAprobado);
-          break;
-        }
-      }
+      comentario.completado = !(comentario.completado ?? false);
 
-      emit(
-        BlocCajaComentariosEstadoExitoso.desde(
-          state,
-          comentarios: comentarios,
-        ),
+      //! todo verificar que anduve bien
+      final respuesta = await client.comentario.modificarComentario(
+        comentario: comentario,
       );
+
+      if (respuesta) {
+        final comentarios = List<Comentario>.from(state.comentarios);
+
+        for (int i = 0; i < comentarios.length; i++) {
+          if (comentarios[i].id == event.idComentario) {
+            comentarios[i] = comentarios[i]
+              ..completado = !(comentarios[i].completado ?? false);
+            break;
+          }
+        }
+
+        emit(
+          BlocCajaComentariosEstadoExitoso.desde(
+            state,
+            comentarios: comentarios,
+          ),
+        );
+      }
     } catch (e, st) {
       emit(
         BlocCajaComentariosEstadoFallido.desde(
