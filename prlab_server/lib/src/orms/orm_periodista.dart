@@ -65,10 +65,7 @@ class OrmPeriodista extends ORM {
       ..remove('idRol')
       ..remove('idMedio')
       ..remove('idCiudad')
-      ..remove('idPais')
-      ..remove('ultimaModificacion')
-      ..remove('activo')
-      ..remove('fechaCreacion');
+      ..remove('idPais');
 
     var consulta = '''
 SELECT 
@@ -77,7 +74,7 @@ SELECT
   j."nombreCompleto", 
   r."rol", 
   m."medio", 
-  j."bio", 
+  j."biografia", 
   (
         SELECT ARRAY_AGG(t."tema" ORDER BY t."id")
         FROM temas_periodistas tj
@@ -93,8 +90,7 @@ SELECT
         FROM idiomas_periodistas lj
         LEFT JOIN idiomas l ON lj."idIdioma" = l."id"
         WHERE lj."idPeriodista" = j."id"
-    ) AS "idiomas", 
-  j."redesSociales"
+    ) AS "idiomas"
 FROM
   periodistas j
   INNER JOIN roles r ON j."idRol" = r.id
