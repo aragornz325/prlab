@@ -15,6 +15,7 @@ class Excepciones extends ExcepcionCustom {
     String? mensaje,
   }) : super(
           tipoDeError: TipoExcepcion.solicitudIncorrecta,
+          codigoError: 400,
           titulo: titulo ?? 'Error Code: BAD_REQUEST',
           mensaje: mensaje ??
               'It seems that the request is not valid, please try again.',
@@ -31,6 +32,7 @@ class Excepciones extends ExcepcionCustom {
     String? mensaje,
   }) : super(
           tipoDeError: TipoExcepcion.noAutorizado,
+          codigoError: 401,
           titulo: titulo ?? 'Error Code: UNAUTHORIZED',
           mensaje: mensaje ??
               'It seems that you are not authorized to access this resource, '
@@ -48,6 +50,7 @@ class Excepciones extends ExcepcionCustom {
     String? mensaje,
   }) : super(
           tipoDeError: TipoExcepcion.prohibido,
+          codigoError: 403,
           titulo: titulo ?? 'Error Code: FORBIDDEN',
           mensaje: mensaje ??
               'It seems that you are not authorized to access this resource, '
@@ -65,6 +68,7 @@ class Excepciones extends ExcepcionCustom {
     String? mensaje,
   }) : super(
           tipoDeError: TipoExcepcion.noEncontrado,
+          codigoError: 404,
           titulo: titulo ?? 'Error Code: NOT_FOUND',
           mensaje: mensaje ??
               'It seems that the resource you are trying to access is not '
@@ -84,6 +88,7 @@ class Excepciones extends ExcepcionCustom {
     String? mensaje,
   }) : super(
           tipoDeError: TipoExcepcion.sinConexion,
+          codigoError: 561,
           titulo: titulo ?? 'Error Code: NO_CONNECTIVITY',
           mensaje: mensaje ??
               'It seems that your device is not connected to the network, '
@@ -103,6 +108,7 @@ class Excepciones extends ExcepcionCustom {
     String? mensaje,
   }) : super(
           tipoDeError: TipoExcepcion.parseo,
+          codigoError: 560,
           titulo: titulo ?? 'Error Code: DATA_PARSING',
           mensaje: mensaje ??
               'It seems that the data you are trying to parse is not '
@@ -120,6 +126,7 @@ class Excepciones extends ExcepcionCustom {
     String? mensaje,
   }) : super(
           tipoDeError: TipoExcepcion.desconocido,
+          codigoError: 570,
           titulo: titulo ?? 'Error Code: UNKNOWN',
           mensaje: mensaje ??
               'It seems that the server is not reachable at the moment, try '

@@ -4,3 +4,4 @@ fields:
   mensaje: String
   tipoDeError: TipoExcepcion
   stackTrace: String
+  codigoError: int

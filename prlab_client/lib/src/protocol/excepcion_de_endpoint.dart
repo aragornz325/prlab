@@ -16,6 +16,7 @@ class ExcepcionCustom extends _i1.SerializableEntity
     required this.mensaje,
     required this.tipoDeError,
     required this.stackTrace,
+    required this.codigoError,
   });
 
   factory ExcepcionCustom.fromJson(
@@ -31,6 +32,8 @@ class ExcepcionCustom extends _i1.SerializableEntity
           .deserialize<_i2.TipoExcepcion>(jsonSerialization['tipoDeError']),
       stackTrace: serializationManager
           .deserialize<String>(jsonSerialization['stackTrace']),
+      codigoError: serializationManager
+          .deserialize<int>(jsonSerialization['codigoError']),
     );
   }
 
@@ -42,6 +45,8 @@ class ExcepcionCustom extends _i1.SerializableEntity
 
   String stackTrace;
 
+  int codigoError;
+
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -49,6 +54,7 @@ class ExcepcionCustom extends _i1.SerializableEntity
       'mensaje': mensaje,
       'tipoDeError': tipoDeError,
       'stackTrace': stackTrace,
+      'codigoError': codigoError,
     };
   }
 }
