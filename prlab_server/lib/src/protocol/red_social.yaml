@@ -1,0 +1,10 @@
+class: RedSocial
+table: redes_sociales_periodistas
+fields:
+  idRedSocial: int?
+  idUsuario: int?
+  nombreDeUsuario: String?
+  urlPerfil: String?
+  ultimaModificacion: DateTime?, database
+  activo: bool?, database
+  fechaCreacion: DateTime?, database
