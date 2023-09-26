@@ -36,91 +36,27 @@ class PRBarraSeleccionPeriodo extends StatefulWidget {
 class _PRBarraSeleccionPeriodoState extends State<PRBarraSeleccionPeriodo> {
   Periodo periodo = Periodo.hoy;
 
-// TODO(Seba): reemplazar constantes por l10n
+// TODO(Seba): reemplazar texto por l10n de tu enum
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: [
-        TagPeriodo(
-          periodo: Periodo.hoy,
-          onTap: (value) {
-            setState(() {
-              periodo = value;
-            });
-          },
-          esPrimero: true,
-          texto: 'Today',
-          estaSeleccionado: periodo.esHoy,
-        ),
-        const DividerPeriodo(),
-        TagPeriodo(
-          periodo: Periodo.ayer,
-          onTap: (value) {
-            setState(() {
-              periodo = value;
-            });
-          },
-          texto: 'Yesterday',
-          estaSeleccionado: periodo.esAyer,
-        ),
-        const DividerPeriodo(),
-        TagPeriodo(
-          periodo: Periodo.ultimaSemana,
-          onTap: (value) {
-            setState(() {
-              periodo = value;
-            });
-          },
-          texto: 'Last 7 days',
-          estaSeleccionado: periodo.esUltimaSemana,
-        ),
-        const DividerPeriodo(),
-        TagPeriodo(
-          periodo: Periodo.ultimoMes,
-          onTap: (value) {
-            setState(() {
-              periodo = value;
-            });
-          },
-          texto: 'Last 30 days',
-          estaSeleccionado: periodo.esUltimoMes,
-        ),
-        const DividerPeriodo(),
-        TagPeriodo(
-          periodo: Periodo.ultimosTresMeses,
-          onTap: (value) {
-            setState(() {
-              periodo = value;
-            });
-          },
-          texto: 'Last 3 months',
-          estaSeleccionado: periodo.esUltimosTresMeses,
-        ),
-        const DividerPeriodo(),
-        TagPeriodo(
-          periodo: Periodo.ultimosSeisMeses,
-          onTap: (value) {
-            setState(() {
-              periodo = value;
-            });
-          },
-          texto: 'Last 6 months',
-          estaSeleccionado: periodo.esUltimosSeisMeses,
-        ),
-        const DividerPeriodo(),
-        TagPeriodo(
-          periodo: Periodo.ultimosDoceMeses,
-          onTap: (value) {
-            setState(() {
-              periodo = value;
-            });
-          },
-          esUltimo: true,
-          texto: 'Last 12 months',
-          estaSeleccionado: periodo.esUltimosDoceMeses,
-        ),
-      ],
+      children: Periodo.values
+          .map(
+            (p) => TagPeriodo(
+              texto: p.name,
+              estaSeleccionado: periodo == p,
+              onTap: (value) {
+                setState(() {
+                  periodo = value;
+                });
+              },
+              periodo: p,
+              esPrimero: p.esHoy,
+              esUltimo: p.esUltimosDoceMeses,
+            ),
+          )
+          .toList(),
     );
   }
 }
