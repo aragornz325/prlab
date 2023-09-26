@@ -21,10 +21,22 @@ class OrmComentario extends ORM {
     Session session, {
     required int idArticulo,
   }) async {
-    return await Comentario.find(
-      session,
-      where: (t) => t.idEntregable.equals(idArticulo),
-    );
+    final respuesta = await ejecutarConsultaSql(session, '''
+    SELECT c."textoComentario",
+           cl."nombre",
+           cl."apellido"
+    FROM 
+        comentarios c
+    JOIN clientes cl ON c."idAutor" = cl."id"
+    WHERE c."idEntregable" = $idArticulo
+     
+    ''', clavesMapaModeloDb: [
+      'textoComentario',
+      'nombre',
+      'apellido',
+    ]);
+
+    return respuesta.map((e) => Comentario.fromJson(e, Protocol())).toList();
   }
 
   ///Lita todos los comentarios de la db
