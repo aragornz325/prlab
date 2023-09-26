@@ -78,9 +78,10 @@ class BlocCajaComentarios
 
       final respuesta =
           await client.comentario.crearComentario(comentario: nuevoComentario);
-      if (respuesta) {
+
+      if (respuesta != null) {
         final comentarios = <Comentario>[
-          nuevoComentario,
+          respuesta,
           ...state.comentarios,
         ];
 
