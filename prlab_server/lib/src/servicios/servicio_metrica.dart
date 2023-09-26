@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:math';
 
@@ -7,17 +6,18 @@ import 'package:prlab_server/src/servicio.dart';
 import 'package:similar_web/similar_web.dart';
 
 class ServicioMetrica extends Servicio {
-  Future<TotalVisitsResponse> getTotalVisits(String domainName, {
-  DateTime? startDate,
-  DateTime? endDate,
-  String? country = 'world',
-  Granularity? granularity = Granularity.monthly,
-  bool? mainDomainOnly = false,
-  Format? format = Format.json,
-  bool? showVerified = false,
-  bool? mtd = false,
-  bool? engagedOnly = false,
-}) async {
+  Future<TotalVisitsResponse> getTotalVisits(
+    String domainName, {
+    String country = 'world',
+    Granularity granularity = Granularity.monthly,
+    DateTime? startDate,
+    DateTime? endDate,
+    bool? mainDomainOnly = false,
+    Format? format = Format.json,
+    bool? showVerified = false,
+    bool? mtd = false,
+    bool? engagedOnly = false,
+  }) async {
     similarWeb.response = Response(
       requestOptions: RequestOptions(),
       data: jsonEncode({
@@ -52,6 +52,17 @@ class ServicioMetrica extends Servicio {
       statusMessage: 'OK',
     );
 
-    return await similarWeb.getTotalVisits(domainName);
+    return await similarWeb.getTotalVisits(
+      domainName,
+      country: country,
+      granularity: granularity,
+      startDate: startDate,
+      endDate: endDate,
+      mainDomainOnly: mainDomainOnly,
+      format: format,
+      showVerified: showVerified,
+      mtd: mtd,
+      engagedOnly: engagedOnly
+    );
   }
 }
