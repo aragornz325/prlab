@@ -43,17 +43,17 @@ class BlocListaArticulosYRecortes extends Bloc<
   ) async {
     emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
 
-    var articulos = <EntregableArticulo>[];
+    var articulos = <Articulo>[];
 
     try {
       final idMarca = event.idMarca;
 
       if (idMarca != null) {
-        articulos = await client.entregableArticulo.listarArticulosPorMarca(
+        articulos = await client.articulo.listarArticulosPorMarca(
           idMarca,
         );
       } else {
-        articulos = await client.entregableArticulo.traerArticulosPorUsuario();
+        articulos = await client.articulo.traerArticulosPorUsuario();
       }
 
       emit(
@@ -142,10 +142,9 @@ class BlocListaArticulosYRecortes extends Bloc<
     try {
       // TODO(anyone):revisar codigo seguramente se pueda mejorar
       // TODO(anyone):el buscador lo tiene que manejar el back por la paginacion
-      final articulos = List<EntregableArticulo>.from(state.articulos);
+      final articulos = List<Articulo>.from(state.articulos);
 
-      var articulosFiltrados =
-          List<EntregableArticulo>.from(state.articulosFiltrados);
+      var articulosFiltrados = List<Articulo>.from(state.articulosFiltrados);
 
       if (event.nombreDelArticuloAFiltrar != null &&
           event.nombreDelArticuloAFiltrar != '') {
@@ -189,11 +188,10 @@ class BlocListaArticulosYRecortes extends Bloc<
     emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
 
     try {
-      final listaArticulos =
-          List<EntregableArticulo>.from(state.articulosFiltrados)
-            ..removeWhere((e) => e.id == event.idArticulo);
+      final listaArticulos = List<Articulo>.from(state.articulosFiltrados)
+        ..removeWhere((e) => e.id == event.idArticulo);
 
-      await client.entregableArticulo.eliminarArticulo(
+      await client.articulo.eliminarArticulo(
         event.idArticulo,
       );
 

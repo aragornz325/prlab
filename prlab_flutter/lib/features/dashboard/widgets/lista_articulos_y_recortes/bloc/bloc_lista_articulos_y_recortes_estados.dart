@@ -19,8 +19,8 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
 
   BlocListaArticulosYRecortesEstado.desde(
     BlocListaArticulosYRecortesEstado otro, {
-    List<EntregableArticulo>? articulos,
-    List<EntregableArticulo>? articulosFiltrados,
+    List<Articulo>? articulos,
+    List<Articulo>? articulosFiltrados,
     int? index,
     bool? borrador,
     bool? comentario,
@@ -35,10 +35,10 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
         );
 
   /// Lista de los articulos
-  final List<EntregableArticulo> articulos;
+  final List<Articulo> articulos;
 
   /// Lista de los articulos para filtrar
-  final List<EntregableArticulo> articulosFiltrados;
+  final List<Articulo> articulosFiltrados;
 
   /// Index de la vista seleccionada
   final int index;

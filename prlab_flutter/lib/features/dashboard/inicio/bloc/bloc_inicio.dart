@@ -1,10 +1,8 @@
 import 'dart:developer';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_client/prlab_client.dart';
-
 part 'bloc_inicio_estado.dart';
 part 'bloc_inicio_evento.dart';
 
@@ -35,35 +33,29 @@ class BlocInicio extends Bloc<BlocInicioEvento, BlocInicioEstado> {
           BlocInicioEstadoExitosoGeneral.desde(
             state,
             listaArticulos: [
-              EntregableArticulo(
+              Articulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
                 ultimaModificacion: DateTime.now(),
-                fechaLanzamiento: DateTime.now(),
               ),
-              EntregableArticulo(
+              Articulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
                 ultimaModificacion: DateTime.now(),
-                fechaLanzamiento: DateTime.now(),
               ),
-              EntregableArticulo(
+              Articulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
                 ultimaModificacion: DateTime.now(),
-                fechaLanzamiento: DateTime.now(),
               ),
-              EntregableArticulo(
+              Articulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
                 ultimaModificacion: DateTime.now(),
-                fechaLanzamiento: DateTime.now(),
               ),
-              EntregableArticulo(
+              Articulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
                 ultimaModificacion: DateTime.now(),
-                fechaLanzamiento: DateTime.now(),
               ),
-              EntregableArticulo(
+              Articulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
                 ultimaModificacion: DateTime.now(),
-                fechaLanzamiento: DateTime.now(),
               ),
             ],
           ),

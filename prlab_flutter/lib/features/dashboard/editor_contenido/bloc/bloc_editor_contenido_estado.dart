@@ -25,7 +25,7 @@ sealed class BlocEditorContenidoEstado {
     Uint8List? logoElegidoWeb,
     File? logoSecundarioElegidoCelular,
     Uint8List? logoSecundarioElegidoWeb,
-    EntregableArticulo? articulo,
+    Articulo? articulo,
     List<PaginaSeccionArticulo>? listaPaginasDeArticulo,
   }) : this._(
           logoElegidoCelular: eliminarLogoPrimario
@@ -70,7 +70,7 @@ sealed class BlocEditorContenidoEstado {
   final List<PaginaSeccionArticulo> listaPaginasDeArticulo;
 
   /// El articulo a ser editado en la página actual.
-  final EntregableArticulo? articulo;
+  final Articulo? articulo;
 
   bool get estaEnEstadoDeActualizacion =>
       this is BlocEditorContenidoEstadoActualizandoDescripcion;
@@ -121,7 +121,7 @@ class BlocEditorContenidoEstadoExitoso extends BlocEditorContenidoEstado {
   /// {@macro BlocEditorContenidoEstadoExitoso}
   BlocEditorContenidoEstadoExitoso.desde(
     super.otro, {
-    required EntregableArticulo articulo,
+    required Articulo articulo,
     super.logoElegidoCelular,
     super.logoElegidoWeb,
     super.logoSecundarioElegidoCelular,
@@ -162,7 +162,7 @@ class BlocEditorContenidoEstadoActualizandoDescripcion
   }) : super.desde(
           // TODO(anyone): Cuando esten los modelos hechos con mappable,
           // hacer esto con copyWith.
-          articulo: EntregableArticulo(
+          articulo: Articulo(
             id: otro.articulo?.id,
             titulo: tituloArticulo,
             contenido: descripcionDeArticulo,
@@ -172,7 +172,6 @@ class BlocEditorContenidoEstadoActualizandoDescripcion
             idStatus: otro.articulo?.idStatus,
             ultimaModificacion:
                 otro.articulo?.ultimaModificacion ?? DateTime.now(),
-            fechaLanzamiento: DateTime.now(),
             // fechaEliminacion: otro.articulo?.fechaEliminacion,
             // fechaCreacion: otro.articulo?.fechaCreacion,
             // TODO(Anyone): Volver a agregar cuando se agreguen en el back
