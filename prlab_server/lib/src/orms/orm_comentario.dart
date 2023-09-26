@@ -23,6 +23,15 @@ class OrmComentario extends ORM {
   }) async {
     final respuesta = await ejecutarConsultaSql(session, '''
     SELECT c."textoComentario",
+           c."id",
+           c."idEntregable",
+           c."idAutorCompletado",
+           c."completado",
+           c."fechaCreacion",
+           c."ultimaModificacion",
+           c."fechaCompletado",
+           c."fechaEliminacion",
+           c."idAutor",
            cl."nombre",
            cl."apellido"
     FROM 
@@ -32,20 +41,52 @@ class OrmComentario extends ORM {
      
     ''', clavesMapaModeloDb: [
       'textoComentario',
+      'id',
+      'idEntregable',
+      'idAutorCompletado',
+      'completado',
+      'fechaCreacion',
+      'ultimaModificacion',
+      'fechaCompletado',
+      'fechaEliminacion',
+      'idAutor',
       'nombre',
       'apellido',
     ]);
 
-    return respuesta.map((e) => Comentario.fromJson(e, Protocol())).toList();
+    return respuesta
+        .map(
+          (e) => Comentario.fromJson(
+            e
+              ..['ultimaModificacion'] = e['ultimaModificacion'].toString()
+              ..['fechaCreacion'] = e['fechaCreacion'].toString()
+              ..['fechaCompletado'] = e['fechaCompletado'].toString()
+              ..['fechaEliminacion'] = e['fechaEliminacion'].toString(),
+            Protocol(),
+          ),
+        )
+        .toList();
   }
 
   ///Lita todos los comentarios de la db
   Future<List<Comentario>> listarTodosComentarios(
     Session session,
   ) async {
-    return await Comentario.find(
-      session,
-    );
+    final respuesta = await ejecutarConsultaSql(session, '''
+    SELECT c."textoComentario",
+           cl."nombre",
+           cl."apellido"
+    FROM 
+        comentarios c
+    JOIN clientes cl ON c."idAutor" = cl."id"
+     
+    ''', clavesMapaModeloDb: [
+      'textoComentario',
+      'nombre',
+      'apellido',
+    ]);
+
+    return respuesta.map((e) => Comentario.fromJson(e, Protocol())).toList();
   }
 
   Future<Comentario?> obtenerComentario(
