@@ -4,7 +4,7 @@ fields:
   nombre: String
   sitioWeb: String
   staff: List<Cliente>?, api
-  ultimosArticulos: List<Articulo>?, api
+  ultimosArticulos: List<EntregableArticulo>?, api
   cantidadArticulos: int?, api
   cantidadClippings: int?, api
   fechaCreacion: DateTime, database

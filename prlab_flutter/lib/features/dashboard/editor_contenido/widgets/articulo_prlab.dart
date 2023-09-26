@@ -52,13 +52,10 @@ class PaginaDeArticuloPRLab extends StatefulWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.pw, vertical: 8.ph),
             child: Center(
-              child: SizedBox(
-                height: 30.ph,
-                width: 30.pw,
-                child: Image.asset(
-                  paginaSeccionArticulo.icono,
-                  fit: BoxFit.cover,
-                ),
+              child: Icon(
+                paginaSeccionArticulo.icono,
+                size: 30.pw,
+                color: colores.primary,
               ),
             ),
           ),
