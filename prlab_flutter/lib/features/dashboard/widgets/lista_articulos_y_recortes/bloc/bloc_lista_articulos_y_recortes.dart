@@ -144,7 +144,8 @@ class BlocListaArticulosYRecortes extends Bloc<
       // TODO(anyone):el buscador lo tiene que manejar el back por la paginacion
       final articulos = List<EntregableArticulo>.from(state.articulos);
 
-      var articulosFiltrados = List<EntregableArticulo>.from(state.articulosFiltrados);
+      var articulosFiltrados =
+          List<EntregableArticulo>.from(state.articulosFiltrados);
 
       if (event.nombreDelArticuloAFiltrar != null &&
           event.nombreDelArticuloAFiltrar != '') {
@@ -188,8 +189,9 @@ class BlocListaArticulosYRecortes extends Bloc<
     emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
 
     try {
-      final listaArticulos = List<EntregableArticulo>.from(state.articulosFiltrados)
-        ..removeWhere((e) => e.id == event.idArticulo);
+      final listaArticulos =
+          List<EntregableArticulo>.from(state.articulosFiltrados)
+            ..removeWhere((e) => e.id == event.idArticulo);
 
       await client.entregableArticulo.eliminarArticulo(
         event.idArticulo,
