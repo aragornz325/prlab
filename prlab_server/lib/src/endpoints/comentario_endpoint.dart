@@ -60,7 +60,7 @@ class ComentarioEndpoint extends Endpoint {
     }
   }
 
-  Future<bool> crearComentario(
+  Future<Comentario?> crearComentario(
     Session session, {
     required Comentario comentario,
   }) async {
