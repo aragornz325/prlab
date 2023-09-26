@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/bloc/bloc_administracion_marcas.dart';
 import 'package:prlab_flutter/utilidades/utilidades.dart';
 
@@ -62,7 +61,7 @@ class BlocEditorContenido
     emit(BlocEditorContenidoEstadoCargando.desde(state));
 
     try {
-      final respuesta = await client.articulo.obtenerArticulo(
+      final respuesta = await client.entregableArticulo.obtenerArticulo(
         event.idArticulo,
       );
       emit(
@@ -161,7 +160,7 @@ class BlocEditorContenido
           ),
         );
 
-        await client.articulo.sendStreamMessage(
+        await client.entregableArticulo.sendStreamMessage(
           articuloActualizado,
         );
       }
@@ -189,7 +188,7 @@ class BlocEditorContenido
       emit(
         BlocEditorContenidoEstadoExitoso.desde(
           state,
-          articulo: state.articulo!,
+          articulo: state.articulo,
           listaPaginasDeArticulo: listaPaginasDeArticulo,
         ),
       );

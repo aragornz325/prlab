@@ -85,11 +85,11 @@ class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
 
   /// Maneja cada actualización del servidor a medida que llega.
   ///
-  /// Si un [Articulo] fue actualizado por otro cliente, se actualiza
+  /// Si un [EntregableArticulo] fue actualizado por otro cliente, se actualiza
   /// dentro del [Bloc].
   Future<void> _actualizarTitulo() async {
-    await for (final actualizado in client.articulo.stream) {
-      if (actualizado is Articulo) {
+    await for (final actualizado in client.entregableArticulo.stream) {
+      if (actualizado is EntregableArticulo) {
         if (!versionesDelTitulo.contains(actualizado.titulo)) {
           versionesDelTitulo.clear();
 

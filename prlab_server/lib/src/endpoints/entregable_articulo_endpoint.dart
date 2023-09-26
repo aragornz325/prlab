@@ -1,9 +1,6 @@
 import 'package:prlab_server/src/generated/protocol.dart';
-import 'package:prlab_server/src/servicios/servicio_articulo.dart';
-import 'package:serverpod/serverpod.dart';
-
 import 'package:prlab_server/src/servicios/servicio_entregable_articulo.dart';
-import 'package:serverpod/server.dart';
+import 'package:serverpod/serverpod.dart';
 
 const _canalDeArticulo = 'canal_de_articulo';
 
@@ -163,7 +160,7 @@ class EntregableArticuloEndpoint extends Endpoint {
     StreamingSession session,
     SerializableEntity message,
   ) async {
-    if (message is Articulo) {
+    if (message is EntregableArticulo) {
       await actualizarArticulo(session, articulo: message);
 
       session.messages.postMessage(_canalDeArticulo, message);
