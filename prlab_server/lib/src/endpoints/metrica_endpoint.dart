@@ -4,9 +4,13 @@ import 'package:serverpod/protocol.dart';
 import 'package:serverpod/server.dart';
 import 'package:similar_web/similar_web.dart';
 
+/// Endpoint para recuperar métricas de APIs externas.
 class MetricaEndpoint extends Endpoint {
+
+  /// Instancia del servicio.
   final servicioMetrica = ServicioMetrica();
 
+  /// Obtiene visitas de dominios registradas por SimilarWeb.
   Future<List<VisitasApi>> getTotalVisits(
     Session session,
     String domainName, {

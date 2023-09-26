@@ -5,7 +5,10 @@ import 'package:dio/dio.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:similar_web/similar_web.dart';
 
+/// Servicio para recuperar métricas de APIs externas.
 class ServicioMetrica extends Servicio {
+
+  /// Obtiene visitas de dominios registradas por SimilarWeb.
   Future<TotalVisitsResponse> getTotalVisits(
     String domainName, {
     String country = 'world',
