@@ -128,7 +128,7 @@ class OrmComentario extends ORM {
   /// de datos. Si la inserción es exitosa, devuelve "verdadero". Si se produce
   /// una excepción durante la inserción, genera una excepción con el mensaje
   /// de error.
-  Future<Comentario?> crearComentario(
+  Future<Comentario> crearComentario(
     Session session, {
     required Comentario comentario,
   }) async {
@@ -147,10 +147,51 @@ class OrmComentario extends ORM {
         orderDescending: true,
       );
 
-      logger.finest(
-        'comentario ID: "${comentario.id}" creado exitosamente.',
-      );
-      return response;
+      final respuesta = await ejecutarConsultaSql(session, '''
+    SELECT c."textoComentario",
+           c."id",
+           c."idEntregable",
+           c."idAutorCompletado",
+           c."completado",
+           c."fechaCreacion",
+           c."ultimaModificacion",
+           c."fechaCompletado",
+           c."fechaEliminacion",
+           c."idAutor",
+           cl."nombre",
+           cl."apellido"
+    FROM 
+        comentarios c
+    JOIN clientes cl ON c."idAutor" = cl."id"
+    WHERE c."id" = ${response!.id}
+     
+    ''', clavesMapaModeloDb: [
+        'textoComentario',
+        'id',
+        'idEntregable',
+        'idAutorCompletado',
+        'completado',
+        'fechaCreacion',
+        'ultimaModificacion',
+        'fechaCompletado',
+        'fechaEliminacion',
+        'idAutor',
+        'nombre',
+        'apellido',
+      ]);
+
+      return respuesta
+          .map(
+            (e) => Comentario.fromJson(
+              e
+                ..['ultimaModificacion'] = e['ultimaModificacion'].toString()
+                ..['fechaCreacion'] = e['fechaCreacion'].toString()
+                ..['fechaCompletado'] = e['fechaCompletado'].toString()
+                ..['fechaEliminacion'] = e['fechaEliminacion'].toString(),
+              Protocol(),
+            ),
+          )
+          .first;
     } on Exception catch (e) {
       throw Exception('$e');
     }
