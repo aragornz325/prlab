@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/orm.dart';
 import 'package:serverpod/serverpod.dart';
@@ -90,7 +92,20 @@ SELECT
         FROM idiomas_periodistas lj
         LEFT JOIN idiomas l ON lj."idIdioma" = l."id"
         WHERE lj."idPeriodista" = j."id"
-    ) AS "idiomas"
+    ) AS "idiomas",
+  (
+    SELECT jsonb_agg(
+      json_build_object(
+        'urlIcono', r."urlIcono",
+        'redSocial', r."redSocial",
+        'nombreDeUsuario', rsp."nombreDeUsuario",
+        'urlPerfil', rsp."urlPerfil"
+      ) ORDER BY rsp."idRedSocial"
+    )::text
+    FROM redes_sociales_periodistas rsp
+    INNER JOIN redes_sociales r ON rsp."idRedSocial" = r."id"
+    WHERE rsp."idPeriodista" = j."id"
+  ) AS "redesSociales"
 FROM
   periodistas j
   INNER JOIN roles r ON j."idRol" = r.id
@@ -108,7 +123,19 @@ FROM
       consulta,
       clavesMapaModeloDb: modeloApi.keys,
     );
-    return response.map((e) => Periodista.fromJson(e, Protocol())).toList();
+
+    // return response.map((e) => e..['redesSociales'] = e['redesSociales'] != null ? jsonDecode(e['redesSociales']) : null).toList();
+    return response
+        .map(
+          (e) => Periodista.fromJson(
+            e
+              ..['redesSociales'] = e['redesSociales'] != null
+                  ? jsonDecode(e['redesSociales'])
+                  : null,
+            Protocol(),
+          ),
+        )
+        .toList();
   }
 
   /// Obtiene las categorías de filtrado de [Periodista] con su nombre, id y
