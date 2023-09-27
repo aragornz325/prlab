@@ -96,26 +96,26 @@ class ServicioPeriodista extends Servicio<OrmPeriodista> {
   /// Recupera una lista de [Periodista] de acuerdo a diferentes filtros.
   Future<List<Periodista>> listarPeriodistas(
     Session session, {
-    String nombreCompleto = '',
+    String nombres = '',
     String nombreDeMedio = '',
     List<int> idPaises = const [],
     List<int> idCiudades = const [],
     List<int> idTemas = const [],
     List<int> idIdiomas = const [],
     List<int> idTiposDeMedio = const [],
-    List<int> idRoles = const [],
+    List<int> idPuestos = const [],
   }) async {
     return await ejecutarOperacion(
       () => orm.listarPeriodistas(
         session,
-        nombreCompleto: nombreCompleto,
+        nombres: nombres,
         nombreDeMedio: nombreDeMedio,
         idPaises: idPaises,
         idCiudades: idCiudades,
         idTemas: idTemas,
         idIdiomas: idIdiomas,
         idTiposDeMedio: idTiposDeMedio,
-        idRoles: idRoles,
+        idPuestos: idPuestos,
       ),
     );
   }
@@ -139,7 +139,7 @@ class ServicioPeriodista extends Servicio<OrmPeriodista> {
         idIdiomas: idIdiomas,
         idTemas: idTemas,
         idTiposDeMedio: idTiposDeMedio,
-        idRoles: idRoles,
+        idPuestos: idRoles,
       ),
     );
   }
