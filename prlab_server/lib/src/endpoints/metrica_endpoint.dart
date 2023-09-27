@@ -10,6 +10,11 @@ class MetricaEndpoint extends Endpoint {
   final servicioMetrica = ServicioMetrica();
 
   /// Obtiene visitas de dominios registradas por SimilarWeb.
+  ///   
+  /// Args:  
+  /// REQUERIDO `domainName` ([String]): sitio web del que se buscan métricas,
+  /// sin "www." ni llaves ("{}").  
+  /// `country`: 
   Future<List<VisitasApi>> getTotalVisits(
     Session session,
     String domainName, {
@@ -18,7 +23,6 @@ class MetricaEndpoint extends Endpoint {
     DateTime? startDate,
     DateTime? endDate,
     bool? mainDomainOnly,
-    int? format,
     bool? showVerified,
     bool? mtd,
     bool? engagedOnly,
@@ -30,7 +34,6 @@ class MetricaEndpoint extends Endpoint {
       country: country,
       granularity: Granularity.values[granularity],
       mainDomainOnly: mainDomainOnly ?? false,
-      format: format != null ? Format.values[format] : Format.values[0],
       showVerified: showVerified ?? false,
       mtd: mtd ?? false,
       engagedOnly: engagedOnly ?? false,
