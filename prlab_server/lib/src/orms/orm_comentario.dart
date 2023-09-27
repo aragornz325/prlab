@@ -36,7 +36,7 @@ class OrmComentario extends ORM {
            cl."apellido"
     FROM 
         comentarios c
-    JOIN clientes cl ON c."idAutor" = cl."idUsuario"
+    JOIN clientes cl ON c."idAutor" = cl."id"
     WHERE c."idEntregable" = $idArticulo
      
     ''', clavesMapaModeloDb: [
@@ -53,7 +53,6 @@ class OrmComentario extends ORM {
       'nombre',
       'apellido',
     ]);
-
     return respuesta
         .map(
           (e) => Comentario.fromJson(
@@ -146,7 +145,8 @@ class OrmComentario extends ORM {
         orderBy: ComentarioTable().ultimaModificacion,
         orderDescending: true,
       );
-
+      final idbusqueda = response!.id;
+      print(idbusqueda);
       final respuesta = await ejecutarConsultaSql(session, '''
     SELECT c."textoComentario",
            c."id",
@@ -162,8 +162,8 @@ class OrmComentario extends ORM {
            cl."apellido"
     FROM 
         comentarios c
-    JOIN clientes cl ON c."idAutor" = cl."idUsuario"
-    WHERE c."id" = ${response!.id}
+    INNER JOIN clientes cl ON c."idAutor" = cl."idUsuario"
+    WHERE c."id" = $idbusqueda;
      
     ''', clavesMapaModeloDb: [
         'textoComentario',
@@ -180,6 +180,10 @@ class OrmComentario extends ORM {
         'apellido',
       ]);
 
+      if (respuesta.isEmpty) {
+        throw Exception('Comentario no encontrado');
+      }
+      print(respuesta);
       return respuesta
           .map(
             (e) => Comentario.fromJson(
