@@ -63,7 +63,13 @@ class OrmPeriodista extends ORM {
       whereBuffer.writeln();
     }
 
-    final modeloApi = Periodista(nombreCompleto: '', email: '').toJson()
+    final modeloApi = Periodista(
+      nombreCompleto: '',
+      email: '',
+      temas: [],
+      idiomas: [],
+      redesSociales: [],
+    ).toJson()
       ..remove('idRol')
       ..remove('idMedio')
       ..remove('idCiudad')
@@ -77,34 +83,40 @@ SELECT
   r."rol", 
   m."medio", 
   j."biografia", 
-  (
-        SELECT ARRAY_AGG(t."tema" ORDER BY t."id")
-        FROM temas_periodistas tj
-        LEFT JOIN temas t ON tj."idTema" = t."id"
-        WHERE tj."idPeriodista" = j."id"
-    ) AS "temas", 
+  COALESCE(
+    (
+      SELECT ARRAY_AGG(t."tema" ORDER BY t."id")
+      FROM temas_periodistas tj
+      LEFT JOIN temas t ON tj."idTema" = t."id"
+      WHERE tj."idPeriodista" = j."id"
+    ), ARRAY[]::text[]
+  ) AS "temas", 
   j."email", 
   j."telefono", 
   c."ciudad", 
   n."pais", 
-  (
-        SELECT ARRAY_AGG(l."idioma" ORDER BY l."id")
-        FROM idiomas_periodistas lj
-        LEFT JOIN idiomas l ON lj."idIdioma" = l."id"
-        WHERE lj."idPeriodista" = j."id"
-    ) AS "idiomas",
-  (
-    SELECT jsonb_agg(
-      json_build_object(
-        'urlIcono', r."urlIcono",
-        'redSocial', r."redSocial",
-        'nombreDeUsuario', rsp."nombreDeUsuario",
-        'urlPerfil', rsp."urlPerfil"
-      ) ORDER BY rsp."idRedSocial"
-    )::text
-    FROM redes_sociales_periodistas rsp
-    INNER JOIN redes_sociales r ON rsp."idRedSocial" = r."id"
-    WHERE rsp."idPeriodista" = j."id"
+  COALESCE(
+    (
+      SELECT ARRAY_AGG(l."idioma" ORDER BY l."id")
+      FROM idiomas_periodistas lj
+      LEFT JOIN idiomas l ON lj."idIdioma" = l."id"
+      WHERE lj."idPeriodista" = j."id"
+    ), ARRAY[]::text[]
+  ) AS "idiomas",
+  COALESCE(
+    (
+      SELECT jsonb_agg(
+        json_build_object(
+          'urlIcono', r."urlIcono",
+          'redSocial', r."redSocial",
+          'nombreDeUsuario', rsp."nombreDeUsuario",
+          'urlPerfil', rsp."urlPerfil"
+        ) ORDER BY rsp."idRedSocial"
+      )::text
+      FROM redes_sociales_periodistas rsp
+      INNER JOIN redes_sociales r ON rsp."idRedSocial" = r."id"
+      WHERE rsp."idPeriodista" = j."id"
+    ), '[]'::text
   ) AS "redesSociales"
 FROM
   periodistas j
@@ -127,10 +139,7 @@ FROM
     return response
         .map(
           (e) => Periodista.fromJson(
-            e
-              ..['redesSociales'] = e['redesSociales'] != null
-                  ? jsonDecode(e['redesSociales'])
-                  : null,
+            e..['redesSociales'] = jsonDecode(e['redesSociales']),
             Protocol(),
           ),
         )
