@@ -1,12 +1,12 @@
 class: RedSocial
 table: redes_sociales_periodistas
 fields:
-  idRedSocial: int?
-  idUsuario: int?
-  redSocial: String?, api
-  urlIcono: String?, api
-  nombreDeUsuario: String?
-  urlPerfil: String?
+  idRedSocial: int?, database
+  idUsuario: int?, database
+  redSocial: String, api
+  urlIcono: String, api
+  nombreDeUsuario: String
+  urlPerfil: String
   ultimaModificacion: DateTime?, database
   activo: bool?, database
   fechaCreacion: DateTime?, database
