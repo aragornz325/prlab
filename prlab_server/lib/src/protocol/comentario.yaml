@@ -1,14 +1,14 @@
 class: Comentario
 table: comentarios
 fields:
-  idEntregable: int? 
+  idEntregable: int 
   textoComentario: String
-  idAutor: int?
-  nombre: String?, api
-  apellido: String?, api
-  fechaEliminacion: DateTime?
-  ultimaModificacion: DateTime?
-  fechaCreacion: DateTime?
-  completado: bool?
-  idAutorCompletado: int?
-  fechaCompletado: DateTime?
+  idAutor: int
+  nombre: String, api
+  apellido: String, api
+  fechaEliminacion: DateTime, database
+  ultimaModificacion: DateTime, database
+  fechaCreacion: DateTime, database
+  completado: bool,
+  idAutorCompletado: int
+  fechaCompletado: DateTime, database

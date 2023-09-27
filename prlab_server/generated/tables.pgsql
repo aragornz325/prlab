@@ -4,15 +4,15 @@
 
 CREATE TABLE "comentarios" (
   "id" serial,
-  "idEntregable" integer,
+  "idEntregable" integer NOT NULL,
   "textoComentario" text NOT NULL,
-  "idAutor" integer,
-  "fechaEliminacion" timestamp without time zone,
-  "ultimaModificacion" timestamp without time zone,
-  "fechaCreacion" timestamp without time zone,
-  "completado" boolean,
-  "idAutorCompletado" integer,
-  "fechaCompletado" timestamp without time zone
+  "idAutor" integer NOT NULL,
+  "fechaEliminacion" timestamp without time zone NOT NULL,
+  "ultimaModificacion" timestamp without time zone NOT NULL,
+  "fechaCreacion" timestamp without time zone NOT NULL,
+  "completado" boolean NOT NULL,
+  "idAutorCompletado" integer NOT NULL,
+  "fechaCompletado" timestamp without time zone NOT NULL
 );
 
 ALTER TABLE ONLY "comentarios"
