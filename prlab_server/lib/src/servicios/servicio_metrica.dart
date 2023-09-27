@@ -15,11 +15,11 @@ class ServicioMetrica extends Servicio {
     Granularity granularity = Granularity.monthly,
     DateTime? startDate,
     DateTime? endDate,
-    bool? mainDomainOnly = false,
-    Format? format = Format.json,
-    bool? showVerified = false,
-    bool? mtd = false,
-    bool? engagedOnly = false,
+    bool mainDomainOnly = false,
+    Format format = Format.json,
+    bool showVerified = false,
+    bool mtd = false,
+    bool engagedOnly = false,
   }) async {
     similarWeb.response = Response(
       requestOptions: RequestOptions(),
@@ -48,7 +48,7 @@ class ServicioMetrica extends Servicio {
           },
           {
             'date': endDate?.toString() ?? DateTime.now().toString(),
-            'visits': e,
+            'visits': null,
           }
         ],
       }),

@@ -6,7 +6,6 @@ import 'package:similar_web/similar_web.dart';
 
 /// Endpoint para recuperar métricas de APIs externas.
 class MetricaEndpoint extends Endpoint {
-
   /// Instancia del servicio.
   final servicioMetrica = ServicioMetrica();
 
@@ -19,32 +18,38 @@ class MetricaEndpoint extends Endpoint {
     DateTime? startDate,
     DateTime? endDate,
     bool? mainDomainOnly,
-    Format? format,
+    int? format,
     bool? showVerified,
     bool? mtd,
     bool? engagedOnly,
   }) async {
-    return (await servicioMetrica.getTotalVisits(
+    final respuesta = await servicioMetrica.getTotalVisits(
       domainName,
       startDate: startDate,
       endDate: endDate,
       country: country,
       granularity: Granularity.values[granularity],
-      mainDomainOnly: mainDomainOnly,
-      format: format,
-      showVerified: showVerified,
-      mtd: mtd,
-      engagedOnly: engagedOnly,
-    ))
-        .visits!
+      mainDomainOnly: mainDomainOnly ?? false,
+      format: format != null ? Format.values[format] : Format.values[0],
+      showVerified: showVerified ?? false,
+      mtd: mtd ?? false,
+      engagedOnly: engagedOnly ?? false,
+    );
+
+    final visitas = respuesta.visits ?? [];
+
+    final visitasDeserializadas = visitas
         .map(
           (e) => VisitasApi.fromJson(
             e.toMap()
-              ..['date'] = e.toMap()['date'].toString()
-              ..['visits'] = e.visits!.truncate(),
+              ..['date'] =
+                  DateTime.parse(e.toMap()['date']).toIso8601String()
+              ..['visits'] = e.visits?.truncate() ?? 0,
             Protocol(),
           ),
         )
         .toList();
+
+    return visitasDeserializadas;
   }
 }
