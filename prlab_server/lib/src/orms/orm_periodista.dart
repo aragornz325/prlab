@@ -415,7 +415,8 @@ GROUP BY
             session,
             periodista
               ..fechaCreacion = DateTime.now()
-              ..ultimaModificacion = DateTime.now(),
+              ..ultimaModificacion = DateTime.now()
+              ..activo = true,
           );
         },
       );
