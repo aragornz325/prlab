@@ -365,7 +365,7 @@ FROM
   LEFT JOIN idiomas l ON lj."idIdioma" = l."id"$whereBuffer)
 
 GROUP BY
-    r.id, r."rol";
+    r.id, r."puesto";
 ''';
     final query = await ejecutarConsultaSql(
       session,
