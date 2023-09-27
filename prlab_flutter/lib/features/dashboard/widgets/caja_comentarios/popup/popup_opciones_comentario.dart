@@ -11,7 +11,8 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
 
 /// {@template PopUpOpcionesComentario}
-///
+/// Este popup se utiliza para desplegar las opciones de un comentario por ahora
+/// solamente tiene la opción de eliminar el comentario seleccionado.
 /// {@endtemplate}
 class PopUpOpcionesComentario extends StatefulWidget {
   /// {@macro PopUpOpcionesComentario}
@@ -20,7 +21,7 @@ class PopUpOpcionesComentario extends StatefulWidget {
     super.key,
   });
 
-  /// Id del comentario seleccionado
+  /// Id del comentario seleccionado.
   final int idComentario;
 
   @override

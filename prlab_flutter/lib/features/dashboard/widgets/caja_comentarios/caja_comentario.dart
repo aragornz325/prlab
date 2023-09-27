@@ -107,6 +107,15 @@ class _PRCajaDeComentarioState extends State<PRCajaDeComentario> {
               SizedBox(height: max(5.ph, 5.sh)),
               BlocBuilder<BlocCajaComentarios, BlocCajaComentariosEstado>(
                 builder: (context, state) {
+                  if (state is BlocCajaComentariosEstadoCargando) {
+                    return const Expanded(
+                      flex: 30,
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  }
+
                   return ListaDeComentarios(
                     comentarios: state.comentarios,
                   );

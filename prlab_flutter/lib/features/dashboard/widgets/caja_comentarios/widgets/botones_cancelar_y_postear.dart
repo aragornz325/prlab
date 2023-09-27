@@ -37,7 +37,7 @@ class BotonesCancelarYPostear extends StatelessWidget {
             },
             texto: l10n.commonCancel,
             estaHabilitado: true,
-            width: 100,
+            width: 100.pw,
             height: max(30.ph, 30.sh),
           ),
           SizedBox(width: 20.pw),
@@ -55,7 +55,7 @@ class BotonesCancelarYPostear extends StatelessWidget {
                 },
                 texto: l10n.commonPost,
                 estaHabilitado: state.comentario.isNotEmpty,
-                width: 100,
+                width: 100.pw,
                 height: max(30.ph, 30.sh),
               );
             },

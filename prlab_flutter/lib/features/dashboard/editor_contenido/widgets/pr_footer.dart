@@ -7,6 +7,7 @@ import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popups.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/caja_comentario.dart';
+import 'package:prlab_flutter/l10n/l10n.dart';
 
 /// {@template PRFooter}
 /// Footer de la vista de editor contenido para abrir los comentarios
@@ -19,6 +20,8 @@ class PRFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
+    final l10n = context.l10n;
 
     return BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
       builder: (context, state) {
@@ -79,7 +82,7 @@ class PRFooter extends StatelessWidget {
                 SizedBox(width: 10.pw),
                 VerticalDivider(
                   color: colores.outline,
-                  width: 1,
+                  width: max(1.pw, 1.sw),
                 ),
                 SizedBox(width: 10.pw),
                 InkWell(
@@ -129,7 +132,7 @@ class PRFooter extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Comment',
+                        l10n.commonComment,
                         style: TextStyle(
                           fontSize: 15.pf,
                           color: colores.secondary,
@@ -153,6 +156,7 @@ class PRFooter extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
+                            //  TODO(anyone): agregarle la cantidad de notificaciones
                             '1',
                             style: TextStyle(
                               color: colores.onTertiaryContainer,

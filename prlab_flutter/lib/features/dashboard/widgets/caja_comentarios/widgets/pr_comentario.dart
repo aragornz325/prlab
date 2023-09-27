@@ -39,9 +39,6 @@ class PRComentario extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: max(5.ph, 5.sh)),
                 child: CircleAvatar(
-                  foregroundImage: NetworkImage(
-                    comentario.idAutor.toString(),
-                  ),
                   backgroundColor: colores.secondary,
                   foregroundColor: colores.secondary,
                   maxRadius: 15.sw,

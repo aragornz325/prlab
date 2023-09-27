@@ -34,6 +34,7 @@ class PRTextFormField extends StatefulWidget {
     this.decoration,
     this.onTap,
     this.onEditingComplete,
+    this.onFieldSubmitted,
     super.key,
   });
 
@@ -404,6 +405,9 @@ class PRTextFormField extends StatefulWidget {
   /// Al completar el campo ejecuta esta Accion
   final void Function()? onEditingComplete;
 
+  /// Al apretar este campo ejecuta esta acción
+  final void Function(String)? onFieldSubmitted;
+
   @override
   State<PRTextFormField> createState() => _PRTextFormFieldState();
 }
@@ -416,6 +420,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
     return SizedBox(
       width: widget.width?.sw ?? 360.sw,
       child: TextFormField(
+        onFieldSubmitted: widget.onFieldSubmitted,
         onEditingComplete: widget.onEditingComplete,
         onTap: widget.onTap,
         cursorColor: widget.cursorColor,
@@ -493,6 +498,7 @@ class PRTextFormFieldPassword extends StatefulWidget {
     this.onChanged,
     this.width = 359,
     this.validator,
+    this.onFieldSubmitted,
     super.key,
   });
   final void Function(String? value)? onChanged;
@@ -501,6 +507,7 @@ class PRTextFormFieldPassword extends StatefulWidget {
   final bool esCreacionPassword;
   final double width;
   final String? Function(String? value)? validator;
+  final void Function(String)? onFieldSubmitted;
 
   @override
   State<PRTextFormFieldPassword> createState() =>
@@ -517,6 +524,7 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
     final l10n = context.l10n;
 
     return PRTextFormField(
+      onFieldSubmitted: widget.onFieldSubmitted,
       esPassword: true,
       width: widget.width,
       controller: widget.controller,
