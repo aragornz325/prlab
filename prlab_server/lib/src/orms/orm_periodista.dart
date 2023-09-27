@@ -124,7 +124,6 @@ FROM
       clavesMapaModeloDb: modeloApi.keys,
     );
 
-    // return response.map((e) => e..['redesSociales'] = e['redesSociales'] != null ? jsonDecode(e['redesSociales']) : null).toList();
     return response
         .map(
           (e) => Periodista.fromJson(
