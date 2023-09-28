@@ -22,13 +22,14 @@ import 'organizacion.dart' as _i12;
 import 'periodista.dart' as _i13;
 import 'proyecto.dart' as _i14;
 import 'publicacion.dart' as _i15;
-import 'protocol.dart' as _i16;
-import 'package:prlab_client/src/protocol/cliente.dart' as _i17;
-import 'package:prlab_client/src/protocol/comentario.dart' as _i18;
-import 'package:prlab_client/src/protocol/entregable_articulo.dart' as _i19;
-import 'package:prlab_client/src/protocol/marca.dart' as _i20;
-import 'package:prlab_client/src/protocol/periodista.dart' as _i21;
-import 'package:serverpod_auth_client/module.dart' as _i22;
+import 'red_social.dart' as _i16;
+import 'protocol.dart' as _i17;
+import 'package:prlab_client/src/protocol/cliente.dart' as _i18;
+import 'package:prlab_client/src/protocol/comentario.dart' as _i19;
+import 'package:prlab_client/src/protocol/entregable_articulo.dart' as _i20;
+import 'package:prlab_client/src/protocol/marca.dart' as _i21;
+import 'package:prlab_client/src/protocol/periodista.dart' as _i22;
+import 'package:serverpod_auth_client/module.dart' as _i23;
 export 'cliente.dart';
 export 'comentario.dart';
 export 'entregable.dart';
@@ -43,6 +44,7 @@ export 'organizacion.dart';
 export 'periodista.dart';
 export 'proyecto.dart';
 export 'publicacion.dart';
+export 'red_social.dart';
 export 'client.dart';
 
 class Protocol extends _i1.SerializationManager {
@@ -105,6 +107,9 @@ class Protocol extends _i1.SerializationManager {
     if (t == _i15.Publicacion) {
       return _i15.Publicacion.fromJson(data, this) as T;
     }
+    if (t == _i16.RedSocial) {
+      return _i16.RedSocial.fromJson(data, this) as T;
+    }
     if (t == _i1.getType<_i2.Cliente?>()) {
       return (data != null ? _i2.Cliente.fromJson(data, this) : null) as T;
     }
@@ -154,43 +159,44 @@ class Protocol extends _i1.SerializationManager {
     if (t == _i1.getType<_i15.Publicacion?>()) {
       return (data != null ? _i15.Publicacion.fromJson(data, this) : null) as T;
     }
-    if (t == _i1.getType<List<_i16.Cliente>?>()) {
+    if (t == _i1.getType<_i16.RedSocial?>()) {
+      return (data != null ? _i16.RedSocial.fromJson(data, this) : null) as T;
+    }
+    if (t == _i1.getType<List<_i17.Cliente>?>()) {
       return (data != null
-          ? (data as List).map((e) => deserialize<_i16.Cliente>(e)).toList()
+          ? (data as List).map((e) => deserialize<_i17.Cliente>(e)).toList()
           : null) as dynamic;
     }
-    if (t == _i1.getType<List<_i16.EntregableArticulo>?>()) {
+    if (t == _i1.getType<List<_i17.EntregableArticulo>?>()) {
       return (data != null
           ? (data as List)
-              .map((e) => deserialize<_i16.EntregableArticulo>(e))
+              .map((e) => deserialize<_i17.EntregableArticulo>(e))
               .toList()
           : null) as dynamic;
     }
-    if (t == _i1.getType<List<String>?>()) {
-      return (data != null
-          ? (data as List).map((e) => deserialize<String>(e)).toList()
-          : null) as dynamic;
-    }
-    if (t == _i1.getType<List<String>?>()) {
-      return (data != null
-          ? (data as List).map((e) => deserialize<String>(e)).toList()
-          : null) as dynamic;
-    }
-    if (t == List<_i17.Cliente>) {
-      return (data as List).map((e) => deserialize<_i17.Cliente>(e)).toList()
+    if (t == List<String>) {
+      return (data as List).map((e) => deserialize<String>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i18.Comentario>) {
-      return (data as List).map((e) => deserialize<_i18.Comentario>(e)).toList()
+    if (t == List<_i17.RedSocial>) {
+      return (data as List).map((e) => deserialize<_i17.RedSocial>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i19.EntregableArticulo>) {
+    if (t == List<_i18.Cliente>) {
+      return (data as List).map((e) => deserialize<_i18.Cliente>(e)).toList()
+          as dynamic;
+    }
+    if (t == List<_i19.Comentario>) {
+      return (data as List).map((e) => deserialize<_i19.Comentario>(e)).toList()
+          as dynamic;
+    }
+    if (t == List<_i20.EntregableArticulo>) {
       return (data as List)
-          .map((e) => deserialize<_i19.EntregableArticulo>(e))
+          .map((e) => deserialize<_i20.EntregableArticulo>(e))
           .toList() as dynamic;
     }
-    if (t == List<_i20.Marca>) {
-      return (data as List).map((e) => deserialize<_i20.Marca>(e)).toList()
+    if (t == List<_i21.Marca>) {
+      return (data as List).map((e) => deserialize<_i21.Marca>(e)).toList()
           as dynamic;
     }
     if (t == List<List<dynamic>>) {
@@ -201,8 +207,8 @@ class Protocol extends _i1.SerializationManager {
       return (data as List).map((e) => deserialize<dynamic>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i21.Periodista>) {
-      return (data as List).map((e) => deserialize<_i21.Periodista>(e)).toList()
+    if (t == List<_i22.Periodista>) {
+      return (data as List).map((e) => deserialize<_i22.Periodista>(e)).toList()
           as dynamic;
     }
     if (t == _i1.getType<List<int>?>()) {
@@ -271,7 +277,7 @@ class Protocol extends _i1.SerializationManager {
           : null) as dynamic;
     }
     try {
-      return _i22.Protocol().deserialize<T>(data, t);
+      return _i23.Protocol().deserialize<T>(data, t);
     } catch (_) {}
     return super.deserialize<T>(data, t);
   }
@@ -279,7 +285,7 @@ class Protocol extends _i1.SerializationManager {
   @override
   String? getClassNameForObject(Object data) {
     String? className;
-    className = _i22.Protocol().getClassNameForObject(data);
+    className = _i23.Protocol().getClassNameForObject(data);
     if (className != null) {
       return 'serverpod_auth.$className';
     }
@@ -325,6 +331,9 @@ class Protocol extends _i1.SerializationManager {
     if (data is _i15.Publicacion) {
       return 'Publicacion';
     }
+    if (data is _i16.RedSocial) {
+      return 'RedSocial';
+    }
     return super.getClassNameForObject(data);
   }
 
@@ -332,7 +341,7 @@ class Protocol extends _i1.SerializationManager {
   dynamic deserializeByClassName(Map<String, dynamic> data) {
     if (data['className'].startsWith('serverpod_auth.')) {
       data['className'] = data['className'].substring(15);
-      return _i22.Protocol().deserializeByClassName(data);
+      return _i23.Protocol().deserializeByClassName(data);
     }
     if (data['className'] == 'Cliente') {
       return deserialize<_i2.Cliente>(data['data']);
@@ -375,6 +384,9 @@ class Protocol extends _i1.SerializationManager {
     }
     if (data['className'] == 'Publicacion') {
       return deserialize<_i15.Publicacion>(data['data']);
+    }
+    if (data['className'] == 'RedSocial') {
+      return deserialize<_i16.RedSocial>(data['data']);
     }
     return super.deserializeByClassName(data);
   }

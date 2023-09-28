@@ -24,12 +24,13 @@ import 'organizacion.dart' as _i14;
 import 'periodista.dart' as _i15;
 import 'proyecto.dart' as _i16;
 import 'publicacion.dart' as _i17;
-import 'protocol.dart' as _i18;
-import 'package:prlab_server/src/generated/cliente.dart' as _i19;
-import 'package:prlab_server/src/generated/comentario.dart' as _i20;
-import 'package:prlab_server/src/generated/entregable_articulo.dart' as _i21;
-import 'package:prlab_server/src/generated/marca.dart' as _i22;
-import 'package:prlab_server/src/generated/periodista.dart' as _i23;
+import 'red_social.dart' as _i18;
+import 'protocol.dart' as _i19;
+import 'package:prlab_server/src/generated/cliente.dart' as _i20;
+import 'package:prlab_server/src/generated/comentario.dart' as _i21;
+import 'package:prlab_server/src/generated/entregable_articulo.dart' as _i22;
+import 'package:prlab_server/src/generated/marca.dart' as _i23;
+import 'package:prlab_server/src/generated/periodista.dart' as _i24;
 export 'cliente.dart';
 export 'comentario.dart';
 export 'entregable.dart';
@@ -44,6 +45,7 @@ export 'organizacion.dart';
 export 'periodista.dart';
 export 'proyecto.dart';
 export 'publicacion.dart';
+export 'red_social.dart';
 
 class Protocol extends _i1.SerializationManagerServer {
   Protocol._();
@@ -226,6 +228,12 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'DateTime?',
         ),
         _i2.ColumnDefinition(
+          name: 'ultimaModificacion',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: true,
+          dartType: 'DateTime?',
+        ),
+        _i2.ColumnDefinition(
           name: 'compania',
           columnType: _i2.ColumnType.text,
           isNullable: true,
@@ -233,12 +241,6 @@ class Protocol extends _i1.SerializationManagerServer {
         ),
         _i2.ColumnDefinition(
           name: 'fechaEliminacion',
-          columnType: _i2.ColumnType.timestampWithoutTimeZone,
-          isNullable: true,
-          dartType: 'DateTime?',
-        ),
-        _i2.ColumnDefinition(
-          name: 'ultimaModificacion',
           columnType: _i2.ColumnType.timestampWithoutTimeZone,
           isNullable: true,
           dartType: 'DateTime?',
@@ -860,17 +862,23 @@ class Protocol extends _i1.SerializationManagerServer {
         _i2.ColumnDefinition(
           name: 'urlImagen',
           columnType: _i2.ColumnType.text,
-          isNullable: true,
-          dartType: 'String?',
+          isNullable: false,
+          dartType: 'String',
         ),
         _i2.ColumnDefinition(
-          name: 'nombreCompleto',
+          name: 'nombres',
           columnType: _i2.ColumnType.text,
-          isNullable: true,
-          dartType: 'String?',
+          isNullable: false,
+          dartType: 'String',
         ),
         _i2.ColumnDefinition(
-          name: 'idRol',
+          name: 'apellidos',
+          columnType: _i2.ColumnType.text,
+          isNullable: false,
+          dartType: 'String',
+        ),
+        _i2.ColumnDefinition(
+          name: 'idPuesto',
           columnType: _i2.ColumnType.integer,
           isNullable: true,
           dartType: 'int?',
@@ -882,22 +890,22 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'int?',
         ),
         _i2.ColumnDefinition(
-          name: 'bio',
+          name: 'biografia',
           columnType: _i2.ColumnType.text,
-          isNullable: true,
-          dartType: 'String?',
+          isNullable: false,
+          dartType: 'String',
         ),
         _i2.ColumnDefinition(
           name: 'email',
           columnType: _i2.ColumnType.text,
-          isNullable: true,
-          dartType: 'String?',
+          isNullable: false,
+          dartType: 'String',
         ),
         _i2.ColumnDefinition(
           name: 'telefono',
           columnType: _i2.ColumnType.text,
-          isNullable: true,
-          dartType: 'String?',
+          isNullable: false,
+          dartType: 'String',
         ),
         _i2.ColumnDefinition(
           name: 'idCiudad',
@@ -910,12 +918,6 @@ class Protocol extends _i1.SerializationManagerServer {
           columnType: _i2.ColumnType.integer,
           isNullable: true,
           dartType: 'int?',
-        ),
-        _i2.ColumnDefinition(
-          name: 'redesSociales',
-          columnType: _i2.ColumnType.text,
-          isNullable: true,
-          dartType: 'String?',
         ),
         _i2.ColumnDefinition(
           name: 'ultimaModificacion',
@@ -1126,6 +1128,79 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
+    _i2.TableDefinition(
+      name: 'redes_sociales_periodistas',
+      schema: 'public',
+      columns: [
+        _i2.ColumnDefinition(
+          name: 'id',
+          columnType: _i2.ColumnType.integer,
+          isNullable: false,
+          dartType: 'int?',
+          columnDefault:
+              'nextval(\'redes_sociales_periodistas_id_seq\'::regclass)',
+        ),
+        _i2.ColumnDefinition(
+          name: 'idRedSocial',
+          columnType: _i2.ColumnType.integer,
+          isNullable: true,
+          dartType: 'int?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'idUsuario',
+          columnType: _i2.ColumnType.integer,
+          isNullable: true,
+          dartType: 'int?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'nombreDeUsuario',
+          columnType: _i2.ColumnType.text,
+          isNullable: false,
+          dartType: 'String',
+        ),
+        _i2.ColumnDefinition(
+          name: 'urlPerfil',
+          columnType: _i2.ColumnType.text,
+          isNullable: false,
+          dartType: 'String',
+        ),
+        _i2.ColumnDefinition(
+          name: 'ultimaModificacion',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: true,
+          dartType: 'DateTime?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'activo',
+          columnType: _i2.ColumnType.boolean,
+          isNullable: true,
+          dartType: 'bool?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'fechaCreacion',
+          columnType: _i2.ColumnType.timestampWithoutTimeZone,
+          isNullable: true,
+          dartType: 'DateTime?',
+        ),
+      ],
+      foreignKeys: [],
+      indexes: [
+        _i2.IndexDefinition(
+          indexName: 'redes_sociales_periodistas_pkey',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'id',
+            )
+          ],
+          type: 'btree',
+          isUnique: true,
+          isPrimary: true,
+        )
+      ],
+      managed: true,
+    ),
     ..._i3.Protocol.targetDatabaseDefinition.tables,
     ..._i2.Protocol.targetDatabaseDefinition.tables,
   ]);
@@ -1181,6 +1256,9 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i17.Publicacion) {
       return _i17.Publicacion.fromJson(data, this) as T;
     }
+    if (t == _i18.RedSocial) {
+      return _i18.RedSocial.fromJson(data, this) as T;
+    }
     if (t == _i1.getType<_i4.Cliente?>()) {
       return (data != null ? _i4.Cliente.fromJson(data, this) : null) as T;
     }
@@ -1230,43 +1308,44 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i1.getType<_i17.Publicacion?>()) {
       return (data != null ? _i17.Publicacion.fromJson(data, this) : null) as T;
     }
-    if (t == _i1.getType<List<_i18.Cliente>?>()) {
+    if (t == _i1.getType<_i18.RedSocial?>()) {
+      return (data != null ? _i18.RedSocial.fromJson(data, this) : null) as T;
+    }
+    if (t == _i1.getType<List<_i19.Cliente>?>()) {
       return (data != null
-          ? (data as List).map((e) => deserialize<_i18.Cliente>(e)).toList()
+          ? (data as List).map((e) => deserialize<_i19.Cliente>(e)).toList()
           : null) as dynamic;
     }
-    if (t == _i1.getType<List<_i18.EntregableArticulo>?>()) {
+    if (t == _i1.getType<List<_i19.EntregableArticulo>?>()) {
       return (data != null
           ? (data as List)
-              .map((e) => deserialize<_i18.EntregableArticulo>(e))
+              .map((e) => deserialize<_i19.EntregableArticulo>(e))
               .toList()
           : null) as dynamic;
     }
-    if (t == _i1.getType<List<String>?>()) {
-      return (data != null
-          ? (data as List).map((e) => deserialize<String>(e)).toList()
-          : null) as dynamic;
-    }
-    if (t == _i1.getType<List<String>?>()) {
-      return (data != null
-          ? (data as List).map((e) => deserialize<String>(e)).toList()
-          : null) as dynamic;
-    }
-    if (t == List<_i19.Cliente>) {
-      return (data as List).map((e) => deserialize<_i19.Cliente>(e)).toList()
+    if (t == List<String>) {
+      return (data as List).map((e) => deserialize<String>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i20.Comentario>) {
-      return (data as List).map((e) => deserialize<_i20.Comentario>(e)).toList()
+    if (t == List<_i19.RedSocial>) {
+      return (data as List).map((e) => deserialize<_i19.RedSocial>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i21.EntregableArticulo>) {
+    if (t == List<_i20.Cliente>) {
+      return (data as List).map((e) => deserialize<_i20.Cliente>(e)).toList()
+          as dynamic;
+    }
+    if (t == List<_i21.Comentario>) {
+      return (data as List).map((e) => deserialize<_i21.Comentario>(e)).toList()
+          as dynamic;
+    }
+    if (t == List<_i22.EntregableArticulo>) {
       return (data as List)
-          .map((e) => deserialize<_i21.EntregableArticulo>(e))
+          .map((e) => deserialize<_i22.EntregableArticulo>(e))
           .toList() as dynamic;
     }
-    if (t == List<_i22.Marca>) {
-      return (data as List).map((e) => deserialize<_i22.Marca>(e)).toList()
+    if (t == List<_i23.Marca>) {
+      return (data as List).map((e) => deserialize<_i23.Marca>(e)).toList()
           as dynamic;
     }
     if (t == List<List<dynamic>>) {
@@ -1277,8 +1356,8 @@ class Protocol extends _i1.SerializationManagerServer {
       return (data as List).map((e) => deserialize<dynamic>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i23.Periodista>) {
-      return (data as List).map((e) => deserialize<_i23.Periodista>(e)).toList()
+    if (t == List<_i24.Periodista>) {
+      return (data as List).map((e) => deserialize<_i24.Periodista>(e)).toList()
           as dynamic;
     }
     if (t == _i1.getType<List<int>?>()) {
@@ -1404,6 +1483,9 @@ class Protocol extends _i1.SerializationManagerServer {
     if (data is _i17.Publicacion) {
       return 'Publicacion';
     }
+    if (data is _i18.RedSocial) {
+      return 'RedSocial';
+    }
     return super.getClassNameForObject(data);
   }
 
@@ -1455,6 +1537,9 @@ class Protocol extends _i1.SerializationManagerServer {
     if (data['className'] == 'Publicacion') {
       return deserialize<_i17.Publicacion>(data['data']);
     }
+    if (data['className'] == 'RedSocial') {
+      return deserialize<_i18.RedSocial>(data['data']);
+    }
     return super.deserializeByClassName(data);
   }
 
@@ -1497,6 +1582,8 @@ class Protocol extends _i1.SerializationManagerServer {
         return _i16.Proyecto.t;
       case _i17.Publicacion:
         return _i17.Publicacion.t;
+      case _i18.RedSocial:
+        return _i18.RedSocial.t;
     }
     return null;
   }

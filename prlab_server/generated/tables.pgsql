@@ -10,9 +10,9 @@ CREATE TABLE "comentarios" (
   "completado" boolean NOT NULL,
   "idAutorCompletado" integer NOT NULL,
   "fechaCreacion" timestamp without time zone,
+  "ultimaModificacion" timestamp without time zone,
   "compania" text,
   "fechaEliminacion" timestamp without time zone,
-  "ultimaModificacion" timestamp without time zone,
   "fechaCompletado" timestamp without time zone
 );
 

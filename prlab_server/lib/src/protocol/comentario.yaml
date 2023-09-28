@@ -10,7 +10,7 @@ fields:
   completado: bool
   idAutorCompletado: int
   fechaCreacion: DateTime?
+  ultimaModificacion: DateTime?
   compania: String? #TODO(todos) ver que es esto
-  fechaEliminacion: DateTime?, database
-  ultimaModificacion: DateTime?, database
-  fechaCompletado: DateTime?, database
+  fechaEliminacion: DateTime?
+  fechaCompletado: DateTime?

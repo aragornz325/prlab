@@ -20,6 +20,7 @@ class Comentario extends _i1.SerializableEntity {
     required this.completado,
     required this.idAutorCompletado,
     this.fechaCreacion,
+    this.ultimaModificacion,
     this.compania,
   });
 
@@ -47,6 +48,8 @@ class Comentario extends _i1.SerializableEntity {
           .deserialize<int>(jsonSerialization['idAutorCompletado']),
       fechaCreacion: serializationManager
           .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
+      ultimaModificacion: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['ultimaModificacion']),
       compania: serializationManager
           .deserialize<String?>(jsonSerialization['compania']),
     );
@@ -75,6 +78,8 @@ class Comentario extends _i1.SerializableEntity {
 
   DateTime? fechaCreacion;
 
+  DateTime? ultimaModificacion;
+
   String? compania;
 
   @override
@@ -90,6 +95,7 @@ class Comentario extends _i1.SerializableEntity {
       'completado': completado,
       'idAutorCompletado': idAutorCompletado,
       'fechaCreacion': fechaCreacion,
+      'ultimaModificacion': ultimaModificacion,
       'compania': compania,
     };
   }

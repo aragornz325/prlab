@@ -20,9 +20,9 @@ class Comentario extends _i1.TableRow {
     required this.completado,
     required this.idAutorCompletado,
     this.fechaCreacion,
+    this.ultimaModificacion,
     this.compania,
     this.fechaEliminacion,
-    this.ultimaModificacion,
     this.fechaCompletado,
   }) : super(id);
 
@@ -50,12 +50,12 @@ class Comentario extends _i1.TableRow {
           .deserialize<int>(jsonSerialization['idAutorCompletado']),
       fechaCreacion: serializationManager
           .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
+      ultimaModificacion: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['ultimaModificacion']),
       compania: serializationManager
           .deserialize<String?>(jsonSerialization['compania']),
       fechaEliminacion: serializationManager
           .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
-      ultimaModificacion: serializationManager
-          .deserialize<DateTime?>(jsonSerialization['ultimaModificacion']),
       fechaCompletado: serializationManager
           .deserialize<DateTime?>(jsonSerialization['fechaCompletado']),
     );
@@ -81,11 +81,11 @@ class Comentario extends _i1.TableRow {
 
   DateTime? fechaCreacion;
 
+  DateTime? ultimaModificacion;
+
   String? compania;
 
   DateTime? fechaEliminacion;
-
-  DateTime? ultimaModificacion;
 
   DateTime? fechaCompletado;
 
@@ -104,6 +104,7 @@ class Comentario extends _i1.TableRow {
       'completado': completado,
       'idAutorCompletado': idAutorCompletado,
       'fechaCreacion': fechaCreacion,
+      'ultimaModificacion': ultimaModificacion,
       'compania': compania,
     };
   }
@@ -118,9 +119,9 @@ class Comentario extends _i1.TableRow {
       'completado': completado,
       'idAutorCompletado': idAutorCompletado,
       'fechaCreacion': fechaCreacion,
+      'ultimaModificacion': ultimaModificacion,
       'compania': compania,
       'fechaEliminacion': fechaEliminacion,
-      'ultimaModificacion': ultimaModificacion,
       'fechaCompletado': fechaCompletado,
     };
   }
@@ -138,9 +139,9 @@ class Comentario extends _i1.TableRow {
       'completado': completado,
       'idAutorCompletado': idAutorCompletado,
       'fechaCreacion': fechaCreacion,
+      'ultimaModificacion': ultimaModificacion,
       'compania': compania,
       'fechaEliminacion': fechaEliminacion,
-      'ultimaModificacion': ultimaModificacion,
       'fechaCompletado': fechaCompletado,
     };
   }
@@ -172,14 +173,14 @@ class Comentario extends _i1.TableRow {
       case 'fechaCreacion':
         fechaCreacion = value;
         return;
+      case 'ultimaModificacion':
+        ultimaModificacion = value;
+        return;
       case 'compania':
         compania = value;
         return;
       case 'fechaEliminacion':
         fechaEliminacion = value;
-        return;
-      case 'ultimaModificacion':
-        ultimaModificacion = value;
         return;
       case 'fechaCompletado':
         fechaCompletado = value;
@@ -320,11 +321,11 @@ class ComentarioTable extends _i1.Table {
 
   final fechaCreacion = _i1.ColumnDateTime('fechaCreacion');
 
+  final ultimaModificacion = _i1.ColumnDateTime('ultimaModificacion');
+
   final compania = _i1.ColumnString('compania');
 
   final fechaEliminacion = _i1.ColumnDateTime('fechaEliminacion');
-
-  final ultimaModificacion = _i1.ColumnDateTime('ultimaModificacion');
 
   final fechaCompletado = _i1.ColumnDateTime('fechaCompletado');
 
@@ -337,9 +338,9 @@ class ComentarioTable extends _i1.Table {
         completado,
         idAutorCompletado,
         fechaCreacion,
+        ultimaModificacion,
         compania,
         fechaEliminacion,
-        ultimaModificacion,
         fechaCompletado,
       ];
 }

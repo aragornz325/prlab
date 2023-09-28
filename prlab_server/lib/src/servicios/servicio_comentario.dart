@@ -120,7 +120,7 @@ class ServicioComentario extends Servicio<OrmComentario> {
     required Session session,
     required Comentario comentario,
   }) async {
-    logger.finer('Modificando Comentario');
+    logger.finer('Modificando Comentario ${comentario.textoComentario}');
     return await ejecutarOperacion(() => orm.modificarComentario(
           session,
           comentario: comentario,

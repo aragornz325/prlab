@@ -7,26 +7,28 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
+import 'protocol.dart' as _i2;
 
 class Periodista extends _i1.TableRow {
   Periodista({
     int? id,
-    this.urlImagen,
-    this.nombreCompleto,
-    this.rol,
-    this.idRol,
-    this.medio,
+    required this.urlImagen,
+    required this.nombres,
+    required this.apellidos,
+    required this.puesto,
+    this.idPuesto,
+    required this.medio,
     this.idMedio,
-    this.bio,
-    this.temas,
-    this.email,
-    this.telefono,
-    this.ciudad,
+    required this.biografia,
+    required this.temas,
+    required this.email,
+    required this.telefono,
+    required this.ciudad,
     this.idCiudad,
-    this.pais,
+    required this.pais,
     this.idPais,
-    this.idiomas,
-    this.redesSociales,
+    required this.idiomas,
+    required this.redesSociales,
     this.ultimaModificacion,
     this.activo,
     this.fechaCreacion,
@@ -39,34 +41,38 @@ class Periodista extends _i1.TableRow {
     return Periodista(
       id: serializationManager.deserialize<int?>(jsonSerialization['id']),
       urlImagen: serializationManager
-          .deserialize<String?>(jsonSerialization['urlImagen']),
-      nombreCompleto: serializationManager
-          .deserialize<String?>(jsonSerialization['nombreCompleto']),
-      rol: serializationManager.deserialize<String?>(jsonSerialization['rol']),
-      idRol: serializationManager.deserialize<int?>(jsonSerialization['idRol']),
+          .deserialize<String>(jsonSerialization['urlImagen']),
+      nombres: serializationManager
+          .deserialize<String>(jsonSerialization['nombres']),
+      apellidos: serializationManager
+          .deserialize<String>(jsonSerialization['apellidos']),
+      puesto:
+          serializationManager.deserialize<String>(jsonSerialization['puesto']),
+      idPuesto:
+          serializationManager.deserialize<int?>(jsonSerialization['idPuesto']),
       medio:
-          serializationManager.deserialize<String?>(jsonSerialization['medio']),
+          serializationManager.deserialize<String>(jsonSerialization['medio']),
       idMedio:
           serializationManager.deserialize<int?>(jsonSerialization['idMedio']),
-      bio: serializationManager.deserialize<String?>(jsonSerialization['bio']),
+      biografia: serializationManager
+          .deserialize<String>(jsonSerialization['biografia']),
       temas: serializationManager
-          .deserialize<List<String>?>(jsonSerialization['temas']),
+          .deserialize<List<String>>(jsonSerialization['temas']),
       email:
-          serializationManager.deserialize<String?>(jsonSerialization['email']),
+          serializationManager.deserialize<String>(jsonSerialization['email']),
       telefono: serializationManager
-          .deserialize<String?>(jsonSerialization['telefono']),
-      ciudad: serializationManager
-          .deserialize<String?>(jsonSerialization['ciudad']),
+          .deserialize<String>(jsonSerialization['telefono']),
+      ciudad:
+          serializationManager.deserialize<String>(jsonSerialization['ciudad']),
       idCiudad:
           serializationManager.deserialize<int?>(jsonSerialization['idCiudad']),
-      pais:
-          serializationManager.deserialize<String?>(jsonSerialization['pais']),
+      pais: serializationManager.deserialize<String>(jsonSerialization['pais']),
       idPais:
           serializationManager.deserialize<int?>(jsonSerialization['idPais']),
       idiomas: serializationManager
-          .deserialize<List<String>?>(jsonSerialization['idiomas']),
+          .deserialize<List<String>>(jsonSerialization['idiomas']),
       redesSociales: serializationManager
-          .deserialize<String?>(jsonSerialization['redesSociales']),
+          .deserialize<List<_i2.RedSocial>>(jsonSerialization['redesSociales']),
       ultimaModificacion: serializationManager
           .deserialize<DateTime?>(jsonSerialization['ultimaModificacion']),
       activo:
@@ -78,37 +84,39 @@ class Periodista extends _i1.TableRow {
 
   static final t = PeriodistaTable();
 
-  String? urlImagen;
+  String urlImagen;
 
-  String? nombreCompleto;
+  String nombres;
 
-  String? rol;
+  String apellidos;
 
-  int? idRol;
+  String puesto;
 
-  String? medio;
+  int? idPuesto;
+
+  String medio;
 
   int? idMedio;
 
-  String? bio;
+  String biografia;
 
-  List<String>? temas;
+  List<String> temas;
 
-  String? email;
+  String email;
 
-  String? telefono;
+  String telefono;
 
-  String? ciudad;
+  String ciudad;
 
   int? idCiudad;
 
-  String? pais;
+  String pais;
 
   int? idPais;
 
-  List<String>? idiomas;
+  List<String> idiomas;
 
-  String? redesSociales;
+  List<_i2.RedSocial> redesSociales;
 
   DateTime? ultimaModificacion;
 
@@ -123,24 +131,18 @@ class Periodista extends _i1.TableRow {
     return {
       'id': id,
       'urlImagen': urlImagen,
-      'nombreCompleto': nombreCompleto,
-      'rol': rol,
-      'idRol': idRol,
+      'nombres': nombres,
+      'apellidos': apellidos,
+      'puesto': puesto,
       'medio': medio,
-      'idMedio': idMedio,
-      'bio': bio,
+      'biografia': biografia,
       'temas': temas,
       'email': email,
       'telefono': telefono,
       'ciudad': ciudad,
-      'idCiudad': idCiudad,
       'pais': pais,
-      'idPais': idPais,
       'idiomas': idiomas,
       'redesSociales': redesSociales,
-      'ultimaModificacion': ultimaModificacion,
-      'activo': activo,
-      'fechaCreacion': fechaCreacion,
     };
   }
 
@@ -149,15 +151,15 @@ class Periodista extends _i1.TableRow {
     return {
       'id': id,
       'urlImagen': urlImagen,
-      'nombreCompleto': nombreCompleto,
-      'idRol': idRol,
+      'nombres': nombres,
+      'apellidos': apellidos,
+      'idPuesto': idPuesto,
       'idMedio': idMedio,
-      'bio': bio,
+      'biografia': biografia,
       'email': email,
       'telefono': telefono,
       'idCiudad': idCiudad,
       'idPais': idPais,
-      'redesSociales': redesSociales,
       'ultimaModificacion': ultimaModificacion,
       'activo': activo,
       'fechaCreacion': fechaCreacion,
@@ -169,12 +171,13 @@ class Periodista extends _i1.TableRow {
     return {
       'id': id,
       'urlImagen': urlImagen,
-      'nombreCompleto': nombreCompleto,
-      'rol': rol,
-      'idRol': idRol,
+      'nombres': nombres,
+      'apellidos': apellidos,
+      'puesto': puesto,
+      'idPuesto': idPuesto,
       'medio': medio,
       'idMedio': idMedio,
-      'bio': bio,
+      'biografia': biografia,
       'temas': temas,
       'email': email,
       'telefono': telefono,
@@ -202,17 +205,20 @@ class Periodista extends _i1.TableRow {
       case 'urlImagen':
         urlImagen = value;
         return;
-      case 'nombreCompleto':
-        nombreCompleto = value;
+      case 'nombres':
+        nombres = value;
         return;
-      case 'idRol':
-        idRol = value;
+      case 'apellidos':
+        apellidos = value;
+        return;
+      case 'idPuesto':
+        idPuesto = value;
         return;
       case 'idMedio':
         idMedio = value;
         return;
-      case 'bio':
-        bio = value;
+      case 'biografia':
+        biografia = value;
         return;
       case 'email':
         email = value;
@@ -225,9 +231,6 @@ class Periodista extends _i1.TableRow {
         return;
       case 'idPais':
         idPais = value;
-        return;
-      case 'redesSociales':
-        redesSociales = value;
         return;
       case 'ultimaModificacion':
         ultimaModificacion = value;
@@ -364,13 +367,15 @@ class PeriodistaTable extends _i1.Table {
 
   final urlImagen = _i1.ColumnString('urlImagen');
 
-  final nombreCompleto = _i1.ColumnString('nombreCompleto');
+  final nombres = _i1.ColumnString('nombres');
 
-  final idRol = _i1.ColumnInt('idRol');
+  final apellidos = _i1.ColumnString('apellidos');
+
+  final idPuesto = _i1.ColumnInt('idPuesto');
 
   final idMedio = _i1.ColumnInt('idMedio');
 
-  final bio = _i1.ColumnString('bio');
+  final biografia = _i1.ColumnString('biografia');
 
   final email = _i1.ColumnString('email');
 
@@ -379,8 +384,6 @@ class PeriodistaTable extends _i1.Table {
   final idCiudad = _i1.ColumnInt('idCiudad');
 
   final idPais = _i1.ColumnInt('idPais');
-
-  final redesSociales = _i1.ColumnString('redesSociales');
 
   final ultimaModificacion = _i1.ColumnDateTime('ultimaModificacion');
 
@@ -392,15 +395,15 @@ class PeriodistaTable extends _i1.Table {
   List<_i1.Column> get columns => [
         id,
         urlImagen,
-        nombreCompleto,
-        idRol,
+        nombres,
+        apellidos,
+        idPuesto,
         idMedio,
-        bio,
+        biografia,
         email,
         telefono,
         idCiudad,
         idPais,
-        redesSociales,
         ultimaModificacion,
         activo,
         fechaCreacion,
