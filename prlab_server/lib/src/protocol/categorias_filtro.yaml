@@ -1,0 +1,8 @@
+class: CategoriasFiltro
+fields:
+  paises: List<PaisFiltro>
+  ciudades: List<CiudadFiltro>
+  idiomas: List<IdiomaFiltro>
+  temas: List<TemaFiltro>
+  tiposDeMedio: List<TipoDeMedioFiltro>
+  puestos: List<PuestoFiltro>
