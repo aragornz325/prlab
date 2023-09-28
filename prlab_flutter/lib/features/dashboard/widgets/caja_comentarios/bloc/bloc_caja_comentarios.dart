@@ -38,11 +38,11 @@ class BlocCajaComentarios
     emit(BlocCajaComentariosEstadoCargando.desde(state));
     try {
       final comentarios = await client.comentario
-          .listarComentariosPorArticulo(idArticulo: event.idArticulo);
-      // ..sort(
-      //   (a, b) => (a.fechaCreacion ?? DateTime.now())
-      //       .compareTo(b.fechaCreacion ?? DateTime.now()),
-      // );
+          .listarComentariosPorArticulo(idArticulo: event.idArticulo)
+        ..sort(
+          (a, b) => (b.fechaCreacion ?? DateTime.now())
+              .compareTo(a.fechaCreacion ?? DateTime.now()),
+        );
 
       emit(
         BlocCajaComentariosEstadoExitoso.desde(
@@ -162,11 +162,24 @@ class BlocCajaComentarios
       final comentario = List<Comentario>.from(state.comentarios)
           .firstWhere((c) => c.id == event.idComentario);
 
-      comentario.completado = !(comentario.completado);
+      final nuevoComentario = Comentario(
+        idEntregable: comentario.idEntregable,
+        textoComentario: comentario.textoComentario,
+        idAutor: comentario.idAutor,
+        completado: !(comentario.completado),
+        idAutorCompletado: sessionManager.signedInUser?.id ?? 0,
+        apellido: comentario.apellido,
+        compania: comentario.compania,
+        fechaCreacion: comentario.fechaCreacion,
+        id: comentario.id,
+        imageUrl: comentario.imageUrl,
+        nombre: comentario.nombre,
+      );
 
       await client.comentario.modificarComentario(
-        comentario: comentario,
+        comentario: nuevoComentario,
       );
+      comentario.completado = !(comentario.completado);
 
       final comentarios = List<Comentario>.from(state.comentarios);
 

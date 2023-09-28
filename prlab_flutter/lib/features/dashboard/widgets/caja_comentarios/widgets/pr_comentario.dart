@@ -35,11 +35,13 @@ class PRComentario extends StatelessWidget {
       child: Column(
         children: [
           Row(
+            //colores del componente divido entre 3 para sacar el color 
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(vertical: max(5.ph, 5.sh)),
                 child: CircleAvatar(
+                  backgroundImage: NetworkImage(comentario.imageUrl ?? ''),
                   backgroundColor: colores.secondary,
                   foregroundColor: colores.secondary,
                   maxRadius: 15.sw,
@@ -74,9 +76,7 @@ class PRComentario extends StatelessWidget {
                                     ),
                                     SizedBox(width: 5.pw),
                                     Text(
-                                      // TODO(anyone) : reemplazar por la
-                                      // compania del autor del comentario
-                                      '(Company)',
+                                      comentario.compania ?? '(Sin compania)',
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       textAlign: TextAlign.start,
@@ -94,14 +94,14 @@ class PRComentario extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            // Text(
-                            //  comentario.fechaComentarioCreada,
-                            //   style: TextStyle(
-                            //     color: colores.secondary,
-                            //     fontSize: 12.pf,
-                            //     fontWeight: FontWeight.w400,
-                            //   ),
-                            // ),
+                            Text(
+                              comentario.fechaComentarioCreada,
+                              style: TextStyle(
+                                color: colores.secondary,
+                                fontSize: 12.pf,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
                             SizedBox(width: 5.pw),
                             IconButton(
                               onPressed: () =>

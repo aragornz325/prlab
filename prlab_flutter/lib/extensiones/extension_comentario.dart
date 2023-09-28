@@ -9,6 +9,7 @@ extension ComentarioX on Comentario {
   /// nombre completo de quien comento el articulo.
   String get nombreComepletoDelComentario => '$nombre $apellido';
 
-  // String get fechaComentarioCreada =>
-  //     DateFormat("dd/MM/yyyy, HH:mm").format($fechaCreacion ?? DateTime.now());
+  String get fechaComentarioCreada => DateFormat("dd/MM/yyyy, HH:mm").format(
+        fechaCreacion ?? DateTime.now(),
+      );
 }

@@ -7,29 +7,24 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
+import 'protocol.dart' as _i2;
 
 class Periodista extends _i1.SerializableEntity {
   Periodista({
     this.id,
-    this.urlImagen,
-    this.nombreCompleto,
-    this.rol,
-    this.idRol,
-    this.medio,
-    this.idMedio,
-    this.bio,
-    this.temas,
-    this.email,
-    this.telefono,
-    this.ciudad,
-    this.idCiudad,
-    this.pais,
-    this.idPais,
-    this.idiomas,
-    this.redesSociales,
-    this.ultimaModificacion,
-    this.activo,
-    this.fechaCreacion,
+    required this.urlImagen,
+    required this.nombres,
+    required this.apellidos,
+    required this.puesto,
+    required this.medio,
+    required this.biografia,
+    required this.temas,
+    required this.email,
+    required this.telefono,
+    required this.ciudad,
+    required this.pais,
+    required this.idiomas,
+    required this.redesSociales,
   });
 
   factory Periodista.fromJson(
@@ -39,40 +34,30 @@ class Periodista extends _i1.SerializableEntity {
     return Periodista(
       id: serializationManager.deserialize<int?>(jsonSerialization['id']),
       urlImagen: serializationManager
-          .deserialize<String?>(jsonSerialization['urlImagen']),
-      nombreCompleto: serializationManager
-          .deserialize<String?>(jsonSerialization['nombreCompleto']),
-      rol: serializationManager.deserialize<String?>(jsonSerialization['rol']),
-      idRol: serializationManager.deserialize<int?>(jsonSerialization['idRol']),
+          .deserialize<String>(jsonSerialization['urlImagen']),
+      nombres: serializationManager
+          .deserialize<String>(jsonSerialization['nombres']),
+      apellidos: serializationManager
+          .deserialize<String>(jsonSerialization['apellidos']),
+      puesto:
+          serializationManager.deserialize<String>(jsonSerialization['puesto']),
       medio:
-          serializationManager.deserialize<String?>(jsonSerialization['medio']),
-      idMedio:
-          serializationManager.deserialize<int?>(jsonSerialization['idMedio']),
-      bio: serializationManager.deserialize<String?>(jsonSerialization['bio']),
+          serializationManager.deserialize<String>(jsonSerialization['medio']),
+      biografia: serializationManager
+          .deserialize<String>(jsonSerialization['biografia']),
       temas: serializationManager
-          .deserialize<List<String>?>(jsonSerialization['temas']),
+          .deserialize<List<String>>(jsonSerialization['temas']),
       email:
-          serializationManager.deserialize<String?>(jsonSerialization['email']),
+          serializationManager.deserialize<String>(jsonSerialization['email']),
       telefono: serializationManager
-          .deserialize<String?>(jsonSerialization['telefono']),
-      ciudad: serializationManager
-          .deserialize<String?>(jsonSerialization['ciudad']),
-      idCiudad:
-          serializationManager.deserialize<int?>(jsonSerialization['idCiudad']),
-      pais:
-          serializationManager.deserialize<String?>(jsonSerialization['pais']),
-      idPais:
-          serializationManager.deserialize<int?>(jsonSerialization['idPais']),
+          .deserialize<String>(jsonSerialization['telefono']),
+      ciudad:
+          serializationManager.deserialize<String>(jsonSerialization['ciudad']),
+      pais: serializationManager.deserialize<String>(jsonSerialization['pais']),
       idiomas: serializationManager
-          .deserialize<List<String>?>(jsonSerialization['idiomas']),
+          .deserialize<List<String>>(jsonSerialization['idiomas']),
       redesSociales: serializationManager
-          .deserialize<String?>(jsonSerialization['redesSociales']),
-      ultimaModificacion: serializationManager
-          .deserialize<DateTime?>(jsonSerialization['ultimaModificacion']),
-      activo:
-          serializationManager.deserialize<bool?>(jsonSerialization['activo']),
-      fechaCreacion: serializationManager
-          .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
+          .deserialize<List<_i2.RedSocial>>(jsonSerialization['redesSociales']),
     );
   }
 
@@ -81,67 +66,49 @@ class Periodista extends _i1.SerializableEntity {
   /// the id will be null.
   int? id;
 
-  String? urlImagen;
+  String urlImagen;
 
-  String? nombreCompleto;
+  String nombres;
 
-  String? rol;
+  String apellidos;
 
-  int? idRol;
+  String puesto;
 
-  String? medio;
+  String medio;
 
-  int? idMedio;
+  String biografia;
 
-  String? bio;
+  List<String> temas;
 
-  List<String>? temas;
+  String email;
 
-  String? email;
+  String telefono;
 
-  String? telefono;
+  String ciudad;
 
-  String? ciudad;
+  String pais;
 
-  int? idCiudad;
+  List<String> idiomas;
 
-  String? pais;
-
-  int? idPais;
-
-  List<String>? idiomas;
-
-  String? redesSociales;
-
-  DateTime? ultimaModificacion;
-
-  bool? activo;
-
-  DateTime? fechaCreacion;
+  List<_i2.RedSocial> redesSociales;
 
   @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,
       'urlImagen': urlImagen,
-      'nombreCompleto': nombreCompleto,
-      'rol': rol,
-      'idRol': idRol,
+      'nombres': nombres,
+      'apellidos': apellidos,
+      'puesto': puesto,
       'medio': medio,
-      'idMedio': idMedio,
-      'bio': bio,
+      'biografia': biografia,
       'temas': temas,
       'email': email,
       'telefono': telefono,
       'ciudad': ciudad,
-      'idCiudad': idCiudad,
       'pais': pais,
-      'idPais': idPais,
       'idiomas': idiomas,
       'redesSociales': redesSociales,
-      'ultimaModificacion': ultimaModificacion,
-      'activo': activo,
-      'fechaCreacion': fechaCreacion,
     };
   }
 }

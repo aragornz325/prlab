@@ -799,8 +799,8 @@ class Endpoints extends _i1.EndpointDispatch {
         'listarPeriodistas': _i1.MethodConnector(
           name: 'listarPeriodistas',
           params: {
-            'nombreCompleto': _i1.ParameterDescription(
-              name: 'nombreCompleto',
+            'nombres': _i1.ParameterDescription(
+              name: 'nombres',
               type: _i1.getType<String?>(),
               nullable: true,
             ),
@@ -834,8 +834,8 @@ class Endpoints extends _i1.EndpointDispatch {
               type: _i1.getType<List<int>?>(),
               nullable: true,
             ),
-            'idRoles': _i1.ParameterDescription(
-              name: 'idRoles',
+            'idPuestos': _i1.ParameterDescription(
+              name: 'idPuestos',
               type: _i1.getType<List<int>?>(),
               nullable: true,
             ),
@@ -847,14 +847,14 @@ class Endpoints extends _i1.EndpointDispatch {
               (endpoints['periodista'] as _i9.PeriodistaEndpoint)
                   .listarPeriodistas(
             session,
-            nombreCompleto: params['nombreCompleto'],
+            nombres: params['nombres'],
             nombreDeMedio: params['nombreDeMedio'],
             idPaises: params['idPaises'],
             idCiudades: params['idCiudades'],
             idTemas: params['idTemas'],
             idIdiomas: params['idIdiomas'],
             idTiposDeMedio: params['idTiposDeMedio'],
-            idRoles: params['idRoles'],
+            idPuestos: params['idPuestos'],
           ),
         ),
         'obtenerListaDeFiltrosConRecuento': _i1.MethodConnector(
@@ -885,8 +885,8 @@ class Endpoints extends _i1.EndpointDispatch {
               type: _i1.getType<List<int>?>(),
               nullable: true,
             ),
-            'idRoles': _i1.ParameterDescription(
-              name: 'idRoles',
+            'idPuestos': _i1.ParameterDescription(
+              name: 'idPuestos',
               type: _i1.getType<List<int>?>(),
               nullable: true,
             ),
@@ -903,7 +903,7 @@ class Endpoints extends _i1.EndpointDispatch {
             idIdiomas: params['idIdiomas'],
             idTemas: params['idTemas'],
             idTiposDeMedio: params['idTiposDeMedio'],
-            idRoles: params['idRoles'],
+            idPuestos: params['idPuestos'],
           ),
         ),
       },

@@ -517,27 +517,27 @@ class _EndpointPeriodista extends _i1.EndpointRef {
 
   /// Recupera una lista de [Periodista] de acuerdo a diferentes filtros.
   _i2.Future<List<_i7.Periodista>> listarPeriodistas({
-    String? nombreCompleto,
+    String? nombres,
     String? nombreDeMedio,
     List<int>? idPaises,
     List<int>? idCiudades,
     List<int>? idTemas,
     List<int>? idIdiomas,
     List<int>? idTiposDeMedio,
-    List<int>? idRoles,
+    List<int>? idPuestos,
   }) =>
       caller.callServerEndpoint<List<_i7.Periodista>>(
         'periodista',
         'listarPeriodistas',
         {
-          'nombreCompleto': nombreCompleto,
+          'nombres': nombres,
           'nombreDeMedio': nombreDeMedio,
           'idPaises': idPaises,
           'idCiudades': idCiudades,
           'idTemas': idTemas,
           'idIdiomas': idIdiomas,
           'idTiposDeMedio': idTiposDeMedio,
-          'idRoles': idRoles,
+          'idPuestos': idPuestos,
         },
       );
 
@@ -549,7 +549,7 @@ class _EndpointPeriodista extends _i1.EndpointRef {
     List<int>? idIdiomas,
     List<int>? idTemas,
     List<int>? idTiposDeMedio,
-    List<int>? idRoles,
+    List<int>? idPuestos,
   }) =>
       caller.callServerEndpoint<Map<dynamic, dynamic>>(
         'periodista',
@@ -560,7 +560,7 @@ class _EndpointPeriodista extends _i1.EndpointRef {
           'idIdiomas': idIdiomas,
           'idTemas': idTemas,
           'idTiposDeMedio': idTiposDeMedio,
-          'idRoles': idRoles,
+          'idPuestos': idPuestos,
         },
       );
 }
