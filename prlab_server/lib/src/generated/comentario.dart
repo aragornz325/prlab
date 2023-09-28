@@ -106,6 +106,8 @@ class Comentario extends _i1.TableRow {
       'fechaCreacion': fechaCreacion,
       'ultimaModificacion': ultimaModificacion,
       'compania': compania,
+      'fechaEliminacion': fechaEliminacion,
+      'fechaCompletado': fechaCompletado,
     };
   }
 

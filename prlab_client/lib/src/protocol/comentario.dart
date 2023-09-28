@@ -22,6 +22,8 @@ class Comentario extends _i1.SerializableEntity {
     this.fechaCreacion,
     this.ultimaModificacion,
     this.compania,
+    this.fechaEliminacion,
+    this.fechaCompletado,
   });
 
   factory Comentario.fromJson(
@@ -52,6 +54,10 @@ class Comentario extends _i1.SerializableEntity {
           .deserialize<DateTime?>(jsonSerialization['ultimaModificacion']),
       compania: serializationManager
           .deserialize<String?>(jsonSerialization['compania']),
+      fechaEliminacion: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['fechaEliminacion']),
+      fechaCompletado: serializationManager
+          .deserialize<DateTime?>(jsonSerialization['fechaCompletado']),
     );
   }
 
@@ -82,6 +88,10 @@ class Comentario extends _i1.SerializableEntity {
 
   String? compania;
 
+  DateTime? fechaEliminacion;
+
+  DateTime? fechaCompletado;
+
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -97,6 +107,8 @@ class Comentario extends _i1.SerializableEntity {
       'fechaCreacion': fechaCreacion,
       'ultimaModificacion': ultimaModificacion,
       'compania': compania,
+      'fechaEliminacion': fechaEliminacion,
+      'fechaCompletado': fechaCompletado,
     };
   }
 }

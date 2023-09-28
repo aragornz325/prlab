@@ -13,9 +13,10 @@ import 'package:prlab_client/src/protocol/comentario.dart' as _i4;
 import 'package:prlab_client/src/protocol/entregable_articulo.dart' as _i5;
 import 'package:prlab_client/src/protocol/marca.dart' as _i6;
 import 'package:prlab_client/src/protocol/periodista.dart' as _i7;
-import 'package:serverpod_auth_client/module.dart' as _i8;
-import 'dart:io' as _i9;
-import 'protocol.dart' as _i10;
+import 'package:prlab_client/src/protocol/categorias_filtro.dart' as _i8;
+import 'package:serverpod_auth_client/module.dart' as _i9;
+import 'dart:io' as _i10;
+import 'protocol.dart' as _i11;
 
 /// Endpoints para manejo de archivos con almacenamiento en la nube.
 class _EndpointAlmacenamientoArchivosNube extends _i1.EndpointRef {
@@ -543,7 +544,7 @@ class _EndpointPeriodista extends _i1.EndpointRef {
 
   /// Obtiene las categorías de filtrado de [Periodista] con su nombre, id y
   /// recuento de acuerdo a los filtros.
-  _i2.Future<Map<dynamic, dynamic>> obtenerListaDeFiltrosConRecuento({
+  _i2.Future<_i8.CategoriasFiltro> obtenerListaDeFiltrosConRecuento({
     List<int>? idPaises,
     List<int>? idCiudades,
     List<int>? idIdiomas,
@@ -551,7 +552,7 @@ class _EndpointPeriodista extends _i1.EndpointRef {
     List<int>? idTiposDeMedio,
     List<int>? idPuestos,
   }) =>
-      caller.callServerEndpoint<Map<dynamic, dynamic>>(
+      caller.callServerEndpoint<_i8.CategoriasFiltro>(
         'periodista',
         'obtenerListaDeFiltrosConRecuento',
         {
@@ -567,20 +568,20 @@ class _EndpointPeriodista extends _i1.EndpointRef {
 
 class _Modules {
   _Modules(Client client) {
-    auth = _i8.Caller(client);
+    auth = _i9.Caller(client);
   }
 
-  late final _i8.Caller auth;
+  late final _i9.Caller auth;
 }
 
 class Client extends _i1.ServerpodClient {
   Client(
     String host, {
-    _i9.SecurityContext? context,
+    _i10.SecurityContext? context,
     _i1.AuthenticationKeyManager? authenticationKeyManager,
   }) : super(
           host,
-          _i10.Protocol(),
+          _i11.Protocol(),
           context: context,
           authenticationKeyManager: authenticationKeyManager,
         ) {

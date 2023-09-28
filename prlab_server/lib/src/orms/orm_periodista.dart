@@ -155,7 +155,7 @@ FROM
 
   /// Obtiene las categorías de filtrado de [Periodista] con su nombre, id y
   /// recuento de acuerdo a los filtros.
-  Future<Map> obtenerListaDeFiltrosConRecuento(
+  Future<CategoriasFiltro> obtenerListaDeFiltrosConRecuento(
     Session session, {
     List<int> idPaises = const [],
     List<int> idCiudades = const [],
@@ -217,10 +217,10 @@ WHERE
   j."id"
 FROM
   periodistas j
-  INNER JOIN puestos r ON j."idPuesto" = r.id
-  INNER JOIN medios m ON j."idMedio" = m.id
-  INNER JOIN ciudades c ON j."idCiudad" = c.id
-  INNER JOIN paises n ON j."idPais" = n.id
+  LEFT JOIN puestos r ON j."idPuesto" = r.id
+  LEFT JOIN medios m ON j."idMedio" = m.id
+  LEFT JOIN ciudades c ON j."idCiudad" = c.id
+  LEFT JOIN paises n ON j."idPais" = n.id
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
@@ -244,10 +244,10 @@ WHERE
   j."id"
 FROM
   periodistas j
-  INNER JOIN puestos r ON j."idPuesto" = r.id
-  INNER JOIN medios m ON j."idMedio" = m.id
-  INNER JOIN ciudades c ON j."idCiudad" = c.id
-  INNER JOIN paises n ON j."idPais" = n.id
+  LEFT JOIN puestos r ON j."idPuesto" = r.id
+  LEFT JOIN medios m ON j."idMedio" = m.id
+  LEFT JOIN ciudades c ON j."idCiudad" = c.id
+  LEFT JOIN paises n ON j."idPais" = n.id
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
@@ -272,10 +272,10 @@ WHERE
   j."id"
 FROM
   periodistas j
-  INNER JOIN puestos r ON j."idPuesto" = r.id
-  INNER JOIN medios m ON j."idMedio" = m.id
-  INNER JOIN ciudades c ON j."idCiudad" = c.id
-  INNER JOIN paises n ON j."idPais" = n.id
+  LEFT JOIN puestos r ON j."idPuesto" = r.id
+  LEFT JOIN medios m ON j."idMedio" = m.id
+  LEFT JOIN ciudades c ON j."idCiudad" = c.id
+  LEFT JOIN paises n ON j."idPais" = n.id
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
@@ -300,10 +300,10 @@ WHERE
   j."id"
 FROM
   periodistas j
-  INNER JOIN puestos r ON j."idPuesto" = r.id
-  INNER JOIN medios m ON j."idMedio" = m.id
-  INNER JOIN ciudades c ON j."idCiudad" = c.id
-  INNER JOIN paises n ON j."idPais" = n.id
+  LEFT JOIN puestos r ON j."idPuesto" = r.id
+  LEFT JOIN medios m ON j."idMedio" = m.id
+  LEFT JOIN ciudades c ON j."idCiudad" = c.id
+  LEFT JOIN paises n ON j."idPais" = n.id
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
@@ -328,10 +328,10 @@ WHERE
   j."id"
 FROM
   periodistas j
-  INNER JOIN puestos r ON j."idPuesto" = r.id
-  INNER JOIN medios m ON j."idMedio" = m.id
-  INNER JOIN ciudades c ON j."idCiudad" = c.id
-  INNER JOIN paises n ON j."idPais" = n.id
+  LEFT JOIN puestos r ON j."idPuesto" = r.id
+  LEFT JOIN medios m ON j."idMedio" = m.id
+  LEFT JOIN ciudades c ON j."idCiudad" = c.id
+  LEFT JOIN paises n ON j."idPais" = n.id
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
@@ -355,10 +355,10 @@ WHERE
   j."id"
 FROM
   periodistas j
-  INNER JOIN puestos r ON j."idPuesto" = r.id
-  INNER JOIN medios m ON j."idMedio" = m.id
-  INNER JOIN ciudades c ON j."idCiudad" = c.id
-  INNER JOIN paises n ON j."idPais" = n.id
+  LEFT JOIN puestos r ON j."idPuesto" = r.id
+  LEFT JOIN medios m ON j."idMedio" = m.id
+  LEFT JOIN ciudades c ON j."idCiudad" = c.id
+  LEFT JOIN paises n ON j."idPais" = n.id
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
@@ -373,7 +373,7 @@ GROUP BY
       clavesMapaModeloDb: ['categoria', 'id', 'nombre', 'recuento'],
     );
 
-    Map response = {}
+    Map<String, dynamic> response = {}
       ..['paises'] = query
           .where((element) => element['categoria'] == 'País')
           .map((value) => value..remove('categoria'))
@@ -399,7 +399,7 @@ GROUP BY
           .map((value) => value..remove('categoria'))
           .toList();
 
-    return response;
+    return CategoriasFiltro.fromJson(response, Protocol());
   }
 
   Future<bool> crearPeriodista({

@@ -122,7 +122,7 @@ class ServicioPeriodista extends Servicio<OrmPeriodista> {
 
   /// Obtiene las categorías de filtrado de [Periodista] con su nombre, id y
   /// recuento de acuerdo a los filtros.
-  Future<Map> obtenerListaDeFiltrosConRecuento(
+  Future<CategoriasFiltro> obtenerListaDeFiltrosConRecuento(
     Session session, {
     List<int> idPaises = const [],
     List<int> idCiudades = const [],
