@@ -137,7 +137,7 @@ class OrmComentario extends ORM {
         comentario
           ..fechaCreacion = DateTime.now()
           ..ultimaModificacion = DateTime.now()
-          ..idAutor = await session.auth.authenticatedUserId!,
+          ..idAutor = await session.auth.authenticatedUserId ?? 0,
       );
       final response = await Comentario.findSingleRow(
         session,

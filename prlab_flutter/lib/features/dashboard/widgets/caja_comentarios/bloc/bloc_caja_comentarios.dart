@@ -38,11 +38,11 @@ class BlocCajaComentarios
     emit(BlocCajaComentariosEstadoCargando.desde(state));
     try {
       final comentarios = await client.comentario
-          .listarComentariosPorArticulo(idArticulo: event.idArticulo)
-        ..sort(
-          (a, b) => (a.fechaCreacion ?? DateTime.now())
-              .compareTo(b.fechaCreacion ?? DateTime.now()),
-        );
+          .listarComentariosPorArticulo(idArticulo: event.idArticulo);
+      // ..sort(
+      //   (a, b) => (a.fechaCreacion ?? DateTime.now())
+      //       .compareTo(b.fechaCreacion ?? DateTime.now()),
+      // );
 
       emit(
         BlocCajaComentariosEstadoExitoso.desde(
@@ -75,28 +75,31 @@ class BlocCajaComentarios
       final nuevoComentario = Comentario(
         textoComentario: state.comentario,
         idEntregable: event.idArticulo,
+        idAutor: sessionManager.signedInUser?.id ?? 0,
+        nombre: '',
+        apellido: '',
+        completado: false,
+        idAutorCompletado: 0,
       );
 
       final respuesta =
           await client.comentario.crearComentario(comentario: nuevoComentario);
 
-      if (respuesta != null) {
-        final comentarios = <Comentario>[
-          respuesta,
-          ...state.comentarios,
-        ];
+      final comentarios = <Comentario>[
+        respuesta!,
+        ...state.comentarios,
+      ];
 
-        emit(
-          BlocCajaComentariosEstadoComentarioCreadoExitosamente.desde(state),
-        );
+      emit(
+        BlocCajaComentariosEstadoComentarioCreadoExitosamente.desde(state),
+      );
 
-        emit(
-          BlocCajaComentariosEstadoExitoso.desde(
-            state,
-            comentarios: comentarios,
-          ),
-        );
-      }
+      emit(
+        BlocCajaComentariosEstadoExitoso.desde(
+          state,
+          comentarios: comentarios,
+        ),
+      );
     } catch (e, st) {
       emit(
         BlocCajaComentariosEstadoFallido.desde(
@@ -119,22 +122,21 @@ class BlocCajaComentarios
   ) async {
     emit(BlocCajaComentariosEstadoCargando.desde(state));
     try {
-      final respuesta = await client.comentario
-          .eliminarComentario(idComentario: event.idComentario);
+      await client.comentario.eliminarComentario(
+        idComentario: event.idComentario,
+      );
 
-      if (respuesta) {
-        final comentarios = List<Comentario>.from(state.comentarios)
-          ..removeWhere(
-            (c) => c.id == event.idComentario,
-          );
-
-        emit(
-          BlocCajaComentariosEstadoExitoso.desde(
-            state,
-            comentarios: comentarios,
-          ),
+      final comentarios = List<Comentario>.from(state.comentarios)
+        ..removeWhere(
+          (c) => c.id == event.idComentario,
         );
-      }
+
+      emit(
+        BlocCajaComentariosEstadoExitoso.desde(
+          state,
+          comentarios: comentarios,
+        ),
+      );
     } catch (e, st) {
       emit(
         BlocCajaComentariosEstadoFallido.desde(
@@ -160,22 +162,20 @@ class BlocCajaComentarios
       final comentario = List<Comentario>.from(state.comentarios)
           .firstWhere((c) => c.id == event.idComentario);
 
-      comentario.completado = !(comentario.completado ?? false);
+      comentario.completado = !(comentario.completado);
 
-      final respuesta = await client.comentario.modificarComentario(
+      await client.comentario.modificarComentario(
         comentario: comentario,
       );
 
-      if (respuesta) {
-        final comentarios = List<Comentario>.from(state.comentarios);
+      final comentarios = List<Comentario>.from(state.comentarios);
 
-        emit(
-          BlocCajaComentariosEstadoExitoso.desde(
-            state,
-            comentarios: comentarios,
-          ),
-        );
-      }
+      emit(
+        BlocCajaComentariosEstadoExitoso.desde(
+          state,
+          comentarios: comentarios,
+        ),
+      );
     } catch (e, st) {
       emit(
         BlocCajaComentariosEstadoFallido.desde(

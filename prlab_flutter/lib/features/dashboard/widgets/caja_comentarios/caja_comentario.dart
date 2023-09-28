@@ -40,6 +40,7 @@ class _PRCajaDeComentarioState extends State<PRCajaDeComentario> {
   @override
   void dispose() {
     controllerComentario.dispose();
+    focusDelComentario.dispose();
     super.dispose();
   }
 
@@ -71,7 +72,7 @@ class _PRCajaDeComentarioState extends State<PRCajaDeComentario> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              PRNombreArticuloYIconCerrar(
+              PRNombreArticuloEIconCerrar(
                 nombreDelArticulo: widget.nombreDelArticulo,
               ),
               SizedBox(height: max(45.ph, 45.sh)),

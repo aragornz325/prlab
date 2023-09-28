@@ -405,7 +405,8 @@ class PRTextFormField extends StatefulWidget {
   /// Al completar el campo ejecuta esta Accion
   final void Function()? onEditingComplete;
 
-  /// Al apretar este campo ejecuta esta acción
+  /// Ejecuta esta Accion al apretar `Enter` en pc y `Done` en dispositivos
+  /// mobile
   final void Function(String)? onFieldSubmitted;
 
   @override

@@ -73,25 +73,7 @@ class PRTextfieldComentario extends StatelessWidget {
                   ),
                   child: TextField(
                     focusNode: focusDelComentario
-                      ..addListener(() {
-                        if (!focusDelComentario.hasFocus) {
-                          Future.delayed(Duration(milliseconds: 300), () {
-                            context.read<BlocCajaComentarios>().add(
-                                  BlocCajaComentariosEventoDesplegarComentario(
-                                    deplegarComentario:
-                                        focusDelComentario.hasFocus,
-                                  ),
-                                );
-                          });
-                        } else {
-                          context.read<BlocCajaComentarios>().add(
-                                BlocCajaComentariosEventoDesplegarComentario(
-                                  deplegarComentario:
-                                      focusDelComentario.hasFocus,
-                                ),
-                              );
-                        }
-                      }),
+                      ..addListener(() => _focoEnElCampoDeTexto(context)),
                     maxLines: state.desplegarComentario ? 10 : 1,
                     controller: controllerComentario
                       ..addListener(() {
@@ -123,5 +105,24 @@ class PRTextfieldComentario extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  /// indica si el usuario esta escribiendo en el campo de texto
+  void _focoEnElCampoDeTexto(BuildContext context) {
+    if (!focusDelComentario.hasFocus) {
+      Future.delayed(Duration(milliseconds: 300), () {
+        context.read<BlocCajaComentarios>().add(
+              BlocCajaComentariosEventoDesplegarComentario(
+                deplegarComentario: focusDelComentario.hasFocus,
+              ),
+            );
+      });
+    } else {
+      context.read<BlocCajaComentarios>().add(
+            BlocCajaComentariosEventoDesplegarComentario(
+              deplegarComentario: focusDelComentario.hasFocus,
+            ),
+          );
+    }
   }
 }

@@ -119,7 +119,7 @@ class VistaEditorContenidoEscritorio extends StatelessWidget {
               },
             ),
             SizedBox(height: max(20.ph, 20.sh)),
-            const PRFooter(),
+            const FooterEditorContenido(),
           ],
         ),
       ),

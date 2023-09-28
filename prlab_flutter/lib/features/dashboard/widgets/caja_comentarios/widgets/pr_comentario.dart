@@ -3,8 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 import 'package:prlab_client/prlab_client.dart';
+import 'package:prlab_flutter/extensiones/extension_comentario.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/bloc/bloc_caja_comentarios.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/popup/popup_opciones_comentario.dart';
@@ -62,8 +63,7 @@ class PRComentario extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Text(
-                                      '${comentario.nombre}'
-                                      ' ${comentario.apellido}',
+                                      comentario.nombreComepletoDelComentario,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
@@ -94,29 +94,23 @@ class PRComentario extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Text(
-                              DateFormat("dd/MM/yyyy, HH:mm").format(
-                                  comentario.fechaCreacion ?? DateTime.now()),
-                              style: TextStyle(
-                                color: colores.secondary,
-                                fontSize: 12.pf,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
+                            // Text(
+                            //  comentario.fechaComentarioCreada,
+                            //   style: TextStyle(
+                            //     color: colores.secondary,
+                            //     fontSize: 12.pf,
+                            //     fontWeight: FontWeight.w400,
+                            //   ),
+                            // ),
                             SizedBox(width: 5.pw),
                             IconButton(
-                              onPressed: () {
-                                context.read<BlocCajaComentarios>().add(
-                                      BlocCajaComentariosEventoAlternarAprobacionComentario(
-                                        idComentario: comentario.id ?? 0,
-                                      ),
-                                    );
-                              },
+                              onPressed: () =>
+                                  _alternarAprobacionComentario(context),
                               icon: Icon(
-                                (comentario.completado ?? false)
+                                (comentario.completado)
                                     ? Icons.thumb_up
                                     : Icons.thumb_up_outlined,
-                                color: (comentario.completado ?? false)
+                                color: (comentario.completado)
 
                                     /// TODO(anyone): agregar color al theme
                                     ? const Color(0xff1fde00)
@@ -157,5 +151,14 @@ class PRComentario extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  /// cambia la aprobación de dicho comentario.
+  void _alternarAprobacionComentario(BuildContext context) {
+    context.read<BlocCajaComentarios>().add(
+          BlocCajaComentariosEventoAlternarAprobacionComentario(
+            idComentario: comentario.id ?? 0,
+          ),
+        );
   }
 }

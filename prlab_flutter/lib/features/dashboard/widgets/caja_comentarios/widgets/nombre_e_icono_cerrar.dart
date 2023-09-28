@@ -6,9 +6,9 @@ import 'package:prlab_flutter/extensiones/extensiones.dart';
 /// Muestra el nombre del articulo seleccionado y el icono de cerrar para que
 /// cuando lo pulse el usuario pueda cerrar los comentarios de dicho articulo
 /// {@endtemplate}
-class PRNombreArticuloYIconCerrar extends StatelessWidget {
+class PRNombreArticuloEIconCerrar extends StatelessWidget {
   /// {@macro PRNombreArticuloYIconCerrar}
-  const PRNombreArticuloYIconCerrar({
+  const PRNombreArticuloEIconCerrar({
     required this.nombreDelArticulo,
     super.key,
   });

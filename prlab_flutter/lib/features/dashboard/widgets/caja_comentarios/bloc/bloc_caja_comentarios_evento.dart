@@ -41,12 +41,13 @@ class BlocCajaComentariosEventoCrearComentario
   final int idArticulo;
 }
 
-/// {@template BlocCajaComentariosEventoCrearComentario}
-/// Llama a la función de crear un nuevo comentario para un articulo
+/// {@template BlocCajaComentariosEventoAgregarTextoDeComentario}
+/// Agrega el texto escrito por el usuario para guardarlo en el estado y después
+/// puede crear un nuevo comentario
 /// {@endtemplate}
 class BlocCajaComentariosEventoAgregarTextoDeComentario
     extends BlocCajaComentariosEvento {
-  /// {@macro BlocCajaComentariosEventoCrearComentario}
+  /// {@macro BlocCajaComentariosEventoAgregarTextoDeComentario}
   @override
   const BlocCajaComentariosEventoAgregarTextoDeComentario({
     required this.comentario,
@@ -71,13 +72,13 @@ class BlocCajaComentariosEventoEliminarComentario
   final int idComentario;
 }
 
-/// {@template BlocCajaComentariosEventoAprobarComentario}
+/// {@template BlocCajaComentariosEventoAlternarAprobacionComentario}
 /// El usuario del articulo puede aprobar dicho comentario para hacerle saber a
 /// otro que se aprobó su comentario
 /// {@endtemplate}
 class BlocCajaComentariosEventoAlternarAprobacionComentario
     extends BlocCajaComentariosEvento {
-  /// {@macro BlocCajaComentariosEventoAprobarComentario}
+  /// {@macro BlocCajaComentariosEventoAlternarAprobacionComentario}
   @override
   const BlocCajaComentariosEventoAlternarAprobacionComentario({
     required this.idComentario,
@@ -96,6 +97,6 @@ class BlocCajaComentariosEventoTraerComentarios
   @override
   const BlocCajaComentariosEventoTraerComentarios({required this.idArticulo});
 
-  /// id del articulo del cual obtener todos los articulos
+  /// id del articulo del cual obtener todos los comentarios
   final int idArticulo;
 }

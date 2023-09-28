@@ -3,19 +3,21 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popups.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/caja_comentario.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
-/// {@template PRFooter}
-/// Footer de la vista de editor contenido para abrir los comentarios
+/// {@template FooterEditorContenido}
+/// Footer de la vista de editor contenido para abrir los comentarios,poder
+/// visualizar el estado del articulo y publicarlo en caso de que quiera.
 /// [VistaEditorContenidoEscritorio].
 /// {@endtemplate}
-class PRFooter extends StatelessWidget {
-  /// {@macro PRFooter}
-  const PRFooter({super.key});
+class FooterEditorContenido extends StatelessWidget {
+  /// {@macro FooterEditorContenido}
+  const FooterEditorContenido({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class PRFooter extends StatelessWidget {
     return BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
       builder: (context, state) {
         final articulo = state.articulo;
+
         if (articulo != null) {
           return SizedBox(
             height: max(50.ph, 50.sh),
@@ -40,7 +43,7 @@ class PRFooter extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'State',
+                        l10n.commonState,
                         style: TextStyle(
                           fontSize: 15.pf,
                           fontWeight: FontWeight.w400,
@@ -66,7 +69,7 @@ class PRFooter extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              state.articulo!.idStatus.toString(),
+                              articulo.idStatus.toString(),
                               style: TextStyle(
                                 color: colores.background,
                                 fontSize: 15.pf,
@@ -86,48 +89,7 @@ class PRFooter extends StatelessWidget {
                 ),
                 SizedBox(width: 10.pw),
                 InkWell(
-                  onTap: () {
-                    showGeneralDialog(
-                      context: context,
-                      barrierDismissible: true,
-                      barrierLabel: MaterialLocalizations.of(context)
-                          .modalBarrierDismissLabel,
-                      barrierColor: Colors.black.withOpacity(0.5),
-                      transitionDuration: const Duration(milliseconds: 200),
-                      transitionBuilder: (
-                        context,
-                        animation,
-                        secondaryAnimation,
-                        child,
-                      ) {
-                        return SlideTransition(
-                          position: Tween(
-                            begin: Offset(1.0, 0.0),
-                            end: Offset(0.0, 0.0),
-                          ).animate(animation),
-                          child: child,
-                        );
-                      },
-                      pageBuilder: (
-                        BuildContext context,
-                        Animation<dynamic> animation,
-                        Animation<dynamic> secondaryAnimation,
-                      ) {
-                        return Row(
-                          children: [
-                            const Spacer(),
-                            SizedBox(
-                              width: 617.pw,
-                              child: PRCajaDeComentario(
-                                idArticulo: state.articulo!.id ?? 0,
-                                nombreDelArticulo: state.articulo!.titulo,
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
+                  onTap: () => _abrirCajaDeComentario(context, articulo),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -175,6 +137,52 @@ class PRFooter extends StatelessWidget {
           );
         }
         return const SizedBox.shrink();
+      },
+    );
+  }
+
+  /// abre los comentarios de dicho articulo.
+  void _abrirCajaDeComentario(
+    BuildContext context,
+    EntregableArticulo articulo,
+  ) {
+    showGeneralDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: const Duration(milliseconds: 200),
+      transitionBuilder: (
+        context,
+        animation,
+        secondaryAnimation,
+        child,
+      ) {
+        return SlideTransition(
+          position: Tween(
+            begin: Offset(1.0, 0.0),
+            end: Offset(0.0, 0.0),
+          ).animate(animation),
+          child: child,
+        );
+      },
+      pageBuilder: (
+        BuildContext context,
+        Animation<dynamic> animation,
+        Animation<dynamic> secondaryAnimation,
+      ) {
+        return Row(
+          children: [
+            const Spacer(),
+            SizedBox(
+              width: 617.pw,
+              child: PRCajaDeComentario(
+                idArticulo: articulo.id ?? 0,
+                nombreDelArticulo: articulo.titulo,
+              ),
+            ),
+          ],
+        );
       },
     );
   }

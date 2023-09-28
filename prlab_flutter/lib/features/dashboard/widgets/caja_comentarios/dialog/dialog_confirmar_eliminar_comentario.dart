@@ -31,7 +31,6 @@ class PrDialogConfirmarEliminarComentario extends StatelessWidget {
     final colores = context.colores;
 
     return PRDialog.delete(
-      height: max(300.ph, 300.sh),
       context: context,
       titulo: l10n.commonDelete,
       content: Column(
@@ -52,17 +51,18 @@ class PrDialogConfirmarEliminarComentario extends StatelessWidget {
       ),
       tituloBotonPrimario: l10n.commonBack,
       tituloBotonSecundario: l10n.commonContinue,
-      onTapBotonPrimario: () {
-        Navigator.of(context).pop();
-      },
-      onTapBotonSecundario: () {
-        context.read<BlocCajaComentarios>().add(
-              BlocCajaComentariosEventoEliminarComentario(
-                idComentario: idComentario,
-              ),
-            );
-        Navigator.of(context).pop();
-      },
+      onTapBotonPrimario: () => Navigator.of(context).pop(),
+      onTapBotonSecundario: () => _funcionEliminar(context),
     );
+  }
+
+  /// elimina dicho comentario seleccionado
+  void _funcionEliminar(BuildContext context) {
+    context.read<BlocCajaComentarios>().add(
+          BlocCajaComentariosEventoEliminarComentario(
+            idComentario: idComentario,
+          ),
+        );
+    Navigator.of(context).pop();
   }
 }

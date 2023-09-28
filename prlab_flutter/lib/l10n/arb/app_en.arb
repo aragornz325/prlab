@@ -795,6 +795,11 @@
         "description": "Text on view edit content pulled apart comment,hint text in text field for add new comments"
     },
 
+    "commonState": "State",
+    "@commonState": {
+        "description": "indicates the status of the item,on a button of the view editor content"
+    },
+
     "commonComment" : "Comment",
     "@commonComment": {
         "description": "when a user wants to add a new comment,in the title of button that the user press to add a new comment"

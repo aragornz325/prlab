@@ -71,12 +71,13 @@ class BlocCajaComentariosEstadoExitoso extends BlocCajaComentariosEstado {
   }) : super.desde();
 }
 
-/// {@template BlocCajaComentariosEstadoExitoso}
-/// Estado exitoso de los comentarios
+/// {@template BlocCajaComentariosEstadoComentarioCreadoExitosamente}
+/// Estado exitoso de los comentarios al crear un nuevo comentario y agregarlo
+/// a la lista de los comentarios
 /// {@endtemplate}
 class BlocCajaComentariosEstadoComentarioCreadoExitosamente
     extends BlocCajaComentariosEstado {
-  /// {@macro BlocCajaComentariosEstadoExitoso}
+  /// {@macro BlocCajaComentariosEstadoComentarioCreadoExitosamente}
   BlocCajaComentariosEstadoComentarioCreadoExitosamente.desde(super.otro)
       : super.desde();
 }
