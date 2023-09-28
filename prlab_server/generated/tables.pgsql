@@ -134,8 +134,8 @@ CREATE TABLE "clientes" (
   "idUsuario" integer,
   "idOrganizacion" integer,
   "contacto" integer,
-  "fechaCreacion" timestamp without time zone NOT NULL,
-  "ultimaModificacion" timestamp without time zone NOT NULL,
+  "fechaCreacion" timestamp without time zone,
+  "ultimaModificacion" timestamp without time zone,
   "activo" boolean
 );
 
