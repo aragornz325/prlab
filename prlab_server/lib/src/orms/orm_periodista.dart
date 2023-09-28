@@ -224,7 +224,7 @@ FROM
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
-  LEFT JOIN idiomas l ON lj."idIdioma" = l."id")
+  LEFT JOIN idiomas l ON lj."idIdioma" = l."id"$whereBuffer)
 
 GROUP BY
     n.id, n."pais"
@@ -251,7 +251,7 @@ FROM
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
-  LEFT JOIN idiomas l ON lj."idIdioma" = l."id")
+  LEFT JOIN idiomas l ON lj."idIdioma" = l."id"$whereBuffer)
 
 GROUP BY
     c.id, c."ciudad"
@@ -279,7 +279,7 @@ FROM
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
-  LEFT JOIN idiomas l ON lj."idIdioma" = l."id")
+  LEFT JOIN idiomas l ON lj."idIdioma" = l."id"$whereBuffer)
 
 GROUP BY
     l.id, l."idioma"
@@ -307,7 +307,7 @@ FROM
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
-  LEFT JOIN idiomas l ON lj."idIdioma" = l."id")
+  LEFT JOIN idiomas l ON lj."idIdioma" = l."id"$whereBuffer)
 
 GROUP BY
     t.id, t."tema"
@@ -335,7 +335,7 @@ FROM
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
-  LEFT JOIN idiomas l ON lj."idIdioma" = l."id")
+  LEFT JOIN idiomas l ON lj."idIdioma" = l."id"$whereBuffer)
 
 GROUP BY
     m."idTipoDeMedio", tm."tipoDeMedio"
@@ -362,7 +362,7 @@ FROM
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
-  LEFT JOIN idiomas l ON lj."idIdioma" = l."id")
+  LEFT JOIN idiomas l ON lj."idIdioma" = l."id"$whereBuffer)
 
 GROUP BY
     r.id, r."puesto";
