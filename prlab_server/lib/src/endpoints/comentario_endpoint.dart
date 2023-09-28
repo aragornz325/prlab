@@ -83,7 +83,8 @@ class ComentarioEndpoint extends Endpoint {
         session: session,
         comentario: comentario,
       );
-    } catch (e) {
+    } 
+    catch (e) {
       rethrow;
     }
   }
