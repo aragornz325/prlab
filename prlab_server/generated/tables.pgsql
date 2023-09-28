@@ -158,16 +158,16 @@ ALTER TABLE ONLY "clientes"
 
 CREATE TABLE "periodistas" (
   "id" serial,
-  "urlImagen" text,
-  "nombreCompleto" text,
-  "idRol" integer,
+  "urlImagen" text NOT NULL,
+  "nombres" text NOT NULL,
+  "apellidos" text NOT NULL,
+  "idPuesto" integer,
   "idMedio" integer,
-  "bio" text,
-  "email" text,
-  "telefono" text,
+  "biografia" text NOT NULL,
+  "email" text NOT NULL,
+  "telefono" text NOT NULL,
   "idCiudad" integer,
   "idPais" integer,
-  "redesSociales" text,
   "ultimaModificacion" timestamp without time zone,
   "activo" boolean,
   "fechaCreacion" timestamp without time zone
@@ -284,4 +284,23 @@ ALTER TABLE ONLY "publicaciones"
     FOREIGN KEY("idProyecto")
       REFERENCES proyectos(id)
         ON DELETE CASCADE;
+
+--
+-- Class RedSocial as table redes_sociales_periodistas
+--
+
+CREATE TABLE "redes_sociales_periodistas" (
+  "id" serial,
+  "idRedSocial" integer,
+  "idUsuario" integer,
+  "nombreDeUsuario" text NOT NULL,
+  "urlPerfil" text NOT NULL,
+  "ultimaModificacion" timestamp without time zone,
+  "activo" boolean,
+  "fechaCreacion" timestamp without time zone
+);
+
+ALTER TABLE ONLY "redes_sociales_periodistas"
+  ADD CONSTRAINT redes_sociales_periodistas_pkey PRIMARY KEY (id);
+
 
