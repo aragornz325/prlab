@@ -137,7 +137,6 @@ class OrmComentario extends ORM {
     required Comentario comentario,
   }) async {
     try {
-      final idAutorfinal = await session.auth.authenticatedUserId;
       await Comentario.insert(
           session,
           comentario
