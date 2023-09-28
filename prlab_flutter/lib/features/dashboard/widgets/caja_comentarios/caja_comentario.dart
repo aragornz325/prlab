@@ -6,6 +6,7 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/bloc/bloc_caja_comentarios.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/widgets/widgets.dart';
+import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 
 /// {@template PRCajaDeComentario}
 /// Caja de comentario en el cual contiene la lista de los comentarios a mostrar
@@ -79,7 +80,7 @@ class _PRCajaDeComentarioState extends State<PRCajaDeComentario> {
               PRTextfieldComentario(
                 controllerComentario: controllerComentario,
                 focusDelComentario: focusDelComentario,
-                imagenDelAutor: '',
+                imagenDelAutor: sessionManager.signedInUser?.imageUrl ?? '',
               ),
               SizedBox(height: max(27.ph, 27.sh)),
               BlocConsumer<BlocCajaComentarios, BlocCajaComentariosEstado>(
