@@ -1,5 +1,0 @@
-class: PaisFiltro
-fields:
-  id: int
-  nombre: String
-  recuento: int

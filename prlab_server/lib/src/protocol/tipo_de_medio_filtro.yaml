@@ -1,5 +1,0 @@
-class: TipoDeMedioFiltro
-fields:
-  id: int
-  nombre: String
-  recuento: int

@@ -1,5 +1,0 @@
-class: IdiomaFiltro
-fields:
-  id: int
-  nombre: String
-  recuento: int
