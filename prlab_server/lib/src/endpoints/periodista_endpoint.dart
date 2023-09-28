@@ -71,7 +71,7 @@ class PeriodistaEndpoint extends Endpoint {
 
   /// Obtiene las categorías de filtrado de [Periodista] con su nombre, id y
   /// recuento de acuerdo a los filtros.
-  Future<Map> obtenerListaDeFiltrosConRecuento(
+  Future<CategoriasFiltro> obtenerListaDeFiltrosConRecuento(
     Session session, {
     List<int>? idPaises,
     List<int>? idCiudades = const [],
