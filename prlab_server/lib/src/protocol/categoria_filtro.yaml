@@ -1,4 +1,4 @@
-class: PuestoFiltro
+class: CategoriaFiltro
 fields:
   id: int
   nombre: String
