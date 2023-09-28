@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -7,6 +9,8 @@ import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/auth/login/bloc/bloc_login.dart';
+import 'package:prlab_flutter/features/auth/login/escritorio/widgets/olvidaste_tu_password.dart';
+import 'package:prlab_flutter/features/auth/login/escritorio/widgets/texto_bienvenida.dart';
 import 'package:prlab_flutter/features/auth/recuperar_password/dialog/dialog.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
@@ -39,10 +43,19 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
     super.dispose();
   }
 
+  int touchedIndexSecundario = -1;
+  int touchedIndexAnillo = -1;
+
+  List<Color> coloresDistintos = [
+    Colors.blue,
+    Colors.yellow,
+    Colors.pink,
+    Colors.green,
+  ];
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
     final colores = context.colores;
 
     return BlocConsumer<BlocLogin, BlocLoginEstado>(
@@ -102,31 +115,58 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
           body: Row(
             children: [
               Container(
-                child: GraficoTortaEjemplo1(
-                  listaDePorcentajes: [],
+                color: colores.background,
+                width: 44.5.wp,
+                height: 100.hp,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const TextoBienvenida(),
+                    SizedBox(height: max(90.ph, 90.sh)),
+                    SizedBox(
+                      width: 360.pw,
+                      height: max(40.ph, 40.sh),
+                      child: PRTextFormField.email(
+                        context: context,
+                        controller: controllerEmail,
+                        onChanged: (_) => _habilitarBotones(),
+                        hintText: l10n.pageLoginPlaceholderEmail,
+                      ),
+                    ),
+                    SizedBox(height: max(40.ph, 40.sh)),
+                    SizedBox(
+                      width: 360.pw,
+                      height: max(40.ph, 40.sh),
+                      child: PRTextFormFieldPassword(
+                        controller: controllerPassword,
+                        hintText: l10n.pageLoginPlaceholderPassword,
+                        onChanged: (_) => _habilitarBotones(),
+                      ),
+                    ),
+                    // TODO(anyone): Cuando se manejen errores de login agregar
+                    // los errores abajo de los textfields
+                    SizedBox(height: max(10.ph, 10.sh)),
+                    OlvidasteTuPassword(
+                      cargoElMail: state.botonOlvidePasswordHabilitado,
+                      password: controllerPassword.text,
+                      controllerCodigo: controllerCodigo,
+                    ),
+                    SizedBox(
+                      height: max(50.ph, 50.sh),
+                    ),
+                    PRBoton(
+                      estaHabilitado: state.botonLoginHabilitado,
+                      estaCargando: state.estaCargandoInicioDeSesion,
+                      onTap: _onTapBotonIniciarSesion,
+                      texto: l10n.pageLoginButtonText,
+                    ),
+                    SizedBox(
+                      height: max(120.ph, 120.sh),
+                    ),
+                  ],
                 ),
-                height: 300.ph,
-                width: 300.pw,
-                color: colores.secondary,
               ),
-              SizedBox(width: 50.pw),
-              Container(
-                child: GraficoTortaEjemplo2(
-                  listaDePorcentajes: [],
-                ),
-                height: 300.ph,
-                width: 300.pw,
-                color: colores.secondary,
-              ),
-              SizedBox(width: 50.pw),
-              Container(
-                color: colores.secondary,
-                child: GraficoTortaEjemplo3(
-                  listaDePorcentajes: [],
-                ),
-                height: 300.ph,
-                width: 300.pw,
-              ),
+              const SeccionLogoYEslogan(),
             ],
           ),
         );
@@ -156,4 +196,18 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
           ),
         );
   }
+}
+
+class VisitaData {
+  // TODO(SAM): Remover cuando venga la informacion del back.
+  VisitaData({
+    required this.fecha,
+    required this.visitas,
+    required this.nombre,
+    required this.idArticulo,
+  });
+  final int idArticulo;
+  final DateTime fecha;
+  final String nombre;
+  final double visitas;
 }
