@@ -27,7 +27,8 @@ class OrmCliente extends ORM {
           await session.db.insert(
             datosDelCliente
               ..fechaCreacion = DateTime.now()
-              ..ultimaModificacion = DateTime.now(),
+              ..ultimaModificacion = DateTime.now()
+              ..activo = true,
           );
         }),
       );
