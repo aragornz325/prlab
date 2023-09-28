@@ -1,0 +1,5 @@
+class: TemaFiltro
+fields:
+  id: int
+  nombre: String
+  recuento: int
