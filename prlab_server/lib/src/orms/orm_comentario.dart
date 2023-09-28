@@ -24,6 +24,7 @@ class OrmComentario extends ORM {
     final respuesta = await ejecutarConsultaSql(session, '''
     SELECT c."textoComentario",
            c."id",
+           c."compania",
            c."idEntregable",
            c."idAutorCompletado",
            c."completado",
@@ -33,15 +34,18 @@ class OrmComentario extends ORM {
            c."fechaEliminacion",
            c."idAutor",
            cl."nombre",
-           cl."apellido"
+           cl."apellido",
+           spui."imageUrl"
     FROM 
         comentarios c
-    JOIN clientes cl ON c."idAutor" = cl."id"
+    INNER JOIN clientes cl ON c."idAutor" = cl."id"
+    INNER JOIN serverpod_user_info spui ON cl."idUsuario" = spui."id"
     WHERE c."idEntregable" = $idArticulo
      
     ''', clavesMapaModeloDb: [
       'textoComentario',
       'id',
+      'compania',
       'idEntregable',
       'idAutorCompletado',
       'completado',
@@ -52,6 +56,7 @@ class OrmComentario extends ORM {
       'idAutor',
       'nombre',
       'apellido',
+      'imageUrl',
     ]);
     return respuesta
         .map(
@@ -132,13 +137,12 @@ class OrmComentario extends ORM {
     required Comentario comentario,
   }) async {
     try {
+      final idAutorfinal = await session.auth.authenticatedUserId;
       await Comentario.insert(
-        session,
-        comentario
-          ..fechaCreacion = DateTime.now()
-          ..ultimaModificacion = DateTime.now()
-          ..idAutor = await session.auth.authenticatedUserId!,
-      );
+          session,
+          comentario
+            ..fechaCreacion = DateTime.now()
+            ..ultimaModificacion = DateTime.now());
       final response = await Comentario.findSingleRow(
         session,
         where: (t) => t.idAutor.equals(comentario.idAutor),
@@ -146,10 +150,10 @@ class OrmComentario extends ORM {
         orderDescending: true,
       );
       final idbusqueda = response!.id;
-      print(idbusqueda);
       final respuesta = await ejecutarConsultaSql(session, '''
     SELECT c."textoComentario",
            c."id",
+           c."compania",
            c."idEntregable",
            c."idAutorCompletado",
            c."completado",
@@ -159,15 +163,19 @@ class OrmComentario extends ORM {
            c."fechaEliminacion",
            c."idAutor",
            cl."nombre",
-           cl."apellido"
+           cl."apellido",
+           spui."imageUrl"
+           
     FROM 
         comentarios c
     INNER JOIN clientes cl ON c."idAutor" = cl."idUsuario"
+    INNER JOIN serverpod_user_info spui ON cl."idUsuario" = spui."id"
     WHERE c."id" = $idbusqueda;
      
     ''', clavesMapaModeloDb: [
         'textoComentario',
         'id',
+        'compania',
         'idEntregable',
         'idAutorCompletado',
         'completado',
@@ -178,12 +186,12 @@ class OrmComentario extends ORM {
         'idAutor',
         'nombre',
         'apellido',
+        'imageUrl',
       ]);
 
       if (respuesta.isEmpty) {
         throw Exception('Comentario no encontrado');
       }
-      print(respuesta);
       return respuesta
           .map(
             (e) => Comentario.fromJson(

@@ -4,11 +4,13 @@ fields:
   idEntregable: int 
   textoComentario: String
   idAutor: int
-  nombre: String, api
-  apellido: String, api
-  fechaEliminacion: DateTime, database
-  ultimaModificacion: DateTime, database
-  fechaCreacion: DateTime, database
-  completado: bool,
+  nombre: String?, api
+  apellido: String?, api
+  imageUrl: String?, api
+  completado: bool
   idAutorCompletado: int
-  fechaCompletado: DateTime, database
+  fechaCreacion: DateTime?
+  compania: String? #TODO(todos) ver que es esto
+  fechaEliminacion: DateTime?, database
+  ultimaModificacion: DateTime?, database
+  fechaCompletado: DateTime?, database
