@@ -162,6 +162,7 @@ class BlocCajaComentarios
       final comentario = List<Comentario>.from(state.comentarios)
           .firstWhere((c) => c.id == event.idComentario);
 
+      /// TODO(anyone):por ahora hasta que se pueda desplegar el comentario
       final nuevoComentario = Comentario(
         idEntregable: comentario.idEntregable,
         textoComentario: comentario.textoComentario,
