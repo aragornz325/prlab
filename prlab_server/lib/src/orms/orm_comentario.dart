@@ -220,15 +220,9 @@ class OrmComentario extends ORM {
     required Comentario comentario,
   }) async {
     try {
-      final response = await Comentario.findSingleRow(
-        session,
-        where: (t) => t.id.equals(comentario.id),
-      );
       return await Comentario.update(
         session,
-        comentario
-          ..ultimaModificacion = DateTime.now()
-          ..fechaCreacion = response!.fechaCreacion,
+        comentario..ultimaModificacion = DateTime.now(),
       );
     } on Exception catch (e) {
       throw Exception('$e');
