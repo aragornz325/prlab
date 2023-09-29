@@ -7,12 +7,13 @@ CREATE TABLE "comentarios" (
   "idEntregable" integer NOT NULL,
   "textoComentario" text NOT NULL,
   "idAutor" integer NOT NULL,
-  "fechaEliminacion" timestamp without time zone NOT NULL,
-  "ultimaModificacion" timestamp without time zone NOT NULL,
-  "fechaCreacion" timestamp without time zone NOT NULL,
   "completado" boolean NOT NULL,
   "idAutorCompletado" integer NOT NULL,
-  "fechaCompletado" timestamp without time zone NOT NULL
+  "fechaCreacion" timestamp without time zone,
+  "ultimaModificacion" timestamp without time zone,
+  "compania" text,
+  "fechaEliminacion" timestamp without time zone,
+  "fechaCompletado" timestamp without time zone
 );
 
 ALTER TABLE ONLY "comentarios"
@@ -133,8 +134,8 @@ CREATE TABLE "clientes" (
   "idUsuario" integer,
   "idOrganizacion" integer,
   "contacto" integer,
-  "fechaCreacion" timestamp without time zone NOT NULL,
-  "ultimaModificacion" timestamp without time zone NOT NULL,
+  "fechaCreacion" timestamp without time zone,
+  "ultimaModificacion" timestamp without time zone,
   "activo" boolean
 );
 
