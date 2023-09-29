@@ -12,5 +12,6 @@ fields:
   fechaLanzamiento: DateTime
   fechaPublicacion: DateTime?
   idPlataforma: int?
+  slug: String?
   fechaCreacion: DateTime?, database
   activo: bool?, database

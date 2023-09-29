@@ -1,15 +1,17 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/app/auto_route/auto_route.gr.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/auth/login/bloc/bloc_login.dart';
+import 'package:prlab_flutter/features/auth/login/escritorio/widgets/olvidaste_tu_password.dart';
+import 'package:prlab_flutter/features/auth/login/escritorio/widgets/texto_bienvenida.dart';
 import 'package:prlab_flutter/features/auth/recuperar_password/dialog/dialog.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
-import 'package:prlab_flutter/widgets/grafico_torta/grafico_torta.dart';
 
 /// Vista de escritorio de la pantalla login donde el usuario
 /// puede iniciar sesion
@@ -103,81 +105,63 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
           body: Row(
             children: [
               Container(
-                width: 1000.pw,
-                height: 800.ph,
-                color: colores.secondary,
-                child: GraficoTorta(
-                  // context: context,
-                  // touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                  //   setState(() {
-                  //     if (!event.isInterestedForInteractions ||
-                  //         pieTouchResponse == null ||
-                  //         pieTouchResponse.touchedSection == null) {
-                  //       touchedIndexSecundario = -1;
-                  //       return;
-                  //     }
-                  //     touchedIndexSecundario =
-                  //         pieTouchResponse.touchedSection!.touchedSectionIndex;
-                  //   });
-                  // },
-                  listaDePorcentajes: const [9, 1, 3, 4, 5],
-                  colorAGenerar: colores.primary,
-                  indiceSeleccionado: touchedIndexSecundario,
+                color: colores.background,
+                width: 44.5.wp,
+                height: 100.hp,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const TextoBienvenida(),
+                    SizedBox(height: max(90.ph, 90.sh)),
+                    SizedBox(
+                      width: 360.pw,
+                      height: max(40.ph, 40.sh),
+                      child: PRTextFormField.email(
+                        context: context,
+                        controller: controllerEmail,
+                        onChanged: (_) => _habilitarBotones(),
+                        hintText: l10n.pageLoginPlaceholderEmail,
+                      ),
+                    ),
+                    SizedBox(height: max(40.ph, 40.sh)),
+                    SizedBox(
+                      width: 360.pw,
+                      height: max(40.ph, 40.sh),
+                      child: PRTextFormFieldPassword(
+                        controller: controllerPassword,
+                        hintText: l10n.pageLoginPlaceholderPassword,
+                        onFieldSubmitted: (v) {
+                          if (v.isNotEmpty && state.botonLoginHabilitado) {
+                            _onTapBotonIniciarSesion();
+                          }
+                        },
+                        onChanged: (_) => _habilitarBotones(),
+                      ),
+                    ),
+                    // TODO(anyone): Cuando se manejen errores de login agregar
+                    // los errores abajo de los textfields
+                    SizedBox(height: max(10.ph, 10.sh)),
+                    OlvidasteTuPassword(
+                      cargoElMail: state.botonOlvidePasswordHabilitado,
+                      password: controllerPassword.text,
+                      controllerCodigo: controllerCodigo,
+                    ),
+                    SizedBox(
+                      height: max(50.ph, 50.sh),
+                    ),
+                    PRBoton(
+                      estaHabilitado: state.botonLoginHabilitado,
+                      estaCargando: state.estaCargandoInicioDeSesion,
+                      onTap: _onTapBotonIniciarSesion,
+                      texto: l10n.pageLoginButtonText,
+                    ),
+                    SizedBox(
+                      height: max(120.ph, 120.sh),
+                    ),
+                  ],
                 ),
-              )
-              // Container(
-              //   color: colores.background,
-              //   width: 44.5.wp,
-              //   height: 100.hp,
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: [
-              //       const TextoBienvenida(),
-              //       SizedBox(height: max(90.ph, 90.sh)),
-              //       SizedBox(
-              //         width: 360.pw,
-              //         height: max(40.ph, 40.sh),
-              //         child: PRTextFormField.email(
-              //           context: context,
-              //           controller: controllerEmail,
-              //           onChanged: (_) => _habilitarBotones(),
-              //           hintText: l10n.pageLoginPlaceholderEmail,
-              //         ),
-              //       ),
-              //       SizedBox(height: max(40.ph, 40.sh)),
-              //       SizedBox(
-              //         width: 360.pw,
-              //         height: max(40.ph, 40.sh),
-              //         child: PRTextFormFieldPassword(
-              //           controller: controllerPassword,
-              //           hintText: l10n.pageLoginPlaceholderPassword,
-              //           onChanged: (_) => _habilitarBotones(),
-              //         ),
-              //       ),
-              //       // TODO(anyone): Cuando se manejen errores de login agregar
-              //       // los errores abajo de los textfields
-              //       SizedBox(height: max(10.ph, 10.sh)),
-              //       OlvidasteTuPassword(
-              //         cargoElMail: state.botonOlvidePasswordHabilitado,
-              //         password: controllerPassword.text,
-              //         controllerCodigo: controllerCodigo,
-              //       ),
-              //       SizedBox(
-              //         height: max(50.ph, 50.sh),
-              //       ),
-              //       PRBoton(
-              //         estaHabilitado: state.botonLoginHabilitado,
-              //         estaCargando: state.estaCargandoInicioDeSesion,
-              //         onTap: _onTapBotonIniciarSesion,
-              //         texto: l10n.pageLoginButtonText,
-              //       ),
-              //       SizedBox(
-              //         height: max(120.ph, 120.sh),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // const SeccionLogoYEslogan(),
+              ),
+              const SeccionLogoYEslogan(),
             ],
           ),
         );
