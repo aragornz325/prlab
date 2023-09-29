@@ -20,8 +20,8 @@ class Cliente extends _i1.TableRow {
     this.idUsuario,
     this.idOrganizacion,
     this.contacto,
-    required this.fechaCreacion,
-    required this.ultimaModificacion,
+    this.fechaCreacion,
+    this.ultimaModificacion,
     this.activo,
   }) : super(id);
 
@@ -50,9 +50,9 @@ class Cliente extends _i1.TableRow {
       contacto:
           serializationManager.deserialize<int?>(jsonSerialization['contacto']),
       fechaCreacion: serializationManager
-          .deserialize<DateTime>(jsonSerialization['fechaCreacion']),
+          .deserialize<DateTime?>(jsonSerialization['fechaCreacion']),
       ultimaModificacion: serializationManager
-          .deserialize<DateTime>(jsonSerialization['ultimaModificacion']),
+          .deserialize<DateTime?>(jsonSerialization['ultimaModificacion']),
       activo:
           serializationManager.deserialize<bool?>(jsonSerialization['activo']),
     );
@@ -78,9 +78,9 @@ class Cliente extends _i1.TableRow {
 
   int? contacto;
 
-  DateTime fechaCreacion;
+  DateTime? fechaCreacion;
 
-  DateTime ultimaModificacion;
+  DateTime? ultimaModificacion;
 
   bool? activo;
 

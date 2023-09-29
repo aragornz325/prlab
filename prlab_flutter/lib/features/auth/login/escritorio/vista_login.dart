@@ -46,13 +46,6 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
   int touchedIndexSecundario = -1;
   int touchedIndexAnillo = -1;
 
-  List<Color> coloresDistintos = [
-    Colors.blue,
-    Colors.yellow,
-    Colors.pink,
-    Colors.green,
-  ];
-
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -115,58 +108,68 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
           body: Row(
             children: [
               Container(
-                color: colores.background,
-                width: 44.5.wp,
-                height: 100.hp,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const TextoBienvenida(),
-                    SizedBox(height: max(90.ph, 90.sh)),
-                    SizedBox(
-                      width: 360.pw,
-                      height: max(40.ph, 40.sh),
-                      child: PRTextFormField.email(
-                        context: context,
-                        controller: controllerEmail,
-                        onChanged: (_) => _habilitarBotones(),
-                        hintText: l10n.pageLoginPlaceholderEmail,
-                      ),
-                    ),
-                    SizedBox(height: max(40.ph, 40.sh)),
-                    SizedBox(
-                      width: 360.pw,
-                      height: max(40.ph, 40.sh),
-                      child: PRTextFormFieldPassword(
-                        controller: controllerPassword,
-                        hintText: l10n.pageLoginPlaceholderPassword,
-                        onChanged: (_) => _habilitarBotones(),
-                      ),
-                    ),
-                    // TODO(anyone): Cuando se manejen errores de login agregar
-                    // los errores abajo de los textfields
-                    SizedBox(height: max(10.ph, 10.sh)),
-                    OlvidasteTuPassword(
-                      cargoElMail: state.botonOlvidePasswordHabilitado,
-                      password: controllerPassword.text,
-                      controllerCodigo: controllerCodigo,
-                    ),
-                    SizedBox(
-                      height: max(50.ph, 50.sh),
-                    ),
-                    PRBoton(
-                      estaHabilitado: state.botonLoginHabilitado,
-                      estaCargando: state.estaCargandoInicioDeSesion,
-                      onTap: _onTapBotonIniciarSesion,
-                      texto: l10n.pageLoginButtonText,
-                    ),
-                    SizedBox(
-                      height: max(120.ph, 120.sh),
-                    ),
-                  ],
+                width: 500.pw,
+                height: 500.ph,
+                color: colores.secondary,
+                child: GraficoTorta(
+                  listaDePorcentajes: [],
+                  colorAGenerar: colores.primary,
+                  touchedIndex: touchedIndexSecundario,
                 ),
-              ),
-              const SeccionLogoYEslogan(),
+              )
+              // Container(
+              //   color: colores.background,
+              //   width: 44.5.wp,
+              //   height: 100.hp,
+              //   child: Column(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       const TextoBienvenida(),
+              //       SizedBox(height: max(90.ph, 90.sh)),
+              //       SizedBox(
+              //         width: 360.pw,
+              //         height: max(40.ph, 40.sh),
+              //         child: PRTextFormField.email(
+              //           context: context,
+              //           controller: controllerEmail,
+              //           onChanged: (_) => _habilitarBotones(),
+              //           hintText: l10n.pageLoginPlaceholderEmail,
+              //         ),
+              //       ),
+              //       SizedBox(height: max(40.ph, 40.sh)),
+              //       SizedBox(
+              //         width: 360.pw,
+              //         height: max(40.ph, 40.sh),
+              //         child: PRTextFormFieldPassword(
+              //           controller: controllerPassword,
+              //           hintText: l10n.pageLoginPlaceholderPassword,
+              //           onChanged: (_) => _habilitarBotones(),
+              //         ),
+              //       ),
+              //       // TODO(anyone): Cuando se manejen errores de login agregar
+              //       // los errores abajo de los textfields
+              //       SizedBox(height: max(10.ph, 10.sh)),
+              //       OlvidasteTuPassword(
+              //         cargoElMail: state.botonOlvidePasswordHabilitado,
+              //         password: controllerPassword.text,
+              //         controllerCodigo: controllerCodigo,
+              //       ),
+              //       SizedBox(
+              //         height: max(50.ph, 50.sh),
+              //       ),
+              //       PRBoton(
+              //         estaHabilitado: state.botonLoginHabilitado,
+              //         estaCargando: state.estaCargandoInicioDeSesion,
+              //         onTap: _onTapBotonIniciarSesion,
+              //         texto: l10n.pageLoginButtonText,
+              //       ),
+              //       SizedBox(
+              //         height: max(120.ph, 120.sh),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // const SeccionLogoYEslogan(),
             ],
           ),
         );

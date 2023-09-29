@@ -26,7 +26,7 @@ class BlocGraficoTorta
   ) async {
     emit(BlocGraficoTortaEstadoCargando.desde(state));
     try {
-      List<VisitaData> visitas = [
+      final visitas = <VisitaData>[
         VisitaData(
           fecha: DateTime.now(),
           visitas: 150,
@@ -105,11 +105,48 @@ class BlocGraficoTorta
           idArticulo: 8,
           nombre: 'articulo 1',
         ),
+        VisitaData(
+          fecha: DateTime.now(),
+          visitas: 20,
+          idArticulo: 10,
+          nombre: 'articulo 1',
+        ),
+        VisitaData(
+          fecha: DateTime.now(),
+          visitas: 20,
+          idArticulo: 10,
+          nombre: 'articulo 1',
+        ),
+        VisitaData(
+          fecha: DateTime.now(),
+          visitas: 20,
+          idArticulo: 10,
+          nombre: 'articulo 1',
+        ),
+        VisitaData(
+          fecha: DateTime.now(),
+          visitas: 20,
+          idArticulo: 1,
+          nombre: 'articulo 1',
+        ),
+        VisitaData(
+          fecha: DateTime.now(),
+          visitas: 20,
+          idArticulo: 11,
+          nombre: 'articulo 1',
+        ),
+        VisitaData(
+          fecha: DateTime.now(),
+          visitas: 20,
+          idArticulo: 11,
+          nombre: 'articulo 1',
+        ),
       ];
-      // Crear un mapa para almacenar la suma de visitas por idArticulo
-      final Map<int, double> sumaVisitasPorArticulo = {};
 
-// Calcular la suma de visitas por idArticulo
+      // Crear un mapa para almacenar la suma de visitas por idArticulo
+      final sumaVisitasPorArticulo = <int, double>{};
+
+      // Calcular la suma de visitas por idArticulo
       for (final visita in visitas) {
         final idArticulo = visita.idArticulo;
         final visitasActuales = visita.visitas;
@@ -118,31 +155,28 @@ class BlocGraficoTorta
       }
 
       // Calcular el porcentaje total
-      final double totalVisitas =
+      final totalVisitas =
           sumaVisitasPorArticulo.values.reduce((a, b) => a + b);
 
       // Crear una lista de porcentajes
-      final List<double> porcentajes = [];
+      final porcentajes = <double>[];
 
       // Calcular los porcentajes y agregarlos a la lista
       for (final idArticulo in sumaVisitasPorArticulo.keys) {
         final visitasArticulo = sumaVisitasPorArticulo[idArticulo]!;
         final porcentaje = (visitasArticulo / totalVisitas) * 100.0;
-        porcentajes.add(porcentaje);
+        final porcentajeRedondeado = porcentaje.round();
+        porcentajes.add(porcentajeRedondeado.toDouble());
       }
 
-      // La lista 'porcentajes' ahora contiene los porcentajes totales por idArticulo
+      // La lista 'porcentajes' ahora contiene los porcentajes totales por
+      // idArticulo
       print(porcentajes);
-      final listaDePorcentaje = <double>[
-        8,
-        2,
-        3,
-      ];
 
       emit(
         BlocGraficoTortaEstadoExitoso.desde(
           state,
-          porcentajes: listaDePorcentaje,
+          porcentajes: porcentajes,
         ),
       );
     } catch (e, st) {
