@@ -102,9 +102,7 @@ class _PRCajaDeComentarioState extends State<PRCajaDeComentario> {
               SizedBox(height: max(20.ph, 20.sh)),
               Divider(
                 height: max(1.ph, 1.sh),
-
-                /// TODO(anyone): agregar color al theme
-                color: const Color(0xffefefef),
+                color: colores.onSecondaryContainer,
               ),
               SizedBox(height: max(5.ph, 5.sh)),
               BlocBuilder<BlocCajaComentarios, BlocCajaComentariosEstado>(

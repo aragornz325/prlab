@@ -35,7 +35,7 @@ class PRComentario extends StatelessWidget {
       child: Column(
         children: [
           Row(
-            //colores del componente divido entre 3 para sacar el color 
+            //colores del componente divido entre 3 para sacar el color
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
@@ -65,7 +65,7 @@ class PRComentario extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Text(
-                                      comentario.nombreComepletoDelComentario,
+                                      comentario.nombreComepleto,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(

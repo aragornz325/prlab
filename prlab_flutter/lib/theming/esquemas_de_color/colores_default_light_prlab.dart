@@ -43,4 +43,7 @@ const themeDefaultPRLab = ColorScheme.light(
 
   /// Color utilizado en divider de TextFormField y readOnly.
   outlineVariant: Color(0xffd9d9d9),
-);
+
+  /// se esta utilizando en los Divider como color de divisor
+  onSecondaryContainer: Color(0xffefefef),
+  );

@@ -52,12 +52,12 @@ class PrDialogConfirmarEliminarComentario extends StatelessWidget {
       tituloBotonPrimario: l10n.commonBack,
       tituloBotonSecundario: l10n.commonContinue,
       onTapBotonPrimario: () => Navigator.of(context).pop(),
-      onTapBotonSecundario: () => _funcionEliminar(context),
+      onTapBotonSecundario: () => _onEliminar(context),
     );
   }
 
   /// elimina dicho comentario seleccionado
-  void _funcionEliminar(BuildContext context) {
+  void _onEliminar(BuildContext context) {
     context.read<BlocCajaComentarios>().add(
           BlocCajaComentariosEventoEliminarComentario(
             idComentario: idComentario,

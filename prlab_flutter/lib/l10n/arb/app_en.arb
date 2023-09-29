@@ -797,7 +797,7 @@
 
     "commonState": "State",
     "@commonState": {
-        "description": "indicates the status of the item,on a button of the view editor content"
+        "description": "Indicates the status of the article,on a footer of the view editor content"
     },
 
     "commonComment" : "Comment",

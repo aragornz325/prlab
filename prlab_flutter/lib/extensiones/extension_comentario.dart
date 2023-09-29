@@ -7,7 +7,7 @@ import 'package:prlab_client/prlab_client.dart';
 /// {@endtemplate}
 extension ComentarioX on Comentario {
   /// nombre completo de quien comento el articulo.
-  String get nombreComepletoDelComentario => '$nombre $apellido';
+  String get nombreComepleto => '$nombre $apellido';
 
   /// trae la fecha de creada del comentario.
   String get fechaComentarioCreada => DateFormat("dd/MM/yyyy, HH:mm").format(
