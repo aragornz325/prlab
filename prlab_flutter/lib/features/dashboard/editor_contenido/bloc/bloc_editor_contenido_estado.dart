@@ -111,11 +111,11 @@ class BlocEditorContenidoEstadoActualizandoDesdeStream
             contenido: descripcionDeArticulo,
             idProyecto: otro.articulo?.idProyecto,
             idMarca: otro.articulo?.idMarca,
-            idAutor: otro.articulo?.idAutor,
-            idStatus: otro.articulo?.idStatus,
+            idAutor: otro.articulo?.idAutor ?? 0,
+            idStatus: otro.articulo?.idStatus ?? 0,
             ultimaModificacion:
                 otro.articulo?.ultimaModificacion ?? DateTime.now(),
-            fechaLanzamiento: DateTime.now(),
+            contenidoHtml: otro.articulo?.contenidoHtml ?? '',
             // fechaEliminacion: otro.articulo?.fechaEliminacion,
             // fechaCreacion: otro.articulo?.fechaCreacion,
             // TODO(Anyone): Volver a agregar cuando se agreguen en el back
@@ -192,17 +192,18 @@ class BlocEditorContenidoEstadoActualizandoDescripcion
   }) : super.desde(
           // TODO(anyone): Cuando esten los modelos hechos con mappable,
           // hacer esto con copyWith.
+          // tambien revisar los valores que se les pasa algo por defecto.
           articulo: EntregableArticulo(
             id: otro.articulo?.id,
             titulo: tituloArticulo,
             contenido: descripcionDeArticulo,
             idProyecto: otro.articulo?.idProyecto,
             idMarca: otro.articulo?.idMarca,
-            idAutor: otro.articulo?.idAutor,
-            idStatus: otro.articulo?.idStatus,
+            idAutor: otro.articulo?.idAutor ?? 0,
+            idStatus: otro.articulo?.idStatus ?? 0,
             ultimaModificacion:
                 otro.articulo?.ultimaModificacion ?? DateTime.now(),
-            fechaLanzamiento: DateTime.now(),
+            contenidoHtml: otro.articulo?.contenidoHtml ?? '',
             // fechaEliminacion: otro.articulo?.fechaEliminacion,
             // fechaCreacion: otro.articulo?.fechaCreacion,
             // TODO(Anyone): Volver a agregar cuando se agreguen en el back

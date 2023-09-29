@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_client/prlab_client.dart';
-import 'package:prlab_flutter/utilidades/constantes/string_constants.dart';
 import 'package:prlab_flutter/utilidades/utilidades.dart';
 
 part 'bloc_dashboard_estado.dart';
@@ -29,13 +28,10 @@ class BlocDashboard extends Bloc<BlocDashboardEvento, BlocDashboardEstado> {
       final titulo = '${marca?.nombre ?? 'New'} article';
 
       final idArticulo = await client.entregableArticulo.crearArticulo(
-        EntregableArticulo(
-          titulo: titulo,
-          idMarca: marca?.id,
-          contenido: StringConstants.contenidoDeArticuloPorDefectoJson,
-          ultimaModificacion: DateTime.now(),
-          fechaLanzamiento: DateTime.now(),
-        ),
+        titulo: titulo,
+        idMarca: marca?.id,
+        contenido:
+            '{"document":{"type":"page","children":[{"type":"paragraph","data":{"delta":[]}}]}}',
       );
       emit(BlocDashboardExitoso.desde(idArticulo));
     } catch (e) {
