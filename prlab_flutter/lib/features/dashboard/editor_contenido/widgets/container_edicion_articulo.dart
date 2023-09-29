@@ -108,7 +108,7 @@ class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
         if (!versionesDelContenido.contains(actualizado.contenido)) {
           versionesDelContenido
             ..clear()
-            ..add(actualizado.contenido ?? '');
+            ..add(actualizado.contenido);
 
           context.read<BlocEditorContenido>().add(
                 BlocEditorContenidoEventoActualizarArticulo(

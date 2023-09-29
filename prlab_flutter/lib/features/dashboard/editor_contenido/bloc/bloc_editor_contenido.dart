@@ -141,14 +141,14 @@ class BlocEditorContenido
         BlocEditorContenidoEstadoActualizandoDesdeStream.desde(
           state,
           descripcionDeArticulo:
-              event.descripcionDeArticulo ?? articulo.contenido ?? '',
+              event.descripcionDeArticulo ?? articulo.contenido,
           tituloArticulo: event.titulo ?? articulo.titulo,
         ),
       );
     }
 
     final articuloActualizado = articulo
-      ..contenido = event.descripcionDeArticulo ?? articulo.contenido ?? ''
+      ..contenido = event.descripcionDeArticulo ?? articulo.contenido
       ..titulo = event.titulo ?? state.articulo?.titulo ?? '';
 
     try {
@@ -156,7 +156,7 @@ class BlocEditorContenido
         emit(
           BlocEditorContenidoEstadoActualizandoDescripcion.desde(
             state,
-            descripcionDeArticulo: articuloActualizado.contenido ?? '',
+            descripcionDeArticulo: articuloActualizado.contenido,
             tituloArticulo: articuloActualizado.titulo,
           ),
         );
