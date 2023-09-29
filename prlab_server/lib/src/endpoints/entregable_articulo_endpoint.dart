@@ -25,6 +25,7 @@ class EntregableArticuloEndpoint extends Endpoint {
     Session session, {
     required String titulo,
     required String contenido,
+    required String contenidoHtml,
     int? idMarca,
   }) async {
     try {
@@ -32,6 +33,7 @@ class EntregableArticuloEndpoint extends Endpoint {
         session,
         titulo: titulo,
         contenido: contenido,
+        contenidoHtml: contenidoHtml,
         idMarca: idMarca,
       );
     } on Exception {

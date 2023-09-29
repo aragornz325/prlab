@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:prlab_server/src/excepciones/excepcion_endpoint.dart';
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/orms/orm_entregable_articulo.dart';
@@ -7,7 +5,6 @@ import 'package:prlab_server/src/orms/orm_imagen_articulo.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:prlab_server/src/servicios/servicio_almacenamiento_archivos_nube.dart';
 import 'package:serverpod/server.dart';
-import 'package:vsc_quill_delta_to_html/vsc_quill_delta_to_html.dart';
 
 /// Servicio para administración de artículos.
 class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
@@ -27,6 +24,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     Session session, {
     required String titulo,
     required String contenido,
+    required String contenidoHtml,
     int? idMarca,
   }) async {
     try {
@@ -35,10 +33,6 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
       if (idAutor == null) {
         throw Excepciones.noAutorizado();
       }
-
-      final converter = QuillDeltaToHtmlConverter(jsonDecode(contenido));
-
-      final contenidoHtml = converter.convert();
 
       final articulo = EntregableArticulo(
         titulo: titulo,
