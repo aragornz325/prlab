@@ -272,7 +272,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
 
     final checkSlug = await traerArticuloPorSlug(session: session, slug: slug);
     if (checkSlug != null && checkSlug.id != articulo.id) {
-      logger.severe('El slug $slug ya existe');
+      logger.severe('El slug $slug ya existe!');
       slug = '$slug-${articulo.id}';
     }
 
