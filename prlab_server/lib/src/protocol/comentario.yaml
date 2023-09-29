@@ -9,7 +9,7 @@ fields:
   imageUrl: String?, api
   completado: bool
   idAutorCompletado: int
-  fechaCreacion: DateTime?
+  fechaCreacion: DateTime
   ultimaModificacion: DateTime?
   compania: String? #TODO(todos) ver que es esto
   fechaEliminacion: DateTime?
