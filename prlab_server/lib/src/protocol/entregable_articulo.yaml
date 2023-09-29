@@ -2,15 +2,15 @@ class: EntregableArticulo
 table: articulos
 fields:
   titulo: String
-  contenido: String?
-  contenidoHtml: String?
-  idProyecto: int? parent=proyectos
-  idMarca: int? parent=marcas
-  idAutor: int?
-  idStatus: int?
+  contenido: String
+  contenidoHtml: String
+  idProyecto: int? parent=proyectos # Definir
+  idMarca: int? parent=marcas # Definir
+  idAutor: int
+  idStatus: int # Definir (por defecto 0)
+  fechaLanzamiento: DateTime?, database # Definir
+  fechaPublicacion: DateTime? # Definir
+  idPlataforma: int? # Definir
   ultimaModificacion: DateTime
-  fechaLanzamiento: DateTime
-  fechaPublicacion: DateTime?
-  idPlataforma: int?
-  fechaCreacion: DateTime?, database
-  activo: bool?, database
+  fechaCreacion: DateTime, database
+  fechaEliminacion: DateTime?, database

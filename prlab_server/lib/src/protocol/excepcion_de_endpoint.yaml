@@ -3,5 +3,5 @@ fields:
   titulo: String
   mensaje: String
   tipoDeError: TipoExcepcion
-  stackTrace: String
+  stackTrace: String?
   codigoError: int

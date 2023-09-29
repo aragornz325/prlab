@@ -1,9 +1,13 @@
+import 'dart:convert';
+
+import 'package:prlab_server/src/excepciones/excepcion_endpoint.dart';
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/orms/orm_entregable_articulo.dart';
 import 'package:prlab_server/src/orms/orm_imagen_articulo.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:prlab_server/src/servicios/servicio_almacenamiento_archivos_nube.dart';
 import 'package:serverpod/server.dart';
+import 'package:vsc_quill_delta_to_html/vsc_quill_delta_to_html.dart';
 
 /// Servicio para administración de artículos.
 class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
@@ -21,9 +25,32 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
   /// crearse. No debe contener id, ni fechas de creación o modificación.
   Future<int> crearArticulo(
     Session session, {
-    required EntregableArticulo articulo,
+    required String titulo,
+    required String contenido,
+    int? idMarca,
   }) async {
     try {
+      final idAutor = await session.auth.authenticatedUserId;
+
+      if (idAutor == null) {
+        throw Excepciones.noAutorizado();
+      }
+
+      final converter = QuillDeltaToHtmlConverter(jsonDecode(contenido));
+
+      final contenidoHtml = converter.convert();
+
+      final articulo = EntregableArticulo(
+        titulo: titulo,
+        contenido: contenido,
+        contenidoHtml: contenidoHtml,
+        idMarca: idMarca,
+        idAutor: idAutor,
+        idStatus: 0,
+        ultimaModificacion: DateTime.now(),
+        fechaCreacion: DateTime.now(),
+      );
+
       return await ejecutarOperacion(
         () => orm.crearArticulo(
           session: session,

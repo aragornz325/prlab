@@ -210,18 +210,18 @@ ALTER TABLE ONLY "proyectos"
 CREATE TABLE "articulos" (
   "id" serial,
   "titulo" text NOT NULL,
-  "contenido" text,
-  "contenidoHtml" text,
+  "contenido" text NOT NULL,
+  "contenidoHtml" text NOT NULL,
   "idProyecto" integer,
   "idMarca" integer,
-  "idAutor" integer,
-  "idStatus" integer,
-  "ultimaModificacion" timestamp without time zone NOT NULL,
-  "fechaLanzamiento" timestamp without time zone NOT NULL,
+  "idAutor" integer NOT NULL,
+  "idStatus" integer NOT NULL,
+  "fechaLanzamiento" timestamp without time zone,
   "fechaPublicacion" timestamp without time zone,
   "idPlataforma" integer,
-  "fechaCreacion" timestamp without time zone,
-  "activo" boolean
+  "ultimaModificacion" timestamp without time zone NOT NULL,
+  "fechaCreacion" timestamp without time zone NOT NULL,
+  "fechaEliminacion" timestamp without time zone
 );
 
 ALTER TABLE ONLY "articulos"

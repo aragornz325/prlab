@@ -14,6 +14,7 @@ dependencies:
   mailer: ^6.0.1
   serverpod: ^1.1.1
   serverpod_auth_server: ^1.1.1
+  vsc_quill_delta_to_html: ^1.0.3
   yaml_writer: ^1.0.3
 
 dev_dependencies:

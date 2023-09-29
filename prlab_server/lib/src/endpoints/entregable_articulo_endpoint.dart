@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/servicios/servicio_entregable_articulo.dart';
 import 'package:serverpod/serverpod.dart';
+import 'package:vsc_quill_delta_to_html/vsc_quill_delta_to_html.dart';
 
 const _canalDeArticulo = 'canal_de_articulo';
 
@@ -22,13 +25,17 @@ class EntregableArticuloEndpoint extends Endpoint {
   ///   [articulo] ([EntregableArticulo]): El parámetro "articulo" es un objeto de tipo
   /// "Articulo" que contiene los datos necesarios para crear un artículo.
   Future<int> crearArticulo(
-    Session session,
-    EntregableArticulo articulo,
-  ) async {
+    Session session, {
+    required String titulo,
+    required String contenido,
+    int? idMarca,
+  }) async {
     try {
       return await servicioArticulo.crearArticulo(
         session,
-        articulo: articulo,
+        titulo: titulo,
+        contenido: contenido,
+        idMarca: idMarca,
       );
     } on Exception {
       rethrow;
