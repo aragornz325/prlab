@@ -220,6 +220,7 @@ CREATE TABLE "articulos" (
   "fechaLanzamiento" timestamp without time zone NOT NULL,
   "fechaPublicacion" timestamp without time zone,
   "idPlataforma" integer,
+  "slug" text,
   "fechaCreacion" timestamp without time zone,
   "activo" boolean
 );
