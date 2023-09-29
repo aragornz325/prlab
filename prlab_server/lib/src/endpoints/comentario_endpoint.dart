@@ -60,12 +60,12 @@ class ComentarioEndpoint extends Endpoint {
     }
   }
 
-  Future<Comentario?> crearComentario(
+  Future<Comentario> crearComentario(
     Session session, {
     required Comentario comentario,
   }) async {
     try {
-      return servicioComentario.crearComentario(
+      return await servicioComentario.crearComentario(
         session: session,
         comentario: comentario,
       );

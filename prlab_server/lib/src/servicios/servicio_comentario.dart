@@ -95,7 +95,7 @@ class ServicioComentario extends Servicio<OrmComentario> {
   ///
   /// Returns:
   ///   La función `modificarCommentario` devuelve un `Futuro<bool>`.
-  Future<Comentario?> crearComentario({
+  Future<Comentario> crearComentario({
     required Session session,
     required Comentario comentario,
   }) async {
