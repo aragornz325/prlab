@@ -1,0 +1,5 @@
+class: CategoriaFiltro
+fields:
+  id: int
+  nombre: String
+  recuento: int
