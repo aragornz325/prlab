@@ -166,6 +166,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                     onTap: _onTapContinuar,
                     texto: l10n.commonContinue,
                     estaHabilitado: state.esFormularioCompletado,
+                    estaCargando: state is BlocKycEstadoCargando,
                   );
                 },
               ),
