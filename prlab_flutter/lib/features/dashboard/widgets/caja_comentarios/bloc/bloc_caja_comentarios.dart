@@ -40,8 +40,8 @@ class BlocCajaComentarios
       final comentarios = await client.comentario
           .listarComentariosPorArticulo(idArticulo: event.idArticulo)
         ..sort(
-          (a, b) => (b.fechaCreacion ?? DateTime.now())
-              .compareTo(a.fechaCreacion ?? DateTime.now()),
+          (a, b) => (b.fechaCreacion )
+              .compareTo(a.fechaCreacion),
         );
 
       emit(
@@ -73,6 +73,7 @@ class BlocCajaComentarios
     emit(BlocCajaComentariosEstadoCargando.desde(state));
     try {
       final nuevoComentario = Comentario(
+        fechaCreacion: DateTime.now(),
         textoComentario: state.comentario,
         idEntregable: event.idArticulo,
         idAutor: sessionManager.signedInUser?.id ?? 0,
@@ -86,7 +87,7 @@ class BlocCajaComentarios
           await client.comentario.crearComentario(comentario: nuevoComentario);
 
       final comentarios = <Comentario>[
-        respuesta!,
+        respuesta,
         ...state.comentarios,
       ];
 
