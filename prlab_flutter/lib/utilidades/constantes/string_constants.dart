@@ -7,7 +7,5 @@ class StringConstants {
   /// sacado de el tipo de documento que genera el paquete
   /// `appflowy_editor` que es el que se utiliza para la
   /// edición del contenido de articulo.
-  static const String contenidoDeArticuloPorDefectoJson =
-      // ignore: lines_longer_than_80_chars
-      '{"document":{"type":"page","children":[{"type":"paragraph","data":{"delta":[]}}]}}';
+  static const String contenidoDeArticuloPorDefectoJson = '[{"insert":"\n"}]';
 }
