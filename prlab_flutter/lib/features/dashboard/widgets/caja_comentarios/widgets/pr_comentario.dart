@@ -65,7 +65,7 @@ class PRComentario extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Text(
-                                      comentario.nombreComepleto,
+                                      comentario.nombreCompleto,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
