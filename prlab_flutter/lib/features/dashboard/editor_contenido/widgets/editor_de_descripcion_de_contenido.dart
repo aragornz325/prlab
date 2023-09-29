@@ -37,12 +37,17 @@ class EditorDeDescripcionDeContenido extends StatefulWidget {
 
 class _EditorDeDescripcionDeContenidoState
     extends State<EditorDeDescripcionDeContenido> {
+  /// Controllador para el manejo de contenido de un
+  /// `EntregableArticulo`.
+  late QuillController _controller;
+
   /// Genera una espera antes de guardar la nueva data del contenido
   /// en la db para mejorar la performance.
   Timer? _debounce;
 
-  late QuillController _controller;
-
+  /// Contiene el contenido del articulo en formato `delta`, esto
+  /// permite hacer ciertas validaciónes y manejar la información
+  /// del mismo.
   String? _jsonDelContenido;
 
   /// Foco para el contenido del `EntregableArticulo`.
@@ -205,7 +210,7 @@ class _ImageEmbedBuilderWeb extends EmbedBuilder {
     final imageUrl = node.value.data as String;
 
     return SizedBox(
-      height: 200,
+      height: max(200.ph, 200.sh),
       child: Image.network(imageUrl),
     );
   }
