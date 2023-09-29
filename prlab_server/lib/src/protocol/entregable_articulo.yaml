@@ -4,13 +4,14 @@ fields:
   titulo: String
   contenido: String
   contenidoHtml: String
-  idProyecto: int? parent=proyectos # Definir
-  idMarca: int? parent=marcas # Definir
   idAutor: int
   idStatus: int # Definir (por defecto 0)
+  ultimaModificacion: DateTime
+  fechaCreacion: DateTime
+  activo: bool
+  idMarca: int? parent=marcas # Definir
+  fechaEliminacion: DateTime?, database
   fechaLanzamiento: DateTime?, database # Definir
   fechaPublicacion: DateTime? # Definir
   idPlataforma: int? # Definir
-  ultimaModificacion: DateTime
-  fechaCreacion: DateTime, database
-  fechaEliminacion: DateTime?, database
+  idProyecto: int? parent=proyectos # Definir

@@ -237,7 +237,7 @@ class OrmEntregableArticulo extends ORM {
         session,
         (Session session) => EntregableArticulo.update(
           session,
-          articulo..ultimaModificacion = DateTime.now(),
+          articulo,
         ),
       );
       logger.finest(
