@@ -213,8 +213,7 @@ class OrmEntregableArticulo extends ORM {
       session,
       (session) => EntregableArticulo.find(
         session,
-        where: (t) =>
-            (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
+        where: (t) => (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
         orderBy: EntregableArticuloTable().ultimaModificacion,
         orderDescending: true,
         limit: 3,
@@ -285,6 +284,21 @@ class OrmEntregableArticulo extends ORM {
           where: (t) => t.idAutor.equals(idAutor) & t.activo.equals(true));
       logger.fine('articulos encontrados: ${articulos.length}');
       return articulos;
+    });
+  }
+
+  Future<EntregableArticulo?> traerArticuloPorSlug({
+    required Session session,
+    required String slug,
+  }) async {
+    return ejecutarOperacionOrm(session, (session) async {
+      logger.finer('buscando en la db el articulo con slug: $slug');
+      final articulo = await EntregableArticulo.findSingleRow(
+        session,
+        where: (t) => t.slug.equals(slug),
+      );
+      logger.fine('articulo encontrado');
+      return articulo;
     });
   }
 }
