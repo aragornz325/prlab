@@ -33,108 +33,108 @@ class BlocGraficoTorta
           idArticulo: 1,
           nombre: 'articulo 1',
         ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 40,
-          idArticulo: 2,
-          nombre: 'articulo 2',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 30,
-          idArticulo: 3,
-          nombre: 'articulo 3',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 100,
-          idArticulo: 4,
-          nombre: 'articulo 4',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 500,
-          idArticulo: 3,
-          nombre: 'articulo 1',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 100,
-          idArticulo: 5,
-          nombre: 'articulo 1',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 20,
-          idArticulo: 6,
-          nombre: 'articulo 1',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 20,
-          idArticulo: 6,
-          nombre: 'articulo 1',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 60,
-          idArticulo: 6,
-          nombre: 'articulo 1',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 50,
-          idArticulo: 7,
-          nombre: 'articulo 1',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 40,
-          idArticulo: 7,
-          nombre: 'articulo 1',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 30,
-          idArticulo: 8,
-          nombre: 'articulo 1',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 20,
-          idArticulo: 8,
-          nombre: 'articulo 1',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 20,
-          idArticulo: 10,
-          nombre: 'articulo 1',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 20,
-          idArticulo: 10,
-          nombre: 'articulo 1',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 20,
-          idArticulo: 10,
-          nombre: 'articulo 1',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 20,
-          idArticulo: 1,
-          nombre: 'articulo 1',
-        ),
-        VisitaData(
-          fecha: DateTime.now(),
-          visitas: 20,
-          idArticulo: 11,
-          nombre: 'articulo 1',
-        ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 40,
+        //   idArticulo: 2,
+        //   nombre: 'articulo 2',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 30,
+        //   idArticulo: 3,
+        //   nombre: 'articulo 3',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 100,
+        //   idArticulo: 4,
+        //   nombre: 'articulo 4',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 500,
+        //   idArticulo: 3,
+        //   nombre: 'articulo 1',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 100,
+        //   idArticulo: 5,
+        //   nombre: 'articulo 1',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 20,
+        //   idArticulo: 6,
+        //   nombre: 'articulo 1',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 20,
+        //   idArticulo: 6,
+        //   nombre: 'articulo 1',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 60,
+        //   idArticulo: 6,
+        //   nombre: 'articulo 1',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 50,
+        //   idArticulo: 7,
+        //   nombre: 'articulo 1',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 40,
+        //   idArticulo: 7,
+        //   nombre: 'articulo 1',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 30,
+        //   idArticulo: 8,
+        //   nombre: 'articulo 1',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 20,
+        //   idArticulo: 8,
+        //   nombre: 'articulo 1',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 20,
+        //   idArticulo: 10,
+        //   nombre: 'articulo 1',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 20,
+        //   idArticulo: 10,
+        //   nombre: 'articulo 1',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 20,
+        //   idArticulo: 10,
+        //   nombre: 'articulo 1',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 20,
+        //   idArticulo: 1,
+        //   nombre: 'articulo 1',
+        // ),
+        // VisitaData(
+        //   fecha: DateTime.now(),
+        //   visitas: 20,
+        //   idArticulo: 11,
+        //   nombre: 'articulo 1',
+        // ),
         VisitaData(
           fecha: DateTime.now(),
           visitas: 20,
@@ -142,7 +142,7 @@ class BlocGraficoTorta
           nombre: 'articulo 1',
         ),
       ];
-
+      // TODO(mati): hablar con louka sobre esta logica.
       // Crear un mapa para almacenar la suma de visitas por idArticulo
       final sumaVisitasPorArticulo = <int, double>{};
 
@@ -169,10 +169,6 @@ class BlocGraficoTorta
         porcentajes.add(porcentajeRedondeado.toDouble());
       }
 
-      // La lista 'porcentajes' ahora contiene los porcentajes totales por
-      // idArticulo
-      print(porcentajes);
-
       emit(
         BlocGraficoTortaEstadoExitoso.desde(
           state,
@@ -183,7 +179,6 @@ class BlocGraficoTorta
       // TODO(anyone): Preguntar al back que devuelve para handlear los errores
       if (kDebugMode) {
         debugger();
-        print(st);
       }
 
       emit(

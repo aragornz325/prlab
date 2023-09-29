@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -102,13 +103,26 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
           body: Row(
             children: [
               Container(
-                width: 500.pw,
-                height: 500.ph,
+                width: 1000.pw,
+                height: 800.ph,
                 color: colores.secondary,
                 child: GraficoTorta(
-                  listaDePorcentajes: [],
+                  // context: context,
+                  // touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                  //   setState(() {
+                  //     if (!event.isInterestedForInteractions ||
+                  //         pieTouchResponse == null ||
+                  //         pieTouchResponse.touchedSection == null) {
+                  //       touchedIndexSecundario = -1;
+                  //       return;
+                  //     }
+                  //     touchedIndexSecundario =
+                  //         pieTouchResponse.touchedSection!.touchedSectionIndex;
+                  //   });
+                  // },
+                  listaDePorcentajes: const [9, 1, 3, 4, 5],
                   colorAGenerar: colores.primary,
-                  touchedIndex: touchedIndexSecundario,
+                  indiceSeleccionado: touchedIndexSecundario,
                 ),
               )
               // Container(
