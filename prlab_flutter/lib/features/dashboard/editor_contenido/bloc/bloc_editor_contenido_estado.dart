@@ -116,6 +116,7 @@ class BlocEditorContenidoEstadoActualizandoDesdeStream
             ultimaModificacion:
                 otro.articulo?.ultimaModificacion ?? DateTime.now(),
             contenidoHtml: otro.articulo?.contenidoHtml ?? '',
+            fechaCreacion: DateTime.now(), activo: true,
             // fechaEliminacion: otro.articulo?.fechaEliminacion,
             // fechaCreacion: otro.articulo?.fechaCreacion,
             // TODO(Anyone): Volver a agregar cuando se agreguen en el back
@@ -204,6 +205,7 @@ class BlocEditorContenidoEstadoActualizandoDescripcion
             ultimaModificacion:
                 otro.articulo?.ultimaModificacion ?? DateTime.now(),
             contenidoHtml: otro.articulo?.contenidoHtml ?? '',
+            fechaCreacion: DateTime.now(), activo: true,
             // fechaEliminacion: otro.articulo?.fechaEliminacion,
             // fechaCreacion: otro.articulo?.fechaCreacion,
             // TODO(Anyone): Volver a agregar cuando se agreguen en el back

@@ -1,6 +1,11 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/utilidades/utilidades.dart';
+import 'package:vsc_quill_delta_to_html/vsc_quill_delta_to_html.dart';
 
 part 'bloc_dashboard_estado.dart';
 part 'bloc_dashboard_evento.dart';
@@ -27,12 +32,27 @@ class BlocDashboard extends Bloc<BlocDashboardEvento, BlocDashboardEstado> {
       final marca = event.marca;
       final titulo = '${marca?.nombre ?? 'New'} article';
 
+      final controller = QuillController(
+        document: Document(),
+        selection: const TextSelection.collapsed(offset: 0),
+      );
+
+      final contenido = controller.document.toDelta().toJson();
+
+      final converter = QuillDeltaToHtmlConverter(
+        List.castFrom(contenido),
+        ConverterOptions.forEmail(),
+      );
+
+      final contenidoHtml = converter.convert();
+
       final idArticulo = await client.entregableArticulo.crearArticulo(
         titulo: titulo,
         idMarca: marca?.id,
-        contenido:
-            '{"document":{"type":"page","children":[{"type":"paragraph","data":{"delta":[]}}]}}',
+        contenido: jsonEncode(contenido),
+        contenidoHtml: contenidoHtml,
       );
+
       emit(BlocDashboardExitoso.desde(idArticulo));
     } catch (e) {
       emit(BlocDashboardFallido.desde());

@@ -45,6 +45,7 @@ dependencies:
   flutter_quill: ^7.4.7
   flutter_quill_extensions: ^0.4.1
   file_picker: ^5.5.0
+  vsc_quill_delta_to_html: ^1.0.3
 
 dev_dependencies:
   auto_route_generator: ^7.2.0
