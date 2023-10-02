@@ -1,3 +1,4 @@
+import 'package:prlab_server/src/excepciones/excepcion_endpoint.dart';
 import 'dart:io';
 
 import 'package:prlab_server/src/generated/protocol.dart';
@@ -25,9 +26,30 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
   /// crearse. No debe contener id, ni fechas de creación o modificación.
   Future<int> crearArticulo(
     Session session, {
-    required EntregableArticulo articulo,
+    required String titulo,
+    required String contenido,
+    required String contenidoHtml,
+    int? idMarca,
   }) async {
     try {
+      final idAutor = await session.auth.authenticatedUserId;
+
+      if (idAutor == null) {
+        throw Excepciones.noAutorizado();
+      }
+
+      final articulo = EntregableArticulo(
+        titulo: titulo,
+        contenido: contenido,
+        contenidoHtml: contenidoHtml,
+        idMarca: idMarca,
+        idAutor: idAutor,
+        idStatus: 0,
+        activo: true,
+        ultimaModificacion: DateTime.now(),
+        fechaCreacion: DateTime.now(),
+      );
+
       return await ejecutarOperacion(
         () => orm.crearArticulo(
           session: session,
@@ -140,36 +162,16 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     try {
       logger.info('Se va a actualizar el articulo con id: ${articulo.id}');
 
-      final articuloFinal = await ejecutarOperacion(
-        () {
-          return orm.obtenerArticuloPorId(
-            session: session,
-            id: articulo.id!,
-          );
-        },
-      );
-
-      logger.finest('Articulo ${articulo.id} recuperado de la db');
-
-      // Se compara con el registro de la db, si el valor es null se deja el
-      // valor anterior.
-      // Si el valor es distinto de null se actualiza el valor en el registro
-      // de la DB.
-
-      articulo.toJson().forEach((key, value) {
-        if (value != null) {
-          articuloFinal.setColumn(key, value);
-        }
-      });
       logger.finest('Articulo ${articulo.id} actualizado');
       await ejecutarOperacion(
         () {
           return orm.actualizarArticulo(
             session: session,
-            articulo: articuloFinal,
+            articulo: articulo..ultimaModificacion = DateTime.now(),
           );
         },
       );
+
       logger.finest('Se actualizo el articulo con id: ${articulo.id}');
       return true;
     } on Exception catch (e) {
