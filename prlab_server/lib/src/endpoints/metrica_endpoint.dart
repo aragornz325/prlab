@@ -42,8 +42,7 @@ class MetricaEndpoint extends Endpoint {
         .map(
           (e) => VisitasApi.fromJson(
             e.toMap()
-              ..['date'] =
-                  DateTime.parse(e.toMap()['date']).toIso8601String()
+              ..['date'] = DateTime.parse(e.toMap()['date']).toIso8601String()
               ..['visits'] = e.visits?.truncate() ?? 0,
             Protocol(),
           ),
