@@ -4,14 +4,15 @@
 
 CREATE TABLE "comentarios" (
   "id" serial,
-  "idEntregable" integer,
+  "idEntregable" integer NOT NULL,
   "textoComentario" text NOT NULL,
-  "idAutor" integer,
-  "fechaEliminacion" timestamp without time zone,
+  "idAutor" integer NOT NULL,
+  "completado" boolean NOT NULL,
+  "idAutorCompletado" integer NOT NULL,
+  "fechaCreacion" timestamp without time zone NOT NULL,
   "ultimaModificacion" timestamp without time zone,
-  "fechaCreacion" timestamp without time zone,
-  "completado" boolean,
-  "idAutorCompletado" integer,
+  "compania" text,
+  "fechaEliminacion" timestamp without time zone,
   "fechaCompletado" timestamp without time zone
 );
 
@@ -133,8 +134,8 @@ CREATE TABLE "clientes" (
   "idUsuario" integer,
   "idOrganizacion" integer,
   "contacto" integer,
-  "fechaCreacion" timestamp without time zone NOT NULL,
-  "ultimaModificacion" timestamp without time zone NOT NULL,
+  "fechaCreacion" timestamp without time zone,
+  "ultimaModificacion" timestamp without time zone,
   "activo" boolean
 );
 
@@ -158,16 +159,16 @@ ALTER TABLE ONLY "clientes"
 
 CREATE TABLE "periodistas" (
   "id" serial,
-  "urlImagen" text,
-  "nombreCompleto" text,
-  "idRol" integer,
+  "urlImagen" text NOT NULL,
+  "nombres" text NOT NULL,
+  "apellidos" text NOT NULL,
+  "idPuesto" integer,
   "idMedio" integer,
-  "bio" text,
-  "email" text,
-  "telefono" text,
+  "biografia" text NOT NULL,
+  "email" text NOT NULL,
+  "telefono" text NOT NULL,
   "idCiudad" integer,
   "idPais" integer,
-  "redesSociales" text,
   "ultimaModificacion" timestamp without time zone,
   "activo" boolean,
   "fechaCreacion" timestamp without time zone
@@ -219,6 +220,7 @@ CREATE TABLE "articulos" (
   "fechaLanzamiento" timestamp without time zone NOT NULL,
   "fechaPublicacion" timestamp without time zone,
   "idPlataforma" integer,
+  "slug" text,
   "fechaCreacion" timestamp without time zone,
   "activo" boolean
 );
@@ -284,4 +286,23 @@ ALTER TABLE ONLY "publicaciones"
     FOREIGN KEY("idProyecto")
       REFERENCES proyectos(id)
         ON DELETE CASCADE;
+
+--
+-- Class RedSocial as table redes_sociales_periodistas
+--
+
+CREATE TABLE "redes_sociales_periodistas" (
+  "id" serial,
+  "idRedSocial" integer,
+  "idUsuario" integer,
+  "nombreDeUsuario" text NOT NULL,
+  "urlPerfil" text NOT NULL,
+  "ultimaModificacion" timestamp without time zone,
+  "activo" boolean,
+  "fechaCreacion" timestamp without time zone
+);
+
+ALTER TABLE ONLY "redes_sociales_periodistas"
+  ADD CONSTRAINT redes_sociales_periodistas_pkey PRIMARY KEY (id);
+
 

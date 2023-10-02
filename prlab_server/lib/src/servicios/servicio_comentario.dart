@@ -95,7 +95,7 @@ class ServicioComentario extends Servicio<OrmComentario> {
   ///
   /// Returns:
   ///   La función `modificarCommentario` devuelve un `Futuro<bool>`.
-  Future<Comentario?> crearComentario({
+  Future<Comentario> crearComentario({
     required Session session,
     required Comentario comentario,
   }) async {
@@ -120,7 +120,7 @@ class ServicioComentario extends Servicio<OrmComentario> {
     required Session session,
     required Comentario comentario,
   }) async {
-    logger.finer('Modificando Comentario');
+    logger.finer('Modificando Comentario ${comentario.textoComentario}');
     return await ejecutarOperacion(() => orm.modificarComentario(
           session,
           comentario: comentario,

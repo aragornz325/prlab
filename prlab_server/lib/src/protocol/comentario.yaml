@@ -1,14 +1,16 @@
 class: Comentario
 table: comentarios
 fields:
-  idEntregable: int? 
+  idEntregable: int 
   textoComentario: String
-  idAutor: int?
+  idAutor: int
   nombre: String?, api
   apellido: String?, api
-  fechaEliminacion: DateTime?
+  imageUrl: String?, api
+  completado: bool
+  idAutorCompletado: int
+  fechaCreacion: DateTime
   ultimaModificacion: DateTime?
-  fechaCreacion: DateTime?
-  completado: bool?
-  idAutorCompletado: int?
+  compania: String? #TODO(todos) ver que es esto
+  fechaEliminacion: DateTime?
   fechaCompletado: DateTime?
