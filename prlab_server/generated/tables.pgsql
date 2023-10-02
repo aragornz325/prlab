@@ -9,7 +9,7 @@ CREATE TABLE "comentarios" (
   "idAutor" integer NOT NULL,
   "completado" boolean NOT NULL,
   "idAutorCompletado" integer NOT NULL,
-  "fechaCreacion" timestamp without time zone,
+  "fechaCreacion" timestamp without time zone NOT NULL,
   "ultimaModificacion" timestamp without time zone,
   "compania" text,
   "fechaEliminacion" timestamp without time zone,
@@ -210,19 +210,20 @@ ALTER TABLE ONLY "proyectos"
 CREATE TABLE "articulos" (
   "id" serial,
   "titulo" text NOT NULL,
-  "contenido" text,
-  "contenidoHtml" text,
-  "idProyecto" integer,
-  "idMarca" integer,
-  "idAutor" integer,
-  "idStatus" integer,
+  "contenido" text NOT NULL,
+  "contenidoHtml" text NOT NULL,
+  "idAutor" integer NOT NULL,
+  "idStatus" integer NOT NULL,
   "ultimaModificacion" timestamp without time zone NOT NULL,
-  "fechaLanzamiento" timestamp without time zone NOT NULL,
+  "fechaCreacion" timestamp without time zone NOT NULL,
+  "activo" boolean NOT NULL,
+  "slug" text,
+  "idMarca" integer,
+  "fechaEliminacion" timestamp without time zone,
+  "fechaLanzamiento" timestamp without time zone,
   "fechaPublicacion" timestamp without time zone,
   "idPlataforma" integer,
-  "slug" text,
-  "fechaCreacion" timestamp without time zone,
-  "activo" boolean
+  "idProyecto" integer
 );
 
 ALTER TABLE ONLY "articulos"
@@ -230,13 +231,13 @@ ALTER TABLE ONLY "articulos"
 
 ALTER TABLE ONLY "articulos"
   ADD CONSTRAINT articulos_fk_0
-    FOREIGN KEY("idProyecto")
-      REFERENCES proyectos(id)
+    FOREIGN KEY("idMarca")
+      REFERENCES marcas(id)
         ON DELETE CASCADE;
 ALTER TABLE ONLY "articulos"
   ADD CONSTRAINT articulos_fk_1
-    FOREIGN KEY("idMarca")
-      REFERENCES marcas(id)
+    FOREIGN KEY("idProyecto")
+      REFERENCES proyectos(id)
         ON DELETE CASCADE;
 
 --

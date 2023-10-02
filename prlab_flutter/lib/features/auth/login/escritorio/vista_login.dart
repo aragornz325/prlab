@@ -127,6 +127,11 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                       child: PRTextFormFieldPassword(
                         controller: controllerPassword,
                         hintText: l10n.pageLoginPlaceholderPassword,
+                        onFieldSubmitted: (v) {
+                          if (v.isNotEmpty && state.botonLoginHabilitado) {
+                            _onTapBotonIniciarSesion();
+                          }
+                        },
                         onChanged: (_) => _habilitarBotones(),
                       ),
                     ),
