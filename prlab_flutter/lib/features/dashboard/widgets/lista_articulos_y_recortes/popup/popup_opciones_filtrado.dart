@@ -27,7 +27,7 @@ class PopupOpcionesDeFiltrado extends StatefulWidget {
 class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
   bool estaDesplegado = false;
 
-  int indexSeleccinado = 1;
+  FiltrarPor filtrado = FiltrarPor.todo;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
 
             setState(() {
               estaDesplegado = false;
-              indexSeleccinado = 1;
+              filtrado = FiltrarPor.todo;
             });
           },
         ),
@@ -103,7 +103,7 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
 
             setState(() {
               estaDesplegado = false;
-              indexSeleccinado = 2;
+              filtrado = FiltrarPor.estado;
             });
           },
         ),
@@ -125,28 +125,57 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
 
             setState(() {
               estaDesplegado = false;
-              indexSeleccinado = 2;
+              filtrado = FiltrarPor.fecha;
+            });
+          },
+        ),
+        PopupMenuItem(
+          height: max(30.ph, 30.sh),
+          value: 4,
+          child: Text(
+            l10n.pageContentAdministrationBarInformationAuthor,
+            style: TextStyle(
+              color: colores.tertiary,
+              fontSize: 14.pf,
+            ),
+          ),
+          onTap: () {
+            showDialog<void>(
+              context: context,
+              builder: (context) => const PrDialogFiltrarPorAutor(),
+            );
+
+            setState(() {
+              estaDesplegado = false;
+              filtrado = FiltrarPor.autor;
             });
           },
         ),
       ],
-
-      // boton crear artículo
       child: CircleAvatar(
         radius: 20.sw,
         backgroundColor: estaDesplegado
             ? colores.primaryOpacidadVeinte
             : colores.surfaceTint,
         child: Icon(
-          indexSeleccinado == 1
-              ? Icons.tune
-              : indexSeleccinado == 2
-                  ? Icons.filter_alt_outlined
-                  : Icons.tune,
+          filtrado == FiltrarPor.todo ? Icons.tune : Icons.filter_alt_outlined,
           color: colores.primary,
           size: 18.pw,
         ),
       ),
     );
   }
+}
+
+/// Enum utilizado para indexar cada item del filtrado.
+enum FiltrarPor {
+  todo,
+  fecha,
+  autor,
+  estado;
+
+  bool get esTodo => this == FiltrarPor.todo;
+  bool get esFecha => this == FiltrarPor.fecha;
+  bool get esAutor => this == FiltrarPor.autor;
+  bool get esEstado => this == FiltrarPor.estado;
 }
