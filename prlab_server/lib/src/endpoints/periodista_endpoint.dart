@@ -47,38 +47,38 @@ class PeriodistaEndpoint extends Endpoint {
   /// Recupera una lista de [Periodista] de acuerdo a diferentes filtros.
   Future<List<Periodista>> listarPeriodistas(
     Session session, {
-    String? nombreCompleto,
+    String? nombres,
     String? nombreDeMedio,
     List<int>? idPaises,
     List<int>? idCiudades,
     List<int>? idTemas,
     List<int>? idIdiomas,
     List<int>? idTiposDeMedio,
-    List<int>? idRoles,
+    List<int>? idPuestos,
   }) async {
     return servicioPeriodista.listarPeriodistas(
       session,
-      nombreCompleto: nombreCompleto ?? '',
+      nombres: nombres ?? '',
       nombreDeMedio: nombreDeMedio ?? '',
       idPaises: idPaises ?? const [],
       idCiudades: idCiudades ?? const [],
       idTemas: idTemas ?? const [],
       idIdiomas: idIdiomas ?? const [],
       idTiposDeMedio: idTiposDeMedio ?? const [],
-      idRoles: idRoles ?? const [],
+      idPuestos: idPuestos ?? const [],
     );
   }
 
   /// Obtiene las categorías de filtrado de [Periodista] con su nombre, id y
   /// recuento de acuerdo a los filtros.
-  Future<Map> obtenerListaDeFiltrosConRecuento(
+  Future<CategoriasFiltro> obtenerListaDeFiltrosConRecuento(
     Session session, {
     List<int>? idPaises,
     List<int>? idCiudades = const [],
     List<int>? idIdiomas = const [],
     List<int>? idTemas = const [],
     List<int>? idTiposDeMedio = const [],
-    List<int>? idRoles = const [],
+    List<int>? idPuestos = const [],
   }) async {
     return await servicioPeriodista.obtenerListaDeFiltrosConRecuento(
       session,
@@ -87,7 +87,7 @@ class PeriodistaEndpoint extends Endpoint {
       idIdiomas: idIdiomas ?? const [],
       idTemas: idTemas ?? const [],
       idTiposDeMedio: idTiposDeMedio ?? const [],
-      idRoles: idRoles ?? const [],
+      idRoles: idPuestos ?? const [],
     );
   }
 }

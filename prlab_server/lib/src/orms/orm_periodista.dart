@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/orm.dart';
 import 'package:serverpod/serverpod.dart';
@@ -7,18 +9,17 @@ class OrmPeriodista extends ORM {
   /// Recupera una lista de [Periodista] de acuerdo a diferentes filtros.
   Future<List<Periodista>> listarPeriodistas(
     Session session, {
-    String nombreCompleto = '',
+    String nombres = '',
     String nombreDeMedio = '',
     List<int> idPaises = const [],
     List<int> idCiudades = const [],
     List<int> idTemas = const [],
     List<int> idIdiomas = const [],
     List<int> idTiposDeMedio = const [],
-    List<int> idRoles = const [],
+    List<int> idPuestos = const [],
   }) async {
-    final queryNombreCompleto = nombreCompleto != ''
-        ? '(j."nombreCompleto" LIKE \'%$nombreCompleto%\')'
-        : '';
+    final queryNombres =
+        nombres != '' ? '(j."nombres" LIKE \'%$nombres%\')' : '';
     final queryNombreDeMedio =
         nombreDeMedio != '' ? 'm."medio" LIKE \'%$nombreDeMedio%\'' : '';
     final queryPaises =
@@ -33,18 +34,18 @@ class OrmPeriodista extends ORM {
     final queryTiposDeMedio = idTiposDeMedio.isNotEmpty
         ? 'm."idTipoDeMedio" IN (${idTiposDeMedio.join(',')})'
         : '';
-    final queryRoles =
-        idRoles.isNotEmpty ? 'j."idRol" IN (${idRoles.join(',')})' : '';
+    final queryPuestos =
+        idPuestos.isNotEmpty ? 'j."idPuesto" IN (${idPuestos.join(',')})' : '';
 
     final listaWheres = [
-      queryNombreCompleto,
+      queryNombres,
       queryNombreDeMedio,
       queryPaises,
       queryCiudades,
       queryTemas,
       queryIdiomas,
       queryTiposDeMedio,
-      queryRoles,
+      queryPuestos,
     ].where((element) => element != '').toList();
 
     var whereBuffer = StringBuffer();
@@ -61,70 +62,105 @@ class OrmPeriodista extends ORM {
       whereBuffer.writeln();
     }
 
-    final modeloApi = Periodista(nombreCompleto: '', email: '').toJson()
-      ..remove('idRol')
-      ..remove('idMedio')
-      ..remove('idCiudad')
-      ..remove('idPais')
-      ..remove('ultimaModificacion')
-      ..remove('activo')
-      ..remove('fechaCreacion');
+    final modeloApi = Periodista(
+      urlImagen: '',
+      nombres: '',
+      apellidos: '',
+      puesto: '',
+      medio: '',
+      biografia: '',
+      email: '',
+      telefono: '',
+      ciudad: '',
+      pais: '',
+      temas: [],
+      idiomas: [],
+      redesSociales: [],
+    ).toJson();
 
     var consulta = '''
 SELECT 
   j."id", 
-  j."urlImagen", 
-  j."nombreCompleto", 
-  r."rol", 
-  m."medio", 
-  j."bio", 
-  (
-        SELECT ARRAY_AGG(t."tema" ORDER BY t."id")
-        FROM temas_periodistas tj
-        LEFT JOIN temas t ON tj."idTema" = t."id"
-        WHERE tj."idPeriodista" = j."id"
-    ) AS "temas", 
-  j."email", 
-  j."telefono", 
-  c."ciudad", 
-  n."pais", 
-  (
-        SELECT ARRAY_AGG(l."idioma" ORDER BY l."id")
-        FROM idiomas_periodistas lj
-        LEFT JOIN idiomas l ON lj."idIdioma" = l."id"
-        WHERE lj."idPeriodista" = j."id"
-    ) AS "idiomas", 
-  j."redesSociales"
+  COALESCE(j."urlImagen", '') AS "urlImagen", 
+  COALESCE(j."nombres", '') AS "nombres", 
+  COALESCE(j."apellidos", '') AS "apellidos", 
+  COALESCE(r."puesto", '') AS "puesto", 
+  COALESCE(m."medio", '') AS "medio", 
+  COALESCE(j."biografia", '') AS "biografia", 
+  COALESCE(
+    (
+      SELECT ARRAY_AGG(t."tema" ORDER BY t."id")
+      FROM temas_periodistas tj
+      LEFT JOIN temas t ON tj."idTema" = t."id"
+      WHERE tj."idPeriodista" = j."id"
+    ), ARRAY[]::text[]
+  ) AS "temas", 
+  COALESCE(j."email", '') AS "email", 
+  COALESCE(j."telefono", '') AS "telefono", 
+  COALESCE(c."ciudad", '') AS "ciudad", 
+  COALESCE(n."pais", '') AS "pais", 
+  COALESCE(
+    (
+      SELECT ARRAY_AGG(l."idioma" ORDER BY l."id")
+      FROM idiomas_periodistas lj
+      LEFT JOIN idiomas l ON lj."idIdioma" = l."id"
+      WHERE lj."idPeriodista" = j."id"
+    ), ARRAY[]::text[]
+  ) AS "idiomas",
+  COALESCE(
+    (
+      SELECT jsonb_agg(
+        json_build_object(
+          'id', rsp."id",
+          'urlIcono', COALESCE(r."urlIcono", ''),
+          'redSocial', COALESCE(r."redSocial", ''),
+          'nombreDeUsuario', COALESCE(rsp."nombreDeUsuario", ''),
+          'urlPerfil', COALESCE(rsp."urlPerfil", '')
+        ) ORDER BY rsp."idRedSocial"
+      )::text
+      FROM redes_sociales_periodistas rsp
+      INNER JOIN redes_sociales r ON rsp."idRedSocial" = r."id"
+      WHERE rsp."idPeriodista" = j."id"
+    ), '[]'::text
+  ) AS "redesSociales"
 FROM
   periodistas j
-  INNER JOIN roles r ON j."idRol" = r.id
-  INNER JOIN medios m ON j."idMedio" = m.id
-  INNER JOIN ciudades c ON j."idCiudad" = c.id
-  INNER JOIN paises n ON j."idPais" = n.id
+  LEFT JOIN puestos r ON j."idPuesto" = r.id
+  LEFT JOIN medios m ON j."idMedio" = m.id
+  LEFT JOIN ciudades c ON j."idCiudad" = c.id
+  LEFT JOIN paises n ON j."idPais" = n.id
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
   LEFT JOIN idiomas l ON lj."idIdioma" = l."id"$whereBuffer
-  GROUP BY j."id", r."rol", m."medio", c."ciudad", n."pais";
+  GROUP BY j."id", r."puesto", m."medio", c."ciudad", n."pais";
     ''';
     final response = await ejecutarConsultaSql(
       session,
       consulta,
       clavesMapaModeloDb: modeloApi.keys,
     );
-    return response.map((e) => Periodista.fromJson(e, Protocol())).toList();
+
+    return response
+        .map(
+          (e) => Periodista.fromJson(
+            e..['redesSociales'] = jsonDecode(e['redesSociales']),
+            Protocol(),
+          ),
+        )
+        .toList();
   }
 
   /// Obtiene las categorías de filtrado de [Periodista] con su nombre, id y
   /// recuento de acuerdo a los filtros.
-  Future<Map> obtenerListaDeFiltrosConRecuento(
+  Future<CategoriasFiltro> obtenerListaDeFiltrosConRecuento(
     Session session, {
     List<int> idPaises = const [],
     List<int> idCiudades = const [],
     List<int> idIdiomas = const [],
     List<int> idTemas = const [],
     List<int> idTiposDeMedio = const [],
-    List<int> idRoles = const [],
+    List<int> idPuestos = const [],
   }) async {
     final wherePaises =
         idPaises.isNotEmpty ? 'j."idPais" IN (${idPaises.join(',')})' : '';
@@ -138,8 +174,8 @@ FROM
     final whereTiposDeMedio = idTiposDeMedio.isNotEmpty
         ? 'm."idTipoDeMedio" IN (${idTiposDeMedio.join(',')})'
         : '';
-    final whereRoles =
-        idRoles.isNotEmpty ? 'j."idRol" IN (${idRoles.join(',')})' : '';
+    final wherePuestos =
+        idPuestos.isNotEmpty ? 'j."idPuesto" IN (${idPuestos.join(',')})' : '';
 
     final listaWheres = [
       wherePaises,
@@ -147,7 +183,7 @@ FROM
       whereIdiomas,
       whereTemas,
       whereTiposDeMedio,
-      whereRoles,
+      wherePuestos,
     ].where((element) => element != '').toList();
 
     var whereBuffer = StringBuffer();
@@ -179,10 +215,10 @@ WHERE
   j."id"
 FROM
   periodistas j
-  INNER JOIN roles r ON j."idRol" = r.id
-  INNER JOIN medios m ON j."idMedio" = m.id
-  INNER JOIN ciudades c ON j."idCiudad" = c.id
-  INNER JOIN paises n ON j."idPais" = n.id
+  LEFT JOIN puestos r ON j."idPuesto" = r.id
+  LEFT JOIN medios m ON j."idMedio" = m.id
+  LEFT JOIN ciudades c ON j."idCiudad" = c.id
+  LEFT JOIN paises n ON j."idPais" = n.id
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
@@ -206,10 +242,10 @@ WHERE
   j."id"
 FROM
   periodistas j
-  INNER JOIN roles r ON j."idRol" = r.id
-  INNER JOIN medios m ON j."idMedio" = m.id
-  INNER JOIN ciudades c ON j."idCiudad" = c.id
-  INNER JOIN paises n ON j."idPais" = n.id
+  LEFT JOIN puestos r ON j."idPuesto" = r.id
+  LEFT JOIN medios m ON j."idMedio" = m.id
+  LEFT JOIN ciudades c ON j."idCiudad" = c.id
+  LEFT JOIN paises n ON j."idPais" = n.id
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
@@ -234,10 +270,10 @@ WHERE
   j."id"
 FROM
   periodistas j
-  INNER JOIN roles r ON j."idRol" = r.id
-  INNER JOIN medios m ON j."idMedio" = m.id
-  INNER JOIN ciudades c ON j."idCiudad" = c.id
-  INNER JOIN paises n ON j."idPais" = n.id
+  LEFT JOIN puestos r ON j."idPuesto" = r.id
+  LEFT JOIN medios m ON j."idMedio" = m.id
+  LEFT JOIN ciudades c ON j."idCiudad" = c.id
+  LEFT JOIN paises n ON j."idPais" = n.id
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
@@ -262,10 +298,10 @@ WHERE
   j."id"
 FROM
   periodistas j
-  INNER JOIN roles r ON j."idRol" = r.id
-  INNER JOIN medios m ON j."idMedio" = m.id
-  INNER JOIN ciudades c ON j."idCiudad" = c.id
-  INNER JOIN paises n ON j."idPais" = n.id
+  LEFT JOIN puestos r ON j."idPuesto" = r.id
+  LEFT JOIN medios m ON j."idMedio" = m.id
+  LEFT JOIN ciudades c ON j."idCiudad" = c.id
+  LEFT JOIN paises n ON j."idPais" = n.id
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
@@ -290,10 +326,10 @@ WHERE
   j."id"
 FROM
   periodistas j
-  INNER JOIN roles r ON j."idRol" = r.id
-  INNER JOIN medios m ON j."idMedio" = m.id
-  INNER JOIN ciudades c ON j."idCiudad" = c.id
-  INNER JOIN paises n ON j."idPais" = n.id
+  LEFT JOIN puestos r ON j."idPuesto" = r.id
+  LEFT JOIN medios m ON j."idMedio" = m.id
+  LEFT JOIN ciudades c ON j."idCiudad" = c.id
+  LEFT JOIN paises n ON j."idPais" = n.id
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
@@ -302,32 +338,32 @@ FROM
 GROUP BY
     m."idTipoDeMedio", tm."tipoDeMedio"
 UNION ALL
--- Recuento de roles
+-- Recuento de puestos
 SELECT
-    'Rol' AS "categoria",
+    'Puesto' AS "categoria",
     r.id AS "id",
-    r."rol" AS "nombre",
+    r."puesto" AS "nombre",
     COUNT(*) AS "recuento"
 FROM
     periodistas j
-    INNER JOIN roles r ON j."idRol" = r.id
+    INNER JOIN puestos r ON j."idPuesto" = r.id
 
 WHERE
     j."id" IN (SELECT 
   j."id"
 FROM
   periodistas j
-  INNER JOIN roles r ON j."idRol" = r.id
-  INNER JOIN medios m ON j."idMedio" = m.id
-  INNER JOIN ciudades c ON j."idCiudad" = c.id
-  INNER JOIN paises n ON j."idPais" = n.id
+  LEFT JOIN puestos r ON j."idPuesto" = r.id
+  LEFT JOIN medios m ON j."idMedio" = m.id
+  LEFT JOIN ciudades c ON j."idCiudad" = c.id
+  LEFT JOIN paises n ON j."idPais" = n.id
   LEFT JOIN temas_periodistas tj ON j."id" = tj."idPeriodista"
   LEFT JOIN temas t ON tj."idTema" = t."id"
   LEFT JOIN idiomas_periodistas lj ON j."id" = lj."idPeriodista"
   LEFT JOIN idiomas l ON lj."idIdioma" = l."id"$whereBuffer)
 
 GROUP BY
-    r.id, r."rol";
+    r.id, r."puesto";
 ''';
     final query = await ejecutarConsultaSql(
       session,
@@ -335,7 +371,7 @@ GROUP BY
       clavesMapaModeloDb: ['categoria', 'id', 'nombre', 'recuento'],
     );
 
-    Map response = {}
+    Map<String, dynamic> response = {}
       ..['paises'] = query
           .where((element) => element['categoria'] == 'País')
           .map((value) => value..remove('categoria'))
@@ -356,12 +392,12 @@ GROUP BY
           .where((element) => element['categoria'] == 'Tipo de Medio')
           .map((value) => value..remove('categoria'))
           .toList()
-      ..['roles'] = query
-          .where((element) => element['categoria'] == 'Rol')
+      ..['puestos'] = query
+          .where((element) => element['categoria'] == 'Puesto')
           .map((value) => value..remove('categoria'))
           .toList();
 
-    return response;
+    return CategoriasFiltro.fromJson(response, Protocol());
   }
 
   Future<bool> crearPeriodista({
@@ -372,17 +408,19 @@ GROUP BY
       await ejecutarOperacionOrm(
         session,
         (Session session) {
-          logger.finer('Creando periodista: ${periodista.nombreCompleto}');
+          logger.finer(
+              'Creando periodista: ${periodista.nombres} ${periodista.apellidos}');
           return Periodista.insert(
             session,
             periodista
               ..fechaCreacion = DateTime.now()
-              ..ultimaModificacion = DateTime.now(),
+              ..ultimaModificacion = DateTime.now()
+              ..activo = true,
           );
         },
       );
-      logger
-          .fine('Periodista ${periodista.nombreCompleto} creada exitosamente.');
+      logger.fine(
+          'Periodista ${periodista.nombres} ${periodista.apellidos} creada exitosamente.');
       return true;
     } on Exception catch (e) {
       throw Exception('$e');
