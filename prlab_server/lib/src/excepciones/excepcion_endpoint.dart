@@ -10,7 +10,7 @@ class Excepciones extends ExcepcionCustom {
   /// [titulo] y [mensaje] son opcionales y se utilizan para personalizar
   /// el mensaje de error.
   Excepciones.solicitudIncorrecta({
-    required super.stackTrace,
+    super.stackTrace,
     String? titulo,
     String? mensaje,
   }) : super(
@@ -27,7 +27,7 @@ class Excepciones extends ExcepcionCustom {
   /// acceder a un recurso. [titulo] y [mensaje] son opcionales y se utilizan
   /// para personalizar el mensaje de error.
   Excepciones.noAutorizado({
-    required super.stackTrace,
+    super.stackTrace,
     String? titulo,
     String? mensaje,
   }) : super(
@@ -45,7 +45,7 @@ class Excepciones extends ExcepcionCustom {
   /// acceder a un recurso. [titulo] y [mensaje] son opcionales y se
   /// utilizan para personalizar el mensaje de error.
   Excepciones.prohibido({
-    required super.stackTrace,
+    super.stackTrace,
     String? titulo,
     String? mensaje,
   }) : super(
@@ -63,7 +63,7 @@ class Excepciones extends ExcepcionCustom {
   /// [titulo] y [mensaje] son opcionales y se utilizan para personalizar
   /// el mensaje de error.
   Excepciones.noEncontrado({
-    required super.stackTrace,
+    super.stackTrace,
     String? titulo,
     String? mensaje,
   }) : super(
@@ -83,7 +83,7 @@ class Excepciones extends ExcepcionCustom {
   /// [titulo] y [mensaje] son opcionales y se utilizan para personalizar
   /// el mensaje de error.
   Excepciones.sinConexion({
-    required super.stackTrace,
+    super.stackTrace,
     String? titulo,
     String? mensaje,
   }) : super(
@@ -103,7 +103,7 @@ class Excepciones extends ExcepcionCustom {
   /// [titulo] y [mensaje] son opcionales y se utilizan para
   /// personalizar el mensaje de error.
   Excepciones.parseo({
-    required super.stackTrace,
+    super.stackTrace,
     String? titulo,
     String? mensaje,
   }) : super(
@@ -121,7 +121,7 @@ class Excepciones extends ExcepcionCustom {
   /// [titulo] y [mensaje] son opcionales y se utilizan para personalizar
   /// el mensaje de error.
   Excepciones.desconocido({
-    required super.stackTrace,
+    super.stackTrace,
     String? titulo,
     String? mensaje,
   }) : super(

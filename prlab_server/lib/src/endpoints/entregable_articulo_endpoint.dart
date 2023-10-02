@@ -22,13 +22,19 @@ class EntregableArticuloEndpoint extends Endpoint {
   ///   [articulo] ([EntregableArticulo]): El parámetro "articulo" es un objeto de tipo
   /// "Articulo" que contiene los datos necesarios para crear un artículo.
   Future<int> crearArticulo(
-    Session session,
-    EntregableArticulo articulo,
-  ) async {
+    Session session, {
+    required String titulo,
+    required String contenido,
+    required String contenidoHtml,
+    int? idMarca,
+  }) async {
     try {
       return await servicioArticulo.crearArticulo(
         session,
-        articulo: articulo,
+        titulo: titulo,
+        contenido: contenido,
+        contenidoHtml: contenidoHtml,
+        idMarca: idMarca,
       );
     } on Exception {
       rethrow;
