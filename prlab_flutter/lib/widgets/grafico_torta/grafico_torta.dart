@@ -31,9 +31,9 @@ class GraficoTorta extends StatefulWidget {
   /// LLama a esta función `GraficoTortaEjemplo1.anillo`
   ///
   /// Grafico de torta de anillo
-  /// Toma parámetros como `touchedIndex`,`coloresDistintos`,
-  /// `listaDePorcentajes` y `touchCallback` para personalizar la apariencia
-  /// y el comportamiento del
+  /// Toma parámetros como `indiceSeleccionado`,`coloresDistintos`,
+  /// `listaDePorcentajes` y `indiceSeleccionado` para personalizar
+  /// la apariencia y el comportamiento del
   /// gráfico circular.
   factory GraficoTorta.anillo({
     /// context para el uso del theme
@@ -138,9 +138,9 @@ class GraficoTorta extends StatefulWidget {
   /// LLama a esta función `GraficoTortaEjemplo1.secundario`
   ///
   /// Grafico de torta de Secundario
-  /// Toma parámetros como `touchedIndex`,`coloresDistintos`,
-  /// `listaDePorcentajes` y `touchCallback` para personalizar la apariencia
-  /// y el comportamiento del
+  /// Toma parámetros como `indiceSeleccionado`,`coloresDistintos`,
+  /// `listaDePorcentajes` y `indiceSeleccionado` para personalizar
+  /// la apariencia y el comportamiento del
   /// gráfico circular.
   factory GraficoTorta.secundario({
     /// context para el uso del theme
@@ -396,8 +396,7 @@ class _GraficoTortaState extends State<GraficoTorta> {
                                       )
                                   : widget.estiloBordeSinCursorDelGrafico ??
                                       BorderSide(
-                                        color:
-                                            colores.surfaceTint.withOpacity(0),
+                                        color: colores.surfaceTint,
                                       ),
                             ),
                           ),
