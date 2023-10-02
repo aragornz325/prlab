@@ -259,13 +259,30 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     required Session session,
     required int idArticulo,
   }) async {
+    logger.info('Se va a publicar el articulo $idArticulo');
     final articulo = await obtenerArticulo(session, id: idArticulo);
+    print(articulo);
     final imagenes =
         await obtenerImagenesArticulo(session, idArticulo: idArticulo);
 
+    String imageneHtml = '';
+    if (imagenes.length == 1) {
+      imageneHtml = '''
+      <img src="${imagenes.first.url}" alt="${imagenes.first.nombreImagen}" style="width: 100%; height: auto;">
+      ''';
+    } else if (imagenes.length > 1) {
+      imagenes.forEach((imagen) {
+        imageneHtml += '''
+        <img src="${imagen.url}" alt="${imagen.nombreImagen}" style="width: 100%; height: auto;">
+        ''';
+      });
+    }
+
     final articuloAPublicar = templatePublicarArticulo(
-      contenido: articulo.contenido!,
-      titulo: articulo.titulo!,
+      contenido: articulo.contenidoHtml!,
+      titulo: articulo.titulo,
+      imagen:
+          'https://getbuzzmonitor.com/wp-content/uploads/screen-shot-2018-10-17-at-8.39_.11-pm_.png',
     );
 
     var slug = '${articulo.titulo.trim().replaceAll(' ', '-')}';
@@ -293,6 +310,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
 
     await page.emulateMediaType(MediaType.screen);
 
+    await Future.delayed(const Duration(seconds: 3));
     await page.pdf(
         format: PaperFormat.a4,
         printBackground: true,
