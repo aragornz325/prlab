@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class Indicator extends StatelessWidget {
   const Indicator({
-    super.key,
     required this.color,
     required this.text,
     required this.isSquare,
+    super.key,
     this.size = 16,
     this.textColor,
   });
@@ -27,9 +27,7 @@ class Indicator extends StatelessWidget {
             color: color,
           ),
         ),
-        const SizedBox(
-          width: 4,
-        ),
+        const SizedBox(width: 4),
         Text(
           text,
           style: TextStyle(
@@ -37,7 +35,7 @@ class Indicator extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: textColor,
           ),
-        )
+        ),
       ],
     );
   }

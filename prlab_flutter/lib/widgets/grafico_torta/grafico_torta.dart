@@ -2,17 +2,27 @@
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/widgets/grafico_torta/bloc/bloc_grafico_torta.dart';
 
 /// {@template GraficoTorta}
-/// TODO(mati): documentar
+/// La clase `GráficoTorta` es un widget con estado que genera un gráfico
+/// circular con opciones personalizables.
+///
+/// Contiene dos factory:
+///
+/// `GraficoTorta.anillo` que dibuja el gráfico
+/// con un espacio en el centro(parecido a un anillo)
+/// que puede ser personalizado.
+///
+/// `GraficoTorta.secundario` que dibuja el gráfico de la misma forma
+/// que el principal pero con la diferencia de que el index del seleccionado
+/// cambia de tamaño y el tamaño de la letra.
+///
 /// {@endtemplate}
 class GraficoTorta extends StatefulWidget {
   /// {@macro GraficoTorta}
   GraficoTorta({
-    required this.listaDePorcentajes,
+    required this.porcentajes,
     required this.colorAGenerar,
     this.tamanioDelGrafico = 100,
     this.posicionDelTituloEnElGrafico = 0.55,
@@ -44,7 +54,7 @@ class GraficoTorta extends StatefulWidget {
     required Color colorAGenerar,
 
     /// lista de porcentajes que tiene el gráfico a mostrar [GraficoTorta].
-    required List<double> listaDePorcentajes,
+    required List<double> porcentajes,
 
     /// index seleccionado para que cambie ciertos parámetros para darle un
     /// efecto [GraficoTorta].
@@ -71,13 +81,11 @@ class GraficoTorta extends StatefulWidget {
     TextStyle? estiloDelTitulo,
 
     /// Radio Total del Grafico define el tamaño del circulo [GraficoTorta].
-    double tamanioDelGrafico = 50,
+    double tamanioDelGrafico = 100,
   }) {
-    final colores = context.colores;
-
     return GraficoTorta(
-      colorAGenerar: Colors.black,
-      listaDePorcentajes: listaDePorcentajes,
+      colorAGenerar: colorAGenerar,
+      porcentajes: porcentajes,
       contenido: Expanded(
         child: AspectRatio(
           aspectRatio: 3,
@@ -87,47 +95,25 @@ class GraficoTorta extends StatefulWidget {
               sectionsSpace: espacioEntreSeleccionado,
               centerSpaceColor: colorDelEspacioCentro,
               startDegreeOffset: rotacionDelGrafico,
+              borderData: FlBorderData(show: false),
               pieTouchData: PieTouchData(
                 touchCallback: touchCallback,
               ),
-              borderData: FlBorderData(
-                show: false,
+              sections: generarDatosGraficoTorta(
+                esPrincipal: false,
+                context: context,
+                colorAGenerar: colorAGenerar,
+                data: porcentajes,
+                estiloDelTitulo: estiloDelTitulo,
+                indiceSeleccionado: indiceSeleccionado,
+                tamanioDelGrafico: tamanioDelGrafico,
+                sombras: const [
+                  Shadow(
+                    color: Colors.black,
+                    blurRadius: 2,
+                  ),
+                ],
               ),
-              sections: [
-                ...listaDePorcentajes.map((e) {
-                  // TODO(mati): preguntarle a louka si esta logica va aca o
-                  // TODO(mati): la hace en otro lado
-                  final listaDeColores = _onGenerarListaDeColoresBajaOpacidad(
-                    colorAGenerar,
-                    listaDePorcentajes.length,
-                  );
-
-                  final isTouched =
-                      listaDePorcentajes.indexOf(e) == indiceSeleccionado;
-
-                  final fontSize = isTouched ? 25.0 : 16.0;
-
-                  final radius = isTouched ? 60.0 : tamanioDelGrafico;
-
-                  final shadows = [
-                    Shadow(color: colores.secondary, blurRadius: 1),
-                  ];
-
-                  return PieChartSectionData(
-                    color: listaDeColores[listaDePorcentajes.indexOf(e)],
-                    value: listaDePorcentajes[listaDePorcentajes.indexOf(e)],
-                    title: '$e %',
-                    radius: radius,
-                    titleStyle: estiloDelTitulo ??
-                        TextStyle(
-                          fontSize: fontSize,
-                          fontWeight: FontWeight.bold,
-                          color: colores.tertiary,
-                          shadows: shadows,
-                        ),
-                  );
-                }),
-              ],
             ),
           ),
         ),
@@ -151,7 +137,7 @@ class GraficoTorta extends StatefulWidget {
     required Color colorAGenerar,
 
     /// lista de porcentajes que tiene el gráfico a mostrar [GraficoTorta].
-    required List<double> listaDePorcentajes,
+    required List<double> porcentajes,
 
     /// index seleccionado para que cambie ciertos parámetros para darle un
     /// efecto.
@@ -180,12 +166,10 @@ class GraficoTorta extends StatefulWidget {
     /// Estilo Del titulo dentro del circulo [GraficoTorta].
     TextStyle? estiloDelTitulo,
   }) {
-    final colores = context.colores;
-
     return GraficoTorta(
-      colorAGenerar: colorDelEspacioCentro ?? Colors.black,
+      colorAGenerar: colorAGenerar,
       indiceSeleccionado: indiceSeleccionado,
-      listaDePorcentajes: listaDePorcentajes,
+      porcentajes: porcentajes,
       contenido: Expanded(
         child: AspectRatio(
           aspectRatio: 1,
@@ -193,49 +177,25 @@ class GraficoTorta extends StatefulWidget {
             PieChartData(
               sectionsSpace: espacioEntreSeleccionado,
               centerSpaceRadius: espacioEnElCentro,
-              pieTouchData: PieTouchData(touchCallback: touchCallback),
+              centerSpaceColor: colorDelEspacioCentro,
               startDegreeOffset: rotacionDelGrafico,
-              borderData: FlBorderData(
-                show: false,
+              pieTouchData: PieTouchData(touchCallback: touchCallback),
+              borderData: FlBorderData(show: false),
+              sections: generarDatosGraficoTorta(
+                esPrincipal: false,
+                context: context,
+                colorAGenerar: colorAGenerar,
+                data: porcentajes,
+                estiloDelTitulo: estiloDelTitulo,
+                indiceSeleccionado: indiceSeleccionado,
+                tamanioDelGrafico: tamanioDelGrafico,
+                sombras: const [
+                  Shadow(
+                    color: Colors.black,
+                    blurRadius: 2,
+                  ),
+                ],
               ),
-              sections: [
-                ...listaDePorcentajes.map(
-                  (e) {
-                    // TODO(mati): preguntarle a louka si esta logica va aca o
-                    // TODO(mati): la hace en otro lado
-                    final listaDeColores = _onGenerarListaDeColoresBajaOpacidad(
-                      colorAGenerar,
-                      listaDePorcentajes.length,
-                    );
-
-                    final isTouched =
-                        listaDePorcentajes.indexOf(e) == indiceSeleccionado;
-
-                    final fontSize = isTouched ? 20.0 : 16.0;
-
-                    final radius = isTouched ? 110.0 : tamanioDelGrafico;
-
-                    const shadows = [
-                      Shadow(color: Colors.black, blurRadius: 2),
-                    ];
-
-                    return PieChartSectionData(
-                      color: listaDeColores[listaDePorcentajes.indexOf(e)],
-                      value: listaDePorcentajes[listaDePorcentajes.indexOf(e)]
-                          .toDouble(),
-                      title: '$e%',
-                      radius: radius,
-                      titleStyle: estiloDelTitulo ??
-                          TextStyle(
-                            fontSize: fontSize,
-                            color: colores.surfaceTint,
-                            fontWeight: FontWeight.bold,
-                            shadows: shadows,
-                          ),
-                    );
-                  },
-                ),
-              ],
             ),
           ),
         ),
@@ -244,7 +204,7 @@ class GraficoTorta extends StatefulWidget {
   }
 
   /// lista de porcentajes que tiene el gráfico a mostrar [GraficoTorta].
-  final List<double> listaDePorcentajes;
+  final List<double> porcentajes;
 
   /// contenido de del gráfico para los factory de [GraficoTorta].
   final Widget? contenido;
@@ -295,122 +255,142 @@ class _GraficoTortaState extends State<GraficoTorta> {
   final colores = <Color>[];
 
   Widget build(BuildContext context) {
-    final colores = context.colores;
+    return AspectRatio(
+      aspectRatio: 1.3,
+      child: Column(
+        children: <Widget>[
+          // TODO(mati) : hablar con louka de sacar esto es el indicador
+          // TODOde cual esta seleccionado se puede hacer desde otro
+          // TODOcomponente calculo que sera borrado
 
-    // TODO(mati): sacar este bloc para que se mande la lista del otro bloc
-    return BlocProvider<BlocGraficoTorta>(
-      create: (context) => BlocGraficoTorta()
-        ..add(const BlocGraficoTortaEventoTraerDatos(idArticulo: 0)),
-      child: BlocBuilder<BlocGraficoTorta, BlocGraficoTortaEstado>(
-        builder: (context, state) {
-          final listaDeColores = _onGenerarListaDeColoresBajaOpacidad(
-            widget.colorAGenerar,
-            // TODO(mati): reemplazar por la lista que manden
-            // widget.porcentajes.map
-            state.porcentajes.length,
-          );
+          // SizedBox(height: math.max(28.ph, 28.sh)),
+          // if (widget.contenido == null)
+          //   Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //     children: [
+          //       ...state.porcentajes.map(
+          //         (e) => Indicator(
+          //           color: colores[state.porcentajes.indexOf(e)],
+          //           text: '${e.toString()} %',
+          //           isSquare: false,
+          //           size: widget.indiceSeleccionado ==
+          //                   state.porcentajes.indexOf(e)
+          //               ? 18.pw
+          //               : 16.pw,
+          //           textColor: widget.indiceSeleccionado ==
+          //                   state.porcentajes.indexOf(e)
+          //               ? Colors.black
+          //               : Colors.white70,
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // SizedBox(height: math.max(18.ph, 18.sh)),
 
-          return AspectRatio(
-            aspectRatio: 1.3,
-            child: Column(
-              children: <Widget>[
-                // TODO(mati) : hablar con louka de sacar esto es el indicador
-                // TODOde cual esta seleccionado se puede hacer desde otro
-                // TODOcomponente calculo que sera borrado
-
-                // SizedBox(height: math.max(28.ph, 28.sh)),
-                // if (widget.contenido == null)
-                //   Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //     children: [
-                //       ...state.porcentajes.map(
-                //         (e) => Indicator(
-                //           color: colores[state.porcentajes.indexOf(e)],
-                //           text: '${e.toString()} %',
-                //           isSquare: false,
-                //           size: widget.indiceSeleccionado ==
-                //                   state.porcentajes.indexOf(e)
-                //               ? 18.pw
-                //               : 16.pw,
-                //           textColor: widget.indiceSeleccionado ==
-                //                   state.porcentajes.indexOf(e)
-                //               ? Colors.black
-                //               : Colors.white70,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // SizedBox(height: math.max(18.ph, 18.sh)),
-
-                if (widget.contenido != null)
-                  widget.contenido!
-                else
-                  Expanded(
-                    child: PieChart(
-                      PieChartData(
-                        centerSpaceColor: widget.colorDelEspacioCentro,
-                        startDegreeOffset: widget.rotacionDelGrafico,
-                        sectionsSpace: widget.espacioEntreSeleccionado,
-                        centerSpaceRadius: widget.espacioEnElCentro,
-                        borderData: FlBorderData(
-                          show: false,
-                        ),
-                        pieTouchData: PieTouchData(
-                          touchCallback:
-                              (FlTouchEvent event, pieTouchResponse) {
-                            setState(() {
-                              if (!event.isInterestedForInteractions ||
-                                  pieTouchResponse == null ||
-                                  pieTouchResponse.touchedSection == null) {
-                                widget.indiceSeleccionado = -1;
-                                return;
-                              }
-                              widget.indiceSeleccionado = pieTouchResponse
-                                  .touchedSection!.touchedSectionIndex;
-                            });
-                          },
-                        ),
-                        sections: [
-                          // TODO(mati): reemplazar por la lista que manden
-                          // widget.porcentajes.map
-                          ...state.porcentajes.map(
-                            (e) => PieChartSectionData(
-                              titlePositionPercentageOffset:
-                                  widget.posicionDelTituloEnElGrafico,
-                              radius: widget.tamanioDelGrafico,
-                              color:
-                                  listaDeColores[state.porcentajes.indexOf(e)],
-                              value: state
-                                  .porcentajes[state.porcentajes.indexOf(e)],
-                              title: '$e%',
-                              titleStyle: widget.estiloDelTitulo ??
-                                  TextStyle(
-                                    color: colores.surfaceTint,
-                                  ),
-                              borderSide: widget.indiceSeleccionado ==
-                                      state.porcentajes.indexOf(e)
-                                  ? widget.estiloBordeConCursorDelGrafico ??
-                                      BorderSide(
-                                        color: colores.surfaceTint,
-                                        width: 3,
-                                      )
-                                  : widget.estiloBordeSinCursorDelGrafico ??
-                                      BorderSide(
-                                        color: colores.surfaceTint,
-                                      ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+          if (widget.contenido != null)
+            widget.contenido!
+          else
+            Expanded(
+              child: PieChart(
+                PieChartData(
+                  centerSpaceColor: widget.colorDelEspacioCentro,
+                  startDegreeOffset: widget.rotacionDelGrafico,
+                  sectionsSpace: widget.espacioEntreSeleccionado,
+                  centerSpaceRadius: widget.espacioEnElCentro,
+                  borderData: FlBorderData(show: false),
+                  pieTouchData: PieTouchData(
+                    touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                      setState(() {
+                        if (!event.isInterestedForInteractions ||
+                            pieTouchResponse == null ||
+                            pieTouchResponse.touchedSection == null) {
+                          widget.indiceSeleccionado = -1;
+                          return;
+                        }
+                        widget.indiceSeleccionado = pieTouchResponse
+                            .touchedSection!.touchedSectionIndex;
+                      });
+                    },
                   ),
-              ],
+                  sections: generarDatosGraficoTorta(
+                    context: context,
+                    estiloBordeConCursorDelGrafico:
+                        widget.estiloBordeConCursorDelGrafico,
+                    estiloBordeSinCursorDelGrafico:
+                        widget.estiloBordeSinCursorDelGrafico,
+                    estiloDelTitulo: widget.estiloDelTitulo,
+                    indiceSeleccionado: widget.indiceSeleccionado,
+                    posicionDelTituloEnElGrafico:
+                        widget.posicionDelTituloEnElGrafico,
+                    tamanioDelGrafico: widget.tamanioDelGrafico,
+                    colorAGenerar: widget.colorAGenerar,
+                    data: widget.porcentajes,
+                  ),
+                ),
+              ),
             ),
-          );
-        },
+        ],
       ),
     );
   }
+}
+
+/// Genera las listas de `PieChartSectionData` lo que serian los pedazos de
+/// torta del [GraficoTorta].
+List<PieChartSectionData> generarDatosGraficoTorta({
+  required BuildContext context,
+  required List<double> data,
+  required Color colorAGenerar,
+  bool estaSeleccionado = false,
+  bool esPrincipal = true,
+  int? indiceSeleccionado,
+  double? posicionDelTituloEnElGrafico,
+  double? tamanioDelGrafico,
+  TextStyle? estiloDelTitulo,
+  BorderSide? estiloBordeConCursorDelGrafico,
+  BorderSide? estiloBordeSinCursorDelGrafico,
+  List<Shadow>? sombras,
+}) {
+  final colores = context.colores;
+
+  final listaDeColores = _onGenerarListaDeColoresBajaOpacidad(
+    colorAGenerar,
+    data.length,
+  );
+
+  return data.map(
+    (e) {
+      final isSeleccionado = data.indexOf(e) == indiceSeleccionado;
+
+      final fontSize = isSeleccionado && !esPrincipal ? 20.0 : 16.0;
+
+      final radius = isSeleccionado && !esPrincipal ? 110.0 : tamanioDelGrafico;
+
+      return PieChartSectionData(
+        titlePositionPercentageOffset: posicionDelTituloEnElGrafico,
+        radius: radius,
+        color: listaDeColores[data.indexOf(e)],
+        value: data[data.indexOf(e)],
+        title: '$e%',
+        titleStyle: estiloDelTitulo ??
+            TextStyle(
+              color: colores.surfaceTint,
+              fontSize: fontSize,
+              shadows: sombras,
+            ),
+        borderSide: isSeleccionado && esPrincipal
+            ? estiloBordeConCursorDelGrafico ??
+                BorderSide(
+                  color: colores.surfaceTint,
+                  width: 3,
+                )
+            : estiloBordeSinCursorDelGrafico ??
+                BorderSide(
+                  color: colores.surfaceTint.withOpacity(0),
+                ),
+      );
+    },
+  ).toList();
 }
 
 /// Devuelve una lista de colores en base a un color que le pases.
