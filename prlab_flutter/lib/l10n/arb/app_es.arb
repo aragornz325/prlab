@@ -400,12 +400,6 @@
         "description": "Text in title of alertdialog/popup Select your birthdate,Usually use in el form Kyc."
     },
 
-
-    "commonState": "Estado",
-    "@commonState": {
-        "description": "Indicates the status of the article,on a footer of the view editor content"
-    },
-
     "commonCalendarSUN": "DOM",
     "@commonCalendarSUN": {
         "description": "first three letters of Sunday,this text is in the calendar for the title of the days"
@@ -867,6 +861,20 @@
     "pageEditContentCommentsHintText": "Añade tu comentario aquí",
     "@pageEditContentCommentsHintText": {
         "description": "Text on view edit content pulled apart comment,hint text in text field for add new comments"
+    },
+    "commonAuthor": "Autor",
+    "@commonAuthor": {
+        "description": "Text on Filter a articles by Status on create this articles,title on popup for select 3 options"
+    },
+
+    "commonState": "Estado",
+    "@commonState": {
+        "description": "Text on Filter a articles by Status on create this articles,title on popup for select 3 options"
+    },
+
+    "commonDates": "Fecha",
+    "@commonDates": {
+        "description": "Text on Filter a articles by Dates on create this articles,title on popup"
     },
 
     "commonPage": "Página",
