@@ -27,14 +27,7 @@ class OrmEntregableArticulo extends ORM {
             logger.info(
               'Creando artículo: "${articulo.titulo}"...',
             );
-            await EntregableArticulo.insert(
-              session,
-              articulo
-                ..idAutor = await session.auth.authenticatedUserId ?? 0
-                ..fechaCreacion = DateTime.now()
-                ..ultimaModificacion = DateTime.now()
-                ..activo = true,
-            );
+            await EntregableArticulo.insert(session, articulo);
             final response = (await EntregableArticulo.findSingleRow(
               session,
               where: (t) => t.idAutor.equals(articulo.idAutor),
@@ -70,7 +63,7 @@ class OrmEntregableArticulo extends ORM {
         session,
         (session) => EntregableArticulo.find(
           session,
-          where: (t) => t.activo.equals(true),
+          where: (t) => t.fechaEliminacion.equals(null),
         ),
       );
     } on Exception catch (e) {
@@ -213,7 +206,8 @@ class OrmEntregableArticulo extends ORM {
       session,
       (session) => EntregableArticulo.find(
         session,
-        where: (t) => (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
+        where: (t) =>
+            (t.idMarca.equals(idMarca)) & (t.fechaEliminacion.equals(null)),
         orderBy: EntregableArticuloTable().ultimaModificacion,
         orderDescending: true,
         limit: 3,
@@ -243,7 +237,7 @@ class OrmEntregableArticulo extends ORM {
         session,
         (Session session) => EntregableArticulo.update(
           session,
-          articulo..ultimaModificacion = DateTime.now(),
+          articulo,
         ),
       );
       logger.finest(
@@ -270,7 +264,8 @@ class OrmEntregableArticulo extends ORM {
       session,
       (session) => EntregableArticulo.count(
         session,
-        where: (t) => (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
+        where: (t) =>
+            (t.idMarca.equals(idMarca)) & (t.fechaEliminacion.equals(null)),
       ),
     );
   }
@@ -281,7 +276,8 @@ class OrmEntregableArticulo extends ORM {
       logger.finer('buscando en la db los articulos del usuario');
       final idAutor = await session.auth.authenticatedUserId;
       final articulos = await EntregableArticulo.find(session,
-          where: (t) => t.idAutor.equals(idAutor) & t.activo.equals(true));
+          where: (t) =>
+              t.idAutor.equals(idAutor) & t.fechaEliminacion.equals(null));
       logger.fine('articulos encontrados: ${articulos.length}');
       return articulos;
     });
