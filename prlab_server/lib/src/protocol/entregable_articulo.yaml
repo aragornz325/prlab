@@ -9,6 +9,7 @@ fields:
   ultimaModificacion: DateTime
   fechaCreacion: DateTime
   activo: bool
+  slug: String?
   idMarca: int? parent=marcas # Definir
   fechaEliminacion: DateTime?, database
   fechaLanzamiento: DateTime?, database # Definir

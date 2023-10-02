@@ -217,6 +217,7 @@ CREATE TABLE "articulos" (
   "ultimaModificacion" timestamp without time zone NOT NULL,
   "fechaCreacion" timestamp without time zone NOT NULL,
   "activo" boolean NOT NULL,
+  "slug" text,
   "idMarca" integer,
   "fechaEliminacion" timestamp without time zone,
   "fechaLanzamiento" timestamp without time zone,
