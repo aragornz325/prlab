@@ -790,6 +790,17 @@
         "description": "Text on the project metrics label indicating the backlinks"
     },
 
+    "commonState": "State",
+    "@commonState": {
+        "description": "Text on Filter a articles by Status on create this articles,title on popup for select 3 options"
+    },
+
+    "commonDates": "Dates",
+    "@commonDates": {
+        "description": "Text on Filter a articles by Dates on create this articles,title on popup for select 3 options"
+    },
+
+
     "commonCalendarSUN": "SUN",
     "@commonCalendarSUN": {
         "description": "first three letters of Sunday,this text is in the calendar for the title of the days"

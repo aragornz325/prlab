@@ -86,8 +86,7 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
           height: max(30.ph, 30.sh),
           value: 2,
           child: Text(
-            /// TODO(anyone): haces l10n
-            'Status',
+            l10n.commonState,
             style: TextStyle(
               color: colores.tertiary,
               fontSize: 14.pf,
@@ -112,8 +111,7 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
           height: max(30.ph, 30.sh),
           value: 3,
           child: Text(
-            /// TODO(anyone): haces l10n
-            'Dates',
+            l10n.commonDates,
             style: TextStyle(
               color: colores.tertiary,
               fontSize: 14.pf,

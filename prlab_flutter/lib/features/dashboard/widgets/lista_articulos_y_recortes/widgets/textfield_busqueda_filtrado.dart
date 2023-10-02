@@ -5,11 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/bloc/bloc_lista_articulos_y_recortes.dart';
-import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/dialog/dialog.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/popup/popup.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-import 'package:prlab_flutter/theming/base.dart';
-import 'package:prlab_flutter/utilidades/widgets/pr_dropdown_popup.dart';
 
 /// {@template TextFieldBusquedaFiltrado}
 /// Dos componentes uno es un textfield/campo de texto y el otro es un dropdown

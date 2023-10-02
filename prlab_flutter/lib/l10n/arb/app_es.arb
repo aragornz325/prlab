@@ -858,6 +858,17 @@
     "@projectMetricsLabelBacklinks": {
         "description": "Text on the project metrics label indicating the backlinks"
     },
+
+    "commonState": "Estado",
+    "@commonState": {
+        "description": "Text on Filter a articles by Status on create this articles,title on popup for select 3 options"
+    },
+
+    "commonDates": "Fecha",
+    "@commonDates": {
+        "description": "Text on Filter a articles by Dates on create this articles,title on popup"
+    },
+
     "commonPage": "Página",
     "@commonPage": {
         "description": "Text shown on dialog when deleting this article,for confirm user to delete this article"
