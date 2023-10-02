@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:dio/dio.dart';
+import 'package:prlab_server/src/generated/protocol.dart';
+import 'package:prlab_server/src/generated/visitas_api.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:similar_web/similar_web.dart';
 
@@ -9,7 +11,7 @@ import 'package:similar_web/similar_web.dart';
 class ServicioMetrica extends Servicio {
 
   /// Obtiene visitas de dominios registradas por SimilarWeb.
-  Future<TotalVisitsResponse> getTotalVisits(
+  Future<List<VisitasApi>> getTotalVisits(
     String domainName, {
     required String country,
     required Granularity granularity,
@@ -55,7 +57,7 @@ class ServicioMetrica extends Servicio {
       statusMessage: 'OK',
     );
 
-    return await similarWeb.getTotalVisits(
+    final respuesta = await similarWeb.getTotalVisits(
       domainName,
       country: country,
       granularity: granularity,
@@ -67,5 +69,20 @@ class ServicioMetrica extends Servicio {
       mtd: mtd,
       engagedOnly: engagedOnly,
     );
+
+    final visitas = respuesta.visits ?? [];
+
+    final visitasDeserializadas = visitas
+        .map(
+          (e) => VisitasApi.fromJson(
+            e.toMap()
+              ..['date'] = DateTime.parse(e.toMap()['date']).toIso8601String()
+              ..['visits'] = e.visits?.truncate() ?? 0,
+            Protocol(),
+          ),
+        )
+        .toList();
+        
+    return visitasDeserializadas;
   }
 }

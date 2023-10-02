@@ -27,7 +27,7 @@ class MetricaEndpoint extends Endpoint {
     bool? mtd,
     bool? engagedOnly,
   }) async {
-    final respuesta = await servicioMetrica.getTotalVisits(
+    return await servicioMetrica.getTotalVisits(
       domainName,
       startDate: startDate,
       endDate: endDate,
@@ -38,20 +38,5 @@ class MetricaEndpoint extends Endpoint {
       mtd: mtd ?? false,
       engagedOnly: engagedOnly ?? false,
     );
-
-    final visitas = respuesta.visits ?? [];
-
-    final visitasDeserializadas = visitas
-        .map(
-          (e) => VisitasApi.fromJson(
-            e.toMap()
-              ..['date'] = DateTime.parse(e.toMap()['date']).toIso8601String()
-              ..['visits'] = e.visits?.truncate() ?? 0,
-            Protocol(),
-          ),
-        )
-        .toList();
-
-    return visitasDeserializadas;
   }
 }
