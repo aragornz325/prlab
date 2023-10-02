@@ -35,6 +35,7 @@ class BlocInicio extends Bloc<BlocInicioEvento, BlocInicioEstado> {
           BlocInicioEstadoExitosoGeneral.desde(
             state,
             listaArticulos: [
+              // TODO(anyone): Reemplazar artículos mockeados por artículos del backend.
               EntregableArticulo(
                 titulo: '¡Flutter full-responsive package has been released! ',
                 ultimaModificacion: DateTime.now(),
