@@ -11,15 +11,14 @@ class ServicioMetrica extends Servicio {
   /// Obtiene visitas de dominios registradas por SimilarWeb.
   Future<TotalVisitsResponse> getTotalVisits(
     String domainName, {
-    String country = 'world',
-    Granularity granularity = Granularity.monthly,
+    required String country,
+    required Granularity granularity,
     DateTime? startDate,
     DateTime? endDate,
-    bool mainDomainOnly = false,
-    Format format = Format.json,
-    bool showVerified = false,
-    bool mtd = false,
-    bool engagedOnly = false,
+    bool? mainDomainOnly,
+    bool? showVerified,
+    bool? mtd,
+    bool? engagedOnly,
   }) async {
     similarWeb.response = Response(
       requestOptions: RequestOptions(),
@@ -31,7 +30,7 @@ class ServicioMetrica extends Servicio {
             'mtd': mtd,
             'showVerified': showVerified,
             'state': 'state',
-            'format': format,
+            'format': 'json',
             'domain': domainName,
             'startDate': startDate?.toString(),
             'endDate': endDate?.toString(),
@@ -48,7 +47,7 @@ class ServicioMetrica extends Servicio {
           },
           {
             'date': endDate?.toString() ?? DateTime.now().toString(),
-            'visits': null,
+            'visits': e,
           }
         ],
       }),
@@ -63,7 +62,7 @@ class ServicioMetrica extends Servicio {
       startDate: startDate,
       endDate: endDate,
       mainDomainOnly: mainDomainOnly,
-      format: format,
+      format: Format.json,
       showVerified: showVerified,
       mtd: mtd,
       engagedOnly: engagedOnly,
