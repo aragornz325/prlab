@@ -25,9 +25,9 @@ class PopupOpcionesDeFiltrado extends StatefulWidget {
 }
 
 class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
-  bool estaDesplegado = false;
+  bool _estaDesplegado = false;
 
-  FiltrarPor filtrado = FiltrarPor.todo;
+  FiltrarPor _filtrado = FiltrarPor.todo;
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +39,12 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
       tooltip: '',
       onOpened: () {
         setState(() {
-          estaDesplegado = true;
+          _estaDesplegado = true;
         });
       },
       onCanceled: () {
         setState(() {
-          estaDesplegado = false;
+          _estaDesplegado = false;
         });
       },
       offset: const Offset(0, 50),
@@ -77,8 +77,8 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
             );
 
             setState(() {
-              estaDesplegado = false;
-              filtrado = FiltrarPor.todo;
+              _estaDesplegado = false;
+              _filtrado = FiltrarPor.todo;
             });
           },
         ),
@@ -102,8 +102,8 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
             );
 
             setState(() {
-              estaDesplegado = false;
-              filtrado = FiltrarPor.estado;
+              _estaDesplegado = false;
+              _filtrado = FiltrarPor.estado;
             });
           },
         ),
@@ -124,8 +124,8 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
             );
 
             setState(() {
-              estaDesplegado = false;
-              filtrado = FiltrarPor.fecha;
+              _estaDesplegado = false;
+              _filtrado = FiltrarPor.fecha;
             });
           },
         ),
@@ -146,19 +146,19 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
             );
 
             setState(() {
-              estaDesplegado = false;
-              filtrado = FiltrarPor.autor;
+              _estaDesplegado = false;
+              _filtrado = FiltrarPor.autor;
             });
           },
         ),
       ],
       child: CircleAvatar(
         radius: 20.sw,
-        backgroundColor: estaDesplegado
+        backgroundColor: _estaDesplegado
             ? colores.primaryOpacidadVeinte
             : colores.surfaceTint,
         child: Icon(
-          filtrado == FiltrarPor.todo ? Icons.tune : Icons.filter_alt_outlined,
+          _filtrado == FiltrarPor.todo ? Icons.tune : Icons.filter_alt_outlined,
           color: colores.primary,
           size: 18.pw,
         ),
