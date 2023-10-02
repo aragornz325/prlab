@@ -28,10 +28,10 @@ enable_redis = false
 # *.example.com to your certificate. You will need to create one certificate
 # for your main region and one for use with Cloudfront that resides in the
 # us-east-1 region.
-hosted_zone_id             = "<YOUR HOSTED ZONE ID>"
-top_domain                 = "<YOUR DOMAIN NAME>"
-certificate_arn            = "<YOUR CERTIFICATE ARN>"
-cloudfront_certificate_arn = "<YOUR CERTIFICATE ARN IN US-EAST-1>"
+hosted_zone_id             = "Z09016501BFO16V5G4RN5"
+top_domain                 = "gestionidus.online"
+certificate_arn            = "arn:aws:acm:us-west-2:613023323465:certificate/569e9021-8e06-4323-91f8-68b7e18462e2"
+cloudfront_certificate_arn = "arn:aws:acm:us-east-1:613023323465:certificate/1cefea40-46fb-488b-b23e-0ca7506cc1e2"
 
 # Subdomains for different services. Default values are recommended, but you
 # may want to change the subdomain_web to www if you are using the top domain

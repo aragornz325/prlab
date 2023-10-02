@@ -201,4 +201,18 @@ class EntregableArticuloEndpoint extends Endpoint {
       rethrow;
     }
   }
+
+  Future<bool> publicarArticulo(
+    Session session, {
+    required int idArticulo,
+  }) async {
+    try {
+      return await servicioArticulo.publicarArticulo(
+        session: session,
+        idArticulo: idArticulo,
+      );
+    } on Exception {
+      rethrow;
+    }
+  }
 }
