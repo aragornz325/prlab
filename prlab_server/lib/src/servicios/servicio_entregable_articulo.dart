@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/orms/orm_entregable_articulo.dart';
 import 'package:prlab_server/src/orms/orm_imagen_articulo.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:prlab_server/src/servicios/servicio_almacenamiento_archivos_nube.dart';
+import 'package:prlab_server/utils/mailer/templatePublicarArticulo.dart';
+import 'package:puppeteer/puppeteer.dart';
 import 'package:serverpod/server.dart';
 
 /// Servicio para administración de artículos.
@@ -237,5 +241,65 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
         session: session,
       ),
     );
+  }
+
+  Future<EntregableArticulo?> traerArticuloPorSlug({
+    required Session session,
+    required String slug,
+  }) async {
+    return await ejecutarOperacion(
+      () => orm.traerArticuloPorSlug(
+        session: session,
+        slug: slug,
+      ),
+    );
+  }
+
+  Future publicarArticulo({
+    required Session session,
+    required int idArticulo,
+  }) async {
+    final articulo = await obtenerArticulo(session, id: idArticulo);
+    final imagenes =
+        await obtenerImagenesArticulo(session, idArticulo: idArticulo);
+
+    final articuloAPublicar = templatePublicarArticulo(
+      contenido: articulo.contenido!,
+      titulo: articulo.titulo!,
+    );
+
+    var slug = '${articulo.titulo.trim().replaceAll(' ', '-')}';
+
+    final checkSlug = await traerArticuloPorSlug(session: session, slug: slug);
+    if (checkSlug != null && checkSlug.id != articulo.id) {
+      logger.severe('El slug $slug ya existe!');
+      slug = '$slug-${articulo.id}';
+    }
+
+    final archivo = File('web/static/articulos/$slug.html');
+    await archivo.writeAsString(articuloAPublicar).then((_) {
+      logger.finest('Archivo ${articulo.id}.html creado');
+    }).catchError((e) => logger.severe('Error al crear el archivo: $e'));
+
+    //actualizar slug en el articulo
+    articulo.slug = slug;
+    await actualizarArticulo(session, articulo: articulo);
+    logger.finest('Articulo ${articulo.id} actualizado con slug: $slug');
+
+    var browser = await puppeteer.launch();
+    var page = await browser.newPage();
+    await page.goto('http://localhost:8082/articulos/$slug.html',
+        wait: Until.networkAlmostIdle);
+
+    await page.emulateMediaType(MediaType.screen);
+
+    await page.pdf(
+        format: PaperFormat.a4,
+        printBackground: true,
+        pageRanges: '1-3',
+        output: File('web/static/pdf/$slug.pdf').openWrite());
+    await browser.close();
+
+    return true;
   }
 }

@@ -400,6 +400,12 @@
         "description": "Text in title of alertdialog/popup Select your birthdate,Usually use in el form Kyc."
     },
 
+
+    "commonState": "Estado",
+    "@commonState": {
+        "description": "Indicates the status of the article,on a footer of the view editor content"
+    },
+
     "commonCalendarSUN": "DOM",
     "@commonCalendarSUN": {
         "description": "first three letters of Sunday,this text is in the calendar for the title of the days"
@@ -853,11 +859,16 @@
         "description": "Text on the project metrics label indicating the mentions"
     },
 
-    
     "projectMetricsLabelBacklinks": "Vínculos",
     "@projectMetricsLabelBacklinks": {
         "description": "Text on the project metrics label indicating the backlinks"
     },
+    
+    "pageEditContentCommentsHintText": "Añade tu comentario aquí",
+    "@pageEditContentCommentsHintText": {
+        "description": "Text on view edit content pulled apart comment,hint text in text field for add new comments"
+    },
+
 
     "commonState": "Estado",
     "@commonState": {
@@ -939,11 +950,29 @@
     },
     "commonEmail": "Email",
     "@commonEmail":{
-        "description": "text to indicate that you must enter your email"},
+        "description": "text to indicate that you must enter your email"
+    },
+
     "commonInvalidCharacters": "Caracteres invalidos",
     "@commonInvalidCharacters":{
-        "description":"Text indicating that invalid characters were used"},
+        "description":"Text indicating that invalid characters were used"
+    },
 
+    "commonCancel" : "Cancelar",
+    "@commonCancel": {
+        "description": "An cancel for closed dialog,or when cancel a run"
+    },
+
+    "commonPost" : "Postear",
+    "@commonPost": {
+        "description": "when a user wants to add a new comment"
+    },
+
+    "commonComment" : "Comentar",
+    "@commonComment": {
+        "description": "when a user wants to add a new comment,in the title of button that the user press to add a new comment"
+    },
+    
     "commonError" : "¡Error!",
     "@commonError": {
         "description":"text in alertdialog title, Error"
