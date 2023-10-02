@@ -112,7 +112,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                 },
               ),
               SizedBox(height: max(40.ph, 40.sh)),
-              PRTextFormField.soloLetras(
+              PRTextFormField.letrasYNumeros(
                 width: 359.pw,
                 controller: controllerNombreDeCompania,
                 hintText: l10n.pageKycCompanyNameHintText,
@@ -125,7 +125,7 @@ class _FormularioDelKycState extends State<FormularioDelKyc> {
                     ),
               ),
               SizedBox(height: max(40.ph, 40.sh)),
-              PRTextFormField.soloLetras(
+              PRTextFormField.letrasYNumeros(
                 width: 359.pw,
                 controller: controllerLocalidad,
                 hintText: l10n.pageKycCompanyLocationHintText,
