@@ -338,12 +338,12 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
   ///   un objeto `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
   Future<List<EntregableArticulo>> traerEntregableporFiltro({
     required Session session,
-    required int idStatus,
+    required List<int> status,
   }) async {
     return await ejecutarOperacion(
       () => orm.traerEntregableporFiltro(
         session: session,
-        idStatus: idStatus,
+        status: status,
       ),
     );
   }
