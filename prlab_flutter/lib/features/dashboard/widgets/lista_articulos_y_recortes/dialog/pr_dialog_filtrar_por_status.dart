@@ -115,11 +115,11 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                         PRLabCheckbox(
                           // TODO(anyone): pasar todo esto a un enum para manejar
                           // mejor los distintos estados
-                          estaMarcado: state.completo,
+                          estaMarcado: state.aprobado,
                           onChanged: (value) {
                             context.read<BlocListaArticulosYRecortes>().add(
                                   BlocListaArticulosYRecortesEventoFiltradoPorEstado(
-                                    completo: value,
+                                    aprobado: value,
                                   ),
                                 );
                           },

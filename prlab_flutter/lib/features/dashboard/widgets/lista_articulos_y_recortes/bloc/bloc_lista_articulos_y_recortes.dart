@@ -83,36 +83,63 @@ class BlocListaArticulosYRecortes extends Bloc<
     BlocListaArticulosYRecortesEventoFiltrar event,
     Emitter<BlocListaArticulosYRecortesEstado> emit,
   ) async {
-    // if (state.articulos.isNotEmpty) {
-    // emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
-    // try {
-    //   final respuesta =
-    //       await client.entregableArticulo.traerEntregableporFiltro(
-    //     status: [
-    //       1,
-    //     ],
-    //   );
+    emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
+    try {
+      if (state.borrador ||
+          state.comentario ||
+          state.programado ||
+          state.publicado ||
+          state.aprobado) {
+        final status = <int>[];
 
-    //   emit(
-    //     BlocListaArticulosYRecortesEstadoExitoso.desde(
-    //       state,
-    //       articulosFiltrados: respuesta,
-    //     ),
-    //   );
-    // } catch (e, st) {
-    //   emit(
-    //     BlocListaArticulosYRecortesEstadoFallido.desde(
-    //       state,
-    //       errorMessage: e.toString(),
-    //     ),
-    //   );
+        if (state.borrador) status.add(1);
+        if (state.comentario) status.add(2);
+        if (state.aprobado) status.add(3);
+        if (state.programado) status.add(4);
+        if (state.publicado) status.add(5);
 
-    //   if (kDebugMode) {
-    //     debugger();
-    //     throw UnimplementedError('Implementa un error para esto: $e $st');
-    //   }
-    // }
-    // }
+        // Elimina los estados de la lista status si sus variables
+        // correspondientes son false.
+        status.removeWhere((e) {
+          if (e == 1) return !state.borrador;
+          if (e == 2) return !state.comentario;
+          if (e == 3) return !state.aprobado;
+          if (e == 4) return !state.programado;
+          if (e == 5) return !state.publicado;
+          return false;
+        });
+
+        final respuesta =
+            await client.entregableArticulo.traerEntregableporFiltro(
+          status: status,
+        );
+        emit(
+          BlocListaArticulosYRecortesEstadoExitoso.desde(
+            state,
+            articulosFiltrados: respuesta,
+          ),
+        );
+      } else {
+        emit(
+          BlocListaArticulosYRecortesEstadoExitoso.desde(
+            state,
+            articulosFiltrados: state.articulos,
+          ),
+        );
+      }
+    } catch (e, st) {
+      emit(
+        BlocListaArticulosYRecortesEstadoFallido.desde(
+          state,
+          errorMessage: e.toString(),
+        ),
+      );
+
+      if (kDebugMode) {
+        debugger();
+        throw UnimplementedError('Implementa un error para esto: $e $st');
+      }
+    }
   }
 
   /// Cambia el index seleccionado para que muestre distintas vista entre
@@ -241,7 +268,7 @@ class BlocListaArticulosYRecortes extends Bloc<
         state,
         borrador: event.borrador,
         comentario: event.comentario,
-        completo: event.completo,
+        aprobado: event.aprobado,
         programado: event.programado,
         publicado: event.publicado,
       ),

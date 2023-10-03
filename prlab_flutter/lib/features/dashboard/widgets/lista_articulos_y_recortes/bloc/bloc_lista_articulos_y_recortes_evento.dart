@@ -68,7 +68,7 @@ class BlocListaArticulosYRecortesEventoFiltradoPorEstado
   const BlocListaArticulosYRecortesEventoFiltradoPorEstado({
     this.borrador,
     this.comentario,
-    this.completo,
+    this.aprobado,
     this.programado,
     this.publicado,
   });
@@ -80,7 +80,7 @@ class BlocListaArticulosYRecortesEventoFiltradoPorEstado
   final bool? comentario;
 
   /// cambia los valores en el popup con el check box de completo
-  final bool? completo;
+  final bool? aprobado;
 
   /// cambia los valores en el popup con el check box de programado
   final bool? programado;
