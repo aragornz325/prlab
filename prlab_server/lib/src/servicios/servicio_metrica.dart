@@ -22,6 +22,7 @@ class ServicioMetrica extends Servicio {
     bool? mtd,
     bool? engagedOnly,
   }) async {
+    // TODO(anyone): Remover respuesta mockeada al obtener soporte.
     similarWeb.response = Response(
       requestOptions: RequestOptions(),
       data: jsonEncode({
