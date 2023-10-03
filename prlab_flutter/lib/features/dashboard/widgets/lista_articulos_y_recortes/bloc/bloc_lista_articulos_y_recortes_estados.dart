@@ -15,6 +15,8 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
     this.borrador = false,
     this.comentario = false,
     this.completo = false,
+    this.programado = false,
+    this.publicado = false,
   });
 
   BlocListaArticulosYRecortesEstado.desde(
@@ -25,6 +27,8 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
     bool? borrador,
     bool? comentario,
     bool? completo,
+    bool? programado,
+    bool? publicado,
   }) : this._(
           articulos: articulos ?? otro.articulos,
           index: index ?? otro.index,
@@ -32,6 +36,8 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
           comentario: comentario ?? otro.comentario,
           completo: completo ?? otro.completo,
           articulosFiltrados: articulosFiltrados ?? otro.articulosFiltrados,
+          programado: programado ?? otro.programado,
+          publicado: publicado ?? otro.publicado,
         );
 
   /// Lista de los articulos
@@ -55,6 +61,12 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
   /// Estado de completo para los filtrados
   final bool completo;
 
+  /// Estado de programado para los filtrados
+  final bool programado;
+
+  /// Estado de publicado para los filtrados
+  final bool publicado;
+
   /// Si es Articulos
   bool get esArticulos => index == 0;
 
@@ -69,6 +81,8 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
         borrador,
         comentario,
         completo,
+        publicado,
+        programado,
       ];
 }
 
@@ -108,6 +122,8 @@ final class BlocListaArticulosYRecortesEstadoExitoso
     super.borrador,
     super.comentario,
     super.completo,
+    super.publicado,
+    super.programado,
     super.articulosFiltrados,
   }) : super.desde();
 }

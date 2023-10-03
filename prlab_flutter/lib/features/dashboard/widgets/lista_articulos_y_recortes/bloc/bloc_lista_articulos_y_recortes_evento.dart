@@ -69,6 +69,8 @@ class BlocListaArticulosYRecortesEventoFiltradoPorEstado
     this.borrador,
     this.comentario,
     this.completo,
+    this.programado,
+    this.publicado,
   });
 
   /// cambia los valores en el popup con el check box de borrador
@@ -79,6 +81,12 @@ class BlocListaArticulosYRecortesEventoFiltradoPorEstado
 
   /// cambia los valores en el popup con el check box de completo
   final bool? completo;
+
+  /// cambia los valores en el popup con el check box de programado
+  final bool? programado;
+
+  /// cambia los valores en el popup con el check box de publicado
+  final bool? publicado;
 }
 
 /// {@template BlocListaArticulosYRecortesEventoEliminarArticulo}

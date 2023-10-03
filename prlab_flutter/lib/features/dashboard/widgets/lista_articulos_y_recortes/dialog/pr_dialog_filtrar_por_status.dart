@@ -29,12 +29,12 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
       height: max(350.ph, 350.sh),
       onTap: () {
         // TODO(anyone): agregarle funcionalidad.
-        Navigator.of(context).pop();
+        context
+            .read<BlocListaArticulosYRecortes>()
+            .add(const BlocListaArticulosYRecortesEventoFiltrar());
+        // print('hola');
+        // Navigator.of(context).pop();
         // Muestra el popup de esta feature estará disponible en otra version
-        showDialog<void>(
-          context: context,
-          builder: (context) => const PRDialogErrorNoDisponible(),
-        );
       },
       titulo: l10n.commonAlertDialogFilterByStatus,
       botonText: l10n.commonApply,
@@ -43,88 +43,171 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
         child: BlocBuilder<BlocListaArticulosYRecortes,
             BlocListaArticulosYRecortesEstado>(
           builder: (context, state) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            return Column(
               children: [
-                PRLabCheckbox(
-                  // TODO(anyone): pasar todo esto a un enum para manejar
-                  // mejor los distintos estados
-                  estaMarcado: state.borrador,
-                  onChanged: (value) {
-                    context.read<BlocListaArticulosYRecortes>().add(
-                          BlocListaArticulosYRecortesEventoFiltradoPorEstado(
-                            borrador: value,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      children: [
+                        PRLabCheckbox(
+                          // TODO(anyone): pasar todo esto a un enum para manejar
+                          // mejor los distintos estados
+                          estaMarcado: state.borrador,
+                          onChanged: (value) {
+                            context.read<BlocListaArticulosYRecortes>().add(
+                                  BlocListaArticulosYRecortesEventoFiltradoPorEstado(
+                                    borrador: value,
+                                  ),
+                                );
+                          },
+                          colorBorde: colores.secondary,
+                          colorMarcado: colores.secondary,
+                          colorDesmarcado: colores.surfaceTint,
+                        ),
+                        SizedBox(width: 5.pw),
+                        Text(
+                          // TODO(mati): hacer l10n, pero todavia no esta del todo
+                          // definido los estado a filtrar
+                          'Draft',
+                          style: TextStyle(
+                            color: colores.tertiary,
+                            fontSize: 14.pf,
+                            fontWeight: FontWeight.w500,
                           ),
-                        );
-                  },
-                  colorBorde: colores.secondary,
-                  colorMarcado: colores.secondary,
-                  colorDesmarcado: colores.surfaceTint,
-                ),
-                SizedBox(width: 5.pw),
-                Text(
-                  // TODO(mati): hacer l10n, pero todavia no esta del todo
-                  // definido los estado a filtrar
-                  'Draft',
-                  style: TextStyle(
-                    color: colores.tertiary,
-                    fontSize: 14.pf,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(width: 20.pw),
-                PRLabCheckbox(
-                  // TODO(anyone): pasar todo esto a un enum para manejar
-                  // mejor los distintos estados
-                  estaMarcado: state.comentario,
-                  onChanged: (value) {
-                    context.read<BlocListaArticulosYRecortes>().add(
-                          BlocListaArticulosYRecortesEventoFiltradoPorEstado(
-                            comentario: value,
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 20.pw),
+                    Row(
+                      children: [
+                        PRLabCheckbox(
+                          // TODO(anyone): pasar todo esto a un enum para manejar
+                          // mejor los distintos estados
+                          estaMarcado: state.comentario,
+                          onChanged: (value) {
+                            context.read<BlocListaArticulosYRecortes>().add(
+                                  BlocListaArticulosYRecortesEventoFiltradoPorEstado(
+                                    comentario: value,
+                                  ),
+                                );
+                          },
+                          colorBorde: colores.onTertiary,
+                          colorMarcado: colores.onTertiary,
+                          colorDesmarcado: colores.surfaceTint,
+                        ),
+                        SizedBox(width: 5.pw),
+                        Text(
+                          // TODO(mati): hacer l10n, pero todavia no esta del todo
+                          // definido los estado a filtrar
+                          'Feedback',
+                          style: TextStyle(
+                            color: colores.tertiary,
+                            fontSize: 14.pf,
+                            fontWeight: FontWeight.w500,
                           ),
-                        );
-                  },
-                  colorBorde: colores.onTertiary,
-                  colorMarcado: colores.onTertiary,
-                  colorDesmarcado: colores.surfaceTint,
-                ),
-                SizedBox(width: 5.pw),
-                Text(
-                  // TODO(mati): hacer l10n, pero todavia no esta del todo
-                  // definido los estado a filtrar
-                  'Feedback',
-                  style: TextStyle(
-                    color: colores.tertiary,
-                    fontSize: 14.pf,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(width: 20.pw),
-                PRLabCheckbox(
-                  // TODO(anyone): pasar todo esto a un enum para manejar
-                  // mejor los distintos estados
-                  estaMarcado: state.completo,
-                  onChanged: (value) {
-                    context.read<BlocListaArticulosYRecortes>().add(
-                          BlocListaArticulosYRecortesEventoFiltradoPorEstado(
-                            completo: value,
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 20.pw),
+                    Row(
+                      children: [
+                        PRLabCheckbox(
+                          // TODO(anyone): pasar todo esto a un enum para manejar
+                          // mejor los distintos estados
+                          estaMarcado: state.completo,
+                          onChanged: (value) {
+                            context.read<BlocListaArticulosYRecortes>().add(
+                                  BlocListaArticulosYRecortesEventoFiltradoPorEstado(
+                                    completo: value,
+                                  ),
+                                );
+                          },
+                          colorBorde: colores.primaryContainer,
+                          colorMarcado: colores.primaryContainer,
+                          colorDesmarcado: colores.surfaceTint,
+                        ),
+                        SizedBox(width: 5.pw),
+                        Text(
+                          // TODO(anyone): Hacer l10n, pero todavia no esta del todo
+                          // definido los estado a filtrar
+                          'approved',
+                          style: TextStyle(
+                            color: colores.tertiary,
+                            fontSize: 14.pf,
+                            fontWeight: FontWeight.w500,
                           ),
-                        );
-                  },
-                  colorBorde: colores.onTertiaryContainer,
-                  colorMarcado: colores.onTertiaryContainer,
-                  colorDesmarcado: colores.surfaceTint,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                SizedBox(width: 5.pw),
-                Text(
-                  // TODO(anyone): Hacer l10n, pero todavia no esta del todo
-                  // definido los estado a filtrar
-                  'Complete',
-                  style: TextStyle(
-                    color: colores.tertiary,
-                    fontSize: 14.pf,
-                    fontWeight: FontWeight.w500,
-                  ),
+                SizedBox(height: max(10.ph, 10.sh)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      children: [
+                        PRLabCheckbox(
+                          // TODO(anyone): pasar todo esto a un enum para manejar
+                          // mejor los distintos estados
+                          estaMarcado: state.programado,
+                          onChanged: (value) {
+                            context.read<BlocListaArticulosYRecortes>().add(
+                                  BlocListaArticulosYRecortesEventoFiltradoPorEstado(
+                                    programado: value,
+                                  ),
+                                );
+                          },
+                          // TODO(anyone): Hacer color en el theme no agregado ni al figma
+                          colorBorde: Colors.yellow,
+                          colorMarcado: Colors.yellow,
+                          colorDesmarcado: colores.surfaceTint,
+                        ),
+                        SizedBox(width: 5.pw),
+                        Text(
+                          // TODO(mati): hacer l10n, pero todavia no esta del todo
+                          // definido los estado a filtrar
+                          'scheduled',
+                          style: TextStyle(
+                            color: colores.tertiary,
+                            fontSize: 14.pf,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        PRLabCheckbox(
+                          // TODO(anyone): pasar todo esto a un enum para manejar
+                          // mejor los distintos estados
+                          estaMarcado: state.publicado,
+                          onChanged: (value) {
+                            context.read<BlocListaArticulosYRecortes>().add(
+                                  BlocListaArticulosYRecortesEventoFiltradoPorEstado(
+                                    publicado: value,
+                                  ),
+                                );
+                          },
+                          colorBorde: colores.onTertiaryContainer,
+                          colorMarcado: colores.onTertiaryContainer,
+                          colorDesmarcado: colores.surfaceTint,
+                        ),
+                        SizedBox(width: 5.pw),
+                        Text(
+                          // TODO(mati): hacer l10n, pero todavia no esta del todo
+                          // definido los estado a filtrar
+                          'published',
+                          style: TextStyle(
+                            color: colores.tertiary,
+                            fontSize: 14.pf,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             );

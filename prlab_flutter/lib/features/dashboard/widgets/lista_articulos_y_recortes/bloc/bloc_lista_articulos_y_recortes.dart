@@ -83,25 +83,36 @@ class BlocListaArticulosYRecortes extends Bloc<
     BlocListaArticulosYRecortesEventoFiltrar event,
     Emitter<BlocListaArticulosYRecortesEstado> emit,
   ) async {
-    if (state.articulos.isNotEmpty) {
-      emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
-      try {
-        // TODO(anyone): hacer el evento del back para filtrar u otro
-        emit(BlocListaArticulosYRecortesEstadoExitoso.desde(state));
-      } catch (e, st) {
-        emit(
-          BlocListaArticulosYRecortesEstadoFallido.desde(
-            state,
-            errorMessage: e.toString(),
-          ),
-        );
+    // if (state.articulos.isNotEmpty) {
+    // emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
+    // try {
+    //   final respuesta =
+    //       await client.entregableArticulo.traerEntregableporFiltro(
+    //     status: [
+    //       1,
+    //     ],
+    //   );
 
-        if (kDebugMode) {
-          debugger();
-          throw UnimplementedError('Implementa un error para esto: $e $st');
-        }
-      }
-    }
+    //   emit(
+    //     BlocListaArticulosYRecortesEstadoExitoso.desde(
+    //       state,
+    //       articulosFiltrados: respuesta,
+    //     ),
+    //   );
+    // } catch (e, st) {
+    //   emit(
+    //     BlocListaArticulosYRecortesEstadoFallido.desde(
+    //       state,
+    //       errorMessage: e.toString(),
+    //     ),
+    //   );
+
+    //   if (kDebugMode) {
+    //     debugger();
+    //     throw UnimplementedError('Implementa un error para esto: $e $st');
+    //   }
+    // }
+    // }
   }
 
   /// Cambia el index seleccionado para que muestre distintas vista entre
@@ -231,6 +242,8 @@ class BlocListaArticulosYRecortes extends Bloc<
         borrador: event.borrador,
         comentario: event.comentario,
         completo: event.completo,
+        programado: event.programado,
+        publicado: event.publicado,
       ),
     );
   }
