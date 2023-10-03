@@ -215,4 +215,18 @@ class EntregableArticuloEndpoint extends Endpoint {
       rethrow;
     }
   }
+
+  Future<List<EntregableArticulo>> traerEntregableporFiltro(
+    Session session, {
+    required int idStatus,
+  }) async {
+    try {
+      return await servicioArticulo.traerEntregableporFiltro(
+        session: session,
+        idStatus: idStatus,
+      );
+    } on Exception {
+      rethrow;
+    }
+  }
 }
