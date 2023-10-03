@@ -77,11 +77,17 @@ class PRDrawerItem extends StatelessWidget {
                       : Container(),
             ),
             SizedBox(width: 5.pw),
-            Text(
-              tituloItem,
-              style: TextStyle(
-                color: colores.primary,
-                fontSize: 16.pf,
+            SizedBox(
+              // TODO(anyone): verificar si anda decentemente (mati) funca
+              width: 150.pw,
+              child: Text(
+                tituloItem,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: colores.primary,
+                  fontSize: 16.pf,
+                ),
               ),
             ),
           ],

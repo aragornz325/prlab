@@ -126,6 +126,7 @@ class _FormRegistroState extends State<FormRegistro> {
                   ),
                   texto: l10n.pageSignUpButtonSignUp,
                   estaHabilitado: state.estaCompletoElFormulario,
+                  estaCargando: state is BlocRegistroEstadoCargando,
                 );
               },
             ),

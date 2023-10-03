@@ -81,16 +81,6 @@ class CuerpoVistaRegistroPRLab extends StatelessWidget {
                 }
               },
               builder: (context, state) {
-                if (state is BlocRegistroEstadoCargando) {
-                  return SizedBox(
-                    width: 50.pw,
-                    height: max(50.ph, 50.sh),
-                    child: const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
-                }
-
                 return FormRegistro(
                   email: email,
                 );

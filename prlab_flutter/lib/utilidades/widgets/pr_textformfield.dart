@@ -241,6 +241,55 @@ class PRTextFormField extends StatefulWidget {
     );
   }
 
+  /// TFF utilizable para nombres de empresas o ubicación en caso de una calle.
+  /// Iconos a utilizar:
+  /// Name/Last name: Icons.person_outlined
+  /// Company: Icons.apartment
+  /// Company location: Icons.location_on_outlined
+  factory PRTextFormField.letrasYNumeros({
+    /// Controller de [PRTextFormField]
+    required TextEditingController controller,
+
+    /// Texto interno
+    required String hintText,
+
+    /// Icono izquierdo
+    required IconData prefixIcon,
+
+    /// Contexto para traducciones
+    required BuildContext context,
+
+    /// Funcion onChanged
+    void Function(String)? onChanged,
+
+    /// Ancho del campo de texto.
+    double? width,
+  }) {
+    final l10n = context.l10n;
+
+    return PRTextFormField(
+      width: width,
+      keyboardType: TextInputType.text,
+      controller: controller,
+      hintText: hintText,
+      onChanged: onChanged,
+      prefixIcon: prefixIcon,
+      inputFormatters: [
+        FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-ZÀ-ÿ\s\d]*$')),
+      ],
+      validator: (value) {
+        if (value?.isEmpty ?? false) {
+          return l10n.commonCompleteTheField;
+        } else if (!ExpresionRegular.letrasYNumerosRegExp
+            .hasMatch(value ?? '')) {
+          return l10n.commonOnlyLetters;
+        }
+
+        return null;
+      },
+    );
+  }
+
   /// TFF a utilizar en caso de necesitarse informacion numerica.
   /// Contact: Icons.call_outlined
   /// Birthdate: Icons.calendar_month_outlined
