@@ -272,11 +272,11 @@ class OrmEntregableArticulo extends ORM {
 
   /// La función `traerArticulosPorUsuario` recupera una lista de artículos pertenecientes a un usuario
   /// específico de una base de datos usando un ORM.
-  /// 
+  ///
   /// Args:
   ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. Representa la
   /// sesión de usuario actual o la sesión de autenticación.
-  /// 
+  ///
   /// Returns:
   ///   un `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
   Future<List<EntregableArticulo>> traerArticulosPorUsuario(
@@ -294,13 +294,13 @@ class OrmEntregableArticulo extends ORM {
 
   /// La función `traerArticuloPorSlug` recupera un objeto `EntregableArticulo` de la base de datos en
   /// función de un slug determinado.
-  /// 
+  ///
   /// Args:
   ///   session (Session): Un parámetro obligatorio de tipo Sesión, que representa la sesión o conexión
   /// actual a la base de datos.
   ///   slug (String): El slug es un identificador único de un artículo. Por lo general, es una versión
   /// compatible con URL del título del artículo, que se utiliza para crear una URL limpia y legible.
-  /// 
+  ///
   /// Returns:
   ///   un `Futuro` que se resuelve en un objeto `EntregableArticulo` o `null` (`EntregableArticulo?`).
   Future<EntregableArticulo?> traerArticuloPorSlug({
@@ -320,28 +320,42 @@ class OrmEntregableArticulo extends ORM {
 
   /// La función `traerEntregableporFiltro` recupera una lista de objetos `EntregableArticulo` de una
   /// base de datos basada en un `idStatus` dado y la devuelve como un `Futuro`.
-  /// 
+  ///
   /// Args:
   ///   session (Session): Un objeto de sesión necesario para realizar operaciones de base de datos.
   ///   idStatus (int): El parámetro idStatus es un número entero que representa el estado de los
   /// artículos que se recuperarán.
-  /// 
+  ///
   /// Returns:
   ///   un `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
   Future<List<EntregableArticulo>> traerEntregableporFiltro({
     required Session session,
-    required int idStatus,
+    required List<int> status,
   }) async {
     return ejecutarOperacionOrm(session, (session) async {
-      logger.finer('buscando en la db los articulos con status: $idStatus');
-      final articulos = await EntregableArticulo.find(session,
+      if (status.length == 1) {
+        logger.finer('buscando en la db los articulos con status: $status');
+        final articulos = await EntregableArticulo.find(
+          session,
           where: (t) =>
-              t.idStatus.equals(idStatus) & t.fechaEliminacion.equals(null));
-      if (articulos.isEmpty) {
-        throw Exception('No se encontraron articulos con el status: $idStatus');
+              t.idStatus.equals(status[0]) & t.fechaEliminacion.equals(null),
+        );
+        logger.fine('articulos encontrados: ${articulos.length}');
+        return articulos;
+      } else {
+        List articulos = [];
+        for (var i = 0; i < status.length; i++) {
+          logger.finer('buscando en la db los articulos con status: $status');
+          final articulo = await EntregableArticulo.find(
+            session,
+            where: (t) =>
+                t.idStatus.equals(status[i]) & t.fechaEliminacion.equals(null),
+          );
+          articulos.addAll(articulo);
+          logger.fine('articulos encontrados: ${articulos.length}');
+        }
+        return Future.value(articulos.cast<EntregableArticulo>());
       }
-      logger.fine('articulos encontrados: ${articulos.length}');
-      return articulos;
     });
   }
 }
