@@ -48,6 +48,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
         activo: true,
         ultimaModificacion: DateTime.now(),
         fechaCreacion: DateTime.now(),
+        fechaLanzamiento: DateTime.now(),
       );
 
       return await ejecutarOperacion(
@@ -321,5 +322,29 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     await browser.close();
 
     return true;
+  }
+
+
+  /// La función `traerEntregableporFiltro` recupera una lista de objetos `EntregableArticulo` basados
+  /// en una sesión determinada y un ID de estado.
+  /// 
+  /// Args:
+  ///   session (Session): Un parámetro obligatorio de tipo Sesión, que representa un objeto de sesión.
+  ///   idStatus (int): El parámetro idStatus es un número entero que representa el estado del
+  /// entregable (entregable). Se utiliza como filtro para recuperar los entregables que tienen un
+  /// estado específico.
+  /// 
+  /// Returns:
+  ///   un objeto `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
+  Future<List<EntregableArticulo>> traerEntregableporFiltro({
+    required Session session,
+    required int idStatus,
+  }) async {
+    return await ejecutarOperacion(
+      () => orm.traerEntregableporFiltro(
+        session: session,
+        idStatus: idStatus,
+      ),
+    );
   }
 }
