@@ -55,7 +55,6 @@ class BlocListaArticulosYRecortes extends Bloc<
       } else {
         articulos = await client.entregableArticulo.traerArticulosPorUsuario();
       }
-
       emit(
         BlocListaArticulosYRecortesEstadoExitoso.desde(
           state,
@@ -94,29 +93,14 @@ class BlocListaArticulosYRecortes extends Bloc<
             articulosFiltrados: state.articulos,
           ),
         );
-      } else if (state.borrador ||
-          state.comentario ||
-          state.programado ||
-          state.publicado ||
-          state.aprobado) {
+      } else if (state.estadoEntregables.isNotEmpty) {
         final status = <int>[];
+        for (var i = 0; i < state.estadoEntregables.length; i++) {
+          final filtrar = state.estadoEntregables[i].toJson();
 
-        if (state.borrador) status.add(1);
-        if (state.comentario) status.add(2);
-        if (state.aprobado) status.add(3);
-        if (state.programado) status.add(4);
-        if (state.publicado) status.add(5);
+          status.add(filtrar);
+        }
 
-        // Elimina los estados de la lista status si sus variables
-        // correspondientes son false.
-        status.removeWhere((e) {
-          if (e == 1) return !state.borrador;
-          if (e == 2) return !state.comentario;
-          if (e == 3) return !state.aprobado;
-          if (e == 4) return !state.programado;
-          if (e == 5) return !state.publicado;
-          return false;
-        });
         if (idMarca != null) {
           final respuesta =
               await client.entregableArticulo.listarArticuloMarcayEstado(
@@ -290,11 +274,7 @@ class BlocListaArticulosYRecortes extends Bloc<
     emit(
       BlocListaArticulosYRecortesEstadoExitoso.desde(
         state,
-        borrador: event.borrador,
-        comentario: event.comentario,
-        aprobado: event.aprobado,
-        programado: event.programado,
-        publicado: event.publicado,
+        estadoEntregables: event.estadoEntregables,
       ),
     );
   }

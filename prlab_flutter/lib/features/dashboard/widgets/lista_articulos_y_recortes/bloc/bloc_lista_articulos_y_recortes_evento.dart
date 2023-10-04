@@ -73,27 +73,10 @@ class BlocListaArticulosYRecortesEventoFiltradoPorEstado
   /// {@macro BlocListaArticulosYRecortesEventoFiltradoPorEstado}
   @override
   const BlocListaArticulosYRecortesEventoFiltradoPorEstado({
-    this.borrador,
-    this.comentario,
-    this.aprobado,
-    this.programado,
-    this.publicado,
+    required this.estadoEntregables,
   });
 
-  /// cambia los valores en el popup con el check box de borrador
-  final bool? borrador;
-
-  /// cambia los valores en el popup con el check box de comentario
-  final bool? comentario;
-
-  /// cambia los valores en el popup con el check box de completo
-  final bool? aprobado;
-
-  /// cambia los valores en el popup con el check box de programado
-  final bool? programado;
-
-  /// cambia los valores en el popup con el check box de publicado
-  final bool? publicado;
+  final List<StatusEntregables> estadoEntregables;
 }
 
 /// {@template BlocListaArticulosYRecortesEventoEliminarArticulo}

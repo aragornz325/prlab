@@ -12,11 +12,7 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
     this.articulos = const [],
     this.articulosFiltrados = const [],
     this.index = 0,
-    this.borrador = false,
-    this.comentario = false,
-    this.aprobado = false,
-    this.programado = false,
-    this.publicado = false,
+    this.estadoEntregables = const [],
   });
 
   BlocListaArticulosYRecortesEstado.desde(
@@ -24,20 +20,12 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
     List<EntregableArticulo>? articulos,
     List<EntregableArticulo>? articulosFiltrados,
     int? index,
-    bool? borrador,
-    bool? comentario,
-    bool? aprobado,
-    bool? programado,
-    bool? publicado,
+    List<StatusEntregables>? estadoEntregables,
   }) : this._(
           articulos: articulos ?? otro.articulos,
           index: index ?? otro.index,
-          borrador: borrador ?? otro.borrador,
-          comentario: comentario ?? otro.comentario,
-          aprobado: aprobado ?? otro.aprobado,
           articulosFiltrados: articulosFiltrados ?? otro.articulosFiltrados,
-          programado: programado ?? otro.programado,
-          publicado: publicado ?? otro.publicado,
+          estadoEntregables: estadoEntregables ?? otro.estadoEntregables,
         );
 
   /// Lista de los articulos
@@ -52,20 +40,7 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
   // TODO(anyone): pasar todo esto a un enum para manejar mejor los distintos
   // estados
 
-  /// Estado de borrador para los filtrados
-  final bool borrador;
-
-  /// Estado de comentario para los filtrados
-  final bool comentario;
-
-  /// Estado de completo para los filtrados
-  final bool aprobado;
-
-  /// Estado de programado para los filtrados
-  final bool programado;
-
-  /// Estado de publicado para los filtrados
-  final bool publicado;
+  final List<StatusEntregables> estadoEntregables;
 
   /// Si es Articulos
   bool get esArticulos => index == 0;
@@ -78,11 +53,7 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
         articulos,
         articulosFiltrados,
         index,
-        borrador,
-        comentario,
-        aprobado,
-        publicado,
-        programado,
+        estadoEntregables,
       ];
 }
 
@@ -119,11 +90,7 @@ final class BlocListaArticulosYRecortesEstadoExitoso
     super.otro, {
     super.articulos,
     super.index,
-    super.borrador,
-    super.comentario,
-    super.aprobado,
-    super.publicado,
-    super.programado,
+    super.estadoEntregables,
     super.articulosFiltrados,
   }) : super.desde();
 }

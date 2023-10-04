@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/bloc/bloc_lista_articulos_y_recortes.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
@@ -49,6 +50,10 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
         child: BlocBuilder<BlocListaArticulosYRecortes,
             BlocListaArticulosYRecortesEstado>(
           builder: (context, state) {
+            final listaDeEntregables = List<StatusEntregables>.from(
+              state.estadoEntregables,
+            );
+
             return Column(
               children: [
                 Row(
@@ -57,16 +62,15 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                     Row(
                       children: [
                         PRLabCheckbox(
-                          // TODO(anyone): pasar todo esto a un enum para manejar
-                          // mejor los distintos estados
-                          estaMarcado: state.borrador,
-                          onChanged: (value) {
-                            context.read<BlocListaArticulosYRecortes>().add(
-                                  BlocListaArticulosYRecortesEventoFiltradoPorEstado(
-                                    borrador: value,
-                                  ),
-                                );
-                          },
+                          estaMarcado: listaDeEntregables
+                              .contains(StatusEntregables.draft),
+                          onChanged: (value) =>
+                              _agregarEstadoDeEntregablesAFiltrar(
+                            context: context,
+                            estadoEntregables: StatusEntregables.draft,
+                            lista: listaDeEntregables,
+                            value: value,
+                          ),
                           colorBorde: colores.secondary,
                           colorMarcado: colores.secondary,
                           colorDesmarcado: colores.surfaceTint,
@@ -88,14 +92,16 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                         PRLabCheckbox(
                           // TODO(anyone): pasar todo esto a un enum para manejar
                           // mejor los distintos estados
-                          estaMarcado: state.comentario,
-                          onChanged: (value) {
-                            context.read<BlocListaArticulosYRecortes>().add(
-                                  BlocListaArticulosYRecortesEventoFiltradoPorEstado(
-                                    comentario: value,
-                                  ),
-                                );
-                          },
+
+                          estaMarcado: listaDeEntregables
+                              .contains(StatusEntregables.feedback),
+                          onChanged: (value) =>
+                              _agregarEstadoDeEntregablesAFiltrar(
+                            context: context,
+                            estadoEntregables: StatusEntregables.feedback,
+                            lista: listaDeEntregables,
+                            value: value,
+                          ),
                           colorBorde: colores.onTertiary,
                           colorMarcado: colores.onTertiary,
                           colorDesmarcado: colores.surfaceTint,
@@ -117,14 +123,16 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                         PRLabCheckbox(
                           // TODO(anyone): pasar todo esto a un enum para manejar
                           // mejor los distintos estados
-                          estaMarcado: state.aprobado,
-                          onChanged: (value) {
-                            context.read<BlocListaArticulosYRecortes>().add(
-                                  BlocListaArticulosYRecortesEventoFiltradoPorEstado(
-                                    aprobado: value,
-                                  ),
-                                );
-                          },
+
+                          estaMarcado: listaDeEntregables
+                              .contains(StatusEntregables.approved),
+                          onChanged: (value) =>
+                              _agregarEstadoDeEntregablesAFiltrar(
+                            context: context,
+                            estadoEntregables: StatusEntregables.approved,
+                            lista: listaDeEntregables,
+                            value: value,
+                          ),
                           colorBorde: colores.primaryContainer,
                           colorMarcado: colores.primaryContainer,
                           colorDesmarcado: colores.surfaceTint,
@@ -151,14 +159,16 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                         PRLabCheckbox(
                           // TODO(anyone): pasar todo esto a un enum para manejar
                           // mejor los distintos estados
-                          estaMarcado: state.programado,
-                          onChanged: (value) {
-                            context.read<BlocListaArticulosYRecortes>().add(
-                                  BlocListaArticulosYRecortesEventoFiltradoPorEstado(
-                                    programado: value,
-                                  ),
-                                );
-                          },
+
+                          estaMarcado: listaDeEntregables
+                              .contains(StatusEntregables.scheduled),
+                          onChanged: (value) =>
+                              _agregarEstadoDeEntregablesAFiltrar(
+                            context: context,
+                            estadoEntregables: StatusEntregables.scheduled,
+                            lista: listaDeEntregables,
+                            value: value,
+                          ),
                           // TODO(anyone): Hacer color en el theme no agregado ni al figma
                           colorBorde: Colors.yellow,
                           colorMarcado: Colors.yellow,
@@ -180,14 +190,15 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                         PRLabCheckbox(
                           // TODO(anyone): pasar todo esto a un enum para manejar
                           // mejor los distintos estados
-                          estaMarcado: state.publicado,
-                          onChanged: (value) {
-                            context.read<BlocListaArticulosYRecortes>().add(
-                                  BlocListaArticulosYRecortesEventoFiltradoPorEstado(
-                                    publicado: value,
-                                  ),
-                                );
-                          },
+                          estaMarcado: listaDeEntregables
+                              .contains(StatusEntregables.published),
+                          onChanged: (value) =>
+                              _agregarEstadoDeEntregablesAFiltrar(
+                            context: context,
+                            estadoEntregables: StatusEntregables.published,
+                            lista: listaDeEntregables,
+                            value: value,
+                          ),
                           colorBorde: colores.onTertiaryContainer,
                           colorMarcado: colores.onTertiaryContainer,
                           colorDesmarcado: colores.surfaceTint,
@@ -211,6 +222,25 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /// Agrega a la lista a filtrar un nuevo estado a filtrar o la quita.
+  void _agregarEstadoDeEntregablesAFiltrar({
+    required bool value,
+    required List<StatusEntregables> lista,
+    required BuildContext context,
+    required StatusEntregables estadoEntregables,
+  }) {
+    if (value) {
+      lista.add(estadoEntregables);
+    } else {
+      lista.remove(estadoEntregables);
+    }
+    context.read<BlocListaArticulosYRecortes>().add(
+          BlocListaArticulosYRecortesEventoFiltradoPorEstado(
+            estadoEntregables: lista,
+          ),
+        );
   }
 }
 
