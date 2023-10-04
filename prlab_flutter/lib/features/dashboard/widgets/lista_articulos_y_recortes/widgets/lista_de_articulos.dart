@@ -315,6 +315,8 @@ class ListaDeArticulos extends StatelessWidget {
   }
 }
 
+/// Devuelve una cadena que representa el nombre del estado
+/// según el "número" dado.
 String devolverNombreDelEstado({
   required int numero,
   required BuildContext context,
@@ -331,6 +333,8 @@ String devolverNombreDelEstado({
   };
 }
 
+/// Devuelve un `Color` basado en el valor de `numero` y
+/// los colores del tema definidos en `BuildContext`.
 Color devolverColorDependiendoDelEstado({
   required int numero,
   required BuildContext context,
@@ -341,8 +345,7 @@ Color devolverColorDependiendoDelEstado({
     1 => colores.secondary,
     2 => colores.onTertiary,
     3 => colores.primaryContainer,
-
-    /// TODO(anyone): agregar al theme este color
+    // TODO(anyone): agregar al theme este color
     4 => Colors.yellow,
     5 => colores.onTertiaryContainer,
     _ => colores.secondary,
