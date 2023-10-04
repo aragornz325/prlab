@@ -333,16 +333,7 @@ class OrmEntregableArticulo extends ORM {
     required List<int> status,
   }) async {
     return ejecutarOperacionOrm(session, (session) async {
-      if (status.length == 1) {
-        logger.finer('buscando en la db los articulos con status: $status');
-        final articulos = await EntregableArticulo.find(
-          session,
-          where: (t) =>
-              t.idStatus.equals(status[0]) & t.fechaEliminacion.equals(null),
-        );
-        logger.fine('articulos encontrados: ${articulos.length}');
-        return articulos;
-      } else {
+      
         List articulos = [];
         for (var i = 0; i < status.length; i++) {
           logger.finer('buscando en la db los articulos con status: $status');
@@ -355,7 +346,6 @@ class OrmEntregableArticulo extends ORM {
           logger.fine('articulos encontrados: ${articulos.length}');
         }
         return Future.value(articulos.cast<EntregableArticulo>());
-      }
     });
   }
 }
