@@ -119,6 +119,7 @@ class BlocListaArticulosYRecortes extends Bloc<
         final respuesta =
             await client.entregableArticulo.traerEntregableporFiltro(
           status: status,
+          idAutor: sessionManager.signedInUser?.id ?? 0,
         );
 
         emit(
