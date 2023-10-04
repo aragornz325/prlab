@@ -333,19 +333,19 @@ class OrmEntregableArticulo extends ORM {
     required List<int> status,
   }) async {
     return ejecutarOperacionOrm(session, (session) async {
-      
-        List articulos = [];
-        for (var i = 0; i < status.length; i++) {
-          logger.finer('buscando en la db los articulos con status: $status');
-          final articulo = await EntregableArticulo.find(
-            session,
+      List articulos = [];
+      for (var i = 0; i < status.length; i++) {
+        logger.finer('buscando en la db los articulos con status: $status');
+        final articulo = await EntregableArticulo.find(session,
             where: (t) =>
                 t.idStatus.equals(status[i]) & t.fechaEliminacion.equals(null),
-          );
-          articulos.addAll(articulo);
-          logger.fine('articulos encontrados: ${articulos.length}');
-        }
-        return Future.value(articulos.cast<EntregableArticulo>());
+            orderBy: EntregableArticuloTable().fechaCreacion,
+            orderDescending: true);
+        articulos.addAll(articulo);
+        logger.fine('articulos encontrados: ${articulos.length}');
+      }
+      articulos.sort((a, b) => b.fechaCreacion.compareTo(a.fechaCreacion));
+      return await Future.value(articulos.cast<EntregableArticulo>());
     });
   }
 }
