@@ -17,7 +17,13 @@ import 'package:prlab_flutter/theming/base.dart';
 /// {@endtemplate}
 class PopupOpcionesDeFiltrado extends StatefulWidget {
   /// {@macro PopupOpcionesDeFiltrado}
-  const PopupOpcionesDeFiltrado({super.key});
+  const PopupOpcionesDeFiltrado({
+    super.key,
+    this.idMarca,
+  });
+
+  /// Id de la marca  para filtrar la marca
+  final int? idMarca;
 
   @override
   State<PopupOpcionesDeFiltrado> createState() =>
@@ -96,7 +102,9 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
               context: context,
               builder: (_) => BlocProvider.value(
                 value: context.read<BlocListaArticulosYRecortes>(),
-                child: const PrDialogFiltrarPorStatus(),
+                child: PrDialogFiltrarPorStatus(
+                  idMarca: widget.idMarca,
+                ),
               ),
             );
 

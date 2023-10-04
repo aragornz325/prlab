@@ -49,7 +49,7 @@ class ListaArticulosYRecortes extends StatelessWidget {
                 else
                   Column(
                     children: [
-                      const TextFieldBusquedaFiltrado(),
+                      TextFieldBusquedaFiltrado(idMarca: idMarca),
                       Divider(color: colores.outlineVariant),
                     ],
                   ),

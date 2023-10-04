@@ -22,11 +22,15 @@ class BlocListaArticulosYRecortesEventoFiltrar
   @override
   const BlocListaArticulosYRecortesEventoFiltrar({
     required this.sinFiltro,
+    this.idMarca,
   });
 
   // TODO(anyone): agregar el tipo de filtrado sea por
   // un enum u otro tipo
   final bool sinFiltro;
+
+  /// Id de la marca a filtrar por esta
+  final int? idMarca;
 }
 
 /// {@template BlocListaArticulosYRecortesEventoTraerArticulos}

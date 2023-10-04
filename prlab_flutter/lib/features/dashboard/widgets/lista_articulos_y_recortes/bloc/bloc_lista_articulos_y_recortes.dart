@@ -85,6 +85,8 @@ class BlocListaArticulosYRecortes extends Bloc<
   ) async {
     emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
     try {
+      final idMarca = event.idMarca;
+
       if (event.sinFiltro) {
         emit(
           BlocListaArticulosYRecortesEstadoExitoso.desde(
@@ -115,19 +117,32 @@ class BlocListaArticulosYRecortes extends Bloc<
           if (e == 5) return !state.publicado;
           return false;
         });
+        if (idMarca != null) {
+          final respuesta =
+              await client.entregableArticulo.listarArticuloMarcayEstado(
+            idMarca: idMarca,
+            idStatus: status,
+          );
+          emit(
+            BlocListaArticulosYRecortesEstadoExitoso.desde(
+              state,
+              articulosFiltrados: respuesta,
+            ),
+          );
+        } else {
+          final respuesta =
+              await client.entregableArticulo.traerEntregableporFiltro(
+            status: status,
+            idAutor: sessionManager.signedInUser?.id ?? 0,
+          );
 
-        final respuesta =
-            await client.entregableArticulo.traerEntregableporFiltro(
-          status: status,
-          idAutor: sessionManager.signedInUser?.id ?? 0,
-        );
-
-        emit(
-          BlocListaArticulosYRecortesEstadoExitoso.desde(
-            state,
-            articulosFiltrados: respuesta,
-          ),
-        );
+          emit(
+            BlocListaArticulosYRecortesEstadoExitoso.desde(
+              state,
+              articulosFiltrados: respuesta,
+            ),
+          );
+        }
       } else {
         emit(
           BlocListaArticulosYRecortesEstadoExitoso.desde(

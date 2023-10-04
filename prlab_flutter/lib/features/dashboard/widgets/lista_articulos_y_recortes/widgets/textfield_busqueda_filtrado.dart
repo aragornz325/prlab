@@ -14,7 +14,13 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 /// {@endtemplate}
 class TextFieldBusquedaFiltrado extends StatefulWidget {
   /// {@macro TextFieldBusquedaFiltrado}
-  const TextFieldBusquedaFiltrado({super.key});
+  const TextFieldBusquedaFiltrado({
+    super.key,
+    this.idMarca,
+  });
+
+  /// Id de la marca  para filtrar la marca
+  final int? idMarca;
 
   @override
   State<TextFieldBusquedaFiltrado> createState() =>
@@ -78,7 +84,7 @@ class _TextFieldBusquedaFiltradoState extends State<TextFieldBusquedaFiltrado> {
             ),
           ),
           SizedBox(width: 0.pw),
-          const PopupOpcionesDeFiltrado(),
+          PopupOpcionesDeFiltrado(idMarca: widget.idMarca),
         ],
       ),
     );

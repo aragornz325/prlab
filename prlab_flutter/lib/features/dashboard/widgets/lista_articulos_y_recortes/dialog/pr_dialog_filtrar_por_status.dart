@@ -16,7 +16,13 @@ import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 /// {@endtemplate}
 class PrDialogFiltrarPorStatus extends StatelessWidget {
   /// {@macro PrDialogFiltrarPorStatus}
-  const PrDialogFiltrarPorStatus({super.key});
+  const PrDialogFiltrarPorStatus({
+    required this.idMarca,
+    super.key,
+  });
+
+  /// Id de la marca  para filtrar la marca
+  final int? idMarca;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +35,9 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
       height: max(350.ph, 350.sh),
       onTap: () {
         context.read<BlocListaArticulosYRecortes>().add(
-              const BlocListaArticulosYRecortesEventoFiltrar(
+              BlocListaArticulosYRecortesEventoFiltrar(
                 sinFiltro: false,
+                idMarca: idMarca,
               ),
             );
         Navigator.of(context).pop();
