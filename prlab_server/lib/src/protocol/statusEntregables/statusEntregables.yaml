@@ -1,5 +1,6 @@
 enum: StatusEntregables
 values:
+  - todos
   - draft
   - feedback
   - approved
