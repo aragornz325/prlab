@@ -3,6 +3,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
+import 'package:prlab_flutter/widgets/grafico_torta/modelos/modelos.dart';
 
 /// {@template GraficoTorta}
 /// La clase `GráficoTorta` es un widget con estado que genera un gráfico
@@ -19,10 +20,10 @@ import 'package:prlab_flutter/extensiones/extensiones.dart';
 /// cambia de tamaño y el tamaño de la letra.
 ///
 /// {@endtemplate}
-class GraficoTorta extends StatefulWidget {
+class GraficoTorta<T> extends StatefulWidget {
   /// {@macro GraficoTorta}
   GraficoTorta({
-    required this.porcentajes,
+    required this.dataGraficos,
     required this.colorAGenerar,
     this.tamanioDelGrafico = 100,
     this.posicionDelTituloEnElGrafico = 0.55,
@@ -54,7 +55,8 @@ class GraficoTorta extends StatefulWidget {
     required Color colorAGenerar,
 
     /// lista de porcentajes que tiene el gráfico a mostrar [GraficoTorta].
-    required List<double> porcentajes,
+    // TODO(Mati): cambiar docu.
+    required List<DataGrafico<T>> dataGraficos,
 
     /// index seleccionado para que cambie ciertos parámetros para darle un
     /// efecto [GraficoTorta].
@@ -85,36 +87,26 @@ class GraficoTorta extends StatefulWidget {
   }) {
     return GraficoTorta(
       colorAGenerar: colorAGenerar,
-      porcentajes: porcentajes,
-      contenido: Expanded(
-        child: AspectRatio(
-          aspectRatio: 3,
-          child: PieChart(
-            PieChartData(
-              centerSpaceRadius: espacioEnElCentro,
-              sectionsSpace: espacioEntreSeleccionado,
-              centerSpaceColor: colorDelEspacioCentro,
-              startDegreeOffset: rotacionDelGrafico,
-              borderData: FlBorderData(show: false),
-              pieTouchData: PieTouchData(
-                touchCallback: touchCallback,
-              ),
-              sections: generarDatosGraficoTorta(
-                esPrincipal: false,
-                context: context,
-                colorAGenerar: colorAGenerar,
-                data: porcentajes,
-                estiloDelTitulo: estiloDelTitulo,
-                indiceSeleccionado: indiceSeleccionado,
-                tamanioDelGrafico: tamanioDelGrafico,
-                sombras: const [
-                  Shadow(
-                    color: Colors.black,
-                    blurRadius: 2,
-                  ),
-                ],
-              ),
-            ),
+      dataGraficos: dataGraficos,
+      contenido: PieChart(
+        PieChartData(
+          centerSpaceRadius: espacioEnElCentro,
+          sectionsSpace: espacioEntreSeleccionado,
+          centerSpaceColor: colorDelEspacioCentro,
+          startDegreeOffset: rotacionDelGrafico,
+          borderData: FlBorderData(show: false),
+          pieTouchData: PieTouchData(touchCallback: touchCallback),
+          sections: _generarDatosGraficoTorta<T>(
+            esPrincipal: false,
+            context: context,
+            colorAGenerar: colorAGenerar,
+            data: dataGraficos,
+            estiloDelTitulo: estiloDelTitulo,
+            indiceSeleccionado: indiceSeleccionado,
+            tamanioDelGrafico: tamanioDelGrafico,
+            sombras: const [
+              Shadow(blurRadius: 2),
+            ],
           ),
         ),
       ),
@@ -137,7 +129,8 @@ class GraficoTorta extends StatefulWidget {
     required Color colorAGenerar,
 
     /// lista de porcentajes que tiene el gráfico a mostrar [GraficoTorta].
-    required List<double> porcentajes,
+    // TODO(Mati): cambiar docu.
+    required List<DataGrafico<T>> listaDataGrafico,
 
     /// index seleccionado para que cambie ciertos parámetros para darle un
     /// efecto.
@@ -169,7 +162,7 @@ class GraficoTorta extends StatefulWidget {
     return GraficoTorta(
       colorAGenerar: colorAGenerar,
       indiceSeleccionado: indiceSeleccionado,
-      porcentajes: porcentajes,
+      dataGraficos: listaDataGrafico,
       contenido: Expanded(
         child: AspectRatio(
           aspectRatio: 1,
@@ -181,17 +174,16 @@ class GraficoTorta extends StatefulWidget {
               startDegreeOffset: rotacionDelGrafico,
               pieTouchData: PieTouchData(touchCallback: touchCallback),
               borderData: FlBorderData(show: false),
-              sections: generarDatosGraficoTorta(
+              sections: _generarDatosGraficoTorta<T>(
                 esPrincipal: false,
                 context: context,
                 colorAGenerar: colorAGenerar,
-                data: porcentajes,
+                data: listaDataGrafico,
                 estiloDelTitulo: estiloDelTitulo,
                 indiceSeleccionado: indiceSeleccionado,
                 tamanioDelGrafico: tamanioDelGrafico,
                 sombras: const [
                   Shadow(
-                    color: Colors.black,
                     blurRadius: 2,
                   ),
                 ],
@@ -204,7 +196,8 @@ class GraficoTorta extends StatefulWidget {
   }
 
   /// lista de porcentajes que tiene el gráfico a mostrar [GraficoTorta].
-  final List<double> porcentajes;
+  // TODO(Mati): cambiar docu.
+  final List<DataGrafico<T>> dataGraficos;
 
   /// contenido de del gráfico para los factory de [GraficoTorta].
   final Widget? contenido;
@@ -248,88 +241,88 @@ class GraficoTorta extends StatefulWidget {
   final Color? colorDelEspacioCentro;
 
   @override
-  State<GraficoTorta> createState() => _GraficoTortaState();
+  State<GraficoTorta<T>> createState() => _GraficoTortaState();
 }
 
-class _GraficoTortaState extends State<GraficoTorta> {
+class _GraficoTortaState<T> extends State<GraficoTorta<T>> {
   final colores = <Color>[];
 
+  @override
   Widget build(BuildContext context) {
+    final contenido = widget.contenido;
+
+    // TODO(mati) : hablar con louka de sacar esto es el indicador
+    // TODOde cual esta seleccionado se puede hacer desde otro
+    // TODOcomponente calculo que sera borrado
+
+    // SizedBox(height: math.max(28.ph, 28.sh)),
+    // if (widget.contenido == null)
+    //   Row(
+    //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //     children: [
+    //       ...state.porcentajes.map(
+    //         (e) => Indicator(
+    //           color: colores[state.porcentajes.indexOf(e)],
+    //           text: '${e.toString()} %',
+    //           isSquare: false,
+    //           size: widget.indiceSeleccionado ==
+    //                   state.porcentajes.indexOf(e)
+    //               ? 18.pw
+    //               : 16.pw,
+    //           textColor: widget.indiceSeleccionado ==
+    //                   state.porcentajes.indexOf(e)
+    //               ? Colors.black
+    //               : Colors.white70,
+    //         ),
+    //       ),
+    //     ],
+    //   ),
     return AspectRatio(
       aspectRatio: 1.3,
-      child: Column(
-        children: <Widget>[
-          // TODO(mati) : hablar con louka de sacar esto es el indicador
-          // TODOde cual esta seleccionado se puede hacer desde otro
-          // TODOcomponente calculo que sera borrado
+      child: Expanded(
+        child: contenido ??
+            PieChart(
+              PieChartData(
+                centerSpaceColor: widget.colorDelEspacioCentro,
+                startDegreeOffset: widget.rotacionDelGrafico,
+                sectionsSpace: widget.espacioEntreSeleccionado,
+                centerSpaceRadius: widget.espacioEnElCentro,
+                borderData: FlBorderData(show: false),
+                pieTouchData: PieTouchData(
+                  touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                    // ? Aca se podría agregar un callback según el indice para
+                    // ? poder tomar el 'T' que nos brinda el modelo de
+                    // ? DataGrafico y poder hacer cosas con ese modelo.
+                    // ? ej: onClickPorcionDelPieChart.call(dataGraficos[index])
+                    setState(() {
+                      if (!event.isInterestedForInteractions ||
+                          pieTouchResponse == null ||
+                          pieTouchResponse.touchedSection == null) {
+                        widget.indiceSeleccionado = -1;
+                        return;
+                      }
 
-          // SizedBox(height: math.max(28.ph, 28.sh)),
-          // if (widget.contenido == null)
-          //   Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //     children: [
-          //       ...state.porcentajes.map(
-          //         (e) => Indicator(
-          //           color: colores[state.porcentajes.indexOf(e)],
-          //           text: '${e.toString()} %',
-          //           isSquare: false,
-          //           size: widget.indiceSeleccionado ==
-          //                   state.porcentajes.indexOf(e)
-          //               ? 18.pw
-          //               : 16.pw,
-          //           textColor: widget.indiceSeleccionado ==
-          //                   state.porcentajes.indexOf(e)
-          //               ? Colors.black
-          //               : Colors.white70,
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // SizedBox(height: math.max(18.ph, 18.sh)),
-
-          if (widget.contenido != null)
-            widget.contenido!
-          else
-            Expanded(
-              child: PieChart(
-                PieChartData(
-                  centerSpaceColor: widget.colorDelEspacioCentro,
-                  startDegreeOffset: widget.rotacionDelGrafico,
-                  sectionsSpace: widget.espacioEntreSeleccionado,
-                  centerSpaceRadius: widget.espacioEnElCentro,
-                  borderData: FlBorderData(show: false),
-                  pieTouchData: PieTouchData(
-                    touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                      setState(() {
-                        if (!event.isInterestedForInteractions ||
-                            pieTouchResponse == null ||
-                            pieTouchResponse.touchedSection == null) {
-                          widget.indiceSeleccionado = -1;
-                          return;
-                        }
-                        widget.indiceSeleccionado = pieTouchResponse
-                            .touchedSection!.touchedSectionIndex;
-                      });
-                    },
-                  ),
-                  sections: generarDatosGraficoTorta(
-                    context: context,
-                    estiloBordeConCursorDelGrafico:
-                        widget.estiloBordeConCursorDelGrafico,
-                    estiloBordeSinCursorDelGrafico:
-                        widget.estiloBordeSinCursorDelGrafico,
-                    estiloDelTitulo: widget.estiloDelTitulo,
-                    indiceSeleccionado: widget.indiceSeleccionado,
-                    posicionDelTituloEnElGrafico:
-                        widget.posicionDelTituloEnElGrafico,
-                    tamanioDelGrafico: widget.tamanioDelGrafico,
-                    colorAGenerar: widget.colorAGenerar,
-                    data: widget.porcentajes,
-                  ),
+                      widget.indiceSeleccionado =
+                          pieTouchResponse.touchedSection!.touchedSectionIndex;
+                    });
+                  },
+                ),
+                sections: _generarDatosGraficoTorta<T>(
+                  context: context,
+                  estiloBordeConCursorDelGrafico:
+                      widget.estiloBordeConCursorDelGrafico,
+                  estiloBordeSinCursorDelGrafico:
+                      widget.estiloBordeSinCursorDelGrafico,
+                  estiloDelTitulo: widget.estiloDelTitulo,
+                  indiceSeleccionado: widget.indiceSeleccionado,
+                  posicionDelTituloEnElGrafico:
+                      widget.posicionDelTituloEnElGrafico,
+                  tamanioDelGrafico: widget.tamanioDelGrafico,
+                  colorAGenerar: widget.colorAGenerar,
+                  data: widget.dataGraficos,
                 ),
               ),
             ),
-        ],
       ),
     );
   }
@@ -337,11 +330,10 @@ class _GraficoTortaState extends State<GraficoTorta> {
 
 /// Genera las listas de `PieChartSectionData` lo que serian los pedazos de
 /// torta del [GraficoTorta].
-List<PieChartSectionData> generarDatosGraficoTorta({
+List<PieChartSectionData> _generarDatosGraficoTorta<T>({
   required BuildContext context,
-  required List<double> data,
+  required List<DataGrafico<T>> data,
   required Color colorAGenerar,
-  bool estaSeleccionado = false,
   bool esPrincipal = true,
   int? indiceSeleccionado,
   double? posicionDelTituloEnElGrafico,
@@ -358,6 +350,8 @@ List<PieChartSectionData> generarDatosGraficoTorta({
     data.length,
   );
 
+  final total = data.fold<double>(0, (p, e) => p + e.cantidad);
+
   return data.map(
     (e) {
       final isSeleccionado = data.indexOf(e) == indiceSeleccionado;
@@ -366,12 +360,16 @@ List<PieChartSectionData> generarDatosGraficoTorta({
 
       final radius = isSeleccionado && !esPrincipal ? 110.0 : tamanioDelGrafico;
 
+      final porcentaje = (e.cantidad / total) * 100;
+
+      final titulo = '${porcentaje.toStringAsFixed(2)}%';
+
       return PieChartSectionData(
         titlePositionPercentageOffset: posicionDelTituloEnElGrafico,
         radius: radius,
         color: listaDeColores[data.indexOf(e)],
-        value: data[data.indexOf(e)],
-        title: '$e%',
+        value: porcentaje,
+        title: titulo,
         titleStyle: estiloDelTitulo ??
             TextStyle(
               color: colores.surfaceTint,
