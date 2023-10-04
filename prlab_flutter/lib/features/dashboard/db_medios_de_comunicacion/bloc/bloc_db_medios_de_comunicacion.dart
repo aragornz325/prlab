@@ -1,7 +1,8 @@
-import 'package:equatable/equatable.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/model_periodista.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/widgets.dart';
+import 'package:prlab_flutter/utilidades/serverpod_client.dart';
 
 part 'bloc_db_medios_de_comunicacion_estado.dart';
 part 'bloc_db_medios_de_comunicacion_evento.dart';
@@ -17,17 +18,11 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
   BlocDbMediosDeComunicacion()
       : super(BlocDbMediosDeComunicacionEstadoInicial()) {
     on<BlocDbMediosDeComunicacionEventoObtenerPeriodistas>(_obtenerPeriodistas);
-    on<BlocDbMediosDeComunicacionEventoObtenerDetallePeriodista>(
-      _obtenerDetallePeriodista,
-    );
-    on<BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista>(
-      _obtenerArticulosDelPeriodista,
-    );
-    on<BlocDbMediosDeComunicacionEventoActualizarFiltros>(_actualizarFiltros);
+
     on<BlocDbMediosDeComunicacionEventoObtenerListadoDeFiltros>(
       _obtenerListadoDeFiltros,
     );
-
+    on<BlocDbMediosDeComunicacionEventoActualizarFiltros>(_actualizarFiltros);
     add(BlocDbMediosDeComunicacionEventoObtenerPeriodistas());
     add(BlocDbMediosDeComunicacionEventoObtenerListadoDeFiltros());
   }
@@ -38,65 +33,17 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
     BlocDbMediosDeComunicacionEventoObtenerPeriodistas event,
     Emitter<BlocDbMediosDeComunicacionEstado> emit,
   ) async {
-    emit(BlocDbMediosDeComunicacionEstadoCargando.desde(state));
-
     try {
-      // TODO(Andre): Cambiar por endpoint del backend.
-      final periodistas = [
-        Periodista(
-          id: 1,
-          name: 'John John John John',
-          anchor: 'PRLab',
-          location: 'Netherlands',
-          topicCovered: [
-            'Marketing',
-            'Marketing',
-            'Marketing',
-            'Marketing',
-          ],
-          email: 'john@prlab.com',
-          avatar:
-              'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png',
-          valoracion: 50,
-          estaSeleccionado: true,
-          urlDeImage:
-              'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png',
-          idioma: 'English',
-          telefono: '11 2485-2435',
-          facebook: 'John John John John',
-          instagram: '@john_prlab',
-          twitter: '@john_prlab',
-          youtube: '@john_prlab',
-          descripcion: 'This is a description This is a description This is a '
-              'description This is a description This is a description '
-              'This is a description This is a description'
-              ' This is a description',
-        ),
-        Periodista(
-          id: 2,
-          name: 'Julian Julian Julian Julian',
-          anchor: 'Nidus',
-          location: 'Argentina',
-          topicCovered: ['Software'],
-          email: 'julian@nidus.com',
-          avatar:
-              'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png',
-          valoracion: 90,
-          estaSeleccionado: true,
-          urlDeImage:
-              'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png',
-          idioma: 'Spanish',
-          telefono: '11 4585-2435',
-          facebook: 'Julian Julian Julian',
-          instagram: '@julian_nidus',
-          twitter: '@julian_nidus',
-          youtube: '@julian_nidus',
-          descripcion: 'This is a description This is a description This'
-              ' is a description This is a description This is a '
-              'description This is a description This is a description'
-              ' This is a description',
-        ),
-      ];
+      final periodistas = await client.periodista.listarPeriodistas(
+        idPaises: state.paises.idsSeleccionados,
+        idCiudades: state.ciudades.idsSeleccionados,
+        idIdiomas: state.lenguajes.idsSeleccionados,
+        idTemas: state.temas.idsSeleccionados,
+        idTiposDeMedio: state.tipoDeMedio.idsSeleccionados,
+        idPuestos: state.puestos.idsSeleccionados,
+        nombres: state.nombrePeriodista,
+        nombreDeMedio: state.nombreDeMedio,
+      );
 
       emit(
         BlocDbMediosDeComunicacionEstadoExitoso.desde(
@@ -104,48 +51,6 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
           periodistas: periodistas,
         ),
       );
-    } catch (e) {
-      emit(BlocDbMediosDeComunicacionEstadoFallido.desde(state));
-    }
-  }
-
-  /// Trata información mas detallada de un periodista.
-  Future<void> _obtenerDetallePeriodista(
-    BlocDbMediosDeComunicacionEventoObtenerDetallePeriodista event,
-    Emitter<BlocDbMediosDeComunicacionEstado> emit,
-  ) async {
-    emit(BlocDbMediosDeComunicacionEstadoCargando.desde(state));
-
-    try {
-      // TODO(Andre): Cambiar por endpoint del backend
-      final periodista = state.periodistas.firstWhere(
-        (e) => e.id == event.idPeriodista,
-      );
-
-      emit(
-        BlocDbMediosDeComunicacionDetallePeriodistaEstadoExitoso.desde(
-          state,
-          periodista,
-        ),
-      );
-    } catch (e) {
-      emit(BlocDbMediosDeComunicacionEstadoFallido.desde(state));
-    }
-  }
-
-  /// Trata de obtener la lista de articulos ya publicados por un periodista
-  /// a través del `idPeriodista`.
-  Future<void> _obtenerArticulosDelPeriodista(
-    BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista event,
-    Emitter<BlocDbMediosDeComunicacionEstado> emit,
-  ) async {
-    emit(BlocDbMediosDeComunicacionEstadoCargando.desde(state));
-
-    try {
-      // TODO(Andre): Pedir modelo de este tipo de articulo que hace
-      // referencia a aquellos que fueron publicados por un periodista y
-      // terminar/ de manejar esta lógica aca y mostrar la lista en el popup de
-      // detalle del periodista.
     } catch (e) {
       emit(BlocDbMediosDeComunicacionEstadoFallido.desde(state));
     }
@@ -161,9 +66,11 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
         paises: event.paises,
         ciudades: event.ciudades,
         lenguajes: event.lenguajes,
+        puestos: event.roles,
         temas: event.temas,
-        roles: event.roles,
         tipoDeMedio: event.tipoDeMedio,
+        nombrePeriodista: event.nombrePeriodista,
+        nombreDeMedio: event.nombreDeMedio,
       ),
     );
   }
@@ -172,46 +79,120 @@ class BlocDbMediosDeComunicacion extends Bloc<BlocDbMediosDeComunicacionEvento,
     BlocDbMediosDeComunicacionEventoObtenerListadoDeFiltros event,
     Emitter<BlocDbMediosDeComunicacionEstado> emit,
   ) async {
-    final list = [
-      const Filtro(etiqueta: 'Argentina', estaSeleccionado: true),
-      const Filtro(etiqueta: 'Paraguay', estaSeleccionado: true),
-      const Filtro(etiqueta: 'Chile', estaSeleccionado: true),
-      const Filtro(etiqueta: 'Bolivia', estaSeleccionado: true),
-      const Filtro(etiqueta: 'Peru', estaSeleccionado: true),
-      const Filtro(etiqueta: 'Uruguay', estaSeleccionado: true),
-    ];
+    emit(BlocDbMediosDeComunicacionEstadoCargandoFiltros.desde(state));
+    try {
+      final filtros =
+          await client.periodista.obtenerListaDeFiltrosConRecuento();
 
-    emit(
-      BlocDbMediosDeComunicacionEstadoActualizandoFiltros.desde(
-        state,
-        paises: list,
-        ciudades: list,
-        lenguajes: list,
-        temas: list,
-        roles: list,
-        tipoDeMedio: list,
-      ),
-    );
+      final paises = filtros.paises
+          .map(
+            (e) => CategoriaFiltroSeleccionable.fromCategoriaFiltro(
+              e,
+              state.paises.firstWhereOrNull(
+                (element) => element.id == e.id,
+              ),
+            ),
+          )
+          .toList();
+
+      final ciudades = filtros.ciudades
+          .map(
+            (e) => CategoriaFiltroSeleccionable.fromCategoriaFiltro(
+              e,
+              state.ciudades.firstWhereOrNull(
+                (element) => element.id == e.id,
+              ),
+            ),
+          )
+          .toList();
+
+      final lenguajes = filtros.idiomas
+          .map(
+            (e) => CategoriaFiltroSeleccionable.fromCategoriaFiltro(
+              e,
+              state.lenguajes.firstWhereOrNull(
+                (element) => element.id == e.id,
+              ),
+            ),
+          )
+          .toList();
+
+      final puestos = filtros.puestos
+          .map(
+            (e) => CategoriaFiltroSeleccionable.fromCategoriaFiltro(
+              e,
+              state.puestos.firstWhereOrNull(
+                (element) => element.id == e.id,
+              ),
+            ),
+          )
+          .toList();
+
+      final temas = filtros.temas
+          .map(
+            (e) => CategoriaFiltroSeleccionable.fromCategoriaFiltro(
+              e,
+              state.temas.firstWhereOrNull(
+                (element) => element.id == e.id,
+              ),
+            ),
+          )
+          .toList();
+
+      final tipoDeMedio = filtros.tiposDeMedio
+          .map(
+            (e) => CategoriaFiltroSeleccionable.fromCategoriaFiltro(
+              e,
+              state.tipoDeMedio.firstWhereOrNull(
+                (element) => element.id == e.id,
+              ),
+            ),
+          )
+          .toList();
+
+      emit(
+        BlocDbMediosDeComunicacionEstadoTrayendoFiltros.desde(
+          state,
+          paises: paises,
+          ciudades: ciudades,
+          lenguajes: lenguajes,
+          puestos: puestos,
+          temas: temas,
+          tipoDeMedio: tipoDeMedio,
+        ),
+      );
+    } catch (e) {
+      emit(BlocDbMediosDeComunicacionEstadoFallido.desde(state));
+    }
   }
 }
 
-// TODO(Andre):  Eliminar este modelo cuando se nos brinden los modelos
-// del backend.
-
-/// Componente provisional hasta que nos den los modelos
-/// de los filtros desde el backend
-class Filtro extends Equatable {
-  const Filtro({
-    required this.etiqueta,
+/// Extiende del modelo CategoriaFiltro para agregarle un bool
+/// 'estaSeleccionado' para poder manipular los filtros.
+class CategoriaFiltroSeleccionable extends CategoriaFiltro {
+  CategoriaFiltroSeleccionable({
     required this.estaSeleccionado,
+    required super.id,
+    required super.nombre,
+    required super.recuento,
   });
 
-  final String etiqueta;
-  final bool estaSeleccionado;
+  factory CategoriaFiltroSeleccionable.fromCategoriaFiltro(
+    CategoriaFiltro filtro,
+    CategoriaFiltroSeleccionable? otro,
+  ) {
+    return CategoriaFiltroSeleccionable(
+      estaSeleccionado: otro?.estaSeleccionado ?? false,
+      id: filtro.id,
+      nombre: filtro.nombre,
+      recuento: filtro.recuento,
+    );
+  }
 
-  @override
-  List<Object?> get props => [
-        etiqueta,
-        estaSeleccionado,
-      ];
+  final bool estaSeleccionado;
+}
+
+extension CategoriaFiltroX on List<CategoriaFiltroSeleccionable> {
+  List<int> get idsSeleccionados =>
+      where((element) => element.estaSeleccionado).map((e) => e.id).toList();
 }

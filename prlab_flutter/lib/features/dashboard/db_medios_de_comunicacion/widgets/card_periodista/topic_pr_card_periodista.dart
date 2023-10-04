@@ -29,14 +29,17 @@ class TopicPRCardPeriodista extends StatelessWidget {
         color: colores.primaryOpacidadDiez,
         borderRadius: BorderRadius.circular(10.sw),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 10.pw),
-      child: Text(
-        topic,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 14.pf,
-          fontWeight: FontWeight.w400,
-          color: colores.tertiary,
+      padding: EdgeInsets.symmetric(horizontal: 5.pw),
+      margin: EdgeInsets.only(right: 5.pw),
+      child: Center(
+        child: Text(
+          topic,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 14.pf,
+            fontWeight: FontWeight.w400,
+            color: colores.tertiary,
+          ),
         ),
       ),
     );
