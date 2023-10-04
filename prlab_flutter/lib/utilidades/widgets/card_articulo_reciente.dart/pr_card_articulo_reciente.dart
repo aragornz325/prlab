@@ -2,21 +2,15 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-
-import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/model_periodista.dart';
 
 class PRCardeArticuloReciente extends StatelessWidget {
   const PRCardeArticuloReciente({
-    required this.periodista,
     required this.titulo,
     required this.onTap,
     super.key,
   });
-
-  // TODO(anyone): Reemplazar por modelo del back Modelo de periodista traido
-  // del backend.
-  final Periodista periodista;
 
   /// Titulo del articulo
   final String titulo;

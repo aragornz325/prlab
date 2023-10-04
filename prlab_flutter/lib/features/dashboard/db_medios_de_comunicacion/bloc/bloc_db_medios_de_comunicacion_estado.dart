@@ -14,27 +14,33 @@ class BlocDbMediosDeComunicacionEstado {
     this.ciudades = const [],
     this.lenguajes = const [],
     this.temas = const [],
-    this.roles = const [],
+    this.puestos = const [],
     this.tipoDeMedio = const [],
+    this.nombrePeriodista = '',
+    this.nombreDeMedio = '',
   });
 
   BlocDbMediosDeComunicacionEstado.desde(
     BlocDbMediosDeComunicacionEstado otro, {
     List<Periodista>? periodistas,
-    List<Filtro>? paises,
-    List<Filtro>? ciudades,
-    List<Filtro>? lenguajes,
-    List<Filtro>? temas,
-    List<Filtro>? roles,
-    List<Filtro>? tipoDeMedio,
+    List<CategoriaFiltroSeleccionable>? paises,
+    List<CategoriaFiltroSeleccionable>? ciudades,
+    List<CategoriaFiltroSeleccionable>? lenguajes,
+    List<CategoriaFiltroSeleccionable>? temas,
+    List<CategoriaFiltroSeleccionable>? puestos,
+    List<CategoriaFiltroSeleccionable>? tipoDeMedio,
+    String? nombrePeriodista,
+    String? nombreDeMedio,
   }) : this._(
           periodistas: periodistas ?? otro.periodistas,
           paises: paises ?? otro.paises,
           ciudades: ciudades ?? otro.ciudades,
           lenguajes: lenguajes ?? otro.lenguajes,
           temas: temas ?? otro.temas,
-          roles: roles ?? otro.roles,
+          puestos: puestos ?? otro.puestos,
           tipoDeMedio: tipoDeMedio ?? otro.tipoDeMedio,
+          nombrePeriodista: nombrePeriodista ?? otro.nombrePeriodista,
+          nombreDeMedio: nombreDeMedio ?? otro.nombreDeMedio,
         );
 
   ///  Representa la `lista de periodistas` que
@@ -53,49 +59,63 @@ class BlocDbMediosDeComunicacionEstado {
   // que sean de la localidad.
 
   /// Lista de paises por los cuales se pueden filtrar los periodistas.
-  ///
-  /// Los [Filtro]s que tenga el valor `estaSeleccionado` en true, se toman
-  /// como parámetro para filtrar la lista de [Periodista]s por ese país.
-  final List<Filtro> paises;
+  /// Los [CategoriaFiltroSeleccionable]s que tenga el valor `estaSeleccionado` en
+  /// true, se toman como parámetro para filtrar la lista de [Periodista]s por
+  /// ese país.
+  final List<CategoriaFiltroSeleccionable> paises;
 
   /// Lista de ciudades por los cuales se pueden filtrar los periodistas.
-  ///
-  /// Los [Filtro]s que tenga el valor `estaSeleccionado` en true, se toman
-  /// como parámetro para filtrar la lista de [Periodista]s por ese ciudad.
-  final List<Filtro> ciudades;
+  /// Los [CategoriaFiltroSeleccionable]s que tenga el valor `estaSeleccionado` en
+  /// true, se toman como parámetro para filtrar la lista de [Periodista]s por
+  /// ese ciudad.
+  final List<CategoriaFiltroSeleccionable> ciudades;
 
   /// Lista de lenguajes por los cuales se pueden filtrar los periodistas.
-  ///
-  /// Los [Filtro]s que tenga el valor `estaSeleccionado` en true, se toman
-  /// como parámetro para filtrar la lista de [Periodista]s por ese lenguaje.
-  final List<Filtro> lenguajes;
+  /// Los [CategoriaFiltroSeleccionable]s que tenga el valor `estaSeleccionado` en
+  /// true, se toman como parámetro para filtrar la lista de [Periodista]s por
+  /// ese lenguaje.
+  final List<CategoriaFiltroSeleccionable> lenguajes;
 
   /// Lista de temas por los cuales se pueden filtrar los periodistas.
-  ///
-  /// Los [Filtro]s que tenga el valor `estaSeleccionado` en true, se toman
-  /// como parámetro para filtrar la lista de [Periodista]s por ese tema.
-  final List<Filtro> temas;
+  /// Los [CategoriaFiltroSeleccionable]s que tenga el valor `estaSeleccionado` en
+  /// true, se toman como parámetro para filtrar la lista de [Periodista]s por
+  /// ese tema.
+  final List<CategoriaFiltroSeleccionable> temas;
 
   /// Lista de roles por los cuales se pueden filtrar los periodistas.
-  ///
-  /// Los [Filtro]s que tenga el valor `estaSeleccionado` en true, se toman
-  /// como parámetro para filtrar la lista de [Periodista]s por ese rol.
-  final List<Filtro> roles;
+  /// Los [CategoriaFiltroSeleccionable]s que tenga el valor `estaSeleccionado` en
+  /// true, se toman como parámetro para filtrar la lista de [Periodista]s por
+  /// ese rol.
+  final List<CategoriaFiltroSeleccionable> puestos;
 
   /// Lista de tipo de medios por los cuales se pueden filtrar los periodistas.
-  ///
-  /// Los [Filtro]s que tenga el valor `estaSeleccionado` en true, se toman
-  /// como parámetro para filtrar la lista de [Periodista]s por ese tipo
-  /// de medio.
-  final List<Filtro> tipoDeMedio;
+  /// Los [CategoriaFiltroSeleccionable]s que tenga el valor `estaSeleccionado` en
+  /// true, se toman como parámetro para filtrar la lista de [Periodista]s por
+  /// ese tipo de medio.
+  final List<CategoriaFiltroSeleccionable> tipoDeMedio;
+
+  /// Nombre del periodista a filtrar
+  final String nombrePeriodista;
+
+  /// Nombre del medio a filtrar
+  final String nombreDeMedio;
+
+  /// Devuelve `true` si el estado es
+  /// [BlocDbMediosDeComunicacionEstadoActualizandoFiltros]
+  bool get estaActualizandoFiltros =>
+      this is BlocDbMediosDeComunicacionEstadoActualizandoFiltros;
+
+  /// Devuelve `true` si el estado es
+  /// [BlocDbMediosDeComunicacionEstadoCargando]
+  bool get estaCargando => this is BlocDbMediosDeComunicacionEstadoCargando;
 
   /// Lista de [paises] convertida a una [Item] list para
   /// poder manipular los filtros desde el componente
   /// [TileConCheckBoxes].
-  List<Item<Filtro>> get itemPaises => paises
+  List<Item<CategoriaFiltroSeleccionable>> get itemPaises => paises
       .map(
         (e) => Item(
-          etiqueta: e.etiqueta,
+          nombre: '${e.nombre} (${e.recuento})',
           valor: e,
           estaSeleccionado: e.estaSeleccionado,
         ),
@@ -105,10 +125,10 @@ class BlocDbMediosDeComunicacionEstado {
   /// Lista de [ciudades] convertida a una [Item] list para
   /// poder manipular los filtros desde el componente
   /// [TileConCheckBoxes].
-  List<Item<Filtro>> get itemCiudades => ciudades
+  List<Item<CategoriaFiltroSeleccionable>> get itemCiudades => ciudades
       .map(
         (e) => Item(
-          etiqueta: e.etiqueta,
+          nombre: '${e.nombre} (${e.recuento})',
           valor: e,
           estaSeleccionado: e.estaSeleccionado,
         ),
@@ -118,10 +138,10 @@ class BlocDbMediosDeComunicacionEstado {
   /// Lista de [lenguajes] convertida a una [Item] list para
   /// poder manipular los filtros desde el componente
   /// [TileConCheckBoxes].
-  List<Item<Filtro>> get itemLenguajes => lenguajes
+  List<Item<CategoriaFiltroSeleccionable>> get itemLenguajes => lenguajes
       .map(
         (e) => Item(
-          etiqueta: e.etiqueta,
+          nombre: '${e.nombre} (${e.recuento})',
           valor: e,
           estaSeleccionado: e.estaSeleccionado,
         ),
@@ -131,23 +151,23 @@ class BlocDbMediosDeComunicacionEstado {
   /// Lista de [temas] convertida a una [Item] list para
   /// poder manipular los filtros desde el componente
   /// [TileConCheckBoxes].
-  List<Item<Filtro>> get itemTemas => temas
+  List<Item<CategoriaFiltroSeleccionable>> get itemTemas => temas
       .map(
         (e) => Item(
-          etiqueta: e.etiqueta,
+          nombre: '${e.nombre} ${e.recuento}',
           valor: e,
           estaSeleccionado: e.estaSeleccionado,
         ),
       )
       .toList();
 
-  /// Lista de [roles] convertida a una [Item] list para
+  /// Lista de [puestos] convertida a una [Item] list para
   /// poder manipular los filtros desde el componente
   /// [TileConCheckBoxes].
-  List<Item<Filtro>> get itemRoles => roles
+  List<Item<CategoriaFiltroSeleccionable>> get itemRoles => puestos
       .map(
         (e) => Item(
-          etiqueta: e.etiqueta,
+          nombre: '${e.nombre} (${e.recuento})',
           valor: e,
           estaSeleccionado: e.estaSeleccionado,
         ),
@@ -157,10 +177,10 @@ class BlocDbMediosDeComunicacionEstado {
   /// Lista de [tipoDeMedio] convertida a una [Item] list para
   /// poder manipular los filtros desde el componente
   /// [TileConCheckBoxes].
-  List<Item<Filtro>> get itemTipoDeMedio => tipoDeMedio
+  List<Item<CategoriaFiltroSeleccionable>> get itemTipoDeMedio => tipoDeMedio
       .map(
         (e) => Item(
-          etiqueta: e.etiqueta,
+          nombre: '${e.nombre} (${e.recuento})',
           valor: e,
           estaSeleccionado: e.estaSeleccionado,
         ),
@@ -186,6 +206,17 @@ class BlocDbMediosDeComunicacionEstadoCargando
   BlocDbMediosDeComunicacionEstadoCargando.desde(super.otro) : super.desde();
 }
 
+/// {@template BlocDbMediosDeComunicacionEstadoCargandoFiltros}
+/// Estado de espera cuando se actualizan los filtros
+/// [BlocDbMediosDeComunicacionEstado].
+/// {@endtemplate}
+class BlocDbMediosDeComunicacionEstadoCargandoFiltros
+    extends BlocDbMediosDeComunicacionEstado {
+  /// {@macro BlocDbMediosDeComunicacionEstadoCargandoFiltros}
+  BlocDbMediosDeComunicacionEstadoCargandoFiltros.desde(super.otro)
+      : super.desde();
+}
+
 /// {@template BlocDbMediosDeComunicacionEstadoExitoso}
 /// Estado de exito de [BlocDbMediosDeComunicacionEstado].
 /// {@endtemplate}
@@ -198,24 +229,6 @@ class BlocDbMediosDeComunicacionEstadoExitoso
   }) : super.desde();
 }
 
-/// {@template BlocDbMediosDeComunicacionDetallePeriodistaEstadoExitoso}
-/// Estado de exito de [BlocDbMediosDeComunicacionEstado] cuando se
-/// trae de manera exitosa la información de un periodista en particular.
-///
-/// Esto ocurre cuando el usuario presiona en ver detalles del periodista
-/// esto trae información mas en detalle del mismo.
-/// {@endtemplate}
-class BlocDbMediosDeComunicacionDetallePeriodistaEstadoExitoso
-    extends BlocDbMediosDeComunicacionEstado {
-  /// {@macro BlocDbMediosDeComunicacionDetallePeriodistaEstadoExitoso}
-  BlocDbMediosDeComunicacionDetallePeriodistaEstadoExitoso.desde(
-    super.otro,
-    this.periodista,
-  ) : super.desde();
-
-  final Periodista periodista;
-}
-
 /// {@template BlocDbMediosDeComunicacionEstadoFallido}
 /// Estado de fallo de [BlocDbMediosDeComunicacionEstado].
 /// {@endtemplate}
@@ -226,6 +239,7 @@ class BlocDbMediosDeComunicacionEstadoFallido
 }
 
 /// {@template BlocDbMediosDeComunicacionEstadoActualizandoFiltros}
+/// Se emite cada vez que se actualiza un filtro ya sea agregar o eliminar uno
 /// {@endtemplate}
 class BlocDbMediosDeComunicacionEstadoActualizandoFiltros
     extends BlocDbMediosDeComunicacionEstado {
@@ -236,7 +250,29 @@ class BlocDbMediosDeComunicacionEstadoActualizandoFiltros
     super.ciudades,
     super.lenguajes,
     super.temas,
-    super.roles,
+    super.puestos,
     super.tipoDeMedio,
+    super.nombrePeriodista,
+    super.nombreDeMedio,
+  }) : super.desde();
+}
+
+/// {@template BlocDbMediosDeComunicacionEstadoTrayendoFiltros}
+/// Se emite cuando se estan trayendo del back, sea porque se inicio la pagina
+/// o porque se actualizaron los filtros
+/// {@endtemplate}
+class BlocDbMediosDeComunicacionEstadoTrayendoFiltros
+    extends BlocDbMediosDeComunicacionEstado {
+  /// {@macro BlocDbMediosDeComunicacionEstadoTrayendoFiltros}
+  BlocDbMediosDeComunicacionEstadoTrayendoFiltros.desde(
+    super.otro, {
+    super.paises,
+    super.ciudades,
+    super.lenguajes,
+    super.temas,
+    super.puestos,
+    super.tipoDeMedio,
+    super.nombrePeriodista,
+    super.nombreDeMedio,
   }) : super.desde();
 }

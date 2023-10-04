@@ -328,11 +328,10 @@ class OrmEntregableArticulo extends ORM {
   ///
   /// Returns:
   ///   un `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
-  Future<List<EntregableArticulo>> traerEntregableporFiltro({
-    required Session session,
-    required List<int> status,
-    required int idAutor
-  }) async {
+  Future<List<EntregableArticulo>> traerEntregableporFiltro(
+      {required Session session,
+      required List<int> status,
+      required int idAutor}) async {
     return ejecutarOperacionOrm(session, (session) async {
       List articulos = [];
       for (var i = 0; i < status.length; i++) {
@@ -346,9 +345,35 @@ class OrmEntregableArticulo extends ORM {
         logger.fine('articulos encontrados: ${articulos.length}');
       }
       articulos.sort((a, b) => b.fechaCreacion.compareTo(a.fechaCreacion));
-      final articulosFiltrados = articulos.where((articulo) => articulo.idAutor == idAutor).toList();
+      final articulosFiltrados =
+          articulos.where((articulo) => articulo.idAutor == idAutor).toList();
 
       return await Future.value(articulosFiltrados.cast<EntregableArticulo>());
     });
+  }
+
+  Future<List<EntregableArticulo>> listarArticuloMarcayEstado({
+    required Session session,
+    required int idMarca,
+    required List<int> idStatus,
+  }) async {
+    List articulos = [];
+    if (idStatus.length == 1 && idStatus[0] == 0) {
+      return await EntregableArticulo.find(session,
+          where: (t) =>
+              t.idMarca.equals(idMarca) & t.fechaEliminacion.equals(null));
+    }
+    for (var i = 0; i < idStatus.length; i++) {
+      logger.finer('buscando en la db los articulos con status: $idStatus');
+      final articulo = await EntregableArticulo.find(session,
+          where: (t) =>
+              t.idStatus.equals(idStatus[i]) &
+              t.fechaEliminacion.equals(null) &
+              t.idMarca.equals(idMarca));
+      articulos.addAll(articulo);
+      logger.fine('articulos encontrados: ${articulos.length}');
+    }
+    articulos.sort((a, b) => b.fechaCreacion.compareTo(a.fechaCreacion));
+    return articulos.cast<EntregableArticulo>();
   }
 }

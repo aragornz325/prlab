@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/model_periodista.dart';
 import 'package:prlab_flutter/features/dashboard/inicio/bloc/bloc_inicio.dart';
 import 'package:prlab_flutter/features/dashboard/inicio/escritorio/widgets/widgets.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/encabezado_de_seccion.dart';
@@ -71,26 +70,6 @@ class VistaEscritorioInicio extends StatelessWidget {
                                     // correspondiente
                                   },
                                   titulo: state.listaArticulos[index].titulo,
-                                  // TODO(Gon): cambiar por el modelo del back
-                                  periodista: Periodista(
-                                    name: 'name',
-                                    anchor: 'anchor',
-                                    location: 'location',
-                                    topicCovered: ['topicCovered'],
-                                    email: 'email',
-                                    avatar: 'avatar',
-                                    valoracion: 10,
-                                    estaSeleccionado: false,
-                                    urlDeImage: 'urlDeImage',
-                                    idioma: 'idioma',
-                                    telefono: 'telefono',
-                                    facebook: 'facebook',
-                                    instagram: 'instagram',
-                                    twitter: 'twitter',
-                                    youtube: 'youtube',
-                                    descripcion: 'descripcion',
-                                    id: 3,
-                                  ),
                                 ),
                                 SizedBox(
                                   width: 55.pw,

@@ -24,10 +24,29 @@ class PaginaDbMediosDeComunicacion extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => BlocDbMediosDeComunicacion(),
-      child: const FullResponsiveScreen(
-        mobile: VistaCelularDbMediosDeComunicacion(),
-        desktop: VistaEscritorioDbMediosDeComunicacion(),
+      child: BlocListener<BlocDbMediosDeComunicacion,
+          BlocDbMediosDeComunicacionEstado>(
+        listener: (context, state) {
+          if (state.estaActualizandoFiltros) {
+            actualizarFiltrosYObtenerPeriodistas(context: context);
+          }
+        },
+        child: const FullResponsiveScreen(
+          mobile: VistaCelularDbMediosDeComunicacion(),
+          desktop: VistaEscritorioDbMediosDeComunicacion(),
+        ),
       ),
     );
+  }
+
+  /// Se llama cuando se actualiza un filtro (agrega o quita)
+  void actualizarFiltrosYObtenerPeriodistas({required BuildContext context}) {
+    context.read<BlocDbMediosDeComunicacion>().add(
+          BlocDbMediosDeComunicacionEventoObtenerPeriodistas(),
+        );
+
+    context.read<BlocDbMediosDeComunicacion>().add(
+          BlocDbMediosDeComunicacionEventoObtenerListadoDeFiltros(),
+        );
   }
 }

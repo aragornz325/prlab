@@ -631,11 +631,11 @@
         }
     },
 
-    "pageMediaDatabaseJournalistInformationDialogAnchorAt": "Anchor at {workplace}",
-    "@pageMediaDatabaseJournalistInformationDialogAnchorAt": {
-        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, it indicates where the journalist works",
-        "placeholders" :{
-            "workplace" : {
+    "pageMediaDatabaseAt": "{position} at",
+    "@pageMediaDatabaseAt": {
+        "description": "Text shown when the user doesn´t have any data to show",
+        "placeholders" : {
+            "position" : {
                 "type": "String"
             }
         }

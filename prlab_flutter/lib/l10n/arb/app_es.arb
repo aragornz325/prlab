@@ -730,15 +730,6 @@
             }
         }
     },
-    "pageMediaDatabaseJournalistInformationDialogAnchorAt": "Anchor at {workplace}",
-    "@pageMediaDatabaseJournalistInformationDialogAnchorAt": {
-        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, it indicates where the journalist works",
-        "placeholders" :{
-            "workplace" : {
-                "type": "String"
-            }
-        }
-    },
 
     "pageHomeContainerBusquedaPlaceholder": "Busca artículos, proyectos, marcas y más...",
     "@pageHomeContainerBusquedaPlaceholder": {
@@ -779,6 +770,16 @@
         "description": "It is found in the journalist filters, the people menu,the hint text inside the dropdown in the popup that is shown when you want to modify the filters",
         "placeholders" :{
             "something" : {
+                "type": "String"
+            }
+        }
+    },
+
+    "pageMediaDatabaseAt": "{position} en",
+    "@pageMediaDatabaseAt": {
+        "description": "Text shown when the user doesn´t have any data to show",
+        "placeholders" : {
+            "position" : {
                 "type": "String"
             }
         }

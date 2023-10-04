@@ -228,4 +228,20 @@ class EntregableArticuloEndpoint extends Endpoint {
       rethrow;
     }
   }
+
+  Future<List<EntregableArticulo>> listarArticuloMarcayEstado(
+    Session session, {
+    required int idMarca,
+    required List<int> idStatus,
+  }) async {
+    try {
+      return await servicioArticulo.listarArticuloMarcayEstado(
+        session: session,
+        idMarca: idMarca,
+        idStatus: idStatus,
+      );
+    } on Exception {
+      rethrow;
+    }
+  }
 }

@@ -348,4 +348,18 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
       ),
     );
   }
+
+  Future<List<EntregableArticulo>> listarArticuloMarcayEstado({
+    required Session session,
+    required int idMarca,
+    required List<int> idStatus,
+  }) async {
+    return await ejecutarOperacion(
+      () => orm.listarArticuloMarcayEstado(
+        session: session,
+        idMarca: idMarca,
+        idStatus: idStatus,
+      ),
+    );
+  }
 }
