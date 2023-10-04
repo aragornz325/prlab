@@ -1,0 +1,8 @@
+enum: StatusEntregables
+values:
+  - draft
+  - feedback
+  - approved
+  - scheduled
+  - published
+  
