@@ -331,31 +331,24 @@ class OrmEntregableArticulo extends ORM {
   Future<List<EntregableArticulo>> traerEntregableporFiltro({
     required Session session,
     required List<int> status,
+    required int idAutor
   }) async {
     return ejecutarOperacionOrm(session, (session) async {
-      if (status.length == 1) {
+      List articulos = [];
+      for (var i = 0; i < status.length; i++) {
         logger.finer('buscando en la db los articulos con status: $status');
-        final articulos = await EntregableArticulo.find(
-          session,
-          where: (t) =>
-              t.idStatus.equals(status[0]) & t.fechaEliminacion.equals(null),
-        );
-        logger.fine('articulos encontrados: ${articulos.length}');
-        return articulos;
-      } else {
-        List articulos = [];
-        for (var i = 0; i < status.length; i++) {
-          logger.finer('buscando en la db los articulos con status: $status');
-          final articulo = await EntregableArticulo.find(
-            session,
+        final articulo = await EntregableArticulo.find(session,
             where: (t) =>
-                t.idStatus.equals(status[i]) & t.fechaEliminacion.equals(null),
-          );
-          articulos.addAll(articulo);
-          logger.fine('articulos encontrados: ${articulos.length}');
-        }
-        return Future.value(articulos.cast<EntregableArticulo>());
+                t.idStatus.equals(status[i]) &
+                t.fechaEliminacion.equals(null) &
+                t.idAutor.equals(idAutor));
+        articulos.addAll(articulo);
+        logger.fine('articulos encontrados: ${articulos.length}');
       }
+      articulos.sort((a, b) => b.fechaCreacion.compareTo(a.fechaCreacion));
+      final articulosFiltrados = articulos.where((articulo) => articulo.idAutor == idAutor).toList();
+
+      return await Future.value(articulosFiltrados.cast<EntregableArticulo>());
     });
   }
 }
