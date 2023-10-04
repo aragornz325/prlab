@@ -20,10 +20,13 @@ class BlocListaArticulosYRecortesEventoFiltrar
     extends BlocListaArticulosYRecortesEvento {
   /// {@macro BlocListaArticulosYRecortesEventoFiltrar}
   @override
-  const BlocListaArticulosYRecortesEventoFiltrar();
+  const BlocListaArticulosYRecortesEventoFiltrar({
+    required this.sinFiltro,
+  });
 
   // TODO(anyone): agregar el tipo de filtrado sea por
   // un enum u otro tipo
+  final bool sinFiltro;
 }
 
 /// {@template BlocListaArticulosYRecortesEventoTraerArticulos}

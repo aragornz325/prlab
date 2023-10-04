@@ -129,14 +129,20 @@ class ListaDeArticulos extends StatelessWidget {
                         width: 100.pw,
                         height: max(35.ph, 35.sh),
                         decoration: BoxDecoration(
-                          color: colores.secondary,
+                          color: devolverColorDependiendoDelEstado(
+                            context: context,
+                            numero: value,
+                          ),
                           borderRadius: BorderRadius.all(
                             Radius.circular(100.sw),
                           ),
                         ),
                         child: Center(
                           child: Text(
-                            value.toString(),
+                            devolverNombreDelEstado(
+                              context: context,
+                              numero: value,
+                            ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -307,4 +313,38 @@ class ListaDeArticulos extends StatelessWidget {
       ],
     );
   }
+}
+
+String devolverNombreDelEstado({
+  required int numero,
+  required BuildContext context,
+}) {
+  final l10n = context.l10n;
+
+  return switch (numero) {
+    1 => l10n.commonDraft,
+    2 => l10n.commonFeedback,
+    3 => l10n.commonApproved,
+    4 => l10n.commonSchedule,
+    5 => l10n.commonPublished,
+    _ => '',
+  };
+}
+
+Color devolverColorDependiendoDelEstado({
+  required int numero,
+  required BuildContext context,
+}) {
+  final colores = context.colores;
+
+  return switch (numero) {
+    1 => colores.secondary,
+    2 => colores.onTertiary,
+    3 => colores.primaryContainer,
+
+    /// TODO(anyone): agregar al theme este color
+    4 => Colors.yellow,
+    5 => colores.onTertiaryContainer,
+    _ => colores.secondary,
+  };
 }

@@ -28,13 +28,12 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
       context: context,
       height: max(350.ph, 350.sh),
       onTap: () {
-        // TODO(anyone): agregarle funcionalidad.
-        context
-            .read<BlocListaArticulosYRecortes>()
-            .add(const BlocListaArticulosYRecortesEventoFiltrar());
-        // print('hola');
-        // Navigator.of(context).pop();
-        // Muestra el popup de esta feature estará disponible en otra version
+        context.read<BlocListaArticulosYRecortes>().add(
+              const BlocListaArticulosYRecortesEventoFiltrar(
+                sinFiltro: false,
+              ),
+            );
+        Navigator.of(context).pop();
       },
       titulo: l10n.commonAlertDialogFilterByStatus,
       botonText: l10n.commonApply,
@@ -67,9 +66,7 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                         ),
                         SizedBox(width: 5.pw),
                         Text(
-                          // TODO(mati): hacer l10n, pero todavia no esta del todo
-                          // definido los estado a filtrar
-                          'Draft',
+                          l10n.commonDraft,
                           style: TextStyle(
                             color: colores.tertiary,
                             fontSize: 14.pf,
@@ -98,9 +95,7 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                         ),
                         SizedBox(width: 5.pw),
                         Text(
-                          // TODO(mati): hacer l10n, pero todavia no esta del todo
-                          // definido los estado a filtrar
-                          'Feedback',
+                          l10n.commonFeedback,
                           style: TextStyle(
                             color: colores.tertiary,
                             fontSize: 14.pf,
@@ -129,9 +124,7 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                         ),
                         SizedBox(width: 5.pw),
                         Text(
-                          // TODO(anyone): Hacer l10n, pero todavia no esta del todo
-                          // definido los estado a filtrar
-                          'approved',
+                          l10n.commonApproved,
                           style: TextStyle(
                             color: colores.tertiary,
                             fontSize: 14.pf,
@@ -166,9 +159,7 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                         ),
                         SizedBox(width: 5.pw),
                         Text(
-                          // TODO(mati): hacer l10n, pero todavia no esta del todo
-                          // definido los estado a filtrar
-                          'scheduled',
+                          l10n.commonSchedule,
                           style: TextStyle(
                             color: colores.tertiary,
                             fontSize: 14.pf,
@@ -196,9 +187,7 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                         ),
                         SizedBox(width: 5.pw),
                         Text(
-                          // TODO(mati): hacer l10n, pero todavia no esta del todo
-                          // definido los estado a filtrar
-                          'published',
+                          l10n.commonPublished,
                           style: TextStyle(
                             color: colores.tertiary,
                             fontSize: 14.pf,

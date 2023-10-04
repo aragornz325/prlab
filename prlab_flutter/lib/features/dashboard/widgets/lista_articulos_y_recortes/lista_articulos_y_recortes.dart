@@ -22,8 +22,9 @@ class ListaArticulosYRecortes extends StatelessWidget {
 
     return BlocProvider<BlocListaArticulosYRecortes>(
       create: (context) => BlocListaArticulosYRecortes()
-        ..add(BlocListaArticulosYRecortesEventoTraerArticulos(idMarca: idMarca))
-        ..add(const BlocListaArticulosYRecortesEventoFiltrar()),
+        ..add(
+          BlocListaArticulosYRecortesEventoTraerArticulos(idMarca: idMarca),
+        ),
       child: BlocBuilder<BlocListaArticulosYRecortes,
           BlocListaArticulosYRecortesEstado>(
         builder: (context, state) {

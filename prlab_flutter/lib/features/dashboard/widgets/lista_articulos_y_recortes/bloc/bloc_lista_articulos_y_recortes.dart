@@ -85,7 +85,14 @@ class BlocListaArticulosYRecortes extends Bloc<
   ) async {
     emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
     try {
-      if (state.borrador ||
+      if (event.sinFiltro) {
+        emit(
+          BlocListaArticulosYRecortesEstadoExitoso.desde(
+            state,
+            articulosFiltrados: state.articulos,
+          ),
+        );
+      } else if (state.borrador ||
           state.comentario ||
           state.programado ||
           state.publicado ||
@@ -113,6 +120,7 @@ class BlocListaArticulosYRecortes extends Bloc<
             await client.entregableArticulo.traerEntregableporFiltro(
           status: status,
         );
+
         emit(
           BlocListaArticulosYRecortesEstadoExitoso.desde(
             state,

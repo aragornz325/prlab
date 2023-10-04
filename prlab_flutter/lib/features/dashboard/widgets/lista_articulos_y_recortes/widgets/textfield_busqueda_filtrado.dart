@@ -39,44 +39,45 @@ class _TextFieldBusquedaFiltradoState extends State<TextFieldBusquedaFiltrado> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 20.ph),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
-            width: 813.pw,
-            height: max(50.ph, 50.sh),
-            padding: EdgeInsets.symmetric(horizontal: 5.pw),
-            decoration: BoxDecoration(
-              color: colores.surfaceTint,
-              borderRadius: BorderRadius.all(Radius.circular(10.sw)),
-              border: Border.all(color: colores.outline),
-            ),
-            child: Center(
-              child: TextFormField(
-                controller: controllerFiltradoNombre,
-                style: TextStyle(
-                  color: colores.primary,
-                  fontSize: 15.pf,
-                  fontWeight: FontWeight.w400,
-                ),
-                onChanged: (value) =>
-                    context.read<BlocListaArticulosYRecortes>().add(
-                          BlocListaArticulosYRecortesEventoFiltrarBuscador(
-                            nombreDelArticuloAFiltrar: value,
+          Padding(
+            padding: EdgeInsets.only(left: 60.pw, right: 20.pw),
+            child: Container(
+              width: 863.pw,
+              height: max(50.ph, 50.sh),
+              decoration: BoxDecoration(
+                color: colores.surfaceTint,
+                borderRadius: BorderRadius.all(Radius.circular(10.sw)),
+                border: Border.all(color: colores.outline),
+              ),
+              child: Center(
+                child: TextFormField(
+                  controller: controllerFiltradoNombre,
+                  style: TextStyle(
+                    color: colores.primary,
+                    fontSize: 15.pf,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  onChanged: (value) =>
+                      context.read<BlocListaArticulosYRecortes>().add(
+                            BlocListaArticulosYRecortesEventoFiltrarBuscador(
+                              nombreDelArticuloAFiltrar: value,
+                            ),
                           ),
-                        ),
-                decoration: InputDecoration(
-                  hintText: l10n.commonSearch,
-                  border: InputBorder.none,
-                  prefixIcon: Icon(
-                    Icons.manage_search,
-                    color: colores.secondary,
-                    size: 20.pw,
+                  decoration: InputDecoration(
+                    hintText: l10n.commonSearch,
+                    border: InputBorder.none,
+                    prefixIcon: Icon(
+                      Icons.manage_search,
+                      color: colores.secondary,
+                      size: 20.pw,
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-          SizedBox(width: 20.pw),
+          SizedBox(width: 0.pw),
           const PopupOpcionesDeFiltrado(),
         ],
       ),

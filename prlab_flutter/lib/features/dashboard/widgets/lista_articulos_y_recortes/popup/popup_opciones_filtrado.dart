@@ -69,12 +69,11 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
             ),
           ),
           onTap: () {
-            showDialog<void>(
-              context: context,
-              builder: (context) {
-                return const PrDialogFiltrarPorAutor();
-              },
-            );
+            context.read<BlocListaArticulosYRecortes>().add(
+                  const BlocListaArticulosYRecortesEventoFiltrar(
+                    sinFiltro: true,
+                  ),
+                );
 
             setState(() {
               _estaDesplegado = false;
