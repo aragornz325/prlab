@@ -8,11 +8,11 @@ import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/theming/base.dart';
 import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
-/// {@template alcanza_dropdown}
+/// {@template PRDropdown}
 /// Dropdown widget used in the app.
 /// {@endtemplate}
 class PRDropdown<T> extends StatefulWidget {
-  /// {@macro alcanza_dropdown}
+  /// {@macro PRDropdown}
   const PRDropdown({
     required this.isValid,
     required this.items,
@@ -130,6 +130,8 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
 
   final _controller = TextEditingController();
 
+  final _focusNode = FocusNode();
+
   List<PRDropdownOption<T>> items = [];
 
   @override
@@ -146,17 +148,19 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
   }
 
   void filterSearchResults(String query) {
-    if (query.isEmpty) {
-      items = widget.items;
-    } else {
-      items = widget.items.where(
-        (element) {
-          return element.title.toUpperCase().contains(
-                query.toUpperCase(),
-              );
-        },
-      ).toList();
-    }
+    setState(() {
+      if (query.isEmpty) {
+        items = widget.items;
+      } else {
+        items = widget.items.where(
+          (element) {
+            return element.title.toUpperCase().contains(
+                  query.toUpperCase(),
+                );
+          },
+        ).toList();
+      }
+    });
   }
 
   @override
@@ -172,7 +176,7 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
     items = _controller.text.isEmpty ? widget.items : items;
 
     final listLength = min(
-      (widget.itemHeight ?? 38.5.ph) * widget.items.length +
+      (widget.itemHeight ?? 38.5.ph) * items.length +
           (widget.additionalOption != null ? 128.ph : 64.ph) +
           (widget.hasSearchField ? 84.ph : 0),
       (widget.itemHeight ?? 38.5.ph) *
@@ -181,11 +185,7 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
           (widget.hasSearchField ? 84.ph : 0),
     );
 
-    final heigth = widget.notExpandedHeight ??
-        (
-            // kIsWeb ?
-            //  74.ph :
-            50.ph);
+    final heigth = widget.notExpandedHeight ?? (50.ph);
 
     return Container(
       width: widget.width,
@@ -227,12 +227,15 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
                                     .copyWith(bottom: 5.ph),
                                 child: PRTextFormField(
                                   controller: _controller,
+                                  focusNode: _focusNode,
                                   prefixIcon: Icons.search,
                                   hintText: 'Escribir ..',
+                                  onEditingComplete: _focusNode.unfocus,
+                                  onFieldSubmitted: (_) => _focusNode.unfocus(),
                                 ),
                               ),
                             ...items.map((option) {
-                              return _AlcanzaDropdownOptionWidget<T>(
+                              return _PRDropdownOptionWidget<T>(
                                 padding: widget.itemPadding,
                                 color: option.color,
                                 enabled: option.enabled,
@@ -259,18 +262,18 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
                       ),
                       if (widget.additionalOption != null) ...[
                         Divider(color: colores.onSecondary),
-                        _AlcanzaDropdownOptionWidget(
-                          title: widget.additionalOption!.title,
-                          value: widget.additionalOption!.value,
-                          traillingIcon: widget.additionalOption!.traillingIcon,
+                        _PRDropdownOptionWidget(
+                          title: widget.additionalOption?.title ?? '',
+                          value: widget.additionalOption?.value,
+                          traillingIcon: widget.additionalOption?.traillingIcon,
                           checkBoxCallback:
-                              widget.additionalOption!.checkBoxCallback,
-                          checkBoxValue: widget.additionalOption!.checkBoxValue,
-                          icon: widget.additionalOption!.icon,
-                          itemHeight: widget.additionalOption!.itemHeight,
-                          preffixIcon: widget.additionalOption!.preffixIcon,
+                              widget.additionalOption?.checkBoxCallback,
+                          checkBoxValue: widget.additionalOption?.checkBoxValue,
+                          icon: widget.additionalOption?.icon,
+                          itemHeight: widget.additionalOption?.itemHeight,
+                          preffixIcon: widget.additionalOption?.preffixIcon,
                           callback: () {
-                            widget.additionalOption!.callback?.call();
+                            widget.additionalOption?.callback?.call();
                             setState(() => _isExpanded = false);
                           },
                         ),
@@ -324,19 +327,6 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
                   ),
                   child: Row(
                     children: [
-                      // if (widget.icon != null) ...[
-                      //   SizedBox(
-                      //     width: 73.pw,
-                      //     child: widget.icon,
-                      //   ),
-                      //   VerticalDivider(
-                      //     color: colores.onPrimary,
-                      //     width: 1.pw,
-                      //     thickness: 1.pw,
-                      //     endIndent: 13.pw,
-                      //     indent: 13.pw,
-                      //   ),
-                      // ],
                       SizedBox(width: widget.icon != null ? 5.pw : 1.pw),
                       if (widget.icon != null) widget.icon!,
                       SizedBox(width: widget.icon != null ? 5.pw : 1.pw),
@@ -387,11 +377,11 @@ class _PRDropdownState<T> extends State<PRDropdown<T>> {
   }
 }
 
-/// {@template alcanza_dropdown_option}
+/// {@template PRDropdownOption}
 /// This class is used to display the options of the dropdown.
 /// {@endtemplate}
 class PRDropdownOption<T> {
-  /// {@macro alcanza_dropdown_option}
+  /// {@macro PRDropdownOption}
   const PRDropdownOption({
     required this.title,
     required this.value,
@@ -444,8 +434,8 @@ class PRDropdownOption<T> {
   final TextStyle? textStyle;
 }
 
-class _AlcanzaDropdownOptionWidget<T> extends StatelessWidget {
-  const _AlcanzaDropdownOptionWidget({
+class _PRDropdownOptionWidget<T> extends StatefulWidget {
+  const _PRDropdownOptionWidget({
     required this.title,
     required this.value,
     required this.traillingIcon,
@@ -501,35 +491,60 @@ class _AlcanzaDropdownOptionWidget<T> extends StatelessWidget {
   final IconData? traillingIcon;
 
   @override
+  State<_PRDropdownOptionWidget<T>> createState() =>
+      _PRDropdownOptionWidgetState<T>();
+}
+
+class _PRDropdownOptionWidgetState<T>
+    extends State<_PRDropdownOptionWidget<T>> {
+  late bool? _estaSeleccionado;
+
+  @override
+  void initState() {
+    _estaSeleccionado = widget.checkBoxValue;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+    final preffixIcon = widget.preffixIcon;
+    final icon = widget.icon;
 
     return Container(
       margin: EdgeInsets.only(top: 6.ph),
-      height: itemHeight ?? 30.ph,
-      color: checkBoxValue != null
-          ? (checkBoxValue ?? false ? colores.primaryOpacidadVeinte : null)
-          : color,
+      height: widget.itemHeight ?? 30.ph,
+      color: widget.checkBoxValue != null
+          ? (_estaSeleccionado ?? false ? colores.primaryOpacidadVeinte : null)
+          : widget.color,
       child: MaterialButton(
-        onPressed: enabled ? callback : () {},
+        onPressed: widget.enabled
+            ? () {
+                setState(() {
+                  widget.callback?.call();
+
+                  if (widget.checkBoxCallback != null) {
+                    _estaSeleccionado = !(_estaSeleccionado ?? false);
+                  }
+                });
+              }
+            : () {},
         highlightColor: colores.primaryOpacidadVeinte,
-        padding: preffixIcon != null ? null : null,
+        padding: widget.preffixIcon != null ? null : null,
         child: Container(
           alignment: Alignment.centerLeft,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (preffixIcon != null) preffixIcon!,
+              if (preffixIcon != null) preffixIcon,
               Expanded(
                 flex: 20,
                 child: Row(
                   children: [
-                    SizedBox(
-                      width: 5.pw,
-                    ),
+                    SizedBox(width: 5.pw),
                     Text(
-                      title,
-                      style: textStyle ??
+                      widget.title,
+                      style: widget.textStyle ??
                           TextStyle(
                             fontSize: 16.pf,
                             color: colores.onPrimary,
@@ -542,25 +557,30 @@ class _AlcanzaDropdownOptionWidget<T> extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              if (traillingIcon != null)
+              if (widget.traillingIcon != null)
                 Icon(
-                  traillingIcon,
+                  widget.traillingIcon,
                   color: colores.primary,
                   size: 20.pw,
                 ),
-              if (checkBoxValue != null)
+              if (widget.checkBoxValue != null)
                 Theme(
                   data: ThemeData(
                     unselectedWidgetColor: colores.secondary,
                   ),
                   child: Checkbox(
-                    value: checkBoxValue,
-                    onChanged: checkBoxCallback,
+                    value: _estaSeleccionado,
+                    onChanged: (value) {
+                      setState(() {
+                        _estaSeleccionado = value;
+                        widget.checkBoxCallback?.call(value);
+                      });
+                    },
                     activeColor: colores.primary,
                     hoverColor: Colors.transparent,
                   ),
                 ),
-              if (icon != null) icon!,
+              if (icon != null) icon,
             ],
           ),
         ),

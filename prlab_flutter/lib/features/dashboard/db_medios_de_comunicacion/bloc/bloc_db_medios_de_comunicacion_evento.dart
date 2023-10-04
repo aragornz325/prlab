@@ -15,37 +15,6 @@ class BlocDbMediosDeComunicacionEventoObtenerPeriodistas
   BlocDbMediosDeComunicacionEventoObtenerPeriodistas();
 }
 
-/// {@template BlocDbMediosDeComunicacionEventoObtenerDetallePeriodista}
-/// Trata información mas detallada de un periodista.
-/// {@endtemplate}
-class BlocDbMediosDeComunicacionEventoObtenerDetallePeriodista
-    extends BlocDbMediosDeComunicacionEvento {
-  /// {@macro BlocDbMediosDeComunicacionEventoObtenerDetallePeriodista}
-  BlocDbMediosDeComunicacionEventoObtenerDetallePeriodista(
-    this.idPeriodista,
-  );
-
-  /// El identificador de un periodista, sirve para obtener información más
-  /// detallada del mismo dentro de la base de datos.
-  final int idPeriodista;
-}
-
-/// {@template BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista}
-/// Trata de obtener la lista de articulos ya publicados por un periodista
-/// a traves del [idPeriodista].
-/// {@endtemplate}
-class BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista
-    extends BlocDbMediosDeComunicacionEvento {
-  /// {@macro BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista}
-  BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista(
-    this.idPeriodista,
-  );
-
-  /// El identificador de un periodista, sirve para obtener la lista
-  /// de articulos vinculados a este periodista.
-  final String idPeriodista;
-}
-
 /// {@template BlocDbMediosDeComunicacionEventoObtenerArticulosDelPeriodista}
 /// {@endtemplate}
 class BlocDbMediosDeComunicacionEventoActualizarFiltros
@@ -58,14 +27,18 @@ class BlocDbMediosDeComunicacionEventoActualizarFiltros
     this.temas,
     this.roles,
     this.tipoDeMedio,
+    this.nombrePeriodista,
+    this.nombreDeMedio,
   });
 
-  final List<Filtro>? paises;
-  final List<Filtro>? ciudades;
-  final List<Filtro>? lenguajes;
-  final List<Filtro>? temas;
-  final List<Filtro>? tipoDeMedio;
-  final List<Filtro>? roles;
+  final List<CategoriaFiltroSeleccionable>? paises;
+  final List<CategoriaFiltroSeleccionable>? ciudades;
+  final List<CategoriaFiltroSeleccionable>? lenguajes;
+  final List<CategoriaFiltroSeleccionable>? temas;
+  final List<CategoriaFiltroSeleccionable>? tipoDeMedio;
+  final List<CategoriaFiltroSeleccionable>? roles;
+  final String? nombrePeriodista;
+  final String? nombreDeMedio;
 }
 
 /// {@template BlocDbMediosDeComunicacionEventoObtenerListadoDeFiltros}
