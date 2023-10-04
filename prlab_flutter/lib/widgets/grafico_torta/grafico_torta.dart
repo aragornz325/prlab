@@ -54,8 +54,9 @@ class GraficoTorta<T> extends StatefulWidget {
     /// cada porción de torta [GraficoTorta].
     required Color colorAGenerar,
 
-    /// lista de porcentajes que tiene el gráfico a mostrar [GraficoTorta].
-    // TODO(Mati): cambiar docu.
+    /// Define una lista de `DataGrafico` con valores de cualquier tipo con esta
+    /// lista se obtiene el porcentaje a dividir en pedazos de tortas
+    /// [GraficoTorta].
     required List<DataGrafico<T>> dataGraficos,
 
     /// index seleccionado para que cambie ciertos parámetros para darle un
@@ -128,9 +129,10 @@ class GraficoTorta<T> extends StatefulWidget {
     /// cada porción de torta [GraficoTorta].
     required Color colorAGenerar,
 
-    /// lista de porcentajes que tiene el gráfico a mostrar [GraficoTorta].
-    // TODO(Mati): cambiar docu.
-    required List<DataGrafico<T>> listaDataGrafico,
+    /// Define una lista de `DataGrafico` con valores de cualquier tipo con esta
+    /// lista se obtiene el porcentaje a dividir en pedazos de tortas
+    /// [GraficoTorta].
+    required List<DataGrafico<T>> dataGraficos,
 
     /// index seleccionado para que cambie ciertos parámetros para darle un
     /// efecto.
@@ -162,41 +164,37 @@ class GraficoTorta<T> extends StatefulWidget {
     return GraficoTorta(
       colorAGenerar: colorAGenerar,
       indiceSeleccionado: indiceSeleccionado,
-      dataGraficos: listaDataGrafico,
-      contenido: Expanded(
-        child: AspectRatio(
-          aspectRatio: 1,
-          child: PieChart(
-            PieChartData(
-              sectionsSpace: espacioEntreSeleccionado,
-              centerSpaceRadius: espacioEnElCentro,
-              centerSpaceColor: colorDelEspacioCentro,
-              startDegreeOffset: rotacionDelGrafico,
-              pieTouchData: PieTouchData(touchCallback: touchCallback),
-              borderData: FlBorderData(show: false),
-              sections: _generarDatosGraficoTorta<T>(
-                esPrincipal: false,
-                context: context,
-                colorAGenerar: colorAGenerar,
-                data: listaDataGrafico,
-                estiloDelTitulo: estiloDelTitulo,
-                indiceSeleccionado: indiceSeleccionado,
-                tamanioDelGrafico: tamanioDelGrafico,
-                sombras: const [
-                  Shadow(
-                    blurRadius: 2,
-                  ),
-                ],
+      dataGraficos: dataGraficos,
+      contenido: PieChart(
+        PieChartData(
+          sectionsSpace: espacioEntreSeleccionado,
+          centerSpaceRadius: espacioEnElCentro,
+          centerSpaceColor: colorDelEspacioCentro,
+          startDegreeOffset: rotacionDelGrafico,
+          pieTouchData: PieTouchData(touchCallback: touchCallback),
+          borderData: FlBorderData(show: false),
+          sections: _generarDatosGraficoTorta<T>(
+            esPrincipal: false,
+            context: context,
+            colorAGenerar: colorAGenerar,
+            data: dataGraficos,
+            estiloDelTitulo: estiloDelTitulo,
+            indiceSeleccionado: indiceSeleccionado,
+            tamanioDelGrafico: tamanioDelGrafico,
+            sombras: const [
+              Shadow(
+                blurRadius: 2,
               ),
-            ),
+            ],
           ),
         ),
       ),
     );
   }
 
-  /// lista de porcentajes que tiene el gráfico a mostrar [GraficoTorta].
-  // TODO(Mati): cambiar docu.
+  /// Define una lista de `DataGrafico` con valores de cualquier tipo con esta
+  /// lista se obtiene el porcentaje a dividir en pedazos de tortas
+  /// [GraficoTorta].
   final List<DataGrafico<T>> dataGraficos;
 
   /// contenido de del gráfico para los factory de [GraficoTorta].
@@ -251,32 +249,31 @@ class _GraficoTortaState<T> extends State<GraficoTorta<T>> {
   Widget build(BuildContext context) {
     final contenido = widget.contenido;
 
-    // TODO(mati) : hablar con louka de sacar esto es el indicador
-    // TODOde cual esta seleccionado se puede hacer desde otro
-    // TODOcomponente calculo que sera borrado
-
-    // SizedBox(height: math.max(28.ph, 28.sh)),
-    // if (widget.contenido == null)
-    //   Row(
-    //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //     children: [
-    //       ...state.porcentajes.map(
-    //         (e) => Indicator(
-    //           color: colores[state.porcentajes.indexOf(e)],
-    //           text: '${e.toString()} %',
-    //           isSquare: false,
-    //           size: widget.indiceSeleccionado ==
-    //                   state.porcentajes.indexOf(e)
-    //               ? 18.pw
-    //               : 16.pw,
-    //           textColor: widget.indiceSeleccionado ==
-    //                   state.porcentajes.indexOf(e)
-    //               ? Colors.black
-    //               : Colors.white70,
-    //         ),
-    //       ),
-    //     ],
-    //   ),
+    // TODO(mati) : hasta que haya diseño en el figma estara documentado
+    /*
+    SizedBox(height: math.max(28.ph, 28.sh)),
+    if (widget.contenido == null)
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          ...state.porcentajes.map(
+            (e) => Indicator(
+              color: colores[state.porcentajes.indexOf(e)],
+              text: '${e.toString()} %',
+              isSquare: false,
+              size: widget.indiceSeleccionado ==
+                      state.porcentajes.indexOf(e)
+                  ? 18.pw
+                  : 16.pw,
+              textColor: widget.indiceSeleccionado ==
+                      state.porcentajes.indexOf(e)
+                  ? Colors.black
+                  : Colors.white70,
+            ),
+          ),
+        ],
+      ),
+      */
     return AspectRatio(
       aspectRatio: 1.3,
       child: Expanded(
