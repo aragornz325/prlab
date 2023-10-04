@@ -346,7 +346,9 @@ class OrmEntregableArticulo extends ORM {
         logger.fine('articulos encontrados: ${articulos.length}');
       }
       articulos.sort((a, b) => b.fechaCreacion.compareTo(a.fechaCreacion));
-      return await Future.value(articulos.cast<EntregableArticulo>());
+      final articulosFiltrados = articulos.where((articulo) => articulo.idAutor == idLoggeado).toList();
+
+      return await Future.value(articulosFiltrados.cast<EntregableArticulo>());
     });
   }
 }
