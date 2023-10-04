@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/dialog/dialog.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/card_periodista.dart';
@@ -56,7 +57,7 @@ class PRCardPeriodista extends StatelessWidget {
               // TODO(Anyone): dar funcionalidad cuando este definida
               onTapAdd: () => const PRDialogErrorNoDisponible().show(context),
               onTapDetails: () => DialogInformacionDePeriodista(
-                idPeriodista: periodista.id,
+                periodista: periodista,
               ).show(context),
             ),
           ],

@@ -3,13 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:full_responsive/full_responsive.dart';
-
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/prlab_configuracion/base.dart';
 import 'package:prlab_flutter/theming/base.dart';
-
 import 'package:prlab_flutter/utilidades/funciones/functions.dart';
 
 /// Textformfields base y variantes para uso en PRLab
@@ -35,6 +32,7 @@ class PRTextFormField extends StatefulWidget {
     this.onTap,
     this.onEditingComplete,
     this.onFieldSubmitted,
+    this.focusNode,
     super.key,
   });
 
@@ -50,8 +48,8 @@ class PRTextFormField extends StatefulWidget {
     /// validator de [PRTextFormField]
     String? Function(String?)? validator,
 
-    // ignore: inference_failure_on_function_return_type
-    Function(String)? onChanged,
+    /// Devuelve el valor del campo de texto
+    void Function(String)? onChanged,
 
     /// cantidad de minutos faltantes
     int minutosFaltantes = 30,
@@ -457,6 +455,10 @@ class PRTextFormField extends StatefulWidget {
   /// Ejecuta esta Accion al apretar `Enter` en pc y `Done` en dispositivos
   /// mobile
   final void Function(String)? onFieldSubmitted;
+
+  /// Un objeto que puede ser utilizado por un Stateful widget para obtener
+  /// el foco del teclado y manejar eventos del teclado.
+  final FocusNode? focusNode;
 
   @override
   State<PRTextFormField> createState() => _PRTextFormFieldState();
