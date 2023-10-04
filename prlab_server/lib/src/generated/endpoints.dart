@@ -606,6 +606,32 @@ class Endpoints extends _i1.EndpointDispatch {
             idAutor: params['idAutor'],
           ),
         ),
+        'listarArticuloMarcayEstado': _i1.MethodConnector(
+          name: 'listarArticuloMarcayEstado',
+          params: {
+            'idMarca': _i1.ParameterDescription(
+              name: 'idMarca',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'idStatus': _i1.ParameterDescription(
+              name: 'idStatus',
+              type: _i1.getType<List<int>>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['entregableArticulo']
+                      as _i6.EntregableArticuloEndpoint)
+                  .listarArticuloMarcayEstado(
+            session,
+            idMarca: params['idMarca'],
+            idStatus: params['idStatus'],
+          ),
+        ),
       },
     );
     connectors['mail'] = _i1.EndpointConnector(
