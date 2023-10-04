@@ -331,22 +331,22 @@ class OrmEntregableArticulo extends ORM {
   Future<List<EntregableArticulo>> traerEntregableporFiltro({
     required Session session,
     required List<int> status,
+    required int idAutor
   }) async {
     return ejecutarOperacionOrm(session, (session) async {
       List articulos = [];
-      final idLoggeado = await session.auth.authenticatedUserId;
       for (var i = 0; i < status.length; i++) {
         logger.finer('buscando en la db los articulos con status: $status');
         final articulo = await EntregableArticulo.find(session,
             where: (t) =>
                 t.idStatus.equals(status[i]) &
                 t.fechaEliminacion.equals(null) &
-                t.idAutor.equals(idLoggeado));
+                t.idAutor.equals(idAutor));
         articulos.addAll(articulo);
         logger.fine('articulos encontrados: ${articulos.length}');
       }
       articulos.sort((a, b) => b.fechaCreacion.compareTo(a.fechaCreacion));
-      final articulosFiltrados = articulos.where((articulo) => articulo.idAutor == idLoggeado).toList();
+      final articulosFiltrados = articulos.where((articulo) => articulo.idAutor == idAutor).toList();
 
       return await Future.value(articulosFiltrados.cast<EntregableArticulo>());
     });
