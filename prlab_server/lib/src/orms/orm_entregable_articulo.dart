@@ -334,13 +334,14 @@ class OrmEntregableArticulo extends ORM {
   }) async {
     return ejecutarOperacionOrm(session, (session) async {
       List articulos = [];
+      final idLoggeado = await session.auth.authenticatedUserId;
       for (var i = 0; i < status.length; i++) {
         logger.finer('buscando en la db los articulos con status: $status');
         final articulo = await EntregableArticulo.find(session,
             where: (t) =>
-                t.idStatus.equals(status[i]) & t.fechaEliminacion.equals(null),
-            orderBy: EntregableArticuloTable().fechaCreacion,
-            orderDescending: true);
+                t.idStatus.equals(status[i]) &
+                t.fechaEliminacion.equals(null) &
+                t.idAutor.equals(idLoggeado));
         articulos.addAll(articulo);
         logger.fine('articulos encontrados: ${articulos.length}');
       }
