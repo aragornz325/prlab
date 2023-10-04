@@ -52,6 +52,7 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
     BlocRegistroEventoEnviarDatosRegistro event,
     Emitter<BlocRegistroEstado> emit,
   ) async {
+    emit(BlocRegistroEstadoCargando.desde(state));
     try {
       final respuesta = await _emailAuth.createAccountRequest(
         event.email,
@@ -92,7 +93,6 @@ class BlocRegistro extends Bloc<BlocRegistroEvento, BlocRegistroEstado> {
 
         return;
       }
-
       emit(
         BlocRegistroEstadoUsuarioRegistradoConExito.desde(
           state,
