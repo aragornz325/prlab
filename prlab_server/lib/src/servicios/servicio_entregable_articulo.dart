@@ -44,7 +44,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
         contenidoHtml: contenidoHtml,
         idMarca: idMarca,
         idAutor: idAutor,
-        idStatus: 0,
+        idStatus: 1,
         activo: true,
         ultimaModificacion: DateTime.now(),
         fechaCreacion: DateTime.now(),

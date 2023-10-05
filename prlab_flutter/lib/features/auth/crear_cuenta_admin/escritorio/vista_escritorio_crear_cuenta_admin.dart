@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
@@ -92,13 +93,7 @@ class _VistaEscritorioCrearCuentaAdminState
               Center(
                 child: PRBoton.esOutlined(
                   width: 196.pw,
-                  onTap: () {
-                    // TODO(anyone): agregarle funcionalidad para volver atras.
-                    showDialog<void>(
-                      context: context,
-                      builder: (context) => const PRDialogErrorNoDisponible(),
-                    );
-                  },
+                  onTap: () => context.router.pop(),
                   texto: l10n.commonBack,
                   estaHabilitado: true,
                 ),

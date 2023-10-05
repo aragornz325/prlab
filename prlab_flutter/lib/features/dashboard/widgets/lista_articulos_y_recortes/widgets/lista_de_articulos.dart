@@ -211,7 +211,7 @@ class ListaDeArticulos extends StatelessWidget {
         // Autor
         Columna(
           widthDeLaColumna: 150.pw,
-          lista: articulos.map((e) => e.contenido.toString()).toList(),
+          lista: articulos.map((e) => e.contenido).toList(),
           nombreColumna: l10n.pageContentAdministrationBarInformationAuthor,
           celdaEncabezadoColumna: (value) => SizedBox(
             width: 150.pw,
