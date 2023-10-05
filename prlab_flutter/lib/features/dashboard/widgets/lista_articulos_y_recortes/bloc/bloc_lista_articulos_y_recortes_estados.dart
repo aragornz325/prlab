@@ -20,7 +20,7 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
     List<EntregableArticulo>? articulos,
     List<EntregableArticulo>? articulosFiltrados,
     int? index,
-    List<StatusEntregables>? estadoEntregables,
+    List<StEntregables>? estadoEntregables,
   }) : this._(
           articulos: articulos ?? otro.articulos,
           index: index ?? otro.index,
@@ -37,10 +37,9 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
   /// Index de la vista seleccionada
   final int index;
 
-  // TODO(anyone): pasar todo esto a un enum para manejar mejor los distintos
-  // estados
-
-  final List<StatusEntregables> estadoEntregables;
+  /// lista de estados en los que el articulo pueda manejar y cambiar,también
+  /// se puede filtrar por dichos estados
+  final List<StEntregables> estadoEntregables;
 
   /// Si es Articulos
   bool get esArticulos => index == 0;

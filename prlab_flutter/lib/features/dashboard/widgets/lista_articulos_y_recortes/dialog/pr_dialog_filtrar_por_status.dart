@@ -50,7 +50,7 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
         child: BlocBuilder<BlocListaArticulosYRecortes,
             BlocListaArticulosYRecortesEstado>(
           builder: (context, state) {
-            final listaDeEntregables = List<StatusEntregables>.from(
+            final listaDeEntregables = List<StEntregables>.from(
               state.estadoEntregables,
             );
 
@@ -62,12 +62,12 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                     Row(
                       children: [
                         PRLabCheckbox(
-                          estaMarcado: listaDeEntregables
-                              .contains(StatusEntregables.draft),
+                          estaMarcado:
+                              listaDeEntregables.contains(StEntregables.draft),
                           onChanged: (value) =>
                               _agregarEstadoDeEntregablesAFiltrar(
                             context: context,
-                            estadoEntregables: StatusEntregables.draft,
+                            estadoEntregables: StEntregables.draft,
                             lista: listaDeEntregables,
                             value: value,
                           ),
@@ -90,15 +90,12 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                     Row(
                       children: [
                         PRLabCheckbox(
-                          // TODO(anyone): pasar todo esto a un enum para manejar
-                          // mejor los distintos estados
-
                           estaMarcado: listaDeEntregables
-                              .contains(StatusEntregables.feedback),
+                              .contains(StEntregables.feedback),
                           onChanged: (value) =>
                               _agregarEstadoDeEntregablesAFiltrar(
                             context: context,
-                            estadoEntregables: StatusEntregables.feedback,
+                            estadoEntregables: StEntregables.feedback,
                             lista: listaDeEntregables,
                             value: value,
                           ),
@@ -121,15 +118,12 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                     Row(
                       children: [
                         PRLabCheckbox(
-                          // TODO(anyone): pasar todo esto a un enum para manejar
-                          // mejor los distintos estados
-
                           estaMarcado: listaDeEntregables
-                              .contains(StatusEntregables.approved),
+                              .contains(StEntregables.approved),
                           onChanged: (value) =>
                               _agregarEstadoDeEntregablesAFiltrar(
                             context: context,
-                            estadoEntregables: StatusEntregables.approved,
+                            estadoEntregables: StEntregables.approved,
                             lista: listaDeEntregables,
                             value: value,
                           ),
@@ -157,15 +151,12 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                     Row(
                       children: [
                         PRLabCheckbox(
-                          // TODO(anyone): pasar todo esto a un enum para manejar
-                          // mejor los distintos estados
-
                           estaMarcado: listaDeEntregables
-                              .contains(StatusEntregables.scheduled),
+                              .contains(StEntregables.scheduled),
                           onChanged: (value) =>
                               _agregarEstadoDeEntregablesAFiltrar(
                             context: context,
-                            estadoEntregables: StatusEntregables.scheduled,
+                            estadoEntregables: StEntregables.scheduled,
                             lista: listaDeEntregables,
                             value: value,
                           ),
@@ -188,14 +179,12 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                     Row(
                       children: [
                         PRLabCheckbox(
-                          // TODO(anyone): pasar todo esto a un enum para manejar
-                          // mejor los distintos estados
                           estaMarcado: listaDeEntregables
-                              .contains(StatusEntregables.published),
+                              .contains(StEntregables.published),
                           onChanged: (value) =>
                               _agregarEstadoDeEntregablesAFiltrar(
                             context: context,
-                            estadoEntregables: StatusEntregables.published,
+                            estadoEntregables: StEntregables.published,
                             lista: listaDeEntregables,
                             value: value,
                           ),
@@ -227,9 +216,9 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
   /// Agrega a la lista a filtrar un nuevo estado a filtrar o la quita.
   void _agregarEstadoDeEntregablesAFiltrar({
     required bool value,
-    required List<StatusEntregables> lista,
+    required List<StEntregables> lista,
     required BuildContext context,
-    required StatusEntregables estadoEntregables,
+    required StEntregables estadoEntregables,
   }) {
     if (value) {
       lista.add(estadoEntregables);

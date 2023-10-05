@@ -96,11 +96,9 @@ class ListaDeArticulos extends StatelessWidget {
           },
         ),
 
-        // TODO(anyone): cambiar por el enum del modelo Status
+        //estado
         Columna(
           widthDeLaColumna: 150.pw,
-          // TODO(anyone): cambiar por el status de un articulo y cambiar
-          // por el enum
           lista: articulos.map((e) => e.idStatus).toList(),
           nombreColumna: l10n.pageContentAdministrationBarInformationStatus,
           celdaEncabezadoColumna: (value) => SizedBox(

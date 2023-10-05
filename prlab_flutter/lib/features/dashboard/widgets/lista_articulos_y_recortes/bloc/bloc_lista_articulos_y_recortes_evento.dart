@@ -76,7 +76,8 @@ class BlocListaArticulosYRecortesEventoFiltradoPorEstado
     required this.estadoEntregables,
   });
 
-  final List<StatusEntregables> estadoEntregables;
+  /// listado de los estados en los que se puede filtrar
+  final List<StEntregables> estadoEntregables;
 }
 
 /// {@template BlocListaArticulosYRecortesEventoEliminarArticulo}
