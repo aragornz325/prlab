@@ -258,7 +258,7 @@ packages:
     source: hosted
     version: "2.3.2"
   dio:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: dio
       sha256: ce75a1b40947fea0a0e16ce73337122a86762e38b982e1ccb909daa3b9bc4197
@@ -737,6 +737,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  similar_web:
+    dependency: "direct main"
+    description:
+      path: similar_web
+      relative: true
+    source: path
+    version: "0.0.1+1"
   sortedmap:
     dependency: transitive
     description:
