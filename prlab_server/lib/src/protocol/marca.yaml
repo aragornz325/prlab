@@ -7,6 +7,6 @@ fields:
   ultimosArticulos: List<ArticuloEnMarca>, api
   cantidadArticulos: int, api
   cantidadClippings: int, api
-  fechaCreacion: DateTime?, database
   ultimaModificacion: DateTime?, database
-  activo: bool?, database
+  fechaCreacion: DateTime?, database
+  fechaEliminacion: DateTime?, database

@@ -1,4 +1,5 @@
 import 'package:prlab_server/src/generated/marca.dart';
+import 'package:prlab_server/src/generated/marca_staff.dart';
 import 'package:prlab_server/src/orms/orm_entregable_articulo.dart';
 import 'package:prlab_server/src/orms/orm_cliente.dart';
 import 'package:prlab_server/src/orms/orm_marca.dart';
@@ -24,7 +25,7 @@ class ServicioMarca extends Servicio<OrmMarca> {
   /// contiene datos de la conexión.
   ///   [marca] ([Marca]): Un objeto con el registro de la marca a ser guardado
   /// en la Base de Datos.
-  Future<bool> crearMarca(
+  Future<List<Map>> crearMarca(
     Session session, {
     required String nombre,
     required String sitioWeb,
@@ -33,6 +34,7 @@ class ServicioMarca extends Servicio<OrmMarca> {
       logger.info(
         'Creando Marca $nombre',
       );
+      final now = DateTime.now();
       return await ejecutarOperacion(
         () => orm.crearMarca(
           session: session,
@@ -43,9 +45,8 @@ class ServicioMarca extends Servicio<OrmMarca> {
             ultimosArticulos: [],
             cantidadArticulos: 0,
             cantidadClippings: 0,
-            fechaCreacion: DateTime.now(),
-            ultimaModificacion: DateTime.now(),
-            activo: true,
+            fechaCreacion: now,
+            ultimaModificacion: now,
           ),
         ),
       );
@@ -54,27 +55,28 @@ class ServicioMarca extends Servicio<OrmMarca> {
     }
   }
 
+  // TODO(anyone): El método no funciona por el caracter no-nulleable de campos API.
   /// Recupera todas las marcas no eliminadas existentes.
   ///
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
-  Future<List<Marca>> listarMarcas(
-    Session session,
-  ) async {
-    try {
-      logger.info(
-        'Listando Marcas',
-      );
-      return await ejecutarOperacion(
-        () => orm.listarMarcas(
-          session: session,
-        ),
-      );
-    } on Exception {
-      rethrow;
-    }
-  }
+  // Future<List<Marca>> listarMarcas(
+  //   Session session,
+  // ) async {
+  //   try {
+  //     logger.info(
+  //       'Listando Marcas',
+  //     );
+  //     return await ejecutarOperacion(
+  //       () => orm.listarMarcas(
+  //         session: session,
+  //       ),
+  //     );
+  //   } on Exception {
+  //     rethrow;
+  //   }
+  // }
 
   /// Obtiene el registro de una marca por su id.
   ///
@@ -90,6 +92,41 @@ class ServicioMarca extends Servicio<OrmMarca> {
       () => orm.obtenerMarcaPorId(
         session: session,
         id: idMarca,
+      ),
+    );
+  }
+
+  /// Obtiene las marcas a las que se encuentra asignado un usuario.
+  ///
+  /// Args:
+  /// [idUsuario] ([int]): ID del usuario (ID de usuario de Serverpod, que está
+  /// como FK en su registro de Cliente).
+  Future<List<Marca>> listarMarcasPorUsuario(
+    Session session, {
+    required int idUsuario,
+  }) async {
+    logger.info(
+      'Recuperando marcas del usuario $idUsuario...',
+    );
+
+    return await ejecutarOperacion(
+      () => orm.listarMarcasPorUsuario(
+        session,
+        idUsuario: idUsuario,
+      ),
+    );
+  }
+
+  Future<bool> modificarMarca({
+    required Session session,
+    required int idMarca,
+    required Map<String, dynamic> camposMarca,
+  }) async {
+    return await ejecutarOperacion(
+      () => orm.modificarMarca(
+        session: session,
+        idMarca: idMarca,
+        camposMarca: camposMarca,
       ),
     );
   }
@@ -133,18 +170,23 @@ class ServicioMarca extends Servicio<OrmMarca> {
   /// (ID de usuario de Serverpod, que está como FK en su registro de Cliente).
   ///   [idRol] ([int]): ID del rol que posee el usuario en la marca. Es el
   /// index de un enum.
-  Future<List<List<dynamic>>> asignarUsuarioAMarca(
+  Future<bool> asignarUsuarioAMarca(
     Session session, {
     required int idMarca,
     required int idUsuario,
     required int idRol,
   }) async {
+    final now = DateTime.now();
     return await ejecutarOperacion(
       () => orm.asignarUsuarioAMarca(
         session,
-        idMarca: idMarca,
-        idUsuario: idUsuario,
-        idRol: idRol,
+        marcaStaff: MarcaStaff(
+          idMarca: idMarca,
+          idStaff: idUsuario,
+          idRol: idRol,
+          ultimaModificacion: now,
+          fechaCreacion: now,
+        ),
       ),
     );
   }
@@ -158,7 +200,7 @@ class ServicioMarca extends Servicio<OrmMarca> {
   ///   [idMarca] ([int]): ID de la [Marca].
   ///   [idUsuario] ([int]): ID del usuario a ser eliminado de la Marca
   /// (ID de usuario de Serverpod, que está como FK en su registro de Cliente).
-  Future<List<List<dynamic>>> desvincularUsuarioDeMarca(
+  Future<bool> desvincularUsuarioDeMarca(
     Session session, {
     required int idMarca,
     required int idUsuario,
@@ -170,28 +212,5 @@ class ServicioMarca extends Servicio<OrmMarca> {
         idUsuario: idUsuario,
       ),
     );
-  }
-
-  /// Obtiene las marcas a las que se encuentra asignado un usuario.
-  ///
-  /// Args:
-  /// [idUsuario] ([int]): ID del usuario (ID de usuario de Serverpod, que está
-  /// como FK en su registro de Cliente).
-  Future<List<Marca>> listarMarcasPorUsuario(
-    Session session, {
-    required int idUsuario,
-  }) async {
-    logger.info(
-      'Recuperando marcas del usuario $idUsuario...',
-    );
-
-    List<Marca> respuestaQuery = await ejecutarOperacion(
-      () => orm.listarMarcasPorUsuario(
-        session,
-        idUsuario: idUsuario,
-      ),
-    );
-
-    return respuestaQuery;
   }
 }

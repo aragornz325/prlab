@@ -17,21 +17,76 @@ class MarcaEndpoint extends Endpoint {
   /// actual.
   ///   [marca] ([Marca]): Este parametro es un objeto de tipo "Marca" que
   ///   contiene los datos necesarios para crear una nueva marca.
-  Future<bool> crearMarca(
+  Future<List<Map>> crearMarca(
     Session session, {
     required String nombre,
     required String sitioWeb,
   }) async {
     try {
-      await servicioMarca.crearMarca(
+      return await servicioMarca.crearMarca(
         session,
         nombre: nombre,
         sitioWeb: sitioWeb,
       );
-      return true;
     } on Exception catch (e) {
       throw Exception('$e');
     }
+  }
+
+  // TODO(anyone): El método no funciona por el caracter no-nulleable de campos API.
+  /// La función [listarMarcas] recupera una lista de marcas usando un objeto
+  /// de sesión y un objeto de servicio.
+  ///
+  /// Args:
+  ///   [session] ([Session]): Este parametro es de tipo "Sesión". Se utiliza
+  ///   para pasar la información de la sesión al método "listarMarcas".
+
+  // Future<List<Marca>> listarMarcas(
+  //   Session session,
+  // ) async {
+  //   try {
+  //     return servicioMarca.listarMarcas(
+  //       session,
+  //     );
+  //   } on Exception catch (e) {
+  //     throw Exception('$e');
+  //   }
+  // }
+
+  /// Obtiene el registro de una marca por su id.
+  Future<Marca> obtenerMarcaPorId(Session session, int idMarca) async {
+    return await servicioMarca.obtenerMarcaPorId(
+      session,
+      idMarca: idMarca,
+    );
+  }
+
+  /// Obtiene las marcas a las que se encuentra asignado un usuario.
+  Future<List<Marca>> listarMarcasPorUsuario(
+    Session session, {
+    required int idUsuario,
+  }) async {
+    return await servicioMarca.listarMarcasPorUsuario(
+      session,
+      idUsuario: idUsuario,
+    );
+  }
+
+  /// Modifica un registro de [Marca].
+  Future<bool> modificarMarca(
+    Session session, {
+    required int idMarca,
+    String? nombre,
+    String? sitioWeb,
+  }) async {
+    return await servicioMarca.modificarMarca(
+      session: session,
+      idMarca: idMarca,
+      camposMarca: {
+        'nombre': nombre,
+        'sitioWeb': sitioWeb,
+      },
+    );
   }
 
   /// La función [eliminarMarca] es una función que toma un objeto `Session` y
@@ -58,35 +113,8 @@ class MarcaEndpoint extends Endpoint {
     }
   }
 
-  /// La función [listarMarcas] recupera una lista de marcas usando un objeto
-  /// de sesión y un objeto de servicio.
-  ///
-  /// Args:
-  ///   [session] ([Session]): Este parametro es de tipo "Sesión". Se utiliza
-  ///   para pasar la información de la sesión al método "listarMarcas".
-
-  Future<List<Marca>> listarMarcas(
-    Session session,
-  ) async {
-    try {
-      return servicioMarca.listarMarcas(
-        session,
-      );
-    } on Exception catch (e) {
-      throw Exception('$e');
-    }
-  }
-
-  /// Obtiene el registro de una marca por su id.
-  Future<Marca> obtenerMarcaPorId(Session session, int idMarca) async {
-    return await servicioMarca.obtenerMarcaPorId(
-      session,
-      idMarca: idMarca,
-    );
-  }
-
   /// Crea la relación entre una marca y un usuario.
-  Future<List<List<dynamic>>> asignarUsuarioAMarca(
+  Future<bool> asignarUsuarioAMarca(
     Session session, {
     required int idMarca,
     required int idUsuario,
@@ -102,7 +130,7 @@ class MarcaEndpoint extends Endpoint {
 
   /// Da de baja la relacion entre el usuario y la marca
   /// en la tabla intermedia.
-  Future<List<List<dynamic>>> desvincularUsuarioDeMarca(
+  Future<bool> desvincularUsuarioDeMarca(
     Session session, {
     required int idMarca,
     required int idUsuario,
@@ -110,17 +138,6 @@ class MarcaEndpoint extends Endpoint {
     return await servicioMarca.desvincularUsuarioDeMarca(
       session,
       idMarca: idMarca,
-      idUsuario: idUsuario,
-    );
-  }
-
-  /// Obtiene las marcas a las que se encuentra asignado un usuario.
-  Future<List<Marca>> listarMarcasPorUsuario(
-    Session session, {
-    required int idUsuario,
-  }) async {
-    return await servicioMarca.listarMarcasPorUsuario(
-      session,
       idUsuario: idUsuario,
     );
   }

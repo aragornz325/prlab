@@ -64,6 +64,12 @@ abstract class ORM {
     }
   }
 
+  /// Funcion ORM propia para insertar registros en la Base de 
+  /// Datos. Requiere el nombre de la tabla y una lista con los 
+  /// objetos a insertarse (de clase [TableRow]). 
+  /// 
+  /// Retorna los ID de los objetos insertados en formato [List] de 
+  /// [Map].
   Future<List<Map<String, dynamic>>> insertarRegistro(
     Session session, {
     required String nombreTabla,
@@ -71,12 +77,14 @@ abstract class ORM {
   }) async {
     final List<Map> registrosMapas = registros
         .map(
-          (row) => row.toJsonForDatabase(),
+          (row) => row.toJsonForDatabase()
+            ..remove('id')
+            ..remove('fechaEliminacion'),
         )
         .toList();
 
     var listaColumnas = <String>[
-      ...registrosMapas.first.keys.map((columna) => '"$columna"')
+      ...registrosMapas.first.keys.map((columna) => '"$columna"'),
     ];
 
     var listasValores = <String>[];
@@ -87,7 +95,6 @@ abstract class ORM {
       final Map registro = registrosMapas[i];
       var valoresRegistro = [];
       for (final columna in registro.keys as Iterable<String>) {
-        if (columna == 'id') continue;
 
         dynamic valorSinFormato = registro[columna];
 
@@ -99,15 +106,51 @@ abstract class ORM {
       listasValores.add('(${valoresRegistro.join(', ')})');
     }
 
-    var consulta =
-        '''
+    var consulta = '''
           INSERT INTO $nombreTabla (
             ${listaColumnas.join(', ')}
           ) VALUES 
             ${listasValores.join(',\n  ')} 
           RETURNING id;
-  ''';
-    
-    return await ejecutarConsultaSql(session, consulta, clavesMapaModeloDb: ['id']);
+        ''';
+    return await ejecutarConsultaSql(
+      session,
+      consulta,
+      clavesMapaModeloDb: ['id'],
+    );
+  }
+
+/// Funcion ORM propia para actualizar registros en la Base 
+/// de Datos. Requiere el nombre de la tabla, el id del registro 
+/// y los campos a actualizar en formato [Map].
+  Future<bool> actualizarRegistro(
+    Session session, {
+    required String nombreTabla,
+    required int id,
+    required Map<String, dynamic> camposRegistro,
+  }) async {
+    try {
+      List<String> listaActualizaciones = [];
+
+      for (final columna in camposRegistro.keys) {
+        if (columna == 'id') {
+          continue;
+        }
+
+        var valor =
+            DatabasePoolManager.encoder.convert(camposRegistro[columna]);
+
+        listaActualizaciones.add('"$columna" = $valor');
+      }
+      var actualizaciones = listaActualizaciones.join(', ');
+
+      var query = 'UPDATE $nombreTabla SET $actualizaciones WHERE id = $id';
+
+      await session.db.query(query);
+
+      return true;
+    } on Exception catch (e, st) {
+      throw UnimplementedError('$e\n$st');
+    }
   }
 }
