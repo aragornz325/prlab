@@ -270,6 +270,15 @@ class OrmEntregableArticulo extends ORM {
     );
   }
 
+  /// La función `traerArticulosPorUsuario` recupera una lista de artículos pertenecientes a un usuario
+  /// específico de una base de datos usando un ORM.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. Representa la
+  /// sesión de usuario actual o la sesión de autenticación.
+  ///
+  /// Returns:
+  ///   un `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
   Future<List<EntregableArticulo>> traerArticulosPorUsuario(
       {required Session session}) async {
     return ejecutarOperacionOrm(session, (session) async {
@@ -283,6 +292,17 @@ class OrmEntregableArticulo extends ORM {
     });
   }
 
+  /// La función `traerArticuloPorSlug` recupera un objeto `EntregableArticulo` de la base de datos en
+  /// función de un slug determinado.
+  ///
+  /// Args:
+  ///   session (Session): Un parámetro obligatorio de tipo Sesión, que representa la sesión o conexión
+  /// actual a la base de datos.
+  ///   slug (String): El slug es un identificador único de un artículo. Por lo general, es una versión
+  /// compatible con URL del título del artículo, que se utiliza para crear una URL limpia y legible.
+  ///
+  /// Returns:
+  ///   un `Futuro` que se resuelve en un objeto `EntregableArticulo` o `null` (`EntregableArticulo?`).
   Future<EntregableArticulo?> traerArticuloPorSlug({
     required Session session,
     required String slug,
@@ -296,5 +316,103 @@ class OrmEntregableArticulo extends ORM {
       logger.fine('articulo encontrado');
       return articulo;
     });
+  }
+
+  /// La función `traerEntregableporFiltro` recupera una lista de objetos `EntregableArticulo` de una
+  /// base de datos basada en un `idStatus` dado y la devuelve como un `Futuro`.
+  ///
+  /// Args:
+  ///   session (Session): Un objeto de sesión necesario para realizar operaciones de base de datos.
+  ///   idStatus (int): El parámetro idStatus es un número entero que representa el estado de los
+  /// artículos que se recuperarán.
+  ///
+  /// Returns:
+  ///   un `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
+  Future<List<EntregableArticulo>> traerEntregableporFiltro(
+      {required Session session,
+      required List<int> status,
+      required int idAutor}) async {
+    return ejecutarOperacionOrm(session, (session) async {
+      List articulos = [];
+      for (var i = 0; i < status.length; i++) {
+        logger.finer('buscando en la db los articulos con status: $status');
+        final articulo = await EntregableArticulo.find(session,
+            where: (t) =>
+                t.idStatus.equals(status[i]) &
+                t.fechaEliminacion.equals(null) &
+                t.idAutor.equals(idAutor));
+        articulos.addAll(articulo);
+        logger.fine('articulos encontrados: ${articulos.length}');
+      }
+      articulos.sort((a, b) => b.fechaCreacion.compareTo(a.fechaCreacion));
+      final articulosFiltrados =
+          articulos.where((articulo) => articulo.idAutor == idAutor).toList();
+
+      return await Future.value(articulosFiltrados.cast<EntregableArticulo>());
+    });
+  }
+
+  /// La función `listarArticuloMarcayEstado` recupera una lista de objetos `EntregableArticulo`
+  /// basándose en el ID de marca y los ID de estado proporcionados.
+  ///
+  /// Args:
+  ///   session (Session): Un objeto de sesión necesario para consultar la base de datos.
+  ///   idMarca (int): El ID de la marca para la que desea enumerar los artículos.
+  ///   idStatus (List<int>): Una lista de números enteros que representan los ID de estado de los
+  /// artículos que se van a buscar.
+  ///
+  /// Returns:
+  ///   un `Futuro<Lista<EntregableArticulo>>`.
+  Future<List<EntregableArticulo>> listarArticuloMarcayEstado({
+    required Session session,
+    required int idMarca,
+    required List<int> idStatus,
+  }) async {
+    List articulos = [];
+    if (idStatus.length == 1 && idStatus[0] == 0) {
+      return await EntregableArticulo.find(session,
+          where: (t) =>
+              t.idMarca.equals(idMarca) & t.fechaEliminacion.equals(null));
+    }
+    for (var i = 0; i < idStatus.length; i++) {
+      logger.finer('buscando en la db los articulos con status: $idStatus');
+      final articulo = await EntregableArticulo.find(session,
+          where: (t) =>
+              t.idStatus.equals(idStatus[i]) &
+              t.fechaEliminacion.equals(null) &
+              t.idMarca.equals(idMarca));
+      articulos.addAll(articulo);
+      logger.fine('articulos encontrados: ${articulos.length}');
+    }
+    articulos.sort((a, b) => b.fechaCreacion.compareTo(a.fechaCreacion));
+    return articulos.cast<EntregableArticulo>();
+  }
+
+  /// La función `listarStatusEntregable` recupera una lista de objetos `StatusEntregable` activos de
+  /// una base de datos usando un ORM.
+  /// 
+  /// Args:
+  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio. Se utiliza para
+  /// realizar operaciones de base de datos dentro de la función.
+  /// 
+  /// Returns:
+  ///   El método devuelve un `Future<List<StatusEntregable>>`.
+  Future<List<StatusEntregable>> listarStatusEntregable({
+    required Session session,
+  }) async {
+    return await ejecutarOperacionOrm(
+      session,
+      (Session session) {
+        logger.info(
+          'Buscando los status de los entregables',
+        );
+        return StatusEntregable.find(
+          session,
+          where: (t) => t.activo.equals(true),
+          orderBy: StatusEntregableTable().id,
+          orderDescending: false,
+        );
+      },
+    );
   }
 }

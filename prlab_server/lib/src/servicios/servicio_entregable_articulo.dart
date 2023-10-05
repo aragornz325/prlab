@@ -48,6 +48,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
         activo: true,
         ultimaModificacion: DateTime.now(),
         fechaCreacion: DateTime.now(),
+        fechaLanzamiento: DateTime.now(),
       );
 
       return await ejecutarOperacion(
@@ -321,5 +322,75 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     await browser.close();
 
     return true;
+  }
+
+  /// La función `traerEntregableporFiltro` recupera una lista de objetos `EntregableArticulo` basados
+  /// en una sesión determinada y un ID de estado.
+  ///
+  /// Args:
+  ///   session (Session): Un parámetro obligatorio de tipo Sesión, que representa un objeto de sesión.
+  ///   idStatus (int): El parámetro idStatus es un número entero que representa el estado del
+  /// entregable (entregable). Se utiliza como filtro para recuperar los entregables que tienen un
+  /// estado específico.
+  ///
+  /// Returns:
+  ///   un objeto `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
+  Future<List<EntregableArticulo>> traerEntregableporFiltro({
+    required Session session,
+    required List<int> status,
+    required int idAutor,
+  }) async {
+    return await ejecutarOperacion(
+      () => orm.traerEntregableporFiltro(
+        session: session,
+        status: status,
+        idAutor: idAutor,
+      ),
+    );
+  }
+
+  /// La función `listarArticuloMarcayEstado` devuelve un Future que enumera los objetos
+  /// `EntregableArticulo` según la sesión, el ID de marca y los ID de estado dados.
+  /// 
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. Representa la
+  /// sesión o conexión actual a la base de datos.
+  ///   idMarca (int): El id de la marca del artículo.
+  ///   idStatus (List<int>): El parámetro "idStatus" es una lista de números enteros que representan
+  /// los ID del estado deseado para los artículos.
+  /// 
+  /// Returns:
+  ///   El método devuelve un objeto "Futuro" que se resuelve en una "Lista" de objetos
+  /// "EntregableArticulo".
+  Future<List<EntregableArticulo>> listarArticuloMarcayEstado({
+    required Session session,
+    required int idMarca,
+    required List<int> idStatus,
+  }) async {
+    return await ejecutarOperacion(
+      () => orm.listarArticuloMarcayEstado(
+        session: session,
+        idMarca: idMarca,
+        idStatus: idStatus,
+      ),
+    );
+  }
+
+  /// La función `listarStatusEntregable` devuelve un futuro que enumera el estado de los entregables.
+  /// 
+  /// Args:
+  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio.
+  /// 
+  /// Returns:
+  ///   El método devuelve un objeto "Futuro" que se resuelve en una "Lista" de objetos
+  /// "EstadoEntregable".
+  Future<List<StatusEntregable>> listarStatusEntregable({
+    required Session session,
+  }) async {
+    return await ejecutarOperacion(
+      () => orm.listarStatusEntregable(
+        session: session,
+      ),
+    );
   }
 }

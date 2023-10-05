@@ -33,17 +33,19 @@ class ListadoDePeriodistas extends StatelessWidget {
       child: BlocBuilder<BlocDbMediosDeComunicacion,
           BlocDbMediosDeComunicacionEstado>(
         builder: (context, state) {
-          if (state is BlocDbMediosDeComunicacionEstadoCargando) {
-            return const SizedBox(
-              child: Center(
+          if (state is BlocDbMediosDeComunicacionEstadoCargandoFiltros) {
+            return SizedBox(
+              height: 605.ph,
+              child: const Center(
                 child: CircularProgressIndicator(),
               ),
             );
           }
 
           if (state.periodistas.isEmpty) {
-            return const SizedBox(
-              child: Center(
+            return SizedBox(
+              height: max(605.ph, 605.sh),
+              child: const Center(
                 child: NadaParaVer(),
               ),
             );

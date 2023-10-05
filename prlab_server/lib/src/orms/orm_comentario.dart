@@ -138,10 +138,11 @@ class OrmComentario extends ORM {
   }) async {
     try {
       await Comentario.insert(
-          session,
-          comentario
-            ..fechaCreacion = DateTime.now()
-            ..ultimaModificacion = DateTime.now());
+        session,
+        comentario
+          ..fechaCreacion = DateTime.now()
+          ..ultimaModificacion = DateTime.now(),
+      );
       final response = await Comentario.findSingleRow(
         session,
         where: (t) => t.idAutor.equals(comentario.idAutor),
