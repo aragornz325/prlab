@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/orm.dart';
 import 'package:prlab_server/utils/manejo_de_errores/manejo_de_errores.dart';
@@ -25,9 +27,7 @@ class OrmMarca extends ORM {
           logger.info('Creando marca: ${marca.nombre}');
           return Marca.insert(
             session,
-            marca
-              ..fechaCreacion = DateTime.now()
-              ..ultimaModificacion = DateTime.now(),
+            marca,
           );
         },
       );
@@ -185,44 +185,148 @@ class OrmMarca extends ORM {
     Session session, {
     required int idUsuario,
   }) async {
-    final queryListaDeIdMarcas = await ejecutarOperacionOrm(
+
+    final query = await ejecutarOperacionOrm(
       session,
-      (session) async {
-        final query = await session.db.query(
-          'SELECT "idMarca" FROM "marcas_staff" WHERE "idStaff" = $idUsuario;',
-        );
-        final listaIds = query.map((e) => e.first as int).toList();
-        return listaIds;
-      },
+      (session) => ejecutarConsultaSql(
+        session,
+        '''
+          SELECT
+            b."id",
+            b."nombre",
+            b."sitioWeb",
+            COALESCE(
+              (
+                SELECT
+                  jsonb_agg(
+                    json_build_object(
+                      'id',
+                      s."id",
+                      'nombre',
+                      COALESCE(s."nombre", ''),
+                      'apellido',
+                      COALESCE(s."apellido", '')
+                      --'fechaDeNacimiento',
+                      --COALESCE(s."fechaDeNacimiento", NULL),
+                      --'idUsuario',
+                      --COALESCE(s."idUsuario", 0),
+                      --'domicilio',
+                      --COALESCE(s."domicilio", ''),
+                      --'telefono',
+                      --COALESCE(s."telefono", ''),
+                      --'nombreDeOrganizacion',
+                      --COALESCE(s."nombreDeOrganizacion", ''),
+                      --'idOrganizacion',
+                      --COALESCE(s."idOrganizacion", 0),
+                      --'contacto',
+                      --COALESCE(s."contacto", 0)
+                    )
+                    ORDER BY
+                      s."idUsuario"
+                  )::text
+                FROM
+                  clientes s
+                WHERE
+                  s."idUsuario" IN (
+                    SELECT
+                      bs."idStaff"
+                    FROM
+                      marcas_staff bs
+                    WHERE
+                      bs."idMarca" = b."id"
+                  )
+              ),
+              '[]'::text
+            ) AS "staff",
+            COALESCE(
+              (
+                SELECT
+                  jsonb_agg(
+                    json_build_object(
+                      'id',
+                      a."id",
+                      'titulo',
+                      COALESCE(a."titulo", '')
+                      --'contenido',
+                      --COALESCE(a."contenido", ''),
+                      --'contenidoHtml',
+                      --COALESCE(a."contenidoHtml", ''),
+                      --'idAutor',
+                      --COALESCE(a."idAutor", 0),
+                      --'idStatus',
+                      --COALESCE(a."idStatus", 0),
+                      --'ultimaModificacion',
+                      --COALESCE(a."ultimaModificacion", NULL),
+                      --'slug',
+                      --COALESCE(a."slug", ''),
+                      --'idMarca', 
+                      --COALESCE(a."idMarca", 0),
+                      --'fechaPublicacion', 
+                      --COALESCE(a."fechaPublicacion", now()),
+                      --'idPlataforma', 
+                      --COALESCE(a."idPlataforma", 0),
+                      --'idProyecto', 
+                      --COALESCE(a."idProyecto", 0)
+                    )
+                  )::text
+                FROM (
+                  SELECT
+                    "id",
+                    "titulo"
+                    --"contenido",
+                    --"contenidoHtml",
+                    --"idAutor",
+                    --"idStatus",
+                    --"ultimaModificacion",
+                    --"slug",
+                    --"idMarca",
+                    --"fechaPublicacion",
+                    --"idPlataforma",
+                   -- "idProyecto"
+                  FROM
+                    "articulos"
+                  WHERE
+                    "idMarca" = b."id"
+                  ORDER BY
+                    "ultimaModificacion" DESC
+                  LIMIT 3
+                ) a
+              ),
+              '[]'::text
+            ) AS "ultimosArticulos",
+            (SELECT COUNT(*)
+            FROM articulos
+            WHERE "idMarca" = b."id") as "cantidadArticulos",
+            0 as "cantidadClippings"
+          FROM
+            marcas b
+          WHERE
+            b."id" IN (
+              SELECT
+                bs."idMarca"
+              FROM
+                marcas_staff bs
+              WHERE
+                bs."idStaff" = $idUsuario
+            );
+        ''',
+        clavesMapaModeloDb: Marca(
+          nombre: '',
+          sitioWeb: '',
+          staff: [],
+          ultimosArticulos: [],
+          cantidadArticulos: 0,
+          cantidadClippings: 0,
+        ).toJson().keys,
+      ),
     );
 
-    if (queryListaDeIdMarcas.isEmpty) {
-      return [];
-    }
-
-    final responseMaps = await ejecutarConsultaSql(
-      session,
-      '''
-      SELECT "id", "nombre", "sitioWeb", "fechaCreacion", "ultimaModificacion" 
-      FROM "marcas" 
-      WHERE "id" IN (${queryListaDeIdMarcas.join(',')});
-      ''',
-      clavesMapaModeloDb: (Marca(
-        nombre: '',
-        sitioWeb: '',
-        fechaCreacion: DateTime.now(),
-        ultimaModificacion: DateTime.now(),
-      ).toJsonForDatabase()
-            ..remove('activo'))
-          .keys,
-    );
-
-    final responseSerializado = responseMaps
+    final responseSerializado = query
         .map(
           (e) => Marca.fromJson(
             e
-              ..['ultimaModificacion'] = e['ultimaModificacion'].toString()
-              ..['fechaCreacion'] = e['fechaCreacion'].toString(),
+              ..['staff'] = jsonDecode(e['staff'])
+              ..['ultimosArticulos'] = jsonDecode(e['ultimosArticulos']),
             Protocol(),
           ),
         )

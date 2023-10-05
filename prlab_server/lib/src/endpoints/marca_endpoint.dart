@@ -18,13 +18,15 @@ class MarcaEndpoint extends Endpoint {
   ///   [marca] ([Marca]): Este parametro es un objeto de tipo "Marca" que
   ///   contiene los datos necesarios para crear una nueva marca.
   Future<bool> crearMarca(
-    Session session,
-    Marca marca,
-  ) async {
+    Session session, {
+    required String nombre,
+    required String sitioWeb,
+  }) async {
     try {
       await servicioMarca.crearMarca(
         session,
-        marca: marca,
+        nombre: nombre,
+        sitioWeb: sitioWeb,
       );
       return true;
     } on Exception catch (e) {

@@ -1,0 +1,4 @@
+class: ArticuloEnMarca
+fields:
+  id: int
+  titulo: String

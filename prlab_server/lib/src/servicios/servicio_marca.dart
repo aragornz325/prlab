@@ -26,18 +26,27 @@ class ServicioMarca extends Servicio<OrmMarca> {
   /// en la Base de Datos.
   Future<bool> crearMarca(
     Session session, {
-    required Marca marca,
+    required String nombre,
+    required String sitioWeb,
   }) async {
     try {
       logger.info(
-        'Creando Marca ${marca.nombre}',
+        'Creando Marca $nombre',
       );
       return await ejecutarOperacion(
         () => orm.crearMarca(
           session: session,
-          marca: marca
-            ..fechaCreacion = DateTime.now()
-            ..ultimaModificacion = DateTime.now(),
+          marca: Marca(
+            nombre: nombre,
+            sitioWeb: sitioWeb,
+            staff: [],
+            ultimosArticulos: [],
+            cantidadArticulos: 0,
+            cantidadClippings: 0,
+            fechaCreacion: DateTime.now(),
+            ultimaModificacion: DateTime.now(),
+            activo: true,
+          ),
         ),
       );
     } on Exception {
@@ -68,7 +77,7 @@ class ServicioMarca extends Servicio<OrmMarca> {
   }
 
   /// Obtiene el registro de una marca por su id.
-  /// 
+  ///
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
@@ -92,16 +101,17 @@ class ServicioMarca extends Servicio<OrmMarca> {
   /// contiene datos de la conexión.
   ///   [idMarca] ([int]): ID de la [Marca] a eliminar.
   Future<bool> eliminarMarca(
-    Session session,{
+    Session session, {
     required int idMarca,
   }) async {
     try {
-      logger..info(
+      logger
+        ..info(
           'Se va a eliminar la marca con id $idMarca',
         )
-      ..finest(
-        'Eliminando marca',
-      );
+        ..finest(
+          'Eliminando marca',
+        );
       return await ejecutarOperacion(
         () => orm.eliminarMarca(
           session: session,
@@ -114,13 +124,13 @@ class ServicioMarca extends Servicio<OrmMarca> {
   }
 
   /// Crea la relación entre una marca y un usuario.
-  /// 
+  ///
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
   ///   [idMarca] ([int]): ID de la [Marca].
-  ///   [idUsuario] ([int]): ID del usuario a ser asignado a la Marca 
-  /// (ID de usuario de Serverpod, que está como FK en su registro de Cliente). 
+  ///   [idUsuario] ([int]): ID del usuario a ser asignado a la Marca
+  /// (ID de usuario de Serverpod, que está como FK en su registro de Cliente).
   ///   [idRol] ([int]): ID del rol que posee el usuario en la marca. Es el
   /// index de un enum.
   Future<List<List<dynamic>>> asignarUsuarioAMarca(
@@ -141,13 +151,13 @@ class ServicioMarca extends Servicio<OrmMarca> {
 
   /// Da de baja la relacion entre el usuario y la marca
   /// en la tabla intermedia.
-  /// 
+  ///
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
   ///   [idMarca] ([int]): ID de la [Marca].
-  ///   [idUsuario] ([int]): ID del usuario a ser eliminado de la Marca 
-  /// (ID de usuario de Serverpod, que está como FK en su registro de Cliente). 
+  ///   [idUsuario] ([int]): ID del usuario a ser eliminado de la Marca
+  /// (ID de usuario de Serverpod, que está como FK en su registro de Cliente).
   Future<List<List<dynamic>>> desvincularUsuarioDeMarca(
     Session session, {
     required int idMarca,
@@ -163,10 +173,10 @@ class ServicioMarca extends Servicio<OrmMarca> {
   }
 
   /// Obtiene las marcas a las que se encuentra asignado un usuario.
-  /// 
+  ///
   /// Args:
-  /// [idUsuario] ([int]): ID del usuario (ID de usuario de Serverpod, que está 
-  /// como FK en su registro de Cliente). 
+  /// [idUsuario] ([int]): ID del usuario (ID de usuario de Serverpod, que está
+  /// como FK en su registro de Cliente).
   Future<List<Marca>> listarMarcasPorUsuario(
     Session session, {
     required int idUsuario,
@@ -175,69 +185,13 @@ class ServicioMarca extends Servicio<OrmMarca> {
       'Recuperando marcas del usuario $idUsuario...',
     );
 
-    List<Marca> marcas = await ejecutarOperacion(
+    List<Marca> respuestaQuery = await ejecutarOperacion(
       () => orm.listarMarcasPorUsuario(
         session,
         idUsuario: idUsuario,
       ),
     );
 
-    logger.finest(
-      'Se ha(n) recuperado ${marcas.length} marca(s) relacionada(s) con el usuario $idUsuario.',
-    );
-
-    final listasUsuarios = {};
-    final listasArticulos = {};
-    final cantidadesDeArticulos = {};
-
-    logger.finest(
-      'Recuperando usuarios y últimos artículos de la(s) marca(s) encontradas...',
-    );
-
-    for (final marca in marcas) {
-      final listaUsuarios = await ejecutarOperacion(
-        () => odmCliente.listarUsuariosPorMarca(
-          session,
-          idMarca: marca.id!,
-        ),
-      );
-
-      logger.finest(
-        'Recuperado(s) ${listaUsuarios.length} usuarios pertenecientes a la marca ${marca.id}',
-      );
-
-      final listaArticulos = await ejecutarOperacion(
-        () => odmArticulo.listarUltimosTresArticulosPorMarca(
-          session,
-          idMarca: marca.id!,
-        ),
-      );
-
-      logger.finest(
-        'Recuperado(s) ${listaArticulos.length} articulos pertenecientes a la marca ${marca.id}',
-      );
-
-      final cantidadArticulos = await odmArticulo.contarArticulosDeMarca(session, idMarca: marca.id!);
-
-      listasUsuarios[marca.id] = listaUsuarios;
-      listasArticulos[marca.id] = listaArticulos;
-      cantidadesDeArticulos[marca.id] = cantidadArticulos;
-    }
-
-    final response = marcas
-        .map(
-          (e) => e
-            ..staff = listasUsuarios[e.id]
-            ..ultimosArticulos = listasArticulos[e.id]
-            ..cantidadArticulos = cantidadesDeArticulos[e.id]
-            ..cantidadClippings = 0,
-            )
-        .toList();
-
-    logger.finest(
-      'Retornando información obtenida...',
-    );
-
-    return response;
+    return respuestaQuery;
   }
 }

@@ -72,8 +72,8 @@ CREATE TABLE "marcas" (
   "id" serial,
   "nombre" text NOT NULL,
   "sitioWeb" text NOT NULL,
-  "fechaCreacion" timestamp without time zone NOT NULL,
-  "ultimaModificacion" timestamp without time zone NOT NULL,
+  "fechaCreacion" timestamp without time zone,
+  "ultimaModificacion" timestamp without time zone,
   "activo" boolean
 );
 
@@ -215,8 +215,8 @@ CREATE TABLE "articulos" (
   "idAutor" integer NOT NULL,
   "idStatus" integer NOT NULL,
   "ultimaModificacion" timestamp without time zone NOT NULL,
-  "fechaCreacion" timestamp without time zone NOT NULL,
-  "activo" boolean NOT NULL,
+  "fechaCreacion" timestamp without time zone,
+  "activo" boolean,
   "slug" text,
   "idMarca" integer,
   "fechaEliminacion" timestamp without time zone,

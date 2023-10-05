@@ -1,0 +1,5 @@
+class: UsuarioEnMarca
+fields:
+  id: int
+  nombre: String
+  apellido: String
