@@ -307,3 +307,19 @@ ALTER TABLE ONLY "redes_sociales_periodistas"
   ADD CONSTRAINT redes_sociales_periodistas_pkey PRIMARY KEY (id);
 
 
+--
+-- Class StatusEntregable as table status_entregables
+--
+
+CREATE TABLE "status_entregables" (
+  "id" serial,
+  "nombre" text NOT NULL,
+  "activo" boolean,
+  "fechaCreacion" timestamp without time zone,
+  "ultimaModificacion" timestamp without time zone
+);
+
+ALTER TABLE ONLY "status_entregables"
+  ADD CONSTRAINT status_entregables_pkey PRIMARY KEY (id);
+
+

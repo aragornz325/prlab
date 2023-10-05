@@ -10,3 +10,5 @@ scripts:
     run: melos exec "flutter pub get"
   servergen:
     run: melos exec --scope="*server*" -- "serverpod generate"
+  runserver:
+    run: melos exec --scope="*server*" -- "dart bin/main.dart --mode staging"

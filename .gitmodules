@@ -1,0 +1,3 @@
+[submodule "prlab_server/similar_web"]
+	path = prlab_server/similar_web
+	url = https://github.com/Rodsevich/similar_web
