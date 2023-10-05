@@ -63,4 +63,51 @@ abstract class ORM {
       );
     }
   }
+
+  Future<List<Map<String, dynamic>>> insertarRegistro(
+    Session session, {
+    required String nombreTabla,
+    required List<TableRow> registros,
+  }) async {
+    final List<Map> registrosMapas = registros
+        .map(
+          (row) => row.toJsonForDatabase(),
+        )
+        .toList();
+
+    var listaColumnas = <String>[
+      ...registrosMapas.first.keys.map((columna) => '"$columna"')
+    ];
+
+    var listasValores = <String>[];
+
+    final cantidadRegistros = registrosMapas.length;
+
+    for (var i = 0; i < cantidadRegistros; i++) {
+      final Map registro = registrosMapas[i];
+      var valoresRegistro = [];
+      for (final columna in registro.keys as Iterable<String>) {
+        if (columna == 'id') continue;
+
+        dynamic valorSinFormato = registro[columna];
+
+        String valor = DatabasePoolManager.encoder.convert(valorSinFormato);
+
+        valoresRegistro.add(valor);
+      }
+
+      listasValores.add('(${valoresRegistro.join(', ')})');
+    }
+
+    var consulta =
+        '''
+          INSERT INTO $nombreTabla (
+            ${listaColumnas.join(', ')}
+          ) VALUES 
+            ${listasValores.join(',\n  ')} 
+          RETURNING id;
+  ''';
+    
+    return await ejecutarConsultaSql(session, consulta, clavesMapaModeloDb: ['id']);
+  }
 }

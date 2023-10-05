@@ -21,16 +21,56 @@ class OrmMarca extends ORM {
     required Marca marca,
   }) async {
     try {
-      await ejecutarOperacionOrm(
+      // await ejecutarOperacionOrm(
+      //   session,
+      //   (Session session) {
+      //     logger.info('Creando marca: ${marca.nombre}');
+      //     return Marca.insert(
+      //       session,
+      //       marca,
+      //     );
+      //   },
+      // );
+
+      await insertarRegistro(
         session,
-        (Session session) {
-          logger.info('Creando marca: ${marca.nombre}');
-          return Marca.insert(
-            session,
-            marca,
-          );
-        },
-      );
+        nombreTabla: Marca.t.tableName,
+        registros: [
+          Marca(
+            nombre: 'Hola',
+            sitioWeb: 'hola.com',
+            staff: [],
+            ultimosArticulos: [],
+            cantidadArticulos: 0,
+            cantidadClippings: 0,
+            fechaCreacion: DateTime.now(),
+            ultimaModificacion: DateTime.now(),
+            activo: true,
+          ),
+          Marca(
+            nombre: 'Chau',
+            sitioWeb: 'chau.com',
+            staff: [],
+            ultimosArticulos: [],
+            cantidadArticulos: 0,
+            cantidadClippings: 0,
+            fechaCreacion: DateTime.now(),
+            ultimaModificacion: DateTime.now(),
+            activo: true,
+          ),
+          Marca(
+            nombre: 'Sorpi',
+            sitioWeb: 'sorpi.com',
+            staff: [],
+            ultimosArticulos: [],
+            cantidadArticulos: 0,
+            cantidadClippings: 0,
+            fechaCreacion: DateTime.now(),
+            ultimaModificacion: DateTime.now(),
+            activo: true,
+          ),
+        ],
+      ).then(print);
       logger.fine('Marca ${marca.nombre} creada exitosamente.');
       return true;
     } on Exception catch (e) {
@@ -185,7 +225,6 @@ class OrmMarca extends ORM {
     Session session, {
     required int idUsuario,
   }) async {
-
     final query = await ejecutarOperacionOrm(
       session,
       (session) => ejecutarConsultaSql(

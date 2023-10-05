@@ -1,3 +1,5 @@
+# Versión simplificada de los objetos de Cliente para ser listados y 
+# retornados dentro del objeto de una Marca (staff).
 class: UsuarioEnMarca
 fields:
   id: int
