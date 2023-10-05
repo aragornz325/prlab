@@ -606,9 +606,14 @@ class Endpoints extends _i1.EndpointDispatch {
             idAutor: params['idAutor'],
           ),
         ),
-        'listarArticuloMarcayEstado': _i1.MethodConnector(
-          name: 'listarArticuloMarcayEstado',
+        'listarEntregableMarcayEstado': _i1.MethodConnector(
+          name: 'listarEntregableMarcayEstado',
           params: {
+            'texto': _i1.ParameterDescription(
+              name: 'texto',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
             'idMarca': _i1.ParameterDescription(
               name: 'idMarca',
               type: _i1.getType<int>(),
@@ -626,8 +631,9 @@ class Endpoints extends _i1.EndpointDispatch {
           ) async =>
               (endpoints['entregableArticulo']
                       as _i6.EntregableArticuloEndpoint)
-                  .listarArticuloMarcayEstado(
+                  .listarEntregableMarcayEstado(
             session,
+            params['texto'],
             idMarca: params['idMarca'],
             idStatus: params['idStatus'],
           ),

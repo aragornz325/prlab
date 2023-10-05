@@ -229,13 +229,31 @@ class EntregableArticuloEndpoint extends Endpoint {
     }
   }
 
-  Future<List<EntregableArticulo>> listarArticuloMarcayEstado(
-    Session session, {
+  /// La función `listarArticuloMarcayEstado` toma una sesión, un texto, un ID de marca y una lista de
+  /// ID de estado, y devuelve una lista de objetos `EntregableArticulo` basado en los parámetros dados.
+  /// 
+  /// Args:
+  ///   session (Session): Un objeto de sesión que representa la sesión del usuario actual.
+  ///   texto (String): Un parámetro de cadena que representa el texto que se buscará en los artículos.
+  ///   idMarca (int): El ID de la marca del artículo.
+  ///   idStatus (List<int>): Una lista de números enteros que representan los ID del estado deseado
+  /// para los artículos.
+  /// 
+  /// Returns:
+  ///   El método devuelve un objeto "Futuro" que se resuelve en una "Lista" de objetos
+  /// "EntregableArticulo".
+  Future<List<EntregableArticulo>> listarEntregableMarcayEstado(
+    Session session,
+    String texto, {
     required int idMarca,
     required List<int> idStatus,
   }) async {
+    if (texto.isEmpty) {
+      texto = '';
+    }
     try {
-      return await servicioArticulo.listarArticuloMarcayEstado(
+      return await servicioArticulo.listarEntregableMarcayEstado(
+        texto,
         session: session,
         idMarca: idMarca,
         idStatus: idStatus,
@@ -245,6 +263,15 @@ class EntregableArticuloEndpoint extends Endpoint {
     }
   }
 
+  /// La función `listarStatusEntregable` recupera una lista de objetos `StatusEntregable` usando un
+  /// objeto `Session`.
+  /// 
+  /// Args:
+  ///   session (Session): Un objeto de sesión que representa la sesión del usuario actual.
+  /// 
+  /// Returns:
+  ///   El método devuelve un objeto "Futuro" que se resuelve en una "Lista" de objetos
+  /// "EstadoEntregable".
   Future<List<StatusEntregable>> listarStatusEntregable(
     Session session,
   ) async {
