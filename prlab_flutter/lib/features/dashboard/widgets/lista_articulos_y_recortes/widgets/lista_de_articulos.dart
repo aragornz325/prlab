@@ -207,7 +207,7 @@ class ListaDeArticulos extends StatelessWidget {
         // Autor
         Columna(
           widthDeLaColumna: 150.pw,
-          lista: articulos.map((e) => e.contenido.toString()).toList(),
+          lista: articulos.map((e) => e.contenido).toList(),
           nombreColumna: l10n.pageContentAdministrationBarInformationAuthor,
           celdaEncabezadoColumna: (value) => SizedBox(
             width: 150.pw,
@@ -252,7 +252,7 @@ class ListaDeArticulos extends StatelessWidget {
         // botones
         Columna(
           widthDeLaColumna: 150.pw,
-          lista: articulos.map((e) => e.id).toList(),
+          lista: articulos.map((e) => e.idStatus).toList(),
           nombreColumna: '',
           celdaEncabezadoColumna: (value) => SizedBox(
             width: 150.pw,
@@ -293,7 +293,7 @@ class ListaDeArticulos extends StatelessWidget {
                             color: colores.primary,
                           ),
                         ),
-                        PopUpMenuOpcionesArticulo(idArticulo: value!),
+                        PopUpMenuOpcionesArticulo(idArticulo: value),
                         SizedBox(width: 10.pw),
                       ],
                     ),
