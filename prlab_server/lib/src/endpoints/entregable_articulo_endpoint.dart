@@ -244,4 +244,16 @@ class EntregableArticuloEndpoint extends Endpoint {
       rethrow;
     }
   }
+
+  Future<List<StatusEntregable>> listarStatusEntregable(
+    Session session,
+  ) async {
+    try {
+      return await servicioArticulo.listarStatusEntregable(
+        session: session,
+      );
+    } on Exception {
+      rethrow;
+    }
+  }
 }

@@ -197,7 +197,9 @@ class OrmMarca extends ORM {
     );
 
     if (queryListaDeIdMarcas.isEmpty) {
+      
       return [];
+      
     }
 
     final responseMaps = await ejecutarConsultaSql(

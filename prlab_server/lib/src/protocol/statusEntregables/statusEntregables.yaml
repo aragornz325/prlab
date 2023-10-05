@@ -1,4 +1,4 @@
-enum: StatusEntregables
+enum: StEntregables
 values:
   - todos
   - draft
