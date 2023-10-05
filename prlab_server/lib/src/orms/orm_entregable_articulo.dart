@@ -352,6 +352,17 @@ class OrmEntregableArticulo extends ORM {
     });
   }
 
+  /// La función `listarArticuloMarcayEstado` recupera una lista de objetos `EntregableArticulo`
+  /// basándose en el ID de marca y los ID de estado proporcionados.
+  ///
+  /// Args:
+  ///   session (Session): Un objeto de sesión necesario para consultar la base de datos.
+  ///   idMarca (int): El ID de la marca para la que desea enumerar los artículos.
+  ///   idStatus (List<int>): Una lista de números enteros que representan los ID de estado de los
+  /// artículos que se van a buscar.
+  ///
+  /// Returns:
+  ///   un `Futuro<Lista<EntregableArticulo>>`.
   Future<List<EntregableArticulo>> listarArticuloMarcayEstado({
     required Session session,
     required int idMarca,
@@ -375,5 +386,33 @@ class OrmEntregableArticulo extends ORM {
     }
     articulos.sort((a, b) => b.fechaCreacion.compareTo(a.fechaCreacion));
     return articulos.cast<EntregableArticulo>();
+  }
+
+  /// La función `listarStatusEntregable` recupera una lista de objetos `StatusEntregable` activos de
+  /// una base de datos usando un ORM.
+  /// 
+  /// Args:
+  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio. Se utiliza para
+  /// realizar operaciones de base de datos dentro de la función.
+  /// 
+  /// Returns:
+  ///   El método devuelve un `Future<List<StatusEntregable>>`.
+  Future<List<StatusEntregable>> listarStatusEntregable({
+    required Session session,
+  }) async {
+    return await ejecutarOperacionOrm(
+      session,
+      (Session session) {
+        logger.info(
+          'Buscando los status de los entregables',
+        );
+        return StatusEntregable.find(
+          session,
+          where: (t) => t.activo.equals(true),
+          orderBy: StatusEntregableTable().id,
+          orderDescending: false,
+        );
+      },
+    );
   }
 }
