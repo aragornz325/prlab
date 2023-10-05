@@ -65,7 +65,7 @@ class OrmMarca extends ORM {
     required int id,
   }) async {
     try {
-      var query = await ejecutarOperacionOrm(
+      final query = await ejecutarOperacionOrm(
         session,
         (Session session) {
           logger.info('Buscando marca con id: $id');
