@@ -17,13 +17,15 @@ import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 /// {@endtemplate}
 class PrDialogFiltrarPorStatus extends StatelessWidget {
   /// {@macro PrDialogFiltrarPorStatus}
-  const PrDialogFiltrarPorStatus({
+  PrDialogFiltrarPorStatus({
     required this.idMarca,
     super.key,
   });
 
   /// Id de la marca  para filtrar la marca
   final int? idMarca;
+
+  List<StEntregables> listaDeEstados = [];
 
   @override
   Widget build(BuildContext context) {
@@ -33,20 +35,17 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
 
     return PRDialog.informacion(
       context: context,
-      height: max(350.ph, 350.sh),
       onTap: () {
         context.read<BlocListaArticulosYRecortes>().add(
-              BlocListaArticulosYRecortesEventoFiltrar(
-                sinFiltro: false,
-                idMarca: idMarca,
+              BlocListaArticulosYRecortesEventoGuardarDatosDeFiltrado(
+                estadoEntregables: listaDeEstados,
               ),
             );
-        Navigator.of(context).pop();
+        Navigator.pop(context);
       },
       titulo: l10n.commonAlertDialogFilterByStatus,
       botonText: l10n.commonApply,
       content: SizedBox(
-        width: 300.pw,
         child: BlocBuilder<BlocListaArticulosYRecortes,
             BlocListaArticulosYRecortesEstado>(
           builder: (context, state) {
@@ -57,7 +56,7 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
             return Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
                       children: [
@@ -66,7 +65,6 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                               listaDeEntregables.contains(StEntregables.draft),
                           onChanged: (value) =>
                               _agregarEstadoDeEntregablesAFiltrar(
-                            context: context,
                             estadoEntregables: StEntregables.draft,
                             lista: listaDeEntregables,
                             value: value,
@@ -81,7 +79,7 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                           style: TextStyle(
                             color: colores.tertiary,
                             fontSize: 14.pf,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ],
@@ -94,7 +92,6 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                               .contains(StEntregables.feedback),
                           onChanged: (value) =>
                               _agregarEstadoDeEntregablesAFiltrar(
-                            context: context,
                             estadoEntregables: StEntregables.feedback,
                             lista: listaDeEntregables,
                             value: value,
@@ -109,7 +106,7 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                           style: TextStyle(
                             color: colores.tertiary,
                             fontSize: 14.pf,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ],
@@ -122,7 +119,6 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                               .contains(StEntregables.approved),
                           onChanged: (value) =>
                               _agregarEstadoDeEntregablesAFiltrar(
-                            context: context,
                             estadoEntregables: StEntregables.approved,
                             lista: listaDeEntregables,
                             value: value,
@@ -137,16 +133,16 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                           style: TextStyle(
                             color: colores.tertiary,
                             fontSize: 14.pf,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ],
                     ),
                   ],
                 ),
-                SizedBox(height: max(10.ph, 10.sh)),
+                SizedBox(height: max(20.ph, 20.sh)),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
                       children: [
@@ -155,14 +151,12 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                               .contains(StEntregables.scheduled),
                           onChanged: (value) =>
                               _agregarEstadoDeEntregablesAFiltrar(
-                            context: context,
                             estadoEntregables: StEntregables.scheduled,
                             lista: listaDeEntregables,
                             value: value,
                           ),
-                          // TODO(anyone): Hacer color en el theme no agregado ni al figma
-                          colorBorde: Colors.yellow,
-                          colorMarcado: Colors.yellow,
+                          colorBorde: colores.onSurfaceVariant,
+                          colorMarcado: colores.onSurfaceVariant,
                           colorDesmarcado: colores.surfaceTint,
                         ),
                         SizedBox(width: 5.pw),
@@ -171,11 +165,12 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                           style: TextStyle(
                             color: colores.tertiary,
                             fontSize: 14.pf,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ],
                     ),
+                    SizedBox(width: 20.pw),
                     Row(
                       children: [
                         PRLabCheckbox(
@@ -183,7 +178,6 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                               .contains(StEntregables.published),
                           onChanged: (value) =>
                               _agregarEstadoDeEntregablesAFiltrar(
-                            context: context,
                             estadoEntregables: StEntregables.published,
                             lista: listaDeEntregables,
                             value: value,
@@ -198,7 +192,7 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
                           style: TextStyle(
                             color: colores.tertiary,
                             fontSize: 14.pf,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ],
@@ -217,7 +211,6 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
   void _agregarEstadoDeEntregablesAFiltrar({
     required bool value,
     required List<StEntregables> lista,
-    required BuildContext context,
     required StEntregables estadoEntregables,
   }) {
     if (value) {
@@ -225,11 +218,7 @@ class PrDialogFiltrarPorStatus extends StatelessWidget {
     } else {
       lista.remove(estadoEntregables);
     }
-    context.read<BlocListaArticulosYRecortes>().add(
-          BlocListaArticulosYRecortesEventoFiltradoPorEstado(
-            estadoEntregables: lista,
-          ),
-        );
+    listaDeEstados = lista;
   }
 }
 
@@ -287,8 +276,8 @@ class _PRLabCheckboxState extends State<PRLabCheckbox> {
         });
       },
       child: Container(
-        width: 20.pw,
-        height: max(20.ph, 20.sh),
+        width: max(18.ph, 18.ph),
+        height: max(18.ph, 18.ph),
         decoration: BoxDecoration(
           border: Border.all(color: widget.colorBorde, width: 2),
           color: _isChecked ? widget.colorMarcado : widget.colorDesmarcado,
@@ -297,7 +286,7 @@ class _PRLabCheckboxState extends State<PRLabCheckbox> {
         child: _isChecked
             ? Icon(
                 Icons.check_outlined,
-                size: 15.pw,
+                size: 15,
                 color: colores.surfaceTint,
               )
             : null,

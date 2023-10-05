@@ -25,8 +25,17 @@ class ListaArticulosYRecortes extends StatelessWidget {
         ..add(
           BlocListaArticulosYRecortesEventoTraerArticulos(idMarca: idMarca),
         ),
-      child: BlocBuilder<BlocListaArticulosYRecortes,
+      child: BlocConsumer<BlocListaArticulosYRecortes,
           BlocListaArticulosYRecortesEstado>(
+        listener: (context, state) {
+          if (state is BlocListaArticulosYRecortesEstadoGuardarFiltrados) {
+            context.read<BlocListaArticulosYRecortes>().add(
+                  BlocListaArticulosYRecortesEventoFiltrar(
+                    idMarca: idMarca,
+                  ),
+                );
+          }
+        },
         builder: (context, state) {
           return Container(
             height: max(508.ph, 508.sh),

@@ -20,14 +20,7 @@ class BlocListaArticulosYRecortesEventoFiltrar
     extends BlocListaArticulosYRecortesEvento {
   /// {@macro BlocListaArticulosYRecortesEventoFiltrar}
   @override
-  const BlocListaArticulosYRecortesEventoFiltrar({
-    required this.sinFiltro,
-    this.idMarca,
-  });
-
-  // TODO(anyone): agregar el tipo de filtrado sea por
-  // un enum u otro tipo
-  final bool sinFiltro;
+  const BlocListaArticulosYRecortesEventoFiltrar({this.idMarca});
 
   /// Id de la marca a filtrar por esta
   final int? idMarca;
@@ -68,16 +61,20 @@ class BlocListaArticulosYRecortesEventoSeleccion
 /// Cambia los valores de los filtrados entre los filtrados por Estados/Status
 /// para filtrar por cierto Estado, borrador, completo o comentario.
 /// {@endtemplate}
-class BlocListaArticulosYRecortesEventoFiltradoPorEstado
+class BlocListaArticulosYRecortesEventoGuardarDatosDeFiltrado
     extends BlocListaArticulosYRecortesEvento {
   /// {@macro BlocListaArticulosYRecortesEventoFiltradoPorEstado}
   @override
-  const BlocListaArticulosYRecortesEventoFiltradoPorEstado({
-    required this.estadoEntregables,
+  const BlocListaArticulosYRecortesEventoGuardarDatosDeFiltrado({
+    this.nombreDelArticuloAFiltrar,
+    this.estadoEntregables,
   });
 
   /// listado de los estados en los que se puede filtrar
-  final List<StEntregables> estadoEntregables;
+  final List<StEntregables>? estadoEntregables;
+
+  /// nombre del articulo a filtrar por ese nombre/titulo
+  final String? nombreDelArticuloAFiltrar;
 }
 
 /// {@template BlocListaArticulosYRecortesEventoEliminarArticulo}
@@ -93,20 +90,4 @@ class BlocListaArticulosYRecortesEventoEliminarArticulo
 
   /// id del articulo del cual va a eliminarse
   final int idArticulo;
-}
-
-/// {@template BlocListaArticulosYRecortesEventoFiltrarBuscador}
-/// Filtra por el nombre del articulo y devuelve una lista de todos los que
-/// coincidan con ese nombre/titulo
-/// {@endtemplate}
-class BlocListaArticulosYRecortesEventoFiltrarBuscador
-    extends BlocListaArticulosYRecortesEvento {
-  /// {@macro BlocListaArticulosYRecortesEventoFiltrarBuscador}
-  @override
-  const BlocListaArticulosYRecortesEventoFiltrarBuscador({
-    this.nombreDelArticuloAFiltrar,
-  });
-
-  /// nombre del articulo a filtrar por ese nombre/titulo
-  final String? nombreDelArticuloAFiltrar;
 }

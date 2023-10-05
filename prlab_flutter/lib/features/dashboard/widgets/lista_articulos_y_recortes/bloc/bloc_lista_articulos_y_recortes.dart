@@ -25,14 +25,11 @@ class BlocListaArticulosYRecortes extends Bloc<
     on<BlocListaArticulosYRecortesEventoSeleccion>(
       _onCambiarListaArticulosORecorte,
     );
-    on<BlocListaArticulosYRecortesEventoFiltradoPorEstado>(
+    on<BlocListaArticulosYRecortesEventoGuardarDatosDeFiltrado>(
       _onFiltradoPorEstado,
     );
     on<BlocListaArticulosYRecortesEventoEliminarArticulo>(
       _onEliminacionDeArticulo,
-    );
-    on<BlocListaArticulosYRecortesEventoFiltrarBuscador>(
-      _onFiltrarBuscadorDeArticulo,
     );
   }
 
@@ -84,57 +81,26 @@ class BlocListaArticulosYRecortes extends Bloc<
   ) async {
     emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
     try {
-      final idMarca = event.idMarca;
+      //* Filtra por nombre del articulo
 
-      if (event.sinFiltro) {
-        emit(
-          BlocListaArticulosYRecortesEstadoExitoso.desde(
-            state,
-            articulosFiltrados: state.articulos,
-          ),
-        );
-      } else if (state.estadoEntregables.isNotEmpty) {
-        final status = <int>[];
-        for (var i = 0; i < state.estadoEntregables.length; i++) {
-          final filtrar = state.estadoEntregables[i].toJson();
+      final listaEstado = state.estadoEntregables
+          .map(
+            (e) => e.toJson(),
+          )
+          .toList();
 
-          status.add(filtrar);
-        }
+      final respuesta =
+          await client.entregableArticulo.listarArticuloMarcayEstado(
+        idMarca: event.idMarca ?? 0,
+        idStatus: listaEstado.isEmpty ? [0] : listaEstado,
+      );
 
-        if (idMarca != null) {
-          final respuesta =
-              await client.entregableArticulo.listarArticuloMarcayEstado(
-            idMarca: idMarca,
-            idStatus: status,
-          );
-          emit(
-            BlocListaArticulosYRecortesEstadoExitoso.desde(
-              state,
-              articulosFiltrados: respuesta,
-            ),
-          );
-        } else {
-          final respuesta =
-              await client.entregableArticulo.traerEntregableporFiltro(
-            status: status,
-            idAutor: sessionManager.signedInUser?.id ?? 0,
-          );
-
-          emit(
-            BlocListaArticulosYRecortesEstadoExitoso.desde(
-              state,
-              articulosFiltrados: respuesta,
-            ),
-          );
-        }
-      } else {
-        emit(
-          BlocListaArticulosYRecortesEstadoExitoso.desde(
-            state,
-            articulosFiltrados: state.articulos,
-          ),
-        );
-      }
+      emit(
+        BlocListaArticulosYRecortesEstadoExitoso.desde(
+          state,
+          articulosFiltrados: respuesta,
+        ),
+      );
     } catch (e, st) {
       emit(
         BlocListaArticulosYRecortesEstadoFallido.desde(
@@ -161,55 +127,6 @@ class BlocListaArticulosYRecortes extends Bloc<
         BlocListaArticulosYRecortesEstadoExitoso.desde(
           state,
           index: event.index,
-        ),
-      );
-    } catch (e, st) {
-      emit(
-        BlocListaArticulosYRecortesEstadoFallido.desde(
-          state,
-          errorMessage: e.toString(),
-        ),
-      );
-
-      if (kDebugMode) {
-        debugger();
-        throw UnimplementedError('Implementa un error para esto: $e $st');
-      }
-    }
-  }
-
-  /// Elimina un articulo en específico
-  Future<void> _onFiltrarBuscadorDeArticulo(
-    BlocListaArticulosYRecortesEventoFiltrarBuscador event,
-    Emitter<BlocListaArticulosYRecortesEstado> emit,
-  ) async {
-    emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
-
-    try {
-      // TODO(anyone):revisar codigo seguramente se pueda mejorar
-      // TODO(anyone):el buscador lo tiene que manejar el back por la paginacion
-      final articulos = List<EntregableArticulo>.from(state.articulos);
-
-      var articulosFiltrados =
-          List<EntregableArticulo>.from(state.articulosFiltrados);
-
-      if (event.nombreDelArticuloAFiltrar != null &&
-          event.nombreDelArticuloAFiltrar != '') {
-        articulosFiltrados = articulos
-            .where(
-              (articulo) => articulo.titulo.toLowerCase().contains(
-                    event.nombreDelArticuloAFiltrar!.toLowerCase(),
-                  ),
-            )
-            .toList();
-      } else {
-        articulosFiltrados = state.articulos;
-      }
-
-      emit(
-        BlocListaArticulosYRecortesEstadoExitoso.desde(
-          state,
-          articulosFiltrados: articulosFiltrados,
         ),
       );
     } catch (e, st) {
@@ -268,13 +185,14 @@ class BlocListaArticulosYRecortes extends Bloc<
   /// Estado/Status para filtrar por ciertos valores definidos en el popup de
   /// filtrado.
   Future<void> _onFiltradoPorEstado(
-    BlocListaArticulosYRecortesEventoFiltradoPorEstado event,
+    BlocListaArticulosYRecortesEventoGuardarDatosDeFiltrado event,
     Emitter<BlocListaArticulosYRecortesEstado> emit,
   ) async {
     emit(
-      BlocListaArticulosYRecortesEstadoExitoso.desde(
+      BlocListaArticulosYRecortesEstadoGuardarFiltrados.desde(
         state,
         estadoEntregables: event.estadoEntregables,
+        nombreDelArticuloAFiltrar: event.nombreDelArticuloAFiltrar,
       ),
     );
   }

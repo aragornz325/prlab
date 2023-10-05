@@ -254,9 +254,9 @@ class ListaDeArticulos extends StatelessWidget {
         ),
 
         // botones
-        Columna(
+        Columna<int>(
           widthDeLaColumna: 150.pw,
-          lista: articulos.map((e) => e.idStatus).toList(),
+          lista: articulos.map((e) => e.id!).toList(),
           nombreColumna: '',
           celdaEncabezadoColumna: (value) => SizedBox(
             width: 150.pw,
@@ -343,8 +343,7 @@ Color devolverColorDependiendoDelEstado({
     1 => colores.secondary,
     2 => colores.onTertiary,
     3 => colores.primaryContainer,
-    // TODO(anyone): agregar al theme este color
-    4 => Colors.yellow,
+    4 => colores.onSurfaceVariant,
     5 => colores.onTertiaryContainer,
     _ => colores.secondary,
   };

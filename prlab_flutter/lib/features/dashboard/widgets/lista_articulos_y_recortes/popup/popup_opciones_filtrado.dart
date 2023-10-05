@@ -33,8 +33,6 @@ class PopupOpcionesDeFiltrado extends StatefulWidget {
 class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
   bool _estaDesplegado = false;
 
-  FiltrarPor _filtrado = FiltrarPor.todo;
-
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
@@ -76,14 +74,11 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
           ),
           onTap: () {
             context.read<BlocListaArticulosYRecortes>().add(
-                  const BlocListaArticulosYRecortesEventoFiltrar(
-                    sinFiltro: true,
-                  ),
+                  const BlocListaArticulosYRecortesEventoFiltrar(),
                 );
 
             setState(() {
               _estaDesplegado = false;
-              _filtrado = FiltrarPor.todo;
             });
           },
         ),
@@ -110,7 +105,6 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
 
             setState(() {
               _estaDesplegado = false;
-              _filtrado = FiltrarPor.estado;
             });
           },
         ),
@@ -132,7 +126,6 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
 
             setState(() {
               _estaDesplegado = false;
-              _filtrado = FiltrarPor.fecha;
             });
           },
         ),
@@ -154,7 +147,6 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
 
             setState(() {
               _estaDesplegado = false;
-              _filtrado = FiltrarPor.autor;
             });
           },
         ),
@@ -165,24 +157,11 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
             ? colores.primaryOpacidadVeinte
             : colores.surfaceTint,
         child: Icon(
-          _filtrado == FiltrarPor.todo ? Icons.tune : Icons.filter_alt_outlined,
+          Icons.tune,
           color: colores.primary,
           size: 18.pw,
         ),
       ),
     );
   }
-}
-
-/// Enum utilizado para indexar cada item del filtrado.
-enum FiltrarPor {
-  todo,
-  fecha,
-  autor,
-  estado;
-
-  bool get esTodo => this == FiltrarPor.todo;
-  bool get esFecha => this == FiltrarPor.fecha;
-  bool get esAutor => this == FiltrarPor.autor;
-  bool get esEstado => this == FiltrarPor.estado;
 }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -30,9 +31,14 @@ class TextFieldBusquedaFiltrado extends StatefulWidget {
 class _TextFieldBusquedaFiltradoState extends State<TextFieldBusquedaFiltrado> {
   final controllerFiltradoNombre = TextEditingController();
 
+  /// Genera una espera antes guardar la nueva data del titulo
+  /// en la db para mejorar la performance.
+  Timer? _debounce;
+
   @override
   void dispose() {
     controllerFiltradoNombre.dispose();
+    _debounce?.cancel();
     super.dispose();
   }
 
@@ -64,12 +70,17 @@ class _TextFieldBusquedaFiltradoState extends State<TextFieldBusquedaFiltrado> {
                     fontSize: 15.pf,
                     fontWeight: FontWeight.w400,
                   ),
-                  onChanged: (value) =>
+                  onChanged: (value) {
+                    if (_debounce?.isActive ?? false) _debounce?.cancel();
+
+                    _debounce = Timer(const Duration(milliseconds: 500), () {
                       context.read<BlocListaArticulosYRecortes>().add(
-                            BlocListaArticulosYRecortesEventoFiltrarBuscador(
+                            BlocListaArticulosYRecortesEventoGuardarDatosDeFiltrado(
                               nombreDelArticuloAFiltrar: value,
                             ),
-                          ),
+                          );
+                    });
+                  },
                   decoration: InputDecoration(
                     hintText: l10n.commonSearch,
                     border: InputBorder.none,

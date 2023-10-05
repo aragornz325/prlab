@@ -13,19 +13,23 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
     this.articulosFiltrados = const [],
     this.index = 0,
     this.estadoEntregables = const [],
+    this.nombreDelArticuloAFiltrar = '',
   });
 
   BlocListaArticulosYRecortesEstado.desde(
     BlocListaArticulosYRecortesEstado otro, {
     List<EntregableArticulo>? articulos,
     List<EntregableArticulo>? articulosFiltrados,
-    int? index,
     List<StEntregables>? estadoEntregables,
+    String? nombreDelArticuloAFiltrar,
+    int? index,
   }) : this._(
           articulos: articulos ?? otro.articulos,
           index: index ?? otro.index,
           articulosFiltrados: articulosFiltrados ?? otro.articulosFiltrados,
           estadoEntregables: estadoEntregables ?? otro.estadoEntregables,
+          nombreDelArticuloAFiltrar:
+              nombreDelArticuloAFiltrar ?? otro.nombreDelArticuloAFiltrar,
         );
 
   /// Lista de los articulos
@@ -36,6 +40,9 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
 
   /// Index de la vista seleccionada
   final int index;
+
+  /// Nombre del articulo con el cual se van a filtrar
+  final String nombreDelArticuloAFiltrar;
 
   /// lista de estados en los que el articulo pueda manejar y cambiar,también
   /// se puede filtrar por dichos estados
@@ -91,6 +98,24 @@ final class BlocListaArticulosYRecortesEstadoExitoso
     super.index,
     super.estadoEntregables,
     super.articulosFiltrados,
+    super.nombreDelArticuloAFiltrar,
+  }) : super.desde();
+}
+
+/// {@template BlocListaArticulosYRecortesEstadoExitoso}
+/// Este estado indica que se guardaron ciertos filtros para que luego se
+/// filtren por estos y te devuelva la lista de articulos.
+/// {@endtemplate}
+final class BlocListaArticulosYRecortesEstadoGuardarFiltrados
+    extends BlocListaArticulosYRecortesEstado {
+  /// {@macro BlocListaArticulosYRecortesEstadoExitoso}
+  BlocListaArticulosYRecortesEstadoGuardarFiltrados.desde(
+    super.otro, {
+    super.articulos,
+    super.index,
+    super.estadoEntregables,
+    super.articulosFiltrados,
+    super.nombreDelArticuloAFiltrar,
   }) : super.desde();
 }
 

@@ -29,7 +29,7 @@ class PRBoton extends StatelessWidget {
     required VoidCallback onTap,
     required String texto,
     required bool estaHabilitado,
-    required double width,
+    double? width,
     double? borderWidth,
     double? height,
     double? fontSize,
