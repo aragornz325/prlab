@@ -97,7 +97,7 @@ class ListaDeArticulos extends StatelessWidget {
         ),
 
         // TODO(anyone): cambiar por el enum del modelo Status
-        Columna(
+        Columna<int>(
           widthDeLaColumna: 150.pw,
           // TODO(anyone): cambiar por el status de un articulo y cambiar
           // por el enum
@@ -250,9 +250,9 @@ class ListaDeArticulos extends StatelessWidget {
         ),
 
         // botones
-        Columna(
+        Columna<int>(
           widthDeLaColumna: 150.pw,
-          lista: articulos.map((e) => e.idStatus).toList(),
+          lista: articulos.map((e) => e.id!).toList(),
           nombreColumna: '',
           celdaEncabezadoColumna: (value) => SizedBox(
             width: 150.pw,
