@@ -189,17 +189,3 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
         );
   }
 }
-
-class VisitaData {
-  // TODO(SAM): Remover cuando venga la informacion del back.
-  VisitaData({
-    required this.fecha,
-    required this.visitas,
-    required this.nombre,
-    required this.idArticulo,
-  });
-  final int idArticulo;
-  final DateTime fecha;
-  final String nombre;
-  final double visitas;
-}
