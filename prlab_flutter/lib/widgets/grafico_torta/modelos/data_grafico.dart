@@ -1,4 +1,9 @@
+/// {@template DataGrafico}
+/// Representa un punto de datos en un gráfico.
+/// Tiene dos propiedades: `valor` y `cantidad`.
+/// {@endtemplate}
 class DataGrafico<T> {
+  /// {@macro DataGrafico}
   DataGrafico({
     required this.valor,
     required this.cantidad,

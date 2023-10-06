@@ -40,9 +40,6 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
     super.dispose();
   }
 
-  int touchedIndexSecundario = -1;
-  int touchedIndexAnillo = -1;
-
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;

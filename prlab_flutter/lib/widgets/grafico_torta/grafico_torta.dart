@@ -25,7 +25,7 @@ class GraficoTorta<T> extends StatefulWidget {
   GraficoTorta({
     required this.dataGraficos,
     required this.colorAGenerar,
-    this.tamanioDelGrafico = 100,
+    this.radioDelGrafico = 100,
     this.posicionDelTituloEnElGrafico = 0.55,
     this.indiceSeleccionado = -1,
     this.espacioEnElCentro = 0,
@@ -84,7 +84,7 @@ class GraficoTorta<T> extends StatefulWidget {
     TextStyle? estiloDelTitulo,
 
     /// Radio Total del Grafico define el tamaño del circulo [GraficoTorta].
-    double tamanioDelGrafico = 100,
+    double radioDelGrafico = 100,
   }) {
     return GraficoTorta(
       colorAGenerar: colorAGenerar,
@@ -104,7 +104,7 @@ class GraficoTorta<T> extends StatefulWidget {
             data: dataGraficos,
             estiloDelTitulo: estiloDelTitulo,
             indiceSeleccionado: indiceSeleccionado,
-            tamanioDelGrafico: tamanioDelGrafico,
+            tamanioDelGrafico: radioDelGrafico,
             sombras: const [
               Shadow(blurRadius: 2),
             ],
@@ -156,7 +156,7 @@ class GraficoTorta<T> extends StatefulWidget {
     double? rotacionDelGrafico = 180,
 
     /// Radio Total del Grafico define el tamaño del circulo [GraficoTorta].
-    double tamanioDelGrafico = 100,
+    double radioDelGrafico = 100,
 
     /// Estilo Del titulo dentro del circulo [GraficoTorta].
     TextStyle? estiloDelTitulo,
@@ -180,7 +180,7 @@ class GraficoTorta<T> extends StatefulWidget {
             data: dataGraficos,
             estiloDelTitulo: estiloDelTitulo,
             indiceSeleccionado: indiceSeleccionado,
-            tamanioDelGrafico: tamanioDelGrafico,
+            tamanioDelGrafico: radioDelGrafico,
             sombras: const [
               Shadow(
                 blurRadius: 2,
@@ -208,7 +208,7 @@ class GraficoTorta<T> extends StatefulWidget {
   int indiceSeleccionado;
 
   /// Radio Total del Grafico define el tamaño del circulo [GraficoTorta].
-  final double tamanioDelGrafico;
+  final double radioDelGrafico;
 
   /// Posición del Titulo en el Grafico cuanto mayor es el tamaño
   /// mas lejos del centro estará [GraficoTorta].
@@ -232,7 +232,9 @@ class GraficoTorta<T> extends StatefulWidget {
   /// Espacio entre pedazos de torta [GraficoTorta].
   final double? espacioEntreSeleccionado;
 
-  /// rotación del gráfico para darle un efecto [GraficoTorta].
+  /// rotación del gráfico para darle un efecto girado y poner el numero mas 
+  /// alto arriba [GraficoTorta]. o una animación de que gira el gráfico,como
+  /// una rueda de un auto.
   final double? rotacionDelGrafico;
 
   /// Color del espacio del centro de la torta [GraficoTorta].
@@ -314,7 +316,7 @@ class _GraficoTortaState<T> extends State<GraficoTorta<T>> {
                   indiceSeleccionado: widget.indiceSeleccionado,
                   posicionDelTituloEnElGrafico:
                       widget.posicionDelTituloEnElGrafico,
-                  tamanioDelGrafico: widget.tamanioDelGrafico,
+                  tamanioDelGrafico: widget.radioDelGrafico,
                   colorAGenerar: widget.colorAGenerar,
                   data: widget.dataGraficos,
                 ),
