@@ -44,7 +44,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
         contenidoHtml: contenidoHtml,
         idMarca: idMarca,
         idAutor: idAutor,
-        idStatus: 0,
+        idStatus: 1,
         activo: true,
         ultimaModificacion: DateTime.now(),
         fechaCreacion: DateTime.now(),
@@ -345,6 +345,51 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
         session: session,
         status: status,
         idAutor: idAutor,
+      ),
+    );
+  }
+
+  /// La función `listarArticuloMarcayEstado` devuelve un Future que enumera los objetos
+  /// `EntregableArticulo` según la sesión, el ID de marca y los ID de estado dados.
+  /// 
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. Representa la
+  /// sesión o conexión actual a la base de datos.
+  ///   idMarca (int): El id de la marca del artículo.
+  ///   idStatus (List<int>): El parámetro "idStatus" es una lista de números enteros que representan
+  /// los ID del estado deseado para los artículos.
+  /// 
+  /// Returns:
+  ///   El método devuelve un objeto "Futuro" que se resuelve en una "Lista" de objetos
+  /// "EntregableArticulo".
+  Future<List<EntregableArticulo>> listarArticuloMarcayEstado({
+    required Session session,
+    required int idMarca,
+    required List<int> idStatus,
+  }) async {
+    return await ejecutarOperacion(
+      () => orm.listarArticuloMarcayEstado(
+        session: session,
+        idMarca: idMarca,
+        idStatus: idStatus,
+      ),
+    );
+  }
+
+  /// La función `listarStatusEntregable` devuelve un futuro que enumera el estado de los entregables.
+  /// 
+  /// Args:
+  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio.
+  /// 
+  /// Returns:
+  ///   El método devuelve un objeto "Futuro" que se resuelve en una "Lista" de objetos
+  /// "EstadoEntregable".
+  Future<List<StatusEntregable>> listarStatusEntregable({
+    required Session session,
+  }) async {
+    return await ejecutarOperacion(
+      () => orm.listarStatusEntregable(
+        session: session,
       ),
     );
   }

@@ -24,7 +24,7 @@ import 'package:prlab_flutter/features/dashboard/administracion_de_una_marca.dar
     as _i2;
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/pagina_administracion_marcas.dart'
     as _i3;
-import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/db_medios_de_comunicacion.dart'
+import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/pagina_db_medios_de_comunicacion.dart'
     as _i6;
 import 'package:prlab_flutter/features/dashboard/editor_contenido/pagina_editor_contenido.dart'
     as _i7;

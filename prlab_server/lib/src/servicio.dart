@@ -5,6 +5,7 @@ import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:logging/logging.dart';
 import 'package:prlab_server/src/orm.dart';
 import 'package:prlab_server/utils/config/constants.dart';
+import 'package:similar_web/similar_web.dart';
 
 /// Clase abstracta para la capa de Servicio.
 abstract class Servicio<T extends ORM> {
@@ -22,6 +23,11 @@ abstract class Servicio<T extends ORM> {
     apiSecret: ConstantesPrLab.cloudinaryApiSecret,
     cloudName: ConstantesPrLab.cloudinaryCloudName,
   );
+
+  /// Instancia del singleton para acceder a la API de SimilarWeb (Del paquete
+  /// `similar_web`). Aquí debe ir una API-KEY válida proporcionada por el 
+  /// servicio.
+  final similarWeb = SimilarWeb('API-KEY');
 
   /// Metodo para ejecutar las operaciones y manejar errores.
   Future<T> ejecutarOperacion<T>(Future<T> Function() operacion) async {

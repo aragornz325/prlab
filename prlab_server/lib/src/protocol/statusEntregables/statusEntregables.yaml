@@ -1,0 +1,9 @@
+enum: StEntregables
+values:
+  - todos
+  - draft
+  - feedback
+  - approved
+  - scheduled
+  - published
+  

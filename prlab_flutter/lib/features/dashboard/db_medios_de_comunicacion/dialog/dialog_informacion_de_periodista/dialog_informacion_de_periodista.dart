@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_client/prlab_client.dart';
+import 'package:prlab_flutter/extensiones/extension_periodista.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/bloc/bloc_db_medios_de_comunicacion.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/topic_pr_card_periodista.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/theming/base.dart';
@@ -23,25 +23,17 @@ part 'listado_de_articulos_del_periodista.dart';
 class DialogInformacionDePeriodista extends StatelessWidget {
   /// {@macro DialogInformacionDePeriodista}
   const DialogInformacionDePeriodista({
-    required this.idPeriodista,
+    required this.periodista,
     super.key,
   });
 
   /// El identificador único con el que se guarda en la
   /// base de datos el periodista.
-  final int idPeriodista;
+  final Periodista periodista;
 
   Future<void> show(BuildContext context) => showDialog(
         context: context,
-        builder: (_) => BlocProvider.value(
-          value: context.read<BlocDbMediosDeComunicacion>()
-            ..add(
-              BlocDbMediosDeComunicacionEventoObtenerDetallePeriodista(
-                idPeriodista,
-              ),
-            ),
-          child: this,
-        ),
+        builder: (_) => this,
       );
 
   @override
@@ -49,11 +41,11 @@ class DialogInformacionDePeriodista extends StatelessWidget {
     return PRDialog(
       tipo: TipoDialog.informacion,
       contentPadding: EdgeInsets.zero,
-      content: const Row(
+      content: Row(
         children: [
-          DatosPersonalesDelPeriodista(),
-          VerticalDivider(width: 0),
-          ListadoDeArticulosDelPeriodista(),
+          DatosPersonalesDelPeriodista(periodista: periodista),
+          const VerticalDivider(width: 0),
+          const ListadoDeArticulosDelPeriodista(),
         ],
       ),
       height: max(830.ph, 830.sh),
