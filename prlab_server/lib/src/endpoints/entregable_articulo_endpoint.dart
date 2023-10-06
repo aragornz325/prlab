@@ -216,6 +216,7 @@ class EntregableArticuloEndpoint extends Endpoint {
     }
   }
 
+  @deprecated
   Future<List<EntregableArticulo>> traerEntregableporFiltro(Session session,
       {required List<int> status, required int idAutor}) async {
     try {
@@ -231,14 +232,14 @@ class EntregableArticuloEndpoint extends Endpoint {
 
   /// La función `listarArticuloMarcayEstado` toma una sesión, un texto, un ID de marca y una lista de
   /// ID de estado, y devuelve una lista de objetos `EntregableArticulo` basado en los parámetros dados.
-  /// 
+  ///
   /// Args:
   ///   session (Session): Un objeto de sesión que representa la sesión del usuario actual.
   ///   texto (String): Un parámetro de cadena que representa el texto que se buscará en los artículos.
   ///   idMarca (int): El ID de la marca del artículo.
   ///   idStatus (List<int>): Una lista de números enteros que representan los ID del estado deseado
   /// para los artículos.
-  /// 
+  ///
   /// Returns:
   ///   El método devuelve un objeto "Futuro" que se resuelve en una "Lista" de objetos
   /// "EntregableArticulo".
@@ -248,10 +249,12 @@ class EntregableArticuloEndpoint extends Endpoint {
     required int idMarca,
     required List<int> idStatus,
   }) async {
-    if (texto.isEmpty) {
-      texto = '';
-    }
     try {
+
+      if(idStatus.isEmpty){
+        throw Exception('La lista de estados no puede estar vacía');
+      }
+
       return await servicioArticulo.listarEntregableMarcayEstado(
         texto,
         session: session,
@@ -263,24 +266,5 @@ class EntregableArticuloEndpoint extends Endpoint {
     }
   }
 
-  /// La función `listarStatusEntregable` recupera una lista de objetos `StatusEntregable` usando un
-  /// objeto `Session`.
-  /// 
-  /// Args:
-  ///   session (Session): Un objeto de sesión que representa la sesión del usuario actual.
-  /// 
-  /// Returns:
-  ///   El método devuelve un objeto "Futuro" que se resuelve en una "Lista" de objetos
-  /// "EstadoEntregable".
-  Future<List<StatusEntregable>> listarStatusEntregable(
-    Session session,
-  ) async {
-    try {
-      return await servicioArticulo.listarStatusEntregable(
-        session: session,
-      );
-    } on Exception {
-      rethrow;
-    }
-  }
+  
 }

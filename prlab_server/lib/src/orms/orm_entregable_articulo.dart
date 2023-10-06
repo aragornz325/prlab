@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/orm.dart';
+import 'package:prlab_server/utils/extenciones/columna_int_extencion.dart';
 import 'package:prlab_server/utils/manejo_de_errores/manejo_de_errores.dart';
 import 'package:serverpod/server.dart';
 
@@ -328,6 +329,7 @@ class OrmEntregableArticulo extends ORM {
   ///
   /// Returns:
   ///   un `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
+  @deprecated
   Future<List<EntregableArticulo>> traerEntregableporFiltro(
       {required Session session,
       required List<int> status,
@@ -355,39 +357,40 @@ class OrmEntregableArticulo extends ORM {
   /// La función `traerEntregableporUsuarioyStatus` recupera una lista de objetos `EntregableArticulo`
   /// de una base de datos basada en una sesión determinada y un ID de marca.
   Future<List<EntregableArticulo>> listarEntregableporUsuarioyStatus(
+    Session session,
     String texto, {
-    required Session session,
     required List<int> idStatus,
   }) async {
-    List articulos = [];
-      final idAutor = await session.auth.authenticatedUserId;
-      logger.finer(
-          '''buscando buscando todos los articulos de todas las marcas del autor $idAutor''');
-      for (var i = 0; i < idStatus.length; i++) {
-        final entregables = await EntregableArticulo.find(
-          session,
-          where: (t) =>
-              t.idAutor.equals(32) &
-              t.fechaEliminacion.equals(null) &
-              t.idStatus.equals(idStatus[i]),
-        );
-        articulos.addAll(entregables);
-      }
-   
+    List articulos = <EntregableArticulo>[];
+    final idAutor = await session.auth.authenticatedUserId;
+    logger.finer(
+      '''buscando buscando todos los articulos de todas las marcas del autor $idAutor''',
+    );
+    for (var i = 0; i < idStatus.length; i++) {
+      final entregables = await EntregableArticulo.find(
+        session,
+        where: (t) =>
+            t.idAutor.equals(idAutor) &
+            t.fechaEliminacion.equals(null) &
+            t.idStatus.equals(idStatus[i]),
+      );
+      articulos.addAll(entregables);
+    }
+
     articulos.sort((a, b) => b.fechaCreacion.compareTo(a.fechaCreacion));
     return articulos.cast<EntregableArticulo>();
   }
 
   // si el texto no es vacio, se buscan los articulos por texto
   // y por idStatus
-  Future<List<EntregableArticulo>> listarEntregableporTexto({
-    required Session session,
+  Future<List<EntregableArticulo>> listarEntregableporTextoyMarca(
+    Session session, {
     required String texto,
     required int idMarca,
-    required List idStatus,
+    required List<int> idStatus,
   }) async {
     try {
-      List articulos = [];
+      final articulos = <EntregableArticulo>[];
       if (idStatus.first == 0) {
         logger.finer('buscando en la db los articulos por texto: $texto');
         final articulo = await EntregableArticulo.find(
@@ -402,24 +405,15 @@ class OrmEntregableArticulo extends ORM {
         return articulos.cast<EntregableArticulo>();
       }
 
-      for (var i = 0; i < idStatus.length; i++) {
-        logger.finer('buscando en la db los articulos por texto: $texto');
-        final articulo = await EntregableArticulo.find(
-          session,
-          where: (t) =>
-              t.fechaEliminacion.equals(null) &
-              t.titulo.like('%$texto%') &
-              t.idMarca.equals(idMarca) &
-              t.idStatus.equals(idStatus[i]),
-        );
-        articulos.addAll(articulo);
-        logger.fine('articulos encontrados: ${articulos.length}');
-      }
-      articulos.sort((a, b) => b.fechaCreacion.compareTo(a.fechaCreacion));
-      if (articulos.isEmpty) {
-        return articulos.cast<EntregableArticulo>();
-      }
-      return articulos.cast<EntregableArticulo>();
+      logger.finer('buscando en la db los articulos por texto: $texto');
+      return await EntregableArticulo.find(
+        session,
+        where: (t) =>
+            t.fechaEliminacion.equals(null) &
+            t.titulo.like('%$texto%') &
+            t.idMarca.equals(idMarca) &
+            t.idStatus.contains(idStatus),
+      );
     } catch (e) {
       throw Exception('$e');
     }
@@ -435,31 +429,22 @@ class OrmEntregableArticulo extends ORM {
   ///
   /// Returns:
   ///   un `Futuro<Lista<EntregableArticulo>>`.
-  Future<List<EntregableArticulo>> listarEntregablesporMarcayStatus({
-    required Session session,
-    required List idStatus,
+  Future<List<EntregableArticulo>> listarEntregablesporMarcayStatus(
+    Session session, {
+    required List<int> idStatus,
     required int idMarca,
   }) async {
     // sino se buscan los articulos por idStatus
     try {
-      List articulos = [];
-      for (var i = 0; i < idStatus.length; i++) {
-        logger.finer('buscando en la db los articulos con status: $idStatus');
-        final articulo = await EntregableArticulo.find(
-          session,
-          where: (t) =>
-              t.idStatus.equals(idStatus[i]) &
-              t.fechaEliminacion.equals(null) &
-              t.idMarca.equals(idMarca),
-        );
-
-        articulos.addAll(articulo);
-        logger.fine('articulos encontrados: ${articulos.length}');
-      }
-      if (articulos.isEmpty) {
-        return articulos.cast<EntregableArticulo>();
-      }
-      return articulos.cast<EntregableArticulo>();
+      final articulos = <EntregableArticulo>[];
+      logger.finer('buscando en la db los articulos con status: $idStatus');
+      return await EntregableArticulo.find(
+        session,
+        where: (t) =>
+            t.idStatus.contains(idStatus) &
+            t.fechaEliminacion.equals(null) &
+            t.idMarca.equals(idMarca),
+      );
     } catch (e) {
       throw Exception('$e');
     }
@@ -475,8 +460,8 @@ class OrmEntregableArticulo extends ORM {
   ///
   /// Returns:
   ///   un objeto Futuro que se resuelve en una Lista de objetos EntregableArticulo.
-  Future<List<EntregableArticulo>> traerEntregableTodosLosStatus({
-    required Session session,
+  Future<List<EntregableArticulo>> traerEntregableTodosLosStatus(
+    Session session, {
     required idMarca,
   }) async {
     try {
@@ -498,20 +483,20 @@ class OrmEntregableArticulo extends ORM {
 
   /// La función `listatEntregablesporUsuarioyTexto` recupera una lista de objetos `EntregableArticulo`
   /// basados en la sesión del usuario, un texto de búsqueda y una lista de ID de estado.
-  /// 
+  ///
   /// Args:
   ///   session (Session): Un objeto de sesión que contiene información sobre la sesión del usuario
   /// actual.
   ///   texto (String): Una cadena que representa el texto a buscar en los títulos de los artículos.
   ///   idStatus (List): Una lista de ID de estado que se utilizan para filtrar los resultados de la
   /// búsqueda.
-  /// 
+  ///
   /// Returns:
   ///   un `Futuro<Lista<EntregableArticulo>>`.
-  Future<List<EntregableArticulo>> listatEntregablesporUsuarioyTexto({
-    required Session session,
+  Future<List<EntregableArticulo>> listatEntregablesporUsuarioyTexto(
+    Session session, {
     required String texto,
-    required List idStatus,
+    required List<int> idStatus,
   }) async {
     final idAutor = await session.auth.authenticatedUserId;
     try {
@@ -524,54 +509,17 @@ class OrmEntregableArticulo extends ORM {
               t.idAutor.equals(idAutor),
         );
       }
-      List articulos = [];
-      for (var i = 0; i < idStatus.length; i++) {
-        logger.finer('buscando en la db los articulos con status: $idStatus');
-        final articulo = await EntregableArticulo.find(
-          session,
-          where: (t) =>
-              t.idStatus.equals(idStatus[i]) &
-              t.fechaEliminacion.equals(null) &
-              t.titulo.like('%$texto%') &
-              t.idAutor.equals(idAutor),
-        );
-        articulos.addAll(articulo);
-        if (articulos.isEmpty) {
-          return articulos.cast<EntregableArticulo>();
-        }
-      }
-      logger.fine('articulos encontrados: ${articulos.length}');
-      return articulos.cast<EntregableArticulo>();
+      logger.finer('buscando en la db los articulos con status: $idStatus');
+      return await EntregableArticulo.find(
+        session,
+        where: (t) =>
+            t.idStatus.contains(idStatus) &
+            t.fechaEliminacion.equals(null) &
+            t.titulo.like('%$texto%') &
+            t.idAutor.equals(idAutor),
+      );
     } catch (e) {
       throw Exception('$e');
     }
-  }
-
-  /// La función `listarStatusEntregable` recupera una lista de objetos `StatusEntregable` activos de
-  /// una base de datos usando un ORM.
-  ///
-  /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio. Se utiliza para
-  /// realizar operaciones de base de datos dentro de la función.
-  ///
-  /// Returns:
-  ///   El método devuelve un `Future<List<StatusEntregable>>`.
-  Future<List<StatusEntregable>> listarStatusEntregable({
-    required Session session,
-  }) async {
-    return await ejecutarOperacionOrm(
-      session,
-      (Session session) {
-        logger.info(
-          'Buscando los status de los entregables',
-        );
-        return StatusEntregable.find(
-          session,
-          where: (t) => t.activo.equals(true),
-          orderBy: StatusEntregableTable().id,
-          orderDescending: false,
-        );
-      },
-    );
   }
 }

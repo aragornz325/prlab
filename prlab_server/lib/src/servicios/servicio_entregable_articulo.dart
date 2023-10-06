@@ -337,6 +337,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
   ///
   /// Returns:
   ///   un objeto `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
+  @deprecated
   Future<List<EntregableArticulo>> traerEntregableporFiltro({
     required Session session,
     required List<int> status,
@@ -351,17 +352,17 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     );
   }
 
-  
   /// La función `listarEntregableMarcayEstado` toma parámetros como texto, sesión, idMarca e idStatus,
   /// y devuelve una lista de objetos `EntregableArticulo` basados en diferentes condiciones.
-  /// 
+  ///
   /// Args:
   ///   texto (String): Un parámetro de cadena que representa el texto que se buscará en la lista de
   /// objetos EntregableArticulo.
   ///   session (Session): Un objeto de sesión necesario para las operaciones de la base de datos.
-  ///   idMarca (int): El ID de la marca para la que se deben enumerar los entregables.
+  ///   idMarca (int): El ID de la marca para la que se deben enumerar los entregables,
+  ///   siendo el valor 0 igual a traer todas las marcas
   ///   idStatus (List<int>): Una lista de números enteros que representan los ID de estado.
-  /// 
+  ///
   /// Returns:
   ///   El método devuelve un "Futuro" que se resuelve en una "Lista" de objetos "EntregableArticulo".
   Future<List<EntregableArticulo>> listarEntregableMarcayEstado(
@@ -370,18 +371,17 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     required int idMarca,
     required List<int> idStatus,
   }) async {
-    
     if (idStatus.first == 0 && texto.isEmpty) {
       return ejecutarOperacion(
         () => orm.traerEntregableTodosLosStatus(
-          session: session,
+          session,
           idMarca: idMarca,
         ),
       );
     } else if (texto.isNotEmpty) {
       return await ejecutarOperacion(
-        () => orm.listarEntregableporTexto(
-          session: session,
+        () => orm.listarEntregableporTextoyMarca(
+          session,
           idMarca: idMarca,
           texto: texto,
           idStatus: idStatus,
@@ -390,15 +390,15 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     } else if (idMarca == 0 && texto.isEmpty) {
       return await ejecutarOperacion(
         () => orm.listarEntregableporUsuarioyStatus(
+          session,
           texto,
-          session: session,
           idStatus: idStatus,
         ),
       );
     } else if (texto.isNotEmpty && idMarca == 0) {
       return await ejecutarOperacion(
         () => orm.listatEntregablesporUsuarioyTexto(
-          session: session,
+          session,
           idStatus: idStatus,
           texto: texto,
         ),
@@ -406,7 +406,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     } else if (idStatus.isNotEmpty && idMarca != 0) {
       return await ejecutarOperacion(
         () => orm.listarEntregablesporMarcayStatus(
-          session: session,
+          session,
           idMarca: idMarca,
           idStatus: idStatus,
         ),
@@ -414,23 +414,5 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     } else {
       return [];
     }
-  }
-
-  /// La función `listarStatusEntregable` devuelve un futuro que enumera el estado de los entregables.
-  ///
-  /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio.
-  ///
-  /// Returns:
-  ///   El método devuelve un objeto "Futuro" que se resuelve en una "Lista" de objetos
-  /// "EstadoEntregable".
-  Future<List<StatusEntregable>> listarStatusEntregable({
-    required Session session,
-  }) async {
-    return await ejecutarOperacion(
-      () => orm.listarStatusEntregable(
-        session: session,
-      ),
-    );
   }
 }

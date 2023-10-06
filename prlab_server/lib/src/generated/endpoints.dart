@@ -638,17 +638,6 @@ class Endpoints extends _i1.EndpointDispatch {
             idStatus: params['idStatus'],
           ),
         ),
-        'listarStatusEntregable': _i1.MethodConnector(
-          name: 'listarStatusEntregable',
-          params: {},
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
-              (endpoints['entregableArticulo']
-                      as _i6.EntregableArticuloEndpoint)
-                  .listarStatusEntregable(session),
-        ),
       },
     );
     connectors['mail'] = _i1.EndpointConnector(
