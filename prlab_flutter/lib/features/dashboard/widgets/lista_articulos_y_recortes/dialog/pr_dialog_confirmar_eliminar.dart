@@ -14,8 +14,8 @@ import 'package:prlab_flutter/utilidades/widgets/pr_dialog.dart';
 class PrDialogConfirmarAlEliminarArticulo extends StatelessWidget {
   /// {@macro PaginaEditorContenido}
   const PrDialogConfirmarAlEliminarArticulo({
-    super.key,
     required this.idArticulo,
+    super.key,
   });
 
   /// id del articulo a eliminar
