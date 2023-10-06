@@ -7,8 +7,8 @@ fields:
   idAutor: int
   idStatus: int # Definir (por defecto 0)
   ultimaModificacion: DateTime
-  fechaCreacion: DateTime?
-  activo: bool?
+  fechaCreacion: DateTime
+  activo: bool
   slug: String?
   idMarca: int? parent=marcas # Definir
   fechaEliminacion: DateTime?, database
