@@ -36,8 +36,8 @@ class ContenedorDeLaBarraDeBusqueda extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: <Color>[
-            colores.gradientContainerBusqueda,
             colores.primary,
+            colores.onPrimary,
           ],
           tileMode: TileMode.mirror,
         ),
@@ -168,6 +168,9 @@ class _ItemContenedorDeLaBarraDeBusqueda extends StatelessWidget {
     required this.texto,
     required this.onTap,
     this.icono,
+    // No tiene funcionalidad pero en caso de
+    // necesitarlo se puede remover el ignore.
+    // ignore: unused_element
     this.pathImagenIcono,
     this.estaCargando = false,
   });
@@ -219,7 +222,7 @@ class _ItemContenedorDeLaBarraDeBusqueda extends StatelessWidget {
                       ? Icon(
                           icono,
                           size: 25.pw,
-                          color: colores.primary,
+                          color: colores.iconoPaginaInicio,
                         )
                       : pathImagenIcono != null
                           ? Image.asset(

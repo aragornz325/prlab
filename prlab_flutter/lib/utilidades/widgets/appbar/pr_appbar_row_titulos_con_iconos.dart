@@ -39,6 +39,7 @@ class PRAppBarRowTitulosConIconos extends StatelessWidget {
                 style: TextStyle(
                   color: context.colores.tertiary,
                   fontSize: 16.pf,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
               Icon(
@@ -63,8 +64,11 @@ class PRAppBarRowTitulosConIconos extends StatelessWidget {
             children: [
               Text(
                 l10n.prAppBarDistributionContent,
-                style:
-                    TextStyle(color: context.colores.tertiary, fontSize: 16.pf),
+                style: TextStyle(
+                  color: context.colores.tertiary,
+                  fontSize: 16.pf,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               Icon(
                 Icons.arrow_drop_down_rounded,
@@ -88,8 +92,11 @@ class PRAppBarRowTitulosConIconos extends StatelessWidget {
             children: [
               Text(
                 l10n.prAppBarCoverageMedia,
-                style:
-                    TextStyle(color: context.colores.tertiary, fontSize: 16.pf),
+                style: TextStyle(
+                  color: context.colores.tertiary,
+                  fontSize: 16.pf,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               Icon(
                 Icons.arrow_drop_down_rounded,
