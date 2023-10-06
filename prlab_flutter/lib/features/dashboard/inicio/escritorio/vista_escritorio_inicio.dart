@@ -34,7 +34,7 @@ class VistaEscritorioInicio extends StatelessWidget {
           children: [
             SizedBox(height: max(40.ph, 40.sh)),
             ContenedorDeLaBarraDeBusqueda(
-              nombreUsuario: sessionManager.signedInUser?.userName ?? 'john',
+              nombreUsuario: sessionManager.signedInUser?.userName ?? '',
             ),
             SizedBox(height: max(50.ph, 50.sh)),
             EncabezadoDeSeccion(

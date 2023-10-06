@@ -112,7 +112,6 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     SizedBox(height: max(90.ph, 90.sh)),
                     SizedBox(
                       width: 360.pw,
-                      height: max(40.ph, 40.sh),
                       child: PRTextFormField.email(
                         context: context,
                         controller: controllerEmail,
@@ -123,7 +122,6 @@ class _VistaLoginEscritorioState extends State<VistaLoginEscritorio> {
                     SizedBox(height: max(40.ph, 40.sh)),
                     SizedBox(
                       width: 360.pw,
-                      height: max(40.ph, 40.sh),
                       child: PRTextFormFieldPassword(
                         controller: controllerPassword,
                         hintText: l10n.pageLoginPlaceholderPassword,

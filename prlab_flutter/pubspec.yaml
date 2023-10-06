@@ -69,10 +69,13 @@ flutter:
     - prod.env
 
   fonts:
-    - family: Montserrat
+    - family: LouisGeorgeCafe
       fonts:
-        - asset: assets/fonts/Montserrat-Regular.ttf
-        - asset: assets/fonts/Montserrat-Bold.ttf
+        - asset: assets/fonts/Louis-George-Cafe-Regular.ttf
+        - asset: assets/fonts/Louis-George-Cafe-Bold.ttf
+    - family: Ganton
+      fonts:
+        - asset: assets/fonts/Ganton.otf
 
 full_responsive:
   resolutions:
