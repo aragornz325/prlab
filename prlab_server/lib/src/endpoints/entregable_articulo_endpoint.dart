@@ -221,7 +221,7 @@ class EntregableArticuloEndpoint extends Endpoint {
       {required List<int> status, required int idAutor}) async {
     try {
       return await servicioArticulo.traerEntregableporFiltro(
-        session: session,
+        session,
         status: status,
         idAutor: idAutor,
       );
@@ -250,14 +250,13 @@ class EntregableArticuloEndpoint extends Endpoint {
     required List<int> idStatus,
   }) async {
     try {
-
-      if(idStatus.isEmpty){
+      if (idStatus.isEmpty) {
         throw Exception('La lista de estados no puede estar vacía');
       }
 
       return await servicioArticulo.listarEntregableMarcayEstado(
+        session,
         texto,
-        session: session,
         idMarca: idMarca,
         idStatus: idStatus,
       );
@@ -265,6 +264,4 @@ class EntregableArticuloEndpoint extends Endpoint {
       rethrow;
     }
   }
-
-  
 }

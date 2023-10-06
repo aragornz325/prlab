@@ -338,8 +338,8 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
   /// Returns:
   ///   un objeto `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
   @deprecated
-  Future<List<EntregableArticulo>> traerEntregableporFiltro({
-    required Session session,
+  Future<List<EntregableArticulo>> traerEntregableporFiltro(
+    session, {
     required List<int> status,
     required int idAutor,
   }) async {
@@ -366,8 +366,8 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
   /// Returns:
   ///   El método devuelve un "Futuro" que se resuelve en una "Lista" de objetos "EntregableArticulo".
   Future<List<EntregableArticulo>> listarEntregableMarcayEstado(
+    session,
     String texto, {
-    required Session session,
     required int idMarca,
     required List<int> idStatus,
   }) async {
