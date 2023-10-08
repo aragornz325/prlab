@@ -392,14 +392,14 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
         () => orm.listarEntregableporUsuarioyStatus(
           session,
           texto,
-          idStatus: idStatus,
+          listaIdEstados: idStatus,
         ),
       );
     } else if (texto.isNotEmpty && idMarca == 0) {
       return await ejecutarOperacion(
         () => orm.listatEntregablesporUsuarioyTexto(
           session,
-          idStatus: idStatus,
+          listaIdEstado: idStatus,
           texto: texto,
         ),
       );
@@ -408,7 +408,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
         () => orm.listarEntregablesporMarcayStatus(
           session,
           idMarca: idMarca,
-          idStatus: idStatus,
+          listaIdEstado: idStatus,
         ),
       );
     } else {

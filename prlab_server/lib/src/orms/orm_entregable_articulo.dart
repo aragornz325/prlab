@@ -359,26 +359,19 @@ class OrmEntregableArticulo extends ORM {
   Future<List<EntregableArticulo>> listarEntregableporUsuarioyStatus(
     Session session,
     String texto, {
-    required List<int> idStatus,
+    required List<int> listaIdEstados,
   }) async {
-    List articulos = <EntregableArticulo>[];
     final idAutor = await session.auth.authenticatedUserId;
     logger.finer(
       '''buscando buscando todos los articulos de todas las marcas del autor $idAutor''',
     );
-    for (var i = 0; i < idStatus.length; i++) {
-      final entregables = await EntregableArticulo.find(
-        session,
-        where: (t) =>
-            t.idAutor.equals(idAutor) &
-            t.fechaEliminacion.equals(null) &
-            t.idStatus.equals(idStatus[i]),
-      );
-      articulos.addAll(entregables);
-    }
-
-    articulos.sort((a, b) => b.fechaCreacion.compareTo(a.fechaCreacion));
-    return articulos.cast<EntregableArticulo>();
+    return await EntregableArticulo.find(
+      session,
+      where: (t) =>
+          t.idAutor.equals(idAutor) &
+          t.fechaEliminacion.equals(null) &
+          t.idStatus.contains(listaIdEstados),
+    );
   }
 
   // si el texto no es vacio, se buscan los articulos por texto
@@ -431,17 +424,17 @@ class OrmEntregableArticulo extends ORM {
   ///   un `Futuro<Lista<EntregableArticulo>>`.
   Future<List<EntregableArticulo>> listarEntregablesporMarcayStatus(
     Session session, {
-    required List<int> idStatus,
+    required List<int> listaIdEstado,
     required int idMarca,
   }) async {
     // sino se buscan los articulos por idStatus
     try {
-      final articulos = <EntregableArticulo>[];
-      logger.finer('buscando en la db los articulos con status: $idStatus');
+      logger
+          .finer('buscando en la db los articulos con status: $listaIdEstado');
       return await EntregableArticulo.find(
         session,
         where: (t) =>
-            t.idStatus.contains(idStatus) &
+            t.idStatus.contains(listaIdEstado) &
             t.fechaEliminacion.equals(null) &
             t.idMarca.equals(idMarca),
       );
@@ -496,11 +489,11 @@ class OrmEntregableArticulo extends ORM {
   Future<List<EntregableArticulo>> listatEntregablesporUsuarioyTexto(
     Session session, {
     required String texto,
-    required List<int> idStatus,
+    required List<int> listaIdEstado,
   }) async {
     final idAutor = await session.auth.authenticatedUserId;
     try {
-      if (idStatus.first == 0) {
+      if (listaIdEstado.first == 0) {
         return EntregableArticulo.find(
           session,
           where: (t) =>
@@ -509,11 +502,11 @@ class OrmEntregableArticulo extends ORM {
               t.idAutor.equals(idAutor),
         );
       }
-      logger.finer('buscando en la db los articulos con status: $idStatus');
+      logger.finer('buscando en la db los articulos con status: $listaIdEstado');
       return await EntregableArticulo.find(
         session,
         where: (t) =>
-            t.idStatus.contains(idStatus) &
+            t.idStatus.contains(listaIdEstado) &
             t.fechaEliminacion.equals(null) &
             t.titulo.like('%$texto%') &
             t.idAutor.equals(idAutor),
