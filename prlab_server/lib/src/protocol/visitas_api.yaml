@@ -1,0 +1,4 @@
+class: VisitasApi
+fields:
+  date: DateTime
+  visits: int

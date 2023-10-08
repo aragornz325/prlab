@@ -77,10 +77,7 @@ class _PrDrawerState extends State<PrDrawer> {
           const Spacer(),
           Center(
             child: PRBoton(
-              onTap: () => showDialog<void>(
-                context: context,
-                builder: (context) => const PRDialogErrorNoDisponible(),
-              ),
+              onTap: () => context.router.push(const RutaCrearCuenta()),
               texto: l10n.drawerAddANewClientButton,
               estaHabilitado: true,
               width: 160.pw,
