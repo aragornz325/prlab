@@ -439,6 +439,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
           session,
           texto: texto,
           idMarca: idMarca,
+          listaIds:idStatus
         ),
       );
     }

@@ -412,10 +412,9 @@ class OrmEntregableArticulo extends ORM {
     }
   }
 
- 
   /// La función `listarEntregablesporMarcayStatus` recupera una lista de objetos `EntregableArticulo`
   /// de una base de datos basada en la lista proporcionada de ID de estado y una ID de marca.
-  /// 
+  ///
   /// Args:
   ///   session (Session): El parámetro de sesión es de tipo Sesión y se utiliza para establecer una
   /// conexión con la base de datos.
@@ -423,7 +422,7 @@ class OrmEntregableArticulo extends ORM {
   /// deseado para los artículos.
   ///   idMarca (int): El parámetro "idMarca" es un número entero que representa el ID de una marca. Se
   /// utiliza para filtrar la lista de objetos "EntregableArticulo" según el ID de marca.
-  /// 
+  ///
   /// Returns:
   ///   El método devuelve un objeto "Futuro" que se resuelve en una "Lista" de objetos
   /// "EntregableArticulo".
@@ -450,13 +449,13 @@ class OrmEntregableArticulo extends ORM {
 
   /// La función `traerEntregableTodosLosStatus` recupera una lista de objetos `EntregableArticulo` de
   /// una base de datos basada en una `idMarca` determinada y los devuelve.
-  /// 
+  ///
   /// Args:
   ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. Se utiliza para
   /// realizar operaciones de bases de datos.
   ///   idMarca: El parámetro `idMarca` es un parámetro obligatorio de tipo `int`. Se utiliza para
   /// filtrar la búsqueda de objetos `EntregableArticulo` en función de su propiedad `idMarca`.
-  /// 
+  ///
   /// Returns:
   ///   un Futuro<Lista<EntregableArticulo>>.
   Future<List<EntregableArticulo>> traerEntregableTodosLosStatus(
@@ -480,19 +479,19 @@ class OrmEntregableArticulo extends ORM {
     }
   }
 
- /// La función `listatEntregablesporUsuarioyTexto` recupera una lista de objetos `EntregableArticulo`
- /// basada en los parámetros `texto` y `listaIdEstado` proporcionados.
- /// 
- /// Args:
- ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la sesión del usuario
- /// actual. Es necesario para fines de autenticación y autorización.
- ///   texto (String): Un parámetro de cadena obligatorio que representa el texto que se buscará en los
- /// títulos de los artículos.
- ///   listaIdEstado (List<int>): Una lista de números enteros que representan los ID de los estados de
- /// los artículos que se van a buscar.
- /// 
- /// Returns:
- ///   un `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
+  /// La función `listatEntregablesporUsuarioyTexto` recupera una lista de objetos `EntregableArticulo`
+  /// basada en los parámetros `texto` y `listaIdEstado` proporcionados.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la sesión del usuario
+  /// actual. Es necesario para fines de autenticación y autorización.
+  ///   texto (String): Un parámetro de cadena obligatorio que representa el texto que se buscará en los
+  /// títulos de los artículos.
+  ///   listaIdEstado (List<int>): Una lista de números enteros que representan los ID de los estados de
+  /// los artículos que se van a buscar.
+  ///
+  /// Returns:
+  ///   un `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
   Future<List<EntregableArticulo>> listatEntregablesporUsuarioyTexto(
     Session session, {
     required String texto,
@@ -526,11 +525,11 @@ class OrmEntregableArticulo extends ORM {
 
   /// La función "listarEntregableporUsuario" recupera una lista de objetos "EntregableArticulo" de una
   /// base de datos basada en el ID del usuario autenticado.
-  /// 
+  ///
   /// Args:
   ///   session (Session): El parámetro de sesión es una instancia de la clase Session, que se utiliza
   /// para autenticar e interactuar con la base de datos.
-  /// 
+  ///
   /// Returns:
   ///   El método devuelve un objeto Futuro que se resuelve en una Lista de objetos EntregableArticulo.
   Future<List<EntregableArticulo>> listarEntregableporUsuario(
@@ -553,14 +552,14 @@ class OrmEntregableArticulo extends ORM {
 
   /// La función `listarEntregableporTextoyStatus` recupera una lista de objetos `EntregableArticulo`
   /// basada en un texto y estado determinado, utilizando una sesión y una ID de usuario autenticada.
-  /// 
+  ///
   /// Args:
   ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la sesión actual del
   /// usuario.
   ///   texto (String): Una cadena que representa el texto a buscar en los artículos.
   ///   idStatus (List<int>): Una lista de números enteros que representan los ID de estado de los
   /// artículos que se van a buscar.
-  /// 
+  ///
   /// Returns:
   ///   El método devuelve un `Future<List<EntregableArticulo>>`.
   Future<List<EntregableArticulo>> listarEntregableporTextoyStatus(
@@ -598,7 +597,7 @@ class OrmEntregableArticulo extends ORM {
 
   /// La función `listarEntregableporTextoyMarca` recupera una lista de objetos `EntregableArticulo` de
   /// una base de datos basada en un texto y un ID de marca determinados.
-  /// 
+  ///
   /// Args:
   ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. Representa la
   /// sesión o conexión actual a la base de datos.
@@ -606,15 +605,29 @@ class OrmEntregableArticulo extends ORM {
   /// artículos.
   ///   idMarca (int): El parámetro idMarca es un número entero que representa el ID de una marca
   /// específica. Se utiliza para filtrar la búsqueda de artículos por marca.
-  /// 
+  ///
   /// Returns:
   ///   El método devuelve un `Future<List<EntregableArticulo>>`.
   Future<List<EntregableArticulo>> listarEntregableporTextoyMarca(
     Session session, {
     required String texto,
     required int idMarca,
+    required List<int> listaIds,
   }) async {
     try {
+      if (listaIds.first == 0) {
+        logger.finer('buscando en la db los articulos por texto: $texto');
+        final articulo = await EntregableArticulo.find(
+          session,
+          where: (t) =>
+              t.fechaEliminacion.equals(null) &
+              t.titulo.like('%$texto%') &
+              t.idMarca.equals(idMarca),
+        );
+        logger.fine('articulos encontrados: ${articulo.length}');
+        return articulo;
+      }
+
       final idAutor = await session.auth.authenticatedUserId;
       logger.finer('buscando en la db los articulos por texto: $texto');
       final articulo = await EntregableArticulo.find(
@@ -623,6 +636,7 @@ class OrmEntregableArticulo extends ORM {
             t.fechaEliminacion.equals(null) &
             t.idAutor.equals(idAutor) &
             t.titulo.like('%$texto%') &
+            t.idStatus.contains(listaIds) &
             t.idMarca.equals(idMarca),
       );
       logger.fine('articulos encontrados: ${articulo.length}');
@@ -631,6 +645,4 @@ class OrmEntregableArticulo extends ORM {
       throw Exception('$e');
     }
   }
-
-  
 }
