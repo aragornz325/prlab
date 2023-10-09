@@ -3,10 +3,10 @@ table: marcas
 fields:
   nombre: String
   sitioWeb: String
-  staff: List<Cliente>?, api
-  ultimosArticulos: List<EntregableArticulo>?, api
-  cantidadArticulos: int?, api
-  cantidadClippings: int?, api
-  fechaCreacion: DateTime, database
-  ultimaModificacion: DateTime, database
-  activo: bool?, database
+  staff: List<UsuarioEnMarca>, api
+  ultimosArticulos: List<ArticuloEnMarca>, api
+  cantidadArticulos: int, api
+  cantidadClippings: int, api
+  ultimaModificacion: DateTime?, database
+  fechaCreacion: DateTime?, database
+  fechaEliminacion: DateTime?, database
