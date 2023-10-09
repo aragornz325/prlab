@@ -534,4 +534,37 @@ class OrmEntregableArticulo extends ORM {
       throw Exception('$e');
     }
   }
+
+  Future<List<EntregableArticulo>> listarEntregableporTextoyStatus(
+    Session session, {
+    required String texto,
+    required List<int> idStatus,
+  }) async {
+    try {
+      final idAutor = await session.auth.authenticatedUserId;
+      if (idStatus.first == 0) {
+        logger.finer('buscando en la db los articulos por texto: $texto');
+        final articulo = await EntregableArticulo.find(
+          session,
+          where: (t) =>
+              t.fechaEliminacion.equals(null) &
+              t.idAutor.equals(idAutor) &
+              t.titulo.like('%$texto%'),
+        );
+        logger.fine('articulos encontrados: ${articulo.length}');
+        return articulo;
+      }
+      logger.finer('buscando en la db los articulos por texto: $texto');
+      return await EntregableArticulo.find(
+        session,
+        where: (t) =>
+            t.fechaEliminacion.equals(null) &
+            t.titulo.like('%$texto%') &
+            t.idAutor.equals(idAutor) &
+            t.idStatus.contains(idStatus),
+      );
+    } catch (e) {
+      throw Exception('$e');
+    }
+  }
 }
