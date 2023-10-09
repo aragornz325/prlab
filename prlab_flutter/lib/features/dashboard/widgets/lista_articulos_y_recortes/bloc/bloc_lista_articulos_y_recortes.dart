@@ -48,9 +48,15 @@ class BlocListaArticulosYRecortes extends Bloc<
       if (idMarca != null) {
         articulos = await client.entregableArticulo.listarArticulosPorMarca(
           idMarca,
-        );
+        )
+          ..sort(
+            (a, b) => (b.fechaCreacion).compareTo(a.fechaCreacion),
+          );
       } else {
-        articulos = await client.entregableArticulo.traerArticulosPorUsuario();
+        articulos = await client.entregableArticulo.traerArticulosPorUsuario()
+          ..sort(
+            (a, b) => (b.fechaCreacion).compareTo(a.fechaCreacion),
+          );
       }
       emit(
         BlocListaArticulosYRecortesEstadoExitoso.desde(
@@ -84,11 +90,20 @@ class BlocListaArticulosYRecortes extends Bloc<
       var listaArticulosFiltrado = <EntregableArticulo>[];
       if (event.sinFiltro) {
         listaArticulosFiltrado =
-            await client.entregableArticulo.traerArticulosPorUsuario();
+            await client.entregableArticulo.listarEntregableMarcayEstado(
+          '',
+          idMarca: event.idMarca ?? 0,
+          idStatus: [0],
+        )
+              ..sort(
+                (a, b) => (b.fechaCreacion).compareTo(a.fechaCreacion),
+              );
         emit(
           BlocListaArticulosYRecortesEstadoExitoso.desde(
             state,
             articulosFiltrados: listaArticulosFiltrado,
+            estadoEntregables: const [],
+            nombreDelArticuloAFiltrar: '',
           ),
         );
       } else {
@@ -103,7 +118,10 @@ class BlocListaArticulosYRecortes extends Bloc<
           state.nombreDelArticuloAFiltrar,
           idMarca: event.idMarca ?? 0,
           idStatus: listaEstado.isEmpty ? [0] : listaEstado,
-        );
+        )
+              ..sort(
+                (a, b) => (b.fechaCreacion).compareTo(a.fechaCreacion),
+              );
 
         emit(
           BlocListaArticulosYRecortesEstadoExitoso.desde(
