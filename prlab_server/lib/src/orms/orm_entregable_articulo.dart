@@ -502,7 +502,8 @@ class OrmEntregableArticulo extends ORM {
               t.idAutor.equals(idAutor),
         );
       }
-      logger.finer('buscando en la db los articulos con status: $listaIdEstado');
+      logger
+          .finer('buscando en la db los articulos con status: $listaIdEstado');
       return await EntregableArticulo.find(
         session,
         where: (t) =>
@@ -511,6 +512,24 @@ class OrmEntregableArticulo extends ORM {
             t.titulo.like('%$texto%') &
             t.idAutor.equals(idAutor),
       );
+    } catch (e) {
+      throw Exception('$e');
+    }
+  }
+
+  Future<List<EntregableArticulo>> listarEntregableporUsuario(
+    Session session,
+  ) async {
+    try {
+      final idAutor = await session.auth.authenticatedUserId;
+      logger.finer('buscando en la db los articulos del usuario');
+      final articulos = await EntregableArticulo.find(
+        session,
+        where: (t) =>
+            t.idAutor.equals(idAutor) & t.fechaEliminacion.equals(null),
+      );
+      logger.fine('articulos encontrados: ${articulos.length}');
+      return articulos;
     } catch (e) {
       throw Exception('$e');
     }

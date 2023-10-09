@@ -411,6 +411,12 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
           listaIdEstado: idStatus,
         ),
       );
+    } else if (idMarca == 0 && idStatus.first == 0 && texto.isEmpty) {
+      return await ejecutarOperacion(
+        () => orm.listarEntregableporUsuario(
+          session,
+        ),
+      );
     } else {
       return [];
     }
