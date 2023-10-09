@@ -25,7 +25,7 @@ class ServicioMarca extends Servicio<OrmMarca> {
   /// contiene datos de la conexión.
   ///   [marca] ([Marca]): Un objeto con el registro de la marca a ser guardado
   /// en la Base de Datos.
-  Future<List<Map>> crearMarca(
+  Future<int> crearMarca(
     Session session, {
     required String nombre,
     required String sitioWeb,
@@ -50,7 +50,7 @@ class ServicioMarca extends Servicio<OrmMarca> {
           ),
         ),
       );
-    } on Exception {
+    } catch (e) {
       rethrow;
     }
   }
@@ -61,22 +61,22 @@ class ServicioMarca extends Servicio<OrmMarca> {
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
-  // Future<List<Marca>> listarMarcas(
-  //   Session session,
-  // ) async {
-  //   try {
-  //     logger.info(
-  //       'Listando Marcas',
-  //     );
-  //     return await ejecutarOperacion(
-  //       () => orm.listarMarcas(
-  //         session: session,
-  //       ),
-  //     );
-  //   } on Exception {
-  //     rethrow;
-  //   }
-  // }
+  Future<List<Marca>> listarMarcas(
+    Session session,
+  ) async {
+    try {
+      logger.info(
+        'Listando Marcas',
+      );
+      return await ejecutarOperacion(
+        () => orm.listarMarcas(
+          session: session,
+        ),
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 
   /// Obtiene el registro de una marca por su id.
   ///
@@ -88,12 +88,16 @@ class ServicioMarca extends Servicio<OrmMarca> {
     Session session, {
     required int idMarca,
   }) async {
-    return await ejecutarOperacion(
-      () => orm.obtenerMarcaPorId(
-        session: session,
-        id: idMarca,
-      ),
-    );
+    try {
+      return await ejecutarOperacion(
+        () => orm.obtenerMarcaPorId(
+          session: session,
+          id: idMarca,
+        ),
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   /// Obtiene las marcas a las que se encuentra asignado un usuario.
@@ -105,30 +109,45 @@ class ServicioMarca extends Servicio<OrmMarca> {
     Session session, {
     required int idUsuario,
   }) async {
-    logger.info(
-      'Recuperando marcas del usuario $idUsuario...',
-    );
+    try {
+      logger.info(
+        'Recuperando marcas del usuario $idUsuario...',
+      );
 
-    return await ejecutarOperacion(
-      () => orm.listarMarcasPorUsuario(
-        session,
-        idUsuario: idUsuario,
-      ),
-    );
+      return await ejecutarOperacion(
+        () => orm.listarMarcasPorUsuario(
+          session,
+          idUsuario: idUsuario,
+        ),
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
+  ///  Modifica un registro de [Marca].
   Future<bool> modificarMarca({
     required Session session,
     required int idMarca,
-    required Map<String, dynamic> camposMarca,
+    String? nombre,
+    String? sitioWeb,
   }) async {
-    return await ejecutarOperacion(
-      () => orm.modificarMarca(
-        session: session,
-        idMarca: idMarca,
-        camposMarca: camposMarca,
-      ),
-    );
+    try {
+      return await ejecutarOperacion(
+        () => orm.modificarMarca(
+          session: session,
+          idMarca: idMarca,
+          camposMarca: {
+            'nombre': nombre,
+            'sitioWeb': sitioWeb,
+          }
+            ..['ultimaModificacion'] = DateTime.now().toIso8601String()
+            ..removeWhere((key, value) => value == null),
+        ),
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   /// Elimina una marca.
@@ -155,7 +174,7 @@ class ServicioMarca extends Servicio<OrmMarca> {
           idMarca: idMarca,
         ),
       );
-    } on Exception {
+    } catch (e) {
       rethrow;
     }
   }
@@ -176,19 +195,23 @@ class ServicioMarca extends Servicio<OrmMarca> {
     required int idUsuario,
     required int idRol,
   }) async {
-    final now = DateTime.now();
-    return await ejecutarOperacion(
-      () => orm.asignarUsuarioAMarca(
-        session,
-        marcaStaff: MarcaStaff(
-          idMarca: idMarca,
-          idStaff: idUsuario,
-          idRol: idRol,
-          ultimaModificacion: now,
-          fechaCreacion: now,
+    try {
+      final now = DateTime.now();
+      return await ejecutarOperacion(
+        () => orm.asignarUsuarioAMarca(
+          session,
+          marcaStaff: MarcaStaff(
+            idMarca: idMarca,
+            idStaff: idUsuario,
+            idRol: idRol,
+            ultimaModificacion: now,
+            fechaCreacion: now,
+          ),
         ),
-      ),
-    );
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   /// Da de baja la relacion entre el usuario y la marca
@@ -205,12 +228,16 @@ class ServicioMarca extends Servicio<OrmMarca> {
     required int idMarca,
     required int idUsuario,
   }) async {
-    return await ejecutarOperacion(
-      () => orm.desvincularUsuarioDeMarca(
-        session,
-        idMarca: idMarca,
-        idUsuario: idUsuario,
-      ),
-    );
+    try {
+      return await ejecutarOperacion(
+        () => orm.desvincularUsuarioDeMarca(
+          session,
+          idMarca: idMarca,
+          idUsuario: idUsuario,
+        ),
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 }

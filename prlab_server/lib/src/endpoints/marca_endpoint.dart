@@ -11,13 +11,8 @@ class MarcaEndpoint extends Endpoint {
   /// [crearMarca] del servicio [servicioMarca] y devuelve un booleano
   /// que indica éxito.
   ///
-  /// Args:
-  ///   [session] ([Session]): El parámetro de sesión es de tipo Sesión y representa
-  ///   la sesión del usuario
-  /// actual.
-  ///   [marca] ([Marca]): Este parametro es un objeto de tipo "Marca" que
-  ///   contiene los datos necesarios para crear una nueva marca.
-  Future<List<Map>> crearMarca(
+  /// Retorna el ID del registro de [Marca] creado.
+  Future<int> crearMarca(
     Session session, {
     required String nombre,
     required String sitioWeb,
@@ -28,8 +23,8 @@ class MarcaEndpoint extends Endpoint {
         nombre: nombre,
         sitioWeb: sitioWeb,
       );
-    } on Exception catch (e) {
-      throw Exception('$e');
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -41,24 +36,28 @@ class MarcaEndpoint extends Endpoint {
   ///   [session] ([Session]): Este parametro es de tipo "Sesión". Se utiliza
   ///   para pasar la información de la sesión al método "listarMarcas".
 
-  // Future<List<Marca>> listarMarcas(
-  //   Session session,
-  // ) async {
-  //   try {
-  //     return servicioMarca.listarMarcas(
-  //       session,
-  //     );
-  //   } on Exception catch (e) {
-  //     throw Exception('$e');
-  //   }
-  // }
+  Future<List<Marca>> listarMarcas(
+    Session session,
+  ) async {
+    try {
+      return servicioMarca.listarMarcas(
+        session,
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 
   /// Obtiene el registro de una marca por su id.
   Future<Marca> obtenerMarcaPorId(Session session, int idMarca) async {
-    return await servicioMarca.obtenerMarcaPorId(
-      session,
-      idMarca: idMarca,
-    );
+    try {
+      return await servicioMarca.obtenerMarcaPorId(
+        session,
+        idMarca: idMarca,
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   /// Obtiene las marcas a las que se encuentra asignado un usuario.
@@ -66,10 +65,14 @@ class MarcaEndpoint extends Endpoint {
     Session session, {
     required int idUsuario,
   }) async {
-    return await servicioMarca.listarMarcasPorUsuario(
-      session,
-      idUsuario: idUsuario,
-    );
+    try {
+      return await servicioMarca.listarMarcasPorUsuario(
+        session,
+        idUsuario: idUsuario,
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   /// Modifica un registro de [Marca].
@@ -79,14 +82,16 @@ class MarcaEndpoint extends Endpoint {
     String? nombre,
     String? sitioWeb,
   }) async {
-    return await servicioMarca.modificarMarca(
-      session: session,
-      idMarca: idMarca,
-      camposMarca: {
-        'nombre': nombre,
-        'sitioWeb': sitioWeb,
-      },
-    );
+    try {
+      return await servicioMarca.modificarMarca(
+        session: session,
+        idMarca: idMarca,
+        nombre: nombre,
+        sitioWeb: sitioWeb,
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   /// La función [eliminarMarca] es una función que toma un objeto `Session` y
@@ -108,8 +113,8 @@ class MarcaEndpoint extends Endpoint {
         idMarca: id,
       );
       return true;
-    } on Exception catch (e) {
-      throw Exception('$e');
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -120,12 +125,16 @@ class MarcaEndpoint extends Endpoint {
     required int idUsuario,
     required int idRol,
   }) async {
-    return await servicioMarca.asignarUsuarioAMarca(
-      session,
-      idMarca: idMarca,
-      idUsuario: idUsuario,
-      idRol: idRol,
-    );
+    try {
+      return await servicioMarca.asignarUsuarioAMarca(
+        session,
+        idMarca: idMarca,
+        idUsuario: idUsuario,
+        idRol: idRol,
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   /// Da de baja la relacion entre el usuario y la marca
@@ -135,10 +144,14 @@ class MarcaEndpoint extends Endpoint {
     required int idMarca,
     required int idUsuario,
   }) async {
-    return await servicioMarca.desvincularUsuarioDeMarca(
-      session,
-      idMarca: idMarca,
-      idUsuario: idUsuario,
-    );
+    try {
+      return await servicioMarca.desvincularUsuarioDeMarca(
+        session,
+        idMarca: idMarca,
+        idUsuario: idUsuario,
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 }
