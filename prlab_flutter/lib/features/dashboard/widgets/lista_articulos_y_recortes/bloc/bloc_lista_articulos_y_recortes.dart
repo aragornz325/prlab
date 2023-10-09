@@ -94,7 +94,11 @@ class BlocListaArticulosYRecortes extends Bloc<
           await client.entregableArticulo.listarEntregableMarcayEstado(
         state.nombreDelArticuloAFiltrar,
         idMarca: event.idMarca ?? 0,
-        idStatus: event.sinFiltro ? [0] : listaEstado,
+        idStatus: event.sinFiltro
+            ? [0]
+            : listaEstado.isEmpty
+                ? [0]
+                : listaEstado,
       )
             ..sort(
               (a, b) => (b.fechaCreacion).compareTo(a.fechaCreacion),
