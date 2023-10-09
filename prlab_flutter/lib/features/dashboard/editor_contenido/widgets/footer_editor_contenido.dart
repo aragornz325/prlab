@@ -10,6 +10,8 @@ import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups
 import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/caja_comentario.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 
+import '../../../../utilidades/funciones/functions.dart';
+
 /// {@template FooterEditorContenido}
 /// Footer de la vista de editor contenido para abrir los comentarios,poder
 /// visualizar el estado del articulo y publicarlo en caso de que quiera.
@@ -35,52 +37,47 @@ class FooterEditorContenido extends StatelessWidget {
             width: 1000.pw,
             child: Row(
               children: [
-                InkWell(
-                  onTap: () {
-                    // TODO(anyone): agregarle funcionalidad
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        l10n.commonState,
-                        style: TextStyle(
-                          fontSize: 15.pf,
-                          fontWeight: FontWeight.w400,
-                          color: colores.secondary,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      l10n.commonState,
+                      style: TextStyle(
+                        fontSize: 15.pf,
+                        fontWeight: FontWeight.w400,
+                        color: colores.secondary,
+                      ),
+                    ),
+                    SizedBox(width: 5.pw),
+                    Container(
+                      height: max(30.ph, 30.sh),
+                      decoration: BoxDecoration(
+                        color: devolverColorDependiendoDelEstado(
+                          numero: articulo.idStatus,
+                          context: context,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50.sw),
                         ),
                       ),
-                      SizedBox(width: 5.pw),
-                      Container(
-                        width: 80.pw,
-                        height: max(30.ph, 30.sh),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: colores.surfaceTint,
-                        ),
-                        child: Container(
-                          width: 80.pw,
-                          height: max(30.ph, 30.sh),
-                          decoration: BoxDecoration(
-                            color: colores.secondary,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(100.sw),
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10.pw),
+                          child: Text(
+                            devolverNombreDelEstado(
+                              numero: articulo.idStatus,
+                              l10n: l10n,
                             ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              articulo.idStatus.toString(),
-                              style: TextStyle(
-                                color: colores.background,
-                                fontSize: 15.pf,
-                                fontWeight: FontWeight.w600,
-                              ),
+                            style: TextStyle(
+                              color: colores.background,
+                              fontSize: 15.pf,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 SizedBox(width: 10.pw),
                 VerticalDivider(

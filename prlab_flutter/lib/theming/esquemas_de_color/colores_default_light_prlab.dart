@@ -48,4 +48,7 @@ const themeDefaultPRLab = ColorScheme.light(
 
   /// se esta utilizando en los Divider como color de divisor
   onSecondaryContainer: Color(0xffefefef),
+
+  /// se usa en los colores de los filtros o en el estado de un articulo
+  onSurfaceVariant: Color(0xff9747ff),
 );
