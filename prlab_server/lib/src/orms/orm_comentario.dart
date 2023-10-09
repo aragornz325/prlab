@@ -38,7 +38,7 @@ class OrmComentario extends ORM {
            spui."imageUrl"
     FROM 
         comentarios c
-    INNER JOIN clientes cl ON c."idAutor" = cl."id"
+    INNER JOIN clientes cl ON c."idAutor" = cl."idUsuario"
     INNER JOIN serverpod_user_info spui ON cl."idUsuario" = spui."id"
     WHERE c."idEntregable" = $idArticulo
      
@@ -58,8 +58,6 @@ class OrmComentario extends ORM {
       'apellido',
       'imageUrl',
     ]);
-
-    print(respuesta);
     return respuesta
         .map(
           (e) => Comentario.fromJson(

@@ -14,13 +14,14 @@ import '../endpoints/comentario_endpoint.dart' as _i5;
 import '../endpoints/entregable_articulo_endpoint.dart' as _i6;
 import '../endpoints/mail_endpoint.dart' as _i7;
 import '../endpoints/marca_endpoint.dart' as _i8;
-import '../endpoints/periodista_endpoint.dart' as _i9;
-import 'package:prlab_server/src/generated/cliente.dart' as _i10;
-import 'package:prlab_server/src/generated/comentario.dart' as _i11;
-import 'package:prlab_server/src/generated/entregable_articulo.dart' as _i12;
-import 'package:prlab_server/src/generated/marca.dart' as _i13;
-import 'package:prlab_server/src/generated/periodista.dart' as _i14;
-import 'package:serverpod_auth_server/module.dart' as _i15;
+import '../endpoints/metrica_endpoint.dart' as _i9;
+import '../endpoints/periodista_endpoint.dart' as _i10;
+import 'package:prlab_server/src/generated/cliente.dart' as _i11;
+import 'package:prlab_server/src/generated/comentario.dart' as _i12;
+import 'package:prlab_server/src/generated/entregable_articulo.dart' as _i13;
+import 'package:prlab_server/src/generated/marca.dart' as _i14;
+import 'package:prlab_server/src/generated/periodista.dart' as _i15;
+import 'package:serverpod_auth_server/module.dart' as _i16;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -68,7 +69,13 @@ class Endpoints extends _i1.EndpointDispatch {
           'marca',
           null,
         ),
-      'periodista': _i9.PeriodistaEndpoint()
+      'metrica': _i9.MetricaEndpoint()
+        ..initialize(
+          server,
+          'metrica',
+          null,
+        ),
+      'periodista': _i10.PeriodistaEndpoint()
         ..initialize(
           server,
           'periodista',
@@ -227,7 +234,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'datosDelCliente': _i1.ParameterDescription(
               name: 'datosDelCliente',
-              type: _i1.getType<_i10.Cliente>(),
+              type: _i1.getType<_i11.Cliente>(),
               nullable: false,
             )
           },
@@ -355,7 +362,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'comentario': _i1.ParameterDescription(
               name: 'comentario',
-              type: _i1.getType<_i11.Comentario>(),
+              type: _i1.getType<_i12.Comentario>(),
               nullable: false,
             )
           },
@@ -374,7 +381,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'comentario': _i1.ParameterDescription(
               name: 'comentario',
-              type: _i1.getType<_i11.Comentario>(),
+              type: _i1.getType<_i12.Comentario>(),
               nullable: false,
             )
           },
@@ -508,7 +515,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'articulo': _i1.ParameterDescription(
               name: 'articulo',
-              type: _i1.getType<_i12.EntregableArticulo>(),
+              type: _i1.getType<_i13.EntregableArticulo>(),
               nullable: false,
             )
           },
@@ -679,7 +686,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'marca': _i1.ParameterDescription(
               name: 'marca',
-              type: _i1.getType<_i13.Marca>(),
+              type: _i1.getType<_i14.Marca>(),
               nullable: false,
             )
           },
@@ -812,6 +819,78 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
       },
     );
+    connectors['metrica'] = _i1.EndpointConnector(
+      name: 'metrica',
+      endpoint: endpoints['metrica']!,
+      methodConnectors: {
+        'getTotalVisits': _i1.MethodConnector(
+          name: 'getTotalVisits',
+          params: {
+            'domainName': _i1.ParameterDescription(
+              name: 'domainName',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'country': _i1.ParameterDescription(
+              name: 'country',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'granularity': _i1.ParameterDescription(
+              name: 'granularity',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'startDate': _i1.ParameterDescription(
+              name: 'startDate',
+              type: _i1.getType<DateTime?>(),
+              nullable: true,
+            ),
+            'endDate': _i1.ParameterDescription(
+              name: 'endDate',
+              type: _i1.getType<DateTime?>(),
+              nullable: true,
+            ),
+            'mainDomainOnly': _i1.ParameterDescription(
+              name: 'mainDomainOnly',
+              type: _i1.getType<bool?>(),
+              nullable: true,
+            ),
+            'showVerified': _i1.ParameterDescription(
+              name: 'showVerified',
+              type: _i1.getType<bool?>(),
+              nullable: true,
+            ),
+            'mtd': _i1.ParameterDescription(
+              name: 'mtd',
+              type: _i1.getType<bool?>(),
+              nullable: true,
+            ),
+            'engagedOnly': _i1.ParameterDescription(
+              name: 'engagedOnly',
+              type: _i1.getType<bool?>(),
+              nullable: true,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['metrica'] as _i9.MetricaEndpoint).getTotalVisits(
+            session,
+            params['domainName'],
+            country: params['country'],
+            granularity: params['granularity'],
+            startDate: params['startDate'],
+            endDate: params['endDate'],
+            mainDomainOnly: params['mainDomainOnly'],
+            showVerified: params['showVerified'],
+            mtd: params['mtd'],
+            engagedOnly: params['engagedOnly'],
+          ),
+        )
+      },
+    );
     connectors['periodista'] = _i1.EndpointConnector(
       name: 'periodista',
       endpoint: endpoints['periodista']!,
@@ -821,7 +900,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'periodista': _i1.ParameterDescription(
               name: 'periodista',
-              type: _i1.getType<_i14.Periodista>(),
+              type: _i1.getType<_i15.Periodista>(),
               nullable: false,
             )
           },
@@ -829,7 +908,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['periodista'] as _i9.PeriodistaEndpoint)
+              (endpoints['periodista'] as _i10.PeriodistaEndpoint)
                   .crearPeriodista(
             session,
             periodista: params['periodista'],
@@ -848,7 +927,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['periodista'] as _i9.PeriodistaEndpoint)
+              (endpoints['periodista'] as _i10.PeriodistaEndpoint)
                   .eliminarPeriodistaBorradoFisico(
             session,
             id: params['id'],
@@ -867,7 +946,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['periodista'] as _i9.PeriodistaEndpoint)
+              (endpoints['periodista'] as _i10.PeriodistaEndpoint)
                   .eliminarPeriodistaBorradoLogico(
             session,
             id: params['id'],
@@ -878,7 +957,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'periodista': _i1.ParameterDescription(
               name: 'periodista',
-              type: _i1.getType<_i14.Periodista>(),
+              type: _i1.getType<_i15.Periodista>(),
               nullable: false,
             )
           },
@@ -886,7 +965,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['periodista'] as _i9.PeriodistaEndpoint)
+              (endpoints['periodista'] as _i10.PeriodistaEndpoint)
                   .modificarPeriodista(
             session,
             periodista: params['periodista'],
@@ -940,7 +1019,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['periodista'] as _i9.PeriodistaEndpoint)
+              (endpoints['periodista'] as _i10.PeriodistaEndpoint)
                   .listarPeriodistas(
             session,
             nombres: params['nombres'],
@@ -991,7 +1070,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['periodista'] as _i9.PeriodistaEndpoint)
+              (endpoints['periodista'] as _i10.PeriodistaEndpoint)
                   .obtenerListaDeFiltrosConRecuento(
             session,
             idPaises: params['idPaises'],
@@ -1004,6 +1083,6 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
       },
     );
-    modules['serverpod_auth'] = _i15.Endpoints()..initializeEndpoints(server);
+    modules['serverpod_auth'] = _i16.Endpoints()..initializeEndpoints(server);
   }
 }
