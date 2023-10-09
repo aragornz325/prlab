@@ -99,7 +99,7 @@ class PopUpMenuOpcionesPublicar extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15.pf,
-                    color: colores.onPrimary,
+                    color: colores.background,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

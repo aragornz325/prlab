@@ -30,9 +30,11 @@ class PRPopUpMenu extends StatefulWidget {
 
 class _PRPopUpMenuState extends State<PRPopUpMenu> {
   bool _estaExpandido = false;
+
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
     return PopupMenuButton<MenuDeOpciones>(
       tooltip: '',
       onOpened: () {

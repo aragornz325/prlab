@@ -1,0 +1,6 @@
+# Versión simplificada de los objetos de Artículo para ser listados y 
+# retornados dentro del objeto de una Marca (ultimosArticulos).
+class: ArticuloEnMarca
+fields:
+  id: int
+  titulo: String

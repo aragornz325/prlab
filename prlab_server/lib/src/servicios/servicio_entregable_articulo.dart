@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:prlab_server/src/excepciones/excepcion_endpoint.dart';
 import 'dart:io';
 
@@ -335,8 +337,9 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
   ///
   /// Returns:
   ///   un objeto `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
-  Future<List<EntregableArticulo>> traerEntregableporFiltro({
-    required Session session,
+  @deprecated
+  Future<List<EntregableArticulo>> traerEntregableporFiltro(
+    session, {
     required List<int> status,
     required int idAutor,
   }) async {
@@ -349,48 +352,67 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     );
   }
 
-  /// La función `listarArticuloMarcayEstado` devuelve un Future que enumera los objetos
-  /// `EntregableArticulo` según la sesión, el ID de marca y los ID de estado dados.
-  /// 
+  /// La función `listarEntregableMarcayEstado` toma parámetros como texto, sesión, idMarca e idStatus,
+  /// y devuelve una lista de objetos `EntregableArticulo` basados en diferentes condiciones.
+  ///
   /// Args:
-  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. Representa la
-  /// sesión o conexión actual a la base de datos.
-  ///   idMarca (int): El id de la marca del artículo.
-  ///   idStatus (List<int>): El parámetro "idStatus" es una lista de números enteros que representan
-  /// los ID del estado deseado para los artículos.
-  /// 
+  ///   texto (String): Un parámetro de cadena que representa el texto que se buscará en la lista de
+  /// objetos EntregableArticulo.
+  ///   session (Session): Un objeto de sesión necesario para las operaciones de la base de datos.
+  ///   idMarca (int): El ID de la marca para la que se deben enumerar los entregables,
+  ///   siendo el valor 0 igual a traer todas las marcas
+  ///   idStatus (List<int>): Una lista de números enteros que representan los ID de estado.
+  ///
   /// Returns:
-  ///   El método devuelve un objeto "Futuro" que se resuelve en una "Lista" de objetos
-  /// "EntregableArticulo".
-  Future<List<EntregableArticulo>> listarArticuloMarcayEstado({
-    required Session session,
+  ///   El método devuelve un "Futuro" que se resuelve en una "Lista" de objetos "EntregableArticulo".
+  Future<List<EntregableArticulo>> listarEntregableMarcayEstado(
+    session,
+    String texto, {
     required int idMarca,
     required List<int> idStatus,
   }) async {
-    return await ejecutarOperacion(
-      () => orm.listarArticuloMarcayEstado(
-        session: session,
-        idMarca: idMarca,
-        idStatus: idStatus,
-      ),
-    );
-  }
-
-  /// La función `listarStatusEntregable` devuelve un futuro que enumera el estado de los entregables.
-  /// 
-  /// Args:
-  ///   session (Session): El parámetro "sesión" es de tipo "Sesión" y es obligatorio.
-  /// 
-  /// Returns:
-  ///   El método devuelve un objeto "Futuro" que se resuelve en una "Lista" de objetos
-  /// "EstadoEntregable".
-  Future<List<StatusEntregable>> listarStatusEntregable({
-    required Session session,
-  }) async {
-    return await ejecutarOperacion(
-      () => orm.listarStatusEntregable(
-        session: session,
-      ),
-    );
+    if (idStatus.first == 0 && texto.isEmpty) {
+      return ejecutarOperacion(
+        () => orm.traerEntregableTodosLosStatus(
+          session,
+          idMarca: idMarca,
+        ),
+      );
+    } else if (texto.isNotEmpty) {
+      return await ejecutarOperacion(
+        () => orm.listarEntregableporTextoyMarca(
+          session,
+          idMarca: idMarca,
+          texto: texto,
+          idStatus: idStatus,
+        ),
+      );
+    } else if (idMarca == 0 && texto.isEmpty) {
+      return await ejecutarOperacion(
+        () => orm.listarEntregableporUsuarioyStatus(
+          session,
+          texto,
+          listaIdEstados: idStatus,
+        ),
+      );
+    } else if (texto.isNotEmpty && idMarca == 0) {
+      return await ejecutarOperacion(
+        () => orm.listatEntregablesporUsuarioyTexto(
+          session,
+          listaIdEstado: idStatus,
+          texto: texto,
+        ),
+      );
+    } else if (idStatus.isNotEmpty && idMarca != 0) {
+      return await ejecutarOperacion(
+        () => orm.listarEntregablesporMarcayStatus(
+          session,
+          idMarca: idMarca,
+          listaIdEstado: idStatus,
+        ),
+      );
+    } else {
+      return [];
+    }
   }
 }

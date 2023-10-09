@@ -72,14 +72,37 @@ CREATE TABLE "marcas" (
   "id" serial,
   "nombre" text NOT NULL,
   "sitioWeb" text NOT NULL,
-  "fechaCreacion" timestamp without time zone NOT NULL,
-  "ultimaModificacion" timestamp without time zone NOT NULL,
-  "activo" boolean
+  "ultimaModificacion" timestamp without time zone,
+  "fechaCreacion" timestamp without time zone,
+  "fechaEliminacion" timestamp without time zone
 );
 
 ALTER TABLE ONLY "marcas"
   ADD CONSTRAINT marcas_pkey PRIMARY KEY (id);
 
+
+--
+-- Class MarcaStaff as table marcas_staff
+--
+
+CREATE TABLE "marcas_staff" (
+  "id" serial,
+  "idMarca" integer NOT NULL,
+  "idStaff" integer NOT NULL,
+  "idRol" integer NOT NULL,
+  "ultimaModificacion" timestamp without time zone NOT NULL,
+  "fechaCreacion" timestamp without time zone NOT NULL,
+  "fechaEliminacion" timestamp without time zone
+);
+
+ALTER TABLE ONLY "marcas_staff"
+  ADD CONSTRAINT marcas_staff_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY "marcas_staff"
+  ADD CONSTRAINT marcas_staff_fk_0
+    FOREIGN KEY("idMarca")
+      REFERENCES marcas(id)
+        ON DELETE CASCADE;
 
 --
 -- Class MensajeRegistro as table mensaje_registro
@@ -152,6 +175,19 @@ ALTER TABLE ONLY "clientes"
     FOREIGN KEY("contacto")
       REFERENCES informacion_de_contactos(id)
         ON DELETE CASCADE;
+
+--
+-- Class Pais as table paises
+--
+
+CREATE TABLE "paises" (
+  "id" serial,
+  "nombre" text NOT NULL
+);
+
+ALTER TABLE ONLY "paises"
+  ADD CONSTRAINT paises_pkey PRIMARY KEY (id);
+
 
 --
 -- Class Periodista as table periodistas

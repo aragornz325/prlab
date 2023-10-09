@@ -1,0 +1,11 @@
+# Clase referida a tabla intermedia que relaciona entidades Marca a
+# usuarios (Cliente).
+class: MarcaStaff
+table: marcas_staff
+fields:
+  idMarca: int, parent=marcas, database
+  idStaff: int, database
+  idRol: int, database
+  ultimaModificacion: DateTime, database
+  fechaCreacion: DateTime, database
+  fechaEliminacion: DateTime?, database

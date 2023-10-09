@@ -471,6 +471,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
 
     return SizedBox(
       width: widget.width?.sw ?? 360.sw,
+      height: max(50.ph, 50.sh),
       child: TextFormField(
         onFieldSubmitted: widget.onFieldSubmitted,
         onEditingComplete: widget.onEditingComplete,
@@ -490,16 +491,18 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
         decoration: widget.decoration ??
             InputDecoration(
               hintText: widget.hintText,
-              border: UnderlineInputBorder(
+              border: OutlineInputBorder(
                 borderSide: BorderSide(
                   color: widget.esSoloLectura
                       ? colores.primary
                       : colores.outlineVariant,
                 ),
+                borderRadius: BorderRadius.circular(10.sw),
               ),
+              contentPadding: EdgeInsets.fromLTRB(0.sw, 0.sw, 8.sh, 0.sh),
               suffixIcon: widget.esPassword ? widget.suffixIcon : null,
               prefixIcon: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 4.pw),
+                padding: EdgeInsets.symmetric(horizontal: 10.pw),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisSize: MainAxisSize.min,
@@ -515,15 +518,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
                           : widget.esSoloLectura
                               ? colores.primaryOpacidadSesenta
                               : colores.primary,
-                      size: 25.sw,
-                    ),
-                    SizedBox(
-                      width: 5.ph,
-                    ),
-                    Container(
-                      height: max(31.5.ph, 31.5.sh),
-                      width: 1.pw,
-                      decoration: BoxDecoration(color: colores.outlineVariant),
+                      size: 24.sw,
                     ),
                   ],
                 ),
@@ -590,12 +585,12 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
             ? Icon(
                 Icons.visibility_off_outlined,
                 color: colores.primary,
-                size: 25.pw,
+                size: 24.sw,
               )
             : Icon(
                 Icons.visibility_outlined,
                 color: colores.primary,
-                size: 25.pw,
+                size: 24.sw,
               ),
         onPressed: () {
           setState(() {
