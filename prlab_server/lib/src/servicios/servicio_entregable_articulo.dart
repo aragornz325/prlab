@@ -371,46 +371,59 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     required int idMarca,
     required List<int> idStatus,
   }) async {
-    if (idStatus.first == 0 && texto.isEmpty) {
-      return ejecutarOperacion(
-        () => orm.traerEntregableTodosLosStatus(
+    if (idStatus.first == 0 && texto.isEmpty && idMarca != 0) {
+      return ejecutarOperacion(() {
+        logger.finer('caso 1');
+        return orm.traerEntregableTodosLosStatus(
           session,
           idMarca: idMarca,
-        ),
-      );
-    } else if (texto.isNotEmpty) {
-      return await ejecutarOperacion(
-        () => orm.listarEntregableporTextoyMarca(
+        );
+      });
+    } else if (texto.isNotEmpty && idMarca != 0 && idStatus.first != 0) {
+      return await ejecutarOperacion(() {
+        logger.finer('caso 2');
+        return orm.listarEntregableporTextoyMarca(
           session,
           idMarca: idMarca,
           texto: texto,
           idStatus: idStatus,
-        ),
-      );
-    } else if (idMarca == 0 && texto.isEmpty) {
-      return await ejecutarOperacion(
-        () => orm.listarEntregableporUsuarioyStatus(
+        );
+      });
+    } else if (idMarca == 0 && texto.isEmpty && idStatus.first != 0) {
+      logger.info('entro');
+      return await ejecutarOperacion(() {
+        logger.finer('caso 3');
+        return orm.listarEntregableporUsuarioyStatus(
           session,
           texto,
           listaIdEstados: idStatus,
-        ),
-      );
-    } else if (texto.isNotEmpty && idMarca == 0) {
-      return await ejecutarOperacion(
-        () => orm.listatEntregablesporUsuarioyTexto(
+        );
+      });
+    } else if (texto.isNotEmpty && idMarca == 0 && idStatus.first == 0) {
+      return await ejecutarOperacion(() {
+        logger.finer('caso 4');
+        return orm.listatEntregablesporUsuarioyTexto(
           session,
           listaIdEstado: idStatus,
           texto: texto,
-        ),
-      );
-    } else if (idStatus.isNotEmpty && idMarca != 0) {
-      return await ejecutarOperacion(
-        () => orm.listarEntregablesporMarcayStatus(
+        );
+      });
+    } else if (idStatus.isNotEmpty && idMarca != 0 && texto.isEmpty) {
+      return await ejecutarOperacion(() {
+        logger.finer('caso 5');
+        return orm.listarEntregablesporMarcayStatus(
           session,
           idMarca: idMarca,
           listaIdEstado: idStatus,
-        ),
-      );
+        );
+      });
+    } else if (idMarca == 0 && idStatus.first == 0 && texto.isEmpty) {
+      return await ejecutarOperacion(() {
+        logger.finer('caso 6');
+        return orm.listarEntregableporUsuario(
+          session,
+        );
+      });
     } else {
       return [];
     }
