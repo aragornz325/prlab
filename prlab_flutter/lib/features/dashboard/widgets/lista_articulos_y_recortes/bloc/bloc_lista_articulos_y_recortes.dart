@@ -80,56 +80,33 @@ class BlocListaArticulosYRecortes extends Bloc<
     }
   }
 
-  /// Filtra por el tipo de articulo.D
+  /// Filtra por el tipo de articulo.
   Future<void> _onFiltrarListaArticulos(
     BlocListaArticulosYRecortesEventoFiltrar event,
     Emitter<BlocListaArticulosYRecortesEstado> emit,
   ) async {
     emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
     try {
-      var listaArticulosFiltrado = <EntregableArticulo>[];
-      if (event.sinFiltro) {
-        listaArticulosFiltrado =
-            await client.entregableArticulo.listarEntregableMarcayEstado(
-          '',
-          idMarca: event.idMarca ?? 0,
-          idStatus: [0],
-        )
-              ..sort(
-                (a, b) => (b.fechaCreacion).compareTo(a.fechaCreacion),
-              );
-        emit(
-          BlocListaArticulosYRecortesEstadoExitoso.desde(
-            state,
-            articulosFiltrados: listaArticulosFiltrado,
-            estadoEntregables: const [],
-            nombreDelArticuloAFiltrar: '',
-          ),
-        );
-      } else {
-        final listaEstado = state.estadoEntregables
-            .map(
-              (e) => e.toJson(),
-            )
-            .toList();
+      final listaEstado =
+          state.estadoEntregables.map((e) => e.toJson()).toList();
 
-        listaArticulosFiltrado =
-            await client.entregableArticulo.listarEntregableMarcayEstado(
-          state.nombreDelArticuloAFiltrar,
-          idMarca: event.idMarca ?? 0,
-          idStatus: listaEstado.isEmpty ? [0] : listaEstado,
-        )
-              ..sort(
-                (a, b) => (b.fechaCreacion).compareTo(a.fechaCreacion),
-              );
+      final listaArticulosFiltrado =
+          await client.entregableArticulo.listarEntregableMarcayEstado(
+        state.nombreDelArticuloAFiltrar,
+        idMarca: event.idMarca ?? 0,
+        idStatus: event.sinFiltro ? [0] : listaEstado,
+      )
+            ..sort(
+              (a, b) => (b.fechaCreacion).compareTo(a.fechaCreacion),
+            );
 
-        emit(
-          BlocListaArticulosYRecortesEstadoExitoso.desde(
-            state,
-            articulosFiltrados: listaArticulosFiltrado,
-          ),
-        );
-      }
+      emit(
+        BlocListaArticulosYRecortesEstadoExitoso.desde(
+          state,
+          articulosFiltrados: listaArticulosFiltrado,
+          estadoEntregables: event.sinFiltro ? [] : state.estadoEntregables,
+        ),
+      );
     } catch (e, st) {
       emit(
         BlocListaArticulosYRecortesEstadoFallido.desde(
