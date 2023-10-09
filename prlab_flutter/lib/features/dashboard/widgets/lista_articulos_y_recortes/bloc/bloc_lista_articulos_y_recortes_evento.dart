@@ -20,10 +20,16 @@ class BlocListaArticulosYRecortesEventoFiltrar
     extends BlocListaArticulosYRecortesEvento {
   /// {@macro BlocListaArticulosYRecortesEventoFiltrar}
   @override
-  const BlocListaArticulosYRecortesEventoFiltrar({this.idMarca});
+  const BlocListaArticulosYRecortesEventoFiltrar({
+    this.sinFiltro = false,
+    this.idMarca,
+  });
 
   /// Id de la marca a filtrar por esta
   final int? idMarca;
+
+  /// Indica si no debe filtrar por nada
+  final bool sinFiltro;
 }
 
 /// {@template BlocListaArticulosYRecortesEventoTraerArticulos}

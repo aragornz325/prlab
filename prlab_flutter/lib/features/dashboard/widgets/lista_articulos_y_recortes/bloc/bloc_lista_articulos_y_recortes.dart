@@ -81,26 +81,37 @@ class BlocListaArticulosYRecortes extends Bloc<
   ) async {
     emit(BlocListaArticulosYRecortesEstadoCargando.desde(state));
     try {
-      //* Filtra por nombre del articulo
+      var listaArticulosFiltrado = <EntregableArticulo>[];
+      if (event.sinFiltro) {
+        listaArticulosFiltrado =
+            await client.entregableArticulo.traerArticulosPorUsuario();
+        emit(
+          BlocListaArticulosYRecortesEstadoExitoso.desde(
+            state,
+            articulosFiltrados: listaArticulosFiltrado,
+          ),
+        );
+      } else {
+        final listaEstado = state.estadoEntregables
+            .map(
+              (e) => e.toJson(),
+            )
+            .toList();
 
-      final listaEstado = state.estadoEntregables
-          .map(
-            (e) => e.toJson(),
-          )
-          .toList();
+        listaArticulosFiltrado =
+            await client.entregableArticulo.listarEntregableMarcayEstado(
+          state.nombreDelArticuloAFiltrar,
+          idMarca: event.idMarca ?? 0,
+          idStatus: listaEstado.isEmpty ? [0] : listaEstado,
+        );
 
-      final respuesta =
-          await client.entregableArticulo.listarArticuloMarcayEstado(
-        idMarca: event.idMarca ?? 0,
-        idStatus: listaEstado.isEmpty ? [0] : listaEstado,
-      );
-
-      emit(
-        BlocListaArticulosYRecortesEstadoExitoso.desde(
-          state,
-          articulosFiltrados: respuesta,
-        ),
-      );
+        emit(
+          BlocListaArticulosYRecortesEstadoExitoso.desde(
+            state,
+            articulosFiltrados: listaArticulosFiltrado,
+          ),
+        );
+      }
     } catch (e, st) {
       emit(
         BlocListaArticulosYRecortesEstadoFallido.desde(

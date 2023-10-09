@@ -74,7 +74,9 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
           ),
           onTap: () {
             context.read<BlocListaArticulosYRecortes>().add(
-                  const BlocListaArticulosYRecortesEventoFiltrar(),
+                  const BlocListaArticulosYRecortesEventoFiltrar(
+                    sinFiltro: true,
+                  ),
                 );
 
             setState(() {
