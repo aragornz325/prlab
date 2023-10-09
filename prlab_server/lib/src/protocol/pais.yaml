@@ -1,0 +1,4 @@
+class: Pais
+table: paises
+fields:
+  nombre: String

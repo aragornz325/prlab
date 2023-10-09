@@ -1,6 +1,6 @@
 enum: StEntregables
 values:
-  - todos
+  - todos #todos los entregables
   - draft
   - feedback
   - approved

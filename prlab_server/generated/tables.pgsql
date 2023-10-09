@@ -177,6 +177,19 @@ ALTER TABLE ONLY "clientes"
         ON DELETE CASCADE;
 
 --
+-- Class Pais as table paises
+--
+
+CREATE TABLE "paises" (
+  "id" serial,
+  "nombre" text NOT NULL
+);
+
+ALTER TABLE ONLY "paises"
+  ADD CONSTRAINT paises_pkey PRIMARY KEY (id);
+
+
+--
 -- Class Periodista as table periodistas
 --
 

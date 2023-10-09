@@ -58,6 +58,8 @@ class OrmComentario extends ORM {
       'apellido',
       'imageUrl',
     ]);
+
+    print(respuesta);
     return respuesta
         .map(
           (e) => Comentario.fromJson(

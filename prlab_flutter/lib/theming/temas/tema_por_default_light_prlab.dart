@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:prlab_flutter/theming/esquemas_de_color/colores_default_light_prlab.dart';
+import 'package:prlab_flutter/theming/esquemas_de_color/colores_default_light_prhive.dart';
 
 /// Tema base del proyecto PRLab, con colores asignados por diseño
-final temaPorDefectoPRLab = ThemeData.from(
-  textTheme: const TextTheme(
-    displayLarge: TextStyle(
-      fontFamily: 'Raleway',
-    ),
-  ),
-  colorScheme: themeDefaultPRLab,
+final temaPorDefectoPRLab = ThemeData(
+  fontFamily: 'LouisGeorgeCafe',
+  colorScheme: themeDefaultPRHive,
   useMaterial3: true,
 );
 

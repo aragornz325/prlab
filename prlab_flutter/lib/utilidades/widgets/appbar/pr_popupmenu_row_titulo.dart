@@ -39,6 +39,7 @@ class PRPopUpMenuRowTitulo extends StatelessWidget {
               style: TextStyle(
                 color: colores.tertiary,
                 fontSize: 16.pf,
+                fontWeight: FontWeight.w700,
               ),
             ),
             SizedBox(width: 5.pw),
