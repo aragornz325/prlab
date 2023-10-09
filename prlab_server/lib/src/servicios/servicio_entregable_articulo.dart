@@ -386,21 +386,18 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
       return ejecutarConLogger('caso 1',
           () => orm.traerEntregableTodosLosStatus(session, idMarca: idMarca));
     }
-
     if (texto.isNotEmpty && tieneMarca && tieneStatus) {
       return ejecutarConLogger(
           'caso 2',
-          () => orm.listarEntregableporTextoyMarca(session,
+          () => orm.listarEntregableporTextoyMarcayEstatus(session,
               idMarca: idMarca, texto: texto, idStatus: idStatus));
     }
-
     if (!tieneMarca && textoVacio && tieneStatus) {
       return ejecutarConLogger(
           'caso 3',
           () => orm.listarEntregableporUsuarioyStatus(session, texto,
               listaIdEstados: idStatus));
     }
-
     if (texto.isNotEmpty && !tieneMarca && !tieneStatus) {
       return ejecutarConLogger(
         'caso 4',
@@ -411,7 +408,6 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
         ),
       );
     }
-
     if (idStatus.isNotEmpty && tieneMarca && textoVacio) {
       return ejecutarConLogger(
         'caso 5',
@@ -422,12 +418,10 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
         ),
       );
     }
-
     if (!tieneMarca && !tieneStatus && textoVacio) {
       return ejecutarConLogger(
           'caso 6', () => orm.listarEntregableporUsuario(session));
     }
-
     if (texto.isNotEmpty && !tieneMarca && tieneStatus) {
       return ejecutarConLogger(
         'caso 7',
@@ -438,7 +432,16 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
         ),
       );
     }
-
+    if (!textoVacio && tieneMarca && !tieneStatus) {
+      return ejecutarConLogger(
+        'caso 8 aca',
+        () => orm.listarEntregableporTextoyMarca(
+          session,
+          texto: texto,
+          idMarca: idMarca,
+        ),
+      );
+    }
     return [];
   }
 }
