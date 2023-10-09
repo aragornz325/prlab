@@ -525,7 +525,8 @@ class OrmEntregableArticulo extends ORM {
       logger.finer('buscando en la db los articulos del usuario');
       final articulos = await EntregableArticulo.find(
         session,
-        where: (t) => t.idAutor.equals(idAutor) & t.fechaEliminacion.equals(null),
+        where: (t) =>
+            t.idAutor.equals(idAutor) & t.fechaEliminacion.equals(null),
       );
       logger.fine('articulos encontrados: ${articulos.length}');
       return articulos;
