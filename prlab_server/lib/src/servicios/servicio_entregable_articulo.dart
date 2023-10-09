@@ -371,7 +371,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     required int idMarca,
     required List<int> idStatus,
   }) async {
-    if (idStatus.first == 0 && texto.isEmpty) {
+    if (idStatus.first == 0 && texto.isEmpty && idMarca != 0) {
       return ejecutarOperacion(
         () => orm.traerEntregableTodosLosStatus(
           session,
@@ -387,7 +387,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
           idStatus: idStatus,
         ),
       );
-    } else if (idMarca == 0 && texto.isEmpty) {
+    } else if (idMarca == 0 && texto.isEmpty && idStatus.first != 0) {
       return await ejecutarOperacion(
         () => orm.listarEntregableporUsuarioyStatus(
           session,
