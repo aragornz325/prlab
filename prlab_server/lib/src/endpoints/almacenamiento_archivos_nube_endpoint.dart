@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:prlab_server/src/servicios/servicio_almacenamiento_archivos_nube.dart';
 import 'package:serverpod/server.dart';
 
@@ -8,19 +10,26 @@ class AlmacenamientoArchivosNubeEndpoint extends Endpoint {
 
   /// Sube una imagen a la nube. Requiere de la ruta del archivo, el nombre y
   /// la carpeta donde se va a alojar.
+  /// Se puede subir por dos vías:
+  /// - Mediante la ruta del archivo (parámetro [rutaImagen]). Sólo funciona en 
+  /// local.  
+  /// - Mediante enviar el archivo como [Uint8List]. Es la forma que funciona 
+  /// con el server desplegado.
   Future<String> subirImagen(
     Session session, {
-    required String rutaImagen,
     required String nombreImagen,
     required String directorioNube,
+    String? rutaImagen,
+    Uint8List? bytesImagen,
   }) async {
-    return (await servicio
-        .subirImagen(
-          session,
-          rutaImagen: rutaImagen,
-          nombreImagen: nombreImagen,
-          directorioNube: directorioNube,
-        )).secureUrl!;
+    return (await servicio.subirImagen(
+      session,
+      nombreImagen: nombreImagen,
+      directorioNube: directorioNube,
+      rutaImagen: rutaImagen,
+      bytesImagen: bytesImagen,
+    ))
+        .secureUrl!;
   }
 
   /// Borra una imagen del alojamiento en la nube. Requiere de su public-id
