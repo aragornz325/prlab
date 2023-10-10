@@ -42,6 +42,7 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
     final l10n = context.l10n;
 
     return PopupMenuButton<int>(
+      tooltip: '',
       onOpened: () {
         setState(() {
           estaDesplegado = true;

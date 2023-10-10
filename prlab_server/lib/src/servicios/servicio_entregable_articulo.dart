@@ -371,61 +371,78 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     required int idMarca,
     required List<int> idStatus,
   }) async {
-    if (idStatus.first == 0 && texto.isEmpty && idMarca != 0) {
-      return ejecutarOperacion(() {
-        logger.finer('caso 1');
-        return orm.traerEntregableTodosLosStatus(
+    bool textoVacio = texto.isEmpty;
+    bool tieneMarca = idMarca != 0;
+    bool tieneStatus = idStatus.first != 0;
+
+    // función para eliminar la repetición de código
+    Future<List<EntregableArticulo>> ejecutarConLogger(String caso,
+        Future<List<EntregableArticulo>> Function() funcion) async {
+      logger.finer(caso);
+      return await ejecutarOperacion(funcion);
+    }
+
+    if (!tieneStatus && textoVacio && tieneMarca) {
+      return ejecutarConLogger('caso 1',
+          () => orm.traerEntregableTodosLosStatus(session, idMarca: idMarca));
+    }
+    if (texto.isNotEmpty && tieneMarca && tieneStatus) {
+      return ejecutarConLogger(
+          'caso 2',
+          () => orm.listarEntregableporTextoyMarcayEstatus(session,
+              idMarca: idMarca, texto: texto, idStatus: idStatus));
+    }
+    if (!tieneMarca && textoVacio && tieneStatus) {
+      return ejecutarConLogger(
+          'caso 3',
+          () => orm.listarEntregableporUsuarioyStatus(session, texto,
+              listaIdEstados: idStatus));
+    }
+    if (texto.isNotEmpty && !tieneMarca && !tieneStatus) {
+      return ejecutarConLogger(
+        'caso 4',
+        () => orm.listatEntregablesporUsuarioyTexto(
+          session,
+          listaIdEstado: idStatus,
+          texto: texto,
+        ),
+      );
+    }
+    if (idStatus.isNotEmpty && tieneMarca && textoVacio) {
+      return ejecutarConLogger(
+        'caso 5',
+        () => orm.listarEntregablesporMarcayStatus(
           session,
           idMarca: idMarca,
-        );
-      });
-    } else if (texto.isNotEmpty && idMarca != 0 && idStatus.first != 0) {
-      return await ejecutarOperacion(() {
-        logger.finer('caso 2');
-        return orm.listarEntregableporTextoyMarca(
+          listaIdEstado: idStatus,
+        ),
+      );
+    }
+    if (!tieneMarca && !tieneStatus && textoVacio) {
+      return ejecutarConLogger(
+          'caso 6', () => orm.listarEntregableporUsuario(session));
+    }
+    if (texto.isNotEmpty && !tieneMarca && tieneStatus) {
+      return ejecutarConLogger(
+        'caso 7',
+        () => orm.listarEntregableporTextoyStatus(
           session,
-          idMarca: idMarca,
           texto: texto,
           idStatus: idStatus,
-        );
-      });
-    } else if (idMarca == 0 && texto.isEmpty && idStatus.first != 0) {
-      logger.info('entro');
-      return await ejecutarOperacion(() {
-        logger.finer('caso 3');
-        return orm.listarEntregableporUsuarioyStatus(
-          session,
-          texto,
-          listaIdEstados: idStatus,
-        );
-      });
-    } else if (texto.isNotEmpty && idMarca == 0 && idStatus.first == 0) {
-      return await ejecutarOperacion(() {
-        logger.finer('caso 4');
-        return orm.listatEntregablesporUsuarioyTexto(
-          session,
-          listaIdEstado: idStatus,
-          texto: texto,
-        );
-      });
-    } else if (idStatus.isNotEmpty && idMarca != 0 && texto.isEmpty) {
-      return await ejecutarOperacion(() {
-        logger.finer('caso 5');
-        return orm.listarEntregablesporMarcayStatus(
-          session,
-          idMarca: idMarca,
-          listaIdEstado: idStatus,
-        );
-      });
-    } else if (idMarca == 0 && idStatus.first == 0 && texto.isEmpty) {
-      return await ejecutarOperacion(() {
-        logger.finer('caso 6');
-        return orm.listarEntregableporUsuario(
-          session,
-        );
-      });
-    } else {
-      return [];
+        ),
+      );
     }
+    if (!textoVacio && tieneMarca && !tieneStatus) {
+      return ejecutarConLogger(
+        'caso 8 aca',
+        () => orm.listarEntregableporTextoyMarca(
+          session,
+          texto: texto,
+          idMarca: idMarca,
+          listaIds:idStatus
+        ),
+      );
+    }
+    return [];
   }
 }

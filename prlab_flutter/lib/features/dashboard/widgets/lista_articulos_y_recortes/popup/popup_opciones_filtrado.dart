@@ -17,7 +17,13 @@ import 'package:prlab_flutter/theming/base.dart';
 /// {@endtemplate}
 class PopupOpcionesDeFiltrado extends StatefulWidget {
   /// {@macro PopupOpcionesDeFiltrado}
-  const PopupOpcionesDeFiltrado({super.key});
+  const PopupOpcionesDeFiltrado({
+    super.key,
+    this.idMarca,
+  });
+
+  /// Id de la marca  para filtrar la marca
+  final int? idMarca;
 
   @override
   State<PopupOpcionesDeFiltrado> createState() =>
@@ -26,8 +32,6 @@ class PopupOpcionesDeFiltrado extends StatefulWidget {
 
 class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
   bool _estaDesplegado = false;
-
-  FiltrarPor _filtrado = FiltrarPor.todo;
 
   @override
   Widget build(BuildContext context) {
@@ -69,16 +73,15 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
             ),
           ),
           onTap: () {
-            showDialog<void>(
-              context: context,
-              builder: (context) {
-                return const PrDialogFiltrarPorAutor();
-              },
-            );
+            context.read<BlocListaArticulosYRecortes>().add(
+                  BlocListaArticulosYRecortesEventoFiltrar(
+                    sinFiltro: true,
+                    idMarca: widget.idMarca,
+                  ),
+                );
 
             setState(() {
               _estaDesplegado = false;
-              _filtrado = FiltrarPor.todo;
             });
           },
         ),
@@ -97,13 +100,14 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
               context: context,
               builder: (_) => BlocProvider.value(
                 value: context.read<BlocListaArticulosYRecortes>(),
-                child: const PrDialogFiltrarPorStatus(),
+                child: PrDialogFiltrarPorEstado(
+                  idMarca: widget.idMarca,
+                ),
               ),
             );
 
             setState(() {
               _estaDesplegado = false;
-              _filtrado = FiltrarPor.estado;
             });
           },
         ),
@@ -125,7 +129,6 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
 
             setState(() {
               _estaDesplegado = false;
-              _filtrado = FiltrarPor.fecha;
             });
           },
         ),
@@ -147,7 +150,6 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
 
             setState(() {
               _estaDesplegado = false;
-              _filtrado = FiltrarPor.autor;
             });
           },
         ),
@@ -158,24 +160,11 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
             ? colores.primaryOpacidadVeinte
             : colores.surfaceTint,
         child: Icon(
-          _filtrado == FiltrarPor.todo ? Icons.tune : Icons.filter_alt_outlined,
+          Icons.tune,
           color: colores.primary,
           size: 18.pw,
         ),
       ),
     );
   }
-}
-
-/// Enum utilizado para indexar cada item del filtrado.
-enum FiltrarPor {
-  todo,
-  fecha,
-  autor,
-  estado;
-
-  bool get esTodo => this == FiltrarPor.todo;
-  bool get esFecha => this == FiltrarPor.fecha;
-  bool get esAutor => this == FiltrarPor.autor;
-  bool get esEstado => this == FiltrarPor.estado;
 }

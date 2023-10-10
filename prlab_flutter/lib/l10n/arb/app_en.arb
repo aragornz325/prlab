@@ -790,6 +790,31 @@
         "description": "Text on the project metrics label indicating the backlinks"
     },
 
+    "commonDraft": "Draft",
+    "@commonDraft": {
+        "description": "Text on define status draft of article,tells a user that it is a draft article"
+    },
+
+    "commonFeedback": "Feedback",
+    "@commonFeedback": {
+        "description": "Text on define status feedback of article,indicates that there are comments"
+    },
+
+    "commonApproved": "Approved",
+    "@commonApproved": {
+        "description": "Text on define status approved of article,indicates that it has already been approved"
+    },
+
+    "commonSchedule": "Schedule",
+    "@commonSchedule": {
+        "description": "Text on define status schedule of article,indicates that it is going to be published"
+    },
+    
+    "commonPublished": "Published",
+    "@commonPublished": {
+        "description": "Text on define status published of article,indicates that it has already been published"
+    },
+
     "commonState": "State",
     "@commonState": {
         "description": "Text on Filter a articles by Status on create this articles,title on popup for select 3 options"
