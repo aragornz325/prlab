@@ -14,14 +14,13 @@ class AlmacenamientoArchivosNubeEndpoint extends Endpoint {
     required String nombreImagen,
     required String directorioNube,
   }) async {
-    return servicio
+    return (await servicio
         .subirImagen(
           session,
           rutaImagen: rutaImagen,
           nombreImagen: nombreImagen,
           directorioNube: directorioNube,
-        )
-        .toString();
+        )).secureUrl!;
   }
 
   /// Borra una imagen del alojamiento en la nube. Requiere de su public-id
