@@ -20,10 +20,18 @@ class BlocListaArticulosYRecortesEventoFiltrar
     extends BlocListaArticulosYRecortesEvento {
   /// {@macro BlocListaArticulosYRecortesEventoFiltrar}
   @override
-  const BlocListaArticulosYRecortesEventoFiltrar();
+  const BlocListaArticulosYRecortesEventoFiltrar({
+    this.sinFiltro = false,
+    this.idMarca,
+  });
 
-  // TODO(anyone): agregar el tipo de filtrado sea por
-  // un enum u otro tipo
+  /// Id de la marca a filtrar por esta.en caso de que le pases la id marca
+  /// filtra por los articulos que contengan esta id,caso contrario filtra por
+  /// id del usuario y filtra por todos los articulos que contenga dicho usuario
+  final int? idMarca;
+
+  /// Indica si no debe filtrar por nada
+  final bool sinFiltro;
 }
 
 /// {@template BlocListaArticulosYRecortesEventoTraerArticulos}
@@ -61,24 +69,20 @@ class BlocListaArticulosYRecortesEventoSeleccion
 /// Cambia los valores de los filtrados entre los filtrados por Estados/Status
 /// para filtrar por cierto Estado, borrador, completo o comentario.
 /// {@endtemplate}
-class BlocListaArticulosYRecortesEventoFiltradoPorEstado
+class BlocListaArticulosYRecortesEventoGuardarDatosDeFiltrado
     extends BlocListaArticulosYRecortesEvento {
   /// {@macro BlocListaArticulosYRecortesEventoFiltradoPorEstado}
   @override
-  const BlocListaArticulosYRecortesEventoFiltradoPorEstado({
-    this.borrador,
-    this.comentario,
-    this.completo,
+  const BlocListaArticulosYRecortesEventoGuardarDatosDeFiltrado({
+    this.nombreDelArticuloAFiltrar,
+    this.estadoEntregables,
   });
 
-  /// cambia los valores en el popup con el check box de borrador
-  final bool? borrador;
+  /// listado de los estados en los que se puede filtrar
+  final List<StEntregables>? estadoEntregables;
 
-  /// cambia los valores en el popup con el check box de comentario
-  final bool? comentario;
-
-  /// cambia los valores en el popup con el check box de completo
-  final bool? completo;
+  /// nombre del articulo a filtrar por ese nombre/titulo
+  final String? nombreDelArticuloAFiltrar;
 }
 
 /// {@template BlocListaArticulosYRecortesEventoEliminarArticulo}
@@ -94,20 +98,4 @@ class BlocListaArticulosYRecortesEventoEliminarArticulo
 
   /// id del articulo del cual va a eliminarse
   final int idArticulo;
-}
-
-/// {@template BlocListaArticulosYRecortesEventoFiltrarBuscador}
-/// Filtra por el nombre del articulo y devuelve una lista de todos los que
-/// coincidan con ese nombre/titulo
-/// {@endtemplate}
-class BlocListaArticulosYRecortesEventoFiltrarBuscador
-    extends BlocListaArticulosYRecortesEvento {
-  /// {@macro BlocListaArticulosYRecortesEventoFiltrarBuscador}
-  @override
-  const BlocListaArticulosYRecortesEventoFiltrarBuscador({
-    this.nombreDelArticuloAFiltrar,
-  });
-
-  /// nombre del articulo a filtrar por ese nombre/titulo
-  final String? nombreDelArticuloAFiltrar;
 }

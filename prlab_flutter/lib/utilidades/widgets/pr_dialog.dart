@@ -199,6 +199,7 @@ class PRDialog extends StatelessWidget {
     String? botonText,
     double height = 285,
     double width = 455,
+    double alturaEntreContenido = 30,
   }) {
     final l10n = context.l10n;
 
@@ -220,15 +221,18 @@ class PRDialog extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: max(30.ph, 30.sh)),
+          SizedBox(
+            height: max(alturaEntreContenido.ph, alturaEntreContenido.sh),
+          ),
           content,
-          SizedBox(height: max(30.ph, 30.sh)),
+          SizedBox(
+            height: max(alturaEntreContenido.ph, alturaEntreContenido.sh),
+          ),
           Center(
             child: PRBoton.esOutlined(
               onTap: onTap,
               texto: botonText ?? l10n.commonOk,
               estaHabilitado: true,
-              width: 360.pw,
             ),
           ),
         ],
