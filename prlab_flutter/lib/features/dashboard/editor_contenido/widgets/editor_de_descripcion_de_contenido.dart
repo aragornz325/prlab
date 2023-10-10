@@ -1,17 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'dart:math';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quill/flutter_quill.dart';
-import 'package:flutter_quill_extensions/flutter_quill_extensions.dart';
 import 'package:full_responsive/full_responsive.dart';
-import 'package:path/path.dart' as p;
-import 'package:path_provider/path_provider.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
+import 'package:prlab_flutter/features/dashboard/editor_quill/editor_quill.dart';
 
 /// {@template  EditorDeDescripcionDeContenido}
 /// Contiene los elementos para la edición
@@ -73,33 +69,9 @@ class _EditorDeDescripcionDeContenidoState
   @override
   void dispose() {
     _debounce?.cancel();
+    _controller.dispose();
+    _focusNode.dispose();
     super.dispose();
-  }
-
-// Representa la imagen seleccionada por imagePicker
-// del almacenamiento de archivos local
-  Future<String> _onElegirImagen(File file) async {
-    final appDocDir = await getApplicationDocumentsDirectory();
-
-    final copiedFile = await file.copy(
-      '${appDocDir.path}/${p.basename(file.path)}',
-    );
-
-    return copiedFile.path;
-  }
-
-  Future<String?> _imagenWebPickImpl(
-    OnImagePickCallback onImagePickCallback,
-  ) async {
-    final result = await FilePicker.platform.pickFiles();
-    if (result == null) {
-      return null;
-    }
-
-    final fileName = result.files.first.name;
-    final file = File(fileName);
-
-    return onImagePickCallback(file);
   }
 
   void _blocListener(
@@ -159,59 +131,14 @@ class _EditorDeDescripcionDeContenidoState
               horizontal: 20.pw,
               vertical: 20.sh,
             ),
-            child: Column(
-              children: [
-                Expanded(
-                  child: QuillEditor.basic(
-                    controller: _controller,
-                    focusNode: _focusNode,
-                    readOnly: false,
-                    embedBuilders: [
-                      _ImageEmbedBuilderWeb(),
-                    ],
-                  ),
-                ),
-                QuillToolbar.basic(
-                  controller: _controller
-                    ..addListener(() => _onControllerListener(state)),
-                  showDirection: true,
-                  showAlignmentButtons: true,
-                  showSmallButton: true,
-                  showFontFamily: false,
-                  embedButtons: FlutterQuillEmbeds.buttons(
-                    onImagePickCallback: _onElegirImagen,
-                    webImagePickImpl: _imagenWebPickImpl,
-                    showCameraButton: false,
-                    showVideoButton: false,
-                  ),
-                ),
-              ],
+            child: EditorQuill(
+              controller: _controller
+                ..addListener(() => _onControllerListener(state)),
+              focusNode: _focusNode,
             ),
           );
         },
       ),
-    );
-  }
-}
-
-class _ImageEmbedBuilderWeb extends EmbedBuilder {
-  @override
-  String get key => BlockEmbed.imageType;
-
-  @override
-  Widget build(
-    BuildContext context,
-    QuillController controller,
-    Embed node,
-    bool readOnly,
-    bool inline,
-    TextStyle textStyle,
-  ) {
-    final imageUrl = node.value.data as String;
-
-    return SizedBox(
-      height: max(200.ph, 200.sh),
-      child: Image.network(imageUrl),
     );
   }
 }
