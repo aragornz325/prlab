@@ -25,7 +25,9 @@ class BlocListaArticulosYRecortesEventoFiltrar
     this.idMarca,
   });
 
-  /// Id de la marca a filtrar por esta
+  /// Id de la marca a filtrar por esta.en caso de que le pases la id marca
+  /// filtra por los articulos que contengan esta id,caso contrario filtra por
+  /// id del usuario y filtra por todos los articulos que contenga dicho usuario
   final int? idMarca;
 
   /// Indica si no debe filtrar por nada

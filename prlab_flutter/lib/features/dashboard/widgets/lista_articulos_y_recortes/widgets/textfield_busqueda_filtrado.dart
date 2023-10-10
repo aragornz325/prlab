@@ -29,6 +29,7 @@ class TextFieldBusquedaFiltrado extends StatefulWidget {
 }
 
 class _TextFieldBusquedaFiltradoState extends State<TextFieldBusquedaFiltrado> {
+  /// controller para filtrar por el nombre del articulo.
   final controllerFiltradoNombre = TextEditingController();
 
   /// Genera una espera antes guardar la nueva data del titulo
@@ -70,17 +71,10 @@ class _TextFieldBusquedaFiltradoState extends State<TextFieldBusquedaFiltrado> {
                     fontSize: 15.pf,
                     fontWeight: FontWeight.w400,
                   ),
-                  onChanged: (value) {
-                    if (_debounce?.isActive ?? false) _debounce?.cancel();
-
-                    _debounce = Timer(const Duration(milliseconds: 500), () {
-                      context.read<BlocListaArticulosYRecortes>().add(
-                            BlocListaArticulosYRecortesEventoGuardarDatosDeFiltrado(
-                              nombreDelArticuloAFiltrar: value,
-                            ),
-                          );
-                    });
-                  },
+                  onChanged: (value) => onFiltrarPorNombreDelArticulo(
+                    value,
+                    context,
+                  ),
                   decoration: InputDecoration(
                     hintText: l10n.commonSearch,
                     border: InputBorder.none,
@@ -99,5 +93,18 @@ class _TextFieldBusquedaFiltradoState extends State<TextFieldBusquedaFiltrado> {
         ],
       ),
     );
+  }
+
+  /// le pasa el texto del nombre del articulo a filtrar
+  void onFiltrarPorNombreDelArticulo(String value, BuildContext context) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      context.read<BlocListaArticulosYRecortes>().add(
+            BlocListaArticulosYRecortesEventoGuardarDatosDeFiltrado(
+              nombreDelArticuloAFiltrar: value,
+            ),
+          );
+    });
   }
 }

@@ -26,7 +26,7 @@ class BlocListaArticulosYRecortes extends Bloc<
       _onCambiarListaArticulosORecorte,
     );
     on<BlocListaArticulosYRecortesEventoGuardarDatosDeFiltrado>(
-      _onFiltradoPorEstado,
+      _onGuardarDatosParaFiltrarPorEstado,
     );
     on<BlocListaArticulosYRecortesEventoEliminarArticulo>(
       _onEliminacionDeArticulo,
@@ -194,7 +194,7 @@ class BlocListaArticulosYRecortes extends Bloc<
   /// Cambia los valores del estado del bloc y el tipo de filtrado por
   /// Estado/Status para filtrar por ciertos valores definidos en el popup de
   /// filtrado.
-  Future<void> _onFiltradoPorEstado(
+  Future<void> _onGuardarDatosParaFiltrarPorEstado(
     BlocListaArticulosYRecortesEventoGuardarDatosDeFiltrado event,
     Emitter<BlocListaArticulosYRecortesEstado> emit,
   ) async {

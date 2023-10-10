@@ -112,7 +112,6 @@ final class BlocListaArticulosYRecortesEstadoGuardarFiltrados
   BlocListaArticulosYRecortesEstadoGuardarFiltrados.desde(
     super.otro, {
     super.articulos,
-    super.index,
     super.estadoEntregables,
     super.articulosFiltrados,
     super.nombreDelArticuloAFiltrar,

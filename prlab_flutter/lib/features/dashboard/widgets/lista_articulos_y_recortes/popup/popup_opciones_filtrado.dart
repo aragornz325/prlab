@@ -100,7 +100,7 @@ class _PopupOpcionesDeFiltradoState extends State<PopupOpcionesDeFiltrado> {
               context: context,
               builder: (_) => BlocProvider.value(
                 value: context.read<BlocListaArticulosYRecortes>(),
-                child: PrDialogFiltrarPorStatus(
+                child: PrDialogFiltrarPorEstado(
                   idMarca: widget.idMarca,
                 ),
               ),
