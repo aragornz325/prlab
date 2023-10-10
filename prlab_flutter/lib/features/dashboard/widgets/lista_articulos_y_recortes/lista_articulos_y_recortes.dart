@@ -22,10 +22,20 @@ class ListaArticulosYRecortes extends StatelessWidget {
 
     return BlocProvider<BlocListaArticulosYRecortes>(
       create: (context) => BlocListaArticulosYRecortes()
-        ..add(BlocListaArticulosYRecortesEventoTraerArticulos(idMarca: idMarca))
-        ..add(const BlocListaArticulosYRecortesEventoFiltrar()),
-      child: BlocBuilder<BlocListaArticulosYRecortes,
+        ..add(
+          BlocListaArticulosYRecortesEventoTraerArticulos(idMarca: idMarca),
+        ),
+      child: BlocConsumer<BlocListaArticulosYRecortes,
           BlocListaArticulosYRecortesEstado>(
+        listener: (context, state) {
+          if (state is BlocListaArticulosYRecortesEstadoGuardarFiltrados) {
+            context.read<BlocListaArticulosYRecortes>().add(
+                  BlocListaArticulosYRecortesEventoFiltrar(
+                    idMarca: idMarca,
+                  ),
+                );
+          }
+        },
         builder: (context, state) {
           return Container(
             height: max(508.ph, 508.sh),
@@ -48,7 +58,7 @@ class ListaArticulosYRecortes extends StatelessWidget {
                 else
                   Column(
                     children: [
-                      const TextFieldBusquedaFiltrado(),
+                      TextFieldBusquedaFiltrado(idMarca: idMarca),
                       Divider(color: colores.outlineVariant),
                     ],
                   ),

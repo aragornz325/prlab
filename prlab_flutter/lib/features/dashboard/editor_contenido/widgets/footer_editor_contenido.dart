@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_client/prlab_client.dart';
+import 'package:prlab_flutter/extensiones/extension_estados_articulos.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popups.dart';
@@ -30,57 +31,48 @@ class FooterEditorContenido extends StatelessWidget {
         final articulo = state.articulo;
 
         if (articulo != null) {
+          final estado =
+              StEntregables.fromJson(articulo.idStatus) ?? StEntregables.draft;
           return SizedBox(
             height: max(50.ph, 50.sh),
             width: 1000.pw,
             child: Row(
               children: [
-                InkWell(
-                  onTap: () {
-                    // TODO(anyone): agregarle funcionalidad
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        l10n.commonState,
-                        style: TextStyle(
-                          fontSize: 15.pf,
-                          fontWeight: FontWeight.w400,
-                          color: colores.secondary,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      l10n.commonState,
+                      style: TextStyle(
+                        fontSize: 15.pf,
+                        fontWeight: FontWeight.w400,
+                        color: colores.secondary,
+                      ),
+                    ),
+                    SizedBox(width: 5.pw),
+                    Container(
+                      height: max(30.ph, 30.sh),
+                      decoration: BoxDecoration(
+                        color: estado.getColor(context),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50.sw),
                         ),
                       ),
-                      SizedBox(width: 5.pw),
-                      Container(
-                        width: 80.pw,
-                        height: max(30.ph, 30.sh),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: colores.surfaceTint,
-                        ),
-                        child: Container(
-                          width: 80.pw,
-                          height: max(30.ph, 30.sh),
-                          decoration: BoxDecoration(
-                            color: colores.secondary,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(100.sw),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              articulo.idStatus.toString(),
-                              style: TextStyle(
-                                color: colores.background,
-                                fontSize: 15.pf,
-                                fontWeight: FontWeight.w600,
-                              ),
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10.pw),
+                          child: Text(
+                            estado.getEtiqueta(l10n),
+                            style: TextStyle(
+                              color: colores.background,
+                              fontSize: 15.pf,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 SizedBox(width: 10.pw),
                 VerticalDivider(
