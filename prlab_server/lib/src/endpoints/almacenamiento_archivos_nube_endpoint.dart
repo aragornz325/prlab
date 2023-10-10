@@ -20,7 +20,7 @@ class AlmacenamientoArchivosNubeEndpoint extends Endpoint {
     required String nombreImagen,
     required String directorioNube,
     String? rutaImagen,
-    Uint8List? bytesImagen,
+    List<int>? bytesImagen,
   }) async {
     return (await servicio.subirImagen(
       session,

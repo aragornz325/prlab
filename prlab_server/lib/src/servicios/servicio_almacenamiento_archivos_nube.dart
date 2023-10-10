@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:cloudinary/cloudinary.dart';
@@ -14,12 +15,12 @@ class ServicioAlmacenamientoArchivosNube extends Servicio<OdmCloudinary> {
     required String nombreImagen,
     required String directorioNube,
     String? rutaImagen,
-    Uint8List? bytesImagen,
+    List<int>? bytesImagen,
   }) async {
     return await ejecutarOperacion(
       () => almacenamientoNube.upload(
         file: rutaImagen,
-        fileBytes: bytesImagen,
+        fileBytes: bytesImagen != null ? Uint8List.fromList(bytesImagen) : null,
         resourceType: CloudinaryResourceType.image,
         folder: directorioNube,
         fileName: nombreImagen,
