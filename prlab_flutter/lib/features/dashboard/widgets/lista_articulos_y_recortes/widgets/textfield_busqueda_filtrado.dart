@@ -71,7 +71,7 @@ class _TextFieldBusquedaFiltradoState extends State<TextFieldBusquedaFiltrado> {
                     fontSize: 15.pf,
                     fontWeight: FontWeight.w400,
                   ),
-                  onChanged: (value) => onFiltrarPorNombreDelArticulo(
+                  onChanged: (value) => _filtrarPorNombreDelArticulo(
                     value,
                     context,
                   ),
@@ -96,7 +96,7 @@ class _TextFieldBusquedaFiltradoState extends State<TextFieldBusquedaFiltrado> {
   }
 
   /// le pasa el texto del nombre del articulo a filtrar
-  void onFiltrarPorNombreDelArticulo(String value, BuildContext context) {
+  void _filtrarPorNombreDelArticulo(String value, BuildContext context) {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
 
     _debounce = Timer(const Duration(milliseconds: 500), () {

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:intl/intl.dart';
 import 'package:prlab_client/prlab_client.dart';
+import 'package:prlab_flutter/extensiones/extension_estados_articulos.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/popup/popup.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
@@ -123,6 +124,9 @@ class ListaDeArticulos extends StatelessWidget {
                   ),
                 ),
                 celda: (value) {
+                  final estado =
+                      StEntregables.fromJson(value) ?? StEntregables.draft;
+
                   return SizedBox(
                     width: 150.pw,
                     height: max(80.ph, 80.sh),
@@ -135,22 +139,14 @@ class ListaDeArticulos extends StatelessWidget {
                               width: 100.pw,
                               height: max(35.ph, 35.sh),
                               decoration: BoxDecoration(
-                                color: devolverColorDependiendoDelEstadoIndex(
-                                  context: context,
-                                  estado: StEntregables.fromJson(value) ??
-                                      StEntregables.draft,
-                                ),
+                                color: estado.getColor(context),
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(100.sw),
                                 ),
                               ),
                               child: Center(
                                 child: Text(
-                                  devolverNombreDelEstado(
-                                    context: context,
-                                    estado: StEntregables.fromJson(value) ??
-                                        StEntregables.draft,
-                                  ),
+                                  estado.getEtiqueta(l10n),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -323,40 +319,4 @@ class ListaDeArticulos extends StatelessWidget {
             ],
           );
   }
-}
-
-/// Devuelve una cadena que representa el nombre del estado
-/// según el "número" dado.
-String devolverNombreDelEstado({
-  required StEntregables estado,
-  required BuildContext context,
-}) {
-  final l10n = context.l10n;
-
-  return switch (estado) {
-    StEntregables.draft => l10n.commonDraft,
-    StEntregables.feedback => l10n.commonFeedback,
-    StEntregables.approved => l10n.commonApproved,
-    StEntregables.scheduled => l10n.commonSchedule,
-    StEntregables.published => l10n.commonPublished,
-    _ => '',
-  };
-}
-
-/// Devuelve un `Color` basado en el valor de `numero` y
-/// los colores del tema definidos en `BuildContext`.
-Color devolverColorDependiendoDelEstadoIndex({
-  required StEntregables estado,
-  required BuildContext context,
-}) {
-  final colores = context.colores;
-
-  return switch (estado) {
-    StEntregables.draft => colores.secondary,
-    StEntregables.feedback => colores.onTertiary,
-    StEntregables.approved => colores.primaryContainer,
-    StEntregables.scheduled => colores.onSurfaceVariant,
-    StEntregables.published => colores.onTertiaryContainer,
-    _ => colores.secondary,
-  };
 }
