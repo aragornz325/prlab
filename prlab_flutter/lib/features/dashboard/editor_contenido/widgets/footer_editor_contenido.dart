@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_client/prlab_client.dart';
+import 'package:prlab_flutter/extensiones/extension_estados_articulos.dart';
 import 'package:prlab_flutter/extensiones/extension_tema.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/widgets/popups/popups.dart';
 import 'package:prlab_flutter/features/dashboard/widgets/caja_comentarios/caja_comentario.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
-
-import '../../../../utilidades/funciones/functions.dart';
 
 /// {@template FooterEditorContenido}
 /// Footer de la vista de editor contenido para abrir los comentarios,poder
@@ -32,6 +31,8 @@ class FooterEditorContenido extends StatelessWidget {
         final articulo = state.articulo;
 
         if (articulo != null) {
+          final estado =
+              StEntregables.fromJson(articulo.idStatus) ?? StEntregables.draft;
           return SizedBox(
             height: max(50.ph, 50.sh),
             width: 1000.pw,
@@ -52,10 +53,7 @@ class FooterEditorContenido extends StatelessWidget {
                     Container(
                       height: max(30.ph, 30.sh),
                       decoration: BoxDecoration(
-                        color: devolverColorDependiendoDelEstado(
-                          numero: articulo.idStatus,
-                          context: context,
-                        ),
+                        color: estado.getColor(context),
                         borderRadius: BorderRadius.all(
                           Radius.circular(50.sw),
                         ),
@@ -64,10 +62,7 @@ class FooterEditorContenido extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 10.pw),
                           child: Text(
-                            devolverNombreDelEstado(
-                              numero: articulo.idStatus,
-                              l10n: l10n,
-                            ),
+                            estado.getEtiqueta(l10n),
                             style: TextStyle(
                               color: colores.background,
                               fontSize: 15.pf,
