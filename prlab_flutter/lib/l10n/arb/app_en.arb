@@ -831,6 +831,29 @@
         "description": "Text on view edit content pulled apart comment,hint text in text field for add new comments"
     },
 
+    "pageSendDeliverablesWriteEmailLabel": "Write email",
+    "@pageSendDeliverablesWriteEmailLabel": {
+        "description": "Text to indicate the editing/writing of an email in the process where press releases are sent to journalists"
+    },
+
+    "pageSendDeliverablesWriteEmailIssueLabel": "Issue",
+    "@pageSendDeliverablesWriteEmailIssueLabel": {
+        "description": "Text to indicate the editing/writing of the subject/title of an email in the process where press releases are sent to journalists"
+    },
+
+    "pageSendDeliverablesStepsLabel": "Step {currentStep} to {steps}",
+    "@pageSendDeliverablesStepsLabel": {
+        "description": "Indicates what step the user is currently in in the process of sending a press release to journalists.",
+        "placeholders" : {
+            "currentStep" : {
+                "type": "int"
+            },
+            "steps" : {
+                "type": "int"
+            }
+        }
+    },
+
     "commonComment" : "Comment",
     "@commonComment": {
         "description": "when a user wants to add a new comment,in the title of button that the user press to add a new comment"
@@ -934,6 +957,10 @@
     "commonBack": "Back",
     "@commonBack": {
         "description": "Text back in button of screen create admin account"
+    },
+    "commonNext": "Next",
+    "@commonNext": {
+        "description": "Text on buttons that indicate that tapping advances to another process"
     },
     "commonContinue" : "Continue",
     "@commonContinue": {
