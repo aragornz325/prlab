@@ -1,7 +1,6 @@
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/servicios/servicio_periodista.dart';
 import 'package:serverpod/serverpod.dart';
-import 'package:prlab_server/src/generated/periodista.dart';
 
 class PeriodistaEndpoint extends Endpoint {
   final servicioPeriodista = ServicioPeriodista();
@@ -11,7 +10,7 @@ class PeriodistaEndpoint extends Endpoint {
     required Periodista periodista,
   }) async {
     return await servicioPeriodista.crearPeriodista(
-        session: session, periodista: periodista);
+        session: session, periodista: periodista,);
   }
 
   Future<bool> eliminarPeriodistaBorradoFisico(

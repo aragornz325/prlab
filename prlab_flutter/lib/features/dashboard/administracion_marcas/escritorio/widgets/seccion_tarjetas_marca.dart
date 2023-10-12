@@ -48,11 +48,10 @@ class SeccionTarjetasDeMarca extends StatelessWidget {
                       SizedBox(height: max(30.ph, 30.sh)),
                       InformacionDeLaMarca(
                         cantidadArticulos:
-                            state.marcas[index].ultimosArticulos?.length ?? 0,
+                            state.marcas[index].ultimosArticulos.length,
                         cantidadClippings:
-                            state.marcas[index].cantidadClippings ?? 0,
-                        cantidadMiembros:
-                            state.marcas[index].staff?.length ?? 0,
+                            state.marcas[index].cantidadClippings,
+                        cantidadMiembros: state.marcas[index].staff.length,
                       ),
                     ],
                   );

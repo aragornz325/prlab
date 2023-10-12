@@ -21,6 +21,7 @@ class PRTextFormField extends StatefulWidget {
     this.obscureText = false,
     this.usarColorSecundario = false,
     this.prefixIconColor,
+    this.maxLines = 1,
     this.suffixIcon,
     this.onChanged,
     this.keyboardType,
@@ -460,6 +461,9 @@ class PRTextFormField extends StatefulWidget {
   /// el foco del teclado y manejar eventos del teclado.
   final FocusNode? focusNode;
 
+  /// Las lineas maximas que puede tomar el campo de texto
+  final int maxLines;
+
   @override
   State<PRTextFormField> createState() => _PRTextFormFieldState();
 }
@@ -476,6 +480,8 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
         onFieldSubmitted: widget.onFieldSubmitted,
         onEditingComplete: widget.onEditingComplete,
         onTap: widget.onTap,
+        maxLines: widget.maxLines,
+        obscureText: widget.obscureText,
         cursorColor: widget.cursorColor,
         maxLength: widget.maxLength,
         keyboardType: widget.keyboardType ?? TextInputType.none,
@@ -530,7 +536,6 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
             widget.onChanged?.call(value);
           });
         },
-        obscureText: widget.obscureText,
       ),
     );
   }

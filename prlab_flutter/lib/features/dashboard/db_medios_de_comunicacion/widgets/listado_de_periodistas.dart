@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/bloc/bloc_db_medios_de_comunicacion.dart';
+import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/bloc_creacion_periodista/bloc_creacion_periodista.dart';
+import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/bloc_filtrado_periodistas/bloc_db_medios_de_comunicacion.dart';
+import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/dialog/dialog_cancelar_creacion_de_periodista.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/card_periodista.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/nada_para_ver.dart';
-import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 
 /// {@template ListadoDePeriodistas}
 /// Contiene una lista de periodistas representados en cartas
@@ -59,20 +60,39 @@ class ListadoDePeriodistas extends StatelessWidget {
                   horizontal: 24.pw,
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      l10n.pageMediaDatabaseJournalistListTopLabel,
+                      l10n.commonResults,
                       style: TextStyle(
                         color: colores.secondary,
+                        fontSize: 14.pf,
                       ),
                     ),
                     InkWell(
-                      onTap: () =>
-                          const PRDialogErrorNoDisponible().show(context),
-                      child: Icon(
-                        Icons.unfold_more_outlined,
-                        color: colores.secondary,
+                      onTap: () => showDialog<void>(
+                        context: context,
+                        builder: (_) {
+                          return BlocProvider.value(
+                            value: context.read<BlocCreacionPeriodista>(),
+                            child: const PRDialogConfirmarSiHayData(),
+                          );
+                        },
+                      ),
+                      child: Row(
+                        children: [
+                          Text(
+                            // TODO(SAM/GON): Revisar diseño
+                            l10n.pageMediaDatabaseAddJournalistButton,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          Icon(
+                            Icons.add_circle_outline,
+                            color: colores.secondary,
+                          ),
+                        ],
                       ),
                     ),
                   ],

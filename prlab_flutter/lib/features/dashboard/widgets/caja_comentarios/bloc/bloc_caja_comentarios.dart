@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:prlab_client/prlab_client.dart';
-import 'package:meta/meta.dart';
 import 'package:prlab_flutter/utilidades/utilidades.dart';
 
 part 'bloc_caja_comentarios_estado.dart';
@@ -168,7 +167,7 @@ class BlocCajaComentarios
         idEntregable: comentario.idEntregable,
         textoComentario: comentario.textoComentario,
         idAutor: comentario.idAutor,
-        completado: !(comentario.completado),
+        completado: !comentario.completado,
         idAutorCompletado: sessionManager.signedInUser?.id ?? 0,
         apellido: comentario.apellido,
         compania: comentario.compania,
@@ -181,7 +180,7 @@ class BlocCajaComentarios
       await client.comentario.modificarComentario(
         comentario: nuevoComentario,
       );
-      comentario.completado = !(comentario.completado);
+      comentario.completado = !comentario.completado;
 
       final comentarios = List<Comentario>.from(state.comentarios);
 

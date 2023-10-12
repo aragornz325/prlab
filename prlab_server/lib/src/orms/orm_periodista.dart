@@ -409,7 +409,7 @@ GROUP BY
         session,
         (Session session) {
           logger.finer(
-              'Creando periodista: ${periodista.nombres} ${periodista.apellidos}');
+              'Creando periodista: ${periodista.nombres} ${periodista.apellidos}',);
           return Periodista.insert(
             session,
             periodista
@@ -420,7 +420,7 @@ GROUP BY
         },
       );
       logger.fine(
-          'Periodista ${periodista.nombres} ${periodista.apellidos} creada exitosamente.');
+          'Periodista ${periodista.nombres} ${periodista.apellidos} creada exitosamente.',);
       return true;
     } on Exception catch (e) {
       throw Exception('$e');

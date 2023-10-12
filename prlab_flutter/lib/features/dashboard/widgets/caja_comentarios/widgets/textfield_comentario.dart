@@ -110,7 +110,7 @@ class PRTextfieldComentario extends StatelessWidget {
   /// indica si el usuario esta escribiendo en el campo de texto
   void _focoEnElCampoDeTexto(BuildContext context) {
     if (!focusDelComentario.hasFocus) {
-      Future.delayed(Duration(milliseconds: 300), () {
+      Future.delayed(const Duration(milliseconds: 300), () {
         context.read<BlocCajaComentarios>().add(
               BlocCajaComentariosEventoDesplegarComentario(
                 deplegarComentario: focusDelComentario.hasFocus,

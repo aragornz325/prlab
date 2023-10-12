@@ -12,8 +12,8 @@ class PRDropdownPopup extends StatefulWidget {
   /// Mutiple selection dropdown for List of Maps.
   const PRDropdownPopup({
     required this.list,
-    required this.initiallySelected,
-    required this.onChange,
+    required this.onChanged,
+    this.initiallySelected = const [],
     this.whenEmpty = '',
     this.label = 'label',
     this.id = 'id',
@@ -43,8 +43,8 @@ class PRDropdownPopup extends StatefulWidget {
   /// Mutiple selection dropdown for simple List.
   const PRDropdownPopup.simpleList({
     required this.list,
-    required this.initiallySelected,
-    required this.onChange,
+    required this.onChanged,
+    this.initiallySelected = const [],
     this.whenEmpty = '',
     this.numberOfItemsLabelToShow = 3,
     this.itemsIconList,
@@ -73,7 +73,7 @@ class PRDropdownPopup extends StatefulWidget {
   final bool multiSelect;
 
   /// List of options to select from
-  final List<dynamic> list;
+  final List<Map<String, dynamic>> list;
 
   /// `label` key in a Map to show as an option. Defaults to 'label'
   final String label;
@@ -94,14 +94,14 @@ class PRDropdownPopup extends StatefulWidget {
   /// }
   /// ```
   /// {@end-tool}
-  final ValueChanged<List<dynamic>> onChange;
+  final ValueChanged<List<Map<String, dynamic>>> onChanged;
 
   /// Number of items to show as text,
   /// beyond that it will show `n` selected
   final int numberOfItemsLabelToShow;
 
   /// Initially selected list
-  final List<dynamic> initiallySelected;
+  final List<Map<String, dynamic>> initiallySelected;
 
   /// Dropdown size
   final bool isLarge;
@@ -161,9 +161,9 @@ class PRDropdownPopup extends StatefulWidget {
 }
 
 class _PRDropdownPopupState extends State<PRDropdownPopup> {
-  late List<dynamic> selected = [...widget.initiallySelected];
+  late List<Map<String, dynamic>> selected = [...widget.initiallySelected];
   late final Decoration boxDecoration;
-  List<dynamic> filteredOptions = [];
+  List<Map<String, dynamic>> filteredOptions = [];
 
   late final TextEditingController filterController;
   Timer? debounce;
@@ -183,7 +183,7 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
 
   void handleOnChange({
     required bool newValue,
-    required dynamic data,
+    required Map<String, dynamic> data,
   }) {
     if (newValue) {
       setState(() {
@@ -208,14 +208,14 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
       }
     }
 
-    widget.onChange(selected);
+    widget.onChanged(selected);
   }
 
   int getIndex(dynamic data) {
     return widget.list.indexWhere((obj) => obj[widget.id] == data[widget.id]);
   }
 
-  Widget buildTile(dynamic data) {
+  Widget buildTile(Map<String, dynamic> data) {
     if (widget.isSimpleList) {
       return Column(
         children: [
@@ -339,7 +339,7 @@ class _PRDropdownPopupState extends State<PRDropdownPopup> {
           selected.clear();
           selected = [...widget.list];
         }
-        widget.onChange(selected);
+        widget.onChanged(selected);
         setState(() {});
       },
       child: Container(

@@ -20,8 +20,7 @@ import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 class PopUpMenuOpcionesArticulo extends StatefulWidget {
   /// {@macro PopUpMenuOpcionesArticulo}
   const PopUpMenuOpcionesArticulo({
-    super.key,
-    required this.idArticulo,
+    required this.idArticulo, super.key,
   });
 
   /// Id del articulo seleccionado
