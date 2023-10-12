@@ -404,6 +404,14 @@
     "@prAppBarCoverageMediaDbMedia":{
         "description":"Text to redirect to database media page"
     },
+      "pageMediaDatabaseAddJournalistButton": "Add journalist ",
+    "@pageMediaDatabaseAddJournalistButton":{
+        "description":"Text on a button that allows the user to add a journalist when pressed"
+    },
+       "pageMediaDatabaseAddJournalistErrorAlertDialog": "These fields are required: ",
+    "@pageMediaDatabaseAddJournalistErrorAlertDialog":{
+        "description":"Text of the error alert dialog that pops when user tries to save a new journalist but one of the required fields is not filled"
+    },
 
     "pageContentAdministrationCreateArticle" : "Create an article",
     "@pageContentAdministrationCreateArticle": {
@@ -631,7 +639,7 @@
         }
     },
 
-    "pageMediaDatabaseAt": "{position} at",
+    "pageMediaDatabaseAt": "{position} at ",
     "@pageMediaDatabaseAt": {
         "description": "Text shown when the user doesn´t have any data to show",
         "placeholders" : {
@@ -669,6 +677,21 @@
     "pageMediaDatabaseJournalistListTopLabel": "Influence score",
     "@pageMediaDatabaseJournalistListTopLabel": {
         "description": "Indicates the influence in the media that the journalist has represented by a numerical score."
+    },
+
+    "pageMediaDatabaseJournalistAddedSuccesfully": "Journalist added successfully",
+    "@pageMediaDatabaseJournalistAddedSuccesfully": {
+        "description": "Text shown on a success popup that let the user know that the journalist was added successfully"
+    },
+
+    "pageMediaDatabaseJournalistCancelJournalistCreation": "Are you sure you want to cancel? You will lose the information you entered.",
+    "@pageMediaDatabaseJournalistCancelJournalistCreation": {
+        "description": "Text shown on a popup that let the user know that he will lose the information he entered"
+    },
+
+    "pageMediaDatabaseAddJournalist": "Add a journalist",
+    "@pageMediaDatabaseAddJournalist": {
+        "description": "Indicates that you can create a journalist clicking it"
     },
     
     "cardPeriodistaBotonDetails": "Details",
@@ -1116,6 +1139,76 @@
     "commonNothingToSee": "Nothing to see",
     "@commonNothingToSee": {
         "description": "Text shown when the user doesn´t have any data to show"
+    },
+    
+    "commonResults": "Results",
+    "@commonResults": {
+        "description": "Text to show the results of something"
+    },
+
+    "commonName" : "Name",
+    "@commonName": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonLastName" : "Last Name",
+    "@commonLastName": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonPosition" : "Position",
+    "@commonPosition": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonCompany" : "Company",
+    "@commonCompany": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonSocialMedia" : "Social Media",
+    "@commonSocialMedia": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonBiography" : "Biography",
+    "@commonBiography": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonLanguages" : "Languages",
+    "@commonLanguages": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonCountry" : "Country",
+    "@commonCountry": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonCity" : "City",
+    "@commonCity": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonTags" : "Tags",
+    "@commonTags": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonTelephone" : "Telephone",
+    "@commonTelephone": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonYes" : "Yes",
+    "@commonYes": {
+        "description":"A no text"
+    },
+
+    "commonNo" : "No",
+    "@commonNo": {
+        "description":"A yes text"
     }
 
 }

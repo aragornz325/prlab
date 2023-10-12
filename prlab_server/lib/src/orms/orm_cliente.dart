@@ -1,4 +1,3 @@
-import 'package:prlab_server/src/generated/cliente.dart';
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/orm.dart';
 import 'package:serverpod/database.dart';

@@ -4,6 +4,7 @@ import 'package:prlab_server/src/servicio.dart';
 import 'package:serverpod/serverpod.dart';
 
 class ServicioComentario extends Servicio<OrmComentario> {
+  @override
   final orm = OrmComentario();
 
   /// La función "listarComentariosPorArticulo" enumera los comentarios de un artículo determinado
@@ -24,7 +25,7 @@ class ServicioComentario extends Servicio<OrmComentario> {
     return await ejecutarOperacion(() => orm.listarComentariosPorArticulo(
           session,
           idArticulo: idArticulo,
-        ));
+        ),);
   }
 
   ///servicio que devuelve todos los comentarios en la db
@@ -34,7 +35,7 @@ class ServicioComentario extends Servicio<OrmComentario> {
     logger.finer('Listando Todos los Comentarios');
     return await ejecutarOperacion(() => orm.listarTodosComentarios(
           session,
-        ));
+        ),);
   }
 
   /// La función "obtenerCommentario" recupera un comentario con un ID específico de una sesión y lanza
@@ -56,7 +57,7 @@ class ServicioComentario extends Servicio<OrmComentario> {
     final comentario = await ejecutarOperacion(() => orm.obtenerComentario(
           session,
           idComentario: idComentario,
-        ));
+        ),);
     if (comentario == null) {
       throw Exception('Comentario no encontrado');
     }
@@ -82,7 +83,7 @@ class ServicioComentario extends Servicio<OrmComentario> {
     return await ejecutarOperacion(() => orm.eliminarComentario(
           session,
           idComentario,
-        ));
+        ),);
   }
 
   /// La función `crearCommentario` crea un comentario en una sesión usando un ORM.
@@ -103,7 +104,7 @@ class ServicioComentario extends Servicio<OrmComentario> {
     return await ejecutarOperacion(() => orm.crearComentario(
           session,
           comentario: comentario,
-        ));
+        ),);
   }
 
   /// La función `modificarCommentario` modifica un comentario en una sesión usando un ORM.
@@ -124,6 +125,6 @@ class ServicioComentario extends Servicio<OrmComentario> {
     return await ejecutarOperacion(() => orm.modificarComentario(
           session,
           comentario: comentario,
-        ));
+        ),);
   }
 }

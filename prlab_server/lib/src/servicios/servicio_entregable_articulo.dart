@@ -1,8 +1,7 @@
 import 'dart:async';
-
-import 'package:prlab_server/src/excepciones/excepcion_endpoint.dart';
 import 'dart:io';
 
+import 'package:prlab_server/src/excepciones/excepcion_endpoint.dart';
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/orms/orm_entregable_articulo.dart';
 import 'package:prlab_server/src/orms/orm_imagen_articulo.dart';
@@ -276,21 +275,21 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
       <img src="${imagenes.first.url}" alt="${imagenes.first.nombreImagen}" style="width: 100%; height: auto;">
       ''';
     } else if (imagenes.length > 1) {
-      imagenes.forEach((imagen) {
+      for (final imagen in imagenes) {
         imageneHtml += '''
         <img src="${imagen.url}" alt="${imagen.nombreImagen}" style="width: 100%; height: auto;">
         ''';
-      });
+      }
     }
 
     final articuloAPublicar = templatePublicarArticulo(
-      contenido: articulo.contenidoHtml!,
+      contenido: articulo.contenidoHtml,
       titulo: articulo.titulo,
       imagen:
           'https://getbuzzmonitor.com/wp-content/uploads/screen-shot-2018-10-17-at-8.39_.11-pm_.png',
     );
 
-    var slug = '${articulo.titulo.trim().replaceAll(' ', '-')}';
+    var slug = articulo.titulo.trim().replaceAll(' ', '-');
 
     final checkSlug = await traerArticuloPorSlug(session: session, slug: slug);
     if (checkSlug != null && checkSlug.id != articulo.id) {
@@ -311,7 +310,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     var browser = await puppeteer.launch();
     var page = await browser.newPage();
     await page.goto('http://localhost:8082/articulos/$slug.html',
-        wait: Until.networkAlmostIdle);
+        wait: Until.networkAlmostIdle,);
 
     await page.emulateMediaType(MediaType.screen);
 
@@ -320,7 +319,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
         format: PaperFormat.a4,
         printBackground: true,
         pageRanges: '1-3',
-        output: File('web/static/pdf/$slug.pdf').openWrite());
+        output: File('web/static/pdf/$slug.pdf').openWrite(),);
     await browser.close();
 
     return true;
@@ -377,26 +376,26 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
 
     // función para eliminar la repetición de código
     Future<List<EntregableArticulo>> ejecutarConLogger(String caso,
-        Future<List<EntregableArticulo>> Function() funcion) async {
+        Future<List<EntregableArticulo>> Function() funcion,) async {
       logger.finer(caso);
       return await ejecutarOperacion(funcion);
     }
 
     if (!tieneStatus && textoVacio && tieneMarca) {
       return ejecutarConLogger('caso 1',
-          () => orm.traerEntregableTodosLosStatus(session, idMarca: idMarca));
+          () => orm.traerEntregableTodosLosStatus(session, idMarca: idMarca),);
     }
     if (texto.isNotEmpty && tieneMarca && tieneStatus) {
       return ejecutarConLogger(
           'caso 2',
           () => orm.listarEntregableporTextoyMarcayEstatus(session,
-              idMarca: idMarca, texto: texto, idStatus: idStatus));
+              idMarca: idMarca, texto: texto, idStatus: idStatus,),);
     }
     if (!tieneMarca && textoVacio && tieneStatus) {
       return ejecutarConLogger(
           'caso 3',
           () => orm.listarEntregableporUsuarioyStatus(session, texto,
-              listaIdEstados: idStatus));
+              listaIdEstados: idStatus,),);
     }
     if (texto.isNotEmpty && !tieneMarca && !tieneStatus) {
       return ejecutarConLogger(
@@ -420,7 +419,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     }
     if (!tieneMarca && !tieneStatus && textoVacio) {
       return ejecutarConLogger(
-          'caso 6', () => orm.listarEntregableporUsuario(session));
+          'caso 6', () => orm.listarEntregableporUsuario(session),);
     }
     if (texto.isNotEmpty && !tieneMarca && tieneStatus) {
       return ejecutarConLogger(
@@ -439,7 +438,7 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
           session,
           texto: texto,
           idMarca: idMarca,
-          listaIds:idStatus
+          listaIds:idStatus,
         ),
       );
     }

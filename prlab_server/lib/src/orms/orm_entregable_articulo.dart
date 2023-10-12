@@ -281,13 +281,13 @@ class OrmEntregableArticulo extends ORM {
   /// Returns:
   ///   un `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
   Future<List<EntregableArticulo>> traerArticulosPorUsuario(
-      {required Session session}) async {
+      {required Session session,}) async {
     return ejecutarOperacionOrm(session, (session) async {
       logger.finer('buscando en la db los articulos del usuario');
       final idAutor = await session.auth.authenticatedUserId;
       final articulos = await EntregableArticulo.find(session,
           where: (t) =>
-              t.idAutor.equals(idAutor) & t.fechaEliminacion.equals(null));
+              t.idAutor.equals(idAutor) & t.fechaEliminacion.equals(null),);
       logger.fine('articulos encontrados: ${articulos.length}');
       return articulos;
     });
@@ -333,7 +333,7 @@ class OrmEntregableArticulo extends ORM {
   Future<List<EntregableArticulo>> traerEntregableporFiltro(
       {required Session session,
       required List<int> status,
-      required int idAutor}) async {
+      required int idAutor,}) async {
     return ejecutarOperacionOrm(session, (session) async {
       List articulos = [];
       for (var i = 0; i < status.length; i++) {
@@ -342,7 +342,7 @@ class OrmEntregableArticulo extends ORM {
             where: (t) =>
                 t.idStatus.equals(status[i]) &
                 t.fechaEliminacion.equals(null) &
-                t.idAutor.equals(idAutor));
+                t.idAutor.equals(idAutor),);
         articulos.addAll(articulo);
         logger.fine('articulos encontrados: ${articulos.length}');
       }

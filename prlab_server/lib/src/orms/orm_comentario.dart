@@ -57,7 +57,7 @@ class OrmComentario extends ORM {
       'nombre',
       'apellido',
       'imageUrl',
-    ]);
+    ],);
     return respuesta
         .map(
           (e) => Comentario.fromJson(
@@ -88,7 +88,7 @@ class OrmComentario extends ORM {
       'textoComentario',
       'nombre',
       'apellido',
-    ]);
+    ],);
 
     return respuesta.map((e) => Comentario.fromJson(e, Protocol())).toList();
   }
@@ -187,7 +187,7 @@ class OrmComentario extends ORM {
         'nombre',
         'apellido',
         'imageUrl',
-      ]);
+      ],);
 
       if (respuesta.isEmpty) {
         throw Exception('Comentario no encontrado');

@@ -219,7 +219,7 @@ class EntregableArticuloEndpoint extends Endpoint {
 
   @deprecated
   Future<List<EntregableArticulo>> traerEntregableporFiltro(Session session,
-      {required List<int> status, required int idAutor}) async {
+      {required List<int> status, required int idAutor,}) async {
     try {
       return await servicioArticulo.traerEntregableporFiltro(
         session,

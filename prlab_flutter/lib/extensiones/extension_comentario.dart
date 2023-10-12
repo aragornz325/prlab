@@ -10,7 +10,7 @@ extension ComentarioX on Comentario {
   String get nombreCompleto => '$nombre $apellido';
 
   /// trae la fecha de creada del comentario.
-  String get fechaComentarioCreada => DateFormat("dd/MM/yyyy, HH:mm").format(
+  String get fechaComentarioCreada => DateFormat('dd/MM/yyyy, HH:mm').format(
         fechaCreacion,
       );
 }

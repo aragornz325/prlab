@@ -740,7 +740,14 @@
     "@pageHomeContainerBusquedaItemMediaDatabase": {
         "description": "Item below the search bar"
     },
-
+        "pageMediaDatabaseAddJournalistButton": "Agregar periodista ",
+    "@pageMediaDatabaseAddJournalistButton":{
+        "description":"Texton a button that allows the user to add a journalist when pressed"
+    },
+     "pageMediaDatabaseAddJournalistErrorAlertDialog": "Los siguientes campos son requeridos: ",
+    "@pageMediaDatabaseAddJournalistErrorAlertDialog":{
+        "description":"Text of the error alert dialog that pops when user tries to save a new journalist but one of the required fields is not filled"
+    },
     "pageHomeContainerBusquedaItemContacts": "Contactos",
     "@pageHomeContainerBusquedaItemContacts": {
         "description": "Item below the search bar"
@@ -775,7 +782,7 @@
         }
     },
 
-    "pageMediaDatabaseAt": "{position} en",
+    "pageMediaDatabaseAt": "{position} en ",
     "@pageMediaDatabaseAt": {
         "description": "Text shown when the user doesn´t have any data to show",
         "placeholders" : {
@@ -814,7 +821,22 @@
     "@pageMediaDatabaseJournalistListTopLabel": {
         "description": "Indicates the influence in the media that the journalist has represented by a numerical score."
     },
+
+    "pageMediaDatabaseAddJournalist": "Agrega un periodista",
+    "@pageMediaDatabaseAddJournalist": {
+        "description": "Indicates that you can create a journalist clicking it"
+    },
     
+    "pageMediaDatabaseJournalistAddedSuccesfully": "Periodista creado con éxito",
+    "@pageMediaDatabaseJournalistAddedSuccesfully": {
+        "description": "Text shown on a success popup that let the user know that the journalist was added successfully"
+    },
+
+    "pageMediaDatabaseJournalistCancelJournalistCreation": "¿Estás seguro que deseas cancelar? Perderás la información ingresada",
+    "@pageMediaDatabaseJournalistCancelJournalistCreation": {
+        "description": "Text shown on a popup that let the user know that he will lose the information he entered"
+    },
+
     "pageHomeContainerBusquedaItemAnalytic": "Análisis",
     "@pageHomeContainerBusquedaItemAnalytic": {
         "description": "Item below the search bar"
@@ -1119,7 +1141,78 @@
     "commonNothingToSee": "Nada para ver",
     "@commonNothingToSee": {
         "description": "Text shown when the data brought from the db is empty"
+    },
+    
+    "commonResults": "Resultados",
+    "@commonResults": {
+        "description": "Text to show the results of something"
+    },
+
+    "commonName" : "Nombre",
+    "@commonName": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonLastName" : "Apellido",
+    "@commonLastName": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonPosition" : "Cargo",
+    "@commonPosition": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonCompany" : "Compañia",
+    "@commonCompany": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonSocialMedia" : "Redes Sociales",
+    "@commonSocialMedia": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonBiography" : "Biografía",
+    "@commonBiography": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonLanguages" : "Idiomas",
+    "@commonLanguages": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonCountry" : "País",
+    "@commonCountry": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonCity" : "Ciudad",
+    "@commonCity": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonTags" : "Etiquetas",
+    "@commonTags": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonTelephone" : "Teléfono",
+    "@commonTelephone": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonYes" : "Si",
+    "@commonYes": {
+        "description":"A no text"
+    },
+
+    "commonNo" : "No",
+    "@commonNo": {
+        "description":"A yes text"
     }
+
 }
 }
 

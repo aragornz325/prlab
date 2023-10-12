@@ -184,7 +184,7 @@ class TarjetaMarca extends StatelessWidget {
                             height: max(1.ph, 1.sh),
                           );
                         },
-                        itemCount: marca.ultimosArticulos?.length ?? 0,
+                        itemCount: marca.ultimosArticulos.length,
                         itemBuilder: (context, index) {
                           return Row(
                             children: [
@@ -205,9 +205,7 @@ class TarjetaMarca extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {
                                   final idArticulo =
-                                      marca.ultimosArticulos?[index].id;
-
-                                  if (idArticulo == null) return;
+                                      marca.ultimosArticulos[index].id;
 
                                   context.router.push(
                                     RutaEditorContenido(idArticulo: idArticulo),
@@ -217,7 +215,7 @@ class TarjetaMarca extends StatelessWidget {
                                   width: 430.pw,
                                   height: max(25.ph, 25.sh),
                                   child: Text(
-                                    marca.ultimosArticulos?[index].titulo ?? '',
+                                    marca.ultimosArticulos[index].titulo,
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w500,

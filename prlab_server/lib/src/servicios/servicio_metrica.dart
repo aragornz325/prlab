@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:prlab_server/src/generated/protocol.dart';
-import 'package:prlab_server/src/generated/visitas_api.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:similar_web/similar_web.dart';
 
