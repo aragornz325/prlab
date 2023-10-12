@@ -9,21 +9,21 @@ void rewriteConfigYaml(String mode) {
   YAMLWriter yamlWriter = YAMLWriter(allowUnquotedStrings: true);
   String yamlDoc = yamlWriter.write({
     'apiServer': {
-      'port': 8080,
+      'port': Platform.environment['PORT'] ?? 8080,
       'publicHost': '0.0.0.0',
-      'publicPort': 8080,
+      'publicPort': Platform.environment['PORT'] ?? 8080,
       'publicScheme': 'http',
     },
     'insightsServer': {
       'port': 8081,
-      'publicHost': '0.0.0.0',
+      'publicHost': 'localhost',
       'publicPort': 8081,
       'publicScheme': 'http',
     },
     'webServer': {
-      'port': Platform.environment['PORT'] ?? 80,
-      'publicHost': '0.0.0.0',
-      'publicPort': Platform.environment['PORT'] ?? 80,
+      'port': 8082,
+      'publicHost': 'localhost',
+      'publicPort': 8082,
       'publicScheme': 'http',
     },
     'database': {
