@@ -1,3 +1,4 @@
+import 'package:prlab_server/src/excepciones/excepcion_endpoint.dart';
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/servicios/servicio_entregable_articulo.dart';
 import 'package:serverpod/serverpod.dart';
@@ -22,13 +23,19 @@ class EntregableArticuloEndpoint extends Endpoint {
   ///   [articulo] ([EntregableArticulo]): El parámetro "articulo" es un objeto de tipo
   /// "Articulo" que contiene los datos necesarios para crear un artículo.
   Future<int> crearArticulo(
-    Session session,
-    EntregableArticulo articulo,
-  ) async {
+    Session session, {
+    required String titulo,
+    required String contenido,
+    required String contenidoHtml,
+    int? idMarca,
+  }) async {
     try {
       return await servicioArticulo.crearArticulo(
         session,
-        articulo: articulo,
+        titulo: titulo,
+        contenido: contenido,
+        contenidoHtml: contenidoHtml,
+        idMarca: idMarca,
       );
     } on Exception {
       rethrow;
@@ -190,6 +197,71 @@ class EntregableArticuloEndpoint extends Endpoint {
     try {
       return servicioArticulo.traerArticulosPorUsuario(
         session: session,
+      );
+    } on Exception {
+      rethrow;
+    }
+  }
+
+  Future<bool> publicarArticulo(
+    Session session, {
+    required int idArticulo,
+  }) async {
+    try {
+      return await servicioArticulo.publicarArticulo(
+        session: session,
+        idArticulo: idArticulo,
+      );
+    } on Exception {
+      rethrow;
+    }
+  }
+
+  @deprecated
+  Future<List<EntregableArticulo>> traerEntregableporFiltro(Session session,
+      {required List<int> status, required int idAutor,}) async {
+    try {
+      return await servicioArticulo.traerEntregableporFiltro(
+        session,
+        status: status,
+        idAutor: idAutor,
+      );
+    } on Exception {
+      rethrow;
+    }
+  }
+
+  /// La función `listarArticuloMarcayEstado` toma una sesión, un texto, un ID de marca y una lista de
+  /// ID de estado, y devuelve una lista de objetos `EntregableArticulo` basado en los parámetros dados.
+  ///
+  /// Args:
+  ///   session (Session): Un objeto de sesión que representa la sesión del usuario actual.
+  ///   texto (String): Un parámetro de cadena que representa el texto que se buscará en los artículos.
+  ///   idMarca (int): El ID de la marca del artículo.
+  ///   idStatus (List<int>): Una lista de números enteros que representan los ID del estado deseado
+  /// para los artículos.
+  ///
+  /// Returns:
+  ///   El método devuelve un objeto "Futuro" que se resuelve en una "Lista" de objetos
+  /// "EntregableArticulo".
+  Future<List<EntregableArticulo>> listarEntregableMarcayEstado(
+    Session session,
+    String texto, {
+    required int idMarca,
+    required List<int> idStatus,
+  }) async {
+    try {
+      if (idStatus.isEmpty) {
+        throw Excepciones.solicitudIncorrecta(
+            mensaje: "la lista de idStatus no puede estar vacia",
+            titulo: "Error en lista de ids");
+      }
+
+      return await servicioArticulo.listarEntregableMarcayEstado(
+        session,
+        texto,
+        idMarca: idMarca,
+        idStatus: idStatus,
       );
     } on Exception {
       rethrow;

@@ -730,15 +730,6 @@
             }
         }
     },
-    "pageMediaDatabaseJournalistInformationDialogAnchorAt": "Anchor at {workplace}",
-    "@pageMediaDatabaseJournalistInformationDialogAnchorAt": {
-        "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, it indicates where the journalist works",
-        "placeholders" :{
-            "workplace" : {
-                "type": "String"
-            }
-        }
-    },
 
     "pageHomeContainerBusquedaPlaceholder": "Busca artículos, proyectos, marcas y más...",
     "@pageHomeContainerBusquedaPlaceholder": {
@@ -749,7 +740,14 @@
     "@pageHomeContainerBusquedaItemMediaDatabase": {
         "description": "Item below the search bar"
     },
-
+        "pageMediaDatabaseAddJournalistButton": "Agregar periodista ",
+    "@pageMediaDatabaseAddJournalistButton":{
+        "description":"Texton a button that allows the user to add a journalist when pressed"
+    },
+     "pageMediaDatabaseAddJournalistErrorAlertDialog": "Los siguientes campos son requeridos: ",
+    "@pageMediaDatabaseAddJournalistErrorAlertDialog":{
+        "description":"Text of the error alert dialog that pops when user tries to save a new journalist but one of the required fields is not filled"
+    },
     "pageHomeContainerBusquedaItemContacts": "Contactos",
     "@pageHomeContainerBusquedaItemContacts": {
         "description": "Item below the search bar"
@@ -784,6 +782,16 @@
         }
     },
 
+    "pageMediaDatabaseAt": "{position} en ",
+    "@pageMediaDatabaseAt": {
+        "description": "Text shown when the user doesn´t have any data to show",
+        "placeholders" : {
+            "position" : {
+                "type": "String"
+            }
+        }
+    },
+
     "pageMediaDatabaseJournalistInformationDialogGeneral": "General",
     "@pageMediaDatabaseJournalistInformationDialogGeneral": {
         "description": "It is found in the popup that appears when you tap on the details of a journalist on the db media page, its a one of the title for the journalist information items"
@@ -813,7 +821,22 @@
     "@pageMediaDatabaseJournalistListTopLabel": {
         "description": "Indicates the influence in the media that the journalist has represented by a numerical score."
     },
+
+    "pageMediaDatabaseAddJournalist": "Agrega un periodista",
+    "@pageMediaDatabaseAddJournalist": {
+        "description": "Indicates that you can create a journalist clicking it"
+    },
     
+    "pageMediaDatabaseJournalistAddedSuccesfully": "Periodista creado con éxito",
+    "@pageMediaDatabaseJournalistAddedSuccesfully": {
+        "description": "Text shown on a success popup that let the user know that the journalist was added successfully"
+    },
+
+    "pageMediaDatabaseJournalistCancelJournalistCreation": "¿Estás seguro que deseas cancelar? Perderás la información ingresada",
+    "@pageMediaDatabaseJournalistCancelJournalistCreation": {
+        "description": "Text shown on a popup that let the user know that he will lose the information he entered"
+    },
+
     "pageHomeContainerBusquedaItemAnalytic": "Análisis",
     "@pageHomeContainerBusquedaItemAnalytic": {
         "description": "Item below the search bar"
@@ -853,11 +876,79 @@
         "description": "Text on the project metrics label indicating the mentions"
     },
 
-    
     "projectMetricsLabelBacklinks": "Vínculos",
     "@projectMetricsLabelBacklinks": {
         "description": "Text on the project metrics label indicating the backlinks"
     },
+    
+    "pageEditContentCommentsHintText": "Añade tu comentario aquí",
+    "@pageEditContentCommentsHintText": {
+        "description": "Text on view edit content pulled apart comment,hint text in text field for add new comments"
+    },
+    
+    "pageSendDeliverablesWriteEmailLabel": "Escribir correo electrónico",
+    "@pageSendDeliverablesWriteEmailLabel": {
+        "description": "Text to indicate the editing/writing of an email in the process where press releases are sent to journalists"
+    },
+
+    "pageSendDeliverablesWriteEmailIssueLabel": "Asunto",
+    "@pageSendDeliverablesWriteEmailIssueLabel": {
+        "description": "Text to indicate the editing/writing of the subject/title of an email in the process where press releases are sent to journalists"
+    },
+
+    "pageSendDeliverablesStepsLabel": "Paso {currentStep} de {steps}",
+    "@pageSendDeliverablesStepsLabel": {
+        "description": "Indicates what step the user is currently in in the process of sending a press release to journalists.",
+        "placeholders" : {
+            "currentStep" : {
+                "type": "int"
+            },
+            "steps" : {
+                "type": "int"
+            }
+        },
+
+    "commonDraft": "Borrador",
+    "@commonDraft": {
+        "description": "Text on define status draft of article,tells a user that it is a draft article"
+    },
+
+    "commonFeedback": "Comentario",
+    "@commonFeedback": {
+        "description": "Text on define status feedback of article,indicates that there are comments"
+    },
+
+    "commonApproved": "Aprobado",
+    "@commonApproved": {
+        "description": "Text on define status approved of article,indicates that it has already been approved"
+    },
+
+    "commonSchedule": "Programado",
+    "@commonSchedule": {
+        "description": "Text on define status schedule of article,indicates that it is going to be published"
+    },
+    
+    
+    "commonPublished": "Publicado",
+    "@commonPublished": {
+        "description": "Text on define status published of article,indicates that it has already been published"
+    },
+
+    "commonAuthor": "Autor",
+    "@commonAuthor": {
+        "description": "Text on Filter a articles by Status on create this articles,title on popup for select 3 options"
+    },
+
+    "commonState": "Estado",
+    "@commonState": {
+        "description": "Text on Filter a articles by Status on create this articles,title on popup for select 3 options"
+    },
+
+    "commonDates": "Fecha",
+    "@commonDates": {
+        "description": "Text on Filter a articles by Dates on create this articles,title on popup"
+    },
+
     "commonPage": "Página",
     "@commonPage": {
         "description": "Text shown on dialog when deleting this article,for confirm user to delete this article"
@@ -870,6 +961,10 @@
     "commonBack": "Atrás",
     "@commonBack": {
         "description": "Text back in button of screen create admin account"
+    },
+    "commonNext": "Siguiente",
+    "@commonNext": {
+        "description": "Text on buttons that indicate that tapping advances to another process"
     },
     "commonContinue" : "Continuar",
     "@commonContinue": {
@@ -928,11 +1023,29 @@
     },
     "commonEmail": "Email",
     "@commonEmail":{
-        "description": "text to indicate that you must enter your email"},
+        "description": "text to indicate that you must enter your email"
+    },
+
     "commonInvalidCharacters": "Caracteres invalidos",
     "@commonInvalidCharacters":{
-        "description":"Text indicating that invalid characters were used"},
+        "description":"Text indicating that invalid characters were used"
+    },
 
+    "commonCancel" : "Cancelar",
+    "@commonCancel": {
+        "description": "An cancel for closed dialog,or when cancel a run"
+    },
+
+    "commonPost" : "Postear",
+    "@commonPost": {
+        "description": "when a user wants to add a new comment"
+    },
+
+    "commonComment" : "Comentar",
+    "@commonComment": {
+        "description": "when a user wants to add a new comment,in the title of button that the user press to add a new comment"
+    },
+    
     "commonError" : "¡Error!",
     "@commonError": {
         "description":"text in alertdialog title, Error"
@@ -979,7 +1092,8 @@
     "@commonArticles": {
         "description": "A piece of writing on a brand"
     },
-  "commonAddPage": "Agregar página",
+
+    "commonAddPage": "Agregar página",
     "@commonAddPage": {
         "description": "Text shown on a button that indicates to add a page"
     },
@@ -1027,6 +1141,78 @@
     "commonNothingToSee": "Nada para ver",
     "@commonNothingToSee": {
         "description": "Text shown when the data brought from the db is empty"
+    },
+    
+    "commonResults": "Resultados",
+    "@commonResults": {
+        "description": "Text to show the results of something"
+    },
+
+    "commonName" : "Nombre",
+    "@commonName": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonLastName" : "Apellido",
+    "@commonLastName": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonPosition" : "Cargo",
+    "@commonPosition": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonCompany" : "Compañia",
+    "@commonCompany": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonSocialMedia" : "Redes Sociales",
+    "@commonSocialMedia": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonBiography" : "Biografía",
+    "@commonBiography": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonLanguages" : "Idiomas",
+    "@commonLanguages": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonCountry" : "País",
+    "@commonCountry": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonCity" : "Ciudad",
+    "@commonCity": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonTags" : "Etiquetas",
+    "@commonTags": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonTelephone" : "Teléfono",
+    "@commonTelephone": {
+        "description":"Text on a textfield hint text"
+    },
+
+    "commonYes" : "Si",
+    "@commonYes": {
+        "description":"A no text"
+    },
+
+    "commonNo" : "No",
+    "@commonNo": {
+        "description":"A yes text"
     }
+
+}
 }
 

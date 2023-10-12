@@ -2,11 +2,12 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/features/dashboard/editor_contenido/bloc/bloc_editor_contenido.dart';
+import 'package:prlab_flutter/features/dashboard/editor_quill/editor_quill.dart';
 
 /// {@template  EditorDeDescripcionDeContenido}
 /// Contiene los elementos para la edición
@@ -32,69 +33,92 @@ class EditorDeDescripcionDeContenido extends StatefulWidget {
 
 class _EditorDeDescripcionDeContenidoState
     extends State<EditorDeDescripcionDeContenido> {
-  final scrollController = ScrollController();
-
-  late String _jsonDelContenido;
+  /// Controllador para el manejo de contenido de un
+  /// `EntregableArticulo`.
+  late QuillController _controller;
 
   /// Genera una espera antes de guardar la nueva data del contenido
   /// en la db para mejorar la performance.
   Timer? _debounce;
 
+  /// Contiene el contenido del articulo en formato `delta`, esto
+  /// permite hacer ciertas validaciónes y manejar la información
+  /// del mismo.
+  String? _jsonDelContenido;
+
+  /// Foco para el contenido del `EntregableArticulo`.
+  final _focusNode = FocusNode();
+
   @override
   void initState() {
-    super.initState();
-
     final articulo = context.read<BlocEditorContenido>().state.articulo;
 
-    _jsonDelContenido = articulo?.contenido ??
-        jsonEncode(EditorState.blank().document.toJson());
+    _controller = QuillController(
+      document: Document.fromJson(
+        jsonDecode(articulo?.contenido ?? '') as List,
+      ),
+      selection: const TextSelection.collapsed(offset: 0),
+    );
+
+    _jsonDelContenido = jsonEncode(
+      _controller.document.toDelta().toJson(),
+    );
+    super.initState();
   }
 
   @override
   void dispose() {
-    scrollController.dispose();
+    _debounce?.cancel();
+    _controller.dispose();
+    _focusNode.dispose();
     super.dispose();
+  }
+
+  void _blocListener(
+    BuildContext context,
+    BlocEditorContenidoEstado state,
+  ) {
+    if (state is BlocEditorContenidoEstadoActualizandoDesdeStream) {
+      _jsonDelContenido = state.articulo?.contenido ?? _jsonDelContenido;
+
+      _controller.document = Document.fromJson(
+        jsonDecode(_jsonDelContenido ?? '') as List,
+      );
+    }
+  }
+
+  /// Actualiza luego
+  void _onControllerListener(BlocEditorContenidoEstado state) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      _jsonDelContenido = jsonEncode(
+        _controller.document.toDelta().toJson(),
+      );
+
+      // Evita actualizar el articulo innecesariamente.
+      if (_jsonDelContenido == state.articulo?.contenido) {
+        return;
+      }
+
+      widget.onChanged.call(_jsonDelContenido ?? '');
+
+      context.read<BlocEditorContenido>().add(
+            BlocEditorContenidoEventoActualizarArticulo(
+              descripcionDeArticulo: _jsonDelContenido,
+            ),
+          );
+
+      _focusNode.requestFocus();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final editorState = EditorState(
-      document: Document.fromJson(
-        Map<String, Object>.from(
-          json.decode(_jsonDelContenido) as Map,
-        ),
-      ),
-    );
-
-    editorState.transactionStream.listen((event) {
-      if (event.$1 == TransactionTime.after) {
-        widget.onChanged.call(_jsonDelContenido);
-
-        if (_debounce?.isActive ?? false) _debounce?.cancel();
-
-        _debounce = Timer(const Duration(milliseconds: 500), () {
-          _jsonDelContenido = jsonEncode(editorState.document.toJson());
-
-          context.read<BlocEditorContenido>().add(
-                BlocEditorContenidoEventoActualizarArticulo(
-                  descripcionDeArticulo: _jsonDelContenido,
-                ),
-              );
-        });
-      }
-    });
-
     return SizedBox(
       height: max(352.ph, 352.sh),
       child: BlocConsumer<BlocEditorContenido, BlocEditorContenidoEstado>(
-        listener: (context, state) {
-          if (state.articulo?.contenido != _jsonDelContenido) {
-            setState(() {
-              _jsonDelContenido =
-                  state.articulo?.contenido ?? _jsonDelContenido;
-            });
-          }
-        },
+        listener: _blocListener,
         builder: (context, state) {
           if (state is BlocEditorContenidoEstadoCargando) {
             return const Center(
@@ -102,71 +126,18 @@ class _EditorDeDescripcionDeContenidoState
             );
           }
 
-          return Column(
-            children: [
-              FloatingToolbar(
-                items: [
-                  paragraphItem,
-                  ...headingItems,
-                  ...markdownFormatItems,
-                  quoteItem,
-                  bulletedListItem,
-                  numberedListItem,
-                  linkItem,
-                  buildTextColorItem(),
-                  buildHighlightColorItem(),
-                  ...textDirectionItems,
-                ],
-                editorState: editorState,
-                scrollController: scrollController,
-                child: _ContenedorDeDescripcionDeContenido(
-                  editorState: editorState,
-                  scrollController: scrollController,
-                ),
-              ),
-            ],
+          return Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 20.pw,
+              vertical: 20.sh,
+            ),
+            child: EditorQuill(
+              controller: _controller
+                ..addListener(() => _onControllerListener(state)),
+              focusNode: _focusNode,
+            ),
           );
         },
-      ),
-    );
-  }
-}
-
-/// {@template  ContenedorDeDescripcionDeContenido}
-/// Contiene el lienzo de la descripción, aca se edita
-/// la descripción como tal, se puede editar los tamaños
-/// que ocupa el componente en si y manejar el scroll del mismo.
-/// {@endtemplate}
-class _ContenedorDeDescripcionDeContenido extends StatelessWidget {
-  /// {@macro  ContenedorDeDescripcionDeContenido}
-  const _ContenedorDeDescripcionDeContenido({
-    required this.editorState,
-    required this.scrollController,
-  });
-
-  final EditorState editorState;
-  final ScrollController? scrollController;
-
-  @override
-  Widget build(BuildContext context) {
-    final customBlockComponentBuilders = {
-      ...standardBlockComponentBuilderMap,
-    };
-
-    return SizedBox(
-      height: max(310.ph, 310.sh),
-      child: AppFlowyEditor(
-        editorState: editorState,
-        scrollController: scrollController,
-        blockComponentBuilders: customBlockComponentBuilders,
-        commandShortcutEvents: standardCommandShortcutEvents,
-        characterShortcutEvents: standardCharacterShortcutEvents,
-        editorStyle: EditorStyle.desktop(
-          padding: EdgeInsets.symmetric(
-            horizontal: 30.pw,
-            vertical: 30.ph,
-          ),
-        ),
       ),
     );
   }

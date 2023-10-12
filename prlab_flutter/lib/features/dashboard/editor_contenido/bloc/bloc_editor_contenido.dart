@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_marcas/bloc/bloc_administracion_marcas.dart';
 import 'package:prlab_flutter/utilidades/utilidades.dart';
+import 'package:vsc_quill_delta_to_html/vsc_quill_delta_to_html.dart';
 
 part 'bloc_editor_contenido_estado.dart';
 part 'bloc_editor_contenido_evento.dart';
@@ -141,14 +143,14 @@ class BlocEditorContenido
         BlocEditorContenidoEstadoActualizandoDesdeStream.desde(
           state,
           descripcionDeArticulo:
-              event.descripcionDeArticulo ?? articulo.contenido ?? '',
+              event.descripcionDeArticulo ?? articulo.contenido,
           tituloArticulo: event.titulo ?? articulo.titulo,
         ),
       );
     }
 
     final articuloActualizado = articulo
-      ..contenido = event.descripcionDeArticulo ?? articulo.contenido ?? ''
+      ..contenido = event.descripcionDeArticulo ?? articulo.contenido
       ..titulo = event.titulo ?? state.articulo?.titulo ?? '';
 
     try {
@@ -156,13 +158,22 @@ class BlocEditorContenido
         emit(
           BlocEditorContenidoEstadoActualizandoDescripcion.desde(
             state,
-            descripcionDeArticulo: articuloActualizado.contenido ?? '',
+            descripcionDeArticulo: articuloActualizado.contenido,
             tituloArticulo: articuloActualizado.titulo,
           ),
         );
 
+        final contenido = jsonDecode(event.descripcionDeArticulo ?? '') as List;
+
+        final converter = QuillDeltaToHtmlConverter(
+          List.castFrom(contenido),
+          ConverterOptions.forEmail(),
+        );
+
+        final contenidoHtml = converter.convert();
+
         await client.entregableArticulo.sendStreamMessage(
-          articuloActualizado,
+          articuloActualizado..contenidoHtml = contenidoHtml,
         );
       }
     } catch (e) {

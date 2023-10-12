@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/theming/base.dart';
-
 import 'package:prlab_flutter/utilidades/widgets/drawer/drawer.dart';
 
 /// {@template PRDrawerItem}
@@ -52,7 +51,7 @@ class PRDrawerItem extends StatelessWidget {
         height: max(40.ph, 40.sh),
         decoration: BoxDecoration(
           color: estaSeleccionado
-              ? colores.primaryOpacidadDiez
+              ? colores.subordinadoOpacidadCincuenta
               : colores.surfaceTint,
         ),
         child: Row(
@@ -77,11 +76,19 @@ class PRDrawerItem extends StatelessWidget {
                       : Container(),
             ),
             SizedBox(width: 5.pw),
-            Text(
-              tituloItem,
-              style: TextStyle(
-                color: colores.primary,
-                fontSize: 16.pf,
+            SizedBox(
+              // TODO(anyone): verificar si anda decentemente (mati) funca
+              width: 150.pw,
+              child: Text(
+                tituloItem,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: colores.primary,
+                  fontSize: 16.pf,
+                  fontWeight:
+                      estaSeleccionado ? FontWeight.w700 : FontWeight.w400,
+                ),
               ),
             ),
           ],

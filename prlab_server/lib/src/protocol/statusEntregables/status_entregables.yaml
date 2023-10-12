@@ -1,0 +1,9 @@
+enum: StEntregables
+values:
+  - todos #todos los entregables
+  - draft
+  - feedback
+  - approved
+  - scheduled
+  - published
+  

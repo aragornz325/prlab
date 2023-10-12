@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/administracion_contenido/escritorio/widgets/widgets.dart';
-import 'package:prlab_flutter/features/dashboard/widgets/widgets.dart';
+import 'package:prlab_flutter/features/dashboard/widgets/lista_articulos_y_recortes/lista_articulos_y_recortes.dart';
 
 /// {@template ContenidoPrincipal}
 /// Contenido principal de la pagina donde muestra t0do el

@@ -38,7 +38,7 @@ class OrmComentario extends ORM {
            spui."imageUrl"
     FROM 
         comentarios c
-    INNER JOIN clientes cl ON c."idAutor" = cl."id"
+    INNER JOIN clientes cl ON c."idAutor" = cl."idUsuario"
     INNER JOIN serverpod_user_info spui ON cl."idUsuario" = spui."id"
     WHERE c."idEntregable" = $idArticulo
      
@@ -57,7 +57,7 @@ class OrmComentario extends ORM {
       'nombre',
       'apellido',
       'imageUrl',
-    ]);
+    ],);
     return respuesta
         .map(
           (e) => Comentario.fromJson(
@@ -88,7 +88,7 @@ class OrmComentario extends ORM {
       'textoComentario',
       'nombre',
       'apellido',
-    ]);
+    ],);
 
     return respuesta.map((e) => Comentario.fromJson(e, Protocol())).toList();
   }
@@ -138,10 +138,11 @@ class OrmComentario extends ORM {
   }) async {
     try {
       await Comentario.insert(
-          session,
-          comentario
-            ..fechaCreacion = DateTime.now()
-            ..ultimaModificacion = DateTime.now());
+        session,
+        comentario
+          ..fechaCreacion = DateTime.now()
+          ..ultimaModificacion = DateTime.now(),
+      );
       final response = await Comentario.findSingleRow(
         session,
         where: (t) => t.idAutor.equals(comentario.idAutor),
@@ -186,7 +187,7 @@ class OrmComentario extends ORM {
         'nombre',
         'apellido',
         'imageUrl',
-      ]);
+      ],);
 
       if (respuesta.isEmpty) {
         throw Exception('Comentario no encontrado');

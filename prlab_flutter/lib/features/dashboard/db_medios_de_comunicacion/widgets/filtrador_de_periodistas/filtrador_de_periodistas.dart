@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:equatable/equatable.dart';
@@ -5,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/bloc/bloc_db_medios_de_comunicacion.dart';
+import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/bloc_filtrado_periodistas/bloc_db_medios_de_comunicacion.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/nada_para_ver.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_dropdown.dart';
@@ -67,47 +68,60 @@ class _FiltradorDePeriodistasState extends State<FiltradorDePeriodistas> {
     return Container(
       width: 376.sh,
       color: colores.surfaceTint,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: BlocBuilder<BlocDbMediosDeComunicacion,
+          BlocDbMediosDeComunicacionEstado>(
+        builder: (context, state) {
+          if (state.estaCargando) {
+            return SizedBox(
+              height: max(605.ph, 605.sh),
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+          return Column(
             children: [
-              ...ItemMenuFiltros.values.map(
-                (item) => _ContenedorItemMenuFiltros(
-                  itemMenuFiltros: item,
-                  itemSeleccionado: _itemSeleccionado,
-                  onSeleccionado: _onCambiarDePagina,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ...ItemMenuFiltros.values.map(
+                    (item) => _ContenedorItemMenuFiltros(
+                      itemMenuFiltros: item,
+                      itemSeleccionado: _itemSeleccionado,
+                      onSeleccionado: _onCambiarDePagina,
+                    ),
+                  ),
+                ],
+              ),
+              const Divider(height: 0),
+              SizedBox(
+                // ? Esto funcionaría mejor para la PageView si
+                // ? fuese mas dinámico y no un valor estatico.
+                height: max(620.ph, 620.sh),
+                child: PageView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  controller: _pageController,
+                  onPageChanged: (value) {
+                    _itemSeleccionado = ItemMenuFiltros.values.firstWhere(
+                      (element) => element.index == value,
+                    );
+
+                    _onCambiarDePagina(_itemSeleccionado);
+                  },
+                  children: const [
+                    SeccionFiltradoPorPersonas(),
+                    Center(
+                      child: NadaParaVer(),
+                    ),
+                    Center(
+                      child: NadaParaVer(),
+                    ),
+                  ],
                 ),
               ),
             ],
-          ),
-          const Divider(height: 0),
-          SizedBox(
-            // ? Esto funcionaría mejor para la PageView si
-            // ? fuese mas dinámico y no un valor en duro.
-            height: max(620.ph, 620.sh),
-            child: PageView(
-              physics: const NeverScrollableScrollPhysics(),
-              controller: _pageController,
-              onPageChanged: (value) {
-                _itemSeleccionado = ItemMenuFiltros.values.firstWhere(
-                  (element) => element.index == value,
-                );
-
-                _onCambiarDePagina(_itemSeleccionado);
-              },
-              children: const [
-                SeccionFiltradoPorPersonas(),
-                Center(
-                  child: NadaParaVer(),
-                ),
-                Center(
-                  child: NadaParaVer(),
-                ),
-              ],
-            ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

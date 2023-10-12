@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/orm.dart';
+import 'package:prlab_server/utils/extenciones/columna_int_extencion.dart';
 import 'package:prlab_server/utils/manejo_de_errores/manejo_de_errores.dart';
 import 'package:serverpod/server.dart';
 
@@ -27,14 +28,7 @@ class OrmEntregableArticulo extends ORM {
             logger.info(
               'Creando artículo: "${articulo.titulo}"...',
             );
-            await EntregableArticulo.insert(
-              session,
-              articulo
-                ..idAutor = await session.auth.authenticatedUserId ?? 0
-                ..fechaCreacion = DateTime.now()
-                ..ultimaModificacion = DateTime.now()
-                ..activo = true,
-            );
+            await EntregableArticulo.insert(session, articulo);
             final response = (await EntregableArticulo.findSingleRow(
               session,
               where: (t) => t.idAutor.equals(articulo.idAutor),
@@ -70,7 +64,7 @@ class OrmEntregableArticulo extends ORM {
         session,
         (session) => EntregableArticulo.find(
           session,
-          where: (t) => t.activo.equals(true),
+          where: (t) => t.fechaEliminacion.equals(null),
         ),
       );
     } on Exception catch (e) {
@@ -214,7 +208,7 @@ class OrmEntregableArticulo extends ORM {
       (session) => EntregableArticulo.find(
         session,
         where: (t) =>
-            (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
+            (t.idMarca.equals(idMarca)) & (t.fechaEliminacion.equals(null)),
         orderBy: EntregableArticuloTable().ultimaModificacion,
         orderDescending: true,
         limit: 3,
@@ -244,7 +238,7 @@ class OrmEntregableArticulo extends ORM {
         session,
         (Session session) => EntregableArticulo.update(
           session,
-          articulo..ultimaModificacion = DateTime.now(),
+          articulo,
         ),
       );
       logger.finest(
@@ -271,20 +265,384 @@ class OrmEntregableArticulo extends ORM {
       session,
       (session) => EntregableArticulo.count(
         session,
-        where: (t) => (t.idMarca.equals(idMarca)) & (t.activo.equals(true)),
+        where: (t) =>
+            (t.idMarca.equals(idMarca)) & (t.fechaEliminacion.equals(null)),
       ),
     );
   }
 
+  /// La función `traerArticulosPorUsuario` recupera una lista de artículos pertenecientes a un usuario
+  /// específico de una base de datos usando un ORM.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. Representa la
+  /// sesión de usuario actual o la sesión de autenticación.
+  ///
+  /// Returns:
+  ///   un `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
   Future<List<EntregableArticulo>> traerArticulosPorUsuario(
-      {required Session session}) async {
+      {required Session session,}) async {
     return ejecutarOperacionOrm(session, (session) async {
       logger.finer('buscando en la db los articulos del usuario');
       final idAutor = await session.auth.authenticatedUserId;
       final articulos = await EntregableArticulo.find(session,
-          where: (t) => t.idAutor.equals(idAutor) & t.activo.equals(true));
+          where: (t) =>
+              t.idAutor.equals(idAutor) & t.fechaEliminacion.equals(null),);
       logger.fine('articulos encontrados: ${articulos.length}');
       return articulos;
     });
+  }
+
+  /// La función `traerArticuloPorSlug` recupera un objeto `EntregableArticulo` de la base de datos en
+  /// función de un slug determinado.
+  ///
+  /// Args:
+  ///   session (Session): Un parámetro obligatorio de tipo Sesión, que representa la sesión o conexión
+  /// actual a la base de datos.
+  ///   slug (String): El slug es un identificador único de un artículo. Por lo general, es una versión
+  /// compatible con URL del título del artículo, que se utiliza para crear una URL limpia y legible.
+  ///
+  /// Returns:
+  ///   un `Futuro` que se resuelve en un objeto `EntregableArticulo` o `null` (`EntregableArticulo?`).
+  Future<EntregableArticulo?> traerArticuloPorSlug({
+    required Session session,
+    required String slug,
+  }) async {
+    return ejecutarOperacionOrm(session, (session) async {
+      logger.finer('buscando en la db el articulo con slug: $slug');
+      final articulo = await EntregableArticulo.findSingleRow(
+        session,
+        where: (t) => t.slug.equals(slug),
+      );
+      logger.fine('articulo encontrado');
+      return articulo;
+    });
+  }
+
+  /// La función `traerEntregableporFiltro` recupera una lista de objetos `EntregableArticulo` de una
+  /// base de datos basada en un `idStatus` dado y la devuelve como un `Futuro`.
+  ///
+  /// Args:
+  ///   session (Session): Un objeto de sesión necesario para realizar operaciones de base de datos.
+  ///   idStatus (int): El parámetro idStatus es un número entero que representa el estado de los
+  /// artículos que se recuperarán.
+  ///
+  /// Returns:
+  ///   un `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
+  @deprecated
+  Future<List<EntregableArticulo>> traerEntregableporFiltro(
+      {required Session session,
+      required List<int> status,
+      required int idAutor,}) async {
+    return ejecutarOperacionOrm(session, (session) async {
+      List articulos = [];
+      for (var i = 0; i < status.length; i++) {
+        logger.finer('buscando en la db los articulos con status: $status');
+        final articulo = await EntregableArticulo.find(session,
+            where: (t) =>
+                t.idStatus.equals(status[i]) &
+                t.fechaEliminacion.equals(null) &
+                t.idAutor.equals(idAutor),);
+        articulos.addAll(articulo);
+        logger.fine('articulos encontrados: ${articulos.length}');
+      }
+      articulos.sort((a, b) => b.fechaCreacion.compareTo(a.fechaCreacion));
+      final articulosFiltrados =
+          articulos.where((articulo) => articulo.idAutor == idAutor).toList();
+
+      return await Future.value(articulosFiltrados.cast<EntregableArticulo>());
+    });
+  }
+
+  /// La función `traerEntregableporUsuarioyStatus` recupera una lista de objetos `EntregableArticulo`
+  /// de una base de datos basada en una sesión determinada y un ID de marca.
+  Future<List<EntregableArticulo>> listarEntregableporUsuarioyStatus(
+    Session session,
+    String texto, {
+    required List<int> listaIdEstados,
+  }) async {
+    final idAutor = await session.auth.authenticatedUserId;
+    logger.finer(
+      '''buscando buscando todos los articulos de todas las marcas del autor $idAutor''',
+    );
+    return await EntregableArticulo.find(
+      session,
+      where: (t) =>
+          t.idAutor.equals(idAutor) &
+          t.fechaEliminacion.equals(null) &
+          t.idStatus.contains(listaIdEstados),
+    );
+  }
+
+  // si el texto no es vacio, se buscan los articulos por texto
+  // y por idStatus
+  Future<List<EntregableArticulo>> listarEntregableporTextoyMarcayEstatus(
+    Session session, {
+    required String texto,
+    required int idMarca,
+    required List<int> idStatus,
+  }) async {
+    try {
+      final articulos = <EntregableArticulo>[];
+      if (idStatus.first == 0) {
+        logger.finer('buscando en la db los articulos por texto: $texto');
+        final articulo = await EntregableArticulo.find(
+          session,
+          where: (t) =>
+              t.fechaEliminacion.equals(null) &
+              t.titulo.like('%$texto%') &
+              t.idMarca.equals(idMarca),
+        );
+        articulos.addAll(articulo);
+        logger.fine('articulos encontrados: ${articulos.length}');
+        return articulos.cast<EntregableArticulo>();
+      }
+
+      logger.finer('buscando en la db los articulos por texto: $texto');
+      return await EntregableArticulo.find(
+        session,
+        where: (t) =>
+            t.fechaEliminacion.equals(null) &
+            t.titulo.like('%$texto%') &
+            t.idMarca.equals(idMarca) &
+            t.idStatus.contains(idStatus),
+      );
+    } catch (e) {
+      throw Exception('$e');
+    }
+  }
+
+  /// La función `listarEntregablesporMarcayStatus` recupera una lista de objetos `EntregableArticulo`
+  /// de una base de datos basada en la lista proporcionada de ID de estado y una ID de marca.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y se utiliza para establecer una
+  /// conexión con la base de datos.
+  ///   listaIdEstado (List<int>): Una lista de números enteros que representan los ID del estado
+  /// deseado para los artículos.
+  ///   idMarca (int): El parámetro "idMarca" es un número entero que representa el ID de una marca. Se
+  /// utiliza para filtrar la lista de objetos "EntregableArticulo" según el ID de marca.
+  ///
+  /// Returns:
+  ///   El método devuelve un objeto "Futuro" que se resuelve en una "Lista" de objetos
+  /// "EntregableArticulo".
+  Future<List<EntregableArticulo>> listarEntregablesporMarcayStatus(
+    Session session, {
+    required List<int> listaIdEstado,
+    required int idMarca,
+  }) async {
+    // sino se buscan los articulos por idStatus
+    try {
+      logger
+          .finer('buscando en la db los articulos con status: $listaIdEstado');
+      return await EntregableArticulo.find(
+        session,
+        where: (t) =>
+            t.idStatus.contains(listaIdEstado) &
+            t.fechaEliminacion.equals(null) &
+            t.idMarca.equals(idMarca),
+      );
+    } catch (e) {
+      throw Exception('$e');
+    }
+  }
+
+  /// La función `traerEntregableTodosLosStatus` recupera una lista de objetos `EntregableArticulo` de
+  /// una base de datos basada en una `idMarca` determinada y los devuelve.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. Se utiliza para
+  /// realizar operaciones de bases de datos.
+  ///   idMarca: El parámetro `idMarca` es un parámetro obligatorio de tipo `int`. Se utiliza para
+  /// filtrar la búsqueda de objetos `EntregableArticulo` en función de su propiedad `idMarca`.
+  ///
+  /// Returns:
+  ///   un Futuro<Lista<EntregableArticulo>>.
+  Future<List<EntregableArticulo>> traerEntregableTodosLosStatus(
+    Session session, {
+    required idMarca,
+  }) async {
+    try {
+      logger.finer('buscando en la db los articulos con todos los status');
+      final entregables = await EntregableArticulo.find(
+        session,
+        where: (t) =>
+            t.idMarca.equals(idMarca) & t.fechaEliminacion.equals(null),
+      );
+      if (entregables.isEmpty) {
+        return [];
+      }
+      logger.fine('articulos encontrados: ${entregables.length}');
+      return entregables;
+    } catch (e) {
+      throw Exception('$e');
+    }
+  }
+
+  /// La función `listatEntregablesporUsuarioyTexto` recupera una lista de objetos `EntregableArticulo`
+  /// basada en los parámetros `texto` y `listaIdEstado` proporcionados.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la sesión del usuario
+  /// actual. Es necesario para fines de autenticación y autorización.
+  ///   texto (String): Un parámetro de cadena obligatorio que representa el texto que se buscará en los
+  /// títulos de los artículos.
+  ///   listaIdEstado (List<int>): Una lista de números enteros que representan los ID de los estados de
+  /// los artículos que se van a buscar.
+  ///
+  /// Returns:
+  ///   un `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
+  Future<List<EntregableArticulo>> listatEntregablesporUsuarioyTexto(
+    Session session, {
+    required String texto,
+    required List<int> listaIdEstado,
+  }) async {
+    final idAutor = await session.auth.authenticatedUserId;
+    try {
+      if (listaIdEstado.first == 0) {
+        return EntregableArticulo.find(
+          session,
+          where: (t) =>
+              t.fechaEliminacion.equals(null) &
+              t.titulo.like('%$texto%') &
+              t.idAutor.equals(idAutor),
+        );
+      }
+      logger
+          .finer('buscando en la db los articulos con status: $listaIdEstado');
+      return await EntregableArticulo.find(
+        session,
+        where: (t) =>
+            t.idStatus.contains(listaIdEstado) &
+            t.fechaEliminacion.equals(null) &
+            t.titulo.like('%$texto%') &
+            t.idAutor.equals(idAutor),
+      );
+    } catch (e) {
+      throw Exception('$e');
+    }
+  }
+
+  /// La función "listarEntregableporUsuario" recupera una lista de objetos "EntregableArticulo" de una
+  /// base de datos basada en el ID del usuario autenticado.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es una instancia de la clase Session, que se utiliza
+  /// para autenticar e interactuar con la base de datos.
+  ///
+  /// Returns:
+  ///   El método devuelve un objeto Futuro que se resuelve en una Lista de objetos EntregableArticulo.
+  Future<List<EntregableArticulo>> listarEntregableporUsuario(
+    Session session,
+  ) async {
+    try {
+      final idAutor = await session.auth.authenticatedUserId;
+      logger.finer('buscando en la db los articulos del usuario');
+      final articulos = await EntregableArticulo.find(
+        session,
+        where: (t) =>
+            t.idAutor.equals(idAutor) & t.fechaEliminacion.equals(null),
+      );
+      logger.fine('articulos encontrados: ${articulos.length}');
+      return articulos;
+    } catch (e) {
+      throw Exception('$e');
+    }
+  }
+
+  /// La función `listarEntregableporTextoyStatus` recupera una lista de objetos `EntregableArticulo`
+  /// basada en un texto y estado determinado, utilizando una sesión y una ID de usuario autenticada.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y representa la sesión actual del
+  /// usuario.
+  ///   texto (String): Una cadena que representa el texto a buscar en los artículos.
+  ///   idStatus (List<int>): Una lista de números enteros que representan los ID de estado de los
+  /// artículos que se van a buscar.
+  ///
+  /// Returns:
+  ///   El método devuelve un `Future<List<EntregableArticulo>>`.
+  Future<List<EntregableArticulo>> listarEntregableporTextoyStatus(
+    Session session, {
+    required String texto,
+    required List<int> idStatus,
+  }) async {
+    try {
+      final idAutor = await session.auth.authenticatedUserId;
+      if (idStatus.first == 0) {
+        logger.finer('buscando en la db los articulos por texto: $texto');
+        final articulo = await EntregableArticulo.find(
+          session,
+          where: (t) =>
+              t.fechaEliminacion.equals(null) &
+              t.idAutor.equals(idAutor) &
+              t.titulo.like('%$texto%'),
+        );
+        logger.fine('articulos encontrados: ${articulo.length}');
+        return articulo;
+      }
+      logger.finer('buscando en la db los articulos por texto: $texto');
+      return await EntregableArticulo.find(
+        session,
+        where: (t) =>
+            t.fechaEliminacion.equals(null) &
+            t.titulo.like('%$texto%') &
+            t.idAutor.equals(idAutor) &
+            t.idStatus.contains(idStatus),
+      );
+    } catch (e) {
+      throw Exception('$e');
+    }
+  }
+
+  /// La función `listarEntregableporTextoyMarca` recupera una lista de objetos `EntregableArticulo` de
+  /// una base de datos basada en un texto y un ID de marca determinados.
+  ///
+  /// Args:
+  ///   session (Session): El parámetro de sesión es de tipo Sesión y es obligatorio. Representa la
+  /// sesión o conexión actual a la base de datos.
+  ///   texto (String): Un parámetro de cadena obligatorio que representa el texto que se buscará en los
+  /// artículos.
+  ///   idMarca (int): El parámetro idMarca es un número entero que representa el ID de una marca
+  /// específica. Se utiliza para filtrar la búsqueda de artículos por marca.
+  ///
+  /// Returns:
+  ///   El método devuelve un `Future<List<EntregableArticulo>>`.
+  Future<List<EntregableArticulo>> listarEntregableporTextoyMarca(
+    Session session, {
+    required String texto,
+    required int idMarca,
+    required List<int> listaIds,
+  }) async {
+    try {
+      if (listaIds.first == 0) {
+        logger.finer('buscando en la db los articulos por texto: $texto');
+        final articulo = await EntregableArticulo.find(
+          session,
+          where: (t) =>
+              t.fechaEliminacion.equals(null) &
+              t.titulo.like('%$texto%') &
+              t.idMarca.equals(idMarca),
+        );
+        logger.fine('articulos encontrados: ${articulo.length}');
+        return articulo;
+      }
+
+      final idAutor = await session.auth.authenticatedUserId;
+      logger.finer('buscando en la db los articulos por texto: $texto');
+      final articulo = await EntregableArticulo.find(
+        session,
+        where: (t) =>
+            t.fechaEliminacion.equals(null) &
+            t.idAutor.equals(idAutor) &
+            t.titulo.like('%$texto%') &
+            t.idStatus.contains(listaIds) &
+            t.idMarca.equals(idMarca),
+      );
+      logger.fine('articulos encontrados: ${articulo.length}');
+      return articulo;
+    } catch (e) {
+      throw Exception('$e');
+    }
   }
 }

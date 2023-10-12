@@ -12,26 +12,24 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
     this.articulos = const [],
     this.articulosFiltrados = const [],
     this.index = 0,
-    this.borrador = false,
-    this.comentario = false,
-    this.completo = false,
+    this.estadoEntregables = const [],
+    this.nombreDelArticuloAFiltrar = '',
   });
 
   BlocListaArticulosYRecortesEstado.desde(
     BlocListaArticulosYRecortesEstado otro, {
     List<EntregableArticulo>? articulos,
     List<EntregableArticulo>? articulosFiltrados,
+    List<StEntregables>? estadoEntregables,
+    String? nombreDelArticuloAFiltrar,
     int? index,
-    bool? borrador,
-    bool? comentario,
-    bool? completo,
   }) : this._(
           articulos: articulos ?? otro.articulos,
           index: index ?? otro.index,
-          borrador: borrador ?? otro.borrador,
-          comentario: comentario ?? otro.comentario,
-          completo: completo ?? otro.completo,
           articulosFiltrados: articulosFiltrados ?? otro.articulosFiltrados,
+          estadoEntregables: estadoEntregables ?? otro.estadoEntregables,
+          nombreDelArticuloAFiltrar:
+              nombreDelArticuloAFiltrar ?? otro.nombreDelArticuloAFiltrar,
         );
 
   /// Lista de los articulos
@@ -43,17 +41,12 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
   /// Index de la vista seleccionada
   final int index;
 
-  // TODO(anyone): pasar todo esto a un enum para manejar mejor los distintos
-  // estados
+  /// Nombre del articulo con el cual se van a filtrar
+  final String nombreDelArticuloAFiltrar;
 
-  /// Estado de borrador para los filtrados
-  final bool borrador;
-
-  /// Estado de comentario para los filtrados
-  final bool comentario;
-
-  /// Estado de completo para los filtrados
-  final bool completo;
+  /// lista de estados en los que el articulo pueda manejar y cambiar,también
+  /// se puede filtrar por dichos estados
+  final List<StEntregables> estadoEntregables;
 
   /// Si es Articulos
   bool get esArticulos => index == 0;
@@ -66,9 +59,7 @@ abstract class BlocListaArticulosYRecortesEstado extends Equatable {
         articulos,
         articulosFiltrados,
         index,
-        borrador,
-        comentario,
-        completo,
+        estadoEntregables,
       ];
 }
 
@@ -105,10 +96,25 @@ final class BlocListaArticulosYRecortesEstadoExitoso
     super.otro, {
     super.articulos,
     super.index,
-    super.borrador,
-    super.comentario,
-    super.completo,
+    super.estadoEntregables,
     super.articulosFiltrados,
+    super.nombreDelArticuloAFiltrar,
+  }) : super.desde();
+}
+
+/// {@template BlocListaArticulosYRecortesEstadoExitoso}
+/// Este estado indica que se guardaron ciertos filtros para que luego se
+/// filtren por estos y te devuelva la lista de articulos.
+/// {@endtemplate}
+final class BlocListaArticulosYRecortesEstadoGuardarFiltrados
+    extends BlocListaArticulosYRecortesEstado {
+  /// {@macro BlocListaArticulosYRecortesEstadoExitoso}
+  BlocListaArticulosYRecortesEstadoGuardarFiltrados.desde(
+    super.otro, {
+    super.articulos,
+    super.estadoEntregables,
+    super.articulosFiltrados,
+    super.nombreDelArticuloAFiltrar,
   }) : super.desde();
 }
 

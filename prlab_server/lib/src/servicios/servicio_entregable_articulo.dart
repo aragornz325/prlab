@@ -1,8 +1,14 @@
+import 'dart:async';
+import 'dart:io';
+
+import 'package:prlab_server/src/excepciones/excepcion_endpoint.dart';
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/orms/orm_entregable_articulo.dart';
 import 'package:prlab_server/src/orms/orm_imagen_articulo.dart';
 import 'package:prlab_server/src/servicio.dart';
 import 'package:prlab_server/src/servicios/servicio_almacenamiento_archivos_nube.dart';
+import 'package:prlab_server/utils/mailer/templatePublicarArticulo.dart';
+import 'package:puppeteer/puppeteer.dart';
 import 'package:serverpod/server.dart';
 
 /// Servicio para administración de artículos.
@@ -21,9 +27,31 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
   /// crearse. No debe contener id, ni fechas de creación o modificación.
   Future<int> crearArticulo(
     Session session, {
-    required EntregableArticulo articulo,
+    required String titulo,
+    required String contenido,
+    required String contenidoHtml,
+    int? idMarca,
   }) async {
     try {
+      final idAutor = await session.auth.authenticatedUserId;
+
+      if (idAutor == null) {
+        throw Excepciones.noAutorizado();
+      }
+
+      final articulo = EntregableArticulo(
+        titulo: titulo,
+        contenido: contenido,
+        contenidoHtml: contenidoHtml,
+        idMarca: idMarca,
+        idAutor: idAutor,
+        idStatus: 1,
+        activo: true,
+        ultimaModificacion: DateTime.now(),
+        fechaCreacion: DateTime.now(),
+        fechaLanzamiento: DateTime.now(),
+      );
+
       return await ejecutarOperacion(
         () => orm.crearArticulo(
           session: session,
@@ -136,36 +164,16 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
     try {
       logger.info('Se va a actualizar el articulo con id: ${articulo.id}');
 
-      final articuloFinal = await ejecutarOperacion(
-        () {
-          return orm.obtenerArticuloPorId(
-            session: session,
-            id: articulo.id!,
-          );
-        },
-      );
-
-      logger.finest('Articulo ${articulo.id} recuperado de la db');
-
-      // Se compara con el registro de la db, si el valor es null se deja el
-      // valor anterior.
-      // Si el valor es distinto de null se actualiza el valor en el registro
-      // de la DB.
-
-      articulo.toJson().forEach((key, value) {
-        if (value != null) {
-          articuloFinal.setColumn(key, value);
-        }
-      });
       logger.finest('Articulo ${articulo.id} actualizado');
       await ejecutarOperacion(
         () {
           return orm.actualizarArticulo(
             session: session,
-            articulo: articuloFinal,
+            articulo: articulo..ultimaModificacion = DateTime.now(),
           );
         },
       );
+
       logger.finest('Se actualizo el articulo con id: ${articulo.id}');
       return true;
     } on Exception catch (e) {
@@ -237,5 +245,203 @@ class ServicioEntregableArticulo extends Servicio<OrmEntregableArticulo> {
         session: session,
       ),
     );
+  }
+
+  Future<EntregableArticulo?> traerArticuloPorSlug({
+    required Session session,
+    required String slug,
+  }) async {
+    return await ejecutarOperacion(
+      () => orm.traerArticuloPorSlug(
+        session: session,
+        slug: slug,
+      ),
+    );
+  }
+
+  Future publicarArticulo({
+    required Session session,
+    required int idArticulo,
+  }) async {
+    logger.info('Se va a publicar el articulo $idArticulo');
+    final articulo = await obtenerArticulo(session, id: idArticulo);
+    print(articulo);
+    final imagenes =
+        await obtenerImagenesArticulo(session, idArticulo: idArticulo);
+
+    String imageneHtml = '';
+    if (imagenes.length == 1) {
+      imageneHtml = '''
+      <img src="${imagenes.first.url}" alt="${imagenes.first.nombreImagen}" style="width: 100%; height: auto;">
+      ''';
+    } else if (imagenes.length > 1) {
+      for (final imagen in imagenes) {
+        imageneHtml += '''
+        <img src="${imagen.url}" alt="${imagen.nombreImagen}" style="width: 100%; height: auto;">
+        ''';
+      }
+    }
+
+    final articuloAPublicar = templatePublicarArticulo(
+      contenido: articulo.contenidoHtml,
+      titulo: articulo.titulo,
+      imagen:
+          'https://getbuzzmonitor.com/wp-content/uploads/screen-shot-2018-10-17-at-8.39_.11-pm_.png',
+    );
+
+    var slug = articulo.titulo.trim().replaceAll(' ', '-');
+
+    final checkSlug = await traerArticuloPorSlug(session: session, slug: slug);
+    if (checkSlug != null && checkSlug.id != articulo.id) {
+      logger.severe('El slug $slug ya existe!');
+      slug = '$slug-${articulo.id}';
+    }
+
+    final archivo = File('web/static/articulos/$slug.html');
+    await archivo.writeAsString(articuloAPublicar).then((_) {
+      logger.finest('Archivo ${articulo.id}.html creado');
+    }).catchError((e) => logger.severe('Error al crear el archivo: $e'));
+
+    //actualizar slug en el articulo
+    articulo.slug = slug;
+    await actualizarArticulo(session, articulo: articulo);
+    logger.finest('Articulo ${articulo.id} actualizado con slug: $slug');
+
+    var browser = await puppeteer.launch();
+    var page = await browser.newPage();
+    await page.goto('http://localhost:8082/articulos/$slug.html',
+        wait: Until.networkAlmostIdle,);
+
+    await page.emulateMediaType(MediaType.screen);
+
+    await Future.delayed(const Duration(seconds: 3));
+    await page.pdf(
+        format: PaperFormat.a4,
+        printBackground: true,
+        pageRanges: '1-3',
+        output: File('web/static/pdf/$slug.pdf').openWrite(),);
+    await browser.close();
+
+    return true;
+  }
+
+  /// La función `traerEntregableporFiltro` recupera una lista de objetos `EntregableArticulo` basados
+  /// en una sesión determinada y un ID de estado.
+  ///
+  /// Args:
+  ///   session (Session): Un parámetro obligatorio de tipo Sesión, que representa un objeto de sesión.
+  ///   idStatus (int): El parámetro idStatus es un número entero que representa el estado del
+  /// entregable (entregable). Se utiliza como filtro para recuperar los entregables que tienen un
+  /// estado específico.
+  ///
+  /// Returns:
+  ///   un objeto `Futuro` que se resuelve en una `Lista` de objetos `EntregableArticulo`.
+  @deprecated
+  Future<List<EntregableArticulo>> traerEntregableporFiltro(
+    session, {
+    required List<int> status,
+    required int idAutor,
+  }) async {
+    return await ejecutarOperacion(
+      () => orm.traerEntregableporFiltro(
+        session: session,
+        status: status,
+        idAutor: idAutor,
+      ),
+    );
+  }
+
+  /// La función `listarEntregableMarcayEstado` toma parámetros como texto, sesión, idMarca e idStatus,
+  /// y devuelve una lista de objetos `EntregableArticulo` basados en diferentes condiciones.
+  ///
+  /// Args:
+  ///   texto (String): Un parámetro de cadena que representa el texto que se buscará en la lista de
+  /// objetos EntregableArticulo.
+  ///   session (Session): Un objeto de sesión necesario para las operaciones de la base de datos.
+  ///   idMarca (int): El ID de la marca para la que se deben enumerar los entregables,
+  ///   siendo el valor 0 igual a traer todas las marcas
+  ///   idStatus (List<int>): Una lista de números enteros que representan los ID de estado.
+  ///
+  /// Returns:
+  ///   El método devuelve un "Futuro" que se resuelve en una "Lista" de objetos "EntregableArticulo".
+  Future<List<EntregableArticulo>> listarEntregableMarcayEstado(
+    session,
+    String texto, {
+    required int idMarca,
+    required List<int> idStatus,
+  }) async {
+    bool textoVacio = texto.isEmpty;
+    bool tieneMarca = idMarca != 0;
+    bool tieneStatus = idStatus.first != 0;
+
+    // función para eliminar la repetición de código
+    Future<List<EntregableArticulo>> ejecutarConLogger(String caso,
+        Future<List<EntregableArticulo>> Function() funcion,) async {
+      logger.finer(caso);
+      return await ejecutarOperacion(funcion);
+    }
+
+    if (!tieneStatus && textoVacio && tieneMarca) {
+      return ejecutarConLogger('caso 1',
+          () => orm.traerEntregableTodosLosStatus(session, idMarca: idMarca),);
+    }
+    if (texto.isNotEmpty && tieneMarca && tieneStatus) {
+      return ejecutarConLogger(
+          'caso 2',
+          () => orm.listarEntregableporTextoyMarcayEstatus(session,
+              idMarca: idMarca, texto: texto, idStatus: idStatus,),);
+    }
+    if (!tieneMarca && textoVacio && tieneStatus) {
+      return ejecutarConLogger(
+          'caso 3',
+          () => orm.listarEntregableporUsuarioyStatus(session, texto,
+              listaIdEstados: idStatus,),);
+    }
+    if (texto.isNotEmpty && !tieneMarca && !tieneStatus) {
+      return ejecutarConLogger(
+        'caso 4',
+        () => orm.listatEntregablesporUsuarioyTexto(
+          session,
+          listaIdEstado: idStatus,
+          texto: texto,
+        ),
+      );
+    }
+    if (idStatus.isNotEmpty && tieneMarca && textoVacio) {
+      return ejecutarConLogger(
+        'caso 5',
+        () => orm.listarEntregablesporMarcayStatus(
+          session,
+          idMarca: idMarca,
+          listaIdEstado: idStatus,
+        ),
+      );
+    }
+    if (!tieneMarca && !tieneStatus && textoVacio) {
+      return ejecutarConLogger(
+          'caso 6', () => orm.listarEntregableporUsuario(session),);
+    }
+    if (texto.isNotEmpty && !tieneMarca && tieneStatus) {
+      return ejecutarConLogger(
+        'caso 7',
+        () => orm.listarEntregableporTextoyStatus(
+          session,
+          texto: texto,
+          idStatus: idStatus,
+        ),
+      );
+    }
+    if (!textoVacio && tieneMarca && !tieneStatus) {
+      return ejecutarConLogger(
+        'caso 8 aca',
+        () => orm.listarEntregableporTextoyMarca(
+          session,
+          texto: texto,
+          idMarca: idMarca,
+          listaIds:idStatus,
+        ),
+      );
+    }
+    return [];
   }
 }

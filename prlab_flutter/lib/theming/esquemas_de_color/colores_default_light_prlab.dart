@@ -11,6 +11,8 @@ const themeDefaultPRLab = ColorScheme.light(
   //! se usa para el focus del textfield
   primary: Color(0xFFA12B46),
 
+  onPrimary: Color(0xFFEB361E),
+
   /// Color a utilizarse en textos con link vinculado.
   primaryContainer: Color(0xFF0094E7),
 
@@ -35,6 +37,9 @@ const themeDefaultPRLab = ColorScheme.light(
   /// se usa en el check box de los filtrados(completos) del popup/alertdialog
   onTertiaryContainer: Color(0xff1FDE00),
 
+  /// se usa en los colores de los filtros o en el estado de un articulo
+  onSurfaceVariant: Color(0xff9747ff),
+
   //! se utiliza en los unFocus de los textfield
   outline: Color(0xffd9d9d9),
 
@@ -43,4 +48,7 @@ const themeDefaultPRLab = ColorScheme.light(
 
   /// Color utilizado en divider de TextFormField y readOnly.
   outlineVariant: Color(0xffd9d9d9),
+
+  /// se esta utilizando en los Divider como color de divisor
+  onSecondaryContainer: Color(0xffefefef),
 );

@@ -42,7 +42,6 @@ class BlocKyc extends Bloc<BlocKcyEvento, BlocKycEstado> {
         // nuevo.
       );
       await client.cliente.completarKyc(cliente);
-
       emit(BlocKycEstadoExitoso.desde(state));
     } catch (e) {
       emit(BlocKycEstadoFallido.desde(state));

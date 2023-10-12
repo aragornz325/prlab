@@ -1,4 +1,5 @@
 import 'package:prlab_server/src/generated/marca.dart';
+import 'package:prlab_server/src/generated/marca_staff.dart';
 import 'package:prlab_server/src/orms/orm_entregable_articulo.dart';
 import 'package:prlab_server/src/orms/orm_cliente.dart';
 import 'package:prlab_server/src/orms/orm_marca.dart';
@@ -24,27 +25,37 @@ class ServicioMarca extends Servicio<OrmMarca> {
   /// contiene datos de la conexión.
   ///   [marca] ([Marca]): Un objeto con el registro de la marca a ser guardado
   /// en la Base de Datos.
-  Future<bool> crearMarca(
+  Future<int> crearMarca(
     Session session, {
-    required Marca marca,
+    required String nombre,
+    required String sitioWeb,
   }) async {
     try {
       logger.info(
-        'Creando Marca ${marca.nombre}',
+        'Creando Marca $nombre',
       );
+      final now = DateTime.now();
       return await ejecutarOperacion(
         () => orm.crearMarca(
           session: session,
-          marca: marca
-            ..fechaCreacion = DateTime.now()
-            ..ultimaModificacion = DateTime.now(),
+          marca: Marca(
+            nombre: nombre,
+            sitioWeb: sitioWeb,
+            staff: [],
+            ultimosArticulos: [],
+            cantidadArticulos: 0,
+            cantidadClippings: 0,
+            fechaCreacion: now,
+            ultimaModificacion: now,
+          ),
         ),
       );
-    } on Exception {
+    } catch (e) {
       rethrow;
     }
   }
 
+  // TODO(anyone): El método no funciona por el caracter no-nulleable de campos API.
   /// Recupera todas las marcas no eliminadas existentes.
   ///
   /// Args:
@@ -62,13 +73,13 @@ class ServicioMarca extends Servicio<OrmMarca> {
           session: session,
         ),
       );
-    } on Exception {
+    } catch (e) {
       rethrow;
     }
   }
 
   /// Obtiene el registro de una marca por su id.
-  /// 
+  ///
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
@@ -77,12 +88,66 @@ class ServicioMarca extends Servicio<OrmMarca> {
     Session session, {
     required int idMarca,
   }) async {
-    return await ejecutarOperacion(
-      () => orm.obtenerMarcaPorId(
-        session: session,
-        id: idMarca,
-      ),
-    );
+    try {
+      return await ejecutarOperacion(
+        () => orm.obtenerMarcaPorId(
+          session: session,
+          id: idMarca,
+        ),
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// Obtiene las marcas a las que se encuentra asignado un usuario.
+  ///
+  /// Args:
+  /// [idUsuario] ([int]): ID del usuario (ID de usuario de Serverpod, que está
+  /// como FK en su registro de Cliente).
+  Future<List<Marca>> listarMarcasPorUsuario(
+    Session session, {
+    required int idUsuario,
+  }) async {
+    try {
+      logger.info(
+        'Recuperando marcas del usuario $idUsuario...',
+      );
+
+      return await ejecutarOperacion(
+        () => orm.listarMarcasPorUsuario(
+          session,
+          idUsuario: idUsuario,
+        ),
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  ///  Modifica un registro de [Marca].
+  Future<bool> modificarMarca({
+    required Session session,
+    required int idMarca,
+    String? nombre,
+    String? sitioWeb,
+  }) async {
+    try {
+      return await ejecutarOperacion(
+        () => orm.modificarMarca(
+          session: session,
+          idMarca: idMarca,
+          camposMarca: {
+            'nombre': nombre,
+            'sitioWeb': sitioWeb,
+          }
+            ..['ultimaModificacion'] = DateTime.now().toIso8601String()
+            ..removeWhere((key, value) => value == null),
+        ),
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   /// Elimina una marca.
@@ -92,152 +157,87 @@ class ServicioMarca extends Servicio<OrmMarca> {
   /// contiene datos de la conexión.
   ///   [idMarca] ([int]): ID de la [Marca] a eliminar.
   Future<bool> eliminarMarca(
-    Session session,{
+    Session session, {
     required int idMarca,
   }) async {
     try {
-      logger..info(
+      logger
+        ..info(
           'Se va a eliminar la marca con id $idMarca',
         )
-      ..finest(
-        'Eliminando marca',
-      );
+        ..finest(
+          'Eliminando marca',
+        );
       return await ejecutarOperacion(
         () => orm.eliminarMarca(
           session: session,
           idMarca: idMarca,
         ),
       );
-    } on Exception {
+    } catch (e) {
       rethrow;
     }
   }
 
   /// Crea la relación entre una marca y un usuario.
-  /// 
+  ///
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
   ///   [idMarca] ([int]): ID de la [Marca].
-  ///   [idUsuario] ([int]): ID del usuario a ser asignado a la Marca 
-  /// (ID de usuario de Serverpod, que está como FK en su registro de Cliente). 
+  ///   [idUsuario] ([int]): ID del usuario a ser asignado a la Marca
+  /// (ID de usuario de Serverpod, que está como FK en su registro de Cliente).
   ///   [idRol] ([int]): ID del rol que posee el usuario en la marca. Es el
   /// index de un enum.
-  Future<List<List<dynamic>>> asignarUsuarioAMarca(
+  Future<bool> asignarUsuarioAMarca(
     Session session, {
     required int idMarca,
     required int idUsuario,
     required int idRol,
   }) async {
-    return await ejecutarOperacion(
-      () => orm.asignarUsuarioAMarca(
-        session,
-        idMarca: idMarca,
-        idUsuario: idUsuario,
-        idRol: idRol,
-      ),
-    );
+    try {
+      final now = DateTime.now();
+      return await ejecutarOperacion(
+        () => orm.asignarUsuarioAMarca(
+          session,
+          marcaStaff: MarcaStaff(
+            idMarca: idMarca,
+            idStaff: idUsuario,
+            idRol: idRol,
+            ultimaModificacion: now,
+            fechaCreacion: now,
+          ),
+        ),
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   /// Da de baja la relacion entre el usuario y la marca
   /// en la tabla intermedia.
-  /// 
+  ///
   /// Args:
   ///   [session] ([Session]): Requerido por Serverpod. Un objeto de sesión que
   /// contiene datos de la conexión.
   ///   [idMarca] ([int]): ID de la [Marca].
-  ///   [idUsuario] ([int]): ID del usuario a ser eliminado de la Marca 
-  /// (ID de usuario de Serverpod, que está como FK en su registro de Cliente). 
-  Future<List<List<dynamic>>> desvincularUsuarioDeMarca(
+  ///   [idUsuario] ([int]): ID del usuario a ser eliminado de la Marca
+  /// (ID de usuario de Serverpod, que está como FK en su registro de Cliente).
+  Future<bool> desvincularUsuarioDeMarca(
     Session session, {
     required int idMarca,
     required int idUsuario,
   }) async {
-    return await ejecutarOperacion(
-      () => orm.desvincularUsuarioDeMarca(
-        session,
-        idMarca: idMarca,
-        idUsuario: idUsuario,
-      ),
-    );
-  }
-
-  /// Obtiene las marcas a las que se encuentra asignado un usuario.
-  /// 
-  /// Args:
-  /// [idUsuario] ([int]): ID del usuario (ID de usuario de Serverpod, que está 
-  /// como FK en su registro de Cliente). 
-  Future<List<Marca>> listarMarcasPorUsuario(
-    Session session, {
-    required int idUsuario,
-  }) async {
-    logger.info(
-      'Recuperando marcas del usuario $idUsuario...',
-    );
-
-    List<Marca> marcas = await ejecutarOperacion(
-      () => orm.listarMarcasPorUsuario(
-        session,
-        idUsuario: idUsuario,
-      ),
-    );
-
-    logger.finest(
-      'Se ha(n) recuperado ${marcas.length} marca(s) relacionada(s) con el usuario $idUsuario.',
-    );
-
-    final listasUsuarios = {};
-    final listasArticulos = {};
-    final cantidadesDeArticulos = {};
-
-    logger.finest(
-      'Recuperando usuarios y últimos artículos de la(s) marca(s) encontradas...',
-    );
-
-    for (final marca in marcas) {
-      final listaUsuarios = await ejecutarOperacion(
-        () => odmCliente.listarUsuariosPorMarca(
+    try {
+      return await ejecutarOperacion(
+        () => orm.desvincularUsuarioDeMarca(
           session,
-          idMarca: marca.id!,
+          idMarca: idMarca,
+          idUsuario: idUsuario,
         ),
       );
-
-      logger.finest(
-        'Recuperado(s) ${listaUsuarios.length} usuarios pertenecientes a la marca ${marca.id}',
-      );
-
-      final listaArticulos = await ejecutarOperacion(
-        () => odmArticulo.listarUltimosTresArticulosPorMarca(
-          session,
-          idMarca: marca.id!,
-        ),
-      );
-
-      logger.finest(
-        'Recuperado(s) ${listaArticulos.length} articulos pertenecientes a la marca ${marca.id}',
-      );
-
-      final cantidadArticulos = await odmArticulo.contarArticulosDeMarca(session, idMarca: marca.id!);
-
-      listasUsuarios[marca.id] = listaUsuarios;
-      listasArticulos[marca.id] = listaArticulos;
-      cantidadesDeArticulos[marca.id] = cantidadArticulos;
+    } catch (e) {
+      rethrow;
     }
-
-    final response = marcas
-        .map(
-          (e) => e
-            ..staff = listasUsuarios[e.id]
-            ..ultimosArticulos = listasArticulos[e.id]
-            ..cantidadArticulos = cantidadesDeArticulos[e.id]
-            ..cantidadClippings = 0,
-            )
-        .toList();
-
-    logger.finest(
-      'Retornando información obtenida...',
-    );
-
-    return response;
   }
 }

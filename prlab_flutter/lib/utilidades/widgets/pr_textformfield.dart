@@ -3,13 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:full_responsive/full_responsive.dart';
-
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/prlab_configuracion/base.dart';
 import 'package:prlab_flutter/theming/base.dart';
-
 import 'package:prlab_flutter/utilidades/funciones/functions.dart';
 
 /// Textformfields base y variantes para uso en PRLab
@@ -24,6 +21,7 @@ class PRTextFormField extends StatefulWidget {
     this.obscureText = false,
     this.usarColorSecundario = false,
     this.prefixIconColor,
+    this.maxLines = 1,
     this.suffixIcon,
     this.onChanged,
     this.keyboardType,
@@ -34,6 +32,8 @@ class PRTextFormField extends StatefulWidget {
     this.decoration,
     this.onTap,
     this.onEditingComplete,
+    this.onFieldSubmitted,
+    this.focusNode,
     super.key,
   });
 
@@ -49,8 +49,8 @@ class PRTextFormField extends StatefulWidget {
     /// validator de [PRTextFormField]
     String? Function(String?)? validator,
 
-    // ignore: inference_failure_on_function_return_type
-    Function(String)? onChanged,
+    /// Devuelve el valor del campo de texto
+    void Function(String)? onChanged,
 
     /// cantidad de minutos faltantes
     int minutosFaltantes = 30,
@@ -240,6 +240,55 @@ class PRTextFormField extends StatefulWidget {
     );
   }
 
+  /// TFF utilizable para nombres de empresas o ubicación en caso de una calle.
+  /// Iconos a utilizar:
+  /// Name/Last name: Icons.person_outlined
+  /// Company: Icons.apartment
+  /// Company location: Icons.location_on_outlined
+  factory PRTextFormField.letrasYNumeros({
+    /// Controller de [PRTextFormField]
+    required TextEditingController controller,
+
+    /// Texto interno
+    required String hintText,
+
+    /// Icono izquierdo
+    required IconData prefixIcon,
+
+    /// Contexto para traducciones
+    required BuildContext context,
+
+    /// Funcion onChanged
+    void Function(String)? onChanged,
+
+    /// Ancho del campo de texto.
+    double? width,
+  }) {
+    final l10n = context.l10n;
+
+    return PRTextFormField(
+      width: width,
+      keyboardType: TextInputType.text,
+      controller: controller,
+      hintText: hintText,
+      onChanged: onChanged,
+      prefixIcon: prefixIcon,
+      inputFormatters: [
+        FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-ZÀ-ÿ\s\d]*$')),
+      ],
+      validator: (value) {
+        if (value?.isEmpty ?? false) {
+          return l10n.commonCompleteTheField;
+        } else if (!ExpresionRegular.letrasYNumerosRegExp
+            .hasMatch(value ?? '')) {
+          return l10n.commonOnlyLetters;
+        }
+
+        return null;
+      },
+    );
+  }
+
   /// TFF a utilizar en caso de necesitarse informacion numerica.
   /// Contact: Icons.call_outlined
   /// Birthdate: Icons.calendar_month_outlined
@@ -404,6 +453,17 @@ class PRTextFormField extends StatefulWidget {
   /// Al completar el campo ejecuta esta Accion
   final void Function()? onEditingComplete;
 
+  /// Ejecuta esta Accion al apretar `Enter` en pc y `Done` en dispositivos
+  /// mobile
+  final void Function(String)? onFieldSubmitted;
+
+  /// Un objeto que puede ser utilizado por un Stateful widget para obtener
+  /// el foco del teclado y manejar eventos del teclado.
+  final FocusNode? focusNode;
+
+  /// Las lineas maximas que puede tomar el campo de texto
+  final int maxLines;
+
   @override
   State<PRTextFormField> createState() => _PRTextFormFieldState();
 }
@@ -415,9 +475,13 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
 
     return SizedBox(
       width: widget.width?.sw ?? 360.sw,
+      height: max(50.ph, 50.sh),
       child: TextFormField(
+        onFieldSubmitted: widget.onFieldSubmitted,
         onEditingComplete: widget.onEditingComplete,
         onTap: widget.onTap,
+        maxLines: widget.maxLines,
+        obscureText: widget.obscureText,
         cursorColor: widget.cursorColor,
         maxLength: widget.maxLength,
         keyboardType: widget.keyboardType ?? TextInputType.none,
@@ -433,16 +497,18 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
         decoration: widget.decoration ??
             InputDecoration(
               hintText: widget.hintText,
-              border: UnderlineInputBorder(
+              border: OutlineInputBorder(
                 borderSide: BorderSide(
                   color: widget.esSoloLectura
                       ? colores.primary
                       : colores.outlineVariant,
                 ),
+                borderRadius: BorderRadius.circular(10.sw),
               ),
+              contentPadding: EdgeInsets.fromLTRB(0.sw, 0.sw, 8.sh, 0.sh),
               suffixIcon: widget.esPassword ? widget.suffixIcon : null,
               prefixIcon: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 4.pw),
+                padding: EdgeInsets.symmetric(horizontal: 10.pw),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisSize: MainAxisSize.min,
@@ -458,15 +524,7 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
                           : widget.esSoloLectura
                               ? colores.primaryOpacidadSesenta
                               : colores.primary,
-                      size: 25.sw,
-                    ),
-                    SizedBox(
-                      width: 5.ph,
-                    ),
-                    Container(
-                      height: max(31.5.ph, 31.5.sh),
-                      width: 1.pw,
-                      decoration: BoxDecoration(color: colores.outlineVariant),
+                      size: 24.sw,
                     ),
                   ],
                 ),
@@ -478,7 +536,6 @@ class _PRTextFormFieldState extends State<PRTextFormField> {
             widget.onChanged?.call(value);
           });
         },
-        obscureText: widget.obscureText,
       ),
     );
   }
@@ -493,6 +550,7 @@ class PRTextFormFieldPassword extends StatefulWidget {
     this.onChanged,
     this.width = 359,
     this.validator,
+    this.onFieldSubmitted,
     super.key,
   });
   final void Function(String? value)? onChanged;
@@ -501,6 +559,7 @@ class PRTextFormFieldPassword extends StatefulWidget {
   final bool esCreacionPassword;
   final double width;
   final String? Function(String? value)? validator;
+  final void Function(String)? onFieldSubmitted;
 
   @override
   State<PRTextFormFieldPassword> createState() =>
@@ -517,6 +576,7 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
     final l10n = context.l10n;
 
     return PRTextFormField(
+      onFieldSubmitted: widget.onFieldSubmitted,
       esPassword: true,
       width: widget.width,
       controller: widget.controller,
@@ -530,12 +590,12 @@ class _PRTextFormFieldPasswordState extends State<PRTextFormFieldPassword> {
             ? Icon(
                 Icons.visibility_off_outlined,
                 color: colores.primary,
-                size: 25.pw,
+                size: 24.sw,
               )
             : Icon(
                 Icons.visibility_outlined,
                 color: colores.primary,
-                size: 25.pw,
+                size: 24.sw,
               ),
         onPressed: () {
           setState(() {

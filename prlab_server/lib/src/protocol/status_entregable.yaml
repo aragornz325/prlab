@@ -1,0 +1,7 @@
+class: StatusEntregable
+table: status_entregables
+fields:
+  nombre: String
+  activo: bool?, database
+  fechaCreacion: DateTime?, database
+  ultimaModificacion: DateTime?, database

@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_client/prlab_client.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
-import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/card_periodista.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
 import 'package:prlab_flutter/utilidades/widgets/pr_boton.dart';
 
@@ -22,7 +22,6 @@ class RowBotonesEmailPRCardPeriodista extends StatelessWidget {
     super.key,
   });
 
-  // TODO(anyone): pasar modelo definitivo
   /// Modelo utilizado para recolectar la información del periodista y armar
   /// la tarjeta
   final Periodista periodista;
@@ -54,6 +53,7 @@ class RowBotonesEmailPRCardPeriodista extends StatelessWidget {
           color: colores.secondary,
           size: 20.pw,
         ),
+        SizedBox(width: 5.pw),
         Text(
           periodista.email,
           style: TextStyle(

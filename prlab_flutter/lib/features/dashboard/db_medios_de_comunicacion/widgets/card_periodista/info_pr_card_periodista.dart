@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
+import 'package:prlab_client/prlab_client.dart';
+import 'package:prlab_flutter/extensiones/extension_periodista.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
 import 'package:prlab_flutter/features/dashboard/db_medios_de_comunicacion/widgets/card_periodista/card_periodista.dart';
 import 'package:prlab_flutter/l10n/l10n.dart';
@@ -47,10 +49,6 @@ class InfoPRCardPeriodista extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Checkbox(
-          value: periodista.estaSeleccionado,
-          onChanged: checkboxCallBack,
-        ),
         SizedBox(width: 10.pw),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,9 +57,11 @@ class InfoPRCardPeriodista extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 CircleAvatar(
+                  backgroundColor: colores.primary,
                   radius: 40.sw,
                   backgroundImage: Image.network(
-                    periodista.avatar,
+                    periodista.urlImagen,
+                    color: colores.primary,
                   ).image,
                 ),
                 SizedBox(width: 10.pw),
@@ -69,7 +69,7 @@ class InfoPRCardPeriodista extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      periodista.name,
+                      periodista.nombreCompleto,
                       style: TextStyle(
                         height: 0.ph,
                         fontSize: 20.pf,
@@ -80,13 +80,27 @@ class InfoPRCardPeriodista extends StatelessWidget {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          l10n.cardPeriodistaAnchorAt,
-                          style: estiloTitulo,
-                        ),
-                        Text(
-                          periodista.anchor,
-                          style: estiloSubtitulo,
+                        RichText(
+                          text: TextSpan(
+                            style: DefaultTextStyle.of(context).style,
+                            children: <TextSpan>[
+                              TextSpan(
+                                text:
+                                    l10n.pageMediaDatabaseAt(periodista.puesto),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  color: colores.secondary,
+                                ),
+                              ),
+                              TextSpan(
+                                text: periodista.medio,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: colores.tertiary,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -100,7 +114,7 @@ class InfoPRCardPeriodista extends StatelessWidget {
               style: estiloTitulo,
             ),
             Text(
-              periodista.location,
+              periodista.localizacion,
               style: estiloSubtitulo,
             ),
             SizedBox(height: max(20.ph, 20.sh)),
@@ -114,10 +128,10 @@ class InfoPRCardPeriodista extends StatelessWidget {
               child: ListView.separated(
                 separatorBuilder: (context, index) => SizedBox(width: 10.pw),
                 scrollDirection: Axis.horizontal,
-                itemCount: periodista.topicCovered.length,
+                itemCount: periodista.temas.length,
                 itemBuilder: (BuildContext context, int index) {
                   return TopicPRCardPeriodista(
-                    topic: periodista.topicCovered[index],
+                    topic: periodista.temas[index],
                   );
                 },
               ),

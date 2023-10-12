@@ -122,7 +122,7 @@ class TileConCheckBoxes<T> extends StatelessWidget {
                     ),
                     SizedBox(width: 5.pw),
                     Text(
-                      e.etiqueta,
+                      e.nombre,
                       style: TextStyle(
                         color: colores.secondary,
                       ),
@@ -211,7 +211,7 @@ class _ListaDeItemsSeleccionablesDialogState<T>
         items: _listaDeSeleccionables
             .map(
               (item) => PRDropdownOption<T>(
-                title: item.etiqueta,
+                title: item.nombre,
                 value: item.valor,
                 textStyle: TextStyle(color: colores.tertiary),
                 checkBoxValue: item.estaSeleccionado,
@@ -260,7 +260,7 @@ class _ListaDeItemsSeleccionablesDialogState<T>
 /// para representarlo.
 class Item<T> extends Equatable {
   const Item({
-    required this.etiqueta,
+    required this.nombre,
     required this.valor,
     required this.estaSeleccionado,
   });
@@ -268,8 +268,8 @@ class Item<T> extends Equatable {
   /// valor con el que representa cada item. Ej: String = Item<String>
   final T valor;
 
-  /// Representa una etiqueta o nombre asociado con el artículo.
-  final String etiqueta;
+  /// Representa una nombre o etiqueta asociado con el artículo.
+  final String nombre;
 
   /// Indica si el item esta seleccionado, por defecto es false.
   final bool estaSeleccionado;
@@ -277,7 +277,7 @@ class Item<T> extends Equatable {
   @override
   List<Object?> get props => [
         valor,
-        etiqueta,
+        nombre,
         estaSeleccionado,
       ];
 }
@@ -287,7 +287,7 @@ extension AlternarSeleccion<T> on List<Item<T>> {
     return map((e) {
       if (e == item) {
         return Item(
-          etiqueta: item.etiqueta,
+          nombre: item.nombre,
           valor: item.valor,
           estaSeleccionado: !item.estaSeleccionado,
         );

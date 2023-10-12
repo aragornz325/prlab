@@ -9,7 +9,7 @@ CREATE TABLE "comentarios" (
   "idAutor" integer NOT NULL,
   "completado" boolean NOT NULL,
   "idAutorCompletado" integer NOT NULL,
-  "fechaCreacion" timestamp without time zone,
+  "fechaCreacion" timestamp without time zone NOT NULL,
   "ultimaModificacion" timestamp without time zone,
   "compania" text,
   "fechaEliminacion" timestamp without time zone,
@@ -72,14 +72,37 @@ CREATE TABLE "marcas" (
   "id" serial,
   "nombre" text NOT NULL,
   "sitioWeb" text NOT NULL,
-  "fechaCreacion" timestamp without time zone NOT NULL,
-  "ultimaModificacion" timestamp without time zone NOT NULL,
-  "activo" boolean
+  "ultimaModificacion" timestamp without time zone,
+  "fechaCreacion" timestamp without time zone,
+  "fechaEliminacion" timestamp without time zone
 );
 
 ALTER TABLE ONLY "marcas"
   ADD CONSTRAINT marcas_pkey PRIMARY KEY (id);
 
+
+--
+-- Class MarcaStaff as table marcas_staff
+--
+
+CREATE TABLE "marcas_staff" (
+  "id" serial,
+  "idMarca" integer NOT NULL,
+  "idStaff" integer NOT NULL,
+  "idRol" integer NOT NULL,
+  "ultimaModificacion" timestamp without time zone NOT NULL,
+  "fechaCreacion" timestamp without time zone NOT NULL,
+  "fechaEliminacion" timestamp without time zone
+);
+
+ALTER TABLE ONLY "marcas_staff"
+  ADD CONSTRAINT marcas_staff_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY "marcas_staff"
+  ADD CONSTRAINT marcas_staff_fk_0
+    FOREIGN KEY("idMarca")
+      REFERENCES marcas(id)
+        ON DELETE CASCADE;
 
 --
 -- Class MensajeRegistro as table mensaje_registro
@@ -154,6 +177,19 @@ ALTER TABLE ONLY "clientes"
         ON DELETE CASCADE;
 
 --
+-- Class Pais as table paises
+--
+
+CREATE TABLE "paises" (
+  "id" serial,
+  "nombre" text NOT NULL
+);
+
+ALTER TABLE ONLY "paises"
+  ADD CONSTRAINT paises_pkey PRIMARY KEY (id);
+
+
+--
 -- Class Periodista as table periodistas
 --
 
@@ -210,18 +246,20 @@ ALTER TABLE ONLY "proyectos"
 CREATE TABLE "articulos" (
   "id" serial,
   "titulo" text NOT NULL,
-  "contenido" text,
-  "contenidoHtml" text,
-  "idProyecto" integer,
-  "idMarca" integer,
-  "idAutor" integer,
-  "idStatus" integer,
+  "contenido" text NOT NULL,
+  "contenidoHtml" text NOT NULL,
+  "idAutor" integer NOT NULL,
+  "idStatus" integer NOT NULL,
   "ultimaModificacion" timestamp without time zone NOT NULL,
-  "fechaLanzamiento" timestamp without time zone NOT NULL,
+  "fechaCreacion" timestamp without time zone NOT NULL,
+  "activo" boolean NOT NULL,
+  "slug" text,
+  "idMarca" integer,
+  "fechaEliminacion" timestamp without time zone,
+  "fechaLanzamiento" timestamp without time zone,
   "fechaPublicacion" timestamp without time zone,
   "idPlataforma" integer,
-  "fechaCreacion" timestamp without time zone,
-  "activo" boolean
+  "idProyecto" integer
 );
 
 ALTER TABLE ONLY "articulos"
@@ -229,13 +267,13 @@ ALTER TABLE ONLY "articulos"
 
 ALTER TABLE ONLY "articulos"
   ADD CONSTRAINT articulos_fk_0
-    FOREIGN KEY("idProyecto")
-      REFERENCES proyectos(id)
+    FOREIGN KEY("idMarca")
+      REFERENCES marcas(id)
         ON DELETE CASCADE;
 ALTER TABLE ONLY "articulos"
   ADD CONSTRAINT articulos_fk_1
-    FOREIGN KEY("idMarca")
-      REFERENCES marcas(id)
+    FOREIGN KEY("idProyecto")
+      REFERENCES proyectos(id)
         ON DELETE CASCADE;
 
 --
@@ -303,5 +341,21 @@ CREATE TABLE "redes_sociales_periodistas" (
 
 ALTER TABLE ONLY "redes_sociales_periodistas"
   ADD CONSTRAINT redes_sociales_periodistas_pkey PRIMARY KEY (id);
+
+
+--
+-- Class StatusEntregable as table status_entregables
+--
+
+CREATE TABLE "status_entregables" (
+  "id" serial,
+  "nombre" text NOT NULL,
+  "activo" boolean,
+  "fechaCreacion" timestamp without time zone,
+  "ultimaModificacion" timestamp without time zone
+);
+
+ALTER TABLE ONLY "status_entregables"
+  ADD CONSTRAINT status_entregables_pkey PRIMARY KEY (id);
 
 

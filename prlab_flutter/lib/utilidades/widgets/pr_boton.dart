@@ -29,7 +29,7 @@ class PRBoton extends StatelessWidget {
     required VoidCallback onTap,
     required String texto,
     required bool estaHabilitado,
-    required double width,
+    double? width,
     double? borderWidth,
     double? height,
     double? fontSize,
@@ -83,6 +83,7 @@ class PRBoton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colores = context.colores;
+
     return GestureDetector(
       onTap: estaHabilitado ? onTap : null,
       child: Container(

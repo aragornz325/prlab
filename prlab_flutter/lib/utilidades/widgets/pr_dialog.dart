@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:full_responsive/full_responsive.dart';
 import 'package:prlab_flutter/extensiones/extensiones.dart';
@@ -113,6 +112,95 @@ class PRDialog extends StatelessWidget {
     );
   }
 
+  /// `PRDialog.creacion` donde puede tener un contenido editable para
+  /// crear algo en especifico tiene un boton de cancel y otro de save
+  factory PRDialog.creacion({
+    required String titulo,
+    required Widget content,
+    required BuildContext context,
+    required VoidCallback onTapSave,
+    required VoidCallback onTapCancel,
+    bool tieneAlturaMinima = true,
+    double? height = 285,
+    double width = 455,
+    bool estaHabilitado = true,
+    double? anchoDelBoton,
+    bool estaCargando = false,
+
+    /// Es la altura que separa entre el boton y el contenido que le vayas a
+    /// pasar
+    double? alturaEntreBotonYContenido,
+    String? tituloDelBoton,
+  }) {
+    final l10n = context.l10n;
+
+    final colores = context.colores;
+
+    return PRDialog(
+      tieneAlturaMinima: tieneAlturaMinima,
+      height: tieneAlturaMinima ? (height?.ph ?? 0) : null,
+      width: width.ph,
+      tipo: TipoDialog.solicitudAccion,
+      content: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(height: max(10.ph, 10.sh)),
+                        Text(
+                          titulo,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20.pf,
+                            fontWeight: FontWeight.w600,
+                            color: colores.tertiary,
+                          ),
+                        ),
+                        SizedBox(height: max(10.ph, 10.sh)),
+                        content,
+                        SizedBox(
+                          height:
+                              alturaEntreBotonYContenido ?? max(20.ph, 20.sh),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              PRBoton.esOutlined(
+                width: anchoDelBoton ?? 100.sw,
+                height: 30.sh,
+                estaHabilitado: estaHabilitado,
+                onTap: onTapCancel,
+                texto: l10n.commonCancel,
+              ),
+              SizedBox(width: 60.pw),
+              PRBoton(
+                estaCargando: estaCargando,
+                width: anchoDelBoton ?? 100.sw,
+                height: 30.sh,
+                onTap: onTapSave,
+                texto: tituloDelBoton ?? l10n.commonSend,
+                estaHabilitado: true,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   /// PRDialog.confirmar es un tipo de dialog de solicitar al usuario que
   /// realice una Accion para eliminar o aceptar algo.
   factory PRDialog.confirmar({
@@ -199,6 +287,7 @@ class PRDialog extends StatelessWidget {
     String? botonText,
     double height = 285,
     double width = 455,
+    double alturaEntreContenido = 30,
   }) {
     final l10n = context.l10n;
 
@@ -220,15 +309,18 @@ class PRDialog extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: max(30.ph, 30.sh)),
+          SizedBox(
+            height: max(alturaEntreContenido.ph, alturaEntreContenido.sh),
+          ),
           content,
-          SizedBox(height: max(30.ph, 30.sh)),
+          SizedBox(
+            height: max(alturaEntreContenido.ph, alturaEntreContenido.sh),
+          ),
           Center(
             child: PRBoton.esOutlined(
               onTap: onTap,
               texto: botonText ?? l10n.commonOk,
               estaHabilitado: true,
-              width: 360.pw,
             ),
           ),
         ],
@@ -509,7 +601,7 @@ class PRDialog extends StatelessWidget {
       contentPadding: contentPadding,
       content: SizedBox(
         height: tieneAlturaMinima ? (height?.ph ?? 0) : null,
-        width: width.pw,
+        width: width,
         child: content,
       ),
     );

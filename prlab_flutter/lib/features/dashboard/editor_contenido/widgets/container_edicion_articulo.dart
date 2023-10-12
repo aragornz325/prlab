@@ -27,14 +27,11 @@ class ContainerEdicionArticulo extends StatefulWidget {
 }
 
 class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
-  /// Controlador del título de [EntregableArticulo].
-  final controller = TextEditingController();
-
   // Nos ayuda a mantener una conexión persistente y
   // se reconecta automáticamente si perdemos la conexión con el servidor.
   late final StreamingConnectionHandler connectionHandler;
 
-  /// A medida que el usuario va escribiendo el titulo del [Articulo]
+  /// A medida que el usuario va escribiendo el titulo del [EntregableArticulo]
   /// se va guardando en la lista las versiones anteriores del mismo.
   ///
   /// Esto permite condicionar si la información que llega del stream fue
@@ -45,8 +42,9 @@ class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
   /// Lista : [`h`, `ho`, `hol`, `hola`].
   final List<String> versionesDelTitulo = [];
 
-  /// A medida que el usuario va escribiendo el contenido del [Articulo]
-  /// se va guardando en la lista las versiones anteriores del mismo.
+  /// A medida que el usuario va escribiendo el contenido del
+  /// [EntregableArticulo] se va guardando en la lista las
+  /// versiones anteriores del mismo.
   ///
   /// Esto permite condicionar si la información que llega del stream fue
   /// o no escrita por el usuario actual, para no pisar los datos del estado.
@@ -63,6 +61,10 @@ class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
   @override
   void initState() {
     super.initState();
+    final state = context.read<BlocEditorContenido>().state;
+
+    versionesDelTitulo.add(state.articulo?.titulo ?? '');
+    versionesDelContenido.add(state.articulo?.contenido ?? '');
 
     // Configura nuestro controlador de conexión y abre una conexión
     // de streaming al servidor. El [StreamingConnectionHandler] intentará
@@ -79,7 +81,6 @@ class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
 
   @override
   void dispose() {
-    controller.dispose();
     _debounce?.cancel();
     super.dispose();
   }
@@ -92,7 +93,9 @@ class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
     await for (final actualizado in client.entregableArticulo.stream) {
       if (actualizado is EntregableArticulo) {
         if (!versionesDelTitulo.contains(actualizado.titulo)) {
-          versionesDelTitulo.clear();
+          versionesDelTitulo
+            ..clear()
+            ..add(actualizado.titulo);
 
           context.read<BlocEditorContenido>().add(
                 BlocEditorContenidoEventoActualizarArticulo(
@@ -103,7 +106,9 @@ class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
         }
 
         if (!versionesDelContenido.contains(actualizado.contenido)) {
-          versionesDelContenido.clear();
+          versionesDelContenido
+            ..clear()
+            ..add(actualizado.contenido);
 
           context.read<BlocEditorContenido>().add(
                 BlocEditorContenidoEventoActualizarArticulo(
@@ -121,11 +126,16 @@ class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
   void _onChanged(String value) {
     versionesDelTitulo.add(value);
 
+    final state = context.read<BlocEditorContenido>().state;
+
+    if (state.articulo?.titulo == value) return;
+
     if (_debounce?.isActive ?? false) _debounce?.cancel();
+
     _debounce = Timer(const Duration(milliseconds: 500), () {
       context.read<BlocEditorContenido>().add(
             BlocEditorContenidoEventoActualizarArticulo(
-              titulo: controller.text,
+              titulo: value,
             ),
           );
     });
@@ -148,24 +158,10 @@ class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
               UploadLogoPR(),
             ],
           ),
-          const Divider(
-            height: 0,
-          ),
-          BlocBuilder<BlocEditorContenido, BlocEditorContenidoEstado>(
-            builder: (context, state) {
-              return _CampoDeTextoTitulo(
-                titulo: state.articulo?.titulo ?? '',
-                controller: controller,
-                onChanged: _onChanged,
-              );
-            },
-          ),
-          const Divider(
-            height: 0,
-          ),
-          EditorDeDescripcionDeContenido(
-            onChanged: versionesDelContenido.add,
-          ),
+          const Divider(height: 0),
+          _CampoDeTextoTitulo(onChanged: _onChanged),
+          const Divider(height: 0),
+          EditorDeDescripcionDeContenido(onChanged: versionesDelContenido.add),
         ],
       ),
     );
@@ -174,30 +170,37 @@ class _ContainerEdicionArticuloState extends State<ContainerEdicionArticulo> {
 
 class _CampoDeTextoTitulo extends StatefulWidget {
   const _CampoDeTextoTitulo({
-    required this.titulo,
-    required this.controller,
     required this.onChanged,
   });
 
-  /// Título de [EntregableArticulo].
-  final String titulo;
-
-  /// Controlador del título de [EntregableArticulo].
-  final TextEditingController controller;
-
   /// Se ejecuta cuando se genera un cambio en el título del
   /// articulo y devuelve el nuevo valor del mismo.
-  final void Function(String value) onChanged;
+  final void Function(String value)? onChanged;
 
   @override
   State<_CampoDeTextoTitulo> createState() => _CampoDeTextoTituloState();
 }
 
 class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
+  /// Controlador del título de [EntregableArticulo].
+  final _controller = TextEditingController();
+
+  /// Focus del título de [EntregableArticulo].
+  final _focusNode = FocusNode();
+
   @override
   void initState() {
-    widget.controller.text = widget.titulo;
+    final state = context.read<BlocEditorContenido>().state;
+
+    _controller.text = state.articulo?.titulo ?? '';
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -216,12 +219,16 @@ class _CampoDeTextoTituloState extends State<_CampoDeTextoTitulo> {
           child: BlocListener<BlocEditorContenido, BlocEditorContenidoEstado>(
             listener: (context, state) {
               if (state is BlocEditorContenidoEstadoActualizandoDesdeStream) {
-                widget.controller.text =
-                    state.articulo?.titulo ?? widget.controller.text;
+                if (state.articulo?.titulo == _controller.text) return;
+
+                _controller.text = state.articulo?.titulo ?? _controller.text;
+
+                _focusNode.unfocus();
               }
             },
             child: TextField(
-              controller: widget.controller,
+              controller: _controller,
+              focusNode: _focusNode,
               onChanged: widget.onChanged,
               style: TextStyle(
                 height: max(1.ph, 1.sh),

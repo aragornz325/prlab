@@ -20,8 +20,7 @@ import 'package:prlab_flutter/utilidades/widgets/widgets.dart';
 class PopUpMenuOpcionesArticulo extends StatefulWidget {
   /// {@macro PopUpMenuOpcionesArticulo}
   const PopUpMenuOpcionesArticulo({
-    super.key,
-    required this.idArticulo,
+    required this.idArticulo, super.key,
   });
 
   /// Id del articulo seleccionado
@@ -42,6 +41,7 @@ class _PopUpMenuOpcionesArticuloState extends State<PopUpMenuOpcionesArticulo> {
     final l10n = context.l10n;
 
     return PopupMenuButton<int>(
+      tooltip: '',
       onOpened: () {
         setState(() {
           estaDesplegado = true;

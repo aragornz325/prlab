@@ -18,9 +18,8 @@ class OrmPeriodista extends ORM {
     List<int> idTiposDeMedio = const [],
     List<int> idPuestos = const [],
   }) async {
-    final queryNombres = nombres != ''
-        ? '(j."nombres" LIKE \'%$nombres%\')'
-        : '';
+    final queryNombres =
+        nombres != '' ? '(j."nombres" LIKE \'%$nombres%\')' : '';
     final queryNombreDeMedio =
         nombreDeMedio != '' ? 'm."medio" LIKE \'%$nombreDeMedio%\'' : '';
     final queryPaises =
@@ -145,8 +144,7 @@ FROM
     return response
         .map(
           (e) => Periodista.fromJson(
-            e
-              ..['redesSociales'] = jsonDecode(e['redesSociales']),
+            e..['redesSociales'] = jsonDecode(e['redesSociales']),
             Protocol(),
           ),
         )
@@ -410,7 +408,8 @@ GROUP BY
       await ejecutarOperacionOrm(
         session,
         (Session session) {
-          logger.finer('Creando periodista: ${periodista.nombres} ${periodista.apellidos}');
+          logger.finer(
+              'Creando periodista: ${periodista.nombres} ${periodista.apellidos}',);
           return Periodista.insert(
             session,
             periodista
@@ -420,8 +419,8 @@ GROUP BY
           );
         },
       );
-      logger
-          .fine('Periodista ${periodista.nombres} ${periodista.apellidos} creada exitosamente.');
+      logger.fine(
+          'Periodista ${periodista.nombres} ${periodista.apellidos} creada exitosamente.',);
       return true;
     } on Exception catch (e) {
       throw Exception('$e');

@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:cloudinary/cloudinary.dart';
 import 'package:prlab_server/src/cloudinary.dart';
 import 'package:prlab_server/src/servicio.dart';
@@ -10,15 +12,15 @@ class ServicioAlmacenamientoArchivosNube extends Servicio<OdmCloudinary> {
   /// la carpeta donde se va a alojar.
   Future<CloudinaryResponse> subirImagen(
     Session session, {
-    required String rutaImagen,
     required String nombreImagen,
     required String directorioNube,
+    String? rutaImagen,
+    List<int>? bytesImagen,
   }) async {
-    final archivo = File(rutaImagen);
     return await ejecutarOperacion(
       () => almacenamientoNube.upload(
-        file: archivo.path,
-        fileBytes: archivo.readAsBytesSync(),
+        file: rutaImagen,
+        fileBytes: bytesImagen != null ? Uint8List.fromList(bytesImagen) : null,
         resourceType: CloudinaryResourceType.image,
         folder: directorioNube,
         fileName: nombreImagen,
