@@ -1,6 +1,5 @@
 import 'package:prlab_server/src/generated/visitas_api.dart';
 import 'package:prlab_server/src/servicios/servicio_metrica.dart';
-import 'package:serverpod/protocol.dart';
 import 'package:serverpod/server.dart';
 import 'package:similar_web/similar_web.dart';
 
@@ -10,11 +9,11 @@ class MetricaEndpoint extends Endpoint {
   final servicioMetrica = ServicioMetrica();
 
   /// Obtiene visitas de dominios registradas por SimilarWeb.
-  ///   
-  /// Args:  
+  ///
+  /// Args:
   /// REQUERIDO `domainName` ([String]): sitio web del que se buscan métricas,
-  /// sin "www." ni llaves ("{}").  
-  /// `country`: 
+  /// sin "www." ni llaves ("{}").
+  /// `country`:
   Future<List<VisitasApi>> getTotalVisits(
     Session session,
     String domainName, {

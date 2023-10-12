@@ -863,6 +863,55 @@
     "@pageEditContentCommentsHintText": {
         "description": "Text on view edit content pulled apart comment,hint text in text field for add new comments"
     },
+    
+    "pageSendDeliverablesWriteEmailLabel": "Escribir correo electrónico",
+    "@pageSendDeliverablesWriteEmailLabel": {
+        "description": "Text to indicate the editing/writing of an email in the process where press releases are sent to journalists"
+    },
+
+    "pageSendDeliverablesWriteEmailIssueLabel": "Asunto",
+    "@pageSendDeliverablesWriteEmailIssueLabel": {
+        "description": "Text to indicate the editing/writing of the subject/title of an email in the process where press releases are sent to journalists"
+    },
+
+    "pageSendDeliverablesStepsLabel": "Paso {currentStep} de {steps}",
+    "@pageSendDeliverablesStepsLabel": {
+        "description": "Indicates what step the user is currently in in the process of sending a press release to journalists.",
+        "placeholders" : {
+            "currentStep" : {
+                "type": "int"
+            },
+            "steps" : {
+                "type": "int"
+            }
+        },
+
+    "commonDraft": "Borrador",
+    "@commonDraft": {
+        "description": "Text on define status draft of article,tells a user that it is a draft article"
+    },
+
+    "commonFeedback": "Comentario",
+    "@commonFeedback": {
+        "description": "Text on define status feedback of article,indicates that there are comments"
+    },
+
+    "commonApproved": "Aprobado",
+    "@commonApproved": {
+        "description": "Text on define status approved of article,indicates that it has already been approved"
+    },
+
+    "commonSchedule": "Programado",
+    "@commonSchedule": {
+        "description": "Text on define status schedule of article,indicates that it is going to be published"
+    },
+    
+    
+    "commonPublished": "Publicado",
+    "@commonPublished": {
+        "description": "Text on define status published of article,indicates that it has already been published"
+    },
+
     "commonAuthor": "Autor",
     "@commonAuthor": {
         "description": "Text on Filter a articles by Status on create this articles,title on popup for select 3 options"
@@ -890,6 +939,10 @@
     "commonBack": "Atrás",
     "@commonBack": {
         "description": "Text back in button of screen create admin account"
+    },
+    "commonNext": "Siguiente",
+    "@commonNext": {
+        "description": "Text on buttons that indicate that tapping advances to another process"
     },
     "commonContinue" : "Continuar",
     "@commonContinue": {
@@ -1017,7 +1070,8 @@
     "@commonArticles": {
         "description": "A piece of writing on a brand"
     },
-  "commonAddPage": "Agregar página",
+
+    "commonAddPage": "Agregar página",
     "@commonAddPage": {
         "description": "Text shown on a button that indicates to add a page"
     },
@@ -1066,5 +1120,6 @@
     "@commonNothingToSee": {
         "description": "Text shown when the data brought from the db is empty"
     }
+}
 }
 

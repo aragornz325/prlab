@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -14,7 +15,13 @@ import 'package:prlab_flutter/l10n/l10n.dart';
 /// {@endtemplate}
 class TextFieldBusquedaFiltrado extends StatefulWidget {
   /// {@macro TextFieldBusquedaFiltrado}
-  const TextFieldBusquedaFiltrado({super.key});
+  const TextFieldBusquedaFiltrado({
+    super.key,
+    this.idMarca,
+  });
+
+  /// Id de la marca  para filtrar la marca
+  final int? idMarca;
 
   @override
   State<TextFieldBusquedaFiltrado> createState() =>
@@ -22,11 +29,17 @@ class TextFieldBusquedaFiltrado extends StatefulWidget {
 }
 
 class _TextFieldBusquedaFiltradoState extends State<TextFieldBusquedaFiltrado> {
+  /// controller para filtrar por el nombre del articulo.
   final controllerFiltradoNombre = TextEditingController();
+
+  /// Genera una espera antes guardar la nueva data del titulo
+  /// en la db para mejorar la performance.
+  Timer? _debounce;
 
   @override
   void dispose() {
     controllerFiltradoNombre.dispose();
+    _debounce?.cancel();
     super.dispose();
   }
 
@@ -39,47 +52,59 @@ class _TextFieldBusquedaFiltradoState extends State<TextFieldBusquedaFiltrado> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 20.ph),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
-            width: 813.pw,
-            height: max(50.ph, 50.sh),
-            padding: EdgeInsets.symmetric(horizontal: 5.pw),
-            decoration: BoxDecoration(
-              color: colores.surfaceTint,
-              borderRadius: BorderRadius.all(Radius.circular(10.sw)),
-              border: Border.all(color: colores.outline),
-            ),
-            child: Center(
-              child: TextFormField(
-                controller: controllerFiltradoNombre,
-                style: TextStyle(
-                  color: colores.primary,
-                  fontSize: 15.pf,
-                  fontWeight: FontWeight.w400,
-                ),
-                onChanged: (value) =>
-                    context.read<BlocListaArticulosYRecortes>().add(
-                          BlocListaArticulosYRecortesEventoFiltrarBuscador(
-                            nombreDelArticuloAFiltrar: value,
-                          ),
-                        ),
-                decoration: InputDecoration(
-                  hintText: l10n.commonSearch,
-                  border: InputBorder.none,
-                  prefixIcon: Icon(
-                    Icons.manage_search,
-                    color: colores.secondary,
-                    size: 20.pw,
+          Padding(
+            padding: EdgeInsets.only(left: 60.pw, right: 20.pw),
+            child: Container(
+              width: 863.pw,
+              height: max(50.ph, 50.sh),
+              decoration: BoxDecoration(
+                color: colores.surfaceTint,
+                borderRadius: BorderRadius.all(Radius.circular(10.sw)),
+                border: Border.all(color: colores.outline),
+              ),
+              child: Center(
+                child: TextFormField(
+                  controller: controllerFiltradoNombre,
+                  style: TextStyle(
+                    color: colores.primary,
+                    fontSize: 15.pf,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  onChanged: (value) => _filtrarPorNombreDelArticulo(
+                    value,
+                    context,
+                  ),
+                  decoration: InputDecoration(
+                    hintText: l10n.commonSearch,
+                    border: InputBorder.none,
+                    prefixIcon: Icon(
+                      Icons.manage_search,
+                      color: colores.secondary,
+                      size: 20.pw,
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-          SizedBox(width: 20.pw),
-          const PopupOpcionesDeFiltrado(),
+          SizedBox(width: 0.pw),
+          PopupOpcionesDeFiltrado(idMarca: widget.idMarca),
         ],
       ),
     );
+  }
+
+  /// le pasa el texto del nombre del articulo a filtrar
+  void _filtrarPorNombreDelArticulo(String value, BuildContext context) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      context.read<BlocListaArticulosYRecortes>().add(
+            BlocListaArticulosYRecortesEventoGuardarDatosDeFiltrado(
+              nombreDelArticuloAFiltrar: value,
+            ),
+          );
+    });
   }
 }

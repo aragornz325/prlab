@@ -94,6 +94,23 @@ class AppRouter extends $AppRouter {
               path: 'media-database',
               transitionsBuilder: TransitionsBuilders.noTransition,
             ),
+            CustomRoute(
+              page: RutaEnvioContenidoAPeriodistas.page,
+              path: 'send-deliverables',
+              transitionsBuilder: TransitionsBuilders.noTransition,
+              children: [
+                CustomRoute(
+                  page: RutaSelectorDeDestinatarios.page,
+                  path: 'select-recipients',
+                  transitionsBuilder: TransitionsBuilders.noTransition,
+                ),
+                CustomRoute(
+                  page: RutaEditorCorreoElectronico.page,
+                  path: 'write-email',
+                  transitionsBuilder: TransitionsBuilders.noTransition,
+                ),
+              ],
+            ),
           ],
         ),
       ];
