@@ -1,3 +1,4 @@
+import 'package:prlab_server/src/excepciones/excepcion_endpoint.dart';
 import 'package:prlab_server/src/generated/protocol.dart';
 import 'package:prlab_server/src/servicios/servicio_entregable_articulo.dart';
 import 'package:serverpod/serverpod.dart';
@@ -251,7 +252,9 @@ class EntregableArticuloEndpoint extends Endpoint {
   }) async {
     try {
       if (idStatus.isEmpty) {
-        throw Exception('La lista de estados no puede estar vacía');
+        throw Excepciones.solicitudIncorrecta(
+            mensaje: "la lista de idStatus no puede estar vacia",
+            titulo: "Error en lista de ids");
       }
 
       return await servicioArticulo.listarEntregableMarcayEstado(

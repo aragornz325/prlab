@@ -26,7 +26,7 @@ COPY --from=build /app/web/ web/
 
 EXPOSE 8080
 EXPOSE 8081
-EXPOSE 8082
+EXPOSE 80
 
 # ENTRYPOINT /app/bin/main --mode $runmode --server-id $serverid --logging $logging --role $role
 
