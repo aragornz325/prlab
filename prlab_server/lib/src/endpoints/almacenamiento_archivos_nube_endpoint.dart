@@ -11,9 +11,9 @@ class AlmacenamientoArchivosNubeEndpoint extends Endpoint {
   /// Sube una imagen a la nube. Requiere de la ruta del archivo, el nombre y
   /// la carpeta donde se va a alojar.
   /// Se puede subir por dos vías:
-  /// - Mediante la ruta del archivo (parámetro [rutaImagen]). Sólo funciona en 
-  /// local.  
-  /// - Mediante enviar el archivo como [Uint8List]. Es la forma que funciona 
+  /// - Mediante la ruta del archivo (parámetro [rutaImagen]). Sólo funciona en
+  /// local.
+  /// - Mediante enviar el archivo ddcomo [Uint8List]. Es la forma que funciona
   /// con el server desplegado.
   Future<String> subirImagen(
     Session session, {
