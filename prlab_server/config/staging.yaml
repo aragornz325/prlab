@@ -9,9 +9,9 @@ insightsServer:
   publicPort: 8081
   publicScheme: http
 webServer: 
-  port: 8082
-  publicHost: localhost
-  publicPort: 8082
+  port: 8083
+  publicHost: 0.0.0.0
+  publicPort: 8083
   publicScheme: http
 database: 
   host: db.vtbtqqvsbekddeaeqbdt.supabase.co

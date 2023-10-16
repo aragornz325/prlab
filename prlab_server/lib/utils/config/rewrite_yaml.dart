@@ -6,6 +6,8 @@ import 'package:yaml_writer/yaml_writer.dart';
 /// Funcion que re-escribe el archivo de configuracion YAML. Usado para hacer
 /// deploys en Railway.
 void rewriteConfigYaml(String mode) {
+  int portValue = int.tryParse(Platform.environment['PORT'] ?? '8082') ?? 8082;
+  int incrementedPort = portValue + 1;
   YAMLWriter yamlWriter = YAMLWriter(allowUnquotedStrings: true);
   String yamlDoc = yamlWriter.write({
     'apiServer': {
@@ -21,9 +23,9 @@ void rewriteConfigYaml(String mode) {
       'publicScheme': 'http',
     },
     'webServer': {
-      'port': 8082,
-      'publicHost': 'localhost',
-      'publicPort': 8082,
+      'port': incrementedPort,
+      'publicHost': '0.0.0.0',
+      'publicPort': incrementedPort,
       'publicScheme': 'http',
     },
     'database': {
